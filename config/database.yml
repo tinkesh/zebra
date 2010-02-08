@@ -1,0 +1,40 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: aaastriping
+  pool: 5
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+
+test:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: aaastriping.ca_test
+  pool: 5
+  username: 
+  password: 
+  socket: /tmp/mysql.sock
+
+
+production:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: aaastriping.ca_production
+  pool: 5
+  username: 
+  password: 
+  socket: /tmp/mysql.sock
+
+staging:
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: aaastriping.ca_production
+  pool: 5
+  username: 
+  password: 
+  socket: /tmp/mysql.sock

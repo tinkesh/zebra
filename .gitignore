@@ -1,9 +1,8 @@
-config/database.yml
 log/*.log
 tmp/**/*
-.DS_Store
+tmp/*
+tmp/
 .DS_Store
 /log/*.pid
 public/system/*
 tmp/sent_mails/*
-public/stylesheets/*
