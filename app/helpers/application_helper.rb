@@ -18,4 +18,9 @@ module ApplicationHelper
       block.call
     end
   end
+
+  def active_menu(number)
+    'class="active" ' if (@mainmenu == number || @sidebarmenu == number)
+  end
+
 end

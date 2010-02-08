@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   #declarative_authorization
-  #filter_resource_access
+  filter_resource_access
   
   def index
     @users = User.all

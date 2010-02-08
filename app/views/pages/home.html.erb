@@ -1,23 +1,42 @@
-<div id="top_menu">
-  <% anonymous_only do %>
-    <%= link_to "Register", new_account_path %>
-    <%= link_to "Login", new_user_session_path %>
-  <% end %>
-  <% authenticated_only do %>
-    <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
-  <% end %>
-</div>
+<%
+@description = "Provider of line painting, line removal, seal coating, and other services. Located in Edmonton, Alberta."
+@keywords = "line painting, line removal, seal coating, "
+@content_classes = ""
+@mainmenu = 1
+%>
 
-<div id="main">
-  <h1>Welcome to aaastriping.ca</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
+<h1>AAA Striping &amp; Seal Coating Service</h1>
 
-<div id="left_menu">
-  <% anonymous_only do %>
-    <%= link_to "Register", new_account_path %>
-    <%= link_to "Login", new_user_session_path %>
-  <% end %>
-  <% authenticated_only do %>
-  <% end %>
-</div>
+<p>AAA Striping is based in Edmonton, Alberta and specializes in pavement markings since 1981. In addition to our pavement services, we provide <a href="/services/line-removal">line removal</a> and <a href="/services/seal-coating">seal coating</a>. We invite you to browse the other <a href="/services">great services we offer</a>.</p>
+
+<p>Our quality assurance program ensures that our work meets all the specifications set out by our customer(s). Moreover, we put great emphasis in providing consistent quality workmanship and continuous improvement.</p>
+
+</div><!-- content -->
+
+<div id="subcontent" class="clearfix">
+  <div class="item">
+    <a href="/services/line-painting" id="linepainting">
+      <h2>Line Painting</h2>
+    </a>
+  </div>
+
+  <div class="item">
+    <a href="/services/mma-durables" id="mmadurables">
+      <h2>MMA Durables</h2>
+    </a>
+  </div>
+
+  <div class="item">
+    <a href="/services/wet-night-visibility" id="agglomerate">
+      <h2>Wet Night Visibility</h2>
+    </a>
+  </div>
+
+  <div class="item last">
+    <a href="/services/line-removal" id="lineremoval">
+      <h2>Line Removal</h2>
+    </a>
+  </div>
+</div><!-- subcontent -->
+
+<div>

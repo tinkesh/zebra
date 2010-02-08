@@ -14,11 +14,13 @@ class ApplicationController < ActionController::Base
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
-  filter_parameter_logging :password, :confirm_password, :password_confirmation, :creditcard
+  filter_parameter_logging :password, :confirm_password, :password_confirmation
   
   before_filter { |c| Authorization.current_user = c.current_user}
   before_filter :set_time_zone
-  
+
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+
   def logged_in?
     !current_user_session.nil?
   end
@@ -36,7 +38,11 @@ class ApplicationController < ActionController::Base
   def set_time_zone
     Time.zone = @current_user.time_zone if @current_user
   end  
-  
+
+  def render_404
+    render :template => "layouts/error_404", :status => "404 Not Found"
+  end
+
 private
   def require_user
     unless current_user
