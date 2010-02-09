@@ -1,0 +1,94 @@
+<h2>Careers with AAA Striping &amp; Seal Coating Service</h2>
+
+<p>Thank you for your interest in working with AAA Striping &amp; Seal Coating Service! We are constantly hiring.</p>
+
+<p>Please complete this Employment Information form and we will contact you.</p>
+
+<hr class="space">
+
+<% form_for(@career) do |f| %>
+  <%= f.error_messages %>
+
+<div class="span-12 append-1">
+  <div class="span-6 append-bottom">
+    <%= f.label :name, "Name *" %>
+    <%= f.text_field :name, :class => "span-6" %>
+  </div>
+
+  <div class="span-6 append-bottom">
+    <%= f.label :address, "Address *" %>
+    <%= f.text_field :address, :class => "span-6" %>
+  </div>
+
+  <div class="span-4 append-bottom">
+    <%= f.label :city, "City *" %>
+    <%= f.text_field :city, :class => "span-4" %>
+  </div>
+  
+  <div class="span-2 last append-bottom">
+    <%= f.label :province, "Province *" %>
+    <%= f.text_field :province, :class => "span-2" %>
+  </div>
+  
+  <div class="span-6 append-bottom">
+    <%= f.label :phone, "Phone *" %>
+    <%= f.text_field :phone, :class => "span-6" %>
+  </div>
+  
+  <div class="span-6 last append-bottom">
+    <%= f.label :email %>
+    <%= f.text_field :email, :class => "span-6" %>
+  </div>
+  
+  <div class="span-12 append-bottom">
+    <%= f.label :references, "Previous Employment &amp; References *" %><br />
+    Include Relationship Type and Contact Information
+    <%= f.text_area :references, :class => "span-12" %>
+  </div>
+
+</div>
+
+<div class="span-9 last">
+  <div class="append-bottom">
+    <%= f.check_box :have_experience %> <%= f.label :have_experience, "I have previous line painting experience" %>
+  </div>
+
+  <div class="append-bottom">
+    <%= f.check_box :have_class5 %> <%= f.label :have_class5, "I have a valid Class 5 drivers license" %>
+  </div>
+  
+  <div class="append-bottom">
+    <%= f.check_box :have_class3 %> <%= f.label :have_class3, "I have a valid Class 3 drivers license" %>
+  </div>
+
+  <div class="append-bottom">
+    <%= f.check_box :have_class1 %> <%= f.label :have_class3, "I have a valid Class 1 drivers license" %>
+  </div>
+
+  <div class="append-bottom">
+    <%= f.check_box :have_firstaid %> <%= f.label :have_firstaid, "I have First Aid training" %>
+  </div>
+
+  <div class="append-bottom">
+    <%= f.check_box :have_tdg %> <%= f.label :have_tdg, "I have Dangers Goods training" %>
+  </div>
+
+  <div class="append-bottom">
+    <%= f.check_box :have_overtime %> <%= f.label :have_overtime, "I am willing to work overtime hours when needed" %>
+  </div>
+  
+  <div class="append-bottom">
+    <%= f.check_box :have_travel %> <%= f.label :have_travel, "I am willing to work out of town for short or long periods" %>
+  </div>
+  
+  <div class="append-bottom">
+    <%= f.check_box :have_seasonal %> <%= f.label :have_seasonal, "I am interested in a permanent seasonal position (May-Nov) returning each year" %>
+  </div>
+  
+</div>
+
+<br class="clear">
+
+<%= f.submit 'Submit My Information' %>
+
+<% end %>
