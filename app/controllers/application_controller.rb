@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   before_filter { |c| Authorization.current_user = c.current_user}
   before_filter :set_time_zone
 
-  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  # rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
   def logged_in?
     !current_user_session.nil?
@@ -39,9 +39,9 @@ class ApplicationController < ActionController::Base
     Time.zone = @current_user.time_zone if @current_user
   end  
 
-  def render_404
-    render :template => "layouts/error_404", :status => "404 Not Found"
-  end
+#  def render_404
+#    render :template => "layouts/error_404", :status => "404 Not Found"
+#  end
 
 private
   def require_user

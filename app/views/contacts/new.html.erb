@@ -1,47 +1,106 @@
-<h1>New contact</h1>
+<div class="span-12 append-2">
+  
+<h2>Email Us</h2>
+<p>Thank you for your interest. We respond to all emails within 1 business day.</p>
 
 <% form_for(@contact) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :company %><br />
-    <%= f.text_field :company %>
-  </p>
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :province %><br />
-    <%= f.text_field :province %>
-  </p>
-  <p>
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :subject %><br />
-    <%= f.text_field :subject %>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
+  <div class="span-6 append-bottom ">
+    <%= f.label :name, "Name *" %>
+    <%= f.text_field :name, :class => "span-6" %>
+  </div>
+  
+  <div class="span-6 last append-bottom">
+    <%= f.label :email, "Email *" %>
+    <%= f.text_field :email, :class => "span-6" %>
+  </div>
+
+  <div class="span-6 append-bottom">
+    <%= f.label :phone %>
+    <%= f.text_field :phone, :class => "span-6" %>
+  </div>
+  
+  <div class="span-6 last append-bottom">
+    <%= f.label :company %>
+    <%= f.text_field :company, :class => "span-6" %>
+  </div>
+
+  <div class="span-6 append-bottom">
+    <%= f.label :address %>
+    <%= f.text_field :address, :class => "span-6" %>
+  </div>
+
+  <div class="span-4 append-bottom">
+    <%= f.label :city %>
+    <%= f.text_field :city, :class => "span-4" %>
+  </div>
+  
+  <div class="span-2 last append-bottom">
+    <%= f.label :province %>
+    <%= f.text_field :province, :class => "span-2" %>
+  </div>
+  
+  <br class="clear">
+
+  <%= f.label :subject, "Subject *" %>
+  <%= f.text_field :subject, :class => "span-12 append-bottom" %>
+
+  <br class="clear">
+  <br class="clear">
+
+  <%= f.label :body, "Message *" %>
+  <%= f.text_area :body, :class => "span-12 append-bottom" %>
+
+  <%= f.submit 'Send Message' %>
+
 <% end %>
 
-<%= link_to 'Back', contacts_path %>
+</div>
+
+<div class="span-7 last">
+
+  <h2>Contact Us</h2>
+
+  <h4>AAA Striping &amp; Seal Coating Service</h4>
+  <p>Office: (780) 435-2214<br>
+  Fax: (780) 378-0097<br>
+  P.O. Box 8156 Station South CRO<br>
+  Edmonton, Albeta  T6E 6R2</p>
+
+  <h4>Edward Andrews</h4>
+  <p>
+    Operations Manager / Site Supervisor
+    <br>
+    <a href="mailto:edward@aaastriping.ca">edward@aaastriping.ca</a>
+  </p>
+
+  <h4>Kwame Andrews</h4>
+  <p>
+    CEO / Chief Estimator
+    <br>
+    <a href="mailto:kwame@aaastriping.ca">kwame@aaastriping.ca</a>
+  </p>
+
+  <h4>Dorian Andrews</h4>
+  <p>
+    Estimator / Site Supervisor / Manager
+    <br>
+    <a href="mailto:dorian@aaastriping.ca">dorian@aaastriping.ca</a>
+  </p>
+
+  <h4>Angela Bordignon</h4>
+  <p>
+    Administrative Assistant
+    <br>
+    <a href="mailto:angela@aaastriping.ca">angela@aaastriping.ca</a>
+  </p>
+
+  <h4>Mertella Montague</h4>
+  <p>
+    Human Resources
+    <br>
+    <a href="mailto:mertella@aaastriping.ca">mertella@aaastriping.ca</a>
+  </p>
+
+</div>

@@ -30,16 +30,26 @@
 
   <div class="container">
 
-    <a id="quoterequest" href="/contact">Request More Information</a>
+    <a id="quoterequest" href="/contacts">Request More Information</a>
 
     <div id="header" class="clearfix">
       <%= render :partial => 'menus/main', :layout => false %>
     </div><!-- header -->
 
     <div id="content" class="clearfix edges <%= @content_classes %>">
-      <% if flash[:error] %><p id="error"><%= flash[:error] %></p><% end %>
-      <% if @title %><h1><%= @title %></h1><% end %>
+
+      <div id="flash">
+        <% flash.each do |key, value| -%>
+          <div class="<%= key %>"><%=h value %></div>
+        <% end -%>
+      </div>
+
+      <% if @title %>
+        <h1><%= @title %></h1>
+      <% end %>
+
       <%= yield %>
+
     </div><!-- content -->
 
     <div id="footer">
@@ -57,15 +67,6 @@
       </p>
     </div><!-- footer -->
   </div><!-- container -->
-
-  <script type="text/javascript">
-  Lightbox.rescan()
-  </script>
-
-  <script type="text/javascript">
-    Event.observe($('wetlink'), 'mouseover', function(event){ $('wetmenu').show(); });
-    Event.observe($('wetlink'), 'mouseout', function(event){ $('wetmenu').hide(); });
-  </script>
 
   <script type="text/javascript">
   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
