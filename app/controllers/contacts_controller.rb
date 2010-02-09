@@ -1,5 +1,7 @@
 class ContactsController < ApplicationController
 
+  layout "public"
+
   # GET /contacts/new
   # GET /contacts/new.xml
   def new

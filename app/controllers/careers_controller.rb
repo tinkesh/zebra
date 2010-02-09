@@ -1,5 +1,7 @@
 class CareersController < ApplicationController
 
+  layout "public"
+
   # GET /careers/new
   def new
     @career = Career.new

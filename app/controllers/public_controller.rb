@@ -1,4 +1,6 @@
-class PagesController < ApplicationController
+class PublicController < ApplicationController
+  
+  layout "public"
   
   def home
   end

@@ -16,8 +16,7 @@
   <%= stylesheet_link_tag 'blueprint-0.9.1/screen.css', :media => "screen, projection" %>
   <%= stylesheet_link_tag 'blueprint-0.9.1/print.css', :media => "print" %>
   <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint-0.9.1/ie.css', :media => "screen, projection" %><![endif]-->
-  <%= stylesheet_link_tag 'lightbox.css', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'aaastriping.css', :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'public.css', :media => "screen, projection" %>
   <%= javascript_include_tag :all, :cache => true %>
   <%= yield :javascripts -%>
   <%= yield :stylesheets -%>
@@ -44,8 +43,8 @@
         <% end -%>
       </div>
 
-      <% if @title %>
-        <h1><%= @title %></h1>
+      <% if @page_title %>
+        <h1><%= @page_title %></h1>
       <% end %>
 
       <%= yield %>
@@ -58,7 +57,7 @@
         Copyright &copy; <%= Time.now.strftime("%Y") %> AAA Striping &amp; Seal Coating Service, a division of Swerdna Services.
         &nbsp;&nbsp;&nbsp;
       <% anonymous_only do %>
-        <%= link_to "Register", new_account_path %> or 
+        <%= link_to "Register", new_user_path %> or 
         <%= link_to "Login", new_user_session_path %>.
       <% end %>
       <% authenticated_only do %>

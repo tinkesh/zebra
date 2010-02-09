@@ -1,20 +1,18 @@
 ActionController::Routing::Routes.draw do |map|
 
+  # public forms
   map.resource :contacts, :only => [:new, :create], :path_names => { :new => '' }
   map.resource :careers, :only => [:new, :create], :path_names => { :new => '' }
 
-  map.resource  :account, :controller => "users"
+  # user authentication and accounts
   map.resource  :user_session
-
   map.resources :password_resets
-  map.resources :users
+  map.resources :users, :path_prefix => "admin"
+  map.register  'register', :controller => "users",         :action => "new"
+  map.login     'login',    :controller => "user_sessions", :action => "new"
+  map.logout    'logout',   :controller => "user_sessions", :action => "destroy"
 
-  map.login    'login',    :controller => "user_sessions", :action => "new"
-  map.logout   'logout',   :controller => "user_sessions", :action => "destroy"
-
-  map.register 'register', :controller => "users",         :action => "new"
-
-  map.with_options :controller => "pages" do |page|
+  map.with_options :controller => "public" do |page|
     page.about '/about', :action => 'about'
     page.equipment_for_sale "/equipment-for-sale", :action => "equipment_for_sale"
     page.products_mma_cold_plastic "/products/plastiroute-mma-cold-plastic", :action => "products_mma_cold_plastic"
@@ -38,9 +36,12 @@ ActionController::Routing::Routes.draw do |map|
     page.wet_night_aggolmerate "/services/wet-night-visibility/agglomerate-structured-marking", :action => "wet_night_aggolmerate"
     page.wet_night_dotflex "/services/wet-night-visibility/dotflex-mma-cold-plastic", :action => "wet_night_dotflex"
     page.wet_night_droponlinetm "/services/wet-night-visibility/droponlinetm-hot-thermoplastic", :action => "wet_night_droponlinetm"
-
   end
 
-  map.root  :controller => "pages", :action => "home"
+  map.with_options :controller => "private" do |page|
+    page.private_home '/admin', :action => 'index'
+  end
+  
+  map.root  :controller => "public", :action => "home"
 
 end

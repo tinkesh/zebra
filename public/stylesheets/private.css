@@ -1,0 +1,38 @@
+/* aaastriping.ca
+Yellow      FCD40D
+Dark Grey   333333
+Med Grey    CCCCCC
+Light Grey  E4E4E4
+Logo Yellow F5DF00
+*/
+
+/* html */
+html { overflow-y: scroll; } /* always show scrollbar */
+body { background: #efefef; margin: 20px; }
+h1, h2, h3 { }
+p, ul, ol { }
+h1 { font-size: 2.5em; }
+h4 { }
+
+/* blueprint overries */
+
+/* general */
+
+/* header */
+#header { margin-bottom: 20px; }
+#header ul { list-style-type: none; margin: 0; }
+#header li { display: inline; margin-right: 1.5em; }
+
+/* footer */
+#footer { margin: 40px 0 0 0; }
+
+/* forms */
+input[type="text"], input[type="password"], input.text, input.title, textarea { padding: 0.2em; font-size: 1em; margin: 0;}
+select { padding: 0.1em; font-size: 1em; margin: 0;}
+input[type="checkbox"], input[type="radio"], input.checkbox, input.radio { top:0; }
+
+
+/* rails */
+.errorExplanation { padding:.8em;margin-bottom:1em;border:2px solid #ddd; background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
+.errorExplanation ul { margin-bottom: 0; }
+.fieldWithErrors { color: #8a1f11;   display: table;}

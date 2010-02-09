@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  layout "private"
+  
   #declarative_authorization
   filter_resource_access
   
@@ -10,7 +12,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    @page_title = "Create Account"
+    @page_title = "Create User Account"
   end
   
   def create
