@@ -1,34 +1,76 @@
-<div class="append-bottom">
-  <%= form.label :first_name %><br>
-  <%= form.text_field :first_name %>
+<div class="span-6 append-bottom">
+  <%= form.label :first_name, "First Name" %><br>
+  <%= form.text_field :first_name, :class => "span-6" %>
 </div>
 
-<div class="append-bottom">
-  <%= form.label :last_name %><br />
-  <%= form.text_field :last_name %>
+<div class="span-6 append-bottom">
+  <%= form.label :last_name, "Last Name" %><br />
+  <%= form.text_field :last_name, :class => "span-6" %>
 </div>
 
-<div class="append-bottom">
+<br class="clear">
+
+<div class="span-6 append-bottom">
   <%= form.label :login %><br />
-  <%= form.text_field :login %>
+  <%= form.text_field :login, :class => "span-6" %>
 </div>
 
-<div class="append-bottom">
-  <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
-  <%= form.password_field :password %>
-</div>
-
-<div class="append-bottom">
-  <%= form.label :password_confirmation %><br />
-  <%= form.password_field :password_confirmation %>
-</div>
-
-<div class="append-bottom">
+<div class="span-6 append-bottom">
   <%= form.label :email %><br />
-  <%= form.text_field :email %>
+  <%= form.text_field :email, :class => "span-6" %>
 </div>
 
-<div class="append-bottom">
-  <%= form.label :time_zone %><br />
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :home_phone, "Home Phone" %><br />
+  <%= form.password_field :home_phone, :class => "span-6" %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :cell_phone, "Cell Phone" %><br />
+  <%= form.password_field :cell_phone, :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :address %>
+  <%= form.text_field :address, :class => "span-6" %>
+</div>
+
+<div class="span-3 append-bottom">
+  <%= form.label :city %>
+  <%= form.text_field :city, :class => "span-3" %>
+</div>
+
+<div class="span-1 append-bottom">
+  <%= form.label :province, "Prov" %>
+  <%= form.text_field :province, :class => "span-1" %>
+</div>
+
+<div class="span-2 last append-bottom">
+  <%= form.label :postal_code, "Postal Code" %>
+  <%= form.text_field :postal_code, :class => "span-2" %>
+</div>
+
+<br class="clear">
+
+<div class="span-12 last append-bottom">
+  <%= form.label :time_zone, "Time Zone" %><br />
   <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
 </div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :password, form.object.new_record? ? nil : "Change Password" %><br />
+  <%= form.password_field :password, :class => "span-6" %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :password_confirmation, "Password Confirmation" %><br />
+  <%= form.password_field :password_confirmation, :class => "span-6" %>
+</div>
+
+<br class="clear">

@@ -1,8 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
   # public forms
-  map.resource :contacts, :only => [:new, :create], :path_names => { :new => '' }
-  map.resource :careers, :only => [:new, :create], :path_names => { :new => '' }
+  map.resource :careers,  :controller => "public/contacts", :path_names => { :new => '' }
+  map.resource :contacts, :controller => "public/contacts", :path_names => { :new => '' }
+  
+  # private forms
+  map.resources :careers,  :controller => "private/contacts", :path_prefix => "admin"
+  map.resources :contacts, :controller => "private/contacts", :path_prefix => "admin"
 
   # user authentication and accounts
   map.resource  :user_session
@@ -12,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login     'login',    :controller => "user_sessions", :action => "new"
   map.logout    'logout',   :controller => "user_sessions", :action => "destroy"
 
+  # public content pages
   map.with_options :controller => "public" do |page|
     page.about '/about', :action => 'about'
     page.equipment_for_sale "/equipment-for-sale", :action => "equipment_for_sale"
@@ -38,6 +43,7 @@ ActionController::Routing::Routes.draw do |map|
     page.wet_night_droponlinetm "/services/wet-night-visibility/droponlinetm-hot-thermoplastic", :action => "wet_night_droponlinetm"
   end
 
+  # private content pages
   map.with_options :controller => "private" do |page|
     page.private_home '/admin', :action => 'index'
   end

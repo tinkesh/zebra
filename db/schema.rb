@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100209205200) do
+ActiveRecord::Schema.define(:version => 20100209224607) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -85,6 +85,12 @@ ActiveRecord::Schema.define(:version => 20100209205200) do
     t.string   "perishable_token",  :default => "", :null => false
     t.string   "email",             :default => "", :null => false
     t.string   "time_zone"
+    t.string   "home_phone"
+    t.string   "cell_phone"
+    t.string   "address"
+    t.string   "city"
+    t.string   "province"
+    t.string   "postal_code"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

@@ -1,4 +1,4 @@
-class CareersController < ApplicationController
+class Public::CareersController < ApplicationController
 
   layout "public"
 

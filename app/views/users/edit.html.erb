@@ -1,7 +1,13 @@
-<h1>Edit My Account</h1>
+<ul id="breadcrumb">
+  <li><%= link_to 'Home', private_home_path %></li>
+  <li>»</li>
+  <li><%= link_to 'Users', users_path %></li>
+  <li>»</li>
+  <li><%= @page_title %></li>
+</ul>
 
 <% form_for @user do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Update" %>
+  <%= f.submit "Save Changes" %> or <%= link_to 'Cancel', users_path %>
 <% end %>

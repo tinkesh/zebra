@@ -27,12 +27,12 @@ class UsersController < ApplicationController
   
   def show
     @user = current_user
-    @page_title = "#{@user.login} details"
+    @page_title = "#{@user.first_name} #{@user.last_name} details"
   end
 
   def edit
     @user = User.find(params[:id])
-    @page_title = "Edit #{@user.login}"
+    @page_title = "Edit #{@user.first_name} #{@user.last_name}"
   end
   
   def update

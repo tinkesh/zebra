@@ -3,6 +3,8 @@
 
 class ApplicationController < ActionController::Base
 
+  has_mobile_fu
+
   helper :all # include all helpers, all the time
   
   # make methods available to views
@@ -70,4 +72,5 @@ private
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
+
 end

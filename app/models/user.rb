@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
     Notifier.deliver_password_reset_instructions(self)
   end
 
+  def name
+    self.first_name + " " + self.last_name
+  end
+
 end

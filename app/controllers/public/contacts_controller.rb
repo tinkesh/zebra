@@ -1,4 +1,4 @@
-class ContactsController < ApplicationController
+class Public::ContactsController < ApplicationController
 
   layout "public"
 

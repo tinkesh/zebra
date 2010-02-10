@@ -1,8 +1,11 @@
 class PublicController < ApplicationController
-  
+
   layout "public"
-  
+
   def home
+    if is_mobile_device?
+      redirect_to '/m'
+    end
   end
 
   def about

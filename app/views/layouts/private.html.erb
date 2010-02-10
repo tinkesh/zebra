@@ -3,9 +3,9 @@
 <head>
   <title>
   <%- if @page_title -%>
-    <%= @page_title %> | AAA Striping &amp; Seal Coating Service
+    <%= @page_title %> | Private
   <%- else -%>
-    AAA Striping &amp; Seal Coating Service | Edmonton, Alberta
+    Private
   <%- end -%>
   </title>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8">
@@ -16,13 +16,10 @@
   <%= stylesheet_link_tag 'blueprint-0.9.1/screen.css', :media => "screen, projection" %>
   <%= stylesheet_link_tag 'blueprint-0.9.1/print.css', :media => "print" %>
   <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint-0.9.1/ie.css', :media => "screen, projection" %><![endif]-->
+  <%= javascript_include_tag :defaults %>
   <%= stylesheet_link_tag 'private.css', :media => "screen, projection" %>
-  <%= javascript_include_tag :all, :cache => true %>
   <%= yield :javascripts -%>
   <%= yield :stylesheets -%>
-  <meta name="google-site-verification" content="twctBw50N5EhtCAEowG3YAD5QmIePEKNC3rKtAZTzsE">
-  <meta name="y_key" content="3eaebb38588c061a">
-  <meta name="msvalidate.01" content="FC8BA04646813199B5EAB9BF9D6DB19B">
 </head>
 
 <body>
@@ -31,17 +28,17 @@
     <%= render :partial => 'menus/private', :layout => false %>
   </div><!-- header -->
 
-    <div id="flash">
-      <% flash.each do |key, value| -%>
-        <div class="<%= key %>"><%=h value %></div>
-      <% end -%>
-    </div>
+  <div id="flash">
+    <% flash.each do |key, value| -%>
+      <div class="<%= key %>"><%=h value %></div>
+    <% end -%>
+  </div>
 
-    <% if @page_title %>
-      <h1><%= @page_title %></h1>
-    <% end %>
+  <% if @page_title %>
+    <h1><%= @page_title %></h1>
+  <% end %>
 
-    <%= yield %>
+  <%= yield %>
 
   <div id="footer">
     <p>Copyright &copy; <%= Time.now.strftime("%Y") %> AAA Striping &amp; Seal Coating Service, a division of Swerdna Services.</p>
