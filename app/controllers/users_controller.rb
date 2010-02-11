@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
 
   layout "private"
-  
-  #declarative_authorization
   filter_resource_access
   
   def index
@@ -17,9 +15,10 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    params[:user][:role_ids] ||= []
     if @user.save
       flash[:notice] = "Account registered!"
-      redirect_back_or_default account_url
+      redirect_back_or_default users_url
     else
       render :action => :new
     end
@@ -36,9 +35,10 @@ class UsersController < ApplicationController
   end
   
   def update
+    params[:user][:role_ids] ||= []
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_to account_url
+      redirect_to users_url
     else
       render :action => :edit
     end

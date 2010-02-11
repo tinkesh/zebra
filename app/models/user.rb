@@ -19,5 +19,13 @@ class User < ActiveRecord::Base
   def name
     self.first_name + " " + self.last_name
   end
+  
+  def role_list
+    list = Array.new
+    roles.each do |role|
+      list << role.name
+    end
+    list.join(", ")
+  end
 
 end

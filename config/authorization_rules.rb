@@ -4,7 +4,8 @@ authorization do
   end
 
   role :admin do
-    has_permission_on :users, :to => [:index, :show, :new, :create, :edit, :update, :destroy]
     has_permission_on :private, :to => [:index]
+    has_permission_on [:users, :careers, :contacts], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
+    has_permission_on :private_directory, :to => :index
   end
 end

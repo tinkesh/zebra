@@ -1,4 +1,8 @@
 class RolesController < ApplicationController
+
+  layout "private"
+  filter_resource_access
+
   # GET /roles
   def index
     @roles = Role.all

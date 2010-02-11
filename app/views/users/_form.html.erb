@@ -24,12 +24,12 @@
 
 <div class="span-6 append-bottom">
   <%= form.label :home_phone, "Home Phone" %><br />
-  <%= form.password_field :home_phone, :class => "span-6" %>
+  <%= form.text_field :home_phone, :class => "span-6" %>
 </div>
 
 <div class="span-6 append-bottom">
   <%= form.label :cell_phone, "Cell Phone" %><br />
-  <%= form.password_field :cell_phone, :class => "span-6" %>
+  <%= form.text_field :cell_phone, :class => "span-6" %>
 </div>
 
 <br class="clear">
@@ -74,3 +74,10 @@
 </div>
 
 <br class="clear">
+
+<% for role in Role.find(:all) %>
+<div>
+  <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+  <%= form.label :roles, role.name %>
+</div>
+<% end %>
