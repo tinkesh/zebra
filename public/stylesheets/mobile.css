@@ -1,0 +1,6 @@
+body#mobile { background: #fff; margin: 20px; }
+#home { text-align: center; }
+#menu { margin-bottom: 1.5em; }
+#mobile h1 { border-bottom: 0; }
+#mobile #new_user_session { text-align: left; width: 220px; margin: 0 auto; }
+#mobile #new_user_session input { margin: 0; }

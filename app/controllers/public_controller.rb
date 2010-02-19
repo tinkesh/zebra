@@ -3,9 +3,7 @@ class PublicController < ApplicationController
   layout "public"
 
   def home
-    if is_mobile_device?
-      redirect_to '/m'
-    end
+    @user_session = UserSession.new
   end
 
   def about

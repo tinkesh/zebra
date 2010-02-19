@@ -2,9 +2,10 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
-    <title>AAA Striping</title>
+    <title>AAA Striping &amp; Seal Coating Service</title>
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <%= stylesheet_link_tag 'blueprint-0.9.1/screen.css', :media => "handheld, all" %>
-    <%= stylesheet_link_tag 'mobile.css', :media => "handheld, all" %>
+    <%= stylesheet_link_tag 'mobile.css', :media => "screen, projection" %>
   </head>
   <body id="mobile">
 
@@ -12,11 +13,6 @@
       <h1><%= @page_title %></h1>
     <% end %>
 
-    <%= render :partial => 'menus/private', :layout => false %>
-    
-    <hr>
-
     <%= yield %>
   </body>
 </html>
-

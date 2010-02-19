@@ -1,0 +1,42 @@
+<div id="home">
+<p><b>AAA Striping &amp; Seal Coating Service</b></p>
+
+<hr>
+
+<p>
+  Office: (780) 435-2214
+  <br>
+  Fax: (780) 378-0097
+  <br>
+  Email: <a href="mailto:info@aaastriping.ca">info@aaastriping.ca</a>
+  <br>
+  P.O. Box 8156 Station South CRO
+  <br>
+  Edmonton, Albeta T6E 6R2
+</p>
+
+<hr>
+
+<% form_for @user_session, :url => user_session_path do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :login %>
+    <br />
+    <%= f.text_field :login %>
+  </p>
+
+  <p>
+    <%= f.label :password %>
+    <br />
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me %>
+  </p>
+
+  <p><%= f.submit "Login" %></p>
+<% end %>
+</div>
