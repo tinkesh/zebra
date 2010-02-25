@@ -2,14 +2,14 @@
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
-    <li><%= link_to 'Clients', private_clients_path %></li>
+    <li><%= link_to 'Manufacturers', private_manufacturer_path %></li>
     <li>»</li>
     <li><%= @page_title %></li>
   </ul>
 <% end %>
 
-<% form_for @client, :url => private_client_path(@client), :method => :put do |f| %>
+<% form_for @manufacturer, :url => private_manufacturer_path(@manufacturer), :method => :put do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Save Client" %> or <%= link_to 'Cancel', private_clients_path %>
+  <%= f.submit "Save Manufacturer" %> or <%= link_to 'Cancel', private_manufacturer_path %>
 <% end %>
