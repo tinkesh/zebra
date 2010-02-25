@@ -10,29 +10,46 @@ Logo Yellow F5DF00
 html { overflow-y: scroll; } /* always show scrollbar */
 body { background: #F8F8F8; }
 h1, h2, h3 { }
-p, ul, ol, td, th { font-size: 13px; }
+p, ul, ol, td, th { font-size: 14px; }
 h1 { font-size: 2.5em; }
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
+a { color: #3344FF; text-decoration: none; }
+a:hover { color: #3344FF; text-decoration: underline; }
 
-/* blueprint overries */
-
+/* misc */
+.delete { color: #8a1f11; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/delete_12x12.gif') no-repeat; background-position: 0 50% ; border: none; width: 39px; float: right; }
+.delete:hover { color: #8a1f11; }
+#new { margin: 0; position: absolute; top: 30px; right: 0; }
+#new a { color: #529214; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
+.show { color: #3344FF; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/show_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
 
 /* header */
-#header { background: #FCD40D; padding: 0; margin-bottom: 15px; height: 90px; position: relative; border-bottom: solid 1px #000;}
-#menu { list-style-type: none; margin: 0; padding: 0; position: absolute; bottom: 0; left: 20px; }
-#menu li { list-style-type: none; display: block; float: left; margin: 0 20px -1px 0; }
-#menu a { background: #000; text-decoration: none; color: #fff; display: block; padding: 5px 10px; font-size: 15px; border: solid 1px #000; border-bottom: 0;  }
-#menu a:hover, #menu a.active:hover { background: #ccc; color: #000; }
-#menu a.active { background: #F8F8F8; color: #000; }
+#header { border-top: solid 7px #fcd40d; background: #333; position: relative; }
+#header ol {  background: #333; list-style-type: none; margin: 0; padding: 0; }
+#header li { margin: 0; padding: 0; display: inline; }
+#header a { color: #fff; font-weight: normal; font-size: 14px; text-decoration: none; background: url('/images/header_li_bg.gif') no-repeat; background-position: 5px 50%; padding: 3px 5px 3px 20px; display: inline-block; } 
+#header a.active { background: #000 url('/images/header_li_bg.gif') no-repeat; background-position: 5px 50%; color: #fcd40d;} 
+#header a:hover { text-decoration: underline; color: #fcd40d; }
 #title { position: absolute; top: 10px; left: 20px; font-size: 25px; font-weight: normal; }
+#logout { position: absolute; bottom: 0; right: 5px; }
+
 
 /* content */
-#content { padding: 35px 20px 0 20px; position: relative; }
-#breadcrumb { list-style-type: none; margin: 0 0 20px 0; position: absolute; top: 0; left: 20px; }
+#content { border-top: solid 20px #efefef; }
+#content .container { padding: 20px 0; position: relative; }
+#breadcrumb { list-style-type: none; margin: 0 0 20px 0; position: absolute; top: -20px; left: 4px; font-size: 13px; }
 #breadcrumb li { display: inline; margin-right: .3em; }
+#breadcrumb a { color: #000; }
 #container { position: relative; }
 
+
+/* sidebar */
+#sidebar ul { list-style-type: none; margin: 0; padding: 0; background: #333; border-left: solid 7px #fcd40d; }
+#sidebar li { margin: 0; padding: 0; position: relative;}
+#sidebar a { margin: 0; display: block; color: #fff; padding: 2px 0 2px 30px; background: #333 url('/images/header_li_bg.gif') no-repeat; background-position: 12px 50% ; border: none; }
+#sidebar ul ul { position: absolute; right: -252px; bottom: 0; width: 245px; font-size: 1em;}
+#sidebar a:hover { text-decoration: underline; background: #333 url('/images/header_li_bg.gif') no-repeat; background-position: 12px 50% ; }
+#sidebar a.active { background: #000 url('/images/header_li_bg.gif') no-repeat; background-position: 12px 50%; color: #fcd40d;}
+#sidebar a.active:hover { background: #000 url('/images/header_li_bg.gif') no-repeat; background-position: 12px 50%; }
 
 /* footer */
 #footer { margin: 40px 20px 0 0; }
@@ -65,12 +82,12 @@ a.negative:active { background-color:#d12f19; border:1px solid #d12f19; color:#f
 .fieldWithErrors { color: #8a1f11; display: table;}
 
 /* tables */
-th { background: #000; color: #fff; font-weight: normal; }
+th { background: #333; color: #fff; font-weight: normal; }
 th, td, caption { padding: 2px 2px 2px 4px; }
 tr.even td { background: #ededed; }
-.actions { width: 100px; text-align: right; }
-#controls { position: absolute; top: -45px; right: 0; }
-#controls a.button { margin: 0 0 0 5px; }
+.actions { width: 100px; padding: 0; }
+#controls { }
+#controls a.button {  }
 .rowodd { }
 .roweven { background: #EDEDED; }
 .sortcol { cursor: pointer; padding-right: 20px; background-repeat: no-repeat; background-position: right center;}

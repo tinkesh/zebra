@@ -4,32 +4,24 @@
   <li><%= @page_title %></li>
 </ul>
 
-<div id="container">
+<p id="new"><%= link_to 'New User', new_user_path %></p>
 
-  <table class="sortable">
-    <tr>
-      <th>Name</th>
-      <th>Login</th>
-      <th>Roles</th>
-      <th>Last Login</th>
-      <th class="actions nosort"></th>
-    </tr>
+<table class="sortable">
+  <tr>
+    <th>Name</th>
+    <th>Login</th>
+    <th>Roles</th>
+    <th>Last Login</th>
+    <th class="actions nosort"></th>
+  </tr>
 
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= link_to user.name, edit_user_path(user) %></td>
-      <td><%= user.login %></td>
-      <td><%= user.role_list %></td>
-      <td><%=h time_ago_in_words(user.last_login_at) + " ago" if user.last_login_at? %></td>
-      <td class="actions"><%= link_to 'Delete', user, :confirm => 'Are you sure? This cannot be undone!', :method => :delete %></td>
-    </tr>
-  <% end %>
-  </table>
-
-  <br />
-
-  <div id="controls">
-    <%= link_to 'New user', new_user_path, :class => "button positive" %>
-  </div>
-
-</div>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to user.name, edit_user_path(user), :class => "show" %></td>
+    <td><%= user.login %></td>
+    <td><%= user.role_list %></td>
+    <td><%=h time_ago_in_words(user.last_login_at) + " ago" if user.last_login_at? %></td>
+    <td class="actions"><%= link_to 'Delete', user, :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+  </tr>
+<% end %>
+</table>

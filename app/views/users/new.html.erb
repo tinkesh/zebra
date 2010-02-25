@@ -9,5 +9,5 @@
 <% form_for @user do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Register User" %> or <%= link_to 'Cancel', users_path %>
+  <%= f.submit "Create User" %> or <%= link_to 'Cancel', users_path %>
 <% end %>

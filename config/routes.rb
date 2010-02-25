@@ -6,8 +6,6 @@ ActionController::Routing::Routes.draw do |map|
 
   # private forms
   map.namespace :private do |priv|
-    priv.resources :careers,  :controller => "careers",  :path_prefix => "admin"
-    priv.resources :contacts, :controller => "contacts", :path_prefix => "admin"
     priv.resources :clients,  :controller => "clients",  :path_prefix => "admin"
   end
 
@@ -50,7 +48,8 @@ ActionController::Routing::Routes.draw do |map|
 
   # private content pages
   map.with_options :controller => "private" do |page|
-    page.private_home "/admin", :action => "index"
+    page.private_home      "/admin",          :action => "index"
+    page.private_settings "/admin/settings", :action => "settings"
   end
   
   map.root  :controller => "public", :action => "home"

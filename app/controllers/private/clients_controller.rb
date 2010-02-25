@@ -10,7 +10,7 @@ class Private::ClientsController < ApplicationController
   
   def new
     @client = Client.new
-    @page_title = "Create Client"
+    @page_title = "New Client"
   end
   
   def create

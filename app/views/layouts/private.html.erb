@@ -25,12 +25,14 @@
 <body>
 
   <div id="header">
-    <p id="title">AAA Striping &amp; Seal Coating Service</p>
-    <%= render :partial => 'menus/private', :layout => false %>
-
+    <div class="container">
+      <%= render :partial => 'menus/private', :layout => false %>
+    </div><!-- container -->
   </div><!-- header -->
   
   <div id="content">
+    
+    <div class="container">
 
     <div id="flash">
       <% flash.each do |key, value| -%>
@@ -43,8 +45,8 @@
     <% end %>
 
     <%= yield %>
-  
-  </div>
+    </div><!-- container -->
+  </div><!-- content -->
 
   <script type="text/javascript">
   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
-    @page_title = "All Users"
+    @page_title = "Users"
   end
   
   def new
     @user = User.new
-    @page_title = "Create User Account"
+    @page_title = "New User"
   end
   
   def create

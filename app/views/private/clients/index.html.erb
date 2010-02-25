@@ -1,31 +1,25 @@
 <ul id="breadcrumb">
   <li><%= link_to 'Home', private_home_path %></li>
   <li>»</li>
+  <li><%= active_link_to 'Settings', private_settings_path %></li>
+  <li>»</li>
   <li><%= @page_title %></li>
 </ul>
 
-<div id="container">
+<p id="new"><%= link_to 'New client', new_private_client_path %></p>
 
-  <table class="sortable">
-    <tr>
-      <th>Name</th>
-      <th>Contact</th>
-      <th class="actions nosort"></th>
-    </tr>
+<table class="sortable">
+  <tr>
+    <th>Name</th>
+    <th>Contact</th>
+    <th class="actions nosort"></th>
+  </tr>
 
-  <% @clients.each do |client| %>
-    <tr>
-      <td><%= link_to client.name, edit_private_client_path(client) %></td>
-      <td><%= client.contact %></td>
-      <td class="actions"><%= link_to 'Delete', private_client_path(client), :confirm => 'Are you sure? This cannot be undone!', :method => :delete %></td>
-    </tr>
-  <% end %>
-  </table>
-
-  <br />
-
-  <div id="controls">
-    <%= link_to 'New client', new_private_client_path, :class => "button positive" %>
-  </div>
-
-</div>
+<% @clients.each do |client| %>
+  <tr>
+    <td><%= link_to client.name, edit_private_client_path(client) %></td>
+    <td><%= client.contact %></td>
+    <td class="actions"><%= link_to 'Delete', private_client_path(client), :confirm => 'Are you sure? This cannot be undone!', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

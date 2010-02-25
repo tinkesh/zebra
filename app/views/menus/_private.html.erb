@@ -1,21 +1,17 @@
 <ol id="menu">
+
+  <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
+
   <% permitted_to? :index, :users do %>
     <li><%= active_link_to 'Users', users_path %></li>
   <% end %>
 
-  <% permitted_to? :index, :clients do %>
-    <li><%= active_link_to 'Clients', private_clients_path %></li>
-  <% end %>
-
-  <% permitted_to? :index, :contacts do %>
-    <li><%= active_link_to 'Contacts', private_contacts_path %></li>
-  <% end %>
-
-  <% permitted_to? :index, :careers do %>
-    <li><%= active_link_to 'Careers', private_careers_path %></li>
+  <% has_role? :admin do %>
+    <li><%= active_link_to 'Settings', private_settings_path %></li>
   <% end %>
 
   <% authenticated_only do %>
-    <li><%= link_to "Logout", user_session_path, :method => :delete %></li>
+    <li id="logout"><%= link_to "Logout", user_session_path, :method => :delete %></li>
   <% end %>
+
 </ol>
