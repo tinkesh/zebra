@@ -1,0 +1,27 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Home', private_home_path %></li>
+    <li>»</li>
+    <li><%= active_link_to 'Settings', private_settings_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<p id="new"><%= link_to 'New Equipment', new_private_equipment_path %></p>
+
+<table class="sortable">
+  <tr>
+    <th>Name</th>
+    <th>Unit Number</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% @equipments.each do |equipment| %>
+  <tr>
+    <td><%= link_to equipment.name, edit_private_equipment_path(equipment), :class => "show"  %></td>
+    <td><%= equipment.unit %></td>
+    <td class="actions"><%= link_to 'Delete', private_equipment_path(equipment), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+  </tr>
+<% end %>
+</table>

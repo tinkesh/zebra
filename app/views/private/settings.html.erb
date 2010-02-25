@@ -1,15 +1,13 @@
-<ul id="breadcrumb">
-  <li><%= link_to 'Home', private_home_path %></li>
-  <li>»</li>
-  <li><%= @page_title %></li>
-</ul>
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Home', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
 
 <div class="span-5">
   <div id="sidebar">
-    <ul>
-    <% permitted_to? :index, :clients do %>
-      <li><%= active_link_to 'Clients', private_clients_path %></li>
-    <% end %>
-    </ul>
+    <%= render :partial => 'menus/settings_menu', :layout => false %>
   </div>
 </div>

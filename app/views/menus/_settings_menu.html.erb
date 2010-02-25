@@ -1,0 +1,6 @@
+<ul>
+<% has_role? :admin do %>
+  <li><%= active_link_to 'Clients', private_clients_path %></li>
+  <li><%= active_link_to 'Equipment', private_equipments_path %></li>
+<% end %>
+</ul>

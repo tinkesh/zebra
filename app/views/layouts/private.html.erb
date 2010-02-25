@@ -21,42 +21,45 @@
   <%= yield :javascripts -%>
   <%= yield :stylesheets -%>
 </head>
-
 <body>
 
-  <div id="header">
-    <div class="container">
-      <%= render :partial => 'menus/private', :layout => false %>
-    </div><!-- container -->
-  </div><!-- header -->
-  
-  <div id="content">
-    
-    <div class="container">
+<div id="header">
+  <div class="container">
+    <%= render :partial => 'menus/private_menu', :layout => false %>
+  </div><!-- container -->
+</div><!-- header -->
 
+<div id="content">
+  <div class="container">
+    <%= yield :breadcrumb %>
     <div id="flash">
+
       <% flash.each do |key, value| -%>
         <div class="<%= key %>"><%=h value %></div>
       <% end -%>
-    </div>
+
+    </div><!-- flash -->
+    <div class="relative">
 
     <% if @page_title %>
       <h1><%= @page_title %></h1>
     <% end %>
 
     <%= yield %>
-    </div><!-- container -->
-  </div><!-- content -->
 
-  <script type="text/javascript">
-  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-  <script type="text/javascript">
-  try {
-  var pageTracker = _gat._getTracker("UA-1478414-21");
-  pageTracker._trackPageview();
-  } catch(err) {}</script>
+    </div><!-- relative -->
+  </div><!-- container -->
+</div><!-- content -->
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1478414-21");
+pageTracker._trackPageview();
+} catch(err) {}</script>
 
 </body>
 </html>
