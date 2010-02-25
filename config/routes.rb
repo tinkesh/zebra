@@ -1,15 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
 
   # public forms
-    map.resource :careers,  :controller => "public/careers", :path_names => { :new => "" }
-    map.resource :contacts, :controller => "public/contacts", :path_names => { :new => "" }
+  map.resource :careers,  :controller => "public/careers", :path_names => { :new => "" }
+  map.resource :contacts, :controller => "public/contacts", :path_names => { :new => "" }
 
   # private forms
   map.namespace :private do |priv|
     priv.resources :careers,  :controller => "careers",  :path_prefix => "admin"
     priv.resources :contacts, :controller => "contacts", :path_prefix => "admin"
+    priv.resources :clients,  :controller => "clients",  :path_prefix => "admin"
   end
-
 
   # user authentication and accounts
   map.resource  :user_session
@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.directory "directory", :controller => "private/directory", :action => "index", :path_prefix => "admin"
   map.register  "register",  :controller => "users",         :action => "new"
-  map.login     "m",         :controller => "user_sessions", :action => "new"
+  map.login     "login",         :controller => "user_sessions", :action => "new"
   map.logout    "logout",    :controller => "user_sessions", :action => "destroy"
 
   # public content pages

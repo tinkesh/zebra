@@ -17,7 +17,6 @@ class CreateCareers < ActiveRecord::Migration
       t.boolean :have_seasonal
       t.boolean :have_experience
       t.text :references
-
       t.timestamps
     end
   end

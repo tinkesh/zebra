@@ -5,3 +5,5 @@
 # link to a map for job sites
 # recent activity dashboard
 # change colour of sort arrow
+
+2009-02-18 CRUD clients so that they can be used to populate a select in jobs

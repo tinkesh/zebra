@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
   before_filter :require_user, :only => :destroy
   
   def new
-    redirect_to root_url
+     @user_session = UserSession.new
   end
   
   def create
