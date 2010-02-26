@@ -1,0 +1,27 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Settings', private_settings_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<p id="new"><%= link_to 'New Time Sheet Task Category', new_private_time_task_category_path %></p>
+
+<table class="sortable">
+  <tr>
+    <th>Name</th>
+    <th>Display Position</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% @time_task_categories.each do |time_task_category| %>
+  <tr>
+    <td><%= link_to time_task_category.name, edit_private_time_task_category_path(time_task_category), :class => "show" %></td>
+    <td><%= time_task_category.position %></td>
+    <td class="actions"><%= link_to 'Delete', private_time_task_category_path(time_task_category), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+  </tr>
+<% end %>
+</table>
