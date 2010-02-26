@@ -1,0 +1,17 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Settings', private_settings_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Time Sheet Note Categories', private_time_note_categories_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<% form_for @time_note_category, :url => private_time_note_category_path(@time_note_category), :method => :put do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "Save Location" %> or <%= link_to 'Cancel', private_time_note_categories_path %>
+<% end %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100226021149) do
+ActiveRecord::Schema.define(:version => 20100226212126) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -148,6 +148,43 @@ ActiveRecord::Schema.define(:version => 20100226021149) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "time_entries", :force => true do |t|
+    t.integer  "time_sheet_id"
+    t.integer  "user_id"
+    t.decimal  "time"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_note_categories", :force => true do |t|
+    t.string  "name"
+    t.integer "position"
+  end
+
+  create_table "time_sheets", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "location_id"
+    t.integer  "time_note_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_task_categories", :force => true do |t|
+    t.string  "name"
+    t.integer "position"
+  end
+
+  create_table "time_tasks", :force => true do |t|
+    t.integer  "time_sheet_id"
+    t.integer  "time_task_category_id"
+    t.datetime "happened_at"
+    t.decimal  "time"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at"
