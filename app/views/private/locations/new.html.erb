@@ -4,14 +4,14 @@
     <li>»</li>
     <li><%= link_to 'Settings', private_settings_path %></li>
     <li>»</li>
-    <li><%= link_to 'Materials', private_material_path %></li>
+    <li><%= link_to 'Locations', private_locations_path %></li>
     <li>»</li>
     <li><%= @page_title %></li>
   </ul>
 <% end %>
 
-<% form_for @material, :url => private_material_path(@material), :method => :put do |f| %>
+<% form_for @location, :url => private_locations_path(@location) do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Save Material" %> or <%= link_to 'Cancel', private_materials_path %>
+  <%= f.submit "Create Location" %> or <%= link_to 'Cancel', private_locations_path %>
 <% end %>

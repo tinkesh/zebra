@@ -1,0 +1,31 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<p id="new"><%= link_to 'New job', new_private_job_path %></p>
+
+<table class="sortable">
+  <tr>
+    <th class="span-2">ID</th>
+    <th>%</th>
+    <th>Started</th>
+    <th>Completed</th>
+    <th>Client</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% @jobs.each do |job| %>
+  <tr>
+    <td><%= link_to job.id, edit_private_job_path(job), :class => "show" %></td>
+    <td><%= job.completion.name %></td>
+    <td><%= job.started_on %></td>
+    <td><%= job.completed_on %></td>
+    <td><%= job.client.name %></td>
+    <td class="actions"><%= link_to 'Delete', private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+  </tr>
+<% end %>
+</table>

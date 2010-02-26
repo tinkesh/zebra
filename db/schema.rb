@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100226003644) do
+ActiveRecord::Schema.define(:version => 20100226021149) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,42 @@ ActiveRecord::Schema.define(:version => 20100226003644) do
 
   create_table "equipment", :force => true do |t|
     t.string   "unit"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "equipment_jobs", :id => false, :force => true do |t|
+    t.integer  "equipment_id"
+    t.integer  "job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs", :force => true do |t|
+    t.integer  "completion_id"
+    t.integer  "client_id"
+    t.date     "started_on"
+    t.date     "completed_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs_locations", :id => false, :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs_users", :id => false, :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -80,12 +80,16 @@
 
 <div class="span-6">
   <label>Roles</label>
+  <ul class="habtm">
   <% for role in Role.find(:all) %>
-    <div>
+    <li>
+      <label>
       <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-      <%= form.label :roles, role.name %>
-    </div>
+      <%= role.name %>
+      </label>
+    </li>
   <% end %>
+  </ul>
 </div>
 
 <br class="clear">

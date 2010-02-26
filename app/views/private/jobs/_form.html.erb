@@ -1,0 +1,67 @@
+<div class="span-6">
+
+  <div class="append-bottom">
+    <%= form.label :client_id %><br>
+    <%= select ("job", "client_id", @clients.map {|u| [u.name,u.id]}) %>
+  </div>
+
+  <div class="append-bottom">
+    <%= form.label :started_on, "Started On" %><br>
+    <%= form.date_select :started_on, :class => "span-6" %>
+  </div>
+
+  <div class="append-bottom">
+    <%= form.label :completion_id, "Completion Level" %><br>
+    <%= select ("job", "completion_id", @completions.map {|u| [u.name,u.id]}) %>
+  </div>
+
+  <div class="append-bottom">
+    <%= form.label :completed_on, "Completed On" %><br>
+    <%= form.date_select :completed_on, :class => "span-6", :include_blank => true %>
+  </div>
+
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :user_ids, "Assign Users" %><br>
+  <ul class="habtm">
+  <% for user in @users %>
+    <li>
+      <label>
+      <%= check_box_tag "job[user_ids][]", user.id, @job.users.include?(user) %>
+      <%= user.name %>
+      </label>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :equipment_ids, "Assign Equipment" %><br>
+  <ul class="habtm">
+  <% for equipment in @equipments %>
+    <li>
+      <label>
+        <%= check_box_tag "job[equipment_ids][]", equipment.id, @job.equipments.include?(equipment) %>
+        <%= equipment.unit %> - <%= equipment.name %>
+      </label>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<div class="span-6 append-bottom last">
+  <%= form.label :location_ids, "Assign Location(s)" %><br>
+  <ul class="habtm">
+  <% for location in @locations %>
+    <li>
+      <label>
+        <%= check_box_tag "job[location_ids][]", location.id, @job.locations.include?(location) %>
+        <%= location.name %>
+      </label>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<br class="clear">
