@@ -1,0 +1,23 @@
+<div class="span-6 append-bottom">
+  <%= form.label :manufacturer, "Manufacturer" %><br />
+  <%= select ("material", "manufacturer_id", @manufacturers.map {|u| [u.name,u.id]}) %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :batch, "Batch Number" %><br />
+  <%= form.text_field :batch, :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :category, "Category" %><br />
+  <%= form.select(:category, [ ['Bead'], ['White'], ['Yellow'] ])%>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :litre_per_tote, "Litre per Tote" %><br />
+  <%= form.text_field :litre_per_tote, :class => "span-3" %>
+</div>
+
+<br class="clear">
