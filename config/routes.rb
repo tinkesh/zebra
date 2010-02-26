@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
     priv.resources :equipments,     :controller => "equipments",     :path_prefix => "admin"
     priv.resources :manufacturers,  :controller => "manufacturers",  :path_prefix => "admin"
     priv.resources :materials,      :controller => "materials",      :path_prefix => "admin"
+    priv.resources :completions,    :controller => "completions",    :path_prefix => "admin"
   end
 
   # user authentication and accounts
