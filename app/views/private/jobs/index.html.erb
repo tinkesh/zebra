@@ -11,21 +11,23 @@
 <table class="sortable">
   <tr>
     <th class="span-2">ID</th>
-    <th>%</th>
-    <th>Started</th>
-    <th>Completed</th>
+    <th class="span-3">%</th>
+    <th class="span-2">Started</th>
+    <th class="span-2">Completed</th>
     <th>Client</th>
     <th class="actions nosort"></th>
   </tr>
 
 <% @jobs.each do |job| %>
   <tr>
-    <td><%= link_to job.id, edit_private_job_path(job), :class => "show" %></td>
+    <td><%= link_to "Job ##{job.id}", edit_private_job_path(job), :class => "show" %></td>
     <td><%= job.completion.name %></td>
     <td><%= job.started_on %></td>
     <td><%= job.completed_on %></td>
     <td><%= job.client.name %></td>
-    <td class="actions"><%= link_to 'Delete', private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+    <td class="actions">
+      <%= link_to 'Delete', private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    </td>
   </tr>
 <% end %>
 </table>

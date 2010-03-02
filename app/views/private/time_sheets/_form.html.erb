@@ -1,0 +1,42 @@
+<div class="span-6 append-bottom">
+  <%= form.label :time_note_category_id, "Comment" %><br>
+  <%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :note, "Additional Comments, if needed" %><br>
+  <%= form.text_field :note, :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<h3>Tasks</h3>
+<p>Fill out a detailed list of what you did today.</p>
+
+<div class="append-bottom">
+  <%= form.label :started_at, "Start Time" %><br>
+  <%= form.datetime_select :started_at, :class => "span-6" %>
+</div>
+
+<% form.fields_for :time_tasks do |builder| %>
+  <%= render 'time_task_fields', :form => builder %>
+<% end %>
+
+<br class="clear">
+
+<div class="append-bottom">
+  <%= form.label :completed_at, "End Time" %><br>
+  <%= form.datetime_select :completed_at, :class => "span-6" %>
+</div>
+
+<hr>
+
+<h3>Users</h3>
+<p>
+  Adjust time for each person on the job. If everyone worked the full day, you may leave blank. To take time away, include a minus sign.
+  <br>
+  For example, "-2" would take away two hours and '.5' would add an additional half hour.
+</p>
+<% form.fields_for :time_entries do |builder| %>
+  <%= render 'time_entries_fields', :form => builder %>
+<% end %>

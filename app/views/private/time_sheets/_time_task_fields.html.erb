@@ -1,0 +1,14 @@
+<div class="span-6 prepend-1 append-bottom">
+  <%= form.label :time_task_category_id, "Task Category" %><br>
+  <%= form.select (:time_task_category_id, @time_task_categories.map {|u| [u.name,u.id]}, :include_blank => true) %>
+</div>
+
+<div class="span-2 append-bottom">
+  <%= form.label :time, "Hours" %>
+  <%= form.text_field :time, :class => "span-2" %>
+</div>
+
+<div class="span-13 last append-bottom">
+  <%= form.label :note, "Note" %>
+  <%= form.text_field :note, :class => "span-13" %>
+</div>

@@ -11,12 +11,13 @@ ActionController::Routing::Routes.draw do |map|
     priv.resources :manufacturers,        :controller => "manufacturers",        :path_prefix => "admin"
     priv.resources :materials,            :controller => "materials",            :path_prefix => "admin"
     priv.resources :completions,          :controller => "completions",          :path_prefix => "admin"
-    priv.resources :jobs,                 :controller => "jobs",                 :path_prefix => "admin"
+    priv.resources :time_sheets,          :controller => "time_sheets",          :path_prefix => "admin"
+    priv.resources :jobs,                 :controller => "jobs",                 :path_prefix => "admin", :has_many => :time_sheets
     priv.resources :locations,            :controller => "locations",            :path_prefix => "admin"
     priv.resources :time_note_categories, :controller => "time_note_categories", :path_prefix => "admin"
     priv.resources :time_task_categories, :controller => "time_task_categories", :path_prefix => "admin"
- #   priv.resources :time_tasks,           :controller => "time_tasks",           :path_prefix => "admin"
- #   priv.resources :time_entries,         :controller => "time_entries",         :path_prefix => "admin"
+#    priv.resources :time_tasks,           :controller => "time_tasks",           :path_prefix => "admin"
+#    priv.resources :time_entries,         :controller => "time_entries",         :path_prefix => "admin"
   end
 
   # user authentication and accounts
@@ -25,9 +26,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :path_prefix => "admin"
 
   map.directory "directory", :controller => "private/directory", :action => "index", :path_prefix => "admin"
-  map.register  "register",  :controller => "users",         :action => "new"
-  map.login     "login",         :controller => "user_sessions", :action => "new"
-  map.logout    "logout",    :controller => "user_sessions", :action => "destroy"
+  map.register  "register",  :controller => "users",             :action => "new"
+  map.login     "login",     :controller => "user_sessions",     :action => "new"
+  map.logout    "logout",    :controller => "user_sessions",     :action => "destroy"
 
   # public content pages
   map.with_options :controller => "public" do |page|

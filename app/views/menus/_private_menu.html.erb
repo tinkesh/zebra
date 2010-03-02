@@ -1,19 +1,11 @@
 <ol id="menu">
-
-  <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
-
-  <li><%= active_link_to 'Jobs', private_jobs_path %></li>
-
-  <% permitted_to? :index, :users do %>
-    <li><%= active_link_to 'Users', users_path %></li>
-  <% end %>
-
-  <% has_role? :admin do %>
-    <li><%= active_link_to 'Settings', private_settings_path %></li>
-  <% end %>
-
   <% authenticated_only do %>
+    <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
+    <li><%= active_link_to 'Jobs', private_jobs_path, :active => { :when => :self_only }  %></li>
+    <li><%= active_link_to 'Time Sheets', private_time_sheets_path %></li>
+    <li><%= active_link_to 'Users', users_path %></li>
+    <li><%= active_link_to 'Settings', private_settings_path %></li>
     <li id="logout"><%= link_to "Logout", user_session_path, :method => :delete %></li>
   <% end %>
-
+  <li>&bsp;</li>
 </ol>

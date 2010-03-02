@@ -1,0 +1,14 @@
+<div class="span-6 append-bottom">
+  <%= form.label :user_id, "User" %><br>
+  <%= form.select ("user_id", @job.users.map {|u| [u.name,u.id]}, :class => "span-6", :include_blank => true) %>
+</div>
+
+<div class="span-2 append-bottom">
+  <%= form.label :time, "Time +/-" %>
+  <%= form.text_field :time, :class => "span-2" %>
+</div>
+
+<div class="span-13 last append-bottom">
+  <%= form.label :note, "Note" %>
+  <%= form.text_field :note, :class => "span-13" %>
+</div>

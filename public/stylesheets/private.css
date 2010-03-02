@@ -27,6 +27,9 @@ a:hover { color: #3344FF; text-decoration: underline; }
 .habtm input { position: absolute; top: 2px; left: 0; }
 .habtm label { font-weight: normal; padding: 0 0 0 20px;}
 .habtm label:hover { background: #ccc; }
+.jobs { list-style-type: none; padding: 0; margin: 0 0 1.5em 0; }
+.jobs h3 { margin: 0 0 5px 0; }
+
 
 /* header */
 #header .container { position: relative; }

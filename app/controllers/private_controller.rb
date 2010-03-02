@@ -4,6 +4,7 @@ class PrivateController < ApplicationController
   filter_access_to :all
 
   def index
+    @jobs = current_user.jobs
   end
   
   def settings

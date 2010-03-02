@@ -1,51 +1,27 @@
-<div class="span-12">
-  <h3>Changes</h3>
-  <ul>
-    <li>2009-02-26
-      <ul>
-        <li>CRUD locations</li>
-        <li>Additional levels in breadcrumbs</li>
-        <li>CRUD jobs</li>
-      </ul>
-    </li>
-    <li>2009-02-25
-      <ul>
-        <li>New design for desktop interface</li>
-        <li>Pretty icons :) :)</li>
-        <li>Heroku setup</li>
-        <li>CRUD equipment</li>
-        <li>CRUD manufacturers</li>
-        <li>CRUD materials</li>
-        <li>CRUD job completion levels</li>
-      </ul>
-    </li>
-    <li>2009-02-18
-      <ul>
-        <li>CRUD clients</li>
-      </ul>
-    </li>
-  </ul>
+<div class="span-6 append-1">
+  <h2>&nbsp;</h2>
+  <div id="sidebar">
+    <%= render :partial => 'menus/dashboard_menu', :layout => false %>
+  </div>
 </div>
 
 <div class="span-6">
-  <h3>Todo</h3>
-  <ol>
-    <li>time_sheets</li>
-    <li>time_entries</li>
-    <li>time_tasks</li>
-    <li>time_task_categories</li>
-    <li>time_note_categories</li>
-    <li>Gun Sheets</li>
-    <li>Load Sheets</li>
-    <li>Events</li>
-    <li>@obj.selectable? for users, jobs, equipment, materials, locations</li>
-    <li>created_by and updated_by</li>
-  </ol>
+  <h2>Active Jobs</h2>
+  <ul class="jobs">
+  <%- @jobs.each do |job| -%>
+    <li>
+      <h3>Job #<%= job.id -%></h3>
+      <ul>
+        <li><%= link_to "Show Details", private_job_path(job) %></li>
+        <li><%= link_to "Submit Time Sheet", new_private_job_time_sheet_path(:job_id => job.id) %></li>
+        <li><a href="#">Submit Load Sheet</a></li>
+        <li><a href="#">Submit Gun Sheet</a>
+      </ul>
+    </li>
+  <%- end -%>
+  </ul>
 </div>
 
-<div class="span-6 last">
-  <h3>Questions</h3>
-  <ol>
-    <li>Requirement of Tote Qty, Tote #, Litre/Tote</li>
-  </ol>
+<div class="span-11 last">
+  <h2>History</h2>
 </div>
