@@ -19,9 +19,12 @@
 
 <% @equipments.each do |equipment| %>
   <tr>
-    <td><%= link_to equipment.name, edit_private_equipment_path(equipment), :class => "show"  %></td>
+    <td><%= equipment.name %></td>
     <td><%= equipment.unit %></td>
-    <td class="actions"><%= link_to 'Delete', private_equipment_path(equipment), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_equipment_path(equipment), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_equipment_path(equipment), :class => "edit"  %>
+    </td>
   </tr>
 <% end %>
 </table>

@@ -3,7 +3,6 @@ class Private::TimeSheetsController < ApplicationController
   layout "private"
   # filter_access_to :all, :context => :admin
 
-
   def index
     @time_sheets = TimeSheet.find(:all)
     @page_title = "Time Sheets"

@@ -82,7 +82,12 @@
   <hr>
 
   <h3>Load Sheets</h3>
-  
+  <ul class="no_list">
+  <% @job.load_sheets.each do |load_sheet| %>
+    <li><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet), :class => "show" %></li>
+  <% end %>
+  </ul>
+
   <hr>
   
   <h3>Gun Sheets</h3>

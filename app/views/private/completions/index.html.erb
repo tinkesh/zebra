@@ -18,8 +18,11 @@
 
 <% @completions.each do |completion| %>
   <tr>
-    <td><%= link_to completion.name, edit_private_completion_path(completion), :class => "show"  %></td>
-    <td class="actions"><%= link_to 'Delete', private_completion_path(completion), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+    <td><%= completion.name %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_completion_path(completion), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_completion_path(completion), :class => "edit" %>
+    </td>
   </tr>
 <% end %>
 </table>

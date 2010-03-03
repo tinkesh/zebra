@@ -1,0 +1,60 @@
+<div class="span-6 append-bottom">
+  <%= form.label :date, "Date" %><br>
+  <%= form.date_select :date %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :equipment_id, "Equipment" %><br>
+  <%= form.select (:equipment_id, @equipment.map {|u| ["#{u.unit} - #{u.name}",u.id]}, :include_blank => true) %>
+</div>
+
+<div class="span-3 append-bottom">
+  <%= form.label :job_id, "Job" %><br>
+  <%= form.select (:job_id, @jobs.map {|u| ["Job ##{u.id}",u.id]}, :include_blank => true, :selected => params[:job_id]) %>
+</div>
+
+<div class="span-6 last append-bottom">
+  <%= form.label :location_id, "Location" %><br>
+  <%= form.select (:location_id, @locations.map {|u| [u.name,u.id]}, :include_blank => true) %>
+</div>
+
+<hr>
+
+<div class="span-12">
+<% form.fields_for :load_entries do |builder| %>
+  <%= render 'load_entries_fields', :form => builder %>
+<% end %>
+</div>
+
+<div class="span-6">
+
+  <div class="span-3 append-bottom">
+    <%= form.label :yellow_dip_start, "Start Dip Yellow" %><br>
+    <%= form.text_field :yellow_dip_start, :class => "span-3" %>
+  </div>
+
+  <div class="span-3 last append-bottom">
+    <%= form.label :yellow_dip_end, "End Dip Yellow" %><br>
+    <%= form.text_field :yellow_dip_end, :class => "span-3" %>
+  </div>
+  
+  <br class="clear">
+
+  <div class="span-3 append-bottom">
+    <%= form.label :white_dip_start, "Start Dip White" %><br>
+    <%= form.text_field :white_dip_start, :class => "span-3" %>
+  </div>
+
+  <div class="span-3 last append-bottom">
+    <%= form.label :white_dip_end, "End Dip White" %><br>
+    <%= form.text_field :white_dip_end, :class => "span-3" %>
+  </div>
+  
+  <hr>
+
+  <div class="span-6 last append-bottom">
+    <%= form.label :note, "Comments" %><br>
+    <%= form.text_field :note, :class => "span-6" %>
+  </div>
+
+</div>

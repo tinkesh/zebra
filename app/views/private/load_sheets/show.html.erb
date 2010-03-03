@@ -1,0 +1,97 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Load Sheets', private_load_sheets_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<div class="span-6 append-1">
+  <div id="sidebar">
+    <%= render :partial => 'menus/load_sheets_menu', :layout => false %>
+  </div>
+</div>
+
+<div class="span-17 last">
+  <div class="span-6 append-1">
+    <table>
+      <tr>
+        <th colspan="2"><%= @load_sheet.equipment.name %> (<%= @load_sheet.equipment.unit %>)</td>
+      </tr>
+      <tr class="even">
+        <td>Worked On</td>
+        <td class="right"><%= @load_sheet.date.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr class="odd">
+        <td>Created On</td>
+        <td class="right"><%= @load_sheet.created_at.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr class="even">
+        <td>Updated On</td>
+        <td class="right"><%= @load_sheet.updated_at.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr class="odd">
+        <td>Job</td>
+        <td class="right">Job #<%= @load_sheet.job_id %></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div class="span-10 last">
+    <h3>Location</h3>
+    <p>
+      <%= @load_sheet.location.name %>
+    </p>
+
+    <h3>Comments</h3>
+    <p>
+      <%= @load_sheet.note %>
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h3>Load Sheet Entries</h3>
+  <table>
+    <tr>
+      <th>Manufacturer</th>
+      <th>Batch #</th>
+      <th>Tote #</th>
+      <th>Tote Qty</th>
+    </tr>
+    <% @load_sheet.load_entries.each do |entry| %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= entry.material.manufacturer.name %></td>
+        <td><%= entry.material.batch %></td>
+        <td><%= entry.tote_number %></td>
+        <td><%= entry.tote_quantity %></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+  
+  <hr>
+  
+  <h3>Dips</h3>
+  <table>
+    <tr>
+      <th>&nbsp;</th>
+      <th>Start</th>
+      <th>End</th>
+    </tr>
+    <tr class="even">
+      <td>Yellow</td>
+      <td><%= @load_sheet.yellow_dip_start %> cm</td>
+      <td><%= @load_sheet.yellow_dip_end %> cm</td>
+    </tr>
+    <tr class="odd">
+      <td>White</td>
+      <td><%= @load_sheet.white_dip_start %> cm</td>
+      <td><%= @load_sheet.white_dip_end %> cm</td>
+    </tr>
+  </table>
+  
+</div>

@@ -21,9 +21,12 @@
 <% @materials.each do |material| %>
   <tr>
     <td><%= material.manufacturer.name %></td>
-    <td><%= link_to material.batch , edit_private_material_path(material), :class => "show"  %></td>
+    <td><%= material.batch %></td>
     <td><%= material.category %></td>
-    <td class="actions"><%= link_to 'Delete', private_material_path(material), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_material_path(material), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_material_path(material), :class => "edit" %>
+    </td>
   </tr>
 <% end %>
 </table>

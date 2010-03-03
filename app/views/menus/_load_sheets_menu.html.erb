@@ -1,0 +1,6 @@
+<ul>
+  <li><%= link_to "Edit Load Sheet", edit_private_load_sheet_path(@load_sheet) %></li>
+  <% if @load_sheet.job %>
+  <li><%= link_to "Show Job", private_job_path(@load_sheet.job_id) %></li>
+  <% end %>
+</ul>

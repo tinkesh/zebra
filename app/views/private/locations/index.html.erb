@@ -18,8 +18,11 @@
 
 <% @locations.each do |location| %>
   <tr>
-    <td><%= link_to location.name, edit_private_location_path(location), :class => "show" %></td>
-    <td class="actions"><%= link_to 'Delete', private_location_path(location), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+    <td><%= location.name %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_location_path(location), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_location_path(location), :class => "edit" %>
+    </td>
   </tr>
 <% end %>
 </table>

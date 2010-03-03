@@ -19,11 +19,14 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= link_to user.name, edit_user_path(user), :class => "show" %></td>
+    <td><%= user.name %></td>
     <td><%= user.login %></td>
     <td><%= user.role_list %></td>
     <td><%=h time_ago_in_words(user.last_login_at) + " ago" if user.last_login_at? %></td>
-    <td class="actions"><%= link_to 'Delete', user, :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+    <td class="actions">
+    <%= link_to 'Delete', user, :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_user_path(user), :class => "edit" %>
+    </td>
   </tr>
 <% end %>
 </table>

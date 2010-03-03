@@ -22,6 +22,12 @@ a:hover { color: #3344FF; text-decoration: underline; }
 #new { margin: 0; position: absolute; top: 20px; right: 0; }
 #new a { color: #529214; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
 .show { color: #3344FF; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/show_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
+.edit { color: #941494; margin: 0 10px 0 0; display: block; padding: 0 0 0 17px; background: url('/images/edit_12x12.gif') no-repeat; background-position: 0 50% ; border: none; float: right; }
+.new { color: #529214; margin: 0 10px 0 0; display: block; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; float: right; }
+
+.jobs .new, .jobs .edit, .jobs .show { float: none; }
+.jobs ul { list-style-type: none; margin: 0 0 1.5em 0; padding: 0; }
+
 .relative { position: relative; }
 .habtm { list-style-type: none; padding: 0; margin: 0 0 1.5em 0; }
 .habtm li { position: relative; }
@@ -100,7 +106,7 @@ table { }
 th { background: #333; color: #fff; font-weight: normal; }
 th, td, caption { padding: 2px 2px 2px 4px; }
 tr.even td { background: #ededed; }
-.actions { width: 100px; padding: 0; }
+.actions { padding: 0; }
 #controls { }
 #controls a.button {  }
 .rowodd { }

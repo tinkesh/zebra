@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
     priv.resources :locations,            :controller => "locations",            :path_prefix => "admin"
     priv.resources :time_note_categories, :controller => "time_note_categories", :path_prefix => "admin"
     priv.resources :time_task_categories, :controller => "time_task_categories", :path_prefix => "admin"
+    priv.resources :load_sheets,          :controller => "load_sheets",          :path_prefix => "admin"
 #    priv.resources :time_tasks,           :controller => "time_tasks",           :path_prefix => "admin"
 #    priv.resources :time_entries,         :controller => "time_entries",         :path_prefix => "admin"
   end

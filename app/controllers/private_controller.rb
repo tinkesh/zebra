@@ -5,6 +5,7 @@ class PrivateController < ApplicationController
 
   def index
     @jobs = current_user.jobs
+    @page_title = "Dashboard"
   end
   
   def settings

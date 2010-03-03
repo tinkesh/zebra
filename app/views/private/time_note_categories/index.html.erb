@@ -19,9 +19,12 @@
 
 <% @time_note_categories.each do |time_note_category| %>
   <tr>
-    <td><%= link_to time_note_category.name, edit_private_time_note_category_path(time_note_category), :class => "show" %></td>
+    <td><%= time_note_category.name %></td>
     <td><%= time_note_category.position %></td>
-    <td class="actions"><%= link_to 'Delete', private_time_note_category_path(time_note_category), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_time_note_category_path(time_note_category), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_time_note_category_path(time_note_category), :class => "edit" %>
+    </td>
   </tr>
 <% end %>
 </table>

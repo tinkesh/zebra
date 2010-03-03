@@ -18,10 +18,13 @@
 
 <% @time_sheets.each do |time_sheet| %>
   <tr>
-    <td><%= link_to "Time Sheet ##{time_sheet.id}", edit_private_time_sheet_path(time_sheet), :class => "show" %></td>
+    <td><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></td>
     <td><%= time_sheet.job_id %></td>
     <td><%= time_sheet.hours %></td>
-    <td class="actions"><%= link_to 'Delete', private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_time_sheet_path(time_sheet), :class => "edit" %>
+    </td>
   </tr>
 <% end %>
 </table>

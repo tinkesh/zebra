@@ -3,6 +3,7 @@
     <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
     <li><%= active_link_to 'Jobs', private_jobs_path, :active => { :when => :self_only }  %></li>
     <li><%= active_link_to 'Time Sheets', private_time_sheets_path %></li>
+    <li><%= active_link_to 'Load Sheets', private_load_sheets_path %></li>
     <li><%= active_link_to 'Users', users_path %></li>
     <li><%= active_link_to 'Settings', private_settings_path %></li>
     <li id="logout"><%= link_to "Logout", user_session_path, :method => :delete %></li>
