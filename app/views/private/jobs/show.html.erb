@@ -7,3 +7,83 @@
     <li><%= @page_title %></li>
   </ul>
 <% end %>
+
+<div class="span-6 append-1">
+  <div id="sidebar">
+    <%= render :partial => 'menus/jobs_menu', :layout => false %>
+  </div>
+</div>
+
+<div class="span-6 colborder">
+
+  <h3>Schedule</h3>
+  <p>
+    Start: <%= @job.started_on %><br>
+    Status: <%= @job.completion.name %><br>
+    Complete: <%= @job.completed_on %>
+  </p>
+
+  <hr>
+
+  <h3>Client</h3>
+  <p>
+    <%= @job.client.contact %><br>
+    <%= @job.client.name %><br>
+    <%= @job.client.address %><br>
+    <%= @job.client.city %>, <%= @job.client.province %> <%= @job.client.postal_code %><br>
+    Work: <%= @job.client.work_phone %><br>
+    Cell: <%= @job.client.cell_phone %><br>
+    Fax: <%= @job.client.fax %><br>
+    Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
+    <% if @job.client.notes %>
+    <br><br>
+    <%= @job.client.notes %>
+    <% end %>
+  </p>
+
+</div>
+
+<div class="span-5 colborder">
+  <h3>Assigned Users</h3>
+  <ul class="no_list">
+    <% @job.users.each do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </ul>
+  
+  <hr>
+  
+  <h3>Assigned Equipment</h3>
+  <ul class="no_list">
+  <% @job.equipments.each do |equipment| %>
+    <li><%= equipment.unit %> - <%= equipment.name %></li>
+  <% end %>
+  </ul>
+  
+  <hr>
+  
+  <h3>Assigned Locations</h3>
+  <ul class="no_list">
+  <% @job.locations.each do |location| %>
+    <li><%= location.name %></li>
+  <% end %>
+  </ul>
+  
+</div>
+
+<div class="span-4 last">
+  <h3>Time Sheets</h3>
+  <ul class="no_list">
+  <% @job.time_sheets.each do |time_sheet| %>
+    <li><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></li>
+  <% end %>
+  </ul>
+  
+  <hr>
+
+  <h3>Load Sheets</h3>
+  
+  <hr>
+  
+  <h3>Gun Sheets</h3>
+</div>

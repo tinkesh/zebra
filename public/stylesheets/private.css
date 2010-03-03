@@ -10,10 +10,11 @@ Logo Yellow F5DF00
 html { overflow-y: scroll; } /* always show scrollbar */
 body { background: #F8F8F8; }
 h1, h2, h3 { }
-p, ul, ol, td, th { font-size: 14px; }
+p, ul, ol, td, th, label { font-size: 14px; }
 h1 { font-size: 2.5em; }
 a { color: #3344FF; text-decoration: none; }
 a:hover { color: #3344FF; text-decoration: underline; }
+
 
 /* misc */
 .delete { color: #8a1f11; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/delete_12x12.gif') no-repeat; background-position: 0 50% ; border: none; width: 39px; float: right; }
@@ -27,9 +28,13 @@ a:hover { color: #3344FF; text-decoration: underline; }
 .habtm input { position: absolute; top: 2px; left: 0; }
 .habtm label { font-weight: normal; padding: 0 0 0 20px;}
 .habtm label:hover { background: #ccc; }
-.jobs { list-style-type: none; padding: 0; margin: 0 0 1.5em 0; }
+.jobs { list-style-type: none; margin: 0 0 1.5em 0; }
 .jobs h3 { margin: 0 0 5px 0; }
-
+.tasks {   }
+.tasks li { margin-bottom: 1em; }
+.total { text-align: right; font-weight: bold; border-top: solid 1px #333; }
+.no_list { list-style-type: none; margin: 0 0 1.5em 0; }
+.right { text-align: right; }
 
 /* header */
 #header .container { position: relative; }
@@ -45,7 +50,7 @@ a:hover { color: #3344FF; text-decoration: underline; }
 
 /* content */
 #content { border-top: solid 20px #efefef; }
-#content .container { padding: 20px 0; position: relative; }
+#content .container { padding: 20px 0 30px 0; position: relative; }
 #breadcrumb { list-style-type: none; margin: 0 0 20px 0; position: absolute; top: -20px; left: 4px; font-size: 13px; }
 #breadcrumb li { display: inline; margin-right: .3em; }
 #breadcrumb a { color: #000; }
@@ -78,7 +83,6 @@ button[type] { padding:4px 10px 4px 7px; line-height:17px; }
 button img, a.button img { margin:0 3px -3px 0 !important; padding:0; border:none; width:16px; height:16px; float:none; }
 input.button:hover, button:hover, a.button:hover{ background-color:#dff4ff; border:1px solid #c2e1ef; color:#336699; }
 a.button:active { background-color:#6299c5; border:1px solid #6299c5; color:#fff; }
-
 body .positive { color:#529214; border-color: #529214; background-color:#E6EFC2;}
 body .negative { color:#d12f19; border-color: #d12f19; }
 a.positive:hover, button.positive:hover { background-color:#E6EFC2; border:1px solid #C6D880; color:#529214; }
@@ -92,6 +96,7 @@ a.negative:active { background-color:#d12f19; border:1px solid #d12f19; color:#f
 .fieldWithErrors { color: #8a1f11; display: table;}
 
 /* tables */
+table { }
 th { background: #333; color: #fff; font-weight: normal; }
 th, td, caption { padding: 2px 2px 2px 4px; }
 tr.even td { background: #ededed; }

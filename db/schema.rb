@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20100302014703) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "created_by"
+    t.integer  "updated_by"
   end
 
   create_table "time_note_categories", :force => true do |t|
@@ -175,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20100302014703) do
     t.string   "note"
     t.datetime "started_at"
     t.datetime "completed_at"
+    t.integer  "updated_by"
   end
 
   create_table "time_task_categories", :force => true do |t|
@@ -191,6 +193,7 @@ ActiveRecord::Schema.define(:version => 20100302014703) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
+    t.integer  "updated_by"
   end
 
   create_table "users", :force => true do |t|

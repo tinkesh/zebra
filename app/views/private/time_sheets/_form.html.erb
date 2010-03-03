@@ -1,21 +1,27 @@
+<h3>Comments</h3>
+
 <div class="span-6 append-bottom">
   <%= form.label :time_note_category_id, "Comment" %><br>
   <%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %>
 </div>
 
-<div class="span-6 append-bottom">
-  <%= form.label :note, "Additional Comments, if needed" %><br>
-  <%= form.text_field :note, :class => "span-6" %>
+<div class="span-4 append-bottom">
+  
 </div>
 
-<br class="clear">
+<div class="span-14 last append-bottom">
+  <%= form.label :note, "Additional Comments, if needed" %><br>
+  <%= form.text_field :note, :class => "span-14" %>
+</div>
+
+<hr>
 
 <h3>Tasks</h3>
-<p>Fill out a detailed list of what you did today.</p>
+<p>Fill out a detailed list of what you did today. You will be paid based on the difference between "Clock In" and "Clock Out".</p>
 
 <div class="append-bottom">
-  <%= form.label :started_at, "Start Time" %><br>
-  <%= form.datetime_select :started_at, :class => "span-6" %>
+  <%= form.label :started_at, "Clock In" %><br>
+  <%= form.datetime_select :started_at, :minute_step => 15 %>
 </div>
 
 <% form.fields_for :time_tasks do |builder| %>
@@ -25,17 +31,15 @@
 <br class="clear">
 
 <div class="append-bottom">
-  <%= form.label :completed_at, "End Time" %><br>
-  <%= form.datetime_select :completed_at, :class => "span-6" %>
+  <%= form.label :completed_at, "Clock Out" %><br>
+  <%= form.datetime_select :completed_at, :class => "span-6", :include_blank => true %>
 </div>
 
 <hr>
 
 <h3>Users</h3>
 <p>
-  Adjust time for each person on the job. If everyone worked the full day, you may leave blank. To take time away, include a minus sign.
-  <br>
-  For example, "-2" would take away two hours and '.5' would add an additional half hour.
+  Adjust time for each person on the job. If everyone worked the full day, you do not need to make any changes. If a person did not work at all, adjust their drop down to the blank selection.
 </p>
 <% form.fields_for :time_entries do |builder| %>
   <%= render 'time_entries_fields', :form => builder %>

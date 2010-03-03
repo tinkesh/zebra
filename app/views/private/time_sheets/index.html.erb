@@ -2,8 +2,6 @@
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
-    <li><%= link_to 'Settings', private_settings_path %></li>
-    <li>»</li>
     <li><%= @page_title %></li>
   </ul>
 <% end %>
@@ -12,15 +10,17 @@
 
 <table class="sortable">
   <tr>
-    <th>ID</th>
-    <th>Job Number</th>
+    <th class="span-3">Name</th>
+    <th>Job #</th>
+    <th>Average Hours</th>
     <th class="actions nosort"></th>
   </tr>
 
 <% @time_sheets.each do |time_sheet| %>
   <tr>
-    <td><%= link_to time_sheet.id, edit_private_time_sheet_path(time_sheet), :class => "show" %></td>
+    <td><%= link_to "Time Sheet ##{time_sheet.id}", edit_private_time_sheet_path(time_sheet), :class => "show" %></td>
     <td><%= time_sheet.job_id %></td>
+    <td><%= time_sheet.hours %></td>
     <td class="actions"><%= link_to 'Delete', private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %></td>
   </tr>
 <% end %>

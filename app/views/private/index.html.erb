@@ -13,9 +13,9 @@
       <h3>Job #<%= job.id -%></h3>
       <ul>
         <li><%= link_to "Show Details", private_job_path(job) %></li>
-        <li><%= link_to "Submit Time Sheet", new_private_job_time_sheet_path(:job_id => job.id) %></li>
-        <li><a href="#">Submit Load Sheet</a></li>
-        <li><a href="#">Submit Gun Sheet</a>
+        <li><%= link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => job.id) %></li>
+        <li><a href="#">New Load Sheet</a></li>
+        <li><a href="#">New Gun Sheet</a>
       </ul>
     </li>
   <%- end -%>
