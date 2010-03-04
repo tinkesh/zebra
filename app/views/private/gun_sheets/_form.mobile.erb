@@ -1,0 +1,110 @@
+<table>
+  <tr>
+  <td><%= form.label :client_id, "Client:" %></td>
+  <td><%= form.select (:client_id, @clients.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :job_id, "Job:" %></td>
+  <td><%= form.select (:job_id, @jobs.map {|u| ["Job ##{u.id}",u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :note, "Note:" %></td>
+  <td><%= form.text_field "note", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :location_id, "Location:" %></td>
+  <td><%= form.select (:location_id, @locations.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :control_section, "Control Section:" %></td>
+  <td><%= form.text_field "control_section", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :interchanges, "Interchanges:" %></td>
+  <td><%= form.text_field "interchanges", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :sides, "Sides:" %></td>
+  <td><%= form.text_field "sides", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td><%= form.radio_button :is_new_construction, "true" %> New Construction</td>
+  <td><%= form.radio_button :is_new_construction, "false" %> Repaint</td>
+  </tr>
+  <tr>
+    <td colspan="2"><hr /></td>
+  </tr>
+  <tr>
+  <td><%= form.label :date, "Date:" %></td>
+  <td><%= form.date_select :date %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :started_at, "Started at:" %></td>
+  <td><%= form.time_select :started_at %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :completed_at, "Completed at:" %></td>
+  <td><%= form.time_select :completed_at %></td>
+  </tr>
+</table>
+
+<hr />
+
+<h3>Guns</h3>
+
+<table>
+  <tr>
+    <td>Solid Y-1: <%= form.text_field "solid_y1", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid Y-2: <%= form.text_field "solid_y2", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid Y-3: <%= form.text_field "solid_y3", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid W-4: <%= form.text_field "solid_w4", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid W-5: <%= form.text_field "solid_w5", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid W-6: <%= form.text_field "solid_w6", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid W-7: <%= form.text_field "solid_w7", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><hr />
+  </tr>
+  <tr>
+    <td>Skip Y-1: <%= form.text_field "skip_y1", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Skip Y-2: <%= form.text_field "skip_y2", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Skip Y-3: <%= form.text_field "skip_y3", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Skip W-4: <%= form.text_field "skip_w4", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Skip W-5: <%= form.text_field "skip_w5", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Skip W-6: <%= form.text_field "skip_w6", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Skip W-7: <%= form.text_field "skip_w7", :size => "5" %></td>
+  </tr>
+</table>
+
+<hr />
+
+<h3>Markings</h3>
+<table>
+<% form.fields_for :gun_markings do |builder| %>
+  <%= render 'gun_markings_fields', :form => builder %>
+<% end %>
+</table>

@@ -1,5 +1,5 @@
 <p><%= link_to "New Load Sheet", new_private_load_sheet_path %> | 
-<%= link_to "New Gun Sheet", new_private_load_sheet_path %></p>
+<%= link_to "New Gun Sheet", new_private_gun_sheet_path %></p>
 <%- @jobs.each do |job| -%>
 <p>
   <b><%= link_to "Job ##{job.id}", private_job_path(job) %></b> - <%= link_to "Add a Time Sheet", new_private_job_time_sheet_path(:job_id => job.id) %>

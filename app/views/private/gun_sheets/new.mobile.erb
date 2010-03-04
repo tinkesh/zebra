@@ -1,0 +1,6 @@
+<% form_for [:private, @gun_sheet] do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <hr />
+  <%= f.submit "Create Gun Sheet" %>
+<% end %>

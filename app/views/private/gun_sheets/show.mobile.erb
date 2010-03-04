@@ -1,0 +1,101 @@
+
+<p><%= link_to "Edit This Gun Sheet", edit_private_gun_sheet_path(@gun_sheet) %></p>
+
+<table>
+  <tr>
+    <td>Worked On</td>
+    <td class="right"><%= @gun_sheet.date.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr>
+    <td>Start Time</td>
+    <td class="right"><%= @gun_sheet.started_at.strftime("%H:%M") %></td>
+  </tr>
+  <tr>
+    <td>End Time</td>
+    <td class="right"><%= @gun_sheet.completed_at.strftime("%H:%M") %></td>
+  </tr>
+  <tr>
+    <td>Created On</td>
+    <td class="right"><%= @gun_sheet.created_at.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr>
+    <td>Updated On</td>
+    <td class="right"><%= @gun_sheet.updated_at.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr>
+    <td>Job</td>
+    <td class="right">Job #<%= @gun_sheet.job_id %></td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td><%= if @gun_sheet.location : @gun_sheet.location.name end %></td>
+</table>
+
+<hr />
+
+<h3>Comments</h3>
+<p>
+  <%= @gun_sheet.note %>
+</p>
+
+<hr />
+
+<h3>Guns</h3>
+<table>
+  <tr>
+    <td>Solid Y-1: <%= @gun_sheet.solid_y1 %></td>
+  </tr>
+  <tr>
+    <td>Solid Y-2: <%= @gun_sheet.solid_y2 %></td>
+  </tr>
+  <tr>
+    <td>Solid Y-3: <%= @gun_sheet.solid_y3 %></td>
+  </tr>
+  <tr>
+    <td>Solid W-4: <%= @gun_sheet.solid_w4 %></td>
+  </tr>
+  <tr>
+    <td>Solid W-5: <%= @gun_sheet.solid_w5 %></td>
+  </tr>
+  <tr>
+    <td>Solid W-6: <%= @gun_sheet.solid_w6 %></td>
+  </tr>
+  <tr>
+    <td>Solid W-7: <%= @gun_sheet.solid_w7 %></td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Skip Y-1: <%= @gun_sheet.skip_y1 %></td>
+  </tr>
+  <tr>
+    <td>Skip Y-2: <%= @gun_sheet.skip_y2 %></td>
+  </tr>
+  <tr>
+    <td>Skip Y-3: <%= @gun_sheet.skip_y3 %></td>
+  </tr>
+  <tr>
+    <td>Skip W-4: <%= @gun_sheet.skip_w4 %></td>
+  </tr>
+  <tr>
+    <td>Skip W-5: <%= @gun_sheet.skip_w5 %></td>
+  </tr>
+  <tr>
+    <td>Skip W-6: <%= @gun_sheet.skip_w6 %></td>
+  </tr>
+  <tr>
+    <td>Skip W-7: <%= @gun_sheet.skip_w7 %></td>
+  </tr>
+</table>
+
+<hr />
+
+<h3>Markings</h3>
+<table>
+  <% @gun_sheet.gun_markings.each do |marking| %>
+    <tr>
+      <td><%= marking.gun_marking_category.name %>: <%= marking.amount %></td>
+    </tr>
+  <% end %>
+</table>
