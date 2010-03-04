@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
 
-  has_mobile_fu
+  has_mobile_fu(true)
 
   helper :all # include all helpers, all the time
   

@@ -30,7 +30,7 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = @job.time_sheets.build(params[:time_sheet])
     if @time_sheet.save
       flash[:notice] = "Time Sheet created!"
-      redirect_back_or_default private_time_sheets_url
+      redirect_back_or_default private_home_url
     else
       render :action => :new
     end
@@ -47,7 +47,7 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.find(params[:id])
     if @time_sheet.update_attributes(params[:time_sheet])
       flash[:notice] = "Time Sheet updated!"
-      redirect_to private_time_sheets_url
+      redirect_to private_home_url
     else
       render :action => :edit
     end
@@ -57,7 +57,7 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.find(params[:id])
     @time_sheet.destroy
     flash[:notice] = 'Time Sheet deleted!'
-    redirect_to(private_time_sheets_url)
+    redirect_to private_home_url
   end
 
 private

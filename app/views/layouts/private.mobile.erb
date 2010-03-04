@@ -8,13 +8,17 @@
   </head>
   <body id="mobile">
 
-    <% if @page_title %>
-      <h1><%= @page_title %></h1>
-    <% end %>
-
     <%= render :partial => 'menus/private_menu', :layout => false %>
     
-    <hr>
+    <hr />
+
+    <% flash.each do |key, value| -%>
+      <p><%=h value %></p>
+    <% end -%>
+
+    <% if @page_title %>
+      <h2><%= @page_title %></h2>
+    <% end %>
 
     <%= yield %>
   </body>

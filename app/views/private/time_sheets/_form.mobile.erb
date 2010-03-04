@@ -1,0 +1,31 @@
+<p><%= form.label :time_note_category_id, "Comments" %><br />
+<%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %></p>
+
+<p><%= form.label :note, "Additional Comments, if needed" %><br />
+<%= form.text_field :note %></p>
+
+<hr />
+
+<h3>Tasks</h3>
+<p>Fill out a detailed list of what you did today. You will be paid based on the difference between "Clock In" and "Clock Out".</p>
+
+<p><%= form.label :started_at, "Clock In" %><br />
+<%= form.datetime_select :started_at, :minute_step => 15 %></p>
+
+<hr />
+
+<% form.fields_for :time_tasks do |builder| %>
+  <%= render 'time_task_fields', :form => builder %>
+<% end %>
+
+<p><%= form.label :completed_at, "Clock Out" %><br />
+<%= form.datetime_select :completed_at, :include_blank => true %></p>
+
+<hr />
+
+<h3>Users</h3>
+<p>Adjust time for each person on the job. If everyone worked the full day, you do not need to make any changes. If a person did not work at all, adjust their drop down to the blank selection.</p>
+
+<% form.fields_for :time_entries do |builder| %>
+  <%= render 'time_entries_fields', :form => builder %>
+<% end %>

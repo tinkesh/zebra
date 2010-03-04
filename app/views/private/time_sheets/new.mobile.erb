@@ -1,0 +1,7 @@
+<% form_for [:private, @job, @time_sheet] do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <br />
+  <hr />
+  <%= f.submit "Create Time Sheet" %>
+<% end %>

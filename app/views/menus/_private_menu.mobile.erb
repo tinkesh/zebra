@@ -1,13 +1,7 @@
 <div id="menu">
-  <% has_role?(:admin) do %>
-    <%= active_link_to 'Home', private_home_path %> | 
-  <% end %>
-
-  <% has_role?(:admin) do %>
-    <%= active_link_to 'Directory', directory_path %> | 
-  <% end %>
-
-  <% authenticated_only do %>
-    <%= link_to "Logout", user_session_path, :method => :delete %>
-  <% end %>
+<% authenticated_only do %>
+  <%= link_to 'Dashboard', private_home_path %> | 
+  <%= link_to 'Directory', directory_path %> |
+  <%= link_to "Logout", user_session_path, :method => :delete %>
+<% end %>
 </div>
