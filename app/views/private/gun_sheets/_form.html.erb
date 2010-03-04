@@ -1,0 +1,104 @@
+<div class="span-6 append-bottom">
+  <%= form.label :client_id, "Client" %><br>
+  <%= form.select (:client_id, @clients.map {|u| [u.name,u.id]}, :include_blank => true) %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :job_id, "Job" %><br>
+  <%= form.select (:job_id, @jobs.map {|u| ["Job ##{u.id}",u.id]}, :include_blank => true, :selected => params[:job_id]) %>
+</div>
+
+<div class="span-12 last append-bottom">
+  <%= form.label :note, "Comments" %><br>
+  <%= form.text_field "note", :class => "span-12" %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :location_id, "Location" %><br>
+  <%= form.select (:location_id, @locations.map {|u| [u.name,u.id]}, :include_blank => true) %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :control_section, "Control Section" %><br>
+  <%= form.text_field "control_section", :class => "span-6" %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :interchanges, "Interchanges" %><br>
+  <%= form.text_field "interchanges", :class => "span-6" %>
+</div>
+
+<div class="span-6 last append-bottom">
+  <%= form.label :sides, "Sides" %><br>
+  <%= form.text_field "sides", :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :date, "Date" %><br>
+  <%= form.date_select :date %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :started_at, "Started at" %><br>
+  <%= form.time_select :started_at %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :completed_at, "Completed at" %><br>
+  <%= form.time_select :completed_at %>
+</div>
+
+<div class="span-6 last append-bottom">
+  <%= form.radio_button :is_new_construction, "true" %> New Construction<br>
+  <%= form.radio_button :is_new_construction, "false" %> Repaint
+</div>
+
+<hr>
+
+<h3>Guns</h3>
+
+<table class="guns">
+  <tr>
+    <th class="span-3">&nbsp;</th>
+    <th class="span-3">Y-1</th>
+    <th class="span-3">Y-2</th>
+    <th class="span-3">Y-3</th>
+    <th class="span-3">W-4</th>
+    <th class="span-3">W-5</th>
+    <th class="span-3">W-6</th>
+    <th class="span-3">W-7</th>
+  </tr>
+  <tr>
+    <th>Solid</th>
+    <td><%= form.text_field "solid_y1", :class => "span-3" %></td>
+    <td><%= form.text_field "solid_y2", :class => "span-3"  %></td>
+    <td><%= form.text_field "solid_y3", :class => "span-3"  %></td>
+    <td><%= form.text_field "solid_w4", :class => "span-3"  %></td>
+    <td><%= form.text_field "solid_w5", :class => "span-3"  %></td>
+    <td><%= form.text_field "solid_w6", :class => "span-3"  %></td>
+    <td><%= form.text_field "solid_w7", :class => "span-3"  %></td>
+  </tr>
+  <tr>
+    <th>Skip</th>
+    <td><%= form.text_field "skip_y1", :class => "span-3" %></td>
+    <td><%= form.text_field "skip_y2", :class => "span-3"  %></td>
+    <td><%= form.text_field "skip_y3", :class => "span-3"  %></td>
+    <td><%= form.text_field "skip_w4", :class => "span-3"  %></td>
+    <td><%= form.text_field "skip_w5", :class => "span-3"  %></td>
+    <td><%= form.text_field "skip_w6", :class => "span-3"  %></td>
+    <td><%= form.text_field "skip_w7", :class => "span-3"  %></td>
+  </tr>
+</table>
+
+<hr>
+
+<div class="span-11 colborder">
+  <h3>Markings</h3>
+<% form.fields_for :gun_markings do |builder| %>
+  <%= render 'gun_markings_fields', :form => builder %>
+<% end %>
+</div>

@@ -1,0 +1,30 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<p id="new"><%= link_to 'New Gun Sheet', new_private_gun_sheet_path %></p>
+
+<table class="sortable">
+  <tr>
+    <th class="span-3">Name</th>
+    <th>Job #</th>
+    <th>Location</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% @gun_sheets.each do |gun_sheet| %>
+  <tr>
+    <td><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet), :class => "show" %></td>
+    <td><%= gun_sheet.job_id %></td>
+    <td><%= if gun_sheet.location : gun_sheet.location.name end %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_gun_sheet_path(gun_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_gun_sheet_path(gun_sheet), :class => "edit" %>
+    </td>
+  </tr>
+<% end %>
+</table>

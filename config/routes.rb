@@ -6,19 +6,22 @@ ActionController::Routing::Routes.draw do |map|
 
   # private forms
   map.namespace :private do |priv|
-    priv.resources :clients,              :controller => "clients",              :path_prefix => "admin"
-    priv.resources :equipments,           :controller => "equipments",           :path_prefix => "admin"
-    priv.resources :manufacturers,        :controller => "manufacturers",        :path_prefix => "admin"
-    priv.resources :materials,            :controller => "materials",            :path_prefix => "admin"
-    priv.resources :completions,          :controller => "completions",          :path_prefix => "admin"
-    priv.resources :time_sheets,          :controller => "time_sheets",          :path_prefix => "admin"
-    priv.resources :jobs,                 :controller => "jobs",                 :path_prefix => "admin", :has_many => :time_sheets
-    priv.resources :locations,            :controller => "locations",            :path_prefix => "admin"
-    priv.resources :time_note_categories, :controller => "time_note_categories", :path_prefix => "admin"
-    priv.resources :time_task_categories, :controller => "time_task_categories", :path_prefix => "admin"
-    priv.resources :load_sheets,          :controller => "load_sheets",          :path_prefix => "admin"
-#    priv.resources :time_tasks,           :controller => "time_tasks",           :path_prefix => "admin"
-#    priv.resources :time_entries,         :controller => "time_entries",         :path_prefix => "admin"
+    priv.resources :clients,                :controller => "clients",                :path_prefix => "admin"
+    priv.resources :equipments,             :controller => "equipments",             :path_prefix => "admin"
+    priv.resources :manufacturers,          :controller => "manufacturers",          :path_prefix => "admin"
+    priv.resources :materials,              :controller => "materials",              :path_prefix => "admin"
+    priv.resources :completions,            :controller => "completions",            :path_prefix => "admin"
+    priv.resources :locations,              :controller => "locations",              :path_prefix => "admin"
+    priv.resources :jobs,                   :controller => "jobs",                   :path_prefix => "admin", :has_many => :time_sheets
+    priv.resources :time_sheets,            :controller => "time_sheets",            :path_prefix => "admin"
+    priv.resources :time_note_categories,   :controller => "time_note_categories",   :path_prefix => "admin"
+    priv.resources :time_task_categories,   :controller => "time_task_categories",   :path_prefix => "admin"
+    priv.resources :load_sheets,            :controller => "load_sheets",            :path_prefix => "admin"
+    priv.resources :gun_sheets,             :controller => "gun_sheets",             :path_prefix => "admin"
+    priv.resources :gun_marking_categories, :controller => "gun_marking_categories", :path_prefix => "admin"
+
+#    priv.resources :time_tasks,             :controller => "time_tasks",           :path_prefix => "admin"
+#    priv.resources :time_entries,           :controller => "time_entries",         :path_prefix => "admin"
   end
 
   # user authentication and accounts

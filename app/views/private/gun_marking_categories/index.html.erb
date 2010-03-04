@@ -1,0 +1,30 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Settings', private_settings_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<p id="new"><%= link_to 'New Gun Marking Category', new_private_gun_marking_category_path %></p>
+
+<table class="sortable">
+  <tr>
+    <th>Name</th>
+    <th>Display Position</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% @gun_marking_categories.each do |gun_marking_category| %>
+  <tr>
+    <td><%= gun_marking_category.name %></td>
+    <td><%= gun_marking_category.position %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_gun_marking_category_path(gun_marking_category), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_gun_marking_category_path(gun_marking_category), :class => "edit" %>
+    </td>
+  </tr>
+<% end %>
+</table>

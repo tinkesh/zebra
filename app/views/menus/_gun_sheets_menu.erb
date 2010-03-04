@@ -1,0 +1,6 @@
+<ul>
+  <li><%= link_to "Edit Gun Sheet", edit_private_gun_sheet_path(@gun_sheet) %></li>
+  <% if @gun_sheet.job %>
+  <li><%= link_to "Show Job", private_job_path(@gun_sheet.job_id) %></li>
+  <% end %>
+</ul>

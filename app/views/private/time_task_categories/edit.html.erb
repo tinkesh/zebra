@@ -13,5 +13,5 @@
 <% form_for @time_task_category, :url => private_time_task_category_path(@time_task_category), :method => :put do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Save Location" %> or <%= link_to 'Cancel', private_time_task_categories_path %>
+  <%= f.submit "Save Time Sheet Task Category" %> or <%= link_to 'Cancel', private_time_task_categories_path %>
 <% end %>

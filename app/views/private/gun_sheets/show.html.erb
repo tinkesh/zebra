@@ -1,0 +1,117 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Gun Sheets', private_gun_sheets_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<div class="span-6 append-1">
+  <div id="sidebar">
+    <%= render :partial => 'menus/gun_sheets_menu', :layout => false %>
+  </div>
+</div>
+
+<div class="span-17 last">
+  <div class="span-6 append-1">
+    <table>
+      <tr class="even">
+        <td>Worked On</td>
+        <td class="right"><%= @gun_sheet.date.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr class="odd">
+        <td>Start Time</td>
+        <td class="right"><%= @gun_sheet.started_at.strftime("%H:%M") %></td>
+      </tr>
+      <tr class="even">
+        <td>End Time</td>
+        <td class="right"><%= @gun_sheet.completed_at.strftime("%H:%M") %></td>
+      </tr>
+      <tr class="odd">
+        <td>Created On</td>
+        <td class="right"><%= @gun_sheet.created_at.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr class="even">
+        <td>Updated On</td>
+        <td class="right"><%= @gun_sheet.updated_at.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr class="odd">
+        <td>Job</td>
+        <td class="right">Job #<%= @gun_sheet.job_id %></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div class="span-10 last">
+    <h3>Location</h3>
+    <p>
+      <%= if @gun_sheet.location : @gun_sheet.location.name end %>
+    </p>
+
+    <h3>Comments</h3>
+    <p>
+      <%= @gun_sheet.note %>
+    </p>
+  </div>
+
+  <hr>
+
+  <h3>Guns</h3>
+  <table>
+    <tr>
+      <th class="span-3">&nbsp;</th>
+      <th class="span-3">Y-1</th>
+      <th class="span-3">Y-2</th>
+      <th class="span-3">Y-3</th>
+      <th class="span-3">W-4</th>
+      <th class="span-3">W-5</th>
+      <th class="span-3">W-6</th>
+      <th class="span-3">W-7</th>
+    </tr>
+    <tr class="even">
+      <td>Solid</td>
+      <td><%= @gun_sheet.solid_y1 %></td>
+      <td><%= @gun_sheet.solid_y2 %></td>
+      <td><%= @gun_sheet.solid_y3 %></td>
+      <td><%= @gun_sheet.solid_w4 %></td>
+      <td><%= @gun_sheet.solid_w5 %></td>
+      <td><%= @gun_sheet.solid_w6 %></td>
+      <td><%= @gun_sheet.solid_w7 %></td>
+    </tr>
+    <tr class="odd">
+      <td>Skip</td>
+      <td><%= @gun_sheet.skip_y1 %></td>
+      <td><%= @gun_sheet.skip_y2 %></td>
+      <td><%= @gun_sheet.skip_y3 %></td>
+      <td><%= @gun_sheet.skip_w4 %></td>
+      <td><%= @gun_sheet.skip_w5 %></td>
+      <td><%= @gun_sheet.skip_w6 %></td>
+      <td><%= @gun_sheet.skip_w7 %></td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>Markings</h3>
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Amount</th>
+    </tr>
+    <% @gun_sheet.gun_markings.each do |marking| %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= marking.gun_marking_category.name %></td>
+        <td><%= marking.amount %></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+  
+  <hr>
+  
+
+  
+</div>
