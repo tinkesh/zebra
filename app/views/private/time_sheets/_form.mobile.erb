@@ -1,25 +1,40 @@
-<p><%= form.label :time_note_category_id, "Comments" %><br />
-<%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %></p>
-
-<p><%= form.label :note, "Additional Comments, if needed" %><br />
-<%= form.text_field :note %></p>
+<table>
+<tr>
+<td><%= form.label :time_note_category_id, "Comment" %></td>
+<td><%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %></td>
+</tr>
+<tr>
+<td><%= form.label :note, "Details" %></td>
+<td><%= form.text_field :note, :size => "25" %></td>
+</tr>
+</table>
 
 <hr />
 
 <h3>Tasks</h3>
 <p>Fill out a detailed list of what you did today. You will be paid based on the difference between "Clock In" and "Clock Out".</p>
 
-<p><%= form.label :started_at, "Clock In" %><br />
-<%= form.datetime_select :started_at, :minute_step => 15 %></p>
-
-<hr />
+<table>
+<tr>
+<td><b><%= form.label :started_at, "Clock In" %></b><br />
+<%= form.datetime_select :started_at, :minute_step => 15 %></td>
+</tr>
+<tr>
+<td colspan="2"><hr /></td>
+</tr>
 
 <% form.fields_for :time_tasks do |builder| %>
   <%= render 'time_task_fields', :form => builder %>
 <% end %>
 
-<p><%= form.label :completed_at, "Clock Out" %><br />
-<%= form.datetime_select :completed_at, :include_blank => true %></p>
+<tr>
+<td colspan="2"><hr /></td>
+</tr>
+<tr>
+<td><b><%= form.label :completed_at, "Clock Out" %></b><br />
+<td><%= form.datetime_select :completed_at, :include_blank => true %></td>
+</tr>
+</table>
 
 <hr />
 

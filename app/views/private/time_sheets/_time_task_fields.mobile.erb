@@ -1,16 +1,15 @@
-<table>
-  <tr>
-    <td><%= form.label :happened_at, "At:" %></td>
-    <td><%= form.time_select :happened_at, :minute_step => 15, :prompt => { :hour => "hh", :minute => "mm"} %></td>
-  </tr>
-  <tr>
-    <td><%= form.label :time_task_category_id, "We:" %></td>
-    <td><%= form.select (:time_task_category_id, @time_task_categories.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
-  </tr>
-  <tr>
-    <td><%= form.label :note, "Notes:" %></td>
-    <td><%= form.text_field :note %></td>
-  </tr>
-</table>
-
-<hr />
+<tr>
+  <td><%= form.label :happened_at, "At:" %></td>
+  <td><%= form.time_select :happened_at, :minute_step => 15, :prompt => { :hour => "hh", :minute => "mm"} %></td>
+</tr>
+<tr>
+  <td><%= form.label :time_task_category_id, "We:" %></td>
+  <td><%= form.select (:time_task_category_id, @time_task_categories.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
+</tr>
+<tr>
+  <td><%= form.label :note, "Notes:" %></td>
+  <td><%= form.text_field :note %></td>
+</tr>
+<tr>
+<td colspan="2"><hr /></td>
+</tr>

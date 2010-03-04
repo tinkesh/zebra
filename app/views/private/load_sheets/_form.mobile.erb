@@ -1,0 +1,56 @@
+<table>
+<tr>
+<td><%= form.label :date, "Date" %></td>
+<td><%= form.date_select :date %></td>
+</tr>
+<tr>
+<td><%= form.label :equipment_id, "Equipment" %></td>
+<td><%= form.select (:equipment_id, @equipment.map {|u| ["#{u.unit} - #{u.name}",u.id]}, :include_blank => true) %></td>
+</tr>
+<tr>
+<td><%= form.label :job_id, "Job" %></td>
+<td><%= form.select (:job_id, @jobs.map {|u| ["Job ##{u.id}",u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
+</tr>
+<tr>
+<td><%= form.label :location_id, "Location" %></td>
+<td><%= form.select (:location_id, @locations.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
+</tr>
+</table>
+
+<hr />
+
+<h3>Material Usage</h3>
+
+<% form.fields_for :load_entries do |builder| %>
+<%= render 'load_entries_fields', :form => builder %>
+<% end %>
+
+<table>
+<tr>
+<td><%= form.label :yellow_dip_start, "Start Dip Yellow" %></td>
+<td><%= form.text_field :yellow_dip_start, :size => "8" %></td>
+</tr>
+<tr>
+<td><%= form.label :yellow_dip_end, "End Dip Yellow" %></td>
+<td><%= form.text_field :yellow_dip_end, :size => "8" %></td>
+</tr>
+</table>
+
+<hr />
+
+<table>
+<tr>
+<td><%= form.label :white_dip_start, "Start Dip White" %></td>
+<td><%= form.text_field :white_dip_start, :size => "8" %></td>
+</tr>
+<tr>
+<td><%= form.label :white_dip_end, "End Dip White" %></td>
+<td><%= form.text_field :white_dip_end, :size => "8" %></td>
+</tr>
+<tr>
+</table>
+
+<hr />
+
+<p><%= form.label :note, "Note" %><br />
+<%= form.text_field :note %></p>

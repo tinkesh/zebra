@@ -1,0 +1,16 @@
+<table>
+<tr>
+<td><%= form.label :material_id, "Material" %></td>
+<td><%= form.select (:material_id, @materials.map {|u| ["#{u.manufacturer.abbreviation} Batch ##{u.batch}",u.id]}, :include_blank => true) %></td>
+</tr>
+<tr>
+<td><%= form.label :tote_number, "Tote #" %></td>
+<td><%= form.text_field :tote_number, :size => "8" %></td>
+</tr>
+<tr>
+<td><%= form.label :tote_quantity, "Tote Qty" %></td>
+<td><%= form.text_field :tote_quantity, :size => "8" %></td>
+</tr>
+</table>
+
+<hr />

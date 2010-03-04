@@ -1,0 +1,77 @@
+<p><%= link_to "Edit This Load Sheet", edit_private_load_sheet_path(@load_sheet) %></p>
+
+<table>
+  <tr>
+    <td>Equipment:</td>
+    <td><%= @load_sheet.equipment.name %> (<%= @load_sheet.equipment.unit %>)</td>
+  </tr>
+  <tr>
+    <td>Worked On:</td>
+    <td><%= @load_sheet.date.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr>
+    <td>Created On:</td>
+    <td><%= @load_sheet.created_at.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr>
+    <td>Updated On:</td>
+    <td><%= @load_sheet.updated_at.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr>
+    <td>Job:</td>
+    <td>#<%= @load_sheet.job_id %></td>
+  </tr>
+  <tr>
+    <td>Location:</td>
+    <td><%= @load_sheet.location.name %></td>
+  </td>
+</table>
+
+<hr />
+
+<h3>Comments</h3>
+<p>
+  <%= @load_sheet.note %>
+</p>
+
+<hr>
+
+<h3>Load Sheet Entries</h3>
+<table>
+<% @load_sheet.load_entries.each do |entry| %>
+  <tr>
+    <td><%= entry.material.manufacturer.abbreviation %> Batch #<%= entry.material.batch %></td>
+  </tr>
+  <tr>
+    <td>Tote #: <%= entry.tote_number %></td>
+  </tr>
+  <tr>
+    <td>Tote Qty: <%= entry.tote_quantity %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+<% end %>
+</table>
+
+
+<hr>
+
+<h3>Dips</h3>
+<table>
+<tr>
+  <td>Yellow Start: <%= @load_sheet.yellow_dip_start %> cm</td>
+</tr>
+<tr>
+  <td>Yellow End: <%= @load_sheet.yellow_dip_end %> cm</td>
+</tr>
+<tr>
+  <td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+  <td>White Start: <%= @load_sheet.white_dip_start %> cm</td>
+</tr>
+<tr>
+  <td>White End: <%= @load_sheet.white_dip_end %> cm</td>
+</tr>
+</table>

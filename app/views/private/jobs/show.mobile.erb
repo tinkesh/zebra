@@ -64,6 +64,7 @@ Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
 
 <h3>Load Sheets</h3>
 <ul>
+  <li><%= link_to "Add a Load Sheet", new_private_load_sheet_path %></li>
 <% @job.load_sheets.each do |load_sheet| %>
   <li><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet) %></li>
 <% end %>
@@ -73,6 +74,7 @@ Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
 
 <h3>Gun Sheets</h3>
 <ul>
+  <li><%= link_to "Add a Gun Sheet", new_private_load_sheet_path %></li>
 <% @job.gun_sheets.each do |gun_sheet| %>
   <li><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet) %></li>
 <% end %>
