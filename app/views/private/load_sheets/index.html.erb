@@ -13,7 +13,6 @@
     <th class="span-3">Name</th>
     <th>Equipment</th>
     <th>Job #</th>
-    <th>Control Section</th>
     <th>Location</th>
     <th class="actions nosort"></th>
   </tr>
@@ -23,7 +22,6 @@
     <td><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet), :class => "show" %></td>
     <td><%= if load_sheet.equipment : load_sheet.equipment.name end %></td>
     <td><%= load_sheet.job_id %></td>
-    <td><%= load_sheet.control_section %></td>
     <td><%= if load_sheet.location : load_sheet.location.name end %></td>
     <td class="actions">
     <%= link_to 'Delete', private_load_sheet_path(load_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
