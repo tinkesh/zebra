@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   # private forms
   map.namespace :private do |priv|
     priv.resources :clients,                :controller => "clients",                :path_prefix => "admin"
+    priv.resources :costs,                  :controller => "costs",                :path_prefix => "admin"
     priv.resources :equipments,             :controller => "equipments",             :path_prefix => "admin"
     priv.resources :manufacturers,          :controller => "manufacturers",          :path_prefix => "admin"
     priv.resources :materials,              :controller => "materials",              :path_prefix => "admin"

@@ -43,10 +43,9 @@ Gun Sheets
 - Group Solid/Skip together
 - Add @gun_sheet.is_closed
 
-Config
-- Per Diam $/day cost
-- Fuel $/L cost
 
+x 2009-03-11 Per Diam $/day cost
+x 2009-03-11 Fuel $/L cost
 x 2009-03-11 Add @equipment.rate, the $/day cost
 x 2009-03-11 Add @user.rate, the $/hour cost
 x 2009-03-10 Add @job.project_name

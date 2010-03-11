@@ -1,0 +1,32 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Settings', private_settings_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<p id="new"><%= link_to 'New cost', new_private_cost_path %></p>
+
+<table class="sortable">
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th>Description</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% @costs.each do |cost| %>
+  <tr>
+    <td><%= cost.name %></td>
+    <td><%= if cost.value : "$#{cost.value}" end %></td>
+    <td><%= cost.description %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_cost_path(cost), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_cost_path(cost), :class => "edit" %>
+    </td>
+  </tr>
+<% end %>
+</table>
