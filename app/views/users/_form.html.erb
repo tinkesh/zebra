@@ -1,4 +1,4 @@
-<div class="span-12">
+<div class="span-12 colborder">
 
   <div class="span-6 append-bottom">
     <%= form.label :first_name, "First Name" %><br>
@@ -52,7 +52,7 @@
   </div>
 
   <div class="span-2 last append-bottom">
-    <%= form.label :postal_code, "Postal Code" %>
+    <%= form.label :postal_code, "PC" %>
     <%= form.text_field :postal_code, :class => "span-2" %>
   </div>
 
@@ -79,6 +79,11 @@
 </div>
 
 <div class="span-6">
+  <div class="span-6 last append-bottom">
+    <%= form.label :rate, "Hourly Rate" %><br>
+    <%= form.text_field :rate, :class => "span-2" %>
+  </div>
+
   <label>Roles</label>
   <ul class="habtm">
   <% for role in Role.find(:all) %>

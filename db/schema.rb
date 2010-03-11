@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100303213249) do
+ActiveRecord::Schema.define(:version => 20100311221752) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20100303213249) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate"
   end
 
   create_table "equipment_jobs", :id => false, :force => true do |t|
@@ -94,6 +95,13 @@ ActiveRecord::Schema.define(:version => 20100303213249) do
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "gun_markings_jobs", :id => false, :force => true do |t|
+    t.integer "job_id"
+    t.integer "gun_marking_id"
+    t.integer "quantity"
+    t.decimal "rate"
   end
 
   create_table "gun_sheets", :force => true do |t|
@@ -135,6 +143,9 @@ ActiveRecord::Schema.define(:version => 20100303213249) do
     t.date     "completed_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.text     "notes"
+    t.string   "location_name"
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|
@@ -288,6 +299,7 @@ ActiveRecord::Schema.define(:version => 20100303213249) do
     t.string   "city"
     t.string   "province"
     t.string   "postal_code"
+    t.integer  "rate"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

@@ -6,6 +6,11 @@
   </div>
 
   <div class="append-bottom">
+    <%= form.label :name, "Project Name" %><br>
+    <%= form.text_field "name", :class => "span-6" %>
+  </div>
+
+  <div class="append-bottom">
     <%= form.label :started_on, "Started On" %><br>
     <%= form.date_select :started_on, :class => "span-6" %>
   </div>
@@ -20,9 +25,14 @@
     <%= form.date_select :completed_on, :class => "span-6", :include_blank => true %>
   </div>
 
+  <div class="append-bottom">
+    <%= form.label :notes, "Notes" %><br>
+    <%= form.text_area "notes", :class => "span-6" %>
+  </div>
+
 </div>
 
-<div class="span-6 append-bottom">
+<div class="span-5 append-bottom">
   <%= form.label :user_ids, "Assign Users" %><br>
   <ul class="habtm">
   <% for user in @users %>
@@ -36,7 +46,7 @@
   </ul>
 </div>
 
-<div class="span-6 append-bottom">
+<div class="span-7 append-bottom">
   <%= form.label :equipment_ids, "Assign Equipment" %><br>
   <ul class="habtm">
   <% for equipment in @equipments %>
@@ -51,7 +61,13 @@
 </div>
 
 <div class="span-6 append-bottom last">
+  <div class="append-bottom">
+    <%= form.label :location_name, "Location Name" %><br>
+    <%= form.text_field "location_name", :class => "span-6" %>
+  </div>
+
   <%= form.label :location_ids, "Assign Location(s)" %><br>
+
   <ul class="habtm">
   <% for location in @locations %>
     <li>
@@ -64,4 +80,4 @@
   </ul>
 </div>
 
-<br class="clear">
+<hr>

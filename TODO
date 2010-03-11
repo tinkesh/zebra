@@ -1,0 +1,85 @@
+General
+- Add location_name and replace @object.location_id with it
+- Event Log
+- Fix font for text_areas
+- My Time Sheets
+- My Gun Sheets
+- My Load Sheets
+- @obj.locked? for time sheets, time entries, time tasks, load sheets, gun sheets
+- Flag unlocked time sheets >48hrs old
+- @obj.selectable? for users, jobs, equipment, materials, locations
+- created_by and updated_by
+- times sheet: editing: hours adjustment is loading 0.0 instead of user's value
+- will_paginate time sheets, jobs
+
+Jobs
+- Change @job.location_ids to a JS form
+- Add @job.quantities (name, rate, quantity)
+- Add @job.is_closed
+
+Time Sheets
+- Add Lunch dropdown (30min, 45min, 60min, 75min, 90min)
+- User must clock out before a new @time_sheet can be made
+- Add @time_sheet.notes
+- Require at least one @time_sheet.time_sheet_entry before_save
+- Add notes to time adjustments
+- Clock Out
+- Allow creation without @job parent
+- Add Yes/No radio for 'Per Diam', which adds $30 on the Job Report
+- Add @time_sheet.is_closed
+
+Load Sheets
+- Litre/Tote: GP 886 / En 1186
+- Show needs to calculate total L of paint for each colour (Tote Qty * Litre/Tote)
+- Split out Yellow & White
+- 2 dropdowns per section
+- Move dips into yellow/white sections
+- Add @load_sheet.is_closed
+
+Gun Sheets
+- Make a child of @job
+- Change location_id to be a dropdown
+- Add location_name
+- Group Solid/Skip together
+- Add @gun_sheet.is_closed
+
+Config
+- Per Diam $/day cost
+- Fuel $/L cost
+
+x 2009-03-11 Add @equipment.rate, the $/day cost
+x 2009-03-11 Add @user.rate, the $/hour cost
+x 2009-03-10 Add @job.project_name
+x 2009-03-10 Add @job.notes
+x 2009-03-10 Add @job.location_name
+x 2009-03-02 load_sheets
+x 2009-03-02 load_entries
+x 2009-03-02 'Edit' button graphic + addition to all list views
+x 2009-03-02 gun_categories
+x 2009-03-02 Gun Sheets
+x 2009-03-02 Mobile show job
+x 2009-03-02 Mobile new/show/edit time_sheet
+x 2009-03-02 mobile new/show/edit load_sheet
+x 2009-03-02 mobile new/show/edit gun_sheet
+x 2009-03-02 time task entry to dropdown
+x 2009-03-02 time sheet start/stop changed to check in / check out
+x 2009-03-02 @time_sheet.hours for total time spent
+x 2009-03-02 show @time_sheet
+x 2009-03-02 show @job
+x 2009-03-02 edit @time_sheet
+x 2009-03-01 time sheets
+x 2009-03-01 time entries
+x 2009-03-01 time tasks
+x 2009-02-26 CRUD locations
+x 2009-02-26 Additional levels in breadcrumbs
+x 2009-02-26 CRUD jobs
+x 2009-02-26 CRUD time_task_categories
+x 2009-02-26 CRUD time_note_categories
+x 2009-02-25 New design for desktop interface
+x 2009-02-25 Pretty icons :) :)
+x 2009-02-25 Heroku setup
+x 2009-02-25 CRUD equipment
+x 2009-02-25 CRUD manufacturers
+x 2009-02-25 CRUD materials
+x 2009-02-25 CRUD job completion levels
+x 2009-02-18 CRUD clients

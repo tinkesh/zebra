@@ -16,6 +16,19 @@
 
 <div class="span-6 colborder">
 
+  <h3>General</h3>
+  <p>
+    Job #<%= @job.id %><br>
+    Name: <%= @job.name %>
+  </p>
+  <% if @job.notes %>
+  <p>
+    <%= @job.notes %>
+  </p>
+  <% end %>
+
+  <hr>
+
   <h3>Schedule</h3>
   <p>
     Start: <%= @job.started_on %><br>
@@ -63,6 +76,7 @@
   <hr>
   
   <h3>Assigned Locations</h3>
+  <p><%= @job.location_name %></p>
   <ul class="no_list">
   <% @job.locations.each do |location| %>
     <li><%= location.name %></li>
