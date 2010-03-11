@@ -9,13 +9,12 @@
   <ul class="jobs">
   <%- @jobs.each do |job| -%>
     <li>
-      <h3>Job #<%= job.id -%></h3>
+      <h3>Job #<%= job.id -%> <%= if job.name : " / #{job.name}" end %></h3>
       <ul>
         <li><%= link_to "Show Job", private_job_path(job), :class => "show" %></li>
         <li><%= link_to "Edit Job", edit_private_job_path(job), :class => "edit" %></li>
         <li><%= link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => job.id), :class => "new" %></li>
-        <li><%= link_to "New Load Sheet", new_private_load_sheet_path, :class => "new" %></li>
-        <li><a href="#" class="new">New Gun Sheet</a>
+        <li><%= link_to 'New Gun Sheet', new_private_gun_sheet_path, :class => "new" %></li>
       </ul>
     </li>
   <%- end -%>

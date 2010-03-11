@@ -1,17 +1,17 @@
-<h3>Comments</h3>
-
 <div class="span-6 append-bottom">
   <%= form.label :time_note_category_id, "Comment" %><br>
   <%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %>
 </div>
 
-<div class="span-4 append-bottom">
-  
+<div class="span-6 append-bottom">
+  <%= form.label :note, "Additional Comments" %><br>
+  <%= form.text_field :note, :class => "span-5" %>
 </div>
 
-<div class="span-14 last append-bottom">
-  <%= form.label :note, "Additional Comments, if needed" %><br>
-  <%= form.text_field :note, :class => "span-14" %>
+<div class="span-6 last append-bottom">
+  <%= form.label :note, "Apply per diem" %><br>
+  <%= form.radio_button "per_diem", true %> Yes
+  <%= form.radio_button "per_diem", false, :checked => true %> No
 </div>
 
 <hr>
@@ -31,8 +31,13 @@
 <br class="clear">
 
 <div class="append-bottom">
+  <%= form.label :lunch, "Lunch Break" %><br>
+  <%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false, :selected => "30") %>
+</div>
+
+<div class="append-bottom">
   <%= form.label :completed_at, "Clock Out" %><br>
-  <%= form.datetime_select :completed_at, :class => "span-6", :include_blank => true %>
+  <%= form.datetime_select :completed_at, :class => "span-6", :include_blank => false %>
 </div>
 
 <hr>

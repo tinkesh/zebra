@@ -16,6 +16,16 @@
     <td>Updated On</td>
     <td class="right"><%= @time_sheet.updated_at.strftime("%B %d, %Y") %></td>
   </tr>
+  <tr class="even">
+    <td>Per Diem</td>
+    <td class="right">
+      <%- if @time_sheet.per_diem -%>
+      Yes ($<%= @time_sheet.per_diem_rate -%>)
+      <%- else %> 
+      No
+      <%- end -%>
+    </td>
+  </tr>
 </table>
 
 <hr />
@@ -52,6 +62,10 @@
   <tr>
     <td><b><%= @time_sheet.completed_at.strftime("%H:%M") %></b></td>
     <td>Clocked Out</td>
+  </tr>
+  <tr>
+    <td>Lunch</td>
+    <td><%= @time_sheet.lunch %> Minutes</td>
   </tr>
   <tr>
     <td><b>Total</b></td>

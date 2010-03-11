@@ -18,14 +18,12 @@ Jobs
 - Add @job.is_closed
 
 Time Sheets
-- Add Lunch dropdown (30min, 45min, 60min, 75min, 90min)
+
 - User must clock out before a new @time_sheet can be made
-- Add @time_sheet.notes
 - Require at least one @time_sheet.time_sheet_entry before_save
 - Add notes to time adjustments
 - Clock Out
 - Allow creation without @job parent
-- Add Yes/No radio for 'Per Diam', which adds $30 on the Job Report
 - Add @time_sheet.is_closed
 
 Load Sheets
@@ -43,7 +41,9 @@ Gun Sheets
 - Group Solid/Skip together
 - Add @gun_sheet.is_closed
 
-
+x 2009-03-11 Add Lunch dropdown (30min, 45min, 60min, 75min, 90min)
+x 2009-03-11 Add Yes/No radio for 'Per Diam', which adds $30 on the Job Report
+x 2009-03-11 make @job select false for per_diem by default
 x 2009-03-11 Per Diam $/day cost
 x 2009-03-11 Fuel $/L cost
 x 2009-03-11 Add @equipment.rate, the $/day cost

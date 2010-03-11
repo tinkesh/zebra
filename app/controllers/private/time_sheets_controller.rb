@@ -20,7 +20,6 @@ class Private::TimeSheetsController < ApplicationController
     @job.users.each do |user|
        @time_sheet.time_entries.build(:user_id => user.id, :name => "#{user.first_name} #{user.last_name}" )
     end
-
     load_time_sheet_supporting_data
     @page_title = "New Time Sheet"
   end
@@ -30,7 +29,7 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = @job.time_sheets.build(params[:time_sheet])
     if @time_sheet.save
       flash[:notice] = "Time Sheet created!"
-      redirect_back_or_default private_home_url
+      redirect_to private_home_url
     else
       render :action => :new
     end
@@ -62,11 +61,10 @@ class Private::TimeSheetsController < ApplicationController
 
 private
 
-
   def load_time_sheet_supporting_data
     @time_task_categories = TimeTaskCategory.find(:all, :order => :position)
     @time_note_categories = TimeNoteCategory.find(:all, :order => :position)
-
+    @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
     @time_selections = Array.new
 
     36.times do |i|
