@@ -22,7 +22,7 @@
     <td><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet), :class => "show" %></td>
     <td><%= if load_sheet.equipment : load_sheet.equipment.name end %></td>
     <td><%= job_label(load_sheet.job) %></td>
-    <td><%= if load_sheet.location : load_sheet.location.name end %></td>
+    <td></td>
     <td class="actions">
     <%= link_to 'Delete', private_load_sheet_path(load_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_load_sheet_path(load_sheet), :class => "edit" %>

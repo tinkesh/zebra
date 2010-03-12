@@ -78,7 +78,7 @@
   <h3>Locations</h3>
   <p><%= @job.location_name %></p>
   <ul class="no_list">
-  <% @job.locations.each do |location| %>
+  <% @job.job_locations.each do |location| %>
     <li><%= location.name %></li>
   <% end %>
   </ul>

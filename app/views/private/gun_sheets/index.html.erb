@@ -20,7 +20,7 @@
   <tr>
     <td><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet), :class => "show" %></td>
     <td><%= job_label(gun_sheet.job) %></td>
-    <td><%= if gun_sheet.location : gun_sheet.location.name end %></td>
+    <td></td>
     <td class="actions">
     <%= link_to 'Delete', private_gun_sheet_path(gun_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_gun_sheet_path(gun_sheet), :class => "edit" %>

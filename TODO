@@ -14,7 +14,6 @@ General
 
 Jobs
 - Change @job.location_ids to a JS form
-
 - Add @job.is_closed
 
 Time Sheets

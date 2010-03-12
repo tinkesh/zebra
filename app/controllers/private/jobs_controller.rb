@@ -8,7 +8,7 @@ class Private::JobsController < ApplicationController
   end
   
   def show
-    @job = Job.find(params[:id], :include => [ {:users => :roles}, :locations, :equipments, :completion, :client, :time_sheets, :load_sheets, :job_markings ])
+    @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, :job_markings ])
     @page_title = "Showing Job ##{@job.id}"
   end
   
@@ -59,7 +59,6 @@ private
     @completions = Completion.find(:all, :order => :id)
     @users = User.find(:all, :order => :first_name)
     @equipments = Equipment.find(:all, :order => :unit)
-    @locations = Location.find(:all, :order => :name)
     @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
   end
 

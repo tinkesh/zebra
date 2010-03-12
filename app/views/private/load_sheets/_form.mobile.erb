@@ -12,8 +12,8 @@
 <td><%= form.select (:job_id, @jobs.map {|u| ["Job ##{u.id}",u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
 </tr>
 <tr>
-<td><%= form.label :location_id, "Location" %></td>
-<td><%= form.select (:location_id, @locations.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
+<td>Location</td>
+<td></td>
 </tr>
 </table>
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100312175748) do
+ActiveRecord::Schema.define(:version => 20100312191429) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -135,6 +135,13 @@ ActiveRecord::Schema.define(:version => 20100312175748) do
     t.datetime "updated_at"
   end
 
+  create_table "job_locations", :force => true do |t|
+    t.integer  "job_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "job_markings", :force => true do |t|
     t.integer  "job_id"
     t.integer  "gun_marking_category_id"
@@ -154,13 +161,6 @@ ActiveRecord::Schema.define(:version => 20100312175748) do
     t.string   "name"
     t.text     "notes"
     t.string   "location_name"
-  end
-
-  create_table "jobs_locations", :id => false, :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "location_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "jobs_users", :id => false, :force => true do |t|
@@ -189,12 +189,6 @@ ActiveRecord::Schema.define(:version => 20100312175748) do
     t.integer  "white_dip_end"
     t.date     "date"
     t.string   "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "locations", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

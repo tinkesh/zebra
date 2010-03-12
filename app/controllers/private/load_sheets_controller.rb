@@ -58,7 +58,6 @@ private
   def load_load_sheet_supporting_data
     @materials = Material.find(:all, :include => :manufacturer, :order => :manufacturer_id)
     @equipment = Equipment.find(:all, :order => :unit)
-    @locations = Location.find(:all, :order => :name)
     @jobs = Job.find(:all)
   end
 

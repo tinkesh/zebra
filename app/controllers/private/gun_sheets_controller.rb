@@ -62,7 +62,6 @@ private
   def load_gun_sheet_supporting_data
     @clients = Client.find(:all, :order => :name)
     @equipment = Equipment.find(:all, :order => :unit)
-    @locations = Location.find(:all, :order => :name)
     @gun_marking_categories = GunMarkingCategory.find(:all, :order => :position)
     @jobs = Job.find(:all)
   end

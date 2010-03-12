@@ -56,7 +56,7 @@ Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
 <h3>Locations</h3>
 <p><%= @job.location_name %></p>
 <ul>
-<% @job.locations.each do |location| %>
+<% @job.job_locations.each do |location| %>
   <li><%= location.name %></li>
 <% end %>
 </ul>

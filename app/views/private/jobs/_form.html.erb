@@ -66,18 +66,7 @@
     <%= form.text_field "location_name", :class => "span-6" %>
   </div>
 
-  <%= form.label :location_ids, "Assign Location(s)" %><br>
 
-  <ul class="habtm">
-  <% for location in @locations %>
-    <li>
-      <label>
-        <%= check_box_tag "job[location_ids][]", location.id, @job.locations.include?(location) %>
-        <%= location.name %>
-      </label>
-    </li>
-  <% end %>
-  </ul>
 </div>
 
 <hr>
