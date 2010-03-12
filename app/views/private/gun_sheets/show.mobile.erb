@@ -3,6 +3,13 @@
 
 <table>
   <tr>
+    <th colspan="2"><%= job_label(@gun_sheet.job) %></th>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td><%= if @gun_sheet.location : @gun_sheet.location.name end %></td>
+  </tr>
+  <tr>
     <td>Worked On</td>
     <td class="right"><%= @gun_sheet.date.strftime("%B %d, %Y") %></td>
   </tr>
@@ -22,13 +29,6 @@
     <td>Updated On</td>
     <td class="right"><%= @gun_sheet.updated_at.strftime("%B %d, %Y") %></td>
   </tr>
-  <tr>
-    <td>Job</td>
-    <td class="right">Job #<%= @gun_sheet.job_id %></td>
-  </tr>
-  <tr>
-    <td>Location</td>
-    <td><%= if @gun_sheet.location : @gun_sheet.location.name end %></td>
 </table>
 
 <hr />

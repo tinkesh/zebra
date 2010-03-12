@@ -2,7 +2,10 @@
 
 <table>
   <tr>
-    <td>Equipment:</td>
+    <th colspan="2"><%= job_label(@load_sheet.job) %></th>
+  </tr>
+  <tr>
+    <td>Truck:</td>
     <td><%= @load_sheet.equipment.name %> (<%= @load_sheet.equipment.unit %>)</td>
   </tr>
   <tr>
@@ -16,10 +19,6 @@
   <tr>
     <td>Updated On:</td>
     <td><%= @load_sheet.updated_at.strftime("%B %d, %Y") %></td>
-  </tr>
-  <tr>
-    <td>Job:</td>
-    <td>#<%= @load_sheet.job_id %></td>
   </tr>
   <tr>
     <td>Location:</td>

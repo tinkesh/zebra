@@ -9,7 +9,7 @@
   <ul class="jobs">
   <%- @jobs.each do |job| -%>
     <li>
-      <h3>Job #<%= job.id -%> <%= if job.name : " / #{job.name}" end %></h3>
+      <h3><%= job_label(job) %></h3>
       <ul>
         <li><%= link_to "Show Job", private_job_path(job), :class => "show" %></li>
         <li><%= link_to "Edit Job", edit_private_job_path(job), :class => "edit" %></li>

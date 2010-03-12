@@ -1,8 +1,7 @@
 <p><%= link_to "Edit This Time Sheet", edit_private_time_sheet_path(@time_sheet) %></p>
 <table>
   <tr>
-    <td>Job</td>
-    <td>#<%= @time_sheet.job_id %></td>
+    <th colspan="2"><%= job_label(@time_sheet.job) %></th>
   </tr>
   <tr>
     <td>Worked On</td>

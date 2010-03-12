@@ -10,7 +10,7 @@ General
 - @obj.selectable? for users, jobs, equipment, materials, locations
 - created_by and updated_by
 - times sheet: editing: hours adjustment is loading 0.0 instead of user's value
-- will_paginate time sheets, jobs
+- will_paginate time sheets, jobs, gun sheets, load sheets
 
 Jobs
 - Change @job.location_ids to a JS form
@@ -18,10 +18,8 @@ Jobs
 - Add @job.is_closed
 
 Time Sheets
-
 - User must clock out before a new @time_sheet can be made
 - Require at least one @time_sheet.time_sheet_entry before_save
-- Add notes to time adjustments
 - Clock Out
 - Allow creation without @job parent
 - Add @time_sheet.is_closed

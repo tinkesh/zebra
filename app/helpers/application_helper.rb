@@ -22,5 +22,15 @@ module ApplicationHelper
   def active_menu(number)
     'class="active" ' if (@mainmenu == number || @sidebarmenu == number)
   end
+  
+  def job_label(job)
+    if job
+      export = 'Job #' + job.id.to_s
+      if job.name : export += ", " + job.name end
+    else
+      export = "No Job"
+    end
+    export
+  end
 
 end

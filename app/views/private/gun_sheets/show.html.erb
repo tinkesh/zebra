@@ -17,6 +17,13 @@
 <div class="span-17 last">
   <div class="span-6 append-1">
     <table>
+      <tr>
+        <th colspan="2"><%= job_label(@gun_sheet.job) %></th>
+      </tr>
+      <tr class="odd">
+        <td>Location</td>
+        <td><%= if @gun_sheet.location : @gun_sheet.location.name end %></td>
+      </tr>
       <tr class="even">
         <td>Worked On</td>
         <td class="right"><%= @gun_sheet.date.strftime("%B %d, %Y") %></td>
@@ -37,17 +44,13 @@
         <td>Updated On</td>
         <td class="right"><%= @gun_sheet.updated_at.strftime("%B %d, %Y") %></td>
       </tr>
-      <tr class="odd">
-        <td>Job</td>
-        <td class="right">Job #<%= @gun_sheet.job_id %></td>
-      </tr>
     </table>
   </div>
   
   <div class="span-10 last">
     <h3>Location</h3>
     <p>
-      <%= if @gun_sheet.location : @gun_sheet.location.name end %>
+     
     </p>
 
     <h3>Comments</h3>

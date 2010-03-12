@@ -20,7 +20,7 @@
 
 <% @jobs.each do |job| %>
   <tr>
-    <td><%= link_to "Job ##{job.id}", private_job_path(job), :class => "show" %></td>
+    <td><%= link_to job_label(job), private_job_path(job), :class => "show" %></td>
     <td><%= job.completion.name %></td>
     <td><%= job.started_on %></td>
     <td><%= job.completed_on %></td>

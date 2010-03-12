@@ -21,7 +21,7 @@
 <% @time_sheets.each do |time_sheet| %>
   <tr>
     <td><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></td>
-    <td>#<%= time_sheet.job_id %>, <%= time_sheet.job.name %></td>
+    <td><%= job_label(time_sheet.job) %></td>
     <td><%= time_sheet.hours -%></td>
     <td><%= time_sheet.lunch -%> Minutes</td>
     <td>

@@ -18,33 +18,32 @@
   <div class="span-6 append-1">
     <table>
       <tr>
-        <th colspan="2"><%= @load_sheet.equipment.name %> (<%= @load_sheet.equipment.unit %>)</td>
+        <th colspan="2"><%= job_label(@load_sheet.job) %></th>
+      </tr>
+      <tr class="odd">
+        <td>Truck</td>
+        <td class="right"><%= @load_sheet.equipment.unit %></td>
       </tr>
       <tr class="even">
+        <td>Location</td>
+        <td class="right"><%= @load_sheet.location.name %></td>
+      </td>
+      <tr class="odd">
         <td>Worked On</td>
         <td class="right"><%= @load_sheet.date.strftime("%B %d, %Y") %></td>
       </tr>
-      <tr class="odd">
+      <tr class="even">
         <td>Created On</td>
         <td class="right"><%= @load_sheet.created_at.strftime("%B %d, %Y") %></td>
       </tr>
-      <tr class="even">
+      <tr class="odd">
         <td>Updated On</td>
         <td class="right"><%= @load_sheet.updated_at.strftime("%B %d, %Y") %></td>
-      </tr>
-      <tr class="odd">
-        <td>Job</td>
-        <td class="right">Job #<%= @load_sheet.job_id %></td>
       </tr>
     </table>
   </div>
   
   <div class="span-10 last">
-    <h3>Location</h3>
-    <p>
-      <%= @load_sheet.location.name %>
-    </p>
-
     <h3>Comments</h3>
     <p>
       <%= @load_sheet.note %>
