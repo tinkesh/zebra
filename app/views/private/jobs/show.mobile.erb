@@ -1,12 +1,8 @@
 <h3>General</h3>
 <p>
   Name: <%= @job.name %>
+  <%= if @job.notes : "<br>Notes: #{@job.notes}" end %>
 </p>
-<% if @job.notes %>
-<p>
-  <%= @job.notes %>
-</p>
-<% end %>
 
 <h3>Schedule</h3>
 <p>
@@ -36,66 +32,66 @@ Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
 <hr />
 
 <h3>Users</h3>
-<ul>
+<ol>
   <% @job.users.each do |user| %>
     <li><%= user.name %></li>
   <% end %>
-</ul>
+</ol>
 
 <hr />
 
 <h3>Equipment</h3>
-<ul>
+<ol>
 <% @job.equipments.each do |equipment| %>
   <li><%= equipment.unit %> - <%= equipment.name %></li>
 <% end %>
-</ul>
+</ol>
 
 <hr />
 
 <h3>Locations</h3>
 <p><%= @job.location_name %></p>
-<ul>
+<ol>
 <% @job.job_locations.each do |location| %>
   <li><%= location.name %></li>
 <% end %>
-</ul>
+</ol>
 
 <hr />
 
 <h3>Marking Quantities</h3>
-<ul>
+<ol>
 <% @job.job_markings.each do |m| %>
   <li><%= m.amount %> <%= m.gun_marking_category.name %> @ $<%= m.rate %></li>
 <% end %>
-</ul>
+</ol>
 
 <hr>
 
 <h3>Time Sheets</h3>
-<ul>
+<ol>
   <li><%= link_to "Add a Time Sheet", new_private_job_time_sheet_path(:job_id => @job.id) %></li>
 <% @job.time_sheets.each do |time_sheet| %>
   <li><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet) %></li>
 <% end %>
-</ul>
+</ol>
 
 <hr />
 
 <h3>Load Sheets</h3>
-<ul>
+<ol>
   <li><%= link_to "Add a Load Sheet", new_private_load_sheet_path %></li>
 <% @job.load_sheets.each do |load_sheet| %>
   <li><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet) %></li>
 <% end %>
-</ul>
+</ol>
 
 <hr />
 
 <h3>Gun Sheets</h3>
-<ul>
+<ol>
   <li><%= link_to "Add a Gun Sheet", new_private_load_sheet_path %></li>
 <% @job.gun_sheets.each do |gun_sheet| %>
   <li><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet) %></li>
 <% end %>
-</ul>
+</ol>

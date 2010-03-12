@@ -34,7 +34,7 @@ module ApplicationHelper
   end
 
   def link_to_remove_fields(name, form)
-    form.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", :class => "delete")
+    form.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", :class => "delete-inline")
   end
   
   def link_to_add_fields(name, form, association)

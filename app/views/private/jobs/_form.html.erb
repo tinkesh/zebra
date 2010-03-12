@@ -1,4 +1,4 @@
-<div class="span-6">
+<div class="span-6 append-1">
 
   <div class="append-bottom">
     <%= form.label :client_id %><br>
@@ -27,12 +27,12 @@
 
   <div class="append-bottom">
     <%= form.label :notes, "Notes" %><br>
-    <%= form.text_area "notes", :class => "span-6" %>
+    <%= form.text_area "notes", :class => "span-6", :rows => 4 %>
   </div>
 
 </div>
 
-<div class="span-5 append-bottom">
+<div class="span-6 append-1 append-bottom">
   <%= form.label :user_ids, "Assign Users" %><br>
   <ul class="habtm">
   <% for user in @users %>
@@ -46,7 +46,7 @@
   </ul>
 </div>
 
-<div class="span-7 append-bottom">
+<div class="span-8 append-bottom">
   <%= form.label :equipment_ids, "Assign Equipment" %><br>
   <ul class="habtm">
   <% for equipment in @equipments %>
@@ -60,24 +60,32 @@
   </ul>
 </div>
 
-<div class="span-6 append-bottom last">
-  <div class="append-bottom">
-    <%= form.label :location_name, "Location Name" %><br>
-    <%= form.text_field "location_name", :class => "span-6" %>
-  </div>
+<hr>
 
+<div class="span-12">
+  <% form.fields_for :job_markings do |builder| %>
+    <%= render 'job_marking_fields', :form => builder %>
+  <% end %>
+
+  <p><%= link_to_add_fields "Add Another Marking Quantity", form, :job_markings %></p>
 
 </div>
 
-<hr>
+<div class="span-12 last">
+  <div class="append-bottom">
+    <%= form.label :location_name, "General Location Name" %><br>
+    <%= form.text_field "location_name", :class => "span-6" %>
+  </div>
 
-<h3>Marking Quantities</h3>
+  <% form.fields_for :job_locations do |builder| %>
+    <%= render 'job_location_fields', :form => builder %>
+  <% end %>
 
-<% form.fields_for :job_markings do |builder| %>
-  <%= render 'job_marking_fields', :form => builder %>
-<% end %>
+  <br class="clear">
 
-<br class="clear">
+  <p><%= link_to_add_fields "Add Another Location", form, :job_locations %></p>
 
-<p><%= link_to_add_fields "Add Another Marking Quantity", form, :job_markings %></p>
+</div>
+
+
 <hr>

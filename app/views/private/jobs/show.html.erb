@@ -9,23 +9,19 @@
 <% end %>
 
 <div class="span-6 append-1">
-  <div id="sidebar">
+  <div id="sidebar" class="clearfix">
     <%= render :partial => 'menus/jobs_menu', :layout => false %>
   </div>
-</div>
+  
+  <br class="clear">
+  
+  <hr>
 
-<div class="span-6 colborder">
-
-  <h3>General</h3>
+  <h3>General Information</h3>
   <p>
-    Job #<%= @job.id %><br>
-    Name: <%= @job.name %>
+    <%= job_label(@job) %>
+    <%= if @job.notes : "<br>Notes: #{@job.notes}" end %>
   </p>
-  <% if @job.notes %>
-  <p>
-    <%= @job.notes %>
-  </p>
-  <% end %>
 
   <hr>
 
@@ -56,62 +52,73 @@
 
 </div>
 
-<div class="span-5 colborder">
+<div class="span-6 colborder">
+
+
+
+</div>
+
+<div class="span-10 append-1">
   <h3>Users</h3>
-  <ul class="no_list">
+  <ol>
     <% @job.users.each do |user| %>
       <li><%= user.name %></li>
     <% end %>
-  </ul>
+  </ol>
   
   <hr>
   
   <h3>Equipment</h3>
-  <ul class="no_list">
+  <ol>
   <% @job.equipments.each do |equipment| %>
     <li><%= equipment.unit %> - <%= equipment.name %></li>
   <% end %>
-  </ul>
+  </ol>
   
   <hr>
   
-  <h3>Locations</h3>
+  <h3>Location</h3>
   <p><%= @job.location_name %></p>
-  <ul class="no_list">
+  <ol>
   <% @job.job_locations.each do |location| %>
     <li><%= location.name %></li>
   <% end %>
-  </ul>
+  </ol>
   
   <hr>
   
   <h3>Marking Quantities</h3>
-  <ul class="no_list">
+  <ol>
   <% @job.job_markings.each do |m| %>
     <li><%= m.amount %> <%= m.gun_marking_category.name %> @ $<%= m.rate %></li>
   <% end %>
-  </ul>
+  </ol>
   
 </div>
 
-<div class="span-4 last">
+<div class="span-6 last">
   <h3>Time Sheets</h3>
-  <ul class="no_list">
+  <ol>
   <% @job.time_sheets.each do |time_sheet| %>
     <li><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></li>
   <% end %>
-  </ul>
+  </ol>
   
   <hr>
 
   <h3>Load Sheets</h3>
-  <ul class="no_list">
+  <ol>
   <% @job.load_sheets.each do |load_sheet| %>
     <li><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet), :class => "show" %></li>
   <% end %>
-  </ul>
+  </ol>
 
   <hr>
   
   <h3>Gun Sheets</h3>
+  <ol>
+  <% @job.gun_sheets.each do |gun_sheet| %>
+    <li><%= link_to "Gun Sheet ##{load_sheet.id}", private_gun_sheet_path(gun_sheet), :class => "show" %></li>
+  <% end %>
+  </ol>
 </div>
