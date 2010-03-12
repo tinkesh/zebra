@@ -19,12 +19,14 @@ a:hover { color: #3344FF; text-decoration: underline; }
 /* misc */
 .delete { color: #8a1f11; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/delete_12x12.gif') no-repeat; background-position: 0 50% ; border: none; width: 39px; float: right; }
 .delete:hover, .delete:focus { color: #8a1f11; }
+
 #new { margin: 0; position: absolute; top: 20px; right: 0; }
 #new a { color: #529214; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
 .show { color: #3344FF; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/show_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
 .edit { color: #941494; margin: 0 10px 0 0; display: block; padding: 0 0 0 17px; background: url('/images/edit_12x12.gif') no-repeat; background-position: 0 50% ; border: none; float: right; }
 .edit:hover, .edit:focus { color: #941494 ;}
-.new { color: #529214; margin: 0 10px 0 0; display: block; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; float: right; }
+.new, .new-inline { color: #529214; margin: 0 10px 0 0; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
+.new { float: right; }
 
 .jobs .new, .jobs .edit, .jobs .show { float: none; }
 .jobs ul { list-style-type: none; margin: 0 0 1.5em 0; padding: 0; }

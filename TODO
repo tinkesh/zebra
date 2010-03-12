@@ -14,7 +14,7 @@ General
 
 Jobs
 - Change @job.location_ids to a JS form
-- Add @job.quantities (name, rate, quantity)
+
 - Add @job.is_closed
 
 Time Sheets
@@ -39,6 +39,7 @@ Gun Sheets
 - Group Solid/Skip together
 - Add @gun_sheet.is_closed
 
+x 2009-03-12 Add @job.quantities (name, rate, quantity)
 x 2009-03-11 Add Lunch dropdown (30min, 45min, 60min, 75min, 90min)
 x 2009-03-11 Add Yes/No radio for 'Per Diam', which adds $30 on the Job Report
 x 2009-03-11 make @job select false for per_diem by default

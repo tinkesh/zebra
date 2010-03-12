@@ -8,18 +8,15 @@ class Private::JobsController < ApplicationController
   end
   
   def show
-    @job = Job.find(params[:id], :include => [ {:users => :roles}, :locations, :equipments, :completion, :client, :time_sheets, :load_sheets ])
+    @job = Job.find(params[:id], :include => [ {:users => :roles}, :locations, :equipments, :completion, :client, :time_sheets, :load_sheets, :job_markings ])
     @page_title = "Showing Job ##{@job.id}"
   end
   
   def new
     @job = Job.new
-    @clients = Client.find(:all, :order => :name)
-    @completions = Completion.find(:all, :order => :id)
-    @users = User.find(:all, :order => :first_name)
-    @equipments = Equipment.find(:all, :order => :unit)
-    @locations = Location.find(:all, :order => :name)
+    1.times { @job.job_markings.build }
     @page_title = "New Job"
+    load_job_supporting_data
   end
   
   def create
@@ -34,12 +31,8 @@ class Private::JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
-    @clients = Client.find(:all, :order => :name)
-    @completions = Completion.find(:all, :order => :id)
-    @users = User.find(:all, :order => :first_name)
-    @equipments = Equipment.find(:all, :order => :unit)
-    @locations = Location.find(:all, :order => :name)
     @page_title = "Edit Job ##{@job.id}"
+    load_job_supporting_data
   end
   
   def update
@@ -57,6 +50,17 @@ class Private::JobsController < ApplicationController
     @job.destroy
     flash[:notice] = 'Job deleted!'
     redirect_to(private_jobs_url)
+  end
+
+private
+
+  def load_job_supporting_data
+    @clients = Client.find(:all, :order => :name)
+    @completions = Completion.find(:all, :order => :id)
+    @users = User.find(:all, :order => :first_name)
+    @equipments = Equipment.find(:all, :order => :unit)
+    @locations = Location.find(:all, :order => :name)
+    @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
   end
 
 end

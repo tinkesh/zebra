@@ -57,7 +57,7 @@
 </div>
 
 <div class="span-5 colborder">
-  <h3>Assigned Users</h3>
+  <h3>Users</h3>
   <ul class="no_list">
     <% @job.users.each do |user| %>
       <li><%= user.name %></li>
@@ -66,7 +66,7 @@
   
   <hr>
   
-  <h3>Assigned Equipment</h3>
+  <h3>Equipment</h3>
   <ul class="no_list">
   <% @job.equipments.each do |equipment| %>
     <li><%= equipment.unit %> - <%= equipment.name %></li>
@@ -75,11 +75,20 @@
   
   <hr>
   
-  <h3>Assigned Locations</h3>
+  <h3>Locations</h3>
   <p><%= @job.location_name %></p>
   <ul class="no_list">
   <% @job.locations.each do |location| %>
     <li><%= location.name %></li>
+  <% end %>
+  </ul>
+  
+  <hr>
+  
+  <h3>Marking Quantities</h3>
+  <ul class="no_list">
+  <% @job.job_markings.each do |m| %>
+    <li><%= m.amount %> <%= m.gun_marking_category.name %> @ $<%= m.rate %></li>
   <% end %>
   </ul>
   

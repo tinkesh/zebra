@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100311233556) do
+ActiveRecord::Schema.define(:version => 20100312175748) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -103,13 +103,6 @@ ActiveRecord::Schema.define(:version => 20100311233556) do
     t.datetime "updated_at"
   end
 
-  create_table "gun_markings_jobs", :id => false, :force => true do |t|
-    t.integer "job_id"
-    t.integer "gun_marking_id"
-    t.integer "quantity"
-    t.decimal "rate"
-  end
-
   create_table "gun_sheets", :force => true do |t|
     t.integer  "client_id"
     t.integer  "job_id"
@@ -138,6 +131,15 @@ ActiveRecord::Schema.define(:version => 20100311233556) do
     t.decimal  "skip_w7"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_markings", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "gun_marking_category_id"
+    t.integer  "amount"
+    t.integer  "rate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

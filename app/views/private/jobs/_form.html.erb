@@ -81,3 +81,14 @@
 </div>
 
 <hr>
+
+<h3>Marking Quantities</h3>
+
+<% form.fields_for :job_markings do |builder| %>
+  <%= render 'job_marking_fields', :form => builder %>
+<% end %>
+
+<br class="clear">
+
+<p><%= link_to_add_fields "Add Another Marking Quantity", form, :job_markings %></p>
+<hr>

@@ -35,7 +35,7 @@ Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
 
 <hr />
 
-<h3>Assigned Users</h3>
+<h3>Users</h3>
 <ul>
   <% @job.users.each do |user| %>
     <li><%= user.name %></li>
@@ -44,7 +44,7 @@ Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
 
 <hr />
 
-<h3>Assigned Equipment</h3>
+<h3>Equipment</h3>
 <ul>
 <% @job.equipments.each do |equipment| %>
   <li><%= equipment.unit %> - <%= equipment.name %></li>
@@ -53,7 +53,7 @@ Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
 
 <hr />
 
-<h3>Assigned Locations</h3>
+<h3>Locations</h3>
 <p><%= @job.location_name %></p>
 <ul>
 <% @job.locations.each do |location| %>
@@ -62,6 +62,15 @@ Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
 </ul>
 
 <hr />
+
+<h3>Marking Quantities</h3>
+<ul>
+<% @job.job_markings.each do |m| %>
+  <li><%= m.amount %> <%= m.gun_marking_category.name %> @ $<%= m.rate %></li>
+<% end %>
+</ul>
+
+<hr>
 
 <h3>Time Sheets</h3>
 <ul>
