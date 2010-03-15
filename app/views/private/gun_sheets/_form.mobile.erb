@@ -12,8 +12,12 @@
   <td><%= form.text_field "note", :size => "20" %></td>
   </tr>
   <tr>
-  <td>Location</td>
-  <td></td>
+    <td><%= form.label :job_location_id, "Location" %></td>
+    <td><%= form.select (:job_location_id, @job_locations.map {|u| [u.name,u.id]}, :include_blank => false) %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :location_name, "Custom Location" %></td>
+    <td><%= form.text_field "location_name", :class => "span-6" %></td>
   </tr>
   <tr>
   <td><%= form.label :control_section, "Control Section:" %></td>
@@ -57,46 +61,46 @@
     <td>Solid Y-1: <%= form.text_field "solid_y1", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Solid Y-2: <%= form.text_field "solid_y2", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td>Solid Y-3: <%= form.text_field "solid_y3", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td>Solid W-4: <%= form.text_field "solid_w4", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td>Solid W-5: <%= form.text_field "solid_w5", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td>Solid W-6: <%= form.text_field "solid_w6", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td>Solid W-7: <%= form.text_field "solid_w7", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td colspan="2"><hr />
-  </tr>
-  <tr>
     <td>Skip Y-1: <%= form.text_field "skip_y1", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid Y-2: <%= form.text_field "solid_y2", :size => "5" %></td>
   </tr>
   <tr>
     <td>Skip Y-2: <%= form.text_field "skip_y2", :size => "5" %></td>
   </tr>
   <tr>
+    <td>Solid Y-3: <%= form.text_field "solid_y3", :size => "5" %></td>
+  </tr>
+  <tr>
     <td>Skip Y-3: <%= form.text_field "skip_y3", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid W-4: <%= form.text_field "solid_w4", :size => "5" %></td>
   </tr>
   <tr>
     <td>Skip W-4: <%= form.text_field "skip_w4", :size => "5" %></td>
   </tr>
   <tr>
+    <td>Solid W-5: <%= form.text_field "solid_w5", :size => "5" %></td>
+  </tr>
+  <tr>
     <td>Skip W-5: <%= form.text_field "skip_w5", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td>Solid W-6: <%= form.text_field "solid_w6", :size => "5" %></td>
   </tr>
   <tr>
     <td>Skip W-6: <%= form.text_field "skip_w6", :size => "5" %></td>
   </tr>
   <tr>
+    <td>Solid W-7: <%= form.text_field "solid_w7", :size => "5" %></td>
+  </tr>
+  <tr>
     <td>Skip W-7: <%= form.text_field "skip_w7", :size => "5" %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><hr />
   </tr>
 </table>
 

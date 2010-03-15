@@ -118,7 +118,7 @@
   <h3>Gun Sheets</h3>
   <ol>
   <% @job.gun_sheets.each do |gun_sheet| %>
-    <li><%= link_to "Gun Sheet ##{load_sheet.id}", private_gun_sheet_path(gun_sheet), :class => "show" %></li>
+    <li><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet), :class => "show" %></li>
   <% end %>
   </ol>
 </div>

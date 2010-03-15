@@ -8,10 +8,10 @@
   </ul>
 <% end %>
 
-<% form_for [:private, @gun_sheet] do |f| %>
+<% form_for [:private, @job, @gun_sheet] do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <br class="clear">
   <hr>
-  <%= f.submit "Create Gun Sheet" %> or <%= link_to 'Cancel', private_home_path %>
+  <%= f.submit "Save Gun Sheet" %> or <%= link_to 'Cancel', private_home_path %>
 <% end %>

@@ -14,6 +14,7 @@ class Private::GunSheetsController < ApplicationController
   end
   
   def new
+    @job = Job.find(params[:job_id])
     @gun_sheet = GunSheet.new
     load_gun_sheet_supporting_data
 
@@ -21,14 +22,15 @@ class Private::GunSheetsController < ApplicationController
       @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
     end
     
-    @page_title = "New Gun Sheet"
+    @page_title = "New Gun Sheet for Job ##{@job.id} #{@job.name}"
   end
   
   def create
-    @gun_sheet = GunSheet.new(params[:gun_sheet])
+    @job = Job.find(params[:job_id])
+    @gun_sheet = @job.gun_sheets.build(params[:gun_sheet])
     if @gun_sheet.save
       flash[:notice] = "Gun Sheet created!"
-      redirect_back_or_default private_gun_sheets_url
+      redirect_to private_job_url(:id => @job.id)
     else
       render :action => :new
     end
@@ -60,10 +62,10 @@ class Private::GunSheetsController < ApplicationController
 private
 
   def load_gun_sheet_supporting_data
+    @job_locations = @job.job_locations
     @clients = Client.find(:all, :order => :name)
     @equipment = Equipment.find(:all, :order => :unit)
     @gun_marking_categories = GunMarkingCategory.find(:all, :order => :position)
-    @jobs = Job.find(:all)
   end
 
 end

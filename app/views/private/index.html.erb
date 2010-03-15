@@ -14,7 +14,7 @@
         <li><%= link_to "Show Job", private_job_path(job), :class => "show" %></li>
         <li><%= link_to "Edit Job", edit_private_job_path(job), :class => "edit" %></li>
         <li><%= link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => job.id), :class => "new" %></li>
-        <li><%= link_to 'New Gun Sheet', new_private_gun_sheet_path, :class => "new" %></li>
+        <li><%= link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => job.id), :class => "new" %></li>
       </ul>
     </li>
   <%- end -%>

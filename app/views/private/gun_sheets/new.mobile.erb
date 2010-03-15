@@ -1,4 +1,4 @@
-<% form_for [:private, @gun_sheet] do |f| %>
+<% form_for [:private, @job, @gun_sheet] do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <hr />

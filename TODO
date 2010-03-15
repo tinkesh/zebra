@@ -1,5 +1,6 @@
 General
-- Add location_name and replace @object.location_id with it
+- @foo.create page_title, support data
+- Add validations
 - Event Log
 - Fix font for text_areas
 - My Time Sheets
@@ -16,11 +17,12 @@ Jobs
 - Add @job.is_closed
 
 Time Sheets
-- User must clock out before a new @time_sheet can be made
 - Require at least one @time_sheet.time_sheet_entry before_save
-- Clock Out
-- Allow creation without @job parent
+- Clock Out function
+- User must clock out before a new @time_sheet can be made
 - Add @time_sheet.is_closed
+- Add date
+- Change start/stop to clocked_in_at and clocked_out_at
 
 Load Sheets
 - Litre/Tote: GP 886 / En 1186
@@ -31,12 +33,12 @@ Load Sheets
 - Add @load_sheet.is_closed
 
 Gun Sheets
-- Make a child of @job
-- Change location_id to be a dropdown
-- Add location_name
-- Group Solid/Skip together
 - Add @gun_sheet.is_closed
 
+x 2009-03-15 Change location_id to be a dropdown
+x 2009-03-15 Add location_name
+x 2009-03-15 Group Solid/Skip together
+x 2009-03-15 Make @gun_sheet a child of @job
 x 2009-03-12 Change @job.location_ids to a JS form
 x 2009-03-12 Add @job.quantities (name, rate, quantity)
 x 2009-03-11 Add Lunch dropdown (30min, 45min, 60min, 75min, 90min)

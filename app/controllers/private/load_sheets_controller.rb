@@ -16,7 +16,7 @@ class Private::LoadSheetsController < ApplicationController
   def new
     @load_sheet = LoadSheet.new
     load_load_sheet_supporting_data
-    6.times { @load_sheet.load_entries.build }
+    2.times { @load_sheet.load_entries.build }
     @page_title = "New Load Sheet"
   end
   
@@ -24,7 +24,7 @@ class Private::LoadSheetsController < ApplicationController
     @load_sheet = LoadSheet.new(params[:load_sheet])
     if @load_sheet.save
       flash[:notice] = "Load Sheet created!"
-      redirect_back_or_default private_load_sheets_url
+      redirect_to private_load_sheets_url
     else
       render :action => :new
     end

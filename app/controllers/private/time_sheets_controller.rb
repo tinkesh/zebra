@@ -16,10 +16,6 @@ class Private::TimeSheetsController < ApplicationController
   def new
     @job = Job.find(params[:job_id])
     @time_sheet = TimeSheet.new
-    5.times { @time_sheet.time_tasks.build }
-    @job.users.each do |user|
-       @time_sheet.time_entries.build(:user_id => user.id, :name => "#{user.first_name} #{user.last_name}" )
-    end
     load_time_sheet_supporting_data
     @page_title = "New Time Sheet"
   end
@@ -27,6 +23,8 @@ class Private::TimeSheetsController < ApplicationController
   def create
     @job = Job.find(params[:job_id])
     @time_sheet = @job.time_sheets.build(params[:time_sheet])
+    load_time_sheet_supporting_data
+    @page_title = "New Time Sheet"
     if @time_sheet.save
       flash[:notice] = "Time Sheet created!"
       redirect_to private_home_url
@@ -73,6 +71,11 @@ private
 
     37.times do |i|
       @time_selections << +(i * 0.25)
+    end
+
+    5.times { @time_sheet.time_tasks.build }
+    @job.users.each do |user|
+       @time_sheet.time_entries.build(:user_id => user.id, :name => "#{user.first_name} #{user.last_name}" )
     end
   end
 
