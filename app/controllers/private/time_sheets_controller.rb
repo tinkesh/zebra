@@ -75,7 +75,7 @@ private
 
     5.times { @time_sheet.time_tasks.build }
     @job.users.each do |user|
-       @time_sheet.time_entries.build(:user_id => user.id, :name => "#{user.first_name} #{user.last_name}" )
+       @time_sheet.time_entries.build(:user_id => user.id, :rate => user.rate, :name => "#{user.first_name} #{user.last_name}" )
     end
   end
 
