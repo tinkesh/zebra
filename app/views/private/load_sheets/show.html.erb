@@ -22,7 +22,7 @@
       </tr>
       <tr class="odd">
         <td>Truck</td>
-        <td class="right"><%= @load_sheet.equipment.unit %></td>
+        <td class="right"><%= if @load_sheet.equipment : @load_sheet.equipment.unit else "Not Selected" end %></td>
       </tr>
       <tr class="even">
         <td>Location</td>
@@ -55,23 +55,26 @@
   <h3>Load Sheet Entries</h3>
   <table>
     <tr>
+      <th>Category</th>
       <th>Manufacturer</th>
       <th>Batch #</th>
       <th>Tote #</th>
       <th>Tote Qty</th>
+      <th>Amount</th>
     </tr>
     <% @load_sheet.load_entries.each do |entry| %>
       <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= entry.category %></td>
         <td><%= entry.material.manufacturer.name %></td>
         <td><%= entry.material.batch %></td>
         <td><%= entry.tote_number %></td>
         <td><%= entry.tote_quantity %></td>
+        <td><%= entry.amount %> <%= if entry.category == "Bead" : "KG" else "L" end %></td>
       </tr>
     <% end %>
 
   </table>
 
-  
   <hr>
   
   <h3>Dips</h3>

@@ -13,28 +13,16 @@ General
 - times sheet: editing: hours adjustment is loading 0.0 instead of user's value
 - will_paginate time sheets, jobs, gun sheets, load sheets
 
-Jobs
-- Add @job.is_closed
-
 Time Sheets
 - Require at least one @time_sheet.time_sheet_entry before_save
 - Clock Out function
 - User must clock out before a new @time_sheet can be made
-- Add @time_sheet.is_closed
 - Add date
 - Change start/stop to clocked_in_at and clocked_out_at
 
-Load Sheets
-- Litre/Tote: GP 886 / En 1186
-- Show needs to calculate total L of paint for each colour (Tote Qty * Litre/Tote)
-- Split out Yellow & White
-- 2 dropdowns per section
-- Move dips into yellow/white sections
-- Add @load_sheet.is_closed
-
-Gun Sheets
-- Add @gun_sheet.is_closed
-
+x 2009-03-15 Edit Litre/Tote for manufacturer (GP 886 / En 1186)
+x 2009-03-15 Show calculates total L/KG of material (Tote Qty * Litre/Tote)
+x 2009-03-15 Move dips into yellow/white sections
 x 2009-03-15 Change location_id to be a dropdown
 x 2009-03-15 Add location_name
 x 2009-03-15 Group Solid/Skip together

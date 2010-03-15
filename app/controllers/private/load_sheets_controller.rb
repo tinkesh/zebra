@@ -16,7 +16,7 @@ class Private::LoadSheetsController < ApplicationController
   def new
     @load_sheet = LoadSheet.new
     load_load_sheet_supporting_data
-    2.times { @load_sheet.load_entries.build }
+    6.times { @load_sheet.load_entries.build }
     @page_title = "New Load Sheet"
   end
   
@@ -32,6 +32,7 @@ class Private::LoadSheetsController < ApplicationController
 
   def edit
     @load_sheet = LoadSheet.find(params[:id])
+    2.times { @load_sheet.load_entries.build }
     load_load_sheet_supporting_data
     @page_title = "Edit Load Sheet ##{@load_sheet.id}"
   end

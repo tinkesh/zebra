@@ -1,3 +1,8 @@
+<div class="span-2 append-bottom">
+  <%= form.label :category, "Category" %><br>
+  <%= form.select (:category, ["White", "Yellow", "Bead"], :include_blank => false) %>
+</div>
+
 <div class="span-6 append-bottom">
   <%= form.label :material_id, "Material" %><br>
   <%= form.select (:material_id, @materials.map {|u| ["#{u.manufacturer.abbreviation} Batch ##{u.batch}",u.id]}, :include_blank => true) %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100315171259) do
+ActiveRecord::Schema.define(:version => 20100315175420) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20100315171259) do
     t.decimal  "tote_quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
 
   create_table "load_sheets", :force => true do |t|
@@ -200,6 +201,7 @@ ActiveRecord::Schema.define(:version => 20100315171259) do
     t.string   "abbreviation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "amount"
   end
 
   create_table "materials", :force => true do |t|

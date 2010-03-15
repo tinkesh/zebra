@@ -14,6 +14,7 @@
   <tr>
     <th>Name</th>
     <th>Abbreviation</th>
+    <th>Litres or KG</th>
     <th class="actions nosort"></th>
   </tr>
 
@@ -21,6 +22,7 @@
   <tr>
     <td><%= manufacturer.name %></td>
     <td><%= manufacturer.abbreviation %></td>
+    <td><%= manufacturer.amount %></td>
     <td class="actions">
     <%= link_to 'Delete', private_manufacturer_path(manufacturer), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_manufacturer_path(manufacturer), :class => "edit" %>

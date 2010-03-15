@@ -48,6 +48,9 @@
     <td>Tote Qty: <%= entry.tote_quantity %></td>
   </tr>
   <tr>
+    <td>Amount: <%= entry.amount %> <%= if entry.category == "Bead" : "KG" else "L" end %></td>
+  </tr>
+  <tr>
     <td>&nbsp;</td>
   </tr>
 <% end %>

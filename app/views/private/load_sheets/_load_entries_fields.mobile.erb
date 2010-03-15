@@ -1,5 +1,9 @@
 <table>
 <tr>
+  <td><%= form.label :category, "Category" %></td>
+  <td><%= form.select (:category, ["White", "Yellow", "Bead"], :include_blank => false) %></td>
+</tr>
+<tr>
 <td><%= form.label :material_id, "Material" %></td>
 <td><%= form.select (:material_id, @materials.map {|u| ["#{u.manufacturer.abbreviation} Batch ##{u.batch}",u.id]}, :include_blank => true) %></td>
 </tr>

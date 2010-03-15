@@ -25,14 +25,14 @@
 
 <hr>
 
-<h3>Yellow Paint</h3>
-<div class="span-12">
+<h3>Material Usage</h3>
+<div class="span-18">
   <% form.fields_for :load_entries do |builder| %>
     <%= render 'load_entries_fields', :form => builder %>
   <% end %>
 </div>
 
-<div class="span-12 last">
+<div class="span-6 last">
   <div class="span-3 append-bottom">
     <%= form.label :yellow_dip_start, "Start Dip Yellow" %><br>
     <%= form.text_field :yellow_dip_start, :class => "span-3" %>
@@ -42,18 +42,8 @@
     <%= form.label :yellow_dip_end, "End Dip Yellow" %><br>
     <%= form.text_field :yellow_dip_end, :class => "span-3" %>
   </div>
-</div>
-
-<hr>
-
-<h3>White Paint</h3>
-<div class="span-12">
-  <% form.fields_for :load_entries do |builder| %>
-    <%= render 'load_entries_fields', :form => builder %>
-  <% end %>
-</div>
-
-<div class="span-12 last">
+  
+  <hr>
 
   <div class="span-3 append-bottom">
     <%= form.label :white_dip_start, "Start Dip White" %><br>
@@ -68,11 +58,3 @@
 </div>
 
 <hr>
-
-<h3>Bead</h3>
-
-<div class="span-24">
-  <% form.fields_for :load_entries do |builder| %>
-    <%= render 'load_entries_fields', :form => builder %>
-  <% end %>
-</div>
