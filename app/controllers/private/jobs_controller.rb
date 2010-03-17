@@ -8,7 +8,7 @@ class Private::JobsController < ApplicationController
   end
   
   def show
-    @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category} ])
+    @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
     @page_title = "Showing Job ##{@job.id}"
   end
   

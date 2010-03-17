@@ -6,6 +6,7 @@ class TimeSheet < ActiveRecord::Base
   belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by"
   has_many :time_tasks, :dependent => :destroy
   has_many :time_entries, :dependent => :destroy
+  has_and_belongs_to_many :job_sheets
   accepts_nested_attributes_for :time_tasks, :reject_if => lambda { |a| a[:time_task_category_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :time_entries, :allow_destroy => true
 

@@ -28,6 +28,13 @@ class Private::GunSheetsController < ApplicationController
   def create
     @job = Job.find(params[:job_id])
     @gun_sheet = @job.gun_sheets.build(params[:gun_sheet])
+
+    load_gun_sheet_supporting_data
+
+    @gun_marking_categories.each do |category| 
+      @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
+    end
+
     if @gun_sheet.save
       flash[:notice] = "Gun Sheet created!"
       redirect_to private_job_url(:id => @job.id)
@@ -38,6 +45,7 @@ class Private::GunSheetsController < ApplicationController
 
   def edit
     @gun_sheet = GunSheet.find(params[:id])
+    @job = Job.find(@gun_sheet.job_id)
     load_gun_sheet_supporting_data
     @page_title = "Edit Gun Sheet ##{@gun_sheet.id}"
   end

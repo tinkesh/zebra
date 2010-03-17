@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :jobs
   has_many :time_entries
+
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :rate
   # attr_accessible :login, :password, :password_confirmation, :email, :first_name, :last_name,:role_ids, :time_zone
   
   #for declarative authorization

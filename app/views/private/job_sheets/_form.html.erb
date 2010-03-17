@@ -1,0 +1,37 @@
+<div class="span-12">
+  <h3>Time Sheets</h3>
+  <% if @job.time_sheets.empty? %>
+    <p>There are no time sheets assigned to this job.</p>
+  <% else %>
+    <ul class="habtm">
+    <% for time_sheet in @job.time_sheets %>
+      <li>
+        <label>
+        <%= check_box_tag "job_sheet[time_sheet_ids][]", time_sheet.id, @job_sheet.time_sheets.include?(time_sheet) %>
+        <%= time_sheet.started_at.strftime("%B %d, %Y") %> - 
+        Time Sheet #<%= time_sheet.id %>
+        </label>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div class="span-12 last">
+  <h3>Gun Sheets</h3>
+  <% if @job.gun_sheets.empty? %>
+  <p>There are no gun sheets assigned to this job.</p>
+  <% else %>
+    <ul class="habtm">
+    <% for gun_sheet in @job.gun_sheets %>
+      <li>
+        <label>
+        <%= check_box_tag "job_sheet[gun_sheet_ids][]", gun_sheet.id, @job_sheet.gun_sheets.include?(gun_sheet) %>
+        <%= gun_sheet.date.strftime("%B %d, %Y") %> - 
+        Gun Sheet #<%= gun_sheet.id %>
+        </label>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+</div>

@@ -1,25 +1,37 @@
-General
-- @foo.create page_title, support data
-- Add validations
-- Event Log
-- Fix font for text_areas
-- My Time Sheets
-- My Gun Sheets
-- My Load Sheets
-- @obj.locked? for time sheets, time entries, time tasks, load sheets, gun sheets
-- Flag unlocked time sheets >48hrs old
-- @obj.selectable? for users, jobs, equipment, materials, locations
-- created_by and updated_by
-- times sheet: editing: hours adjustment is loading 0.0 instead of user's value
-- will_paginate time sheets, jobs, gun sheets, load sheets
+Questions
+- @job_sheet material usage calculation
+- @job_sheet weather/reason -> from @job_sheet.time_sheets?
+
+TODO
+- Fix: font for text_areas
+- Fix: Extra spaces when missing contact info in @job#show
+- Fix: @foo.create page_title, support data
+- Add: Import data
+- Add: Redo @time_sheets
+- Add: Permissions
+- Add: Validations
+- Add: Event Log
+- Add: My Time Sheets / Gun Sheets / Load Sheets
+- Add: @obj.locked?
+- Add: @obj.selectable?
+- Add: created_by and updated_by
+- Add: Pagination
+- Add: Search
+- Add: Email notifications
+- Add: Table Versioning
+- Add: Material Report
+- Add: Exception Notification
 
 Time Sheets
-- Require at least one @time_sheet.time_sheet_entry before_save
-- Clock Out function
-- User must clock out before a new @time_sheet can be made
-- Add date
-- Change start/stop to clocked_in_at and clocked_out_at
+- Fix: Date displayed in fewer dropdowns
+- Add: Flag unlocked time sheets >48hrs old
+- Add: Require at least one @time_sheet.time_sheet_entry before_save
+- Add: Clock In / Clock Out
+- Add: User must clock out before a new @time_sheet can be made
 
+x 2009-03-15 @gun_sheet.location_ids are loaded from parent @job
+x 2009-03-15 job_label
+x 2009-03-15 CRUD Job Sheet reports
 x 2009-03-15 Edit Litre/Tote for manufacturer (GP 886 / En 1186)
 x 2009-03-15 Show calculates total L/KG of material (Tote Qty * Litre/Tote)
 x 2009-03-15 Move dips into yellow/white sections
@@ -29,6 +41,7 @@ x 2009-03-15 Group Solid/Skip together
 x 2009-03-15 Make @gun_sheet a child of @job
 x 2009-03-12 Change @job.location_ids to a JS form
 x 2009-03-12 Add @job.quantities (name, rate, quantity)
+x 2009-03-11 Add Lunch to @time_sheets#index
 x 2009-03-11 Add Lunch dropdown (30min, 45min, 60min, 75min, 90min)
 x 2009-03-11 Add Yes/No radio for 'Per Diam', which adds $30 on the Job Report
 x 2009-03-11 make @job select false for per_diem by default

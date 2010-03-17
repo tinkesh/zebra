@@ -121,4 +121,13 @@
     <li><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet), :class => "show" %></li>
   <% end %>
   </ol>
+  
+  <hr>
+
+  <h3>Job Sheets</h3>
+  <ol>
+  <% @job.job_sheets.each do |job_sheet| %>
+    <li><%= link_to "Job Sheet ##{job_sheet.id}", private_job_sheet_path(job_sheet), :class => "show" %></li>
+  <% end %>
+  </ol>
 </div>

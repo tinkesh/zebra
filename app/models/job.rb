@@ -5,6 +5,7 @@ class Job < ActiveRecord::Base
   has_many :time_sheets
   has_many :load_sheets
   has_many :gun_sheets
+  has_many :job_sheets
   has_many :job_markings
   has_many :job_locations
   has_and_belongs_to_many :users
