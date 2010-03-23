@@ -84,6 +84,12 @@
     <%= form.text_field :rate, :class => "span-2" %>
   </div>
 
+  <div class="span-6 last append-bottom">
+    <%= form.label :bank_overtime_hours, "Overtime Structure" %><br>
+    <%= form.radio_button "bank_overtime_hours", true %> Bank Overtime<br>
+    <%= form.radio_button "bank_overtime_hours", false %> Pay Overtime
+  </div>
+
   <label>Roles</label>
   <ul class="habtm">
   <% for role in Role.find(:all) %>

@@ -16,15 +16,16 @@ x 2010-03-23 Fix: Format all numbers in @job_sheet to 2 decimal places
 x 2010-03-23 Add: Hotels to Job Report
 x 2010-03-23 Add: Fuel to Job Report
 x 2010-03-23 Add: Material usage on @job_sheet: paint is 38.2L/km, bead is 600g/km
+x 2010-03-23 Add: Role List
+x 2010-03-23 Add: Email List
+x 2010-03-23 Add: Banked or OT toggle for Users
+x 2010-03-23 Add: Production should have a rate
+x 2010-03-23 Add: Show production rate in @job_sheet
+x 2010-03-23 Fix: Change 'None', 'N/A', etc. to '-'
 
-- Add: Banked or OT toggle for Users
-- Add: Production should have a rate
-- Add: Show production rate in @job_sheet
 - Add: Cost of Material/km to display on job sheet (assume $0.35)
-
 - Fix: @foo.create page_title, support data
-- Add: Role List
-- Add: Email List
+
 - Add: @job_sheet submenu
 
 TODO TOMORROW

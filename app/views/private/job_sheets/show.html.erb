@@ -145,17 +145,21 @@
   <table>
     <tr>
       <th>Category</th>
-      <th>Ordered</th>
-      <th>Tally</th>
+      <th class="right">Ordered</th>
+      <th class="right">Tally</th>
+      <th class="right">Rate</th>
+      <th class="right">Total</th>
     </tr>
     <% @job_marking_cats = [] %>
 
     <% @job_sheet.job.job_markings.each do |marking| %>
-    <% @job_marking_cats << marking.gun_marking_category_id %>
+      <% @job_marking_cats << marking.gun_marking_category_id %>
       <tr>
         <td><%= marking.gun_marking_category.name %></td>
-        <td><%= marking.amount %></td>
-        <td><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
+        <td class="right"><%= marking.amount %></td>
+        <td class="right"><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
+        <td class="right">$<%= sprintf("%.2f", marking.rate) %></td>
+        <td class="right">$<%= sprintf("%.2f", @job_sheet.total_markings(marking.gun_marking_category) * marking.rate) %></td>
       </tr>
     <% end %>
 
@@ -164,8 +168,10 @@
         <% unless @job_marking_cats.include?(marking.gun_marking_category_id.to_i) %>
           <tr>
             <td><%= marking.gun_marking_category.name %></td>
-            <td>Was Not Ordered</td>
-            <td><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
+            <td class="right">-</td>
+            <td class="right"><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
+            <td class="right">-</td>
+            <td class="right">-</td>
           </tr>
         <% end %>
       <% end %>
