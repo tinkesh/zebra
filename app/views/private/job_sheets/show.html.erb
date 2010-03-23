@@ -15,12 +15,12 @@
     <th>#</th>
     <th>Date</th>
     <th>Name</th>
-    <th>Per Diem</th>
-    <th>S/T</th>
-    <th>O/T</th>
-    <th>Total</th>
-    <th>Rate</th>
-    <th>Cost</th>
+    <th class="right">Per Diem</th>
+    <th class="right">S/T</th>
+    <th class="right">O/T</th>
+    <th class="right">Total</th>
+    <th class="right">Rate</th>
+    <th class="right">Cost</th>
   </tr>
   <% @job_sheet.time_sheets.each do |time_sheet| %>
     <% time_sheet.time_entries.each do |entry| %>
@@ -28,108 +28,148 @@
       <td><%= entry.time_sheet.id %></td>
       <td><%= entry.time_sheet.started_at.strftime("%B %d, %Y") %></td>
       <td><%= entry.user.name %></td>
-      <td>$<%= entry.per_diem %></td>
-      <td><%= entry.straight_time %> Hours</td>
-      <td><%= entry.over_time %> Hours</td>
-      <td><%= entry.hours %> Hours</td>
-      <td>$<%= entry.rate %></td>
-      <td>$<%= entry.cost %></td>
+      <td class="right">$<%= sprintf("%.2f", entry.per_diem) %></td>
+      <td class="right"><%= sprintf("%.2f", entry.straight_time) %> Hours</td>
+      <td class="right"><%= sprintf("%.2f", entry.over_time) %> Hours</td>
+      <td class="right"><%= sprintf("%.2f", entry.hours) %> Hours</td>
+      <td class="right">$<%= sprintf("%.2f", entry.rate) %></td>
+      <td class="right">$<%= sprintf("%.2f", entry.cost) %></td>
     </tr>
     <% end %>
   <% end %>
   <tr>
     <th colspan="3">&nbsp;</th>
-    <th>$<%= @job_sheet.total_per_diem %></th>
-    <th><%= @job_sheet.total_straight_time %> Hours</th>
-    <th><%= @job_sheet.total_over_time %> Hours</th>
-    <th><%= @job_sheet.total_hours %> Hours</th>
-    <th>&nbsp;</th>
-    <th>$<%= @job_sheet.total_cost %></th>
+    <th class="right">$<%= sprintf("%.2f", @job_sheet.total_per_diem) %></th>
+    <th class="right"><%= sprintf("%.2f", @job_sheet.total_straight_time) %> Hours</th>
+    <th class="right"><%= sprintf("%.2f", @job_sheet.total_over_time) %> Hours</th>
+    <th class="right"><%= sprintf("%.2f", @job_sheet.total_hours) %> Hours</th>
+    <th class="right">&nbsp;</th>
+    <th class="right">$<%= sprintf("%.2f", @job_sheet.total_cost) %></th>
   </tr>
 </table>
 
-<div class="span-8">
-<h2>Equipment Usage</h2>
-<table>
-  <tr>
-    <th>Unit</th>
-    <th>Name</th>
-    <th>Rate</th>
-    <th>Cost</th>
-  </tr>
-<% @job_sheet.job.equipments.each do |equipment| %>
-  <tr>
-    <td><%= equipment.unit %></td>
-    <td><%= equipment.name %></td>
-    <td>$<%= equipment.rate %></td>
-    <td>$<%= equipment.cost(@job_sheet) %></td>
-  </tr>
-<% end %>
-  <tr>
-    <th colspan="3">&nbsp;</th>
-    <th>$<%= @job_sheet.total_equipment_cost %></th>
-  </tr>
-</table>
-<p>* Equipment Cost is Rate x Time Sheets</p>
+<br><br>
 
-</div>
-
-<div class="span-8">
-<h2>Material Usage</h2>
-<table>
-  <tr>
-    <th>Material</th>
-    <th>Distance</th>
-  </tr>
-  <tr>
-    <td>Yellow Paint</td>
-    <td><%= if @job_sheet.total_yellow_paint != 0 : "#{@job_sheet.total_yellow_paint} m" else "None" end %></td>
-  </tr>
-  <tr>
-    <td>White Paint</td>
-    <td><%= if @job_sheet.total_white_paint != 0 : "#{@job_sheet.total_white_paint} m" else "None" end %></td>
-  </tr>
-  <tr>
-    <td>Beads</td>
-    <td><%= if @job_sheet.total_beads != 0 : "#{@job_sheet.total_beads} kg" else "None" end %></td>
-  </tr>
-</table>
-</div>
-
-<div class="span-8 last">
-<h2>Production</h2>
-<table>
-  <tr>
-    <th>Category</th>
-    <th>Ordered</th>
-    <th>Tally</th>
-  </tr>
-  <% @job_marking_cats = [] %>
-
-  <% @job_sheet.job.job_markings.each do |marking| %>
-  <% @job_marking_cats << marking.gun_marking_category_id %>
+<div class="span-8 append-1">
+  <h2>Miscellaneous</h2>
+  <table>
     <tr>
-      <td><%= marking.gun_marking_category.name %></td>
-      <td><%= marking.amount %></td>
-      <td><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
+      <th>Name</th>
+      <th class="right">Cost</th>
+    </tr>
+    <tr>
+      <td>Fuel</td>
+      <td class="right"><%= if @job_sheet.total_fuel != 0 : "$#{sprintf("%.2f", @job_sheet.total_fuel)}" else "-" end %></td>
+    </tr>
+    <tr>
+      <td>Hotels</td>
+      <td class="right"><%= if @job_sheet.total_hotel != 0 : "$#{sprintf("%.2f", @job_sheet.total_hotel)}" else "-" end %></td>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <th class="right">$<%= @job_sheet.total_misc_cost %></th>
+    </tr>
+  </table>
+</div>
+
+<div class="span-10">
+  <h2>Equipment</h2>
+  <table>
+    <tr>
+      <th>Unit</th>
+      <th>Name</th>
+      <th class="right">Rate</th>
+      <th class="right">Cost</th>
+    </tr>
+  <% @job_sheet.job.equipments.each do |equipment| %>
+    <tr>
+      <td><%= equipment.unit %></td>
+      <td><%= equipment.name %></td>
+      <td class="right">$<%= sprintf("%.2f", equipment.rate) %></td>
+      <td class="right">$<%= sprintf("%.2f", equipment.cost(@job_sheet)) %></td>
     </tr>
   <% end %>
+    <tr>
+      <th colspan="3">&nbsp;</th>
+      <th class="right">$<%= sprintf("%.2f", @job_sheet.total_equipment_cost) %></th>
+    </tr>
+  </table>
+</div>
 
-  <% @job_sheet.gun_sheets.each do |gun| %>
-    <% gun.gun_markings.each do |marking| %>
-      <% unless @job_marking_cats.include?(marking.gun_marking_category_id.to_i) %>
-        <tr>
-          <td><%= marking.gun_marking_category.name %></td>
-          <td>Was Not Ordered</td>
-          <td><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
-        </tr>
+<div class="span-5 last">
+  <h2>&nbsp;</h2>
+  <p>* Equipment Cost is Rate x Time Sheets</p>
+</div>
+
+<br class="clear">
+<div class="span-8 append-1">
+  <h2>Materials</h2>
+  <table>
+    <tr>
+      <th>Material</th>
+      <th class="right">Distance</th>
+      <th class="right">Usage</th>
+    </tr>
+    <tr>
+      <td>Yellow Paint</td>
+      <td class="right">
+        <%= if @job_sheet.total_yellow_paint != 0 : "#{sprintf("%.2f", @job_sheet.total_yellow_paint)} m" else "-" end %>
+      </td>
+      <td class="right">
+        <%= if @job_sheet.total_yellow_paint != 0 : "#{sprintf("%.2f", (@job_sheet.total_yellow_paint / 38.2))} L" else "-" end %>
+      </td>
+    </tr>
+    <tr>
+      <td>White Paint</td>
+      <td class="right">
+        <%= if @job_sheet.total_white_paint != 0 : "#{sprintf("%.2f", @job_sheet.total_white_paint)} m" else "-" end %>
+      </td>
+      <td class="right">
+        <%= if @job_sheet.total_white_paint != 0 : "#{sprintf("%.2f", (@job_sheet.total_white_paint / 38.2))} L" else "-" end %>
+      </td>
+    </tr>
+    <tr>
+      <td>Beads</td>
+      <td class="right">
+        <%= if @job_sheet.total_beads != 0 : "#{sprintf("%.2f", @job_sheet.total_beads)} m" else "-" end %>
+      </td>
+      <td class="right">
+        <%= if @job_sheet.total_beads != 0 : "#{sprintf("%.2f", (@job_sheet.total_beads / 600))} g" else "-" end %>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="span-10">
+  <h2>Production</h2>
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Ordered</th>
+      <th>Tally</th>
+    </tr>
+    <% @job_marking_cats = [] %>
+
+    <% @job_sheet.job.job_markings.each do |marking| %>
+    <% @job_marking_cats << marking.gun_marking_category_id %>
+      <tr>
+        <td><%= marking.gun_marking_category.name %></td>
+        <td><%= marking.amount %></td>
+        <td><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
+      </tr>
+    <% end %>
+
+    <% @job_sheet.gun_sheets.each do |gun| %>
+      <% gun.gun_markings.each do |marking| %>
+        <% unless @job_marking_cats.include?(marking.gun_marking_category_id.to_i) %>
+          <tr>
+            <td><%= marking.gun_marking_category.name %></td>
+            <td>Was Not Ordered</td>
+            <td><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
+          </tr>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
 
-</table>
-
+  </table>
 </div>
-
-
-

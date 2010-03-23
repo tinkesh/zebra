@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100315204149) do
+ActiveRecord::Schema.define(:version => 20100323195407) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -283,6 +283,9 @@ ActiveRecord::Schema.define(:version => 20100315204149) do
     t.integer  "lunch"
     t.boolean  "per_diem"
     t.integer  "per_diem_rate"
+    t.decimal  "fuel"
+    t.decimal  "hotel"
+    t.decimal  "fuel_rate"
   end
 
   create_table "time_task_categories", :force => true do |t|

@@ -8,10 +8,20 @@
   <%= form.text_field :note, :class => "span-5" %>
 </div>
 
-<div class="span-6 last append-bottom">
+<div class="span-4 append-bottom">
   <%= form.label :note, "Apply per diem" %><br>
   <%= form.radio_button "per_diem", true %> Yes
   <%= form.radio_button "per_diem", false, :checked => true %> No
+</div>
+
+<div class="span-4 append-bottom">
+  <%= form.label :fuel, "Purchased Fuel Liters" %><br>
+  <%= form.text_field :fuel, :class => "span-4" %>
+</div>
+
+<div class="span-4 last append-bottom">
+  <%= form.label :hotel, "Total Hotel Cost" %><br>
+  <%= form.text_field :hotel, :class => "span-4" %>
 </div>
 
 <hr>

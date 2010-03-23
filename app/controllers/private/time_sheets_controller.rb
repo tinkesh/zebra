@@ -7,22 +7,24 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheets = TimeSheet.find(:all)
     @page_title = "Time Sheets"
   end
-  
+
   def show
     @time_sheet = TimeSheet.find(params[:id], :include => [ {:time_tasks => :time_task_category}, :time_entries, :time_note_category])
     @page_title = "Showing Time Sheet ##{@time_sheet.id}"
   end
-  
+
   def new
     @job = Job.find(params[:job_id])
     @time_sheet = TimeSheet.new
     load_time_sheet_supporting_data
     @page_title = "New Time Sheet"
   end
-  
+
   def create
     @job = Job.find(params[:job_id])
     @time_sheet = @job.time_sheets.build(params[:time_sheet])
+    if params[:time_sheet][:fuel].blank? : @time_sheet.fuel = 0 end
+    if params[:time_sheet][:hotel].blank? : @time_sheet.hotel = 0 end
     load_time_sheet_supporting_data
     @page_title = "New Time Sheet"
     if @time_sheet.save
@@ -39,7 +41,7 @@ class Private::TimeSheetsController < ApplicationController
     load_time_sheet_supporting_data
     @page_title = "Edit Time Sheet ##{@time_sheet.id}"
   end
-  
+
   def update
     @time_sheet = TimeSheet.find(params[:id])
     if @time_sheet.update_attributes(params[:time_sheet])

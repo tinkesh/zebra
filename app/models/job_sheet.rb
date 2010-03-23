@@ -24,7 +24,7 @@ class JobSheet < ActiveRecord::Base
     end
     total.inject {|sum, n| sum + n.to_f}
   end
-  
+
   def total_straight_time
     total = []
     self.time_sheets.each do |time_sheet|
@@ -55,6 +55,26 @@ class JobSheet < ActiveRecord::Base
     total.inject {|sum, n| sum + n.to_f}
   end
 
+  def total_hotel
+    total = []
+    self.time_sheets.each do |time_sheet|
+      total << time_sheet.hotel
+    end
+    total.inject {|sum, n| sum + n.to_f}
+  end
+
+  def total_fuel
+    total = []
+    self.time_sheets.each do |time_sheet|
+      total << time_sheet.fuel_cost
+    end
+    total.inject {|sum, n| sum + n.to_f}
+  end
+
+  def total_misc_cost
+    self.total_hotel + self.total_fuel
+  end
+
   def total_cost
     total = []
     self.time_sheets.each do |time_sheet|
@@ -64,7 +84,7 @@ class JobSheet < ActiveRecord::Base
     end
     total.inject {|sum, n| sum + n.to_f}
   end
-  
+
   def total_yellow_paint
     total = []
     self.gun_sheets.each do |gun|
@@ -80,7 +100,7 @@ class JobSheet < ActiveRecord::Base
     end
     total.inject {|sum, n| sum + n.to_f}
   end
-  
+
   def total_beads
     0
   end

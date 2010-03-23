@@ -1,12 +1,25 @@
 <table>
-<tr>
-<td><%= form.label :time_note_category_id, "Comment" %></td>
-<td><%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %></td>
-</tr>
-<tr>
-<td><%= form.label :note, "Details" %></td>
-<td><%= form.text_field :note, :size => "25" %></td>
-</tr>
+  <tr>
+    <td><%= form.label :time_note_category_id, "Comment" %></td>
+    <td><%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :note, "Details" %></td>
+    <td><%= form.text_field :note, :size => "25" %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :note, "Per Diem" %></td>
+    <td><%= form.radio_button "per_diem", true %> Yes<br>
+    <%= form.radio_button "per_diem", false, :checked => true %> No</td>
+  </tr>
+  <tr>
+    <td><%= form.label :fuel, "Purchased Fuel Liters" %></td>
+    <td><%= form.text_field :fuel, :size => "10" %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :hotel, "Hotel Cost" %></td>
+    <td><%= form.text_field :hotel, :size => "10" %></td>
+  </tr>
 </table>
 
 <hr />

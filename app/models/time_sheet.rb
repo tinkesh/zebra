@@ -11,9 +11,9 @@ class TimeSheet < ActiveRecord::Base
   accepts_nested_attributes_for :time_entries, :allow_destroy => true
 
   validates_presence_of :lunch, :on => :create, :message => "can't be blank"
-  validates_presence_of :per_diem, :on => :create, :message => "can't be blank"
 
   before_create :record_per_diem_rate
+  before_create :record_fuel_rate
 
   def hours
     unless self.completed_at.blank?
@@ -25,7 +25,16 @@ class TimeSheet < ActiveRecord::Base
 
   def record_per_diem_rate
     @rate = Cost.find(:first, :conditions => {:name => "per diem"})
-    self.per_diem_rate = @rate.value
+    if @rate : self.per_diem_rate = @rate.value else self.fuel_rate = "30" end
+  end
+
+  def record_fuel_rate
+    @rate = Cost.find(:first, :conditions => {:name => "fuel"})
+    if @rate : self.fuel_rate = @rate.value else self.fuel_rate = "0.90" end
+  end
+
+  def fuel_cost
+    self.fuel * self.fuel_rate
   end
 
 end
