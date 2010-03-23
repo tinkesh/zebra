@@ -15,18 +15,18 @@ Complete: <%= @job.completed_on %>
 
 <h3>Client</h3>
 <p>
-<%= @job.client.contact %><br />
-<%= @job.client.name %><br />
-<%= @job.client.address %><br />
-<%= @job.client.city %>, <%= @job.client.province %> <%= @job.client.postal_code %><br />
-Work: <%= @job.client.work_phone %><br />
-Cell: <%= @job.client.cell_phone %><br />
-Fax: <%= @job.client.fax %><br />
-Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
-<% if @job.client.notes %>
-<br /><br />
-<%= @job.client.notes %>
-<% end %>
+  <% if @job.client %>
+    <%= if @job.client.contact    : "#{@job.client.contact}<br>" end %>
+    <%= if @job.client.name       : "#{@job.client.name}<br>" end %>
+    <%= if @job.client.address    : "#{@job.client.address}<br>" end %>
+    <%= if @job.client.city       : "#{@job.client.city}" end %> <%= if @job.client.province : ", #{@job.client.province}" end %>
+    <br>
+    <%= if @job.client.work_phone : "Work: #{@job.client.work_phone}<br>" end %>
+    <%= if @job.client.cell_phone : "Cell: #{@job.client.cell_phone}<br>" end %>
+    <%= if @job.client.fax        : "Fax: #{@job.client.fax}<br>" end %>
+    <%= if @job.client.email      : "Email: #{@job.client.work_phone}<br>" end %>
+    <% if @job.client.notes : "<br>#{@job.client.notes}" end %>
+  <% end %>
 </p>
 
 <hr />

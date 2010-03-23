@@ -11,10 +11,10 @@
 <div class="span-6 append-1">
   <div id="sidebar" class="clearfix">
     <%= render :partial => 'menus/jobs_menu', :layout => false %>
-  </div>
-  
+  </div><!-- sidebar -->
+
   <br class="clear">
-  
+
   <hr>
 
   <h3>General Information</h3>
@@ -36,27 +36,21 @@
 
   <h3>Client</h3>
   <p>
-    <%= @job.client.contact %><br>
-    <%= @job.client.name %><br>
-    <%= @job.client.address %><br>
-    <%= @job.client.city %>, <%= @job.client.province %> <%= @job.client.postal_code %><br>
-    Work: <%= @job.client.work_phone %><br>
-    Cell: <%= @job.client.cell_phone %><br>
-    Fax: <%= @job.client.fax %><br>
-    Email: <a href="mailto:<%= @job.client.email %>"><%= @job.client.email %></a>
-    <% if @job.client.notes %>
-    <br><br>
-    <%= @job.client.notes %>
+    <% if @job.client %>
+      <%= if @job.client.contact    : "#{@job.client.contact}<br>" end %>
+      <%= if @job.client.name       : "#{@job.client.name}<br>" end %>
+      <%= if @job.client.address    : "#{@job.client.address}<br>" end %>
+      <%= if @job.client.city       : "#{@job.client.city}" end %> <%= if @job.client.province : ", #{@job.client.province}" end %>
+      <br>
+      <%= if @job.client.work_phone : "Work: #{@job.client.work_phone}<br>" end %>
+      <%= if @job.client.cell_phone : "Cell: #{@job.client.cell_phone}<br>" end %>
+      <%= if @job.client.fax        : "Fax: #{@job.client.fax}<br>" end %>
+      <%= if @job.client.email      : "Email: #{@job.client.work_phone}<br>" end %>
+      <% if @job.client.notes : "<br>#{@job.client.notes}" end %>
     <% end %>
   </p>
 
-</div>
-
-<div class="span-6 colborder">
-
-
-
-</div>
+</div><!-- span-6 append-1 -->
 
 <div class="span-10 append-1">
   <h3>Users</h3>
@@ -65,18 +59,18 @@
       <li><%= user.name %></li>
     <% end %>
   </ol>
-  
+
   <hr>
-  
+
   <h3>Equipment</h3>
   <ol>
   <% @job.equipments.each do |equipment| %>
     <li><%= equipment.unit %> - <%= equipment.name %></li>
   <% end %>
   </ol>
-  
+
   <hr>
-  
+
   <h3>Location</h3>
   <p><%= @job.location_name %></p>
   <ol>
@@ -84,17 +78,17 @@
     <li><%= location.name %></li>
   <% end %>
   </ol>
-  
+
   <hr>
-  
+
   <h3>Marking Quantities</h3>
   <ol>
   <% @job.job_markings.each do |m| %>
-    <li><%= m.amount %> <%= m.gun_marking_category.name %> @ $<%= m.rate %></li>
+    <li><%= m.amount %> <%= m.gun_marking_category.name %></li>
   <% end %>
   </ol>
-  
-</div>
+
+</div><!-- span-10 append-1 -->
 
 <div class="span-6 last">
   <h3>Time Sheets</h3>
@@ -103,7 +97,7 @@
     <li><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></li>
   <% end %>
   </ol>
-  
+
   <hr>
 
   <h3>Load Sheets</h3>
@@ -114,14 +108,14 @@
   </ol>
 
   <hr>
-  
+
   <h3>Gun Sheets</h3>
   <ol>
   <% @job.gun_sheets.each do |gun_sheet| %>
     <li><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet), :class => "show" %></li>
   <% end %>
   </ol>
-  
+
   <hr>
 
   <h3>Job Sheets</h3>
@@ -130,4 +124,4 @@
     <li><%= link_to "Job Sheet ##{job_sheet.id}", private_job_sheet_path(job_sheet), :class => "show" %></li>
   <% end %>
   </ol>
-</div>
+</div><!-- span-6 last -->

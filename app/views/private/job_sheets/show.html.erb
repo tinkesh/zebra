@@ -9,7 +9,7 @@
 <% end %>
 
 <h2><%= job_label(@job_sheet.job) %></h2>
-
+<p>Time Entries from <b><%= @job_sheet.time_sheets.length %></b> Time Sheets:</p>
 <table>
   <tr>
     <th>#</th>
@@ -70,6 +70,8 @@
     <th>$<%= @job_sheet.total_equipment_cost %></th>
   </tr>
 </table>
+<p>* Equipment Cost is Rate x Time Sheets</p>
+
 </div>
 
 <div class="span-8">
@@ -77,19 +79,19 @@
 <table>
   <tr>
     <th>Material</th>
-    <th>Total</th>
+    <th>Distance</th>
   </tr>
   <tr>
     <td>Yellow Paint</td>
-    <td><%= @job_sheet.total_yellow_paint %></td>
+    <td><%= if @job_sheet.total_yellow_paint != 0 : "#{@job_sheet.total_yellow_paint} m" else "None" end %></td>
   </tr>
   <tr>
     <td>White Paint</td>
-    <td><%= @job_sheet.total_white_paint %></td>
+    <td><%= if @job_sheet.total_white_paint != 0 : "#{@job_sheet.total_white_paint} m" else "None" end %></td>
   </tr>
   <tr>
     <td>Beads</td>
-    <td><%= @job_sheet.total_beads %></td>
+    <td><%= if @job_sheet.total_beads != 0 : "#{@job_sheet.total_beads} kg" else "None" end %></td>
   </tr>
 </table>
 </div>
@@ -124,11 +126,10 @@
       <% end %>
     <% end %>
   <% end %>
-  
+
 </table>
 
 </div>
-  
-  
-  
-  
+
+
+

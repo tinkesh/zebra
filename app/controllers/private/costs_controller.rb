@@ -7,12 +7,12 @@ class Private::CostsController < ApplicationController
     @costs = Cost.find(:all, :order => "name ASC")
     @page_title = "Costs"
   end
-  
+
   def new
     @cost = Cost.new
     @page_title = "New Cost"
   end
-  
+
   def create
     @cost = Cost.new(params[:cost])
     if @cost.save
@@ -27,7 +27,7 @@ class Private::CostsController < ApplicationController
     @cost = Cost.find(params[:id])
     @page_title = "Edit #{@cost.name}"
   end
-  
+
   def update
     @cost = Cost.find(params[:id])
     if @cost.update_attributes(params[:cost])

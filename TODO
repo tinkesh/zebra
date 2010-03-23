@@ -2,14 +2,38 @@ Questions
 - @job_sheet material usage calculation
 - @job_sheet weather/reason -> from @job_sheet.time_sheets?
 
-TODO
-- Fix: font for text_areas
-- Fix: Extra spaces when missing contact info in @job#show
+TODO TODAY
+2010-03-23 Fix: Jobs label to Jobs on Hand
+2010-03-23 Fix: Standardize fonts used for text_areas, selects, radio buttons
+2010-03-23 Fix: Extra spaces when missing contact info in @job#show
+2010-03-23 Fix: Add date to load_sheets#index
+2010-03-23 Fix: Add 'm' to material usage
+2010-03-23 Fix: Add help text to @job_sheet#show
+2010-03-23 Fix: Distance is 'm' on @gun_sheet
+- Add: Fuel Litres on @time_sheet
+- Add: Hotel cost on @time_sheet
+- Add: Hotels to Job Report
+- Add: Banked or OT toggle for Users
+- Add: Production should have a rate
+- Add: Show production rate in @job_sheet
+- Add: Cost of Material/km to display on job sheet (assume $0.35)
+- Add: Ability to manipulate cost/m on job sheet
+- Add: Material usage on @job_sheet: paint is 38.2L/km, bead is 600g/km
 - Fix: @foo.create page_title, support data
-- Add: Import data
+- Add: Role List
+- Add: Email List
+- Add: @job_sheet submenu
+
+TODO TOMORROW
+- Add: Material Report
 - Add: Redo @time_sheets
+
+TODO BEFORE LAUNCH
+- Fix: Add $ to Job Quantities view when an admin
+- Add: Printer Friendly views
 - Add: Permissions
 - Add: Validations
+- Add: If @obj.relationship? : @obj.relationship.attribute end
 - Add: Event Log
 - Add: My Time Sheets / Gun Sheets / Load Sheets
 - Add: @obj.locked?
@@ -19,15 +43,11 @@ TODO
 - Add: Search
 - Add: Email notifications
 - Add: Table Versioning
-- Add: Material Report
 - Add: Exception Notification
 
-Time Sheets
-- Fix: Date displayed in fewer dropdowns
-- Add: Flag unlocked time sheets >48hrs old
-- Add: Require at least one @time_sheet.time_sheet_entry before_save
-- Add: Clock In / Clock Out
-- Add: User must clock out before a new @time_sheet can be made
+TODO POST LAUNCH
+- Add: CRUD customer from @job#new
+- Add: User Time Report. Pay Period is the 24th -> 23rd
 
 x 2009-03-15 @gun_sheet.location_ids are loaded from parent @job
 x 2009-03-15 job_label

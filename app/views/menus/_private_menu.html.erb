@@ -1,7 +1,7 @@
 <ol id="menu">
   <% authenticated_only do %>
     <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
-    <li><%= active_link_to 'Jobs', private_jobs_path, :active => { :when => :self_only }  %></li>
+    <li><%= active_link_to 'Jobs on Hand', private_jobs_path, :active => { :when => :self_only }  %></li>
     <li><%= active_link_to 'Time Sheets', private_time_sheets_path %></li>
     <li><%= active_link_to 'Load Sheets', private_load_sheets_path %></li>
     <li><%= active_link_to 'Gun Sheets', private_gun_sheets_path %></li>

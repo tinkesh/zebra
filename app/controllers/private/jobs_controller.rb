@@ -4,21 +4,21 @@ class Private::JobsController < ApplicationController
 
   def index
     @jobs = Job.find(:all)
-    @page_title = "Jobs"
+    @page_title = "Jobs on Hand"
   end
-  
+
   def show
     @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
     @page_title = "Showing Job ##{@job.id}"
   end
-  
+
   def new
     @job = Job.new
     1.times { @job.job_markings.build }
     @page_title = "New Job"
     load_job_supporting_data
   end
-  
+
   def create
     @job = Job.new(params[:job])
     if @job.save
@@ -34,7 +34,7 @@ class Private::JobsController < ApplicationController
     @page_title = "Edit Job ##{@job.id}"
     load_job_supporting_data
   end
-  
+
   def update
     @job = Job.find(params[:id])
     if @job.update_attributes(params[:job])
