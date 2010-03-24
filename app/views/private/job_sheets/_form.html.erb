@@ -8,7 +8,7 @@
       <li>
         <label>
         <%= check_box_tag "job_sheet[time_sheet_ids][]", time_sheet.id, @job_sheet.time_sheets.include?(time_sheet) %>
-        <%= time_sheet.started_at.strftime("%B %d, %Y") %> - 
+        <%= time_sheet.started_at.strftime("%B %d, %Y") %> -
         Time Sheet #<%= time_sheet.id %>
         </label>
       </li>
@@ -27,11 +27,18 @@
       <li>
         <label>
         <%= check_box_tag "job_sheet[gun_sheet_ids][]", gun_sheet.id, @job_sheet.gun_sheets.include?(gun_sheet) %>
-        <%= gun_sheet.date.strftime("%B %d, %Y") %> - 
+        <%= gun_sheet.date.strftime("%B %d, %Y") %> -
         Gun Sheet #<%= gun_sheet.id %>
         </label>
       </li>
     <% end %>
     </ul>
   <% end %>
+</div>
+
+<br class="clear">
+
+<div class="append-bottom">
+  <h3>Rate for Material Distance</h3>
+  <%= form.text_field "material_rate", :class => "span-6" %> ex. "0.35"
 </div>

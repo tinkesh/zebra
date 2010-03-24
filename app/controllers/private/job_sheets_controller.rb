@@ -18,13 +18,13 @@ class Private::JobSheetsController < ApplicationController
     @job_sheet = JobSheet.new
     @page_title = "New Job Sheet"
   end
-  
+
   def create
     @job = Job.find(params[:job_id])
     @job_sheet = @job.job_sheets.build(params[:job_sheet])
     if @job_sheet.save
       flash[:notice] = "Job Sheet created!"
-      redirect_to private_job_sheets_url
+      redirect_to private_job_sheet_url(@job_sheet)
     else
       render :action => :new
     end
@@ -35,12 +35,12 @@ class Private::JobSheetsController < ApplicationController
     @job = Job.find(@job_sheet.job_id)
     @page_title = "Edit Job Sheet #{@job_sheet.id}"
   end
-  
+
   def update
     @job_sheet = JobSheet.find(params[:id])
     if @job_sheet.update_attributes(params[:job_sheet])
       flash[:notice] = "Job Sheet updated!"
-      redirect_to private_job_sheets_url
+      redirect_to private_job_sheet_url(@job_sheet)
     else
       render :action => :edit
     end

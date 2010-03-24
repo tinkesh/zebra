@@ -3,37 +3,15 @@ Questions
 - @job_sheet weather/reason -> from @job_sheet.time_sheets?
 
 TODO TODAY
-x 2010-03-23 Fix: Jobs label to Jobs on Hand
-x 2010-03-23 Fix: Standardize fonts used for text_areas, selects, radio buttons
-x 2010-03-23 Fix: Extra spaces when missing contact info in @job#show
-x 2010-03-23 Fix: Add date to load_sheets#index
-x 2010-03-23 Fix: Add 'm' to material usage
-x 2010-03-23 Fix: Add help text to @job_sheet#show
-x 2010-03-23 Fix: Distance is 'm' on @gun_sheet
-x 2010-03-23 Add: Fuel Liters on @time_sheet
-x 2010-03-23 Add: Hotel cost on @time_sheet
-x 2010-03-23 Fix: Format all numbers in @job_sheet to 2 decimal places
-x 2010-03-23 Add: Hotels to Job Report
-x 2010-03-23 Add: Fuel to Job Report
-x 2010-03-23 Add: Material usage on @job_sheet: paint is 38.2L/km, bead is 600g/km
-x 2010-03-23 Add: Role List
-x 2010-03-23 Add: Email List
-x 2010-03-23 Add: Banked or OT toggle for Users
-x 2010-03-23 Add: Production should have a rate
-x 2010-03-23 Add: Show production rate in @job_sheet
-x 2010-03-23 Fix: Change 'None', 'N/A', etc. to '-'
-
-- Add: Cost of Material/km to display on job sheet (assume $0.35)
+x 2010-03-24 Optimize @job_sheet#show material calculations
 - Fix: @foo.create page_title, support data
-
 - Add: @job_sheet submenu
-
-TODO TOMORROW
 - Add: Material Report
 - Add: Redo @time_sheets
 
 MEETING
 ? Where does Bead Usage come from? Load Sheet / but that isn't associated with a job
+? On @job_sheet#show, Do you want totals for Production and Materials?m
 
 TODO BEFORE LAUNCH
 - Fix: Add $ to Job Quantities view when an admin
@@ -56,6 +34,27 @@ TODO POST LAUNCH
 - Add: CRUD customer from @job#new
 - Add: User Time Report. Pay Period is the 24th -> 23rd
 
+x 2010-03-23 Fix: Jobs label to Jobs on Hand
+x 2010-03-23 Fix: Standardize fonts used for text_areas, selects, radio buttons
+x 2010-03-23 Fix: Extra spaces when missing contact info in @job#show
+x 2010-03-23 Fix: Add date to load_sheets#index
+x 2010-03-23 Fix: Add 'm' to material usage
+x 2010-03-23 Fix: Add help text to @job_sheet#show
+x 2010-03-23 Fix: Distance is 'm' on @gun_sheet
+x 2010-03-23 Add: Fuel Liters on @time_sheet
+x 2010-03-23 Add: Hotel cost on @time_sheet
+x 2010-03-23 Fix: Format all numbers in @job_sheet to 2 decimal places
+x 2010-03-23 Add: Hotels to Job Report
+x 2010-03-23 Add: Fuel to Job Report
+x 2010-03-23 Add: Material usage on @job_sheet: paint is 38.2L/km, bead is 600g/km
+x 2010-03-23 Add: Role List
+x 2010-03-23 Add: Email List
+x 2010-03-23 Add: Banked or OT toggle for Users
+x 2010-03-23 Add: Production should have a rate
+x 2010-03-23 Add: Show production rate in @job_sheet
+x 2010-03-23 Fix: Change 'None', 'N/A', etc. to '-'
+x 2010-03-23 Add: Cost of Material/km to display on @job_sheet (assume $0.35)
+x 2010-03-23 Add: Edit Cost of material/km for @job_sheet
 x 2009-03-15 @gun_sheet.location_ids are loaded from parent @job
 x 2009-03-15 job_label
 x 2009-03-15 CRUD Job Sheet reports

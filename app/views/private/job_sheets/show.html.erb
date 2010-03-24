@@ -50,7 +50,7 @@
 
 <br><br>
 
-<div class="span-8 append-1">
+<div class="span-9 append-1">
   <h2>Miscellaneous</h2>
   <table>
     <tr>
@@ -96,51 +96,14 @@
   </table>
 </div>
 
-<div class="span-5 last">
+<div class="span-4 last">
   <h2>&nbsp;</h2>
   <p>* Equipment Cost is Rate x Time Sheets</p>
 </div>
 
 <br class="clear">
-<div class="span-8 append-1">
-  <h2>Materials</h2>
-  <table>
-    <tr>
-      <th>Material</th>
-      <th class="right">Distance</th>
-      <th class="right">Usage</th>
-    </tr>
-    <tr>
-      <td>Yellow Paint</td>
-      <td class="right">
-        <%= if @job_sheet.total_yellow_paint != 0 : "#{sprintf("%.2f", @job_sheet.total_yellow_paint)} m" else "-" end %>
-      </td>
-      <td class="right">
-        <%= if @job_sheet.total_yellow_paint != 0 : "#{sprintf("%.2f", (@job_sheet.total_yellow_paint / 38.2))} L" else "-" end %>
-      </td>
-    </tr>
-    <tr>
-      <td>White Paint</td>
-      <td class="right">
-        <%= if @job_sheet.total_white_paint != 0 : "#{sprintf("%.2f", @job_sheet.total_white_paint)} m" else "-" end %>
-      </td>
-      <td class="right">
-        <%= if @job_sheet.total_white_paint != 0 : "#{sprintf("%.2f", (@job_sheet.total_white_paint / 38.2))} L" else "-" end %>
-      </td>
-    </tr>
-    <tr>
-      <td>Beads</td>
-      <td class="right">
-        <%= if @job_sheet.total_beads != 0 : "#{sprintf("%.2f", @job_sheet.total_beads)} m" else "-" end %>
-      </td>
-      <td class="right">
-        <%= if @job_sheet.total_beads != 0 : "#{sprintf("%.2f", (@job_sheet.total_beads / 600))} g" else "-" end %>
-      </td>
-    </tr>
-  </table>
-</div>
 
-<div class="span-10">
+<div class="span-9 append-1">
   <h2>Production</h2>
   <table>
     <tr>
@@ -178,4 +141,59 @@
     <% end %>
 
   </table>
+</div>
+
+
+
+<div class="span-10">
+  <h2>Materials</h2>
+  <table>
+    <tr>
+      <th>Material</th>
+      <th class="right">Distance</th>
+      <th class="right">Usage</th>
+      <th class="right">Cost</th>
+    </tr>
+    <tr>
+      <td>Yellow Paint</td>
+      <% if @job_sheet.total_yellow_paint != 0 %>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint) %> m</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint / 38.2) %> m</td>
+        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_yellow_paint * @job_sheet.material_rate)) %></td>
+      <% else %>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>White Paint</td>
+      <% if @job_sheet.total_white_paint != 0 %>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_white_paint) %> m</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_white_paint / 38.2) %> m</td>
+        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_white_paint * @job_sheet.material_rate)) %></td>
+      <% else %>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Beads</td>
+      <% if @job_sheet.total_beads != 0 %>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_beads) %> m</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_beads / 600) %> g</td>
+        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_beads * @job_sheet.material_rate)) %></td>
+      <% else %>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+      <% end %>
+    </tr>
+  </table>
+</div>
+
+<div class="span-4 last">
+  <h2>&nbsp;</h2>
+  <p>* Material Rate is $<%= sprintf("%.2f", @job_sheet.material_rate) %>/km</p>
 </div>
