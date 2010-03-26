@@ -19,6 +19,8 @@ class JobSheet < ActiveRecord::Base
       time_sheet.time_entries.each do |entry|
         if entry.time_sheet.per_diem == true
           total << entry.time_sheet.per_diem_rate
+        else
+          total << 0
         end
       end
     end

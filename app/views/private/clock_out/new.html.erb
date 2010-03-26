@@ -1,0 +1,41 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<% form_tag :controller => 'private/clock_out', :action => "create", :method => :post do -%>
+
+  <% unless @clocked_in.empty? %>
+
+    <% if @not_clocked_in %>
+      <h3>Users who have not yet Clocked In</h3>
+      <ul>
+      <% for entry in @not_clocked_in %>
+        <li><%= entry.user.name %></li>
+      <% end %>
+      </ul>
+    <% end %>
+
+    <h3>Clock Out</h3>
+    <ul>
+    <% for entry in @clocked_in %>
+      <li><%= check_box_tag "users[]", entry.user.id, :checked => true %> <%= entry.user.name %></li>
+    <% end %>
+    </ul>
+
+    <%= hidden_field :entries, :clock_out, :value => @time %>
+    <%= hidden_field :entries, :job_id, :value => @job.id %>
+
+    <p>You will Clock Out of <b><%= job_label(@job) %></b> at <b><%= @time.strftime('%H:%M') %></b>.</p>
+
+    <p><%= submit_tag "Clock Out Selected Users" %></p>
+
+  <% else %>
+
+  <p>There are no users clocked in to this job. <%= link_to "Clock In now", {:controller => "private/clock_in", :action => "new", :job_id => @job.id} %>.</p>
+  <% end %>
+
+<% end -%>

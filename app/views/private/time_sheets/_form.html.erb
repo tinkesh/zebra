@@ -29,11 +29,6 @@
 <h3>Tasks</h3>
 <p>Fill out a detailed list of what you did today. You will be paid based on the difference between "Clock In" and "Clock Out".</p>
 
-<div class="append-bottom">
-  <%= form.label :started_at, "Clock In" %><br>
-  <%= form.datetime_select :started_at, :minute_step => 15 %>
-</div>
-
 <% form.fields_for :time_tasks do |builder| %>
   <%= render 'time_task_fields', :form => builder %>
 <% end %>
@@ -45,17 +40,9 @@
   <%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false, :selected => "30") %>
 </div>
 
-<div class="append-bottom">
-  <%= form.label :completed_at, "Clock Out" %><br>
-  <%= form.datetime_select :completed_at, :class => "span-6", :include_blank => false %>
-</div>
-
 <hr>
 
 <h3>Users</h3>
 <p>
   Adjust time for each person on the job. If everyone worked the full day, you do not need to make any changes. If a person did not work at all, adjust their drop down to the blank selection.
 </p>
-<% form.fields_for :time_entries do |builder| %>
-  <%= render 'time_entries_fields', :form => builder %>
-<% end %>

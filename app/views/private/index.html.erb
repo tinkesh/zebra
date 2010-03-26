@@ -13,6 +13,8 @@
       <ul>
         <li><%= link_to "Show Job", private_job_path(job), :class => "show" %></li>
         <li><%= link_to "Edit Job", edit_private_job_path(job), :class => "edit" %></li>
+        <li><%= link_to "Clock In", {:controller => "private/clock_in", :action => "new", :job_id => job.id}, :class => "new" %></li>
+        <li><%= link_to "Clock Out", {:controller => "private/clock_out", :action => "new", :job_id => job.id}, :class => "new" %></li>
         <li><%= link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => job.id), :class => "new" %></li>
         <li><%= link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => job.id), :class => "new" %></li>
         <li><%= link_to 'New Job Sheet', new_private_job_job_sheet_path(:job_id => job.id), :class => "new" %></li>

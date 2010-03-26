@@ -1,0 +1,52 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<% form_tag :controller => 'private/clock_in', :action => "create", :method => :post do -%>
+
+<p>You will Clock In to <b><%= job_label(@job) %></b> at <b><%= @time.strftime('%H:%M') %></b>.</p>
+
+<table>
+  <tr>
+    <th>&nbsp;</th>
+    <th>Name</th>
+    <th>Comment</th>
+  </tr>
+<% @job.users.each do |user| %>
+  <tr class="<%= cycle('odd', 'even') %>">
+  <% unless @clocked_in_ids.include?(user.id) %>
+    <td class="span-1"><%= check_box_tag "users[][active]", "true", :checked => true %></td>
+    <td class="span-4"><%= user.name %></td>
+    <td>
+      <%= text_field_tag "users[][note]" %>
+      <%= hidden_field_tag "users[][user_id]", user.id %>
+      <%= hidden_field_tag "users[][job_id]", @job.id %>
+      <%= hidden_field_tag "users[][clock_in]", Time.now %>
+      <%= hidden_field_tag "users[][rate]", user.rate %>
+    </td>
+  <% else %>
+    <td class="span-1"><%= check_box_tag "user", "active", true, :disabled => true %></td>
+    <td class="span-4"><span class="quiet"><%= user.name %></span></td>
+    <td><span class="quiet">Clocked In</span></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= hidden_field :job, :id, :value => @job.id %><br>
+
+  <hr>
+<% unless @clocked_in_ids.length == @job.users.length %>
+<p>
+  After saving...<br>
+  <%= radio_button_tag "redirect", "timesheet" %> Clock In additional users<br>
+  <%= radio_button_tag "redirect", "clockout" %> Clock Out<br>
+  <%= radio_button_tag "redirect", "job", :checked => true %> Take me to the Job
+</p>
+  <p><%= submit_tag "Clock In Selected Users" %></p>
+<% end %>
+<% end -%>

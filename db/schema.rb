@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100323221452) do
+ActiveRecord::Schema.define(:version => 20100324173736) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -253,16 +253,21 @@ ActiveRecord::Schema.define(:version => 20100323221452) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "time_entries", :force => true do |t|
-    t.integer  "time_sheet_id"
+    t.integer  "job_id"
     t.integer  "user_id"
-    t.decimal  "time"
+    t.integer  "time_sheet_id"
+    t.date     "date"
+    t.time     "clock_in"
+    t.time     "clock_out"
     t.string   "note"
+    t.decimal  "rate"
+    t.datetime "clocked_in_at"
+    t.datetime "clocked_out_at"
+    t.integer  "clocked_in_by"
+    t.integer  "clocked_out_by"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.integer  "rate"
   end
 
   create_table "time_note_categories", :force => true do |t|

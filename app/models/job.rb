@@ -3,6 +3,7 @@ class Job < ActiveRecord::Base
   belongs_to :client
   belongs_to :completion
   has_many :time_sheets
+  has_many :time_entries
   has_many :load_sheets
   has_many :gun_sheets
   has_many :job_sheets

@@ -21,8 +21,11 @@ ActionController::Routing::Routes.draw do |map|
     priv.resources :gun_sheets,             :controller => "gun_sheets",             :path_prefix => "admin"
     priv.resources :gun_marking_categories, :controller => "gun_marking_categories", :path_prefix => "admin"
 
+    # clocking in and out
+    priv.connect "jobs/:job_id/clock_in/:action/:id",  :controller => "clock_in",  :path_prefix => "admin"
+    priv.connect "jobs/:job_id/clock_out/:action/:id", :controller => "clock_out", :path_prefix => "admin"
 #    priv.resources :time_tasks,             :controller => "time_tasks",           :path_prefix => "admin"
-#    priv.resources :time_entries,           :controller => "time_entries",         :path_prefix => "admin"
+    priv.resources :time_entries,           :controller => "time_entries",         :path_prefix => "admin"
   end
 
   # user authentication and accounts
@@ -67,7 +70,7 @@ ActionController::Routing::Routes.draw do |map|
     page.private_home      "/admin",          :action => "index"
     page.private_settings "/admin/settings", :action => "settings"
   end
-  
+
   map.root  :controller => "public", :action => "home"
 
 end
