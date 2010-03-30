@@ -17,7 +17,7 @@ class Private::EquipmentsController < ApplicationController
     @equipment = Equipment.new(params[:equipment])
     if @equipment.save
       flash[:notice] = "Equipment created!"
-      redirect_back_or_default private_equipments_url
+      redirect_to private_equipments_url
     else
       render :action => :new
     end
@@ -42,7 +42,7 @@ class Private::EquipmentsController < ApplicationController
     @equipment = Equipment.find(params[:id])
     @equipment.destroy
     flash[:notice] = 'Equipment deleted!'
-    redirect_to(private_equipments_url)
+    redirect_to private_equipments_url
   end
 
 end

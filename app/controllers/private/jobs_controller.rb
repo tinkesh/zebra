@@ -23,7 +23,7 @@ class Private::JobsController < ApplicationController
     @job = Job.new(params[:job])
     if @job.save
       flash[:notice] = "Job created!"
-      redirect_back_or_default private_jobs_url
+      redirect_to private_jobs_url
     else
       render :action => :new
     end

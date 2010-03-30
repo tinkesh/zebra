@@ -42,7 +42,7 @@ class Private::CostsController < ApplicationController
     @cost = Cost.find(params[:id])
     @cost.destroy
     flash[:notice] = 'Cost deleted!'
-    redirect_to(private_costs_url)
+    redirect_to private_costs_url
   end
 
 end

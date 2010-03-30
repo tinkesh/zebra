@@ -7,17 +7,17 @@ class Private::ClientsController < ApplicationController
     @clients = Client.find(:all, :order => "name ASC")
     @page_title = "Clients"
   end
-  
+
   def new
     @client = Client.new
     @page_title = "New Client"
   end
-  
+
   def create
     @client = Client.new(params[:client])
     if @client.save
       flash[:notice] = "Client created!"
-      redirect_back_or_default private_clients_url
+      redirect_to private_clients_url
     else
       render :action => :new
     end
@@ -27,7 +27,7 @@ class Private::ClientsController < ApplicationController
     @client = Client.find(params[:id])
     @page_title = "Edit #{@client.name}"
   end
-  
+
   def update
     @client = Client.find(params[:id])
     if @client.update_attributes(params[:client])

@@ -7,13 +7,13 @@ class Private::MaterialsController < ApplicationController
     @materials = Material.find(:all, :include => :manufacturer)
     @page_title = "Materials"
   end
-  
+
   def new
     @material = Material.new
     @page_title = "New Material"
     @manufacturers = Manufacturer.find(:all)
   end
-  
+
   def create
     @material = Material.new(params[:material])
     if @material.save
@@ -29,7 +29,7 @@ class Private::MaterialsController < ApplicationController
     @manufacturers = Manufacturer.find(:all)
     @page_title = "Edit #{@material.manufacturer.abbreviation} Batch ##{@material.batch}"
   end
-  
+
   def update
     @material = Material.find(params[:id])
     if @material.update_attributes(params[:material])
@@ -44,7 +44,7 @@ class Private::MaterialsController < ApplicationController
     @material = Material.find(params[:id])
     @material.destroy
     flash[:notice] = 'Material deleted!'
-    redirect_to(private_materials_url)
+    redirect_to private_materials_url
   end
 
 end

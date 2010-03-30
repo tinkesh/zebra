@@ -7,17 +7,17 @@ class Private::ManufacturersController < ApplicationController
     @manufacturers = Manufacturer.find(:all, :order => "name ASC")
     @page_title = "Manufacturers"
   end
-  
+
   def new
     @manufacturer = Manufacturer.new
     @page_title = "New Manufacturer"
   end
-  
+
   def create
     @manufacturer = Manufacturer.new(params[:manufacturer])
     if @manufacturer.save
       flash[:notice] = "Manufacturer created!"
-      redirect_back_or_default private_manufacturers_url
+      redirect_to private_manufacturers_url
     else
       render :action => :new
     end
@@ -27,7 +27,7 @@ class Private::ManufacturersController < ApplicationController
     @manufacturer = Manufacturer.find(params[:id])
     @page_title = "Edit #{@manufacturer.name}"
   end
-  
+
   def update
     @manufacturer = Manufacturer.find(params[:id])
     if @manufacturer.update_attributes(params[:manufacturer])
@@ -42,7 +42,7 @@ class Private::ManufacturersController < ApplicationController
     @manufacturer = Manufacturer.find(params[:id])
     @manufacturer.destroy
     flash[:notice] = 'Manufacturer deleted!'
-    redirect_to(private_manufacturers_url)
+    redirect_to private_manufacturers_url
   end
 
 end

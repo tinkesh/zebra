@@ -7,31 +7,31 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheets = GunSheet.find(:all)
     @page_title = "Gun Sheets"
   end
-  
+
   def show
     @gun_sheet = GunSheet.find(params[:id], :include => [ :gun_markings ] )
     @page_title = "Showing Gun Sheet ##{@gun_sheet.id}"
   end
-  
+
   def new
     @job = Job.find(params[:job_id])
     @gun_sheet = GunSheet.new
     load_gun_sheet_supporting_data
 
-    @gun_marking_categories.each do |category| 
+    @gun_marking_categories.each do |category|
       @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
     end
-    
+
     @page_title = "New Gun Sheet for Job ##{@job.id} #{@job.name}"
   end
-  
+
   def create
     @job = Job.find(params[:job_id])
     @gun_sheet = @job.gun_sheets.build(params[:gun_sheet])
 
     load_gun_sheet_supporting_data
 
-    @gun_marking_categories.each do |category| 
+    @gun_marking_categories.each do |category|
       @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
     end
 
@@ -49,7 +49,7 @@ class Private::GunSheetsController < ApplicationController
     load_gun_sheet_supporting_data
     @page_title = "Edit Gun Sheet ##{@gun_sheet.id}"
   end
-  
+
   def update
     @gun_sheet = GunSheet.find(params[:id])
     if @gun_sheet.update_attributes(params[:gun_sheet])
@@ -64,7 +64,7 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet = GunSheet.find(params[:id])
     @gun_sheet.destroy
     flash[:notice] = 'Gun Sheet deleted!'
-    redirect_to(private_gun_sheets_url)
+    redirect_to private_gun_sheets_url
   end
 
 private

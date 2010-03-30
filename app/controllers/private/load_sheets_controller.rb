@@ -7,19 +7,19 @@ class Private::LoadSheetsController < ApplicationController
     @load_sheets = LoadSheet.find(:all)
     @page_title = "Load Sheets"
   end
-  
+
   def show
     @load_sheet = LoadSheet.find(params[:id], :include => [ :load_entries ] )
     @page_title = "Showing Load Sheet ##{@load_sheet.id}"
   end
-  
+
   def new
     @load_sheet = LoadSheet.new
     load_load_sheet_supporting_data
     6.times { @load_sheet.load_entries.build }
     @page_title = "New Load Sheet"
   end
-  
+
   def create
     @load_sheet = LoadSheet.new(params[:load_sheet])
     if @load_sheet.save
@@ -36,7 +36,7 @@ class Private::LoadSheetsController < ApplicationController
     load_load_sheet_supporting_data
     @page_title = "Edit Load Sheet ##{@load_sheet.id}"
   end
-  
+
   def update
     @load_sheet = LoadSheet.find(params[:id])
     if @load_sheet.update_attributes(params[:load_sheet])
@@ -51,7 +51,7 @@ class Private::LoadSheetsController < ApplicationController
     @load_sheet = LoadSheet.find(params[:id])
     @load_sheet.destroy
     flash[:notice] = 'Load Sheet deleted!'
-    redirect_to(private_load_sheets_url)
+    redirect_to private_load_sheets_url
   end
 
 private

@@ -7,12 +7,12 @@ class Private::TimeNoteCategoriesController < ApplicationController
     @time_note_categories = TimeNoteCategory.find(:all, :order => "position ASC")
     @page_title = "Time Sheet Note Categories"
   end
-  
+
   def new
     @time_note_category = TimeNoteCategory.new
     @page_title = "New Time Sheet Note Category"
   end
-  
+
   def create
     @time_note_category = TimeNoteCategory.new(params[:time_note_category])
     if @time_note_category.save
@@ -27,7 +27,7 @@ class Private::TimeNoteCategoriesController < ApplicationController
     @time_note_category = TimeNoteCategory.find(params[:id])
     @page_title = "Edit #{@time_note_category.name}"
   end
-  
+
   def update
     @time_note_category = TimeNoteCategory.find(params[:id])
     if @time_note_category.update_attributes(params[:time_note_category])
@@ -42,7 +42,7 @@ class Private::TimeNoteCategoriesController < ApplicationController
     @time_note_category = TimeNoteCategory.find(params[:id])
     @time_note_category.destroy
     flash[:notice] = 'Time Sheet Note Category deleted!'
-    redirect_to(private_time_note_categories_url)
+    redirect_to private_time_note_categories_url
   end
 
 end
