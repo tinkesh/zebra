@@ -4,26 +4,27 @@
   </div>
 </div>
 
-<div class="span-6">
+<div class="span-8">
   <h2>Active Jobs</h2>
+
+<% form_tag :controller => 'private', :action => "navigate", :method => :post do -%>
+
+  <p><%= select_tag 'job_id', options_from_collection_for_select(@jobs, 'id', 'label') %></p>
+
   <ul class="jobs">
-  <%- @jobs.each do |job| -%>
-    <li>
-      <h3><%= job_label(job) %></h3>
-      <ul>
-        <li><%= link_to "Show Job", private_job_path(job), :class => "show" %></li>
-        <li><%= link_to "Edit Job", edit_private_job_path(job), :class => "edit" %></li>
-        <li><%= link_to "Clock In", {:controller => "private/clock_in", :action => "new", :job_id => job.id}, :class => "new" %></li>
-        <li><%= link_to "Clock Out", {:controller => "private/clock_out", :action => "new", :job_id => job.id}, :class => "new" %></li>
-        <li><%= link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => job.id), :class => "new" %></li>
-        <li><%= link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => job.id), :class => "new" %></li>
-        <li><%= link_to 'New Job Sheet', new_private_job_job_sheet_path(:job_id => job.id), :class => "new" %></li>
-      </ul>
-    </li>
-  <%- end -%>
+    <li><label class="show"><%= radio_button_tag "navigate", "show_job" %> Show Job</label></li>
+    <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_in" %> Clock In</label></li>
+    <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label></li>
+    <li><label class="new-inline"><%= radio_button_tag "navigate", "new_time_sheet" %> New Time Sheet</label></li>
+    <li><label class="new-inline"><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label></li>
   </ul>
+
+  <p><%= submit_tag "Go to Page" %></p>
+
+<% end %>
+
 </div>
 
-<div class="span-11 last">
+<div class="span-9 last">
   <h2>History</h2>
 </div>

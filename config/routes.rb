@@ -67,8 +67,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # private content pages
   map.with_options :controller => "private" do |page|
-    page.private_home      "/admin",          :action => "index"
+    page.private_home     "/admin",          :action => "index"
     page.private_settings "/admin/settings", :action => "settings"
+    page.private_home     "/admin/navigate", :action => "navigate"
   end
 
   map.root  :controller => "public", :action => "home"
