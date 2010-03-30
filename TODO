@@ -13,7 +13,6 @@ TUESDAY
 - Add: Printer Friendly views
 - Add: Permissions
 - Add: Validations
-- Fix: Liters not Meters for @job_sheet#production
 - Fix: Bead is 600/g per KM of lines in @job_sheet#production
 
 WEDNESDAY
@@ -41,6 +40,8 @@ POST LAUNCH
 - Add: >15hr work day worming to kwame@
 - Add: can submit a time sheet with no hours except perdiem/gas/hotel
 
+x 2010-03-30 Add: ActiveRecord cookie store
+x 2010-03-30 Fix: Liters not Meters for @job_sheet#production
 x 2010-03-30 Fix: Record OT type to time entry
 x 2010-03-30 Fix: Redirect to @job_sheet#show after @job_sheet#create
 x 2010-03-30 Add: "Unassigned Jobs" job
