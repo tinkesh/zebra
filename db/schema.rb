@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100324173736) do
+ActiveRecord::Schema.define(:version => 20100330151539) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -182,6 +182,13 @@ ActiveRecord::Schema.define(:version => 20100324173736) do
     t.string   "location_name"
   end
 
+  create_table "jobs_locations", :id => false, :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "jobs_users", :id => false, :force => true do |t|
     t.integer  "job_id"
     t.integer  "user_id"
@@ -212,6 +219,12 @@ ActiveRecord::Schema.define(:version => 20100324173736) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "location_name"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "manufacturers", :force => true do |t|
@@ -268,6 +281,7 @@ ActiveRecord::Schema.define(:version => 20100324173736) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "bank_overtime_hours"
   end
 
   create_table "time_note_categories", :force => true do |t|

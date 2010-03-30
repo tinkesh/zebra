@@ -27,6 +27,7 @@
       <%= hidden_field_tag "users[][job_id]", @job.id %>
       <%= hidden_field_tag "users[][clock_in]", Time.now %>
       <%= hidden_field_tag "users[][rate]", user.rate %>
+      <%= hidden_field_tag "users[][bank_overtime_hours]", user.bank_overtime_hours %>
     </td>
   <% else %>
     <td class="span-1"><%= check_box_tag "user", "active", true, :disabled => true %></td>
