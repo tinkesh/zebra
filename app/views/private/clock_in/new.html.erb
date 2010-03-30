@@ -42,12 +42,12 @@
 
   <hr>
 <% unless @clocked_in_ids.length == @job.users.length %>
-<p>
-  After saving...<br>
-  <%= radio_button_tag "redirect", "timesheet" %> Clock In additional users<br>
-  <%= radio_button_tag "redirect", "clockout" %> Clock Out<br>
-  <%= radio_button_tag "redirect", "job", :checked => true %> Take me to the Job
-</p>
+  <ul class="jobs">
+    <li><label class="show"><%= radio_button_tag "navigate", "show_job", :checked => true %> Take me to the Job</label></li>
+    <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_in" %> Clock In additional users</label></li>
+    <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out users</label></li>
+  </ul>
   <p><%= submit_tag "Clock In Selected Users" %></p>
 <% end %>
+
 <% end -%>

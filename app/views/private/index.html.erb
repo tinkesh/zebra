@@ -1,13 +1,7 @@
-<div class="span-6 append-1">
-  <div id="sidebar">
-    <%= render :partial => 'menus/dashboard_menu', :layout => false %>
-  </div>
-</div>
-
 <div class="span-8">
   <h2>Active Jobs</h2>
 
-<% form_tag :controller => 'private', :action => "navigate", :method => :post do -%>
+<% form_tag :controller => 'private', :action => "navigate" do -%>
 
   <p><%= select_tag 'job_id', options_from_collection_for_select(@jobs, 'id', 'label') %></p>
 
