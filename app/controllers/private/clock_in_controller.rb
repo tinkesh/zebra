@@ -26,7 +26,18 @@ class Private::ClockInController < ApplicationController
         end
       @entry.save
     end
-    redirect_to :controller => 'private/clock_out', :action => :new
+
+    if params[:navigate] && params[:job_id]
+      @job = Job.find(params[:job_id])
+      case params[:navigate]
+        when "show_job" : @redirect = private_job_path(@job)
+        when "clock_in" : @redirect = url_for :controller => "private/clock_in",  :action => "new", :job_id => @job.id
+        when "clock_out" : @redirect = url_for :controller => "private/clock_out", :action => "new", :job_id => @job.id
+      end
+      redirect_to @redirect
+    else
+      redirect_to :controller => 'private/clock_out', :action => :new
+    end
   end
 
 private
