@@ -16,6 +16,7 @@
     <th>Date</th>
     <th>Name</th>
     <th class="right">Per Diem</th>
+    <th class="right">Lunch</th>
     <th class="right">S/T</th>
     <th class="right">O/T</th>
     <th class="right">Total</th>
@@ -26,9 +27,10 @@
     <% time_sheet.time_entries.each do |entry| %>
     <tr class="<%= cycle('even', 'odd') %>">
       <td><%= entry.time_sheet.id %></td>
-      <td><%= entry.time_sheet.started_at.strftime("%B %d, %Y") %></td>
+      <td>&nbsp;</td>
       <td><%= entry.user.name %></td>
       <td class="right">$<%= sprintf("%.2f", entry.per_diem) %></td>
+      <td class="right"><%= sprintf("%.2f", entry.time_sheet.lunch.to_f / 60) %> Hours</td>
       <td class="right"><%= sprintf("%.2f", entry.straight_time) %> Hours</td>
       <td class="right"><%= sprintf("%.2f", entry.over_time) %> Hours</td>
       <td class="right"><%= sprintf("%.2f", entry.hours) %> Hours</td>
@@ -40,6 +42,7 @@
   <tr>
     <th colspan="3">&nbsp;</th>
     <th class="right">$<%= sprintf("%.2f", @job_sheet.total_per_diem) %></th>
+    <th class="right"><%= sprintf("%.2f", @job_sheet.total_lunch_time) %> Hours</th>
     <th class="right"><%= sprintf("%.2f", @job_sheet.total_straight_time) %> Hours</th>
     <th class="right"><%= sprintf("%.2f", @job_sheet.total_over_time) %> Hours</th>
     <th class="right"><%= sprintf("%.2f", @job_sheet.total_hours) %> Hours</th>

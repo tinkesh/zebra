@@ -25,13 +25,9 @@
 <hr />
 
 <h3>Tasks</h3>
-<p>Fill out a detailed list of what you did today. You will be paid based on the difference between "Clock In" and "Clock Out".</p>
+<p>Fill out a detailed summary of what you did today.</p>
 
 <table>
-<tr>
-<td><b><%= form.label :started_at, "Clock In" %></b><br />
-<%= form.datetime_select :started_at, :minute_step => 15 %></td>
-</tr>
 <tr>
 <td colspan="2"><hr /></td>
 </tr>
@@ -47,17 +43,43 @@
 <td><b><%= form.label :lunch, "Lunch Break" %></b></td>
 <td><%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false, :selected => "30") %></td>
 </tr>
-<tr>
-<td><b><%= form.label :completed_at, "Clock Out" %></b><br />
-<td><%= form.datetime_select :completed_at, :include_blank => true %></td>
-</tr>
 </table>
 
 <hr />
 
 <h3>Users</h3>
-<p>Adjust time for each person on the job. If everyone worked the full day, you do not need to make any changes. If a person did not work at all, adjust their drop down to the blank selection.</p>
-
-<% form.fields_for :time_entries do |builder| %>
-  <%= render 'time_entries_fields', :form => builder %>
-<% end %>
+<p>Select the Clock In / Clock Out entries that should be included with this time sheet. Note that the paid Time will be reduced by the Lunch Break length.</p>
+<%- if @entries -%>
+<table>
+  <tr>
+    <th>&nbsp;</th>
+    <th>Name</th>
+    <th class="right">Clock In</th>
+    <th class="right">Clock Out</th>
+    <th class="right">S/T</th>
+    <th class="right">O/T</th>
+    <th class="right">T/T</th>
+    <th class="right">Rate</th>
+    <th>Note</th>
+  </tr>
+  <%- @entries.each do |entry| -%>
+  <tr class="<%= cycle 'even', 'odd' %>">
+    <td>
+      <%- if entry.clock_in && entry.clock_out && entry.active && entry.time_sheet_id == nil -%>
+        <%= check_box_tag "time_entry_ids[]", entry.id, :checked => true -%>
+      <%- else %>
+        <%= check_box_tag "user", "active", false, :disabled => true -%>
+      <%- end -%>
+    </td>
+    <td><%= entry.user.name %></td>
+    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
+    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
+    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
+    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
+    <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>
+    <td class="right">$<%= sprintf("%.2f", entry.rate) %></td>
+    <td><%= entry.note %></td>
+  </tr>
+  <%- end -%>
+</table>
+<%- end -%>

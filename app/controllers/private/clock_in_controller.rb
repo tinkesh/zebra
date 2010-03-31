@@ -4,15 +4,12 @@ class Private::ClockInController < ApplicationController
   # filter_access_to :all, :context => :admin
 
   def new
-    @entries = []
-    @clocked_in_ids = []
     @job = Job.find(params[:job_id])
     @job.started_on = Time.now
-    @time = Time.now
     @clock_in = TimeEntry.new
     @not_clocked_in = TimeEntry.find(:all, :conditions => {:job_id => @job.id, :clock_out => nil, :active => nil})
     build_clocked_in_ids(@job.id)
-    @page_title = "Clock In"
+    @page_title = "Clock In to " + @job.label
   end
 
   def create

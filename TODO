@@ -1,7 +1,4 @@
-- Clock: @time_sheet integration
-- Clock: @time_sheet cannot be created if empty clock_out values
-- Clock: @time_sheet cannot be created if no clock_in values
-- Clock: @time_sheet edit warning if clock_out values
+- Add: @time_sheet integration for new clock in / clock out
 - Clock: @clock_in / @clock_out mobile
 - Fix: @foo.create page_title, support data
 - Add: Validate "if @obj.relationship? : @obj.relationship.attribute end"

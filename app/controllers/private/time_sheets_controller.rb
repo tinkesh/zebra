@@ -17,7 +17,7 @@ class Private::TimeSheetsController < ApplicationController
     @job = Job.find(params[:job_id])
     @time_sheet = TimeSheet.new
     load_time_sheet_supporting_data
-    @page_title = "New Time Sheet"
+    @page_title = "New Time Sheet for " + @job.label
   end
 
   def create
@@ -28,6 +28,13 @@ class Private::TimeSheetsController < ApplicationController
     load_time_sheet_supporting_data
     @page_title = "New Time Sheet"
     if @time_sheet.save
+      if params[:time_entry_ids]
+        params[:time_entry_ids].each do |entry|
+          @entry = TimeEntry.find(entry)
+          @entry.time_sheet_id = @time_sheet.id
+          @entry.save
+        end
+      end
       flash[:notice] = "Time Sheet created!"
       redirect_to private_home_url
     else
@@ -62,6 +69,7 @@ class Private::TimeSheetsController < ApplicationController
 private
 
   def load_time_sheet_supporting_data
+    @entries = TimeEntry.find(:all, :conditions => { :job_id => @job.id, :time_sheet_id => nil}, :include => :user)
     @time_task_categories = TimeTaskCategory.find(:all, :order => :position)
     @time_note_categories = TimeNoteCategory.find(:all, :order => :position)
     @lunch_selections = [30, 45, 60, 75, 90, 105, 120]

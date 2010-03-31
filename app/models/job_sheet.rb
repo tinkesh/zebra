@@ -7,10 +7,14 @@ class JobSheet < ActiveRecord::Base
 
   def total_equipment_cost
     total = []
-    self.job.equipments.each do |equipment|
-      total << equipment.cost(self.id)
+    if self.job.equipments.length != 0
+      self.job.equipments.each do |equipment|
+        total << equipment.cost(self.id)
+      end
+      total.inject {|sum, n| sum + n.to_f}
+    else
+      0
     end
-    total.inject {|sum, n| sum + n.to_f}
   end
 
   def total_per_diem
@@ -45,6 +49,16 @@ class JobSheet < ActiveRecord::Base
       end
     end
     total.inject {|sum, n| sum + n.to_f}
+  end
+
+  def total_lunch_time
+    total = []
+    self.time_sheets.each do |time_sheet|
+      time_sheet.time_entries.each do |entry|
+        total << entry.time_sheet.lunch
+      end
+    end
+    total.inject {|sum, n| sum + n.to_f} / 60
   end
 
   def total_hours
@@ -88,19 +102,27 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_yellow_paint
-    total = []
-    self.gun_sheets.each do |gun|
-      total << gun.solid_y1 + gun.solid_y2 + gun.solid_y3 + gun.skip_y1 + gun.skip_y2 + gun.skip_y3
+    if self.gun_sheets.length != 0
+      total = []
+      self.gun_sheets.each do |gun|
+        total << gun.solid_y1 + gun.solid_y2 + gun.solid_y3 + gun.skip_y1 + gun.skip_y2 + gun.skip_y3
+      end
+      total.inject {|sum, n| sum + n.to_f}
+    else
+      0
     end
-    total.inject {|sum, n| sum + n.to_f}
   end
 
   def total_white_paint
-    total = []
-    self.gun_sheets.each do |gun|
-      total << gun.solid_w4 + gun.solid_w5 + gun.solid_w6 + gun.solid_w7 + gun.skip_w4 + gun.skip_w5 + gun.skip_w6 + gun.skip_w7
+    if self.gun_sheets.length != 0
+      total = []
+      self.gun_sheets.each do |gun|
+        total << gun.solid_w4 + gun.solid_w5 + gun.solid_w6 + gun.solid_w7 + gun.skip_w4 + gun.skip_w5 + gun.skip_w6 + gun.skip_w7
+      end
+      total.inject {|sum, n| sum + n.to_f}
+    else
+      0
     end
-    total.inject {|sum, n| sum + n.to_f}
   end
 
   def total_beads

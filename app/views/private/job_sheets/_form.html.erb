@@ -8,7 +8,6 @@
       <li>
         <label>
         <%= check_box_tag "job_sheet[time_sheet_ids][]", time_sheet.id, @job_sheet.time_sheets.include?(time_sheet) %>
-        <%= time_sheet.started_at.strftime("%B %d, %Y") %> -
         Time Sheet #<%= time_sheet.id %>
         </label>
       </li>

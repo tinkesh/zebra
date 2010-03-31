@@ -22,7 +22,7 @@ class Private::GunSheetsController < ApplicationController
       @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
     end
 
-    @page_title = "New Gun Sheet for Job ##{@job.id} #{@job.name}"
+    @page_title = "New Gun Sheet for " + @job.label
   end
 
   def create

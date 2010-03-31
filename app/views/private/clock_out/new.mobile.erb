@@ -1,0 +1,56 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<% form_tag :controller => 'private/clock_out', :action => "create", :method => :post do -%>
+
+  <% unless @clocked_in.empty? %>
+
+    <h3>Clock Out Users</h3>
+    <ul>
+    <% for entry in @entries %>
+      <li>
+      <% if entry.active -%>
+        <% if entry.clock_out -%>
+          <%= check_box_tag "user", "active", false, :disabled => true %>
+          <%= entry.user.name %> (already Clocked In &amp; Clocked Out, but no time sheet)
+        <% else -%>
+          <%= check_box_tag "users[]", entry.user.id, :checked => true %>
+          <%= entry.user.name %>
+        <% end -%>
+      <% else -%>
+        <%= check_box_tag "user", "active", false, :disabled => true %>
+        <%= entry.user.name %> (not Clocked In)
+      <% end -%>
+      </li>
+    <% end -%>
+    </ul>
+
+    <%= hidden_field :entries, :clock_out, :value => @time %>
+    <%= hidden_field :entries, :job_id, :value => @job.id %>
+
+    <hr>
+
+    <p>Clock Out at...<br>
+      <%= datetime_select 'job', :started_on, { :twelve_hour => true, :minute_step => 15, :discard_year => true } %></p>
+
+      <p>
+        After Clock Out...<br>
+        <label><%= radio_button_tag "navigate", "show_job", :checked => true %> Take me to the Job</label><br>
+        <label><%= radio_button_tag "navigate", "new_time_sheet" %> Add a Time Sheet</label><br>
+        <label><%= radio_button_tag "navigate", "clock_in" %> Clock In users</label><br>
+        <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out additional users</label>
+      </p>
+
+    <p><%= submit_tag "Clock Out Selected Users" %></p>
+
+  <% else %>
+
+  <p>There are no users clocked in to this job. <%= link_to "Clock In now", {:controller => "private/clock_in", :action => "new", :job_id => @job.id} %>.</p>
+  <% end %>
+
+<% end -%>
