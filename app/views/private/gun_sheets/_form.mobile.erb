@@ -28,8 +28,9 @@
   <td><%= form.text_field "sides", :size => "20" %></td>
   </tr>
   <tr>
-  <td><%= form.radio_button :is_new_construction, "true" %> New Construction</td>
-  <td><%= form.radio_button :is_new_construction, "false" %> Repaint</td>
+  <td colspan="2">
+  <%= form.radio_button :is_new_construction, "true" %> New Construction
+  <%= form.radio_button :is_new_construction, "false" %> Repaint</td>
   </tr>
   <tr>
     <td colspan="2"><hr /></td>
@@ -40,11 +41,11 @@
   </tr>
   <tr>
   <td><%= form.label :started_at, "Started at:" %></td>
-  <td><%= form.time_select :started_at %></td>
+  <td><%= form.time_select :started_at, :twelve_hour => true %></td>
   </tr>
   <tr>
   <td><%= form.label :completed_at, "Completed at:" %></td>
-  <td><%= form.time_select :completed_at %></td>
+  <td><%= form.time_select :completed_at, :twelve_hour => true %></td>
   </tr>
 </table>
 
@@ -54,46 +55,46 @@
 
 <table>
   <tr>
-    <td>Solid Y-1: <%= form.text_field "solid_y1", :size => "5" %></td>
+    <td><b>Solid Y-1:</b> <%= form.text_field "solid_y1", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Skip Y-1: <%= form.text_field "skip_y1", :size => "5" %></td>
+    <td><b>Skip Y-1:</b> <%= form.text_field "skip_y1", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Solid Y-2: <%= form.text_field "solid_y2", :size => "5" %></td>
+    <td><b>Solid Y-2:</b> <%= form.text_field "solid_y2", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Skip Y-2: <%= form.text_field "skip_y2", :size => "5" %></td>
+    <td><b>Skip Y-2:</b> <%= form.text_field "skip_y2", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Solid Y-3: <%= form.text_field "solid_y3", :size => "5" %></td>
+    <td><b>Solid Y-3:</b> <%= form.text_field "solid_y3", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Skip Y-3: <%= form.text_field "skip_y3", :size => "5" %></td>
+    <td><b>Skip Y-3:</b> <%= form.text_field "skip_y3", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Solid W-4: <%= form.text_field "solid_w4", :size => "5" %></td>
+    <td><b>Solid W-4:</b> <%= form.text_field "solid_w4", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Skip W-4: <%= form.text_field "skip_w4", :size => "5" %></td>
+    <td><b>Skip W-4:</b> <%= form.text_field "skip_w4", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Solid W-5: <%= form.text_field "solid_w5", :size => "5" %></td>
+    <td><b>Solid W-5:</b> <%= form.text_field "solid_w5", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Skip W-5: <%= form.text_field "skip_w5", :size => "5" %></td>
+    <td><b>Skip W-5:</b> <%= form.text_field "skip_w5", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Solid W-6: <%= form.text_field "solid_w6", :size => "5" %></td>
+    <td><b>Solid W-6:</b> <%= form.text_field "solid_w6", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Skip W-6: <%= form.text_field "skip_w6", :size => "5" %></td>
+    <td><b>Skip W-6:</b> <%= form.text_field "skip_w6", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Solid W-7: <%= form.text_field "solid_w7", :size => "5" %></td>
+    <td><b>Solid W-7:</b> <%= form.text_field "solid_w7", :size => "5" %></td>
   </tr>
   <tr>
-    <td>Skip W-7: <%= form.text_field "skip_w7", :size => "5" %></td>
+    <td><b>Skip W-7:</b> <%= form.text_field "skip_w7", :size => "5" %></td>
   </tr>
   <tr>
     <td colspan="2"><hr />

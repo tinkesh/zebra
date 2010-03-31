@@ -5,7 +5,7 @@
 
 <div class="span-6 append-bottom">
   <br>
-  <%= form.radio_button :is_new_construction, "true" %> New Construction 
+  <%= form.radio_button :is_new_construction, "true" %> New Construction
   <%= form.radio_button :is_new_construction, "false" %> Repaint
 </div>
 
@@ -52,12 +52,12 @@
 
 <div class="span-6 append-bottom">
   <%= form.label :started_at, "Started at" %><br>
-  <%= form.time_select :started_at %>
+  <%= form.time_select :started_at, :twelve_hour => true %>
 </div>
 
 <div class="span-6 append-bottom">
   <%= form.label :completed_at, "Completed at" %><br>
-  <%= form.time_select :completed_at %>
+  <%= form.time_select :completed_at, :twelve_hour => true %>
 </div>
 
 <hr>
