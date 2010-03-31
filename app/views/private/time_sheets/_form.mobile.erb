@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <td><%= form.label :note, "Per Diem" %></td>
-    <td><%= form.radio_button "per_diem", true %> Yes<br>
+    <td><%= form.radio_button "per_diem", true %> Yes
     <%= form.radio_button "per_diem", false, :checked => true %> No</td>
   </tr>
   <tr>
@@ -37,9 +37,6 @@
 <% end %>
 
 <tr>
-<td colspan="2"><hr /></td>
-</tr>
-<tr>
 <td><b><%= form.label :lunch, "Lunch Break" %></b></td>
 <td><%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false, :selected => "30") %></td>
 </tr>
@@ -59,7 +56,6 @@
     <th class="right">S/T</th>
     <th class="right">O/T</th>
     <th class="right">T/T</th>
-    <th class="right">Rate</th>
     <th>Note</th>
   </tr>
   <%- @entries.each do |entry| -%>
@@ -77,7 +73,6 @@
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
     <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
     <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>
-    <td class="right">$<%= sprintf("%.2f", entry.rate) %></td>
     <td><%= entry.note %></td>
   </tr>
   <%- end -%>

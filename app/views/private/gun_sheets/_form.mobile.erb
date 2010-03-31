@@ -4,10 +4,6 @@
   <td><%= form.select (:client_id, @clients.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
   </tr>
   <tr>
-  <td><%= form.label :job_id, "Job:" %></td>
-  <td><%= form.select (:job_id, @jobs.map {|u| ["Job ##{u.id}",u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
-  </tr>
-  <tr>
   <td><%= form.label :note, "Note:" %></td>
   <td><%= form.text_field "note", :size => "20" %></td>
   </tr>
@@ -17,7 +13,7 @@
   </tr>
   <tr>
     <td><%= form.label :location_name, "Custom Location" %></td>
-    <td><%= form.text_field "location_name", :class => "span-6" %></td>
+    <td><%= form.text_field "location_name", :size => "20" %></td>
   </tr>
   <tr>
   <td><%= form.label :control_section, "Control Section:" %></td>

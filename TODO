@@ -1,5 +1,3 @@
-- Add: @time_sheet integration for new clock in / clock out
-- Clock: @clock_in / @clock_out mobile
 - Fix: @foo.create page_title, support data
 - Add: Validate "if @obj.relationship? : @obj.relationship.attribute end"
 - Fix: Add $ to Job Quantities view when an admin
@@ -34,6 +32,8 @@ POST LAUNCH
 - Add: >15hr work day worming to kwame@
 - Add: can submit a time sheet with no hours except perdiem/gas/hotel
 
+x 2010-03-30 Add: @time_sheet integration for new clock in / clock out
+x 2010-03-30 Add: @clock_in / @clock_out mobile
 x 2010-03-30 Add: Clock_out redirects
 x 2010-03-30 Add: @clock_in redirects
 x 2010-03-30 Add: New Dashboard interface
