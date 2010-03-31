@@ -1,6 +1,3 @@
-TUESDAY
-- Clock: @clock_in redirects
-- Clock: @clock_in#new notes when a user is clocked in
 - Clock: @time_sheet integration
 - Clock: @time_sheet cannot be created if empty clock_out values
 - Clock: @time_sheet cannot be created if no clock_in values
@@ -10,11 +7,10 @@ TUESDAY
 - Add: Validate "if @obj.relationship? : @obj.relationship.attribute end"
 - Fix: Add $ to Job Quantities view when an admin
 - Add: Printer Friendly views
+- Add: Roles
 - Add: Permissions
 - Add: Validations
 - Fix: Bead is 600/g per KM of lines in @job_sheet#production
-
-WEDNESDAY
 - Add: Email notifications
 - Add: Table Versioning
 - Add: Exception Notification
@@ -23,6 +19,7 @@ WEDNESDAY
 - Add: Search
 
 POST LAUNCH
+- Add: @clock_in#new display clock in time a user is clocked in at
 - Add: Event Log
 - Add: @obj.locked?
 - Add: @obj.selectable?
@@ -40,6 +37,8 @@ POST LAUNCH
 - Add: >15hr work day worming to kwame@
 - Add: can submit a time sheet with no hours except perdiem/gas/hotel
 
+x 2010-03-30 Add: Clock_out redirects
+x 2010-03-30 Add: @clock_in redirects
 x 2010-03-30 Add: New Dashboard interface
 x 2010-03-30 Add: ActiveRecord cookie store
 x 2010-03-30 Fix: Liters not Meters for @job_sheet#production

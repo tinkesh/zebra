@@ -8,7 +8,7 @@
 
 <% form_tag :controller => 'private/clock_in', :action => "create", :method => :post do -%>
 
-<p>You will Clock In to <b><%= job_label(@job) %></b> at <b><%= @time.strftime('%H:%M') %></b>.</p>
+<p><%= job_label(@job) %></p>
 
 <table>
   <tr>
@@ -25,7 +25,6 @@
       <%= text_field_tag "users[][note]" %>
       <%= hidden_field_tag "users[][user_id]", user.id %>
       <%= hidden_field_tag "users[][job_id]", @job.id %>
-      <%= hidden_field_tag "users[][clock_in]", Time.now %>
       <%= hidden_field_tag "users[][rate]", user.rate %>
       <%= hidden_field_tag "users[][bank_overtime_hours]", user.bank_overtime_hours %>
     </td>
@@ -42,12 +41,17 @@
 
   <hr>
 <% unless @clocked_in_ids.length == @job.users.length %>
+  <p>Clock In at <%= datetime_select 'job', :started_on, { :twelve_hour => true, :minute_step => 15, :discard_year => true } %></p>
+
   <ul class="jobs">
+    <li>After Clock In...</li>
     <li><label class="show"><%= radio_button_tag "navigate", "show_job", :checked => true %> Take me to the Job</label></li>
     <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_in" %> Clock In additional users</label></li>
     <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out users</label></li>
   </ul>
   <p><%= submit_tag "Clock In Selected Users" %></p>
+<% else %>
+  <p>All assigned users are already clocked in. <%= link_to "Clock Out now", {:controller => "private/clock_out", :action => "new", :job_id => @job.id} %>.</p>
 <% end %>
 
 <% end -%>

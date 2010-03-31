@@ -8,28 +8,44 @@
 
 <% form_tag :controller => 'private/clock_out', :action => "create", :method => :post do -%>
 
+  <p><%= job_label(@job) %></p>
+
   <% unless @clocked_in.empty? %>
 
-    <% if @not_clocked_in %>
-      <h3>Users who have not yet Clocked In</h3>
-      <ul>
-      <% for entry in @not_clocked_in %>
-        <li><%= entry.user.name %></li>
-      <% end %>
-      </ul>
-    <% end %>
-
-    <h3>Clock Out</h3>
+    <h3>Clock Out Users</h3>
     <ul>
-    <% for entry in @clocked_in %>
-      <li><%= check_box_tag "users[]", entry.user.id, :checked => true %> <%= entry.user.name %></li>
-    <% end %>
+    <% for entry in @entries %>
+      <li>
+      <% if entry.active -%>
+        <% if entry.clock_out -%>
+          <%= check_box_tag "user", "active", false, :disabled => true %>
+          <%= entry.user.name %> (already Clocked In &amp; Clocked Out, but no time sheet)
+        <% else -%>
+          <%= check_box_tag "users[]", entry.user.id, :checked => true %>
+          <%= entry.user.name %>
+        <% end -%>
+      <% else -%>
+        <%= check_box_tag "user", "active", false, :disabled => true %>
+        <%= entry.user.name %> (not Clocked In)
+      <% end -%>
+      </li>
+    <% end -%>
     </ul>
 
     <%= hidden_field :entries, :clock_out, :value => @time %>
     <%= hidden_field :entries, :job_id, :value => @job.id %>
 
-    <p>You will Clock Out of <b><%= job_label(@job) %></b> at <b><%= @time.strftime('%H:%M') %></b>.</p>
+    <p>Clock Out at <%= time_select 'job', :started_on, { :twelve_hour => true, :minute_step => 15} %></p>
+
+    <hr>
+
+    <ul class="jobs">
+      <li>After Clock Out...</li>
+      <li><label class="show"><%= radio_button_tag "navigate", "show_job", :checked => true %> Take me to the Job</label></li>
+      <li><label class="new-inline"><%= radio_button_tag "navigate", "new_time_sheet" %> Add a Time Sheet</label></li>
+      <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_in" %> Clock In users</label></li>
+      <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out additional users</label></li>
+    </ul>
 
     <p><%= submit_tag "Clock Out Selected Users" %></p>
 
