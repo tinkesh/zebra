@@ -1,36 +1,28 @@
 <ol id="menu">
-  <% authenticated_only do %>
-    <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
-
+  <% authenticated_only do -%>
+      <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
     <% if permitted_to? :manage, :private_jobs -%>
       <li><%= active_link_to 'Jobs on Hand', private_jobs_path, :active => { :when => :self_only }  %></li>
     <% end -%>
-
     <% if permitted_to? :read, :private_time_sheets -%>
       <li><%= active_link_to 'Time Sheets', private_time_sheets_path %></li>
     <% end %>
-
     <% if permitted_to? :read, :private_load_sheets -%>
       <li><%= active_link_to 'Load Sheets', private_load_sheets_path %></li>
     <% end -%>
-
     <% if permitted_to? :read, :private_gun_sheets -%>
       <li><%= active_link_to 'Gun Sheets', private_gun_sheets_path %></li>
     <% end -%>
-
     <% if permitted_to? :read, :private_job_sheets -%>
       <li><%= active_link_to 'Job Sheets', private_job_sheets_path %></li>
     <% end -%>
-
     <% if permitted_to? :manage, :users -%>
       <li><%= active_link_to 'Users', users_path %></li>
     <% end -%>
-
     <% if permitted_to? :manage, :private -%>
       <li><%= active_link_to 'Settings', private_settings_path %></li>
     <% end -%>
-
     <li id="logout"><%= link_to "Logout", user_session_path, :method => :delete %></li>
-  <% end %>
+  <% end -%>
   <li>&nbsp;</li>
 </ol>

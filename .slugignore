@@ -1,0 +1,4 @@
+*.psd
+test
+spec
+db/development.sqlite3

@@ -1,0 +1,7 @@
+body { background: #fff; }
+#header { display: none; }
+#sidebar { display: none; }
+#breadcrumb { display: none; }
+.span-6 { float: left; width: 25%; }
+.span-10 { float: left; width: 50%; }
+hr { display: none; }
