@@ -1,12 +1,39 @@
 authorization do
-  role :guest do
-    #has_permission_on :controller, :to => [:index, :show ]
-  end
 
   role :admin do
-    has_permission_on :private, :to => [:index, :settings, :navigate]
-    has_permission_on [:users, :careers, :contacts, :clients], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
-    has_permission_on :private_directory, :to => :index
-    has_permission_on :private_equipments, :to => :all
+    includes :office
+    includes :foreman
+    has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
   end
+
+  role :office do
+    includes :crewman
+    has_permission_on :private, :to => :settings
+    has_permission_on [:private_clients, :private_completions, :private_costs, :private_equipments,
+                       :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private], :to => :manage
+
+    has_permission_on [:private_jobs, :private_job_sheets], :to => [:manage]
+    has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :read
+  end
+
+  role :foreman do
+    includes :crewman
+    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets,
+                       :private_gun_sheets, :private_load_sheets], :to => [:create, :read]
+    has_permission_on [:private_jobs], :to => [:read]
+  end
+
+  role :crewman do
+    has_permission_on :private, :to => [:index, :navigate]
+    has_permission_on :private_directory, :to => :index
+    has_permission_on :private_job, :to => :show
+  end
+end
+
+privileges do
+  privilege :manage, :includes => [:create, :read, :update, :delete]
+  privilege :read, :includes => [:index, :show]
+  privilege :create, :includes => :new
+  privilege :update, :includes => :edit
+  privilege :delete, :includes => :destroy
 end

@@ -1,6 +1,7 @@
 class Private::JobsController < ApplicationController
 
   layout "private"
+  filter_access_to :all
 
   def index
     @jobs = Job.find(:all)
@@ -8,8 +9,11 @@ class Private::JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
-    @page_title = "Showing " + @job.label
+      @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
+      @page_title = "Showing " + @job.label
+    unless @job.users.include?(current_user)
+      redirect_to '/admin'
+    end
   end
 
   def new

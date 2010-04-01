@@ -1,4 +1,9 @@
 <ul>
-  <li><%= link_to "Edit Time Sheet", edit_private_time_sheet_path(@time_sheet) %></li>
-  <li><%= link_to "Show Job", private_job_path(@time_sheet.job_id) %></li>
+  <% if permitted_to? :edit, :private_time_sheets -%>
+    <li><%= link_to "Edit Time Sheet", edit_private_time_sheet_path(@time_sheet) %></li>
+  <% end %>
+  <% if permitted_to? :show, :private_jobs -%>
+    <li><%= link_to "Show Job", private_job_path(@time_sheet.job_id) %></li>
+  <% end %>
 </ul>
+

@@ -1,7 +1,7 @@
 class Private::ClockInController < ApplicationController
 
   layout "private"
-  # filter_access_to :all, :context => :admin
+  filter_access_to :all
 
   def new
     @job = Job.find(params[:job_id])

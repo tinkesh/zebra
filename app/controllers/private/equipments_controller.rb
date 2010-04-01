@@ -1,7 +1,7 @@
 class Private::EquipmentsController < ApplicationController
 
   layout "private"
-  # filter_access_to :all
+  filter_access_to :all
 
   def index
     @equipments = Equipment.find(:all, :order => "name ASC")

@@ -1,7 +1,7 @@
 class Private::TimeTaskCategoriesController < ApplicationController
 
   layout "private"
-  # filter_access_to :all, :context => :admin
+  filter_access_to :all
 
   def index
     @time_task_categories = TimeTaskCategory.find(:all, :order => "position ASC")

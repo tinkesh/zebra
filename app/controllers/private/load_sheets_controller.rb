@@ -1,7 +1,7 @@
 class Private::LoadSheetsController < ApplicationController
 
   layout "private"
-  # filter_access_to :all, :context => :admin
+  filter_access_to :all
 
   def index
     @load_sheets = LoadSheet.find(:all)

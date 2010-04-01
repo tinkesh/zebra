@@ -26,7 +26,7 @@ class TimeSheet < ActiveRecord::Base
   end
 
   def total_straight_time
-    total = []
+    total = [0]
     self.time_entries.each do |entry|
       total << entry.straight_time
     end
@@ -34,7 +34,7 @@ class TimeSheet < ActiveRecord::Base
   end
 
   def total_over_time
-    total = []
+    total = [0]
     self.time_entries.each do |entry|
       total << entry.over_time
     end
@@ -42,7 +42,7 @@ class TimeSheet < ActiveRecord::Base
   end
 
   def total_lunch_time
-    total = []
+    total = [0]
     self.time_entries.each do |entry|
       total << entry.time_sheet.lunch
     end
@@ -50,7 +50,7 @@ class TimeSheet < ActiveRecord::Base
   end
 
   def total_hours
-    total = []
+    total = [0]
     self.time_entries.each do |entry|
       total << entry.hours
     end

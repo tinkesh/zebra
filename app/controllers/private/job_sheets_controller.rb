@@ -1,7 +1,7 @@
 class Private::JobSheetsController < ApplicationController
 
   layout "private"
-  # filter_access_to :all
+  filter_access_to :all
 
   def index
     @job_sheets = JobSheet.find(:all)

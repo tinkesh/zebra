@@ -1,7 +1,7 @@
 class Private::TimeSheetsController < ApplicationController
 
   layout "private"
-  # filter_access_to :all, :context => :admin
+  filter_access_to :all
 
   def index
     @time_sheets = TimeSheet.find(:all, :include => [:job, :time_entries])
@@ -17,6 +17,7 @@ class Private::TimeSheetsController < ApplicationController
     @job = Job.find(params[:job_id])
     @time_sheet = TimeSheet.new
     load_time_sheet_supporting_data
+    5.times { @time_sheet.time_tasks.build }
     @page_title = "New Time Sheet for " + @job.label
   end
 
@@ -63,7 +64,7 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.find(params[:id])
     @time_sheet.destroy
     flash[:notice] = 'Time Sheet deleted!'
-    redirect_to private_home_url
+    redirect_to private_time_sheets_url
   end
 
 private
@@ -73,7 +74,6 @@ private
     @time_task_categories = TimeTaskCategory.find(:all, :order => :position)
     @time_note_categories = TimeNoteCategory.find(:all, :order => :position)
     @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
-    5.times { @time_sheet.time_tasks.build }
   end
 
 end

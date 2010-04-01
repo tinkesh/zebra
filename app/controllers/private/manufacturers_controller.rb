@@ -1,7 +1,7 @@
 class Private::ManufacturersController < ApplicationController
 
   layout "private"
-  # filter_access_to :all
+  filter_access_to :all
 
   def index
     @manufacturers = Manufacturer.find(:all, :order => "name ASC")

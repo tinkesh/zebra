@@ -1,7 +1,7 @@
 class Private::TimeNoteCategoriesController < ApplicationController
 
   layout "private"
-  # filter_access_to :all, :context => :admin
+  filter_access_to :all
 
   def index
     @time_note_categories = TimeNoteCategory.find(:all, :order => "position ASC")

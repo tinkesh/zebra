@@ -1,7 +1,7 @@
 class Private::CompletionsController < ApplicationController
 
   layout "private"
-  # filter_access_to :all
+  filter_access_to :all
 
   def index
     @completions = Completion.find(:all, :order => "name ASC")

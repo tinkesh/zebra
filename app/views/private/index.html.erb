@@ -1,16 +1,26 @@
 <div class="span-8">
-  <h2>Active Jobs</h2>
+  <h2>Jobs on Hand</h2>
 
 <% form_tag :controller => 'private', :action => "navigate" do -%>
 
   <p><%= select_tag 'job_id', options_from_collection_for_select(@jobs, 'id', 'label') %></p>
 
   <ul class="jobs">
-    <li><label class="show"><%= radio_button_tag "navigate", "show_job" %> Show Job</label></li>
-    <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_in" %> Clock In</label></li>
-    <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label></li>
+    <% if permitted_to? :show, :private_job -%>
+      <li><label class="show"><%= radio_button_tag "navigate", "show_job" %> Show Job</label></li>
+    <% end %>
+    <% if permitted_to? :create, :private_clock_in -%>
+      <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_in" %> Clock In</label></li>
+    <% end %>
+    <% if permitted_to? :create, :private_clock_out -%>
+      <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label></li>
+    <% end %>
+      <% if permitted_to? :create, :private_time_sheets -%>
     <li><label class="new-inline"><%= radio_button_tag "navigate", "new_time_sheet" %> New Time Sheet</label></li>
-    <li><label class="new-inline"><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label></li>
+    <% end %>
+    <% if permitted_to? :create, :private_gun_sheets -%>
+      <li><label class="new-inline"><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label></li>
+    <% end %>
   </ul>
 
   <p><%= submit_tag "Go to Page" %></p>
@@ -20,7 +30,7 @@
 </div>
 
 <div class="span-9 last">
-  <h2>History</h2>
+  <h2>Event Log</h2>
 </div>
 
 <hr>

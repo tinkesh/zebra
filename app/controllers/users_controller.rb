@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
 
   layout "private"
-  filter_resource_access
-  
+  filter_access_to :all
+
   def index
     @users = User.all
     @page_title = "Users"
   end
-  
+
   def new
     @user = User.new
     @page_title = "New User"
   end
-  
+
   def create
     @user = User.new(params[:user])
     params[:user][:role_ids] ||= []
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       render :action => :new
     end
   end
-  
+
   def show
     @user = current_user
     @page_title = "#{@user.first_name} #{@user.last_name} details"
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @page_title = "Edit #{@user.first_name} #{@user.last_name}"
   end
-  
+
   def update
     params[:user][:role_ids] ||= []
     if @user.update_attributes(params[:user])
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:notice] = 'User was deleted.'
-    redirect_to(users_url)  
+    redirect_to(users_url)
   end
-  
+
 end

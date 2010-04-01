@@ -24,9 +24,15 @@
   <tr>
     <td><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></td>
     <td><%= job_label(time_sheet.job) %></td>
-    <td class="right"><%= sprintf("%.2f", time_sheet.total_straight_time) %> Hours</td>
-    <td class="right"><%= sprintf("%.2f", time_sheet.total_over_time) %> Hours</td>
-    <td class="right"><%= sprintf("%.2f", time_sheet.total_hours) %> Hours</td>
+    <td class="right">
+      <%= if time_sheet.total_straight_time != 0 : "#{sprintf('%.2f', time_sheet.total_straight_time)} Hours" else '-' end %>
+    </td>
+    <td class="right">
+      <%= if time_sheet.total_over_time != 0 : "#{sprintf('%.2f', time_sheet.total_over_time)} Hours" else '-' end %>
+    </td>
+    <td class="right">
+      <%= if time_sheet.total_hours != 0 : "#{sprintf('%.2f', time_sheet.total_hours)} Hours" else '-' end %>
+    </td>
     <td class="right"><%= sprintf("%.2f", time_sheet.total_lunch_time) -%> Hours</td>
     <td class="right"><%= if time_sheet.total_per_diem != 0 then sprintf("%.2f", "$#{time_sheet.total_per_diem}") else '-' end -%></td>
     <td class="actions">
