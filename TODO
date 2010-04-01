@@ -7,7 +7,7 @@
 - Add: Pagination
 - Add: Search
 
-POST LAUNCH
+POST LAUNCHheyye
 - X Add: CRUD of @time_entry
 - X Add: @clock_in#new display clock in time a user is clocked in at
 - X Add: User Time Report. Pay Period is the 24th -> 23rd
@@ -27,6 +27,8 @@ POST LAUNCH
 - Add: >15hr work day warning to kwame@
 - Add: can submit a time sheet with no hours except perdiem/gas/hotel
 
+x 2010-04-01 Add: 500 error page
+x 2010-04-01 Add: 404 error page
 x 2010-04-01 Add: Display deployment timestamp
 x 2010-04-01 Add: Amazon S3 backup rake task http://aws.amazon.com/s3/
 x 2010-04-01 Add: Google Analytics
