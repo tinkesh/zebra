@@ -27,6 +27,8 @@ POST LAUNCH
 - Add: >15hr work day worming to kwame@
 - Add: can submit a time sheet with no hours except perdiem/gas/hotel
 
+x 2010-04-01 Add: Amazon S3 backup rake task http://aws.amazon.com/s3/
+x 2010-04-01 Add: Google Analytics
 x 2010-04-01 Add: Exception Notification
 x 2010-04-01 Add: Printer Friendly view for @jobs
 x 2010-03-30 Add: Roles

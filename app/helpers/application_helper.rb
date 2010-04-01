@@ -45,12 +45,4 @@ module ApplicationHelper
     link_to_function(name, h("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"), :class => "new-inline")
   end
 
-  def time_select_tag(name)
-    times = []
-    (00..23).each do |i|
-      (0..3).each { |inc| times << Time.parse("#{i}:#{inc * 15}") }
-    end
-    return select_tag name, options_for_select(times.map{|t| t.strftime('%I:%M%p')})
-  end
-
 end
