@@ -15,6 +15,7 @@ class Private::ManufacturersController < ApplicationController
 
   def create
     @manufacturer = Manufacturer.new(params[:manufacturer])
+    @page_title = "New Manufacturer"
     if @manufacturer.save
       flash[:notice] = "Manufacturer created!"
       redirect_to private_manufacturers_url

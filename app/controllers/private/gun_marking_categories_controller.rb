@@ -15,6 +15,7 @@ class Private::GunMarkingCategoriesController < ApplicationController
 
   def create
     @gun_marking_category = GunMarkingCategory.new(params[:gun_marking_category])
+    @page_title = "New Gun Marking Category"
     if @gun_marking_category.save
       flash[:notice] = "Gun Marking Category created!"
       redirect_to private_gun_marking_categories_url

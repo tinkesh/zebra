@@ -17,10 +17,9 @@
 
   <hr>
 
-  <h3>General Information</h3>
+  <h3>Notes</h3>
   <p>
-    <%= job_label(@job) %>
-    <%= if @job.notes : "<br>Notes: #{@job.notes}" end %>
+    <%= if @job.notes : "#{@job.notes}" else "-" end %>
   </p>
 
   <hr>
@@ -28,7 +27,7 @@
   <h3>Schedule</h3>
   <p>
     Start: <%= @job.started_on %><br>
-    Status: <%= @job.completion.name %><br>
+    Status: <%= if @job.completion : @job.completion.name end %><br>
     Complete: <%= @job.completed_on %>
   </p>
 
@@ -37,16 +36,16 @@
   <h3>Client</h3>
   <p>
     <% if @job.client %>
-      <%= if @job.client.contact    : "#{@job.client.contact}<br>" end %>
-      <%= if @job.client.name       : "#{@job.client.name}<br>" end %>
-      <%= if @job.client.address    : "#{@job.client.address}<br>" end %>
-      <%= if @job.client.city       : "#{@job.client.city}" end %> <%= if @job.client.province : ", #{@job.client.province}" end %>
-      <br>
-      <%= if @job.client.work_phone : "Work: #{@job.client.work_phone}<br>" end %>
-      <%= if @job.client.cell_phone : "Cell: #{@job.client.cell_phone}<br>" end %>
-      <%= if @job.client.fax        : "Fax: #{@job.client.fax}<br>" end %>
-      <%= if @job.client.email      : "Email: #{@job.client.work_phone}<br>" end %>
-      <% if @job.client.notes : "<br>#{@job.client.notes}" end %>
+      <%= unless @job.client.contact.blank?    : "#{@job.client.contact}" end %>
+      <%= unless @job.client.name.blank?       : "<br>#{@job.client.name}" end %>
+      <%= unless @job.client.address.blank?    : "<br>#{@job.client.address}" end %>
+      <%= unless @job.client.city.blank?       : "<br>#{@job.client.city}" end %>
+      <%= unless @job.client.province.blank? : ", #{@job.client.province}" end %>
+      <%= unless @job.client.work_phone.blank? : "<br>Work: #{@job.client.work_phone}" end %>
+      <%= unless @job.client.cell_phone.blank? : "<br>Cell: #{@job.client.cell_phone}" end %>
+      <%= unless @job.client.fax.blank?         : "<br>Fax: #{@job.client.fax}" end %>
+      <%= unless @job.client.email.blank?      : "<br>Email: #{@job.client.email}" end %>
+      <%= unless @job.client.notes.blank?       : "<br>#{@job.client.notes}" end %>
     <% end %>
   </p>
 

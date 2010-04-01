@@ -4,7 +4,7 @@ class Private::TimeSheetsController < ApplicationController
   # filter_access_to :all, :context => :admin
 
   def index
-    @time_sheets = TimeSheet.find(:all)
+    @time_sheets = TimeSheet.find(:all, :include => [:job, :time_entries])
     @page_title = "Time Sheets"
   end
 
@@ -22,11 +22,11 @@ class Private::TimeSheetsController < ApplicationController
 
   def create
     @job = Job.find(params[:job_id])
+    load_time_sheet_supporting_data
+    @page_title = "New Time Sheet"
     @time_sheet = @job.time_sheets.build(params[:time_sheet])
     if params[:time_sheet][:fuel].blank? : @time_sheet.fuel = 0 end
     if params[:time_sheet][:hotel].blank? : @time_sheet.hotel = 0 end
-    load_time_sheet_supporting_data
-    @page_title = "New Time Sheet"
     if @time_sheet.save
       if params[:time_entry_ids]
         params[:time_entry_ids].each do |entry|
@@ -73,16 +73,6 @@ private
     @time_task_categories = TimeTaskCategory.find(:all, :order => :position)
     @time_note_categories = TimeNoteCategory.find(:all, :order => :position)
     @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
-    @time_selections = Array.new
-
-    36.times do |i|
-      @time_selections << -(9 - (i * 0.25))
-    end
-
-    37.times do |i|
-      @time_selections << +(i * 0.25)
-    end
-
     5.times { @time_sheet.time_tasks.build }
   end
 

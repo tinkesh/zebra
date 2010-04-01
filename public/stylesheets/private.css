@@ -102,7 +102,7 @@ tr.even td { background: #ededed; }
 #controls a.button {  }
 .rowodd { }
 .roweven { background: #EDEDED; }
-.sortcol { cursor: pointer; padding-right: 20px; background-repeat: no-repeat; background-position: right center;}
+.sortcol { cursor: pointer; background-repeat: no-repeat; background-position: right center;}
 .sortasc { background-image: url('/images/up.gif'); }
 .sortdesc { background-image: url('/images/down.gif'); }
 .sortdesc, .sortasc { }

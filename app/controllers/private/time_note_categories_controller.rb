@@ -15,6 +15,7 @@ class Private::TimeNoteCategoriesController < ApplicationController
 
   def create
     @time_note_category = TimeNoteCategory.new(params[:time_note_category])
+    @page_title = "New Time Sheet Note Category"
     if @time_note_category.save
       flash[:notice] = "Time Sheet Note Category created!"
       redirect_back_or_default private_time_note_categories_url

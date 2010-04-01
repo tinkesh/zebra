@@ -12,9 +12,11 @@
   <tr>
     <th class="span-3">Name</th>
     <th>Job</th>
-    <th>Average Hours</th>
-    <th>Lunch Break</th>
-    <th>Per Diem</th>
+    <th class="right">S/T</th>
+    <th class="right">O/T</th>
+    <th class="right">T/T</th>
+    <th class="right">Lunch Break</th>
+    <th class="right">Per Diem</th>
     <th class="actions nosort"></th>
   </tr>
 
@@ -22,15 +24,11 @@
   <tr>
     <td><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></td>
     <td><%= job_label(time_sheet.job) %></td>
-    <td><%= time_sheet.hours -%></td>
-    <td><%= time_sheet.lunch -%> Minutes</td>
-    <td>
-      <%- if time_sheet.per_diem -%>
-      Yes ($<%= time_sheet.per_diem_rate -%>)
-      <%- else %> 
-      No
-      <%- end -%>
-    </td>
+    <td class="right"><%= sprintf("%.2f", time_sheet.total_straight_time) %> Hours</td>
+    <td class="right"><%= sprintf("%.2f", time_sheet.total_over_time) %> Hours</td>
+    <td class="right"><%= sprintf("%.2f", time_sheet.total_hours) %> Hours</td>
+    <td class="right"><%= sprintf("%.2f", time_sheet.total_lunch_time) -%> Hours</td>
+    <td class="right"><%= if time_sheet.total_per_diem != 0 then sprintf("%.2f", "$#{time_sheet.total_per_diem}") else '-' end -%></td>
     <td class="actions">
     <%= link_to 'Delete', private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_time_sheet_path(time_sheet), :class => "edit" %>

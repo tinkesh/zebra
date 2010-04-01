@@ -15,12 +15,46 @@ class TimeSheet < ActiveRecord::Base
   before_create :record_per_diem_rate
   before_create :record_fuel_rate
 
-  def hours
-    unless self.completed_at.blank?
-      ((self.completed_at.to_time - self.started_at.to_time - (self.lunch * 60)) / 3600).round(2)
-    else
-      "Not Marked Complete"
+  def total_per_diem
+    total = [0]
+    if self.per_diem == true
+      self.time_entries.each do |entry|
+        total << entry.time_sheet.per_diem_rate
+      end
     end
+    total.inject {|sum, n| sum + n.to_f}
+  end
+
+  def total_straight_time
+    total = []
+    self.time_entries.each do |entry|
+      total << entry.straight_time
+    end
+    total.inject {|sum, n| sum + n.to_f}
+  end
+
+  def total_over_time
+    total = []
+    self.time_entries.each do |entry|
+      total << entry.over_time
+    end
+    total.inject {|sum, n| sum + n.to_f}
+  end
+
+  def total_lunch_time
+    total = []
+    self.time_entries.each do |entry|
+      total << entry.time_sheet.lunch
+    end
+    total.inject {|sum, n| sum + n.to_f} / 60
+  end
+
+  def total_hours
+    total = []
+    self.time_entries.each do |entry|
+      total << entry.hours
+    end
+    total.inject {|sum, n| sum + n.to_f}
   end
 
   def record_per_diem_rate

@@ -22,6 +22,8 @@ class Private::LoadSheetsController < ApplicationController
 
   def create
     @load_sheet = LoadSheet.new(params[:load_sheet])
+    load_load_sheet_supporting_data
+    @page_title = "New Load Sheet"
     if @load_sheet.save
       flash[:notice] = "Load Sheet created!"
       redirect_to private_load_sheets_url

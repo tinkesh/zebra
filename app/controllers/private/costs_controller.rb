@@ -15,6 +15,7 @@ class Private::CostsController < ApplicationController
 
   def create
     @cost = Cost.new(params[:cost])
+    @page_title = "New Cost"
     if @cost.save
       flash[:notice] = "Cost created!"
       redirect_to private_costs_url

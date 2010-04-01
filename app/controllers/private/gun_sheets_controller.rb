@@ -28,12 +28,7 @@ class Private::GunSheetsController < ApplicationController
   def create
     @job = Job.find(params[:job_id])
     @gun_sheet = @job.gun_sheets.build(params[:gun_sheet])
-
     load_gun_sheet_supporting_data
-
-    @gun_marking_categories.each do |category|
-      @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
-    end
 
     if @gun_sheet.save
       flash[:notice] = "Gun Sheet created!"

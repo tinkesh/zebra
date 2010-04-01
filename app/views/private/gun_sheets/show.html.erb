@@ -100,7 +100,7 @@
     </tr>
     <% @gun_sheet.gun_markings.each do |marking| %>
       <tr class="<%= cycle('even', 'odd') %>">
-        <td><%= marking.gun_marking_category.name %></td>
+        <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %></td>
         <td><%= marking.amount %></td>
       </tr>
     <% end %>

@@ -15,6 +15,7 @@ class Private::ClientsController < ApplicationController
 
   def create
     @client = Client.new(params[:client])
+    @page_title = "New Client"
     if @client.save
       flash[:notice] = "Client created!"
       redirect_to private_clients_url

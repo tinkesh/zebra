@@ -9,7 +9,7 @@ class Private::JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
-    @page_title = "Showing Job ##{@job.id}"
+    @page_title = "Showing " + @job.label
   end
 
   def new
@@ -21,6 +21,8 @@ class Private::JobsController < ApplicationController
 
   def create
     @job = Job.new(params[:job])
+    @page_title = "New Job"
+    load_job_supporting_data
     if @job.save
       flash[:notice] = "Job created!"
       redirect_to private_jobs_url

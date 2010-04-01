@@ -20,10 +20,6 @@
       <tr>
         <th colspan="2"><%= job_label(@time_sheet.job) %></td>
       </tr>
-      <tr class="even">
-        <td>Worked On</td>
-        <td class="right"><%= @time_sheet.started_at.strftime("%B %d, %Y") %></td>
-      </tr>
       <tr class="odd">
         <td>Created On</td>
         <td class="right"><%= @time_sheet.created_at.strftime("%B %d, %Y") %></td>
@@ -70,12 +66,6 @@
       <th>Time</th>
       <th>Task</th>
     </tr>
-
-    <tr>
-      <td><%= @time_sheet.started_at.strftime("%H:%M") %></td>
-      <td>Clocked In</td>
-    </tr>
-
     <% @time_sheet.time_tasks.each do |task| %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td><%= task.happened_at.strftime("%H:%M") %></td>
@@ -89,13 +79,9 @@
       </tr>
     <% end %>
     <tr>
-      <td><%= @time_sheet.completed_at.strftime("%H:%M") %></td>
-      <td>Clocked Out</td>
-    </tr>
-    <tr>
       <td colspan="2" class="total">
         Lunch: <%= @time_sheet.lunch %> Minutes<br>
-        Total: <%= @time_sheet.hours %> Hours
+        Total: <%= @time_sheet.total_hours %> Hours
       </td>
     </tr>
   </table>
@@ -106,21 +92,26 @@
   <table>
     <tr>
       <th>User</th>
-      <th>Time Adjustment</th>
-      <th>Worked Hours</th>
+      <th class="right">Clock In</th>
+      <th class="right">Clock Out</th>
+      <th class="right">S/T</th>
+      <th class="right">O/T</th>
+      <th class="right">T/T</th>
     </tr>
     <% @time_entries_total = 0 %>
     <% @time_sheet.time_entries.each do |entry| %>
-    <% @time_entries_total += @time_sheet.hours + entry.time %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td><%= entry.user.name %></td>
-        <td><%= entry.time %></td>
-        <td><%= @time_sheet.hours + entry.time %></td>
+        <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
+        <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
+        <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
+        <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
+        <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>
       </tr>
     <% end %>
     <tr>
-      <td colspan="3" class="total">
-        Total: <%= @time_entries_total %> Hours
+      <td colspan="6" class="total">
+        Total: Hours
       </td>
     </tr>
   </table>

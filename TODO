@@ -1,5 +1,3 @@
-- Fix: @foo.create page_title, support data
-- Add: Validate "if @obj.relationship? : @obj.relationship.attribute end"
 - Fix: Add $ to Job Quantities view when an admin
 - Add: Printer Friendly views
 - Add: Roles
@@ -14,6 +12,7 @@
 - Add: Search
 
 POST LAUNCH
+- Add: CRUD of @time_entry
 - Add: @clock_in#new display clock in time a user is clocked in at
 - Add: Event Log
 - Add: @obj.locked?
@@ -32,6 +31,7 @@ POST LAUNCH
 - Add: >15hr work day worming to kwame@
 - Add: can submit a time sheet with no hours except perdiem/gas/hotel
 
+x 2010-03-30 Fix: @foo.create page_title, support data
 x 2010-03-30 Add: @time_sheet integration for new clock in / clock out
 x 2010-03-30 Add: @clock_in / @clock_out mobile
 x 2010-03-30 Add: Clock_out redirects

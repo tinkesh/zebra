@@ -20,7 +20,7 @@
 
 <% @materials.each do |material| %>
   <tr>
-    <td><%= material.manufacturer.name %></td>
+    <td><%= if material.manufacturer : material.manufacturer.name end %></td>
     <td><%= material.batch %></td>
     <td><%= material.category %></td>
     <td class="actions">

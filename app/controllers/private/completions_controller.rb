@@ -15,6 +15,7 @@ class Private::CompletionsController < ApplicationController
 
   def create
     @completion = Completion.new(params[:completion])
+    @page_title = "New Completion Level"
     if @completion.save
       flash[:notice] = "Completion Level created!"
       redirect_to private_completions_url

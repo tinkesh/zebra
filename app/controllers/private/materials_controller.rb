@@ -16,6 +16,8 @@ class Private::MaterialsController < ApplicationController
 
   def create
     @material = Material.new(params[:material])
+    @page_title = "New Material"
+    @manufacturers = Manufacturer.find(:all)
     if @material.save
       flash[:notice] = "Material created!"
       redirect_back_or_default private_materials_url

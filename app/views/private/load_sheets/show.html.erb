@@ -42,16 +42,16 @@
       </tr>
     </table>
   </div>
-  
+
   <div class="span-10 last">
     <h3>Comments</h3>
     <p>
       <%= @load_sheet.note %>
     </p>
   </div>
-  
+
   <hr>
-  
+
   <h3>Load Sheet Entries</h3>
   <table>
     <tr>
@@ -63,20 +63,22 @@
       <th>Amount</th>
     </tr>
     <% @load_sheet.load_entries.each do |entry| %>
+    <% if entry %>
       <tr class="<%= cycle('even', 'odd') %>">
         <td><%= entry.category %></td>
-        <td><%= entry.material.manufacturer.name %></td>
-        <td><%= entry.material.batch %></td>
+        <td><%= if entry.material && entry.material.manufacturer : entry.material.manufacturer.name end %></td>
+        <td><%= if entry.material : entry.material.batch end %></td>
         <td><%= entry.tote_number %></td>
         <td><%= entry.tote_quantity %></td>
         <td><%= entry.amount %> <%= if entry.category == "Bead" : "KG" else "L" end %></td>
       </tr>
+      <% end %>
     <% end %>
 
   </table>
 
   <hr>
-  
+
   <h3>Dips</h3>
   <table>
     <tr>
@@ -95,5 +97,5 @@
       <td><%= @load_sheet.white_dip_end %> cm</td>
     </tr>
   </table>
-  
+
 </div>
