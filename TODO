@@ -27,6 +27,7 @@ POST LAUNCH
 - Add: >15hr work day warning to kwame@
 - Add: can submit a time sheet with no hours except perdiem/gas/hotel
 
+x 2010-04-01 Add: Display deployment timestamp
 x 2010-04-01 Add: Amazon S3 backup rake task http://aws.amazon.com/s3/
 x 2010-04-01 Add: Google Analytics
 x 2010-04-01 Add: Exception Notification

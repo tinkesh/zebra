@@ -16,7 +16,6 @@ Rails::Initializer.run do |config|
   config.gem 'declarative_authorization', :source => 'http://www.gemcutter.org'
   config.gem 'authlogic', :source => 'http://www.gemcutter.org'
   config.gem 'wirble'
-  config.gem 'grit'
   config.gem 'active_link_to'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
