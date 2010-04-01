@@ -8,8 +8,9 @@
 - Add: Search
 
 POST LAUNCH
-- Add: CRUD of @time_entry
-- Add: @clock_in#new display clock in time a user is clocked in at
+- X Add: CRUD of @time_entry
+- X Add: @clock_in#new display clock in time a user is clocked in at
+- X Add: User Time Report. Pay Period is the 24th -> 23rd
 - Add: Event Log
 - Add: @obj.locked?
 - Add: @obj.selectable?
@@ -19,12 +20,11 @@ POST LAUNCH
 - Add: My Time Sheets / Gun Sheets / Load Sheets
 - Add: Material Report
 - Add: CRUD customer from @job#new
-- Add: User Time Report. Pay Period is the 24th -> 23rd
 - Add: View of every clocked in user
 - Add: Email destination config
 - Add: OT warning at 160 hours to notices@
 - Add: OT warning at 190 hours to notices@
-- Add: >15hr work day worming to kwame@
+- Add: >15hr work day warning to kwame@
 - Add: can submit a time sheet with no hours except perdiem/gas/hotel
 
 x 2010-04-01 Add: Amazon S3 backup rake task http://aws.amazon.com/s3/

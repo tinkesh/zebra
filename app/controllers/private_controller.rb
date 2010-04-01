@@ -2,10 +2,13 @@ class PrivateController < ApplicationController
 
   layout "private"
   filter_access_to :all
+  require 'grit'
+  include Grit
 
   def index
     @jobs = current_user.jobs
     @page_title = "Dashboard"
+    @repo = Repo.new(Rails.root + '.git')
   end
 
   def navigate
