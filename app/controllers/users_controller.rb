@@ -18,15 +18,16 @@ class UsersController < ApplicationController
     params[:user][:role_ids] ||= []
     if @user.save
       flash[:notice] = "Account registered!"
-      redirect_back_or_default users_url
+      redirect_to users_url
     else
       render :action => :new
     end
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @page_title = "#{@user.first_name} #{@user.last_name} details"
+    @user.revert_to(params[:version].to_i) if params[:version]
   end
 
   def edit
@@ -35,6 +36,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     params[:user][:role_ids] ||= []
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
@@ -48,6 +50,14 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:notice] = 'User was deleted.'
     redirect_to(users_url)
+  end
+
+  def revert
+    @user = User.find(params[:id])
+    @user.revert_to!(params[:version].to_i)
+    @user.save!
+    flash[:notice] = "User reverted!"
+    redirect_to user_url(@user)
   end
 
 end

@@ -17,6 +17,7 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic', :source => 'http://www.gemcutter.org'
   config.gem 'wirble'
   config.gem 'active_link_to'
+  config.gem 'laserlemon-vestal_versions', :lib => 'vestal_versions', :source => 'http://gems.github.com'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

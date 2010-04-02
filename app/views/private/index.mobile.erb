@@ -7,13 +7,23 @@
   <p><%= select_tag 'job_id', options_from_collection_for_select(@jobs, 'id', 'label') %></p>
 
   <p>
-    <label><%= radio_button_tag "navigate", "show_job" %> Show Job</label><br>
-    <label><%= radio_button_tag "navigate", "clock_in" %> Clock In</label><br>
-    <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label><br>
-    <label><%= radio_button_tag "navigate", "new_time_sheet" %> New Time Sheet</label><br>
-    <label><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label>
+     <% if permitted_to? :show, :private_job -%>
+       <label><%= radio_button_tag "navigate", "show_job" %> Show Job</label><br />
+     <% end %>
+     <% if permitted_to? :create, :private_clock_in -%>
+       <label><%= radio_button_tag "navigate", "clock_in" %> Clock In</label><br />
+     <% end %>
+     <% if permitted_to? :create, :private_clock_out -%>
+       <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label><br />
+     <% end %>
+     <% if permitted_to? :create, :private_time_sheets -%>
+       <label><%= radio_button_tag "navigate", "new_time_sheet" %> New Time Sheet</label><br />
+     <% end %>
+     <% if permitted_to? :create, :private_gun_sheets -%>
+       <label><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label><br />
+     <% end %>
   </p>
 
-  <p><%= submit_tag "Go to Page" %></p>
+  <p><%= submit_tag "Submit" %></p>
 
 <% end %>

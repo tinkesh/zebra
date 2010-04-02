@@ -9,7 +9,7 @@
   <body id="mobile">
 
     <%= render :partial => 'menus/private_menu', :layout => false %>
-    
+
     <hr />
 
     <% flash.each do |key, value| -%>
@@ -21,6 +21,10 @@
     <% end %>
 
     <%= yield %>
+    <br />
+    <br />
+    <br />
+    <br />
   </body>
 </html>
 
