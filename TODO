@@ -3,7 +3,6 @@
 - Add: Email notifications
 - Add: Table Versioning for @jobs, @time_sheets, @load_sheets, @gun_sheets, @job_sheets
 
-
 POST LAUNCH
 - X Add: CRUD of @time_entry
 - X Add: @clock_in#new display clock in time a user is clocked in at
