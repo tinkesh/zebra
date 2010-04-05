@@ -34,7 +34,7 @@
       <%= if time_sheet.total_hours != 0 : "#{sprintf('%.2f', time_sheet.total_hours)} Hours" else '-' end %>
     </td>
     <td class="right"><%= sprintf("%.2f", time_sheet.total_lunch_time) -%> Hours</td>
-    <td class="right"><%= if time_sheet.total_per_diem != 0 then sprintf("%.2f", "$#{time_sheet.total_per_diem}") else '-' end -%></td>
+    <td class="right"><%= if time_sheet.total_per_diem != 0 then "$" + sprintf("%.2f", "#{time_sheet.total_per_diem}") else '-' end -%></td>
     <td class="actions">
     <%= link_to 'Delete', private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_time_sheet_path(time_sheet), :class => "edit" %>
