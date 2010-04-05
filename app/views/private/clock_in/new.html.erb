@@ -40,7 +40,7 @@
   <hr>
 <% unless @clocked_in_ids.length == @job.users.length %>
   <p>Clock In at...
-    <br><%= datetime_select 'job', :started_on, { :twelve_hour => true, :minute_step => 15, :discard_year => true } %>
+    <br><%= datetime_select 'job', :started_on, { :minute_step => 15, :discard_year => true } %>
   </p>
 
   <p>After Clock In...<br>

@@ -8,7 +8,6 @@ class Private::ClockOutController < ApplicationController
     @job.started_on = Time.now
     @clocked_in = TimeEntry.find(:all, :conditions => {:job_id => @job.id, :active => true, :time_sheet_id => nil, :clock_out => nil})
     @entries = TimeEntry.find(:all, :conditions => {:job_id => @job.id, :time_sheet_id => nil})
-    @time = Time.now
     @page_title = "Clock Out of " + @job.label
   end
 

@@ -32,10 +32,9 @@
     <% end -%>
     </ul>
 
-    <%= hidden_field :entries, :clock_out, :value => @time %>
     <%= hidden_field :entries, :job_id, :value => @job.id %>
 
-    <p>Clock Out at <%= time_select 'job', :started_on, { :twelve_hour => true, :minute_step => 15} %></p>
+    <p>Clock Out at <br><%= datetime_select 'job', :started_on, { :minute_step => 15, :discard_year => true } %></p>
 
     <hr>
 
