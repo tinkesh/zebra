@@ -1,16 +1,16 @@
-<div class="span-5 append-bottom">
+<div class="span-6 append-bottom">
   <%= form.label :happened_at, "At:" %><br>
-  <%= form.time_select :happened_at, { :twelve_hour => true, :minute_step => 15} %>
+  <%= form.time_select :happened_at, { :minute_step => 15} %>
 </div>
 
-<div class="span-6 append-bottom">
-  <%= form.label :time_task_category_id, "We:" %>
+<div class="span-8 append-bottom">
+  <%= form.label :time_task_category_id, "We:" %><br>
   <%= form.select (:time_task_category_id, @time_task_categories.map {|u| [u.name,u.id]}, :include_blank => true) %>
 </div>
 
-<div class="span-13 last append-bottom">
+<div class="span-10 last append-bottom">
   <%= form.label :note, "Notes:" %>
-  <%= form.text_field :note, :class => "span-13" %>
+  <%= form.text_field :note, :class => "span-10" %>
 </div>
 
 <br class="clear">

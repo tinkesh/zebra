@@ -28,6 +28,7 @@ POST LAUNCH
 - Add: Maintenance page
 - Fix: Add $ to Job Quantities view when an admin
 
+x 2010-04-06 Fix: Remove 12 Hour choice for time
 x 2010-04-06 Add: display all jobs in dashboard if user is an admin
 x 2010-04-02 Add: New Relic RPM web application monitoring
 x 2010-04-02 Add: Update last_login when viewing dashboard

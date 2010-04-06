@@ -1,12 +1,6 @@
-<div class="span-6 append-bottom">
+<div class="span-12 append-bottom">
   <%= form.label :client_id, "Client" %><br>
   <%= form.select (:client_id, @clients.map {|u| [u.name,u.id]}, :include_blank => true) %>
-</div>
-
-<div class="span-6 append-bottom">
-  <br>
-  <%= form.radio_button :is_new_construction, "true" %> New Construction
-  <%= form.radio_button :is_new_construction, "false" %> Repaint
 </div>
 
 <div class="span-12 last append-bottom">
@@ -16,17 +10,23 @@
 
 <br class="clear">
 
-<div class="span-6 append-bottom">
+<div class="span-12 append-bottom">
   <%= form.label :job_location_id, "Location" %><br>
   <%= form.select (:job_location_id, @job_locations.map {|u| [u.name,u.id]}, :include_blank => false) %>
 </div>
 
-<div class="span-6 append-bottom">
+<div class="span-12 last append-bottom">
   <%= form.label :location_name, "Custom Location" %><br>
-  <%= form.text_field "location_name", :class => "span-6" %>
+  <%= form.text_field "location_name", :class => "span-12" %>
 </div>
 
 <br class="clear">
+
+<div class="span-6 append-bottom">
+  <br>
+  <%= form.radio_button :is_new_construction, "true" %> New Construction
+  <%= form.radio_button :is_new_construction, "false" %> Repaint
+</div>
 
 <div class="span-6 append-bottom">
   <%= form.label :control_section, "Control Section" %><br>
@@ -52,12 +52,12 @@
 
 <div class="span-6 append-bottom">
   <%= form.label :started_at, "Started at" %><br>
-  <%= form.time_select :started_at, :twelve_hour => true %>
+  <%= form.time_select :started_at %>
 </div>
 
 <div class="span-6 append-bottom">
   <%= form.label :completed_at, "Completed at" %><br>
-  <%= form.time_select :completed_at, :twelve_hour => true %>
+  <%= form.time_select :completed_at %>
 </div>
 
 <hr>
