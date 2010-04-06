@@ -8,6 +8,10 @@
   </ul>
 <% end %>
 
+<% content_for :submenu do %>
+  <%= render :partial => 'menus/jobs_menu', :layout => false %>
+<% end %>
+
 <% form_for [:private, @job, @gun_sheet] do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>

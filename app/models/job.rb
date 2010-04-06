@@ -1,5 +1,6 @@
 class Job < ActiveRecord::Base
 
+
   belongs_to :client
   belongs_to :completion
   has_many :time_sheets
@@ -15,6 +16,7 @@ class Job < ActiveRecord::Base
   accepts_nested_attributes_for :job_markings, :reject_if => lambda { |a| a[:amount].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :job_locations, :reject_if => lambda { |a| a[:name].blank? },  :allow_destroy => true
 
+  versioned
 
   def label
     label = 'Job #' + self.id.to_s

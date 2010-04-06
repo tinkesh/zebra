@@ -1,10 +1,16 @@
-<ul>
+<ol>
+  <% if permitted_to? :show, :private_gun_sheets -%>
+    <li><%= active_link_to "Show", private_gun_sheet_path(@gun_sheet), :active => { :when => :self_only }  %></li>
+  <% end %>
   <% if permitted_to? :edit, :private_gun_sheets -%>
-    <li><%= link_to "Edit Gun Sheet", edit_private_gun_sheet_path(@gun_sheet) %></li>
+    <li><%= active_link_to "Edit", edit_private_gun_sheet_path(@gun_sheet) %></li>
   <% end %>
   <% if @gun_sheet.job %>
     <% if permitted_to? :read, :private_jobs -%>
-      <li><%= link_to "Show Job", private_job_path(@gun_sheet.job_id) %></li>
+      <li><%= active_link_to "Show Job", private_job_path(@gun_sheet.job_id) %></li>
+    <% end %>
+    <% if permitted_to? :create, :private_gun_sheets -%>
+      <li><%= active_link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => @gun_sheet.job_id) %></li>
     <% end %>
   <% end %>
-</ul>
+</ol>

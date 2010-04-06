@@ -8,13 +8,11 @@
   </ul>
 <% end %>
 
-<div class="span-6 append-1">
-  <div id="sidebar" class="clearfix">
-    <%= render :partial => 'menus/jobs_menu', :layout => false %>
-    <br class="clear">
-    <br class="clear">
-  </div><!-- sidebar -->
+<% content_for :submenu do %>
+  <%= render :partial => 'menus/jobs_menu', :layout => false %>
+<% end %>
 
+<div class="span-6 append-1">
   <h3>Notes</h3>
   <p>
     <%= if @job.notes : "#{@job.notes}" else "-" end %>

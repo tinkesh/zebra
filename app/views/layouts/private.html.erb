@@ -28,6 +28,12 @@
   </div><!-- container -->
 </div><!-- header -->
 
+<div id="submenu">
+  <div class="container">
+    <%= yield :submenu %>
+  </div>
+</div>
+
 <div id="content">
   <div class="container">
     <%= yield :breadcrumb %>

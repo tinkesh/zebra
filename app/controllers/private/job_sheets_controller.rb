@@ -16,7 +16,7 @@ class Private::JobSheetsController < ApplicationController
   def new
     @job = Job.find(params[:job_id])
     @job_sheet = JobSheet.new
-    @page_title = "New Job Sheet"
+    @page_title = "New Job Sheet for #{@job.label}"
   end
 
   def create

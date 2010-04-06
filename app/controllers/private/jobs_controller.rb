@@ -4,31 +4,32 @@ class Private::JobsController < ApplicationController
   filter_access_to :all
 
   def index
-    @jobs = Job.find(:all)
+    @jobs = Job.find(:all, :include => [:client, :completion])
     @page_title = "Jobs on Hand"
   end
 
   def show
-      @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
-      @page_title = "Showing " + @job.label
-    unless @job.users.include?(current_user)
+    @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
+    unless @job.users.include?(current_user) || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       redirect_to '/admin'
     end
+    @page_title = @job.label
+    @job.revert_to(params[:version].to_i) if params[:version]
   end
 
   def new
     @job = Job.new
     1.times { @job.job_markings.build }
-    @page_title = "New Job"
+    @page_title = "New Job on Hand"
     load_job_supporting_data
   end
 
   def create
     @job = Job.new(params[:job])
-    @page_title = "New Job"
+    @page_title = "New Job on Hand"
     load_job_supporting_data
     if @job.save
-      flash[:notice] = "Job created!"
+      flash[:notice] = "Job on Hand created!"
       redirect_to private_jobs_url
     else
       render :action => :new
@@ -37,15 +38,17 @@ class Private::JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
-    @page_title = "Edit Job ##{@job.id}"
+    @page_title = "Edit #{@job.label}"
     load_job_supporting_data
   end
 
   def update
     @job = Job.find(params[:id])
+    params[:job][:user_ids] ||= []
+    params[:job][:equipment_ids] ||= []
     if @job.update_attributes(params[:job])
-      flash[:notice] = "Job updated!"
-      redirect_to private_jobs_url
+      flash[:notice] = "Job on Hand updated!"
+      redirect_to private_job_url(@job)
     else
       render :action => :edit
     end
@@ -54,7 +57,7 @@ class Private::JobsController < ApplicationController
   def destroy
     @job = Job.find(params[:id])
     @job.destroy
-    flash[:notice] = 'Job deleted!'
+    flash[:notice] = 'Job on Hand deleted!'
     redirect_to(private_jobs_url)
   end
 

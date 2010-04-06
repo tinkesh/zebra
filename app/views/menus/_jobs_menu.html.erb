@@ -1,17 +1,20 @@
-<ul>
-  <% if permitted_to? :update, @job -%>
-    <li><%= link_to "Edit Job", edit_private_job_path(@job) %></li>
+<ol>
+  <% if permitted_to? :show, :private_jobs -%>
+    <li><%= active_link_to "Show", private_job_path(@job), :active => { :when => :self_only } %></li>
+  <% end %>
+  <% if permitted_to? :update, :private_jobs -%>
+    <li><%= active_link_to "Edit", edit_private_job_path(@job) %></li>
   <% end %>
   <% if permitted_to? :create, :private_time_sheets -%>
-    <li><%= link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => @job.id) %></li>
-  <% end %>
-  <% if permitted_to? :create, :private_load_sheets -%>
-    <li><%= link_to 'New Load Sheet', new_private_load_sheet_path %></li>
+    <li><%= active_link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => @job.id) %></li>
   <% end %>
   <% if permitted_to? :create, :private_gun_sheets -%>
-    <li><%= link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => @job.id) %></li>
+    <li><%= active_link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => @job.id) %></li>
   <% end %>
   <% if permitted_to? :create, :private_job_sheets -%>
-    <li><%= link_to 'New Job Sheet', new_private_job_job_sheet_path(:job_id => @job.id) %></li>
+    <li><%= active_link_to 'New Job Sheet', new_private_job_job_sheet_path(:job_id => @job.id) %></li>
   <% end %>
-</ul>
+  <% if permitted_to? :create, :private_jobs -%>
+    <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
+  <% end %>
+</ol>

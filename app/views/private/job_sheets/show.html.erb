@@ -8,6 +8,10 @@
   </ul>
 <% end %>
 
+<% content_for :submenu do %>
+  <%= render :partial => 'menus/job_sheets_menu', :layout => false %>
+<% end %>
+
 <h2><%= job_label(@job_sheet.job) %></h2>
 <p>Time Entries from <b><%= @job_sheet.time_sheets.length %></b> Time Sheets:</p>
 <table>

@@ -10,7 +10,7 @@ class Private::TimeSheetsController < ApplicationController
 
   def show
     @time_sheet = TimeSheet.find(params[:id], :include => [ {:time_tasks => :time_task_category}, :time_entries, :time_note_category])
-    @page_title = "Showing Time Sheet ##{@time_sheet.id}"
+    @page_title = "Time Sheet ##{@time_sheet.id}"
   end
 
   def new

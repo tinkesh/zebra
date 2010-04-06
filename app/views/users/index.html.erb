@@ -6,7 +6,13 @@
   </ul>
 <% end %>
 
-<p id="new"><%= link_to 'New User', new_user_path %></p>
+<% content_for :submenu do %>
+  <% if permitted_to? :manage, :users -%>
+  <ol>
+    <li><%= active_link_to 'New User', new_user_path %></li>
+  </ol>
+  <% end %>
+<% end %>
 
 <table class="sortable">
   <tr>

@@ -8,11 +8,9 @@
   </ul>
 <% end %>
 
-<div class="span-6 append-1">
-  <div id="sidebar">
-    <%= render :partial => 'menus/load_sheets_menu', :layout => false %>
-  </div>
-</div>
+<% content_for :submenu do %>
+  <%= render :partial => 'menus/load_sheets_menu', :layout => false %>
+<% end %>
 
 <div class="span-17 last">
   <div class="span-6 append-1">

@@ -8,6 +8,14 @@
   </ul>
 <% end %>
 
+<% content_for :submenu do %>
+  <% if permitted_to? :create, :private_load_sheets -%>
+  <ol>
+    <li><%= active_link_to 'New Load Sheet', new_private_load_sheet_path %></li>
+  </ol>
+  <% end %>
+<% end %>
+
 <% form_for [:private, @load_sheet] do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>

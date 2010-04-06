@@ -1,0 +1,14 @@
+<ol>
+  <% if permitted_to? :show, :private_job_sheets -%>
+    <li><%= active_link_to "Show", private_job_sheet_path(@job_sheet), :active => { :when => :self_only }  %></li>
+  <% end %>
+  <% if permitted_to? :edit, :private_job_sheets -%>
+    <li><%= active_link_to "Edit", edit_private_job_sheet_path(@job_sheet) %></li>
+  <% end %>
+  <% if permitted_to? :show, :private_jobs -%>
+    <li><%= active_link_to "Show Job", private_job_path(@job_sheet.job_id) %></li>
+  <% end %>
+  <% if permitted_to? :create, :private_job_sheets -%>
+    <li><%= active_link_to "New Job Sheet", new_private_job_job_sheet_path(:job_id => @job_sheet.job_id) %></li>
+  <% end %>
+</ol>

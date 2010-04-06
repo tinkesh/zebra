@@ -6,7 +6,11 @@
   </ul>
 <% end %>
 
-<p id="new"><%= link_to 'New job', new_private_job_path %></p>
+<% content_for :submenu do %>
+  <% if permitted_to? :create, :private_jobs -%>
+    <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
+  <% end %>
+<% end %>
 
 <table class="sortable">
   <tr>

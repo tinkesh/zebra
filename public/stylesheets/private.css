@@ -8,7 +8,7 @@ Logo Yellow F5DF00
 
 /* html */
 html { overflow-y: scroll; } /* always show scrollbar */
-body { background: #F8F8F8; }
+body { background: #F8F8F8; border-top: solid 7px #fcd40d; }
 h1, h2, h3 { }
 p, ul, ol, td, th, label { font-size: 14px; }
 h1 { font-size: 2.5em; }
@@ -36,24 +36,31 @@ a:hover { color: #3344FF; text-decoration: underline; }
 
 /* header */
 #header .container { position: relative; }
-#header { border-top: solid 7px #fcd40d; background: #333; }
-#header ol {  background: #333; list-style-type: none; margin: 0; padding: 0; }
-#header li { margin: 0; padding: 0; display: inline; }
+#header { background: #333; border-top: solid 5px #333; }
+#header ol { background: #333; list-style-type: none; margin: 0; padding: 0; }
+#header li, #submenu li { margin: 0; padding: 0; display: inline; }
 #header a { color: #fff; font-weight: normal; font-size: 14px; text-decoration: none; background: url('/images/header_li_bg.gif') no-repeat; background-position: 5px 50%; padding: 3px 5px 3px 20px; display: inline-block; }
-#header a.active { background: #000 url('/images/header_li_bg.gif') no-repeat; background-position: 5px 50%; color: #fcd40d;}
-#header a:hover { text-decoration: underline; color: #fcd40d; }
+#header a.active { background: #666 url('/images/header_li_bg.gif') no-repeat; background-position: 5px 50%; }
+#header a:hover, #submenu a:hover { text-decoration: underline; color: #fcd40d; }
 #title { position: absolute; top: 10px; left: 20px; font-size: 25px; font-weight: normal; }
 #logout { position: absolute; bottom: 0; right: 5px; }
 
+/* submenu */
+#submenu .container { position: relative; }
+#submenu { background: #666; border-top: solid 5px #666; }
+#submenu ol { list-style-type: none; margin: 0; padding: 0; }
+#submenu a { color: #fff; font-weight: normal; font-size: 13px; text-decoration: none; padding: 1px 8px 1px 8px; display: inline-block; margin: 0  10px 0 0; }
+#submenu a.active { background: #efefef; color: #000; }
 
-/* content */
-#content { border-top: solid 20px #efefef; }
-#content .container { padding: 20px 0 30px 0; position: relative; }
+/* breadcrumb */
 #breadcrumb { list-style-type: none; margin: 0 0 20px 0; position: absolute; top: -20px; left: 4px; font-size: 13px; }
 #breadcrumb li { display: inline; margin-right: .3em; }
 #breadcrumb a { color: #000; }
 #container { position: relative; }
 
+/* content */
+#content { border-top: solid 25px #efefef; }
+#content .container { padding: 20px 0 30px 0; position: relative; }
 
 /* sidebar */
 #sidebar ul { list-style-type: none; margin: 0; padding: 0; background: #333; border-left: solid 7px #fcd40d; }

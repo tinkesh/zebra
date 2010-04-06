@@ -2,7 +2,7 @@
   <% authenticated_only do -%>
       <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
     <% if permitted_to? :manage, :private_jobs -%>
-      <li><%= active_link_to 'Jobs on Hand', private_jobs_path, :active => { :when => :self_only }  %></li>
+      <li><%= active_link_to 'Jobs on Hand', private_jobs_path  %></li>
     <% end -%>
     <% if permitted_to? :read, :private_time_sheets -%>
       <li><%= active_link_to 'Time Sheets', private_time_sheets_path %></li>

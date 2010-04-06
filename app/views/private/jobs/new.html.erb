@@ -8,6 +8,12 @@
   </ul>
 <% end %>
 
+<% content_for :submenu do %>
+  <% if permitted_to? :create, :private_jobs -%>
+    <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
+  <% end %>
+<% end %>
+
 <% form_for @job, :url => private_jobs_path(@job) do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>

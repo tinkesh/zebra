@@ -8,6 +8,10 @@
   </ul>
 <% end %>
 
+<% content_for :submenu do %>
+  <%= render :partial => 'menus/load_sheets_menu', :layout => false %>
+<% end %>
+
 <% form_for [:private, @load_sheet] do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>

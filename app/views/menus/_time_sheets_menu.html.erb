@@ -1,9 +1,14 @@
-<ul>
+<ol>
+  <% if permitted_to? :show, :private_time_sheets -%>
+    <li><%= active_link_to "Show", private_time_sheet_path(@time_sheet), :active => { :when => :self_only }  %></li>
+  <% end %>
   <% if permitted_to? :edit, :private_time_sheets -%>
-    <li><%= link_to "Edit Time Sheet", edit_private_time_sheet_path(@time_sheet) %></li>
+    <li><%= active_link_to "Edit", edit_private_time_sheet_path(@time_sheet) %></li>
   <% end %>
   <% if permitted_to? :show, :private_jobs -%>
-    <li><%= link_to "Show Job", private_job_path(@time_sheet.job_id) %></li>
+    <li><%= active_link_to "Show Job", private_job_path(@time_sheet.job_id) %></li>
   <% end %>
-</ul>
-
+  <% if permitted_to? :create, :private_time_sheets -%>
+    <li><%= active_link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => @time_sheet.job_id) %></li>
+  <% end %>
+</ol>

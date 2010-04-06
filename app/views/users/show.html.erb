@@ -8,20 +8,15 @@
   </ul>
 <% end %>
 
-
-<p>
-  <%= link_to "Edit", edit_user_path(@user) %>
-  | Version <%= @user.version %>
-  <% if @user.version > 1 %>
-    | <%= link_to "Previous version", :version => @user.version-1 %>
+<% content_for :submenu do %>
+  <% if permitted_to? :manage, :users -%>
+  <ol>
+    <li><%= active_link_to 'Show', user_path(@user), :active => { :when => :self_only } %></li>
+    <li><%= active_link_to 'Edit', edit_user_path(@user) %></li>
+    <li><%= active_link_to 'New User', new_user_path %></li>
+  </ol>
   <% end %>
-  <% if params[:version] %>
-    | <%= link_to "Latest version", :version => nil %>
-    | <%= link_to "Revert", revert_user_path(:id => @user.id, :version => @user.version), :method => :put %>
-  <% end %>
-</p>
-
-
+<% end %>
 
 <div class="span-11 append-1">
 <table>

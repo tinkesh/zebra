@@ -1,10 +1,16 @@
-<ul>
+<ol>
+  <% if permitted_to? :read, :private_load_sheets -%>
+    <li><%= active_link_to "Show", private_load_sheet_path(@load_sheet), :active => { :when => :self_only } %></li>
+  <% end %>
   <% if permitted_to? :edit, :private_load_sheets -%>
-    <li><%= link_to "Edit Load Sheet", edit_private_load_sheet_path(@load_sheet) %></li>
+    <li><%= active_link_to "Edit", edit_private_load_sheet_path(@load_sheet) %></li>
   <% end %>
   <% if @load_sheet.job %>
     <% if permitted_to? :read, :private_jobs -%>
-      <li><%= link_to "Show Job", private_job_path(@load_sheet.job_id) %></li>
+      <li><%= active_link_to "Show Job", private_job_path(@load_sheet.job_id) %></li>
     <% end %>
   <% end %>
-</ul>
+  <% if permitted_to? :create, :private_load_sheets -%>
+    <li><%= active_link_to 'New Load Sheet', new_private_load_sheet_path %></li>
+  <% end %>
+</ol>
