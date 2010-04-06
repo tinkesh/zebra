@@ -162,7 +162,7 @@
       <% if @job_sheet.total_yellow_paint != 0 %>
         <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint) %> m</td>
         <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint / 38.2) %> l</td>
-        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_yellow_paint * @job_sheet.material_rate)) %></td>
+        <td class="right">$<%= sprintf("%.2f", ((@job_sheet.total_yellow_paint / 38.2) * @job_sheet.material_rate)) %></td>
       <% else %>
         <td class="right">-</td>
         <td class="right">-</td>
@@ -173,8 +173,8 @@
       <td>White Paint</td>
       <% if @job_sheet.total_white_paint != 0 %>
         <td class="right"><%= sprintf("%.2f", @job_sheet.total_white_paint) %> m</td>
-        <td class="right"><%= sprintf("%.2f", @job_sheet.total_white_paint / 38.2) %> l</td>
-        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_white_paint * @job_sheet.material_rate)) %></td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_white_paint / 38.2) %> L</td>
+        <td class="right">$<%= sprintf("%.2f", ((@job_sheet.total_white_paint / 38.2) * @job_sheet.material_rate)) %></td>
       <% else %>
         <td class="right">-</td>
         <td class="right">-</td>

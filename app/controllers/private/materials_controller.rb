@@ -20,7 +20,7 @@ class Private::MaterialsController < ApplicationController
     @manufacturers = Manufacturer.find(:all)
     if @material.save
       flash[:notice] = "Material created!"
-      redirect_back_or_default private_materials_url
+      redirect_to private_materials_url
     else
       render :action => :new
     end
