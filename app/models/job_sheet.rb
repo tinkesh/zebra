@@ -6,7 +6,7 @@ class JobSheet < ActiveRecord::Base
 
 
   def total_equipment_cost
-    total = []
+    total = [0]
     if self.job.equipments.length != 0
       self.job.equipments.each do |equipment|
         total << equipment.cost(self.id)
@@ -18,7 +18,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_per_diem
-    total = []
+    total = [0]
     self.time_sheets.each do |time_sheet|
       time_sheet.time_entries.each do |entry|
         if entry.time_sheet.per_diem == true
@@ -32,7 +32,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_straight_time
-    total = []
+    total = [0]
     self.time_sheets.each do |time_sheet|
       time_sheet.time_entries.each do |entry|
         total << entry.straight_time
@@ -42,7 +42,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_over_time
-    total = []
+    total = [0]
     self.time_sheets.each do |time_sheet|
       time_sheet.time_entries.each do |entry|
         total << entry.over_time
@@ -52,7 +52,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_lunch_time
-    total = []
+    total = [0]
     self.time_sheets.each do |time_sheet|
       time_sheet.time_entries.each do |entry|
         total << entry.time_sheet.lunch
@@ -62,7 +62,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_hours
-    total = []
+    total = [0]
     self.time_sheets.each do |time_sheet|
       time_sheet.time_entries.each do |entry|
         total << entry.hours
@@ -72,7 +72,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_hotel
-    total = []
+    total = [0]
     self.time_sheets.each do |time_sheet|
       total << time_sheet.hotel
     end
@@ -80,7 +80,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_fuel
-    total = []
+    total = [0]
     self.time_sheets.each do |time_sheet|
       total << time_sheet.fuel_cost
     end
@@ -92,7 +92,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_cost
-    total = []
+    total = [0]
     self.time_sheets.each do |time_sheet|
       time_sheet.time_entries.each do |entry|
         total << entry.cost
@@ -103,7 +103,7 @@ class JobSheet < ActiveRecord::Base
 
   def total_yellow_paint
     if self.gun_sheets.length != 0
-      total = []
+      total = [0]
       self.gun_sheets.each do |gun|
         total << gun.solid_y1 + gun.solid_y2 + gun.solid_y3 + gun.skip_y1 + gun.skip_y2 + gun.skip_y3
       end
@@ -115,7 +115,7 @@ class JobSheet < ActiveRecord::Base
 
   def total_white_paint
     if self.gun_sheets.length != 0
-      total = []
+      total = [0]
       self.gun_sheets.each do |gun|
         total << gun.solid_w4 + gun.solid_w5 + gun.solid_w6 + gun.solid_w7 + gun.skip_w4 + gun.skip_w5 + gun.skip_w6 + gun.skip_w7
       end
@@ -130,7 +130,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_markings(category)
-    total = []
+    total = [0]
     self.gun_sheets.each do |gun|
       gun.gun_markings.each do |marking|
         if marking.gun_marking_category_id == category.id : total << marking.amount end
