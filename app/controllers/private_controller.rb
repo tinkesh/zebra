@@ -4,7 +4,11 @@ class PrivateController < ApplicationController
   filter_access_to :all
 
   def index
-    @jobs = current_user.jobs
+    if current_user.role_symbols.include?(:admin)
+      @jobs = Job.find(:all)
+    else
+      @jobs = current_user.jobs
+    end
     @page_title = "Dashboard"
   end
 

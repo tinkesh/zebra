@@ -1,4 +1,4 @@
-<div class="span-6 append-1">
+<div class="span-7 append-1">
 
   <div class="append-bottom">
     <%= form.label :client_id %><br>
@@ -7,12 +7,12 @@
 
   <div class="append-bottom">
     <%= form.label :name, "Project Name" %><br>
-    <%= form.text_field "name", :class => "span-6" %>
+    <%= form.text_field "name", :class => "span-7" %>
   </div>
 
   <div class="append-bottom">
     <%= form.label :started_on, "Started On" %><br>
-    <%= form.date_select :started_on, :class => "span-6" %>
+    <%= form.date_select :started_on %>
   </div>
 
   <div class="append-bottom">
@@ -22,17 +22,17 @@
 
   <div class="append-bottom">
     <%= form.label :completed_on, "Completed On" %><br>
-    <%= form.date_select :completed_on, :class => "span-6", :include_blank => true %>
+    <%= form.date_select :completed_on, :include_blank => true %>
   </div>
 
   <div class="append-bottom">
     <%= form.label :notes, "Notes" %><br>
-    <%= form.text_area "notes", :class => "span-6", :rows => 4 %>
+    <%= form.text_area "notes", :class => "span-7", :rows => 4 %>
   </div>
 
 </div>
 
-<div class="span-6 append-1 append-bottom">
+<div class="span-5 append-1 append-bottom">
   <%= form.label :user_ids, "Assign Users" %><br>
   <ul class="habtm">
   <% for user in @users %>
@@ -62,30 +62,23 @@
 
 <hr>
 
-<div class="span-12">
-  <% form.fields_for :job_markings do |builder| %>
-    <%= render 'job_marking_fields', :form => builder %>
-  <% end %>
+<% form.fields_for :job_markings do |builder| %>
+  <%= render 'job_marking_fields', :form => builder %>
+<% end %>
 
-  <p><%= link_to_add_fields "Add Another Marking Quantity", form, :job_markings %></p>
+<p><%= link_to_add_fields "Add Another Marking Quantity", form, :job_markings %></p>
 
-</div>
+<hr>
 
-<div class="span-12 last">
-  <div class="append-bottom">
-    <%= form.label :location_name, "General Location Name" %><br>
-    <%= form.text_field "location_name", :class => "span-6" %>
-  </div>
+<p>
+  <%= form.label :location_name, "General Location Name" %><br>
+  <%= form.text_field "location_name", :class => "span-14" %>
+</p>
 
-  <% form.fields_for :job_locations do |builder| %>
-    <%= render 'job_location_fields', :form => builder %>
-  <% end %>
+<% form.fields_for :job_locations do |builder| %>
+  <%= render 'job_location_fields', :form => builder %>
+<% end %>
 
-  <br class="clear">
-
-  <p><%= link_to_add_fields "Add Another Location", form, :job_locations %></p>
-
-</div>
-
+<p><%= link_to_add_fields "Add Another Location", form, :job_locations %></p>
 
 <hr>

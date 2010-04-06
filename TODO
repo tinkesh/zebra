@@ -5,6 +5,11 @@ POST LAUNCH
 - X Add: CRUD of @time_entry
 - X Add: @clock_in#new display clock in time a user is clocked in at
 - X Add: User Time Report. Pay Period is the 24th -> 23rd
+- X Add: Material Report
+- Fix: Remove sidebar from print views
+- Fix: forms with dropdowns are too wide
+- Add: Quantity of Totes to @material
+- Add: Count down Tote usage for @material, disable when hit
 - Add: Pagination
 - Add: Search
 - Add: Event Log
@@ -13,18 +18,17 @@ POST LAUNCH
 - Add: @job_sheet submenu
 - Add: Remember last selected job from dashboard
 - Add: My Time Sheets / Gun Sheets / Load Sheets
-- Add: Material Report
 - Add: CRUD customer from @job#new
 - Add: View of every clocked in user
 - Add: Email addresses in Settings
-- Add: OT warning at 160 hours to notices@
-- Add: OT warning at 190 hours to notices@
+- Add: OT warning at 160 hours within pay period to notices@
+- Add: OT warning at 190 hours within pay period to notices@
 - Add: >15hr work day warning to kwame@
 - Fix: Time sheet with no hours does not display per_diem in @time_sheets#index
 - Add: Maintenance page
 - Fix: Add $ to Job Quantities view when an admin
 
-
+x 2010-04-06 Add: display all jobs in dashboard if user is an admin
 x 2010-04-02 Add: New Relic RPM web application monitoring
 x 2010-04-02 Add: Update last_login when viewing dashboard
 x 2010-04-02 Add: created_by and updated_by
