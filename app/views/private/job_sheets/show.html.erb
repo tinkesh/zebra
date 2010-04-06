@@ -88,7 +88,7 @@
     <tr>
       <td><%= equipment.unit %></td>
       <td><%= equipment.name %></td>
-      <td class="right">$<%= sprintf("%.2f", equipment.rate) %></td>
+      <td class="right">$<%= if equipment.rate : sprintf("%.2f", equipment.rate) else "-" end %></td>
       <td class="right">$<%= sprintf("%.2f", equipment.cost(@job_sheet)) %></td>
     </tr>
   <% end %>
