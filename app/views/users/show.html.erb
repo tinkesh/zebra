@@ -18,6 +18,25 @@
   <% end %>
 <% end %>
 
+<% content_for :versions do %>
+<ol>
+    <li>Version <%= @user.version %> of <%= @user.last_version %></li>
+    <li><%= @user.updated_at.strftime("%Y-%m-%d") %></li>
+  <% if @user.version > 1 %>
+    <li><%= link_to "Older", :version => @user.version-1 %></li>
+  <% else %>
+    <li>Older</li>
+  <% end %>
+  <% if params[:version] %>
+    <li><%= link_to "Newer", :version => nil %></li>
+    <li><%= link_to "Revert", :version => nil %></li>
+  <% else %>
+    <li>Newer</li>
+    <li>Revert</li>
+  <% end %>
+</ol>
+<% end %>
+
 <div class="span-11 append-1">
 <table>
   <tr>
@@ -95,11 +114,11 @@
     </tr>
     <tr>
       <td>Rate</td>
-      <td><%= @user.rate %></td>
+      <td>$<%= @user.rate %></td>
     </tr>
     <tr>
       <td>OT</td>
-      <td><%= @user.bank_overtime_hours %></td>
+      <td><%= if @user.bank_overtime_hours : "Bank" else "Pay Out" end %></td>
     </tr>
   </table>
 </div>

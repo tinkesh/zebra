@@ -20,7 +20,7 @@ class Public::ContactsController < ApplicationController
     respond_to do |format|
       if @contact.save
         flash[:notice] = 'Thank you for your contact submission.'
-        format.html { redirect_to(new_contacts_url) }
+        format.html { redirect_to thankyou_path }
       else
         format.html { render :action => "new" }
       end

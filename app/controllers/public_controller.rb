@@ -10,6 +10,10 @@ class PublicController < ApplicationController
   def about
   end
 
+  def contacts_redirect
+    redirect_to new_contact_path
+  end
+
   def services
   end
 

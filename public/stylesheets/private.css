@@ -53,10 +53,15 @@ a:hover { color: #3344FF; text-decoration: underline; }
 #submenu a.active { background: #efefef; color: #000; }
 
 /* breadcrumb */
-#breadcrumb { list-style-type: none; margin: 0 0 20px 0; position: absolute; top: -20px; left: 4px; font-size: 13px; }
-#breadcrumb li { display: inline; margin-right: .3em; }
-#breadcrumb a { color: #000; }
+#breadcrumb { list-style-type: none; margin: 0 0 0 0; position: absolute; top: -23px; left: 0; color: #666; }
+#breadcrumb li { display: inline; margin-right: 5px; }
+#breadcrumb a { color: #666; }
 #container { position: relative; }
+
+/* versions */
+#versions { position: absolute; top: 0; right: 0; background: #efefef; padding: 0 10px 2px 0; }
+#versions ol { list-style-type: none; margin: 0; padding: 0;}
+#versions li { display: inline; margin-left: 10px;  }
 
 /* content */
 #content { border-top: solid 25px #efefef; }

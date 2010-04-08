@@ -37,6 +37,11 @@
 <div id="content">
   <div class="container">
     <%= yield :breadcrumb %>
+
+    <div id="versions">
+      <%= yield :versions %>
+    </div>
+
     <div id="flash">
 
       <% flash.each do |key, value| -%>

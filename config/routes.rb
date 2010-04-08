@@ -1,8 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
 
   # public forms
-  map.resource :careers,  :controller => "public/careers", :path_names => { :new => "" }
-  map.resource :contacts, :controller => "public/contacts", :path_names => { :new => "" }
+  map.new_career     "careers",        :controller => "public/careers",  :action => "new"
+  map.create_career  "careers/create", :controller => "public/careers",  :action => "create"
+  map.new_contact    "contact",        :controller => "public/contacts", :action => "new"
+  map.create_contact "contact/create", :controller => "public/contacts", :action => "create"
 
   # private forms
   map.namespace :private do |priv|
@@ -42,6 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   # public content pages
   map.with_options :controller => "public" do |page|
     page.about                      "/about",                                 :action => "about"
+    page.contacts_redirect          "/contacts",                              :action => "contacts_redirect"
     page.equipment_for_sale         "/equipment-for-sale",                    :action => "equipment_for_sale"
     page.products_mma_cold_plastic  "/products/plastiroute-mma-cold-plastic", :action => "products_mma_cold_plastic"
     page.products_aquaplast         "/products/plastiroute-aquaplast",        :action => "products_aquaplast"
@@ -61,6 +64,7 @@ ActionController::Routing::Routes.draw do |map|
     page.services_parking_lot       "/services/parking-lot-maintenance",      :action => "services_parking_lot_maintenance"
     page.suppliers                  "/suppliers",                                                    :action => "suppliers"
     page.services_fast_dry_paint    "/services/fast-dry-paint-with-the-twin-dry-system",             :action => "services_fast_dry_paint"
+    page.thankyou                   "/thankyou",                                 :action => "thankyou"
     page.wet_night_aggolmerate      "/services/wet-night-visibility/agglomerate-structured-marking", :action => "wet_night_aggolmerate"
     page.wet_night_dotflex          "/services/wet-night-visibility/dotflex-mma-cold-plastic",       :action => "wet_night_dotflex"
     page.wet_night_droponlinetm     "/services/wet-night-visibility/droponlinetm-hot-thermoplastic", :action => "wet_night_droponlinetm"

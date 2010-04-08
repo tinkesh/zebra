@@ -17,12 +17,16 @@ class Public::CareersController < ApplicationController
 
     respond_to do |format|
       if @career.save
-        flash[:notice] = 'Thank you for submitting your Employment Information.'
-        format.html { redirect_to(@career) }
+        format.html { redirect_to thankyou_path }
       else
         format.html { render :action => "new" }
       end
     end
   end
+
+  def thankyou
+
+  end
+
 
 end

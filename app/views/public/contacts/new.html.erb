@@ -1,16 +1,16 @@
 <div class="span-12 append-2">
-  
+
 <h2>Email Us</h2>
 <p>Thank you for your interest. We respond to all emails within 1 business day.</p>
 
-<% form_for(@contact) do |f| %>
+<% form_for(@contact, :url => create_contact_path) do |f| %>
   <%= f.error_messages %>
 
   <div class="span-6 append-bottom ">
     <%= f.label :name, "Name *" %>
     <%= f.text_field :name, :class => "span-6" %>
   </div>
-  
+
   <div class="span-6 last append-bottom">
     <%= f.label :email, "Email *" %>
     <%= f.text_field :email, :class => "span-6" %>
@@ -20,7 +20,7 @@
     <%= f.label :phone %>
     <%= f.text_field :phone, :class => "span-6" %>
   </div>
-  
+
   <div class="span-6 last append-bottom">
     <%= f.label :company %>
     <%= f.text_field :company, :class => "span-6" %>
@@ -35,12 +35,12 @@
     <%= f.label :city %>
     <%= f.text_field :city, :class => "span-4" %>
   </div>
-  
+
   <div class="span-2 last append-bottom">
     <%= f.label :province %>
     <%= f.text_field :province, :class => "span-2" %>
   </div>
-  
+
   <br class="clear">
 
   <%= f.label :subject, "Subject *" %>
