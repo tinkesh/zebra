@@ -37,15 +37,12 @@
 <div id="content">
   <div class="container">
     <%= yield :breadcrumb %>
-
-    <div id="versions">
-      <%= yield :versions %>
-    </div>
+    <%= yield :versions %>
 
     <div id="flash">
 
       <% flash.each do |key, value| -%>
-        <div class="<%= key %>"><%=h value %></div>
+        <div class="<%= key %>"><p><%=h value %></p></div>
       <% end -%>
 
     </div><!-- flash -->

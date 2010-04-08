@@ -19,17 +19,17 @@
 <% end %>
 
 <% content_for :versions do %>
-<ol>
+<ol id="versions">
     <li>Version <%= @user.version %> of <%= @user.last_version %></li>
-    <li><%= @user.updated_at.strftime("%Y-%m-%d") %></li>
+    <li><%= @user.versioned_at.strftime("%Y-%m-%d %H:%M") %></li>
   <% if @user.version > 1 %>
     <li><%= link_to "Older", :version => @user.version-1 %></li>
   <% else %>
     <li>Older</li>
   <% end %>
   <% if params[:version] %>
-    <li><%= link_to "Newer", :version => nil %></li>
-    <li><%= link_to "Revert", :version => nil %></li>
+    <li><%= link_to "Newer", :version => @user.version+1 %></li>
+    <li><%= link_to "Revert", revert_user_path(:version => @user.version) %></li>
   <% else %>
     <li>Newer</li>
     <li>Revert</li>
@@ -119,6 +119,10 @@
     <tr>
       <td>OT</td>
       <td><%= if @user.bank_overtime_hours : "Bank" else "Pay Out" end %></td>
+    </tr>
+    <tr>
+      <td>Roles</td>
+      <td><%= @roles.map {|role| role.name}.join(', ') %></td>
     </tr>
   </table>
 </div>

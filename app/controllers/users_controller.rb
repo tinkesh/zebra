@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.role_ids = params[:user][:role_ids]
     params[:user][:role_ids] ||= []
     if @user.save
       flash[:notice] = "Account registered!"
@@ -27,7 +28,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @page_title = "#{@user.first_name} #{@user.last_name} details"
-    @user.revert_to(params[:version].to_i) if params[:version]
+    if params[:version]
+      if params[:version].to_i >= @user.last_version
+        params[:version] = nil
+      else
+        @user.revert_to(params[:version].to_i)
+      end
+    end
+    @roles = Role.find(:all, :conditions => { :id => @user.versioned_role_ids.split(", ") })
   end
 
   def edit
@@ -37,6 +45,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user.versioned_at = Time.now
+    @user.versioned_role_ids = params[:user][:role_ids].join(', ').to_s
     params[:user][:role_ids] ||= []
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
@@ -54,7 +64,9 @@ class UsersController < ApplicationController
 
   def revert
     @user = User.find(params[:id])
-    @user.revert_to!(params[:version].to_i)
+    @user.revert_to(params[:version].to_i)
+    @user.role_ids = @user.versioned_role_ids.split(", ")
+    @user.versioned_at = Time.now
     @user.save!
     flash[:notice] = "User reverted!"
     redirect_to user_url(@user)
