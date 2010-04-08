@@ -32,17 +32,17 @@ Complete: <%= @job.completed_on %>
 
 <h3>Users</h3>
 <ol>
-  <% @job.users.each do |user| %>
-    <li><%= user.name %></li>
-  <% end %>
+<% @users.each do |u| %>
+  <li><%= u.name %></li>
+<% end %>
 </ol>
 
-<hr />
+<hr>
 
 <h3>Equipment</h3>
 <ol>
-<% @job.equipments.each do |equipment| %>
-  <li><%= equipment.unit %> - <%= equipment.name %></li>
+<% @equipments.each do |e| %>
+  <li><%= e.unit %> - <%= e.name %></li>
 <% end %>
 </ol>
 

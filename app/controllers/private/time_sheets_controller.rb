@@ -47,6 +47,7 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.find(params[:id])
     @job = Job.find(@time_sheet.job_id)
     load_time_sheet_supporting_data
+    5.times { @time_sheet.time_tasks.build }
     @page_title = "Edit Time Sheet ##{@time_sheet.id}"
   end
 

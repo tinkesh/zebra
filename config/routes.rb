@@ -36,6 +36,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :path_prefix => "admin"
 
   map.revert_user "users/:id/revert/:version", :controller => "users", :action => "revert", :path_prefix => "admin"
+  map.revert_job  "jobs/:id/revert/:version",  :controller => "private/jobs",  :action => "revert", :path_prefix => "admin"
 
   map.directory "directory", :controller => "private/directory", :action => "index", :path_prefix => "admin"
   map.register  "register",  :controller => "users",             :action => "new"

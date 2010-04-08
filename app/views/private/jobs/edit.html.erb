@@ -15,5 +15,6 @@
 <% form_for @job, :url => private_job_path(@job), :method => :put do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
+  <p>Marking Category and Job Location changes <b>are not versioned</b>. Track changes in these areas using Notes.</p>
   <%= f.submit "Save Job" %> or <%= link_to 'Cancel', private_jobs_path %>
 <% end %>

@@ -12,6 +12,25 @@
   <%= render :partial => 'menus/jobs_menu', :layout => false %>
 <% end %>
 
+<% content_for :versions do %>
+<ol id="versions">
+    <li>Version <%= @job.version %> of <%= @job.last_version %></li>
+    <li><%= if @job.versioned_at : @job.versioned_at.strftime("%Y-%m-%d %H:%M") else @job.created_at.strftime("%Y-%m-%d %H:%M") end %></li>
+  <% if @job.version > 1 %>
+    <li><%= link_to "Older", :version => @job.version-1 %></li>
+  <% else %>
+    <li>Older</li>
+  <% end %>
+  <% if params[:version] %>
+    <li><%= link_to "Newer", :version => @job.version+1 %></li>
+    <li><%= link_to "Revert", revert_job_path(:version => @job.version) %></li>
+  <% else %>
+    <li>Newer</li>
+    <li>Revert</li>
+  <% end %>
+</ol>
+<% end %>
+
 <div class="span-6 append-1">
   <h3>Notes</h3>
   <p>
@@ -50,17 +69,17 @@
 <div class="span-10 append-1">
   <h3>Users</h3>
   <ol>
-    <% @job.users.each do |user| %>
-      <li><%= user.name %></li>
-    <% end %>
+  <% @users.each do |u| %>
+    <li><%= u.name %></li>
+  <% end %>
   </ol>
 
   <hr>
 
   <h3>Equipment</h3>
   <ol>
-  <% @job.equipments.each do |equipment| %>
-    <li><%= equipment.unit %> - <%= equipment.name %></li>
+  <% @equipments.each do |e| %>
+    <li><%= e.unit %> - <%= e.name %></li>
   <% end %>
   </ol>
 

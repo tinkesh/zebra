@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100408184032) do
+ActiveRecord::Schema.define(:version => 20100408212808) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -180,6 +180,9 @@ ActiveRecord::Schema.define(:version => 20100408184032) do
     t.string   "name"
     t.text     "notes"
     t.string   "location_name"
+    t.string   "versioned_user_ids"
+    t.string   "versioned_equipment_ids"
+    t.datetime "versioned_at"
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|

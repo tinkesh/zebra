@@ -9,12 +9,24 @@ class Private::JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id], :include => [ {:users => :roles}, :job_locations, :equipments, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
+    @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
+
     unless @job.users.include?(current_user) || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       redirect_to '/admin'
     end
+
+    if params[:version]
+      if params[:version].to_i >= @job.last_version
+        params[:version] = nil
+      else
+        @job.revert_to(params[:version].to_i)
+      end
+    end
     @page_title = @job.label
+
     @job.revert_to(params[:version].to_i) if params[:version]
+    @users = User.find(:all, :conditions => { :id => @job.versioned_user_ids.split(", ") })
+    @equipments = Equipment.find(:all, :conditions => { :id => @job.versioned_equipment_ids.split(", ") })
   end
 
   def new
@@ -28,6 +40,9 @@ class Private::JobsController < ApplicationController
     @job = Job.new(params[:job])
     @page_title = "New Job on Hand"
     load_job_supporting_data
+    @job.versioned_at = Time.now
+    @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s
+    @job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s
     if @job.save
       flash[:notice] = "Job on Hand created!"
       redirect_to private_jobs_url
@@ -46,6 +61,9 @@ class Private::JobsController < ApplicationController
     @job = Job.find(params[:id])
     params[:job][:user_ids] ||= []
     params[:job][:equipment_ids] ||= []
+    @job.versioned_at = Time.now
+    @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s
+    @job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s
     if @job.update_attributes(params[:job])
       flash[:notice] = "Job on Hand updated!"
       redirect_to private_job_url(@job)
@@ -59,6 +77,17 @@ class Private::JobsController < ApplicationController
     @job.destroy
     flash[:notice] = 'Job on Hand deleted!'
     redirect_to(private_jobs_url)
+  end
+
+  def revert
+    @job = Job.find(params[:id])
+    @job.revert_to(params[:version].to_i)
+    @job.user_ids = @job.versioned_user_ids.split(", ")
+    @job.equipment_ids = @job.versioned_equipment_ids.split(", ")
+    @job.versioned_at = Time.now
+    @job.save!
+    flash[:notice] = "User reverted!"
+    redirect_to private_job_url(@job)
   end
 
 private
