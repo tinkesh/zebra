@@ -20,13 +20,13 @@ class Private::TimeSheetsController < ApplicationController
     @entries = TimeEntry.find(:all, :conditions => { :job_id => @job.id, :time_sheet_id => nil}, :include => :user)
     load_time_sheet_supporting_data
     5.times { @time_sheet.time_tasks.build }
-    @page_title = "New Time Sheet for " + @job.label
+    @page_title = "Submit Clock In/Clock Out Times for " + @job.label
   end
 
   def create
     @job = Job.find(params[:job_id])
     load_time_sheet_supporting_data
-    @page_title = "New Time Sheet"
+    @page_title = "Submit Clock In/Clock Out Times"
     @time_sheet = @job.time_sheets.build(params[:time_sheet])
     if params[:time_sheet][:fuel].blank? : @time_sheet.fuel = 0 end
     if params[:time_sheet][:hotel].blank? : @time_sheet.hotel = 0 end

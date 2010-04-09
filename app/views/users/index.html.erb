@@ -21,7 +21,7 @@
     <th>Roles</th>
     <th>Hourly Rate</th>
     <th>O/T</th>
-    <th>Last Login</th>
+    <th>Last Activity</th>
     <th class="actions nosort"></th>
   </tr>
 
@@ -32,7 +32,7 @@
     <td><%= user.role_list %></td>
     <td><%= if user.rate : "$#{user.rate}" end %></td>
     <td><%= if user.bank_overtime_hours : "Bank" else "Pay Out" end %></td>
-    <td><%=h time_ago_in_words(user.last_login_at) + " ago" if user.last_login_at? %></td>
+    <td><%=h time_ago_in_words(user.last_request_at) + " ago" if user.last_request_at? %></td>
     <td class="actions">
     <%= link_to 'Delete', user, :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_user_path(user), :class => "edit" %>

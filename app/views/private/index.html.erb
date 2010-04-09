@@ -15,7 +15,7 @@
       <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label></li>
     <% end %>
       <% if permitted_to? :create, :private_time_sheets -%>
-    <li><label class="new-inline"><%= radio_button_tag "navigate", "new_time_sheet" %> New Time Sheet</label></li>
+    <li><label class="new-inline"><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Clock In / Clock Out Times</label></li>
     <% end %>
     <% if permitted_to? :create, :private_gun_sheets -%>
       <li><label class="new-inline"><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label></li>
@@ -29,9 +29,10 @@
 </div>
 
 <div class="span-9 last">
+  <p><%= link_to "New Load Sheet", new_private_load_sheet_path %></p>
   <p><%= link_to "User Time Report", user_time_report_url %></p>
 </div>
 
 <hr>
 
-<p>Last Update: 2010-04-09 12:30am</p>
+<p>Last Update: 2010-04-09 8:26am</p>

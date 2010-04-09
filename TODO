@@ -1,13 +1,10 @@
+- X Add: Email addresses in Settings
+- X Add: Material Report
+- X S3 backups
+- X Update own account
 - Versioning for Load Sheets
 - Versioning for Gun Sheets
 - Revise User Time Report
-- Update own account
-
-- X Add: Email addresses in Settings
-- X Add: Email notifications
-- X Add: Careers and Contact notifications
-- X Add: Material Report
-
 - Remember last selected job from dashboard
 - Pagination
 - Search
@@ -26,15 +23,16 @@
 
 ? Pay Period: is the *beginning* of the 24th to the *end* of the 23rd?
 
-X 2010-04-05 Add: Initial draft of User Time Report. Pay Period is the 24th -> 23rd
-x 2010-04-05 Add: CRUD of @time_entry
-x 2010-04-06 Add: Bead is 600/g per KM of lines in @job_sheet#production
-x 2010-04-06 Add: Versioning for @time_sheets
-x 2010-04-06 Add: Versioning for @jobs
-x 2010-04-06 Add: Association versioning for @users
-x 2010-04-06 Add: Print views for @load_sheet, @gun_sheet, @time_sheet
-x 2010-04-06 Add: New @obj#show for @load_sheet, @gun_sheet, @time_sheet
-x 2010-04-06 Add: Remove sidebar from @job print view
+x 2010-04-08 Add: Email notifications (@career, @contact, @time_sheet, @gun_sheet, @load_sheet)
+X 2010-04-08 Add: Initial draft of User Time Report. Pay Period is the 24th -> 23rd
+x 2010-04-08 Add: CRUD of @time_entry
+x 2010-04-08 Add: Bead is 600/g per KM of lines in @job_sheet#production
+x 2010-04-08 Add: Versioning for @time_sheets
+x 2010-04-08 Add: Versioning for @jobs
+x 2010-04-08 Add: Association versioning for @users
+x 2010-04-08 Add: Print views for @load_sheet, @gun_sheet, @time_sheet
+x 2010-04-08 Add: New @obj#show for @load_sheet, @gun_sheet, @time_sheet
+x 2010-04-08 Add: Remove sidebar from @job print view
 x 2010-04-06 Fix: forms with dropdowns are too wide
 x 2010-04-06 Add: @job_sheet submenu
 x 2010-04-06 Add: Force MST for all users but time is still stored as UTC
