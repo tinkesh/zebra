@@ -14,11 +14,11 @@ class TimeSheet < ActiveRecord::Base
 
   before_create :record_per_diem_rate
   before_create :record_fuel_rate
-#  after_create :deliver_new_time_sheet
+  after_create :deliver_new_time_sheet
 
-#  def deliver_new_time_sheet
-#    Notifier.deliver_new_time_sheet(self)
-#  end
+  def deliver_new_time_sheet
+    Notifier.deliver_new_time_sheet(self)
+  end
 
   def total_per_diem
     total = [0]

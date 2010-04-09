@@ -12,7 +12,7 @@ class Notifier < ActionMailer::Base
   def new_time_sheet(time_sheet)
     subject       "[AAAS] New Time Sheet (##{time_sheet.id}) for #{time_sheet.job.label}"
     from          "notifier@aaastriping.ca"
-    recipients    "dana@agilestyle.com"
+    recipients    "dorian@aaastriping.ca"
     sent_on       Time.now
     body          :time_sheet => time_sheet
   end
@@ -20,7 +20,7 @@ class Notifier < ActionMailer::Base
   def new_load_sheet(load_sheet)
     subject       "[AAAS] New Load Sheet (##{load_sheet.id})"
     from          "notifier@aaastriping.ca"
-    recipients    "dana@agilestyle.com"
+    recipients    "dorian@aaastriping.ca"
     sent_on       Time.now
     body          :load_sheet => load_sheet
   end
@@ -28,7 +28,7 @@ class Notifier < ActionMailer::Base
   def new_gun_sheet(gun_sheet)
     subject       "[AAAS] New Gun Sheet (##{gun_sheet.id}) for #{gun_sheet.job.label}"
     from          "notifier@aaastriping.ca"
-    recipients    "dana@agilestyle.com"
+    recipients    "dorian@aaastriping.ca"
     sent_on       Time.now
     body          :gun_sheet => gun_sheet
   end

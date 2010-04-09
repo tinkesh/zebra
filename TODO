@@ -4,13 +4,15 @@
 - X Update own account
 - Versioning for Load Sheets
 - Versioning for Gun Sheets
-- Revise User Time Report
+- User can modify User Time Report pay period
 - Remember last selected job from dashboard
 - Pagination
 - Search
 - Event Log
 - @obj.locked?
 - @obj.selectable?
+
+
 - OT warning at 160 hours within pay period to notices@
 - OT warning at 190 hours within pay period to notices@
 - >15hr work day warning to kwame@

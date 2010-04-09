@@ -11,4 +11,11 @@ class GunSheet < ActiveRecord::Base
                          :skip_y1, :skip_y2, :skip_y3, :skip_w4,
                          :skip_w5, :skip_w6, :skip_w7], :on => :create, :message => "can't be blank"
 
+  after_create :deliver_new_gun_sheet
+
+  def deliver_new_time_sheet
+    Notifier.deliver_new_gun_sheet(self)
+  end
+
+
 end
