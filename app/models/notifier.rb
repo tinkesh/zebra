@@ -18,7 +18,7 @@ class Notifier < ActionMailer::Base
   end
 
   def new_load_sheet(load_sheet)
-    subject       "[AAAS] New Load Sheet (##{time_sheet.id})"
+    subject       "[AAAS] New Load Sheet (##{load_sheet.id})"
     from          "notifier@aaastriping.ca"
     recipients    "dana@agilestyle.com"
     sent_on       Time.now
