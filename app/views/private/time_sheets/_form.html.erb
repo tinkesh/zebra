@@ -59,15 +59,20 @@
   <%- @entries.each do |entry| -%>
   <tr class="<%= cycle 'even', 'odd' %>">
     <td>
-      <%- if entry.clock_in && entry.clock_out && entry.active && entry.time_sheet_id == nil -%>
-        <%= check_box_tag "time_entry_ids[]", entry.id, :checked => true -%>
-      <%- else %>
-        <%= check_box_tag "user", "active", false, :disabled => true -%>
-      <%- end -%>
+      <% if @time_sheet.new_record? %>
+        <%- if entry.clock_in && entry.clock_out && entry.active && entry.time_sheet_id == nil -%>
+          <%= check_box_tag "time_entry_ids[]", entry.id, :checked => true -%>
+        <%- else %>
+          <%= check_box_tag "user", "active", false, :disabled => true -%>
+        <%- end -%>
+      <% else %>
+        <%= check_box_tag "time_entry_ids[]", entry.id, @time_sheet.time_entries.include?(entry) -%>
+      <% end %>
+
     </td>
     <td><%= entry.user.name %></td>
-    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
+    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%Y-%m-%d %I:%M %p') else '-' end %></td>
+    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%Y-%m-%d %I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
     <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
     <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>

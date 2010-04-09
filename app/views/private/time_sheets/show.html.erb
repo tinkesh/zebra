@@ -12,101 +12,116 @@
   <%= render :partial => 'menus/time_sheets_menu', :layout => false %>
 <% end %>
 
-<div class="span-17 last">
-  <div class="span-6 append-1">
-    <table>
-      <tr>
-        <th colspan="2"><%= job_label(@time_sheet.job) %></td>
-      </tr>
-      <tr class="odd">
-        <td>Created On</td>
-        <td class="right"><%= @time_sheet.created_at.strftime("%B %d, %Y") %></td>
-      </tr>
-      <tr class="even">
-        <td>Updated On</td>
-        <td class="right"><%= @time_sheet.updated_at.strftime("%B %d, %Y") %></td>
-      </tr>
-      <tr class="odd">
-        <td>Per Diem</td>
-        <td class="right">
-          <%= if @time_sheet.per_diem : "$#{@time_sheet.per_diem_rate}" else "No" end -%>
-        </td>
-      </tr>
-      <tr class="even">
-        <td>Fuel</td>
-        <td class="right">
-          <%= if @time_sheet.fuel : "#{@time_sheet.fuel} L" else "-" end -%>
-        </td>
-      </tr>
-      <tr class="odd">
-        <td>Hotel</td>
-        <td class="right">
-          <%= if @time_sheet.hotel : "$#{@time_sheet.hotel}" else "-" end -%>
-        </td>
-      </tr>
-    </table>
-  </div>
+<% content_for :versions do %>
+<ol id="versions" class="noprint">
+    <li>Version <%= @time_sheet.version %> of <%= @time_sheet.last_version %></li>
+    <li><%= if @time_sheet.versioned_at : @time_sheet.versioned_at.strftime("%Y-%m-%d %H:%M") else @time_sheet.created_at.strftime("%Y-%m-%d %H:%M") end %></li>
+  <% if @time_sheet.version > 1 %>
+    <li><%= link_to "Older", :version => @time_sheet.version-1 %></li>
+  <% else %>
+    <li>Older</li>
+  <% end %>
+  <% if params[:version] %>
+    <li><%= link_to "Newer", :version => @time_sheet.version+1 %></li>
+    <li><%= link_to "Revert", revert_time_sheet_path(:version => @time_sheet.version) %></li>
+  <% else %>
+    <li>Newer</li>
+    <li>Revert</li>
+  <% end %>
+</ol>
+<% end %>
 
-  <div class="span-10 last">
 
-  <h3>Comments</h3>
-    <p>
-      <%= @time_sheet.time_note_category.name %><br>
-      <%= @time_sheet.note %>
-    </p>
-  </div>
+<table>
+  <tr>
+    <th colspan="2"><%= job_label(@time_sheet.job) %></td>
+  </tr>
+  <tr class="odd">
+    <td>Created On</td>
+    <td class="right"><%= @time_sheet.created_at.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr class="even">
+    <td>Updated On</td>
+    <td class="right"><%= @time_sheet.updated_at.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr class="odd">
+    <td>Per Diem</td>
+    <td class="right">
+      <%= if @time_sheet.per_diem : "$#{@time_sheet.per_diem_rate}" else "No" end -%>
+    </td>
+  </tr>
+  <tr class="even">
+    <td>Fuel</td>
+    <td class="right">
+      <%= if @time_sheet.fuel : "#{@time_sheet.fuel} L" else "-" end -%>
+    </td>
+  </tr>
+  <tr class="odd">
+    <td>Hotel</td>
+    <td class="right">
+      <%= if @time_sheet.hotel : "$#{@time_sheet.hotel}" else "-" end -%>
+    </td>
+  </tr>
+</table>
 
-  <hr>
+<hr>
 
-  <h3>Tasks</h3>
-  <table>
-    <tr>
-      <th>Time</th>
-      <th>Task</th>
-    </tr>
-    <% @time_sheet.time_tasks.each do |task| %>
-      <tr class="<%= cycle('even', 'odd') %>">
-        <td><%= task.happened_at.strftime("%H:%M") %></td>
-        <td>
-          <%= task.time_task_category.name %>
-          <% if task.note %>
-            <br>
-            <%= task.note %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    <tr>
-      <td colspan="2" class="total">
-        Lunch: <%= @time_sheet.lunch %> Minutes<br>
-        Total: <%= @time_sheet.total_hours %> Hours
-      </td>
-    </tr>
-  </table>
-
-  <hr>
-
-  <h3>User Time Entries</h3>
-  <table>
-    <tr>
-      <th>User</th>
-      <th class="right">Clock In</th>
-      <th class="right">Clock Out</th>
-      <th class="right">S/T</th>
-      <th class="right">O/T</th>
-      <th class="right">T/T</th>
-    </tr>
-    <% @time_entries_total = 0 %>
-    <% @time_sheet.time_entries.each do |entry| %>
-      <tr class="<%= cycle('even', 'odd') %>">
-        <td><%= entry.user.name %></td>
-        <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
-        <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-        <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
-        <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
-        <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>
-      </tr>
-    <% end %>
-  </table>
-
+<h3>Comments</h3>
+<p>
+  <%= @time_sheet.time_note_category.name %><br>
+  <%= @time_sheet.note %>
+</p>
 </div>
+
+<hr>
+
+<h3>Tasks</h3>
+<table>
+<tr>
+  <th>Time</th>
+  <th>Task</th>
+</tr>
+<% @time_sheet.time_tasks.each do |task| %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td><%= task.happened_at.strftime("%H:%M") %></td>
+    <td>
+      <%= task.time_task_category.name %>
+      <% if task.note %>
+        <br>
+        <%= task.note %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+<tr>
+  <td colspan="2" class="total">
+    Lunch: <%= @time_sheet.lunch %> Minutes<br>
+    Total: <%= @time_sheet.total_hours %> Hours
+  </td>
+</tr>
+</table>
+
+<hr>
+
+<h3>User Time Entries</h3>
+<table>
+<tr>
+  <th>User</th>
+  <th class="right">Clock In</th>
+  <th class="right">Clock Out</th>
+  <th class="right">S/T</th>
+  <th class="right">O/T</th>
+  <th class="right">T/T</th>
+</tr>
+<% @time_entries_total = 0 %>
+<% @time_sheet.time_entries.each do |entry| %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td><%= entry.user.name %></td>
+    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
+    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
+    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
+    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
+    <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>
+  </tr>
+<% end %>
+</table>

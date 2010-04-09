@@ -12,8 +12,6 @@
   <%= render :partial => 'menus/load_sheets_menu', :layout => false %>
 <% end %>
 
-<div class="span-17 last">
-  <div class="span-6 append-1">
     <table>
       <tr>
         <th colspan="2"><%= job_label(@load_sheet.job) %></th>
@@ -39,14 +37,13 @@
         <td class="right"><%= @load_sheet.updated_at.strftime("%B %d, %Y") %></td>
       </tr>
     </table>
-  </div>
 
-  <div class="span-10 last">
+  <hr>
+
     <h3>Comments</h3>
     <p>
       <%= @load_sheet.note %>
     </p>
-  </div>
 
   <hr>
 
@@ -57,8 +54,8 @@
       <th>Manufacturer</th>
       <th>Batch #</th>
       <th>Tote #</th>
-      <th>Tote Qty</th>
-      <th>Amount</th>
+      <th class="right">Tote Qty</th>
+      <th class="right">Amount</th>
     </tr>
     <% @load_sheet.load_entries.each do |entry| %>
     <% if entry %>
@@ -67,8 +64,8 @@
         <td><%= if entry.material && entry.material.manufacturer : entry.material.manufacturer.name end %></td>
         <td><%= if entry.material : entry.material.batch end %></td>
         <td><%= entry.tote_number %></td>
-        <td><%= entry.tote_quantity %></td>
-        <td><%= entry.amount %> <%= if entry.category == "Bead" : "KG" else "L" end %></td>
+        <td class="right"><%= entry.tote_quantity %></td>
+        <td class="right"><%= entry.amount %> <%= if entry.category == "Bead" : "KG" else "L" end %></td>
       </tr>
       <% end %>
     <% end %>
@@ -81,19 +78,17 @@
   <table>
     <tr>
       <th>&nbsp;</th>
-      <th>Start</th>
-      <th>End</th>
+      <th class="right">Start</th>
+      <th class="right">End</th>
     </tr>
     <tr class="even">
       <td>Yellow</td>
-      <td><%= @load_sheet.yellow_dip_start %> cm</td>
-      <td><%= @load_sheet.yellow_dip_end %> cm</td>
+      <td class="right"><%= @load_sheet.yellow_dip_start %> cm</td>
+      <td class="right"><%= @load_sheet.yellow_dip_end %> cm</td>
     </tr>
     <tr class="odd">
       <td>White</td>
-      <td><%= @load_sheet.white_dip_start %> cm</td>
-      <td><%= @load_sheet.white_dip_end %> cm</td>
+      <td class="right"><%= @load_sheet.white_dip_start %> cm</td>
+      <td class="right"><%= @load_sheet.white_dip_end %> cm</td>
     </tr>
   </table>
-
-</div>

@@ -1,9 +1,9 @@
 class TimeSheet < ActiveRecord::Base
 
+  versioned
+
   belongs_to :job
   belongs_to :time_note_category
-  belongs_to :created_by, :class_name => "User", :foreign_key => "created_by"
-  belongs_to :updated_by, :class_name => "User", :foreign_key => "updated_by"
   has_many :time_tasks, :dependent => :destroy
   has_many :time_entries, :dependent => :destroy
   has_and_belongs_to_many :job_sheets

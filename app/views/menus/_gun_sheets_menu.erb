@@ -1,4 +1,4 @@
-<ol>
+<ol class="noprint">
   <% if permitted_to? :show, :private_gun_sheets -%>
     <li><%= active_link_to "Show", private_gun_sheet_path(@gun_sheet), :active => { :when => :self_only }  %></li>
   <% end %>

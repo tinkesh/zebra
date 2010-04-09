@@ -58,13 +58,6 @@
 
   <br class="clear">
 
-  <div class="span-12 last append-bottom">
-    <%= form.label :time_zone, "Time Zone" %><br />
-    <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-  </div>
-
-  <br class="clear">
-
   <div class="span-6 append-bottom">
     <%= form.label :password, form.object.new_record? ? nil : "Change Password" %><br />
     <%= form.password_field :password, :class => "span-6" %>

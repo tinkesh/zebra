@@ -1,4 +1,4 @@
-<ol>
+<ol class="noprint">
   <% if permitted_to? :read, :private_load_sheets -%>
     <li><%= active_link_to "Show", private_load_sheet_path(@load_sheet), :active => { :when => :self_only } %></li>
   <% end %>

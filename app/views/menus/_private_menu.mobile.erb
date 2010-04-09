@@ -1,6 +1,6 @@
-<div id="menu">
+<div id="menu" class="noprint">
 <% authenticated_only do %>
-  <%= link_to 'Dashboard', private_home_path %> | 
+  <%= link_to 'Dashboard', private_home_path %> |
   <%= link_to 'Directory', directory_path %> |
   <%= link_to "Logout", user_session_path, :method => :delete %>
 <% end %>

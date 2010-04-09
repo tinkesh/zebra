@@ -1,39 +1,42 @@
 POST LAUNCH
 - X Add: Careers and Contact notifications
 - X Fix: Bead is 600/g per KM of lines in @job_sheet#production
+- X Add: Email addresses in Settings
 - X Add: Email notifications
 - X Add: Table Versioning for @jobs, @time_sheets, @load_sheets, @gun_sheets, @job_sheets
 - X Add: CRUD of @time_entry
 - X Add: @clock_in#new display clock in time a user is clocked in at
 - X Add: User Time Report. Pay Period is the 24th -> 23rd
 - X Add: Material Report
-- Fix: Remove sidebar from print views
-- Fix: forms with dropdowns are too wide
-- Add: Quantity of Totes to @material
-- Add: Count down Tote usage for @material, disable when hit
+
+- Add: Remember last selected job from dashboard
 - Add: Pagination
 - Add: Search
 - Add: Event Log
 - Add: @obj.locked?
 - Add: @obj.selectable?
-- Add: @job_sheet submenu
-- Add: Remember last selected job from dashboard
-- Add: My Time Sheets / Gun Sheets / Load Sheets
-- Add: CRUD customer from @job#new
-- Add: View of every clocked in user
-- Add: Email addresses in Settings
 - Add: OT warning at 160 hours within pay period to notices@
 - Add: OT warning at 190 hours within pay period to notices@
 - Add: >15hr work day warning to kwame@
 - Fix: Time sheet with no hours does not display per_diem in @time_sheets#index
-- Add: Maintenance page
 - Fix: Add $ to Job Quantities view when an admin
+- Add: Maintenance page
+- Add: Quantity of Totes to @material
+- Add: Count down Tote usage for @material, disable when hit
+- Add: CRUD customer from @job#new
+- Add: View of every clocked in user
 
+x 2010-04-06 Add: Print views for @load_sheet, @gun_sheet, @time_sheet
+x 2010-04-06 Add: New @obj#show for @load_sheet, @gun_sheet, @time_sheet
+x 2010-04-06 Add: Remove sidebar from @job print view
+x 2010-04-06 Fix: forms with dropdowns are too wide
+x 2010-04-06 Add: @job_sheet submenu
+x 2010-04-06 Add: Force MST for all users but time is still stored as UTC
+x 2010-04-06 Fix: Change Clock In / Clock Out columns to datetime from date
 x 2010-04-06 Fix: Remove 12 Hour choice for time
 x 2010-04-06 Add: display all jobs in dashboard if user is an admin
 x 2010-04-02 Add: New Relic RPM web application monitoring
 x 2010-04-02 Add: Update last_login when viewing dashboard
-x 2010-04-02 Add: created_by and updated_by
 x 2010-04-02 Add: Table Versioning for @users
 x 2010-04-01 Add: Validations
 x 2010-04-01 Add: 500 error page

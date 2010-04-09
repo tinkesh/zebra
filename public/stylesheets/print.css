@@ -4,4 +4,7 @@ body { background: #fff; }
 #breadcrumb { display: none; }
 .span-6 { float: left; width: 25%; }
 .span-10 { float: left; width: 50%; }
-hr { display: none; }
+hr { display: none;}
+.noprint { display: none; }
+td, th { text-align: left; }
+.right { text-align: right; }

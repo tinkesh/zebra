@@ -1,4 +1,4 @@
-<ol id="menu">
+<ol id="menu" class="noprint">
   <% authenticated_only do -%>
       <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
     <% if permitted_to? :manage, :private_jobs -%>

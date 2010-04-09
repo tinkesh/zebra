@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :confirm_password, :password_confirmation
 
   before_filter { |c| Authorization.current_user = c.current_user}
-  before_filter :set_time_zone
+#  before_filter :set_time_zone
 
   # rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 

@@ -17,7 +17,7 @@ class Private::ClockOutController < ApplicationController
       params[:users].each do |user|
         @entry = TimeEntry.find(:first, :conditions => {:job_id => params[:entries][:job_id], :user_id => user, :clock_out => nil})
         if @entry.active
-          @entry.clock_out = @clock_out_time
+          @entry.clock_out =Time.parse(@clock_out_time)
           @entry.clocked_out_at = Time.now
         end
         @entry.save

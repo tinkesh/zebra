@@ -1,4 +1,4 @@
-<ol>
+<ol class="noprint">
   <% if permitted_to? :show, :private_jobs -%>
     <li><%= active_link_to "Show", private_job_path(@job), :active => { :when => :self_only } %></li>
   <% end %>

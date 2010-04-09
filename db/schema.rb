@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100408212808) do
+ActiveRecord::Schema.define(:version => 20100409022501) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -273,8 +273,8 @@ ActiveRecord::Schema.define(:version => 20100408212808) do
     t.integer  "user_id"
     t.integer  "time_sheet_id"
     t.date     "date"
-    t.time     "clock_in"
-    t.time     "clock_out"
+    t.datetime "clock_in"
+    t.datetime "clock_out"
     t.string   "note"
     t.decimal  "rate"
     t.datetime "clocked_in_at"
@@ -309,6 +309,8 @@ ActiveRecord::Schema.define(:version => 20100408212808) do
     t.decimal  "fuel"
     t.decimal  "hotel"
     t.decimal  "fuel_rate"
+    t.datetime "versioned_at"
+    t.string   "versioned_time_entry_ids"
   end
 
   create_table "time_task_categories", :force => true do |t|

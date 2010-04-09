@@ -15,6 +15,7 @@ class Private::ClockInController < ApplicationController
   def create
     @clock_in_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)']
     build_clocked_in_ids(params[:job][:id])
+
     params[:users].each do |attributes|
       @entry = TimeEntry.find(:first, :conditions => {:user_id => attributes[:user_id], :job_id => attributes[:job_id], :active => nil})
       unless @entry.blank?
