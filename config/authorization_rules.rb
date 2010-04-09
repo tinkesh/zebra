@@ -28,6 +28,7 @@ authorization do
     has_permission_on :private, :to => [:index, :navigate]
     has_permission_on :private_directory, :to => :index
     has_permission_on :private_job, :to => :show
+    has_permission_on :private_reports, :to => [:user_time]
   end
 end
 

@@ -26,18 +26,21 @@ ActionController::Routing::Routes.draw do |map|
     # clocking in and out
     priv.connect "jobs/:job_id/clock_in/:action/:id",  :controller => "clock_in",  :path_prefix => "admin"
     priv.connect "jobs/:job_id/clock_out/:action/:id", :controller => "clock_out", :path_prefix => "admin"
-#    priv.resources :time_tasks,             :controller => "time_tasks",           :path_prefix => "admin"
     priv.resources :time_entries,           :controller => "time_entries",         :path_prefix => "admin"
   end
+
+  # reports
+  map.user_time_report "reports/user_time", :controller => "private/reports", :action => "user_time", :path_prefix => "admin"
+
+  # versions
+  map.revert_user "users/:id/revert/:version", :controller => "users",         :action => "revert", :path_prefix => "admin"
+  map.revert_job  "jobs/:id/revert/:version",  :controller => "private/jobs",  :action => "revert", :path_prefix => "admin"
+  map.revert_time_sheet "time_sheets/:id/revert/:version",  :controller => "private/time_sheets", :action => "revert", :path_prefix => "admin"
 
   # user authentication and accounts
   map.resource  :user_session
   map.resources :password_resets
   map.resources :users, :path_prefix => "admin"
-
-  map.revert_user "users/:id/revert/:version", :controller => "users",         :action => "revert", :path_prefix => "admin"
-  map.revert_job  "jobs/:id/revert/:version",  :controller => "private/jobs",  :action => "revert", :path_prefix => "admin"
-  map.revert_time_sheet "time_sheets/:id/revert/:version",  :controller => "private/time_sheets", :action => "revert", :path_prefix => "admin"
 
   map.directory "directory", :controller => "private/directory", :action => "index", :path_prefix => "admin"
   map.register  "register",  :controller => "users",             :action => "new"

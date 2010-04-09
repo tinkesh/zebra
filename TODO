@@ -1,30 +1,32 @@
-POST LAUNCH
 - Versioning for Load Sheets
 - Versioning for Gun Sheets
+- Revise User Time Report
+- Update own account
 
 - X Add: Email addresses in Settings
 - X Add: Email notifications
 - X Add: Careers and Contact notifications
-
-- X Add: User Time Report. Pay Period is the 24th -> 23rd
 - X Add: Material Report
 
-- Add: Remember last selected job from dashboard
-- Add: Pagination
-- Add: Search
-- Add: Event Log
-- Add: @obj.locked?
-- Add: @obj.selectable?
-- Add: OT warning at 160 hours within pay period to notices@
-- Add: OT warning at 190 hours within pay period to notices@
-- Add: >15hr work day warning to kwame@
-- Fix: Time sheet with no hours does not display per_diem in @time_sheets#index
-- Add: Quantity of Totes to @material
-- Add: Count down Tote usage for @material, disable when hit
-- X Add: @clock_in#new display clock in time a user is clocked in at
-- Add: CRUD customer from @job#new
-- Add: View of every clocked in user
+- Remember last selected job from dashboard
+- Pagination
+- Search
+- Event Log
+- @obj.locked?
+- @obj.selectable?
+- OT warning at 160 hours within pay period to notices@
+- OT warning at 190 hours within pay period to notices@
+- >15hr work day warning to kwame@
+- Time sheet with no hours does not display per_diem in @time_sheets#index
+- Quantity of Totes to @material
+- Count down Tote usage for @material, disable when hit
+- @clock_in#new display clock in time a user is clocked in at
+- CRUD customer from @job#new
+- View of every clocked in user
 
+? Pay Period: is the *beginning* of the 24th to the *end* of the 23rd?
+
+X 2010-04-05 Add: Initial draft of User Time Report. Pay Period is the 24th -> 23rd
 x 2010-04-05 Add: CRUD of @time_entry
 x 2010-04-06 Add: Bead is 600/g per KM of lines in @job_sheet#production
 x 2010-04-06 Add: Versioning for @time_sheets
