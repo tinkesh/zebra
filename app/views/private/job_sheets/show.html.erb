@@ -165,7 +165,7 @@
       <td>Yellow Paint</td>
       <% if @job_sheet.total_yellow_paint != 0 %>
         <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint) %> m</td>
-        <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint / 38.2) %> l</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint / 38.2) %> L</td>
         <td class="right">$<%= sprintf("%.2f", ((@job_sheet.total_yellow_paint / 38.2) * @job_sheet.material_rate)) %></td>
       <% else %>
         <td class="right">-</td>
@@ -188,9 +188,9 @@
     <tr>
       <td>Beads</td>
       <% if @job_sheet.total_beads != 0 %>
-        <td class="right"><%= sprintf("%.2f", @job_sheet.total_beads) %> m</td>
-        <td class="right"><%= sprintf("%.2f", @job_sheet.total_beads / 600) %> g</td>
-        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_beads * @job_sheet.material_rate)) %></td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_bead_distance) %> m</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_beads / 1000) %> KG</td>
+        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_beads / 1000 * @job_sheet.material_rate)) %></td>
       <% else %>
         <td class="right">-</td>
         <td class="right">-</td>
@@ -202,5 +202,5 @@
 
 <div class="span-4 last">
   <h2>&nbsp;</h2>
-  <p>* Material Rate is $<%= sprintf("%.2f", @job_sheet.material_rate) %>/km</p>
+  <p>* Material Rate is $<%= sprintf("%.2f", @job_sheet.material_rate) %>/L</p>
 </div>

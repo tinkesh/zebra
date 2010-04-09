@@ -125,8 +125,12 @@ class JobSheet < ActiveRecord::Base
     end
   end
 
+  def total_bead_distance
+    self.total_white_paint + self.total_yellow_paint
+  end
+
   def total_beads
-    0
+    self.total_bead_distance * 600 / 1000
   end
 
   def total_markings(category)

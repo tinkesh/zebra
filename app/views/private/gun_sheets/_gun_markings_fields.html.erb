@@ -1,4 +1,4 @@
-<div class="span-6 append-bottom">
+<div class="span-12 append-bottom">
   <%= form.label :gun_marking_category_id, "Markings Type" %><br>
   <%= form.select (:gun_marking_category_id, @gun_marking_categories.map {|u| [u.name,u.id]}, :include_blank => false) %>
 </div>
