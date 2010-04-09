@@ -1,5 +1,7 @@
 class TimeEntry < ActiveRecord::Base
 
+  versioned
+
   belongs_to :time_sheet
   belongs_to :user
   belongs_to :job

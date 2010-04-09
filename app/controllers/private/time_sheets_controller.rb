@@ -50,13 +50,12 @@ class Private::TimeSheetsController < ApplicationController
     @job = Job.find(@time_sheet.job_id)
     @entries = @time_sheet.time_entries
     load_time_sheet_supporting_data
-    5.times { @time_sheet.time_tasks.build }
+    2.times { @time_sheet.time_tasks.build }
     @page_title = "Edit Time Sheet ##{@time_sheet.id}"
   end
 
   def update
     @time_sheet = TimeSheet.find(params[:id])
-    @time_sheet.time_entry_ids = params[:time_sheet][:time_entry_ids]
     if @time_sheet.update_attributes(params[:time_sheet])
       flash[:notice] = "Time Sheet updated!"
       redirect_to private_home_url
@@ -84,7 +83,6 @@ class Private::TimeSheetsController < ApplicationController
 private
 
   def load_time_sheet_supporting_data
-
     @time_task_categories = TimeTaskCategory.find(:all, :order => :position)
     @time_note_categories = TimeNoteCategory.find(:all, :order => :position)
     @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
