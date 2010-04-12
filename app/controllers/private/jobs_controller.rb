@@ -25,8 +25,16 @@ class Private::JobsController < ApplicationController
     @page_title = @job.label
 
     @job.revert_to(params[:version].to_i) if params[:version]
-    @users = User.find(:all, :conditions => { :id => @job.versioned_user_ids.split(", ") })
-    @equipments = Equipment.find(:all, :conditions => { :id => @job.versioned_equipment_ids.split(", ") })
+    if @job.versioned_user_ids
+      @users = User.find(:all, :conditions => { :id => @job.versioned_user_ids.split(", ") })
+      else
+      @users = @job.users
+    end
+    if @job.versioned_equipment_ids
+      @equipments = Equipment.find(:all, :conditions => { :id => @job.versioned_equipment_ids.split(", ") })
+      else
+      @equipments = @job.equipments
+    end
   end
 
   def new
@@ -40,10 +48,11 @@ class Private::JobsController < ApplicationController
     @job = Job.new(params[:job])
     @page_title = "New Job on Hand"
     load_job_supporting_data
-    @job.versioned_at = Time.now
-    @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s
-    @job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s
     if @job.save
+      @job.versioned_at = Time.now
+      if params[:job][:user_ids] : @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s else '' end
+      if params[:job][:equipment_ids] : (@job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s) else '' end
+      @job.save
       flash[:notice] = "Job on Hand created!"
       redirect_to private_jobs_url
     else
@@ -62,8 +71,8 @@ class Private::JobsController < ApplicationController
     params[:job][:user_ids] ||= []
     params[:job][:equipment_ids] ||= []
     @job.versioned_at = Time.now
-    @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s
-    @job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s
+    if params[:job][:user_ids] : @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s else '' end
+    if params[:job][:equipment_ids] : (@job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s) else '' end
     if @job.update_attributes(params[:job])
       flash[:notice] = "Job on Hand updated!"
       redirect_to private_job_url(@job)
