@@ -14,16 +14,13 @@
 - Add date worked including date named to pay period report
 - add date to @time_sheet#index
 - cancel on edit @time_entry => @time_sheet#edit
-
 - bead price is $0.45/kg
-- add all jobs to office
+
 - force user to change pw on first login
 - gun markings toggle to display in @job#new and #edit
 - mobile @job#new (client, name, notes, users) w/ 3 markings
 - auto logout
 - cannot submit a timesheet if not clocked out
-- allow office to edit settings
-
 - Report of user's time, including clocked_in_at/out_at times
 - OT warning at 160 hours within pay period to notices@
 - OT warning at 190 hours within pay period to notices@
@@ -35,6 +32,8 @@
 - CRUD customer from @job#new
 - View of every clocked in user
 
+x 2010-04-14 Display all jobs to users with the office role
+x 2010-04-14 allow office to edit settings
 x 2010-04-14 move clockin/clockout to top of menu
 x 2010-04-13 new gun / load to @job#show in a new redirect menu
 x 2010-04-08 Email notifications (@career, @contact, @time_sheet, @gun_sheet, @load_sheet)

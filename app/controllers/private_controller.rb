@@ -4,7 +4,7 @@ class PrivateController < ApplicationController
   filter_access_to :all
 
   def index
-    if current_user.role_symbols.include?(:admin)
+    if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @jobs = Job.find(:all)
     else
       @jobs = current_user.jobs
