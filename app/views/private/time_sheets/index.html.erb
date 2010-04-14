@@ -8,7 +8,8 @@
 
 <table class="sortable">
   <tr>
-    <th class="span-4">Name</th>
+    <th class="span-2">Date</th>
+    <th>Number</th>
     <th>Job</th>
     <th class="right">S/T</th>
     <th class="right">O/T</th>
@@ -20,7 +21,8 @@
 
 <% @time_sheets.each do |time_sheet| %>
   <tr>
-    <td><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></td>
+    <td><%= time_sheet.created_at.strftime('%Y-%m-%d') %></td>
+    <td><%= link_to "#{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></td>
     <td><%= job_label(time_sheet.job) %></td>
     <td class="right">
       <%= if time_sheet.total_straight_time != 0 : "#{sprintf('%.2f', time_sheet.total_straight_time)} Hours" else '-' end %>

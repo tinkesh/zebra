@@ -4,7 +4,7 @@ class Private::TimeSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @time_sheets = TimeSheet.find(:all, :include => [:job, :time_entries])
+    @time_sheets = TimeSheet.find(:all, :include => [:job, :time_entries], :order => "created_at DESC")
     @page_title = "Time Sheets"
   end
 
