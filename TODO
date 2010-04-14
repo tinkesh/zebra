@@ -4,10 +4,6 @@
 - X Update own account
 - Versioning for Load Sheets
 - Versioning for Gun Sheets
-
-
-
-- Remember last selected job from dashboard
 - Pagination
 - Search
 - Event Log
@@ -30,6 +26,7 @@
 - CRUD customer from @job#new
 - View of every clocked in user
 
+x 2010-04-14 Remember last selected job and select it when on dashboard
 x 2010-04-14 User can modify @report#user_time pay period
 x 2010-04-14 Add date worked including date named to pay period report
 x 2010-04-14 Add date to @time_sheet#index, sort by newest first

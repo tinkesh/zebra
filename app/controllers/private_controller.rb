@@ -16,6 +16,7 @@ class PrivateController < ApplicationController
     # set current_job session
     if params[:navigate] && params[:job][:id]
       @job = Job.find(params[:job][:id])
+      session[:navigate] = @job.id
       case params[:navigate]
         when "show_job" : @redirect = private_job_path(@job)
         when "clock_in" : @redirect = url_for :controller => "private/clock_in",  :action => "new", :job_id => @job.id
