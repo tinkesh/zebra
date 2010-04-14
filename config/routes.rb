@@ -30,7 +30,12 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   # reports
-  map.user_time_report "reports/user_time", :controller => "private/reports", :action => "user_time", :path_prefix => "admin"
+  map.with_options :controller => "private/reports" do |page|
+    page.report_increase_offset "reports/increase_offset", :action => "increase_offset", :path_prefix => "admin"
+    page.report_decrease_offset "reports/decrease_offset", :action => "decrease_offset", :path_prefix => "admin"
+    page.report_reset_offset "reports/reset_offset", :action => "reset_offset", :path_prefix => "admin"
+    page.report_user_time "reports/user_time", :action => "user_time", :path_prefix => "admin"
+  end
 
   # versions
   map.revert_user "users/:id/revert/:version", :controller => "users",         :action => "revert", :path_prefix => "admin"

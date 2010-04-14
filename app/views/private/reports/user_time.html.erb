@@ -1,40 +1,39 @@
 <% content_for :versions do %>
 <ol id="versions" class="noprint">
-    <li>Newer</li>
-    <li>Today</li>
-    <li>Older</li>
+    <li><%= link_to '<< Previous Pay Period', report_decrease_offset_path %></li>
+    <li><%= link_to 'Today', report_reset_offset_path %></li>
+    <li><%= link_to 'Next Pay Period >>', report_increase_offset_path %></li>
 </ol>
 <% end %>
 
 <h1>Pay Period Report</h1>
-<p>From the end of the day on <%= @back.to_date %> to the end of the day on <%= @front.to_date - 1.day %></p>
+
+<p>From <%= @back.to_date %> to <%= @front.to_date - 1.day %></p>
 
 <table>
   <tr>
-    <th>ID</th>
+    <th>Date</th>
     <th>Job</th>
     <th>Sheet</th>
     <th>Clock In</th>
     <th>Clock Out</th>
     <th class="right">S/T</th>
     <th class="right">O/T</th>
-    <th class="right">T/T</th>
-    <th class="right">OT Type</th>
+    <th class="right">OT</th>
     <th class="right">Rate</th>
     <th class="right">Earnings</th>
   </tr>
 
 <% @entries.each do |entry| %>
   <tr>
-    <td><%= entry.id %></td>
+    <td><%= entry.clock_in.strftime('%a, %b %d, %Y') %></td>
     <td><%= entry.job.label %></td>
     <td><%= entry.time_sheet_id %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
-    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
-    <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>
-    <td><%= if entry.bank_overtime_hours : "Bank" else "Pay Out" end %></td>
+    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} H" else '-' end %></td>
+    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} H" else '-' end %></td>
+    <td class="right"><%= if entry.bank_overtime_hours : "Bank" else "Pay" end %></td>
     <td class="right"><%= if entry.rate : "$#{entry.rate}" end %></td>
     <td class="right"><%= "$#{sprintf("%.2f", entry.cost)}" %></td>
   </tr>

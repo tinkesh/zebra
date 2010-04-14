@@ -4,14 +4,15 @@
 - X Update own account
 - Versioning for Load Sheets
 - Versioning for Gun Sheets
-- User can modify User Time Report pay period
+
+
+
 - Remember last selected job from dashboard
 - Pagination
 - Search
 - Event Log
 - @obj.locked?
 - @obj.selectable?
-- Add date worked including date named to pay period report
 
 - force user to change pw on first login
 - gun markings toggle to display in @job#new and #edit
@@ -29,6 +30,8 @@
 - CRUD customer from @job#new
 - View of every clocked in user
 
+x 2010-04-14 User can modify @report#user_time pay period
+x 2010-04-14 Add date worked including date named to pay period report
 x 2010-04-14 Add date to @time_sheet#index, sort by newest first
 x 2010-04-14 Cancel on @time_entry#edit returns to @time_sheet#edit
 x 2010-04-14 Force bead price in @job_sheet#show to $0.45/kg
