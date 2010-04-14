@@ -13,7 +13,7 @@
 - @obj.selectable?
 - Add date worked including date named to pay period report
 - add date to @time_sheet#index
-- cancel on edit @time_entry => @time_sheet#edit
+
 
 
 - force user to change pw on first login
@@ -32,6 +32,7 @@
 - CRUD customer from @job#new
 - View of every clocked in user
 
+x 2010-04-14 Cancel on @time_entry#edit returns to @time_sheet#edit
 x 2010-04-14 Force bead price in @job_sheet#show to $0.45/kg
 x 2010-04-14 Display all jobs to users with the office role
 x 2010-04-14 allow office to edit settings

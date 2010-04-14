@@ -42,5 +42,5 @@
   </p>
 
   <hr>
-  <%= f.submit "Save and Return to Time Sheet" %> or <%= link_to 'Cancel', private_home_path %>
+  <%= f.submit "Save and Return to Time Sheet" %> or <%= link_to 'Cancel', edit_private_time_sheet_path(@time_sheet.id) %>
 <% end %>
