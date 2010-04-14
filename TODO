@@ -1,5 +1,5 @@
-- X Add: Email addresses in Settings
-- X Add: Material Report
+- X Email addresses in Settings
+- X Material Report
 - X S3 backups
 - X Update own account
 - Versioning for Load Sheets
@@ -11,8 +11,20 @@
 - Event Log
 - @obj.locked?
 - @obj.selectable?
+- Add date worked including date named to pay period report
+- add date to @time_sheet#index
+- cancel on edit @time_entry => @time_sheet#edit
 
+- bead price is $0.45/kg
+- add all jobs to office
+- force user to change pw on first login
+- gun markings toggle to display in @job#new and #edit
+- mobile @job#new (client, name, notes, users) w/ 3 markings
+- auto logout
+- cannot submit a timesheet if not clocked out
+- allow office to edit settings
 
+- Report of user's time, including clocked_in_at/out_at times
 - OT warning at 160 hours within pay period to notices@
 - OT warning at 190 hours within pay period to notices@
 - >15hr work day warning to kwame@
@@ -23,76 +35,76 @@
 - CRUD customer from @job#new
 - View of every clocked in user
 
-? Pay Period: is the *beginning* of the 24th to the *end* of the 23rd?
-
-x 2010-04-08 Add: Email notifications (@career, @contact, @time_sheet, @gun_sheet, @load_sheet)
-X 2010-04-08 Add: Initial draft of User Time Report. Pay Period is the 24th -> 23rd
-x 2010-04-08 Add: CRUD of @time_entry
-x 2010-04-08 Add: Bead is 600/g per KM of lines in @job_sheet#production
-x 2010-04-08 Add: Versioning for @time_sheets
-x 2010-04-08 Add: Versioning for @jobs
-x 2010-04-08 Add: Association versioning for @users
-x 2010-04-08 Add: Print views for @load_sheet, @gun_sheet, @time_sheet
-x 2010-04-08 Add: New @obj#show for @load_sheet, @gun_sheet, @time_sheet
-x 2010-04-08 Add: Remove sidebar from @job print view
-x 2010-04-06 Fix: forms with dropdowns are too wide
-x 2010-04-06 Add: @job_sheet submenu
-x 2010-04-06 Add: Force MST for all users but time is still stored as UTC
-x 2010-04-06 Fix: Change Clock In / Clock Out columns to datetime from date
-x 2010-04-06 Fix: Remove 12 Hour choice for time
-x 2010-04-06 Add: display all jobs in dashboard if user is an admin
-x 2010-04-02 Add: New Relic RPM web application monitoring
-x 2010-04-02 Add: Update last_login when viewing dashboard
-x 2010-04-02 Add: Table Versioning for @users
-x 2010-04-01 Add: Validations
-x 2010-04-01 Add: 500 error page
-x 2010-04-01 Add: 404 error page
-x 2010-04-01 Add: Display deployment timestamp
-x 2010-04-01 Add: Amazon S3 backup rake task http://aws.amazon.com/s3/
-x 2010-04-01 Add: Google Analytics
-x 2010-04-01 Add: Exception Notification
-x 2010-04-01 Add: Printer Friendly view for @jobs
-x 2010-03-30 Add: Roles
-x 2010-03-30 Add: Permissions
-x 2010-03-30 Fix: @foo.create page_title, support data
-x 2010-03-30 Add: @time_sheet integration for new clock in / clock out
-x 2010-03-30 Add: @clock_in / @clock_out mobile
-x 2010-03-30 Add: Clock_out redirects
-x 2010-03-30 Add: @clock_in redirects
-x 2010-03-30 Add: New Dashboard interface
-x 2010-03-30 Add: ActiveRecord cookie store
-x 2010-03-30 Fix: Liters not Meters for @job_sheet#production
-x 2010-03-30 Fix: Record OT type to time entry
-x 2010-03-30 Fix: Redirect to @job_sheet#show after @job_sheet#create
-x 2010-03-30 Add: "Unassigned Jobs" job
-x 2010-03-26 Add: user cannot clock_in if they are already clocked in
-x 2010-03-26 Add: users can clock in separately from one another
-x 2010-03-25 Add: @clock_in
-x 2010-03-25 Add: @clock_out
-x 2010-03-25 Add: dashboard clock_in / clock_out
-x 2010-03-25 Add: user must @clock_in before they can @clock_out
-x 2010-03-24 Fix: Optimize @job_sheet#show material calculations
-x 2010-03-23 Fix: Jobs label to Jobs on Hand
-x 2010-03-23 Fix: Standardize fonts used for text_areas, selects, radio buttons
-x 2010-03-23 Fix: Extra spaces when missing contact info in @job#show
-x 2010-03-23 Fix: Add date to load_sheets#index
-x 2010-03-23 Fix: Add 'm' to material usage
-x 2010-03-23 Fix: Add help text to @job_sheet#show
-x 2010-03-23 Fix: Distance is 'm' on @gun_sheet
-x 2010-03-23 Add: Fuel Liters on @time_sheet
-x 2010-03-23 Add: Hotel cost on @time_sheet
-x 2010-03-23 Fix: Format all numbers in @job_sheet to 2 decimal places
-x 2010-03-23 Add: Hotels to Job Report
-x 2010-03-23 Add: Fuel to Job Report
-x 2010-03-23 Add: Material usage on @job_sheet: paint is 38.2L/km, bead is 600g/km
-x 2010-03-23 Add: Role List
-x 2010-03-23 Add: Email List
-x 2010-03-23 Add: Banked or OT toggle for Users
-x 2010-03-23 Add: Production should have a rate
-x 2010-03-23 Add: Show production rate in @job_sheet
-x 2010-03-23 Fix: Change 'None', 'N/A', etc. to '-'
-x 2010-03-23 Add: Cost of Material/km to display on @job_sheet (assume $0.35)
-x 2010-03-23 Add: Edit Cost of material/km for @job_sheet
+x 2010-04-14 move clockin/clockout to top of menu
+x 2010-04-13 new gun / load to @job#show in a new redirect menu
+x 2010-04-08 Email notifications (@career, @contact, @time_sheet, @gun_sheet, @load_sheet)
+X 2010-04-08 Initial draft of User Time Report. Pay Period is the 24th -> 23rd
+x 2010-04-08 CRUD of @time_entry
+x 2010-04-08 Bead is 600/g per KM of lines in @job_sheet#production
+x 2010-04-08 Versioning for @time_sheets
+x 2010-04-08 Versioning for @jobs
+x 2010-04-08 Association versioning for @users
+x 2010-04-08 Print views for @load_sheet, @gun_sheet, @time_sheet
+x 2010-04-08 New @obj#show for @load_sheet, @gun_sheet, @time_sheet
+x 2010-04-08 Remove sidebar from @job print view
+x 2010-04-06 forms with dropdowns are too wide
+x 2010-04-06 @job_sheet submenu
+x 2010-04-06 Force MST for all users but time is still stored as UTC
+x 2010-04-06 Change Clock In / Clock Out columns to datetime from date
+x 2010-04-06 Remove 12 Hour choice for time
+x 2010-04-06 display all jobs in dashboard if user is an admin
+x 2010-04-02 New Relic RPM web application monitoring
+x 2010-04-02 Update last_login when viewing dashboard
+x 2010-04-02 Table Versioning for @users
+x 2010-04-01 Validations
+x 2010-04-01 500 error page
+x 2010-04-01 404 error page
+x 2010-04-01 Display deployment timestamp
+x 2010-04-01 Amazon S3 backup rake task http://aws.amazon.com/s3/
+x 2010-04-01 Google Analytics
+x 2010-04-01 Exception Notification
+x 2010-04-01 Printer Friendly view for @jobs
+x 2010-03-30 Roles
+x 2010-03-30 Permissions
+x 2010-03-30 @foo.create page_title, support data
+x 2010-03-30 @time_sheet integration for new clock in / clock out
+x 2010-03-30 @clock_in / @clock_out mobile
+x 2010-03-30 Clock_out redirects
+x 2010-03-30 @clock_in redirects
+x 2010-03-30 New Dashboard interface
+x 2010-03-30 ActiveRecord cookie store
+x 2010-03-30 Liters not Meters for @job_sheet#production
+x 2010-03-30 Record OT type to time entry
+x 2010-03-30 Redirect to @job_sheet#show after @job_sheet#create
+x 2010-03-30 "Unassigned Jobs" job
+x 2010-03-26 user cannot clock_in if they are already clocked in
+x 2010-03-26 users can clock in separately from one another
+x 2010-03-25 @clock_in
+x 2010-03-25 @clock_out
+x 2010-03-25 dashboard clock_in / clock_out
+x 2010-03-25 user must @clock_in before they can @clock_out
+x 2010-03-24 Optimize @job_sheet#show material calculations
+x 2010-03-23 Jobs label to Jobs on Hand
+x 2010-03-23 Standardize fonts used for text_areas, selects, radio buttons
+x 2010-03-23 Extra spaces when missing contact info in @job#show
+x 2010-03-23 Add date to load_sheets#index
+x 2010-03-23 Add 'm' to material usage
+x 2010-03-23 Add help text to @job_sheet#show
+x 2010-03-23 Distance is 'm' on @gun_sheet
+x 2010-03-23 Fuel Liters on @time_sheet
+x 2010-03-23 Hotel cost on @time_sheet
+x 2010-03-23 Format all numbers in @job_sheet to 2 decimal places
+x 2010-03-23 Hotels to Job Report
+x 2010-03-23 Fuel to Job Report
+x 2010-03-23 Material usage on @job_sheet: paint is 38.2L/km, bead is 600g/km
+x 2010-03-23 Role List
+x 2010-03-23 Email List
+x 2010-03-23 Banked or OT toggle for Users
+x 2010-03-23 Production should have a rate
+x 2010-03-23 Show production rate in @job_sheet
+x 2010-03-23 Change 'None', 'N/A', etc. to '-'
+x 2010-03-23 Cost of Material/km to display on @job_sheet (assume $0.35)
+x 2010-03-23 Edit Cost of material/km for @job_sheet
 x 2009-03-15 @gun_sheet.location_ids are loaded from parent @job
 x 2009-03-15 job_label
 x 2009-03-15 CRUD Job Sheet reports

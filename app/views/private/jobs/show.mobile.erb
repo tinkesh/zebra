@@ -1,7 +1,29 @@
+<% form_tag private_navigate_path do -%>
+
+  <ul>
+    <% if permitted_to? :create, :private_time_sheets -%>
+      <label><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Clock In / Clock Out Times</label><br />
+    <% end %>
+    <% if permitted_to? :create, :private_gun_sheets -%>
+      <label><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label><br />
+    <% end %>
+    <% if permitted_to? :create, :private_load_sheets -%>
+      <label><%= radio_button_tag "navigate", "new_load_sheet" %> New Load Sheet</label><br />
+    <% end %>
+  </ul>
+
+  <%= hidden_field "job", "id" %>
+  <p><%= submit_tag "Go to Page" %></p>
+
+<% end %>
+
+<hr>
+
+<% if @job.notes && @job.notes != '' %>
 <h3>Notes</h3>
-<p>
-  <%= if @job.notes : "#{@job.notes}" else "-" end %>
-</p>
+<p><%= @job.notes %></p>
+<hr>
+<% end %>
 
 <h3>Schedule</h3>
 <p>
@@ -69,7 +91,6 @@ Complete: <%= @job.completed_on %>
 
 <h3>Time Sheets</h3>
 <ol>
-  <li><%= link_to "Add a Time Sheet", new_private_job_time_sheet_path(:job_id => @job.id) %></li>
 <% @job.time_sheets.each do |time_sheet| %>
   <li><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet) %></li>
 <% end %>
@@ -79,7 +100,6 @@ Complete: <%= @job.completed_on %>
 
 <h3>Load Sheets</h3>
 <ol>
-  <li><%= link_to "Add a Load Sheet", new_private_load_sheet_path %></li>
 <% @job.load_sheets.each do |load_sheet| %>
   <li><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet) %></li>
 <% end %>
@@ -89,7 +109,6 @@ Complete: <%= @job.completed_on %>
 
 <h3>Gun Sheets</h3>
 <ol>
-  <li><%= link_to "Add a Gun Sheet", new_private_load_sheet_path %></li>
 <% @job.gun_sheets.each do |gun_sheet| %>
   <li><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet) %></li>
 <% end %>
