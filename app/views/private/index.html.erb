@@ -22,9 +22,25 @@
 
 </div>
 
-<div class="span-9 last">
-  <p><%= link_to "New Load Sheet", new_private_load_sheet_path %></p>
-  <p><%= link_to "User Time Report", report_user_time_path %></p>
+<div class="span-16 last">
+  <p>
+    <%= link_to "New Load Sheet", new_private_load_sheet_path %>
+    <br>
+    <%= link_to "User Time Report", report_user_time_path %>
+  </p>
+  <hr>
+  <h3>Changes for Tue Apr 13, 2010</h3>
+  <ol>
+    <li>Remember last selected job and select it when on dashboard</li>
+    <li>User can modify @report#user_time pay period</li>
+    <li>Add date worked including date named to pay period report</li>
+    <li>Add date to @time_sheet#index, sort by newest first</li>
+    <li>Cancel on @time_entry#edit returns to @time_sheet#edit</li>
+    <li>Force bead price in @job_sheet#show to $0.45/kg</li>
+    <li>Display all jobs to users with the office role</li>
+    <li>allow office to edit settings</li>
+    <li>move clockin/clockout to top of menu</li>
+  </ol>
 </div>
 
 <hr>
