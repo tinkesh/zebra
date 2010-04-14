@@ -105,7 +105,7 @@
 
 <div class="span-4 last">
   <h2>&nbsp;</h2>
-  <p>* Equipment Cost is Rate x Time Sheets</p>
+  <p>Equipment Cost is<br>Rate x # of Time Sheets</p>
 </div>
 
 <br class="clear">
@@ -190,7 +190,7 @@
       <% if @job_sheet.total_beads != 0 %>
         <td class="right"><%= sprintf("%.2f", @job_sheet.total_bead_distance) %> m</td>
         <td class="right"><%= sprintf("%.2f", @job_sheet.total_beads / 1000) %> KG</td>
-        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_beads / 1000 * @job_sheet.material_rate)) %></td>
+        <td class="right">$<%= sprintf("%.2f", (@job_sheet.total_beads / 1000 * 0.45)) %></td>
       <% else %>
         <td class="right">-</td>
         <td class="right">-</td>
@@ -202,5 +202,9 @@
 
 <div class="span-4 last">
   <h2>&nbsp;</h2>
-  <p>* Material Rate is $<%= sprintf("%.2f", @job_sheet.material_rate) %>/L</p>
+  <p>
+    Material Rate: $<%= sprintf("%.2f", @job_sheet.material_rate) %>/L
+    <br>
+    Bead Rate: $0.45/KG
+  </p>
 </div>
