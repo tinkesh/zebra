@@ -1,6 +1,12 @@
 <% form_tag private_navigate_path do -%>
 
-  <ul>
+  <p>
+    <% if permitted_to? :create, :private_clock_in -%>
+      <label><%= radio_button_tag "navigate", "clock_in" %> Clock In</label><br />
+    <% end %>
+    <% if permitted_to? :create, :private_clock_out -%>
+      <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label><br />
+    <% end %>
     <% if permitted_to? :create, :private_time_sheets -%>
       <label><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Clock In / Clock Out Times</label><br />
     <% end %>
@@ -10,7 +16,7 @@
     <% if permitted_to? :create, :private_load_sheets -%>
       <label><%= radio_button_tag "navigate", "new_load_sheet" %> New Load Sheet</label><br />
     <% end %>
-  </ul>
+  </p>
 
   <%= hidden_field "job", "id" %>
   <p><%= submit_tag "Go to Page" %></p>

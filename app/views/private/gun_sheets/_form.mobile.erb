@@ -54,51 +54,26 @@
 <h3>Guns</h3>
 
 <table>
-  <tr>
-    <td><b>Solid Y-1:</b> <%= form.text_field "solid_y1", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Skip Y-1:</b> <%= form.text_field "skip_y1", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Solid Y-2:</b> <%= form.text_field "solid_y2", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Skip Y-2:</b> <%= form.text_field "skip_y2", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Solid Y-3:</b> <%= form.text_field "solid_y3", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Skip Y-3:</b> <%= form.text_field "skip_y3", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Solid W-4:</b> <%= form.text_field "solid_w4", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Skip W-4:</b> <%= form.text_field "skip_w4", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Solid W-5:</b> <%= form.text_field "solid_w5", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Skip W-5:</b> <%= form.text_field "skip_w5", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Solid W-6:</b> <%= form.text_field "solid_w6", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Skip W-6:</b> <%= form.text_field "skip_w6", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Solid W-7:</b> <%= form.text_field "solid_w7", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td><b>Skip W-7:</b> <%= form.text_field "skip_w7", :size => "5" %></td>
-  </tr>
-  <tr>
-    <td colspan="2"><hr />
-  </tr>
+<tr><th class="span-1">Solid</th><th class="span-1">Y1</th><td> <%= form.text_field "solid_y1", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>Y1</th><td><%= form.text_field "skip_y1", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>Y2</th><td><%= form.text_field "solid_y2", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>Y2</th><td><%= form.text_field "skip_y2", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>Y3</th><td><%= form.text_field "solid_y3", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>Y3</th><td><%= form.text_field "skip_y3", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>W4</th><td><%= form.text_field "solid_w4", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>W4</th><td><%= form.text_field "skip_w4", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>W5</th><td><%= form.text_field "solid_w5", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>W5</th><td><%= form.text_field "skip_w5", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>W6</th><td><%= form.text_field "solid_w6", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>W6</th><td><%= form.text_field "skip_w6", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>W7</th><td><%= form.text_field "solid_w7", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>W7</th><td><%= form.text_field "skip_w7", :size => "5" %></td></tr>
 </table>
 
 <hr />
