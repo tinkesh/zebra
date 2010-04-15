@@ -1,20 +1,20 @@
-Date: <%= @employment.created_at.strftime("%Y-%m-%d") %>
-Name: <%= @employment.name %>
-City: <%= @employment.city %>
-Address: <%= @employment.address %>
-Province: <%= @employment.province %>
-Phone: <%= @employment.phone %>
-Email: <%= @employment.email %>
+Date: <%= @career.created_at.strftime("%Y-%m-%d") %>
+Name: <%= @career.name %>
+City: <%= @career.city %>
+Address: <%= @career.address %>
+Province: <%= @career.province %>
+Phone: <%= @career.phone %>
+Email: <%= @career.email %>
 
-Has Experience: <%= if @employment.have_experience : "Yes" else "no" end %>
-Has Class 5: <%= if @employment.have_class5else : "Yes" else "no" end %>
-Has Class 3: <%= if @employment.have_class3else : "Yes" else "no" end %>
-Has Class 1: <%= if @employment.have_class1else : "Yes" else "no" end %>
-Has Overtime: <%= if @employment.have_overtimeelse : "Yes" else "no" end %>
-Will Travel: <%= if @employment.have_travelelse : "Yes" else "no" end %>
-Has First Aid: <%= if @employment.have_firstaidelse : "Yes" else "no" end %>
-Has TDG: <%= if @employment.have_tdgelse : "Yes" else "no" end %>
-Will Work Seasona: <%= if @employment.have_seasonalelse : "Yes" else "no" end %>
+Has Experience: <%= if @career.have_experience : "Yes" else "no" end %>
+Has Class 5: <%= if @career.have_class5 : "Yes" else "no" end %>
+Has Class 3: <%= if @career.have_class3 : "Yes" else "no" end %>
+Has Class 1: <%= if @career.have_class1 : "Yes" else "no" end %>
+Has Overtime: <%= if @career.have_overtime : "Yes" else "no" end %>
+Will Travel: <%= if @career.have_travel : "Yes" else "no" end %>
+Has First Aid: <%= if @career.have_firstaid : "Yes" else "no" end %>
+Has TDG: <%= if @career.have_tdg : "Yes" else "no" end %>
+Will Work Seasonal: <%= if @career.have_seasonal : "Yes" else "no" end %>
 
 References:
-<%= @employment.references %>
+<%= @career.references %>
