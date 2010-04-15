@@ -42,6 +42,11 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet = GunSheet.find(params[:id])
     @job = Job.find(@gun_sheet.job_id)
     load_gun_sheet_supporting_data
+
+    @gun_marking_categories.each do |category|
+      @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
+    end
+
     @page_title = "Edit Gun Sheet ##{@gun_sheet.id}"
   end
 

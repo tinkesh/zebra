@@ -62,6 +62,10 @@ a:hover { color: #3344FF; text-decoration: underline; }
 #versions { list-style-type: none; margin: 0; position: absolute; top: 0; right: 0; background: #efefef; padding: 0 10px 2px 0;}
 #versions li { display: inline; margin-left: 10px;  }
 
+/* job sheet */
+#jobsheet h2 { margin-bottom: 0.2em;  }
+#material-rate, #equipment-rate { position: absolute; right: 0; top: 36px; }
+
 /* content */
 #content { border-top: solid 25px #efefef; }
 #content .container { padding: 20px 0 30px 0; position: relative; }

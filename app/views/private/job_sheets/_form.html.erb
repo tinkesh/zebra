@@ -26,8 +26,7 @@
       <li>
         <label>
         <%= check_box_tag "job_sheet[gun_sheet_ids][]", gun_sheet.id, @job_sheet.gun_sheets.include?(gun_sheet) %>
-        <%= gun_sheet.date.strftime("%B %d, %Y") %> -
-        Gun Sheet #<%= gun_sheet.id %>
+        <%= gun_sheet.label %>
         </label>
       </li>
     <% end %>

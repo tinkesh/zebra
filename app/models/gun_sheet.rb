@@ -17,5 +17,8 @@ class GunSheet < ActiveRecord::Base
     Notifier.deliver_new_gun_sheet(self)
   end
 
+  def label
+    "Gun Sheet ##{self.id} #{self.date.to_date.strftime('%b-%d-%y')}"
+  end
 
 end

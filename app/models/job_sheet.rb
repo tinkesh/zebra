@@ -4,6 +4,9 @@ class JobSheet < ActiveRecord::Base
   has_and_belongs_to_many :time_sheets
   has_and_belongs_to_many :gun_sheets
 
+  def total_expenses
+    self.total_time_cost + self.total_misc_cost + self.total_equipment_cost + self.total_material_cost
+  end
 
   def total_equipment_cost
     total = [0]
@@ -87,11 +90,24 @@ class JobSheet < ActiveRecord::Base
     total.inject {|sum, n| sum + n.to_f}
   end
 
+
   def total_misc_cost
     self.total_hotel + self.total_fuel
   end
 
-  def total_cost
+  def marking_earnings(marking)
+    0 + self.total_markings(marking.gun_marking_category) * marking.rate
+  end
+
+  def total_marking_earnings
+    total = [0]
+    self.job.job_markings.each do |marking|
+      total << (self.total_markings(marking.gun_marking_category) * marking.rate)
+    end
+    total.inject {|sum, n| sum + n.to_f}
+  end
+
+  def total_time_cost
     total = [0]
     self.time_sheets.each do |time_sheet|
       time_sheet.time_entries.each do |entry|
@@ -125,12 +141,36 @@ class JobSheet < ActiveRecord::Base
     end
   end
 
+  def total_white_paint_usage
+    self.total_white_paint * 0.0382
+  end
+
+  def total_white_paint_cost
+    self.total_white_paint_usage * self.material_rate
+  end
+
+  def total_yellow_paint_usage
+    self.total_yellow_paint * 0.0382
+  end
+
+  def total_yellow_paint_cost
+    self.total_yellow_paint_usage * self.material_rate
+  end
+
   def total_bead_distance
     self.total_white_paint + self.total_yellow_paint
   end
 
-  def total_beads
-    self.total_bead_distance * 600 / 1000
+  def total_bead
+    self.total_bead_distance * 0.0006
+  end
+
+  def total_bead_cost
+    self.total_bead * 0.48
+  end
+
+  def total_material_cost
+    self.total_white_paint_cost + self.total_yellow_paint_cost + self.total_bead_cost
   end
 
   def total_markings(category)
