@@ -20,6 +20,10 @@ class TimeSheet < ActiveRecord::Base
     Notifier.deliver_new_time_sheet(self)
   end
 
+  def label
+    "Time Sheet ##{self.id} #{self.created_at.strftime('%b-%d-%y')}"
+  end
+
   def total_per_diem
     total = [0]
     if self.per_diem == true

@@ -109,7 +109,7 @@
     <h3>Time Sheets</h3>
     <ol>
     <% @job.time_sheets.each do |time_sheet| %>
-      <li><%= link_to "Time Sheet ##{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></li>
+      <li><%= link_to time_sheet.label, private_time_sheet_path(time_sheet), :class => "show" %></li>
     <% end %>
     </ol>
 
@@ -120,7 +120,7 @@
     <h3>Load Sheets</h3>
     <ol>
     <% @job.load_sheets.each do |load_sheet| %>
-      <li><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet), :class => "show" %></li>
+      <li><%= link_to load_sheet.label, private_load_sheet_path(load_sheet), :class => "show" %></li>
     <% end %>
     </ol>
 
@@ -131,7 +131,7 @@
     <h3>Gun Sheets</h3>
     <ol>
     <% @job.gun_sheets.each do |gun_sheet| %>
-      <li><%= link_to "Gun Sheet ##{gun_sheet.id}", private_gun_sheet_path(gun_sheet), :class => "show" %></li>
+      <li><%= link_to gun_sheet.label, private_gun_sheet_path(gun_sheet), :class => "show" %></li>
     <% end %>
     </ol>
 
@@ -142,7 +142,7 @@
     <h3>Job Sheets</h3>
     <ol>
     <% @job.job_sheets.each do |job_sheet| %>
-      <li><%= link_to "Job Sheet ##{job_sheet.id}", private_job_sheet_path(job_sheet), :class => "show" %></li>
+      <li><%= link_to job_sheet.label, private_job_sheet_path(job_sheet), :class => "show" %></li>
     <% end %>
     </ol>
   <% end %>

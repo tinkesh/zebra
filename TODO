@@ -23,15 +23,16 @@
 - Count down Tote usage for @material, disable when hit
 - @clock_in#new display clock in time a user is clocked in at
 - CRUD customer from @job#new
+
 - View of every clocked in user
 - Add @gun_sheet.date to @job_sheet#show
 - Format job_sheet to print on 1 page / landscape format
 - Issue with Dorian clock in / clock out
-- Move New Load Sheet to Jobs on Hand screen
 - Clock In / Clock Out report, including clocked_in_at, time_sheet, etc.
-- Label "Obj ##{@obj.id} #{@obj.date}", format Apr-13-10 for @time_sheet, @load_sheet, @gun_sheet
 
-
+x 2010-04-15 Revise #index for @time_sheet, @load_sheet, @gun_sheet
+x 2010-04-15 Move New Load Sheet to Jobs on Hand screen
+x 2010-04-15 Label "Obj ##{@obj.id} #{@obj.date}", format Apr-13-10 for @time_sheet, @load_sheet, @gun_sheet
 x 2010-04-15 Add total_expenses and total_production to @job_sheet#show
 x 2010-04-15 Material usage is L of paint * 38.2
 x 2010-04-15 Material rate is .48/kg

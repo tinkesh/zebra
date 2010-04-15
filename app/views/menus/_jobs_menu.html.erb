@@ -11,6 +11,9 @@
   <% if permitted_to? :create, :private_gun_sheets -%>
     <li><%= active_link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => @job.id) %></li>
   <% end %>
+  <% if permitted_to? :create, :private_load_sheets -%>
+    <%= link_to "New Load Sheet", new_private_load_sheet_path %>
+  <% end %>
   <% if permitted_to? :create, :private_job_sheets -%>
     <li><%= active_link_to 'New Job Sheet', new_private_job_job_sheet_path(:job_id => @job.id) %></li>
   <% end %>

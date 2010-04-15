@@ -8,32 +8,32 @@
 
 <table class="sortable">
   <tr>
+    <th class="span-2">#</th>
     <th class="span-2">Date</th>
-    <th>Number</th>
     <th>Job</th>
     <th class="right">S/T</th>
     <th class="right">O/T</th>
     <th class="right">T/T</th>
-    <th class="right">Lunch Break</th>
+    <th class="right">Lunch</th>
     <th class="right">Per Diem</th>
     <th class="actions nosort"></th>
   </tr>
 
 <% @time_sheets.each do |time_sheet| %>
   <tr>
-    <td><%= time_sheet.created_at.strftime('%Y-%m-%d') %></td>
-    <td><%= link_to "#{time_sheet.id}", private_time_sheet_path(time_sheet), :class => "show" %></td>
-    <td><%= job_label(time_sheet.job) %></td>
+    <td><%= link_to time_sheet.id, private_time_sheet_path(time_sheet), :class => "show" %></td>
+    <td><%= time_sheet.created_at.strftime('%b-%d-%y') %></td>
+    <td><%= link_to job_label(time_sheet.job), private_job_path(time_sheet.job), :class => "show" %></td>
     <td class="right">
-      <%= if time_sheet.total_straight_time != 0 : "#{sprintf('%.2f', time_sheet.total_straight_time)} Hours" else '-' end %>
+      <%= if time_sheet.total_straight_time != 0 : "#{sprintf('%.2f', time_sheet.total_straight_time)}" else '-' end %>
     </td>
     <td class="right">
-      <%= if time_sheet.total_over_time != 0 : "#{sprintf('%.2f', time_sheet.total_over_time)} Hours" else '-' end %>
+      <%= if time_sheet.total_over_time != 0 : "#{sprintf('%.2f', time_sheet.total_over_time)}" else '-' end %>
     </td>
     <td class="right">
-      <%= if time_sheet.total_hours != 0 : "#{sprintf('%.2f', time_sheet.total_hours)} Hours" else '-' end %>
+      <%= if time_sheet.total_hours != 0 : "#{sprintf('%.2f', time_sheet.total_hours)}" else '-' end %>
     </td>
-    <td class="right"><%= sprintf("%.2f", time_sheet.total_lunch_time) -%> Hours</td>
+    <td class="right"><%= sprintf("%.2f", time_sheet.total_lunch_time) -%></td>
     <td class="right"><%= if time_sheet.total_per_diem != 0 then "$" + sprintf("%.2f", "#{time_sheet.total_per_diem}") else '-' end -%></td>
     <td class="actions">
     <%= link_to 'Delete', private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>

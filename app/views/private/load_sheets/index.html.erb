@@ -16,20 +16,20 @@
 
 <table class="sortable">
   <tr>
-    <th class="span-3">Name</th>
-    <th>Equipment</th>
+    <th class="span-2">#</th>
+    <th class="span-2">Date</th>
     <th>Job</th>
-    <th>Date</th>
+    <th>Equipment</th>
     <th>Location</th>
     <th class="actions nosort"></th>
   </tr>
 
 <% @load_sheets.each do |load_sheet| %>
   <tr>
-    <td><%= link_to "Load Sheet ##{load_sheet.id}", private_load_sheet_path(load_sheet), :class => "show" %></td>
+    <td><%= link_to load_sheet.id, private_load_sheet_path(load_sheet), :class => "show" %></td>
+    <td><%= load_sheet.date.strftime('%b-%d-%y') %></td>
+    <td><%= link_to job_label(load_sheet.job), private_job_path(load_sheet.job), :class => "show" %></td>
     <td><%= if load_sheet.equipment : load_sheet.equipment.name end %></td>
-    <td><%= job_label(load_sheet.job) %></td>
-    <td><%= load_sheet.date %></td>
     <td><%= load_sheet.location_name %></td>
     <td class="actions">
     <%= link_to 'Delete', private_load_sheet_path(load_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>

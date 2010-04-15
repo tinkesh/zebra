@@ -10,24 +10,29 @@
   <% if permitted_to? :create, :private_jobs -%>
     <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
   <% end %>
+  <% if permitted_to? :create, :private_load_sheets -%>
+    <%= link_to "New Load Sheet", new_private_load_sheet_path %>
+  <% end %>
 <% end %>
 
 <table class="sortable">
   <tr>
+    <th class="span-2">#</th>
     <th>Name</th>
-    <th>%</th>
-    <th>Started</th>
-    <th>Completed</th>
+    <th class="right">%</th>
+    <th class="right span-2">Start</th>
+    <th class="right span-2">End</th>
     <th>Client</th>
     <th class="actions nosort"></th>
   </tr>
 
 <% @jobs.each do |job| %>
   <tr>
-    <td><%= link_to job_label(job), private_job_path(job), :class => "show" %></td>
-    <td><%= job.completion.name %></td>
-    <td><%= job.started_on %></td>
-    <td><%= job.completed_on %></td>
+    <td><%= link_to job.id, private_job_path(job), :class => "show" %></td>
+    <td><%= link_to job.name, private_job_path(job) %></td>
+    <td class="right"><%= job.completion.name %></td>
+    <td class="right"><%= job.started_on.strftime('%b-%d-%y') %></td>
+    <td class="right"><%= if job.completed_on : job.completed_on.strftime('%b-%d-%y') else '' end %></td>
     <td><%= job.client.name %></td>
     <td class="actions">
     <%= link_to 'Delete', private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>

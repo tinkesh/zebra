@@ -10,7 +10,7 @@ class Private::LoadSheetsController < ApplicationController
 
   def show
     @load_sheet = LoadSheet.find(params[:id], :include => [ :load_entries ] )
-    @page_title = "Load Sheet ##{@load_sheet.id}"
+    @page_title = @load_sheet.label
   end
 
   def new

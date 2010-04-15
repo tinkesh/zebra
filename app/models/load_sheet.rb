@@ -11,4 +11,8 @@ class LoadSheet < ActiveRecord::Base
      Notifier.deliver_new_load_sheet(self)
    end
 
+   def label
+     "Load Sheet ##{self.id} #{self.date.to_date.strftime('%b-%d-%y')}"
+   end
+
 end

@@ -10,7 +10,7 @@ class Private::TimeSheetsController < ApplicationController
 
   def show
     @time_sheet = TimeSheet.find(params[:id], :include => [ {:time_tasks => :time_task_category}, :time_entries, :time_note_category])
-    @page_title = "Time Sheet ##{@time_sheet.id}"
+    @page_title = @time_sheet.label
     get_version
   end
 
@@ -51,7 +51,7 @@ class Private::TimeSheetsController < ApplicationController
     @entries = @time_sheet.time_entries
     load_time_sheet_supporting_data
     2.times { @time_sheet.time_tasks.build }
-    @page_title = "Edit Time Sheet ##{@time_sheet.id}"
+    @page_title = "Edit #{@time_sheet.label}"
   end
 
   def update

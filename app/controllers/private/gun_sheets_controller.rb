@@ -10,7 +10,7 @@ class Private::GunSheetsController < ApplicationController
 
   def show
     @gun_sheet = GunSheet.find(params[:id], :include => [ :gun_markings ] )
-    @page_title = "Gun Sheet ##{@gun_sheet.id}"
+    @page_title = @gun_sheet.label
   end
 
   def new

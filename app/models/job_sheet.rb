@@ -4,6 +4,10 @@ class JobSheet < ActiveRecord::Base
   has_and_belongs_to_many :time_sheets
   has_and_belongs_to_many :gun_sheets
 
+  def label
+    "Job Sheet ##{self.id}"
+  end
+
   def total_expenses
     self.total_time_cost + self.total_misc_cost + self.total_equipment_cost + self.total_material_cost
   end
