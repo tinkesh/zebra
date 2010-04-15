@@ -12,6 +12,7 @@
   <tr>
     <th>&nbsp;</th>
     <th>Name</th>
+    <th>Clocked In at</th>
     <th>Comment</th>
   </tr>
 <% @job.users.each do |user| %>
@@ -19,6 +20,7 @@
   <% unless @clocked_in_ids.include?(user.id) %>
     <td class="span-1"><%= check_box_tag "users[][active]", "true", :checked => true %></td>
     <td class="span-4"><%= user.name %></td>
+    <td>-</td>
     <td>
       <%= text_field_tag "users[][note]" %>
       <%= hidden_field_tag "users[][user_id]", user.id %>
@@ -27,9 +29,11 @@
       <%= hidden_field_tag "users[][bank_overtime_hours]", user.bank_overtime_hours %>
     </td>
   <% else %>
+  <% @entry = TimeEntry.find(:first, :conditions => {:job_id => @job.id, :user_id => user.id, :clock_out => nil, :active => true}) %>
     <td class="span-1"><%= check_box_tag "user", "active", true, :disabled => true %></td>
     <td class="span-4"><span class="quiet"><%= user.name %></span></td>
-    <td><span class="quiet">Clocked In</span></td>
+    <td><span class="quiet"><%= if @entry : @entry.clock_in.strftime('%b-%d-%y at %I:%M %p') else "Error" end %></span></td>
+    <td>-</td>
   <% end %>
   </tr>
 <% end %>

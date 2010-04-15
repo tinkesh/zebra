@@ -1,3 +1,5 @@
+- Report of user's time, including clocked_in_at/out_at times
+- Clock In / Clock Out report, including clocked_in_at, time_sheet, etc.
 - X Email addresses in Settings
 - X Material Report
 - X Update own account
@@ -14,7 +16,6 @@
 - mobile @job#new (client, name, notes, users) w/ 3 markings
 - auto logout
 - cannot submit a timesheet if not clocked out
-- Report of user's time, including clocked_in_at/out_at times
 - OT warning at 160 hours within pay period to notices@
 - OT warning at 190 hours within pay period to notices@
 - >15hr work day warning to kwame@
@@ -24,11 +25,9 @@
 - @clock_in#new display clock in time a user is clocked in at
 - CRUD customer from @job#new
 
-- View of every clocked in user
 - Add @gun_sheet.date to @job_sheet#show
 - Format job_sheet to print on 1 page / landscape format
 - Issue with Dorian clock in / clock out
-- Clock In / Clock Out report, including clocked_in_at, time_sheet, etc.
 
 x 2010-04-15 Revise #index for @time_sheet, @load_sheet, @gun_sheet
 x 2010-04-15 Move New Load Sheet to Jobs on Hand screen

@@ -13,24 +13,36 @@
   <% unless @clocked_in.empty? %>
 
     <h3>Clock Out Users</h3>
-    <ul>
+    <table>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>Clocked In at</th>
+        <th>Clocked Out at</th>
+      </tr>
     <% for entry in @entries %>
-      <li>
+      <tr class="<%= cycle('odd', 'even') %>">
       <% if entry.active -%>
         <% if entry.clock_out -%>
-          <%= check_box_tag "user", "active", false, :disabled => true %>
-          <%= entry.user.name %> (already Clocked In &amp; Clocked Out, but no time sheet)
+          <td><%= check_box_tag "user", "active", false, :disabled => true %></td>
+          <td><%= entry.user.name %></td>
+          <td><%= entry.clock_in.strftime('%b-%d-%y at %I:%M %p') %></td>
+          <td><%= entry.clock_out.strftime('%b-%d-%y at %I:%M %p') %></td>
         <% else -%>
-          <%= check_box_tag "users[]", entry.user.id, :checked => true %>
-          <%= entry.user.name %>
+          <td><%= check_box_tag "users[]", entry.user.id, :checked => true %></td>
+          <td><%= entry.user.name %></td>
+          <td><%= entry.clock_in.strftime('%b-%d-%y at %I:%M %p')%></td>
+          <td>-</td>
         <% end -%>
       <% else -%>
-        <%= check_box_tag "user", "active", false, :disabled => true %>
-        <%= entry.user.name %> (not Clocked In)
+        <td><%= check_box_tag "user", "active", false, :disabled => true %></td>
+        <td><%= entry.user.name %></td>
+        <td>-</td>
+        <td>-</td>
       <% end -%>
-      </li>
+      </tr>
     <% end -%>
-    </ul>
+    </table>
 
     <%= hidden_field :entries, :job_id, :value => @job.id %>
 
@@ -40,10 +52,10 @@
 
     <ul class="jobs">
       <li>After Clock Out...</li>
-      <li><label class="show"><%= radio_button_tag "navigate", "show_job", :checked => true %> Take me to the Job</label></li>
-      <li><label class="new-inline"><%= radio_button_tag "navigate", "new_time_sheet" %> Add a Time Sheet</label></li>
-      <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_in" %> Clock In users</label></li>
-      <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out additional users</label></li>
+      <li><label><%= radio_button_tag "navigate", "show_job", :checked => true %> Take me to the Job</label></li>
+      <li><label><%= radio_button_tag "navigate", "new_time_sheet" %> Add a Time Sheet</label></li>
+      <li><label><%= radio_button_tag "navigate", "clock_in" %> Clock In users</label></li>
+      <li><label><%= radio_button_tag "navigate", "clock_out" %> Clock Out additional users</label></li>
     </ul>
 
     <p><%= submit_tag "Clock Out Selected Users" %></p>

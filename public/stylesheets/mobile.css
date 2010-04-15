@@ -1,6 +1,17 @@
+p, ul, ol, td, th, label { font-size: 12px; }
+
 body#mobile { background: #fff; margin: 10px; }
 #home { text-align: center; }
 #menu { margin-bottom: 1.5em; }
 #mobile h1 { border-bottom: 0; }
 #mobile #new_user_session { text-align: left; width: 220px; margin: 0 auto; }
 #mobile #new_user_session input { margin: 0; }
+
+table { }
+th { background: #333; color: #fff; font-weight: normal; }
+th, td, caption { padding: 2px 2px 2px 4px; }
+tr.even td { background: #ededed; }
+.actions { padding: 0; }
+
+input[type="text"], input[type="password"], input.text, input.title, textarea, select { padding: 0.2em; font-size: 12px; margin: 0; font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
+input[type="checkbox"], input[type="radio"], input.checkbox, input.radio { top:0; }

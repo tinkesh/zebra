@@ -70,9 +70,9 @@
     <td><%= entry.user.name %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
-    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
-    <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>
+    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
+    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
+    <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)}" else '-' end %></td>
     <td><%= entry.note %></td>
   </tr>
   <%- end -%>
