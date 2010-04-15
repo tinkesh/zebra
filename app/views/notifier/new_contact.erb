@@ -1,4 +1,4 @@
-Date: <%= @contact.datetime.to_time.strftime("%Y-%m-%d") %>
+Date: <%= @contact.created_at.strftime("%Y-%m-%d") %>
 Name: <%= @contact.name %>
 Company: <%= @contact.company %>
 Address: <%= @contact.address %>

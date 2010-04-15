@@ -1,4 +1,4 @@
-Date: <%= @employment.datetime.to_time.strftime("%Y-%m-%d") %>
+Date: <%= @employment.created_at.strftime("%Y-%m-%d") %>
 Name: <%= @employment.name %>
 City: <%= @employment.city %>
 Address: <%= @employment.address %>
@@ -6,15 +6,15 @@ Province: <%= @employment.province %>
 Phone: <%= @employment.phone %>
 Email: <%= @employment.email %>
 
-Has Experience: <%= true_false(@employment.have_experience) %>
-Has Class 5: <%= true_false(@employment.have_class5) %>
-Has Class 3: <%= true_false(@employment.have_class3) %>
-Has Class 1: <%= true_false(@employment.have_class1) %>
-Has Overtime: <%= true_false(@employment.have_overtime) %>
-Has Travel: <%= true_false(@employment.have_travel) %>
-Has First Aid: <%= true_false(@employment.have_firstaid) %>
-Has TDG: <%= true_false(@employment.have_tdg) %>
-Has Seasonal: <%= true_false(@employment.have_seasonal) %>
+Has Experience: <%= if @employment.have_experience : "Yes" else "no" end %>
+Has Class 5: <%= if @employment.have_class5else : "Yes" else "no" end %>
+Has Class 3: <%= if @employment.have_class3else : "Yes" else "no" end %>
+Has Class 1: <%= if @employment.have_class1else : "Yes" else "no" end %>
+Has Overtime: <%= if @employment.have_overtimeelse : "Yes" else "no" end %>
+Will Travel: <%= if @employment.have_travelelse : "Yes" else "no" end %>
+Has First Aid: <%= if @employment.have_firstaidelse : "Yes" else "no" end %>
+Has TDG: <%= if @employment.have_tdgelse : "Yes" else "no" end %>
+Will Work Seasona: <%= if @employment.have_seasonalelse : "Yes" else "no" end %>
 
 References:
 <%= @employment.references %>
