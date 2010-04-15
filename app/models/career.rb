@@ -7,4 +7,10 @@ class Career < ActiveRecord::Base
   validates_presence_of :phone, :on => :create, :message => "can't be blank"
   validates_presence_of :references, :on => :create, :message => "can't be blank"
 
+  after_create :deliver_new_career
+
+  def deliver_new_career
+    Notifier.deliver_new_career(self)
+  end
+
 end
