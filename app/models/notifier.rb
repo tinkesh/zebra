@@ -46,7 +46,7 @@ class Notifier < ActionMailer::Base
     from          "notifier@aaastriping.ca"
     recipients    "dana@agilestyle.com"
     sent_on       Time.now
-    body          :contact => contact
+    body          :career => career
   end
 
 end
