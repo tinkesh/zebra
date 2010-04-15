@@ -1,0 +1,20 @@
+Date: <%= @employment.datetime.to_time.strftime("%Y-%m-%d") %>
+Name: <%= @employment.name %>
+City: <%= @employment.city %>
+Address: <%= @employment.address %>
+Province: <%= @employment.province %>
+Phone: <%= @employment.phone %>
+Email: <%= @employment.email %>
+
+Has Experience: <%= true_false(@employment.have_experience) %>
+Has Class 5: <%= true_false(@employment.have_class5) %>
+Has Class 3: <%= true_false(@employment.have_class3) %>
+Has Class 1: <%= true_false(@employment.have_class1) %>
+Has Overtime: <%= true_false(@employment.have_overtime) %>
+Has Travel: <%= true_false(@employment.have_travel) %>
+Has First Aid: <%= true_false(@employment.have_firstaid) %>
+Has TDG: <%= true_false(@employment.have_tdg) %>
+Has Seasonal: <%= true_false(@employment.have_seasonal) %>
+
+References:
+<%= @employment.references %>

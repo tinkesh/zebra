@@ -33,4 +33,20 @@ class Notifier < ActionMailer::Base
     body          :gun_sheet => gun_sheet
   end
 
+  def new_contact(contact)
+    subject       "[AAAS] New Contact from #{contact.name}"
+    from          "notifier@aaastriping.ca"
+    recipients    "dana@agilestyle.com"
+    sent_on       Time.now
+    body          :contact => contact
+  end
+
+  def new_career(career)
+    subject       "[AAAS] New Employment info from #{career.name}"
+    from          "notifier@aaastriping.ca"
+    recipients    "dana@agilestyle.com"
+    sent_on       Time.now
+    body          :contact => contact
+  end
+
 end
