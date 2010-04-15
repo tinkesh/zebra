@@ -34,17 +34,17 @@ class Notifier < ActionMailer::Base
   end
 
   def new_contact(contact)
-    subject       "[AAAS] New Contact from #{contact.name}"
+    subject       "[AAAS] New Contact - #{contact.name}"
     from          "notifier@aaastriping.ca"
-    recipients    "dana@agilestyle.com"
+    recipients    "info@aaastriping.ca"
     sent_on       Time.now
     body          :contact => contact
   end
 
   def new_career(career)
-    subject       "[AAAS] New Employment info from #{career.name}"
+    subject       "[AAAS] New Employment - #{career.name}"
     from          "notifier@aaastriping.ca"
-    recipients    "dana@agilestyle.com"
+    recipients    "info@aaastriping.ca"
     sent_on       Time.now
     body          :career => career
   end
