@@ -18,9 +18,7 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet = GunSheet.new
     load_gun_sheet_supporting_data
 
-    @gun_marking_categories.each do |category|
-      @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
-    end
+    4.times do @gun_sheet.gun_markings.build end
 
     @page_title = "New Gun Sheet for " + @job.label
   end
@@ -73,7 +71,7 @@ private
     @job_locations = @job.job_locations
     @clients = Client.find(:all, :order => :name)
     @equipment = Equipment.find(:all, :order => :unit)
-    @gun_marking_categories = GunMarkingCategory.find(:all, :order => :position)
+    @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
   end
 
 end

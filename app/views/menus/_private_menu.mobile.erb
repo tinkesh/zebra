@@ -1,6 +1,9 @@
 <div id="menu" class="noprint">
 <% authenticated_only do %>
   <%= link_to 'Dashboard', private_home_path %> |
+  <% if permitted_to? :create, :private_jobs -%>
+    <%= active_link_to 'New Job on Hand', new_private_job_path %> |
+  <% end %>
   <%= link_to "My Hours", report_user_time_path(:id => current_user.id) %> |
   <%= link_to 'Directory', directory_path %> |
   <%= link_to "Logout", user_session_path, :method => :delete %>

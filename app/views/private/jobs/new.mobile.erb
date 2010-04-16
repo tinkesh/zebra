@@ -1,0 +1,26 @@
+<% form_for @job, :url => private_jobs_path(@job) do |f| %>
+  <%= f.error_messages %>
+
+  <p><%= f.label :client_id %><br>
+  <%= select ("job", "client_id", @clients.map {|u| [u.name,u.id]}) %></p>
+
+  <p><%= f.label :name, "Project Name" %><br>
+  <%= f.text_field "name" %></p>
+
+  <p><%= f.label :notes, "Notes" %><br>
+  <%= f.text_area "notes", :rows => 4 %></p>
+
+  <p>
+  <% for user in @users %>
+      <label>
+      <%= check_box_tag "job[user_ids][]", user.id, @job.users.include?(user) %>
+      <%= user.name %>
+      </label>
+      <br />
+  <% end %>
+  </p>
+
+  <hr>
+
+  <%= f.submit "Create Job" %> or <%= link_to 'Cancel', private_jobs_path %>
+<% end %>

@@ -54,7 +54,10 @@ class Private::JobsController < ApplicationController
       if params[:job][:equipment_ids] : (@job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s) else '' end
       @job.save
       flash[:notice] = "Job on Hand created!"
-      redirect_to private_jobs_url
+      respond_to do |format|
+        format.html   { redirect_to(private_jobs_url) }
+        format.mobile { redirect_to(private_home_path) }
+      end
     else
       render :action => :new
     end
