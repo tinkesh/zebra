@@ -1,51 +1,45 @@
+<% content_for :submenu do %>
+  <%= render :partial => 'menus/dashboard_menu', :layout => false %>
+<% end %>
+
 <% content_for :versions do %>
 <ol id="versions" class="noprint">
-    <li><%= link_to '<< Previous Pay Period', report_decrease_offset_path(@user.id) %></li>
-    <li><%= link_to 'Today', report_reset_offset_path(:id => @user.id) %></li>
-    <li><%= link_to 'Next Pay Period >>', report_increase_offset_path(@user.id) %></li>
+    <li><%= link_to '<< Previous Pay Period', report_decrease_offset_path %></li>
+    <li><%= link_to 'Today', report_reset_offset_path %></li>
+    <li><%= link_to 'Next Pay Period >>', report_increase_offset_path %></li>
 </ol>
 <% end %>
 
-<% content_for :submenu do %>
-  <%= render :partial => 'menus/users_menu', :layout => false %>
-<% end %>
-
-<h1><%= @user.name %>'s Hours</h1>
 <h3><%= @back.to_date.strftime('%b-%d-%y') %> to <%= (@front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
 <table>
   <tr>
-    <td>&nbsp;</td>
+    <td colspan="2">&nbsp;</td>
     <th class="center" colspan="3">Reported</th>
-    <td>&nbsp;</td>
     <th class="center" colspan="3">Actual</th>
-    <td colspan="6">&nbsp;</td>
+    <td>&nbsp;</td>
   </tr>
   <tr>
-    <th>Job</th>
+    <th class="span-3">User</th>
+    <th class="span-6">Job</th>
     <th class="right span-3">Date</th>
     <th class="right span-2">Clock In</th>
     <th class="right span-2">Clock Out</th>
-    <th class="right span-1">&nbsp;</th>
     <th class="right span-3">Date</th>
     <th class="right span-2">Clock In</th>
     <th class="right span-2">Clock Out</th>
-    <th class="right span-1">&nbsp;</th>
-    <th class="right">S/T</th>
-    <th class="right">OT</th>
+    <th class="right span-1 last">Sheet</th>
   </tr>
 <% @entries.each do |entry| %>
   <tr class="<%= cycle('odd', 'even') %>">
-    <td><%= link_to job_label(entry.job), private_job_path(entry.job), :class => "show" %></td>
+    <td><%= link_to entry.user.name, report_user_time_path(:id => entry.user_id) %></td>
+    <td><%= link_to job_label(entry.job), private_job_path(entry.job) %></td>
     <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-    <td>&nbsp;</td>
     <td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
-    <td>&nbsp;</td>
-    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
-    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
+    <td class="right"><%= if entry.time_sheet_id == nil : "-" else link_to("##{entry.time_sheet.id}", private_job_sheet_path(entry.time_sheet)) end %></td>
   </tr>
 <% end%>
 </table>

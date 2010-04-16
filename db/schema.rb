@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100409022501) do
+ActiveRecord::Schema.define(:version => 20100416032437) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(:version => 20100409022501) do
     t.datetime "updated_at"
   end
 
+  add_index "gun_markings", ["gun_sheet_id"], :name => "index_gun_markings_on_gun_sheet_id"
+
   create_table "gun_sheets", :force => true do |t|
     t.integer  "client_id"
     t.integer  "job_id"
@@ -136,6 +138,8 @@ ActiveRecord::Schema.define(:version => 20100409022501) do
     t.integer  "job_location_id"
   end
 
+  add_index "gun_sheets", ["job_id"], :name => "index_gun_sheets_on_job_id"
+
   create_table "gun_sheets_job_sheets", :id => false, :force => true do |t|
     t.integer "gun_sheet_id"
     t.integer "job_sheet_id"
@@ -157,6 +161,9 @@ ActiveRecord::Schema.define(:version => 20100409022501) do
     t.datetime "updated_at"
   end
 
+  add_index "job_markings", ["gun_marking_category_id"], :name => "index_job_markings_on_gun_marking_category_id"
+  add_index "job_markings", ["job_id"], :name => "index_job_markings_on_job_id"
+
   create_table "job_sheets", :force => true do |t|
     t.date     "date"
     t.integer  "job_id"
@@ -164,6 +171,8 @@ ActiveRecord::Schema.define(:version => 20100409022501) do
     t.datetime "updated_at"
     t.decimal  "material_rate"
   end
+
+  add_index "job_sheets", ["job_id"], :name => "index_job_sheets_on_job_id"
 
   create_table "job_sheets_time_sheets", :id => false, :force => true do |t|
     t.integer "job_sheet_id"
@@ -209,6 +218,8 @@ ActiveRecord::Schema.define(:version => 20100409022501) do
     t.string   "category"
   end
 
+  add_index "load_entries", ["load_sheet_id"], :name => "index_load_entries_on_load_sheet_id"
+
   create_table "load_sheets", :force => true do |t|
     t.integer  "equipment_id"
     t.integer  "location_id"
@@ -223,6 +234,8 @@ ActiveRecord::Schema.define(:version => 20100409022501) do
     t.datetime "updated_at"
     t.string   "location_name"
   end
+
+  add_index "load_sheets", ["job_id"], :name => "index_load_sheets_on_job_id"
 
   create_table "locations", :force => true do |t|
     t.string   "name"
@@ -286,6 +299,9 @@ ActiveRecord::Schema.define(:version => 20100409022501) do
     t.datetime "updated_at"
     t.boolean  "bank_overtime_hours"
   end
+
+  add_index "time_entries", ["clock_in"], :name => "index_time_entries_on_clock_in"
+  add_index "time_entries", ["user_id"], :name => "index_time_entries_on_user_id"
 
   create_table "time_note_categories", :force => true do |t|
     t.string  "name"

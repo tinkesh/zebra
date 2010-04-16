@@ -1,8 +1,4 @@
-<ul class="noprint">
-  <% authenticated_only do %>
-    <li><a href="#">My Jobs</a></li>
-    <li><a href="#">My Time Sheets</a></li>
-    <li><a href="#">My Load Sheets</a></li>
-    <li><a href="#">My Gun Sheets</a></li>
-  <% end %>
-</ul>
+<ol class="noprint">
+  <li><%= active_link_to "My Hours", report_user_time_path(:id => current_user.id) %></li>
+  <li><%= active_link_to "Recent Time Entries", report_time_entries_path %></li>
+</ol>

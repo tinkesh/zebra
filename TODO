@@ -1,5 +1,4 @@
 TODO
-- Clock In / Clock Out report, including clocked_in_at, time_sheet, etc.
 - Material Report
 - Update own account
 - Versioning for Load Sheets
@@ -7,7 +6,6 @@ TODO
 - Pagination
 - @obj.locked?
 - @obj.selectable?
-- Add @gun_sheet.date to @job_sheet#show
 - Issue with Dorian clock in / clock out
 - force user to change pw on first login
 - gun markings toggle to display in @job#new and #edit
@@ -28,6 +26,8 @@ CAN WAIT
 - Quantity of Totes to @material
 - Count down Tote usage for @material, disable when hit
 
+- Add @gun_sheet.date to @job_sheet#show
+x 2010-04-15 Clock In / Clock Out report, including clocked_in_at, time_sheet, etc.
 x 2010-04-15 Improved 'Directory' to include idle time, display phone numbers
 x 2010-04-15 Report of user's time, including clocked_in_at/out_at times
 x 2010-04-15 Pay Period report for all users
@@ -37,7 +37,7 @@ x 2010-04-15 Move New Load Sheet to Jobs on Hand screen
 x 2010-04-15 Label "Obj ##{@obj.id} #{@obj.date}", format Apr-13-10 for @time_sheet, @load_sheet, @gun_sheet
 x 2010-04-15 Add total_expenses and total_production to @job_sheet#show
 x 2010-04-15 Material usage is L of paint * 38.2
-x 2010-04-15 Material rate is .48/kg
+x 2010-04-15 Bead rate is .48/kg
 x 2010-04-15 Backup database to S3
 x 2010-04-14 Remember last selected job and select it when on dashboard
 x 2010-04-14 User can modify @report#user_time pay period
@@ -46,9 +46,9 @@ x 2010-04-14 Add date to @time_sheet#index, sort by newest first
 x 2010-04-14 Cancel on @time_entry#edit returns to @time_sheet#edit
 x 2010-04-14 Force bead price in @job_sheet#show to $0.45/kg
 x 2010-04-14 Display all jobs to users with the office role
-x 2010-04-14 allow office to edit settings
-x 2010-04-14 move clockin/clockout to top of menu
-x 2010-04-13 new gun / load to @job#show in a new redirect menu
+x 2010-04-14 Allow office to edit Settings
+x 2010-04-14 Moved Clock In and Clock Out to top of redirect menu
+x 2010-04-13 New Gun Sheet & New Load Sheet links added to @job#show in a redirect menu
 x 2010-04-08 Email notifications (@career, @contact, @time_sheet, @gun_sheet, @load_sheet)
 X 2010-04-08 Initial draft of User Time Report. Pay Period is the 24th -> 23rd
 x 2010-04-08 CRUD of @time_entry

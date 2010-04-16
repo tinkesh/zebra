@@ -1,3 +1,7 @@
+<% content_for :submenu do %>
+  <%= render :partial => 'menus/dashboard_menu', :layout => false %>
+<% end %>
+
 <div class="span-10">
   <h2>Jobs on Hand</h2>
 <% form_tag :controller => 'private', :action => "navigate" do -%>
@@ -19,13 +23,6 @@
   <p><%= submit_tag "Go to Page" %></p>
 
 <% end %>
-
-</div>
-
-<div class="span-14 last">
-  <p>
-    <%= link_to "My Pay Report", report_user_time_path(:id => current_user.id) %>
-  </p>
 
 </div>
 

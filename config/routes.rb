@@ -35,6 +35,7 @@ ActionController::Routing::Routes.draw do |map|
     page.report_decrease_offset "reports/decrease_offset/:id", :action => "decrease_offset", :path_prefix => "admin"
     page.report_reset_offset "reports/reset_offset/:id", :action => "reset_offset", :path_prefix => "admin"
     page.report_user_time "reports/user_time/:id", :action => "user_time", :path_prefix => "admin"
+    page.report_time_entries "reports/time_entries", :action => "time_entries", :path_prefix => "admin"
   end
 
   # versions
