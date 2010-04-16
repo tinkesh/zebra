@@ -33,6 +33,7 @@ a:hover { color: #3344FF; text-decoration: underline; }
 .total { text-align: right; font-weight: bold; border-top: solid 1px #333; }
 .no_list { list-style-type: none; margin: 0 0 1.5em 0; }
 .right { text-align: right; }
+.center { text-align: center; }
 
 /* header */
 #header .container { position: relative; }

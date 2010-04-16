@@ -33,9 +33,10 @@
     <td><%= if user.rate : "$#{user.rate}" end %></td>
     <td><%= if user.bank_overtime_hours : "Bank" else "Pay Out" end %></td>
     <td><%=h time_ago_in_words(user.last_request_at) + " ago" if user.last_request_at? %></td>
-    <td class="actions">
+    <td class="right">
     <%= link_to 'Delete', user, :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_user_path(user), :class => "edit" %>
+    <%= link_to "Pay Report", report_user_time_path(:id => user.id), :class => "new" %>
     </td>
   </tr>
 <% end %>

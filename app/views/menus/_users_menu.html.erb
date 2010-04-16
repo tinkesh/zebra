@@ -1,0 +1,8 @@
+<% if permitted_to? :manage, :users -%>
+<ol class="noprint">
+  <li><%= active_link_to 'Show', user_path(@user), :active => { :when => :self_only } %></li>
+  <li><%= active_link_to 'Edit', edit_user_path(@user) %></li>
+  <li><%= active_link_to 'Pay Period Report', report_user_time_path(:id => @user.id) %></li>
+  <li><%= active_link_to 'New User', new_user_path %></li>
+</ol>
+<% end %>

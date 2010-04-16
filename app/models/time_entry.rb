@@ -11,7 +11,7 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def per_diem
-    if self.time_sheet.per_diem == true : self.time_sheet.per_diem_rate else 0 end
+    if (self.time_sheet && self.time_sheet.per_diem == true) : self.time_sheet.per_diem_rate else 0 end
   end
 
   def straight_time

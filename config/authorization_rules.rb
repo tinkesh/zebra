@@ -4,6 +4,7 @@ authorization do
     includes :office
     includes :foreman
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
+    has_permission_on :private_reports, :to => :user_time
   end
 
   role :office do
@@ -28,7 +29,10 @@ authorization do
     has_permission_on :private, :to => [:index, :navigate]
     has_permission_on :private_directory, :to => :index
     has_permission_on :private_job, :to => :show
-    has_permission_on :private_reports, :to => [:user_time, :increase_offset, :decrease_offset, :reset_offset, :create_offset]
+    has_permission_on :private_reports, :to => [:increase_offset, :decrease_offset, :reset_offset]
+    has_permission_on :private_reports, :to => :user_time do
+      if_attribute :id => is { user.id }
+    end
   end
 end
 

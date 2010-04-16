@@ -1,19 +1,24 @@
-- Report of user's time, including clocked_in_at/out_at times
+TODO
 - Clock In / Clock Out report, including clocked_in_at, time_sheet, etc.
-- X Email addresses in Settings
-- X Material Report
-- X Update own account
+- Material Report
+- Update own account
 - Versioning for Load Sheets
 - Versioning for Gun Sheets
 - Pagination
-- Search
-- Event Log
 - @obj.locked?
 - @obj.selectable?
-
+- Add @gun_sheet.date to @job_sheet#show
+- Issue with Dorian clock in / clock out
 - force user to change pw on first login
 - gun markings toggle to display in @job#new and #edit
 - mobile @job#new (client, name, notes, users) w/ 3 markings
+
+CAN WAIT
+- Email addresses in Settings
+- Search
+- Event Log
+- Format job_sheet to print on 1 page / landscape format
+- CRUD customer from @job#new
 - auto logout
 - cannot submit a timesheet if not clocked out
 - OT warning at 160 hours within pay period to notices@
@@ -22,13 +27,11 @@
 - Time sheet with no hours does not display per_diem in @time_sheets#index
 - Quantity of Totes to @material
 - Count down Tote usage for @material, disable when hit
-- @clock_in#new display clock in time a user is clocked in at
-- CRUD customer from @job#new
 
-- Add @gun_sheet.date to @job_sheet#show
-- Format job_sheet to print on 1 page / landscape format
-- Issue with Dorian clock in / clock out
-
+x 2010-04-15 Improved 'Directory' to include idle time, display phone numbers
+x 2010-04-15 Report of user's time, including clocked_in_at/out_at times
+x 2010-04-15 Pay Period report for all users
+x 2010-04-15 @clock_in#new display clock in time a user is clocked in at
 x 2010-04-15 Revise #index for @time_sheet, @load_sheet, @gun_sheet
 x 2010-04-15 Move New Load Sheet to Jobs on Hand screen
 x 2010-04-15 Label "Obj ##{@obj.id} #{@obj.date}", format Apr-13-10 for @time_sheet, @load_sheet, @gun_sheet
