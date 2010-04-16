@@ -10,7 +10,7 @@ class Private::JobSheetsController < ApplicationController
 
   def show
     @job_sheet = JobSheet.find(params[:id], :include => [{:time_sheets => [:time_entries => :user]}, {:job => [{:gun_sheets => :gun_markings}, :equipments, :users, :job_markings]}])
-    @page_title = "Job Sheet ##{@job_sheet.id}"
+    @page_title = @job_sheet.job.label
     @job_marking_cats = Array.new
   end
 

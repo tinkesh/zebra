@@ -26,7 +26,7 @@ CAN WAIT
 - Quantity of Totes to @material
 - Count down Tote usage for @material, disable when hit
 
-- Add @gun_sheet.date to @job_sheet#show
+x 2010-04-15 Add @gun_sheet.date to @job_sheet#show
 x 2010-04-15 Clock In / Clock Out report, including clocked_in_at, time_sheet, etc.
 x 2010-04-15 Improved 'Directory' to include idle time, display phone numbers
 x 2010-04-15 Report of user's time, including clocked_in_at/out_at times

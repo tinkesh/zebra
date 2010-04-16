@@ -8,6 +8,10 @@ class JobSheet < ActiveRecord::Base
     "Job Sheet ##{self.id}"
   end
 
+  def date_range
+    self.gun_sheets.first.date.to_date.strftime('%b-%d-%y')
+  end
+
   def total_expenses
     self.total_time_cost + self.total_misc_cost + self.total_equipment_cost + self.total_material_cost
   end
