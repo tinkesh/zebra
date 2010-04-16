@@ -1,4 +1,5 @@
 TODO
+- New Clock In / Clock Out / Time Sheet / Job associations
 - Material Report
 - Pagination
 - @obj.locked?
