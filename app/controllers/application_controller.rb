@@ -74,4 +74,12 @@ private
     session[:return_to] = nil
   end
 
+protected
+
+#  def permission_denied
+#    flash[:error] = "You do not have access that page."
+#    redirect_to login_url
+#  end
+
+
 end

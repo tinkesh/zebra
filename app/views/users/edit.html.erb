@@ -1,8 +1,10 @@
 <% content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
+    <% if permitted_to? :manage, :users -%>
     <li>»</li>
     <li><%= link_to 'Users', users_path %></li>
+    <% end %>
     <li>»</li>
     <li><%= @page_title %></li>
   </ul>
@@ -12,9 +14,8 @@
   <%= render :partial => 'menus/users_menu', :layout => false %>
 <% end %>
 
-
 <% form_for @user do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Save User" %> or <%= link_to 'Cancel', users_path %>
+  <%= f.submit "Save Changes" %> or <%= link_to 'Cancel', users_path %>
 <% end %>

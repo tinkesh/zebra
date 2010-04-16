@@ -31,6 +31,9 @@ authorization do
     has_permission_on :private_job, :to => :show
     has_permission_on :private_reports, :to => [:increase_offset, :decrease_offset, :reset_offset]
     has_permission_on :private_reports, :to => :user_time
+    has_permission_on :users, :to => :update do
+      if_attribute :id => is { user.id }
+    end
   end
 end
 

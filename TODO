@@ -1,7 +1,5 @@
 TODO
 - Material Report
-- Update own account
-- force user to change pw on first login
 - Pagination
 - @obj.locked?
 - @obj.selectable?
@@ -20,6 +18,7 @@ CAN WAIT
 - Quantity of Totes to @material
 - Count down Tote usage for @material, disable when hit
 
+x 2010-04-14 User may edit own account
 x 2010-04-15 Link to @time_entry#edit on @reports#time_entries
 x 2010-04-15 Limit Clock In / Clock Out redirect options
 x 2010-04-15 Versioning for Load Sheets

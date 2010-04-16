@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   layout "private"
-  filter_access_to :all
+  filter_access_to :all, :attribute_check => true
 
   def index
     @users = User.all
@@ -45,12 +45,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.versioned_at = Time.now
-    @user.versioned_role_ids = params[:user][:role_ids].join(', ').to_s
-    params[:user][:role_ids] ||= []
+    if params[:user][:role_ids] then
+      @user.versioned_at = Time.now
+      @user.versioned_role_ids = params[:user][:role_ids].join(', ').to_s
+      params[:user][:role_ids] ||= []
+    end
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_to users_url
+      redirect_to private_home_url
     else
       render :action => :edit
     end

@@ -12,10 +12,12 @@
 
   <br class="clear">
 
+<% if permitted_to? :manage, :users -%>
   <div class="span-6 append-bottom">
     <%= form.label :login %><br />
     <%= form.text_field :login, :class => "span-6" %>
   </div>
+<% end %>
 
   <div class="span-6 append-bottom last">
     <%= form.label :email %><br />
@@ -35,7 +37,7 @@
   </div>
 
   <br class="clear">
-
+<% if permitted_to? :manage, :users -%>
   <div class="span-6 append-bottom">
     <%= form.label :address %>
     <%= form.text_field :address, :class => "span-6" %>
@@ -57,7 +59,7 @@
   </div>
 
   <br class="clear">
-
+<% end %>
   <div class="span-6 append-bottom">
     <%= form.label :password, form.object.new_record? ? nil : "Change Password" %><br />
     <%= form.password_field :password, :class => "span-6" %>
@@ -70,7 +72,7 @@
 
   <br class="clear">
 </div>
-
+<% if permitted_to? :manage, :users -%>
 <div class="span-6">
   <div class="span-6 last append-bottom">
     <%= form.label :rate, "Hourly Rate" %><br>
@@ -96,4 +98,5 @@
   </ul>
 </div>
 
-<br class="clear">
+<% end %>
+<hr>
