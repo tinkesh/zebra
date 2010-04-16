@@ -17,11 +17,8 @@
 <% form_for [:private, @job, @time_entry] do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <label>User</label>
-    <br>
-    <%= @time_entry.user.name %>
-  </p>
+
+  <h3><%= @time_entry.user.name %>, <%= @time_entry.job.label %></h3>
 
   <p>
     <label>Clock In Time</label>

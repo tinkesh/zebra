@@ -138,6 +138,4 @@ tr.even td { background: #ededed; }
 .new, .new-inline { color: #529214; margin: 0 10px 0 0; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; font-weight: normal; }
 .new:hover, .new:active, .new-inline:hover, .new-inline:active { color: #529214 ;}
 .new, .edit, .delete { float: right; }
-
-
-
+.plain { background: none; padding: 0; margin: 0; }

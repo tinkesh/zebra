@@ -4,6 +4,10 @@
     <li><%= active_link_to "Edit", private_time_entry_path(@time_entry) %></li>
   <% end %>
 
+  <% if permitted_to? :time_entries, :private_reports -%>
+    <li><%= active_link_to "Recent Time Entries", report_time_entries_path %></li>
+  <% end %>
+
   <% if @time_entry.time_sheet %>
     <% if permitted_to? :read, :private_time_sheets -%>
       <li><%= active_link_to "Show Time Sheet", private_time_sheet_path(@time_sheet) %></li>

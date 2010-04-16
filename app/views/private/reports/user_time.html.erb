@@ -32,6 +32,9 @@
     <th class="right span-1">&nbsp;</th>
     <th class="right">S/T</th>
     <th class="right">OT</th>
+    <% if permitted_to? :manage, :private_time_entries -%>
+    <th>&nbsp;</th>
+    <% end %>
   </tr>
 <% @entries.each do |entry| %>
   <tr class="<%= cycle('odd', 'even') %>">
@@ -46,6 +49,9 @@
     <td>&nbsp;</td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
     <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
+    <% if permitted_to? :manage, :private_time_entries -%>
+    <td class="right"><%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit plain" %></td>
+    <% end %>
   </tr>
 <% end%>
 </table>

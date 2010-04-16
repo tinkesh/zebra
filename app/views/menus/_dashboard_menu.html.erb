@@ -1,4 +1,6 @@
 <ol class="noprint">
   <li><%= active_link_to "My Hours", report_user_time_path(:id => current_user.id) %></li>
-  <li><%= active_link_to "Recent Time Entries", report_time_entries_path %></li>
+  <% if permitted_to? :time_entries, :private_reports -%>
+    <li><%= active_link_to "Recent Time Entries", report_time_entries_path %></li>
+  <% end %>
 </ol>

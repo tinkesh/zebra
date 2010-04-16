@@ -1,11 +1,10 @@
 TODO
 - Material Report
 - Update own account
+- force user to change pw on first login
 - Pagination
 - @obj.locked?
 - @obj.selectable?
-- Issue with Dorian clock in / clock out
-- force user to change pw on first login
 
 CAN WAIT
 - Email addresses in Settings
@@ -13,7 +12,6 @@ CAN WAIT
 - Event Log
 - Format job_sheet to print on 1 page / landscape format
 - CRUD customer from @job#new
-- auto logout
 - cannot submit a timesheet if not clocked out
 - OT warning at 160 hours within pay period to notices@
 - OT warning at 190 hours within pay period to notices@
@@ -22,6 +20,8 @@ CAN WAIT
 - Quantity of Totes to @material
 - Count down Tote usage for @material, disable when hit
 
+x 2010-04-15 Link to @time_entry#edit on @reports#time_entries
+x 2010-04-15 Limit Clock In / Clock Out redirect options
 x 2010-04-15 Versioning for Load Sheets
 x 2010-04-15 Versioning for Gun Sheets
 x 2010-04-15 mobile @job#new client, name, notes, users

@@ -27,7 +27,8 @@
     <th class="right span-3">Date</th>
     <th class="right span-2">Clock In</th>
     <th class="right span-2">Clock Out</th>
-    <th class="right span-1 last">Sheet</th>
+    <th class="right span-1 last">T/S</th>
+    <th>&nbsp;</th>
   </tr>
 <% @entries.each do |entry| %>
   <tr class="<%= cycle('odd', 'even') %>">
@@ -39,7 +40,8 @@
     <td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.time_sheet_id == nil : "-" else link_to("##{entry.time_sheet.id}", private_job_sheet_path(entry.time_sheet)) end %></td>
+    <td class="right"><%= if entry.time_sheet_id == nil : "-" else link_to("##{entry.time_sheet.id}", private_time_sheet_path(entry.time_sheet)) end %></td>
+    <td class="right"><%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit plain" %></td>
   </tr>
 <% end%>
 </table>
