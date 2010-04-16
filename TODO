@@ -1,8 +1,6 @@
 TODO
 - Material Report
 - Update own account
-- Versioning for Load Sheets
-- Versioning for Gun Sheets
 - Pagination
 - @obj.locked?
 - @obj.selectable?
@@ -24,9 +22,10 @@ CAN WAIT
 - Quantity of Totes to @material
 - Count down Tote usage for @material, disable when hit
 
-- gun markings toggle to display in @job#new and #edit
+x 2010-04-15 Versioning for Load Sheets
+x 2010-04-15 Versioning for Gun Sheets
 x 2010-04-15 mobile @job#new client, name, notes, users
-x 2010-04-15 Limit @gun_sheet#new to 4 markings
+x 2010-04-15 Limit @gun_sheet#new and @gun_sheet#edit to 4 markings
 x 2010-04-15 Add @gun_sheet.date to @job_sheet#show
 x 2010-04-15 Clock In / Clock Out report, including clocked_in_at, time_sheet, etc.
 x 2010-04-15 Improved 'Directory' to include idle time, display phone numbers

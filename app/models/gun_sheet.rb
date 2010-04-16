@@ -1,5 +1,7 @@
 class GunSheet < ActiveRecord::Base
 
+  versioned
+
   belongs_to :job
   belongs_to :equipment
   belongs_to :job_location

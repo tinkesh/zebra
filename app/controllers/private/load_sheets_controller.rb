@@ -11,6 +11,15 @@ class Private::LoadSheetsController < ApplicationController
   def show
     @load_sheet = LoadSheet.find(params[:id], :include => [ :load_entries ] )
     @page_title = @load_sheet.label
+
+    if params[:version]
+      if params[:version].to_i >= @load_sheet.last_version
+        params[:version] = nil
+      else
+        @load_sheet.revert_to(params[:version].to_i)
+      end
+    end
+
   end
 
   def new
@@ -25,6 +34,7 @@ class Private::LoadSheetsController < ApplicationController
     load_load_sheet_supporting_data
     @page_title = "New Load Sheet"
     if @load_sheet.save
+      @load_sheet.versioned_at = Time.now
       flash[:notice] = "Load Sheet created!"
       redirect_to private_load_sheets_url
     else
@@ -41,6 +51,7 @@ class Private::LoadSheetsController < ApplicationController
 
   def update
     @load_sheet = LoadSheet.find(params[:id])
+    @load_sheet.versioned_at = Time.now
     if @load_sheet.update_attributes(params[:load_sheet])
       flash[:notice] = "Load Sheet updated!"
       redirect_to private_load_sheets_url
@@ -54,6 +65,15 @@ class Private::LoadSheetsController < ApplicationController
     @load_sheet.destroy
     flash[:notice] = 'Load Sheet deleted!'
     redirect_to private_load_sheets_url
+  end
+
+  def revert
+    @load_sheet = LoadSheet.find(params[:id])
+    @load_sheet.revert_to(params[:version].to_i)
+    @load_sheet.versioned_at = Time.now
+    @load_sheet.save!
+    flash[:notice] = "Load Sheet reverted!"
+    redirect_to private_load_sheet_url(@load_sheet)
   end
 
 private

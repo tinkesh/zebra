@@ -30,8 +30,8 @@
   <tr>
     <td><%= link_to job.id, private_job_path(job), :class => "show" %></td>
     <td><%= link_to job.name, private_job_path(job) %></td>
-    <td class="right"><%= job.completion.name %></td>
-    <td class="right"><%= job.started_on.strftime('%b-%d-%y') %></td>
+    <td class="right"><%= if job.completion : job.completion.name else "-" end %></td>
+    <td class="right"><%= if job.started_on : job.started_on.strftime('%b-%d-%y') else "-" end %></td>
     <td class="right"><%= if job.completed_on : job.completed_on.strftime('%b-%d-%y') else '' end %></td>
     <td><%= job.client.name %></td>
     <td class="actions">

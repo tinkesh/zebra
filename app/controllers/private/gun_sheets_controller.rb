@@ -11,6 +11,14 @@ class Private::GunSheetsController < ApplicationController
   def show
     @gun_sheet = GunSheet.find(params[:id], :include => [ :gun_markings ] )
     @page_title = @gun_sheet.label
+
+    if params[:version]
+      if params[:version].to_i >= @gun_sheet.last_version
+        params[:version] = nil
+      else
+        @gun_sheet.revert_to(params[:version].to_i)
+      end
+    end
   end
 
   def new
@@ -41,9 +49,7 @@ class Private::GunSheetsController < ApplicationController
     @job = Job.find(@gun_sheet.job_id)
     load_gun_sheet_supporting_data
 
-    @gun_marking_categories.each do |category|
-      @gun_sheet.gun_markings.build(:gun_marking_category_id => category.id)
-    end
+    4.times do @gun_sheet.gun_markings.build end
 
     @page_title = "Edit Gun Sheet ##{@gun_sheet.id}"
   end
@@ -52,7 +58,7 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet = GunSheet.find(params[:id])
     if @gun_sheet.update_attributes(params[:gun_sheet])
       flash[:notice] = "Gun Sheet updated!"
-      redirect_to private_gun_sheets_url
+      redirect_to private_gun_sheet_url(@gun_sheet)
     else
       render :action => :edit
     end
@@ -63,6 +69,15 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet.destroy
     flash[:notice] = 'Gun Sheet deleted!'
     redirect_to private_gun_sheets_url
+  end
+
+  def revert
+    @gun_sheet = GunSheet.find(params[:id])
+    @gun_sheet.revert_to(params[:version].to_i)
+    @gun_sheet.versioned_at = Time.now
+    @gun_sheet.save!
+    flash[:notice] = "Load Sheet reverted!"
+    redirect_to private_gun_sheet_url(@gun_sheet)
   end
 
 private

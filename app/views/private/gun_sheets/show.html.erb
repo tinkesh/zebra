@@ -12,6 +12,25 @@
   <%= render :partial => 'menus/gun_sheets_menu', :layout => false %>
 <% end %>
 
+<% content_for :versions do %>
+<ol id="versions">
+    <li>Version <%= @gun_sheet.version %> of <%= @gun_sheet.last_version %></li>
+    <li><%= if @gun_sheet.versioned_at : @gun_sheet.versioned_at.strftime("%Y-%m-%d %H:%M") end %></li>
+  <% if @gun_sheet.version > 1 %>
+    <li><%= link_to "Older", :version => @gun_sheet.version-1 %></li>
+  <% else %>
+    <li>Older</li>
+  <% end %>
+  <% if params[:version] %>
+    <li><%= link_to "Newer", :version => @gun_sheet.version+1 %></li>
+    <li><%= link_to "Revert", revert_gun_sheet_path(:version => @gun_sheet.version) %></li>
+  <% else %>
+    <li>Newer</li>
+    <li>Revert</li>
+  <% end %>
+</ol>
+<% end %>
+
 <table>
   <tr>
     <th colspan="2"><%= job_label(@gun_sheet.job) %></th>

@@ -12,83 +12,102 @@
   <%= render :partial => 'menus/load_sheets_menu', :layout => false %>
 <% end %>
 
-    <table>
-      <tr>
-        <th colspan="2"><%= job_label(@load_sheet.job) %></th>
-      </tr>
-      <tr class="odd">
-        <td>Truck</td>
-        <td class="right"><%= if @load_sheet.equipment : @load_sheet.equipment.unit else "Not Selected" end %></td>
-      </tr>
-      <tr class="even">
-        <td>Location</td>
-        <td class="right"></td>
-      </td>
-      <tr class="odd">
-        <td>Worked On</td>
-        <td class="right"><%= @load_sheet.date.strftime("%B %d, %Y") %></td>
-      </tr>
-      <tr class="even">
-        <td>Created On</td>
-        <td class="right"><%= @load_sheet.created_at.strftime("%B %d, %Y") %></td>
-      </tr>
-      <tr class="odd">
-        <td>Updated On</td>
-        <td class="right"><%= @load_sheet.updated_at.strftime("%B %d, %Y") %></td>
-      </tr>
-    </table>
+<% content_for :versions do %>
+<ol id="versions">
+    <li>Version <%= @load_sheet.version %> of <%= @load_sheet.last_version %></li>
+    <li><%= if @load_sheet.versioned_at : @load_sheet.versioned_at.strftime("%Y-%m-%d %H:%M") end %></li>
+  <% if @load_sheet.version > 1 %>
+    <li><%= link_to "Older", :version => @load_sheet.version-1 %></li>
+  <% else %>
+    <li>Older</li>
+  <% end %>
+  <% if params[:version] %>
+    <li><%= link_to "Newer", :version => @load_sheet.version+1 %></li>
+    <li><%= link_to "Revert", revert_load_sheet_path(:version => @load_sheet.version) %></li>
+  <% else %>
+    <li>Newer</li>
+    <li>Revert</li>
+  <% end %>
+</ol>
+<% end %>
 
-  <hr>
+<table>
+  <tr>
+    <th colspan="2"><%= job_label(@load_sheet.job) %></th>
+  </tr>
+  <tr class="odd">
+    <td>Truck</td>
+    <td class="right"><%= if @load_sheet.equipment : @load_sheet.equipment.unit else "Not Selected" end %></td>
+  </tr>
+  <tr class="even">
+    <td>Location</td>
+    <td class="right"></td>
+  </td>
+  <tr class="odd">
+    <td>Worked On</td>
+    <td class="right"><%= @load_sheet.date.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr class="even">
+    <td>Created On</td>
+    <td class="right"><%= @load_sheet.created_at.strftime("%B %d, %Y") %></td>
+  </tr>
+  <tr class="odd">
+    <td>Updated On</td>
+    <td class="right"><%= @load_sheet.updated_at.strftime("%B %d, %Y") %></td>
+  </tr>
+</table>
 
-    <h3>Comments</h3>
-    <p>
-      <%= @load_sheet.note %>
-    </p>
+<hr>
 
-  <hr>
+<h3>Comments</h3>
+<p>
+  <%= @load_sheet.note %>
+</p>
 
-  <h3>Load Sheet Entries</h3>
-  <table>
-    <tr>
-      <th>Category</th>
-      <th>Manufacturer</th>
-      <th>Batch #</th>
-      <th>Tote #</th>
-      <th class="right">Tote Qty</th>
-      <th class="right">Amount</th>
+<hr>
+
+<h3>Load Sheet Entries</h3>
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Manufacturer</th>
+    <th>Batch #</th>
+    <th>Tote #</th>
+    <th class="right">Tote Qty</th>
+    <th class="right">Amount</th>
+  </tr>
+  <% @load_sheet.load_entries.each do |entry| %>
+  <% if entry %>
+    <tr class="<%= cycle('even', 'odd') %>">
+      <td><%= entry.category %></td>
+      <td><%= if entry.material && entry.material.manufacturer : entry.material.manufacturer.name end %></td>
+      <td><%= if entry.material : entry.material.batch end %></td>
+      <td><%= entry.tote_number %></td>
+      <td class="right"><%= entry.tote_quantity %></td>
+      <td class="right"><%= entry.amount %> <%= if entry.category == "Bead" : "KG" else "L" end %></td>
     </tr>
-    <% @load_sheet.load_entries.each do |entry| %>
-    <% if entry %>
-      <tr class="<%= cycle('even', 'odd') %>">
-        <td><%= entry.category %></td>
-        <td><%= if entry.material && entry.material.manufacturer : entry.material.manufacturer.name end %></td>
-        <td><%= if entry.material : entry.material.batch end %></td>
-        <td><%= entry.tote_number %></td>
-        <td class="right"><%= entry.tote_quantity %></td>
-        <td class="right"><%= entry.amount %> <%= if entry.category == "Bead" : "KG" else "L" end %></td>
-      </tr>
-      <% end %>
     <% end %>
+  <% end %>
 
-  </table>
+</table>
 
-  <hr>
+<hr>
 
-  <h3>Dips</h3>
-  <table>
-    <tr>
-      <th>&nbsp;</th>
-      <th class="right">Start</th>
-      <th class="right">End</th>
-    </tr>
-    <tr class="even">
-      <td>Yellow</td>
-      <td class="right"><%= @load_sheet.yellow_dip_start %> cm</td>
-      <td class="right"><%= @load_sheet.yellow_dip_end %> cm</td>
-    </tr>
-    <tr class="odd">
-      <td>White</td>
-      <td class="right"><%= @load_sheet.white_dip_start %> cm</td>
-      <td class="right"><%= @load_sheet.white_dip_end %> cm</td>
-    </tr>
-  </table>
+<h3>Dips</h3>
+<table>
+  <tr>
+    <th>&nbsp;</th>
+    <th class="right">Start</th>
+    <th class="right">End</th>
+  </tr>
+  <tr class="even">
+    <td>Yellow</td>
+    <td class="right"><%= @load_sheet.yellow_dip_start %> cm</td>
+    <td class="right"><%= @load_sheet.yellow_dip_end %> cm</td>
+  </tr>
+  <tr class="odd">
+    <td>White</td>
+    <td class="right"><%= @load_sheet.white_dip_start %> cm</td>
+    <td class="right"><%= @load_sheet.white_dip_end %> cm</td>
+  </tr>
+</table>

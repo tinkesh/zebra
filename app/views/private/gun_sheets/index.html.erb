@@ -21,7 +21,7 @@
   <tr>
     <td><%= link_to gun_sheet.id, private_gun_sheet_path(gun_sheet), :class => "show" %></td>
     <td><%= gun_sheet.date.strftime('%b-%d-%y') %></td>
-    <td><%= link_to job_label(gun_sheet.job), private_job_path(gun_sheet.job), :class => "show" %></td>
+    <td><%= if gun_sheet.job : link_to job_label(gun_sheet.job), private_job_path(gun_sheet.job), :class => "show" end %></td>
     <td class="actions">
     <%= link_to 'Delete', private_gun_sheet_path(gun_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_gun_sheet_path(gun_sheet), :class => "edit" %>

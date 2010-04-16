@@ -54,10 +54,7 @@ class Private::JobsController < ApplicationController
       if params[:job][:equipment_ids] : (@job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s) else '' end
       @job.save
       flash[:notice] = "Job on Hand created!"
-      respond_to do |format|
-        format.html   { redirect_to(private_jobs_url) }
-        format.mobile { redirect_to(private_home_path) }
-      end
+      redirect_to(private_home_path)
     else
       render :action => :new
     end
@@ -98,7 +95,7 @@ class Private::JobsController < ApplicationController
     @job.equipment_ids = @job.versioned_equipment_ids.split(", ")
     @job.versioned_at = Time.now
     @job.save!
-    flash[:notice] = "User reverted!"
+    flash[:notice] = "Job reverted!"
     redirect_to private_job_url(@job)
   end
 

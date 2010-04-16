@@ -42,6 +42,8 @@ ActionController::Routing::Routes.draw do |map|
   map.revert_user "users/:id/revert/:version", :controller => "users",         :action => "revert", :path_prefix => "admin"
   map.revert_job  "jobs/:id/revert/:version",  :controller => "private/jobs",  :action => "revert", :path_prefix => "admin"
   map.revert_time_sheet "time_sheets/:id/revert/:version",  :controller => "private/time_sheets", :action => "revert", :path_prefix => "admin"
+  map.revert_load_sheet "load_sheets/:id/revert/:version",  :controller => "private/load_sheets", :action => "revert", :path_prefix => "admin"
+  map.revert_gun_sheet "gun_sheets/:id/revert/:version",  :controller => "private/gun_sheets", :action => "revert", :path_prefix => "admin"
 
   # user authentication and accounts
   map.resource  :user_session

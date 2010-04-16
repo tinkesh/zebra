@@ -1,5 +1,7 @@
 class LoadSheet < ActiveRecord::Base
 
+  versioned
+
   belongs_to :job
   belongs_to :equipment
   has_many :load_entries, :dependent => :destroy

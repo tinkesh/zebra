@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100416032437) do
+ActiveRecord::Schema.define(:version => 20100416052316) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20100416032437) do
     t.datetime "updated_at"
     t.string   "location_name"
     t.integer  "job_location_id"
+    t.datetime "versioned_at"
   end
 
   add_index "gun_sheets", ["job_id"], :name => "index_gun_sheets_on_job_id"
@@ -233,6 +234,7 @@ ActiveRecord::Schema.define(:version => 20100416032437) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "location_name"
+    t.datetime "versioned_at"
   end
 
   add_index "load_sheets", ["job_id"], :name => "index_load_sheets_on_job_id"
