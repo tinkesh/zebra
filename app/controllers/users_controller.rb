@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
 
   layout "private"
-  filter_access_to :all, :attribute_check => true
+  filter_access_to [:show, :edit, :update], :attribute_check => true
+  filter_access_to :index, :attribute_check => false
 
   def index
+
     @users = User.all
     @page_title = "Users"
   end
