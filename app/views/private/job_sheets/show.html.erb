@@ -16,7 +16,7 @@
 <ul id="versions">
   <li>Total Expenses: $<%= sprintf("%.2f", @job_sheet.total_expenses) %></li>
   <li>Total Production: $<%= sprintf("%.2f", @job_sheet.total_marking_earnings) %></li>
-  <li>Net: </li>
+  <li>Net: $<%= sprintf("%.2f", (@job_sheet.net)) %></li>
 </ul>
 <% end %>
 

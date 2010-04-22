@@ -64,4 +64,3 @@ summary: Marks currently active links
 test_files: 
 - test/active_link_to_test.rb
 - test/test_helper.rb
-

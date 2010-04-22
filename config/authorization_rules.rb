@@ -10,6 +10,7 @@ authorization do
   role :office do
     includes :crewman
     has_permission_on :private, :to => :settings
+    has_permission_on :private_directory, :to => :index
     has_permission_on [:private_clients, :private_completions, :private_costs, :private_equipments,
                        :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
                        :private_time_task_categories, :private_time_note_categories], :to => :manage
@@ -27,7 +28,6 @@ authorization do
 
   role :crewman do
     has_permission_on :private, :to => [:index, :navigate]
-    has_permission_on :private_directory, :to => :index
     has_permission_on :private_job, :to => :show
     has_permission_on :private_reports, :to => [:increase_offset, :decrease_offset, :reset_offset]
     has_permission_on :private_reports, :to => :user_time

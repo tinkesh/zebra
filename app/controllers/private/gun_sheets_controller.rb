@@ -26,7 +26,11 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet = GunSheet.new
     load_gun_sheet_supporting_data
 
-    4.times do @gun_sheet.gun_markings.build end
+    @job.job_markings.each do |marking|
+      @gun_sheet.gun_markings.build(:gun_marking_category_id => marking.gun_marking_category_id)
+    end
+
+    2.times do @gun_sheet.gun_markings.build end
 
     @page_title = "New Gun Sheet for " + @job.label
   end

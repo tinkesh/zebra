@@ -85,7 +85,11 @@ private
   def load_time_sheet_supporting_data
     @time_task_categories = TimeTaskCategory.find(:all, :order => :position)
     @time_note_categories = TimeNoteCategory.find(:all, :order => :position)
-    @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
+    if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
+      @lunch_selections = [0, 30, 45, 60, 75, 90, 105, 120]
+    else
+      @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
+    end
   end
 
   def get_version

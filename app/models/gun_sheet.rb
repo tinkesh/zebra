@@ -20,7 +20,7 @@ class GunSheet < ActiveRecord::Base
   end
 
   def label
-    "Gun Sheet ##{self.id} #{self.date.to_date.strftime('%b-%d-%y')}"
+    "Gun Sheet ##{self.id} #{self.started_on.to_date.strftime('%b-%d-%y')}"
   end
 
 end

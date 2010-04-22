@@ -1,8 +1,3 @@
-<div class="span-12 append-bottom">
-  <%= form.label :client_id, "Client" %><br>
-  <%= form.select (:client_id, @clients.map {|u| [u.name,u.id]}, :include_blank => true) %>
-</div>
-
 <div class="span-12 last append-bottom">
   <%= form.label :note, "Comments" %><br>
   <%= form.text_field "note", :class => "span-12" %>
@@ -46,18 +41,23 @@
 <br class="clear">
 
 <div class="span-6 append-bottom">
-  <%= form.label :date, "Date" %><br>
-  <%= form.date_select :date %>
+  <%= form.label :started_on, "Started on.." %><br>
+  <%= form.date_select :started_on, { :start_year => (Time.now.year-1), :end_year => (Time.now.year+1) } %>
 </div>
 
 <div class="span-6 append-bottom">
-  <%= form.label :started_at, "Started at" %><br>
-  <%= form.time_select :started_at %>
+  <%= form.label :started_at, "at..." %><br>
+  <%= form.time_select :started_at, { :minute_step => 15 } %>
 </div>
 
 <div class="span-6 append-bottom">
-  <%= form.label :completed_at, "Completed at" %><br>
-  <%= form.time_select :completed_at %>
+  <%= form.label :completed_on, "Completed on.." %><br>
+  <%= form.date_select :completed_on, { :start_year => (Time.now.year-1), :end_year => (Time.now.year+1) } %>
+</div>
+
+<div class="span-6 last append-bottom">
+  <%= form.label :completed_at, "at..." %><br>
+  <%= form.time_select :completed_at, { :minute_step => 15 } %>
 </div>
 
 <hr>

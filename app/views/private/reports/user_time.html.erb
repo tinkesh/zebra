@@ -36,7 +36,11 @@
     <th>&nbsp;</th>
     <% end %>
   </tr>
+<% st = 0 %>
+<% ot = 0 %>
 <% @entries.each do |entry| %>
+<% st += entry.straight_time %>
+<% ot += entry.over_time %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%= link_to job_label(entry.job), private_job_path(entry.job), :class => "show" %></td>
     <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
@@ -54,4 +58,10 @@
     <% end %>
   </tr>
 <% end%>
+  <tr>
+    <th colspan="10" class="right"><%= st %></th>
+    <th class="right"><%= ot %></th>
+    <% if permitted_to? :manage, :private_time_entries -%>
+    <th>&nbsp;</th>
+    <% end %>
 </table>

@@ -41,7 +41,7 @@
 
 <div class="append-bottom">
   <%= form.label :lunch, "Lunch Break" %><br>
-  <%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false, :selected => "30") %>
+  <%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false) %>
 </div>
 
 <hr>

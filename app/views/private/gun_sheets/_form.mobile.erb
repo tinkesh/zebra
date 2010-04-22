@@ -1,9 +1,5 @@
 <table>
   <tr>
-  <td><%= form.label :client_id, "Client:" %></td>
-  <td><%= form.select (:client_id, @clients.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
-  </tr>
-  <tr>
   <td><%= form.label :note, "Note:" %></td>
   <td><%= form.text_field "note", :size => "20" %></td>
   </tr>
@@ -36,16 +32,20 @@
     <td colspan="2"><hr /></td>
   </tr>
   <tr>
-  <td><%= form.label :date, "Date:" %></td>
-  <td><%= form.date_select :date %></td>
+  <td><%= form.label :started_on, "Started on.." %></td>
+  <td><%= form.date_select :started_on, { :start_year => (Time.now.year-1), :end_year => (Time.now.year+1) } %></td>
   </tr>
   <tr>
   <td><%= form.label :started_at, "Started at:" %></td>
-  <td><%= form.time_select :started_at %></td>
+  <td><%= form.time_select :started_at, { :minute_step => 15 } %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :completed_on, "Completed on.." %></td>
+  <td><%= form.date_select :completed_on, { :start_year => (Time.now.year-1), :end_year => (Time.now.year+1) } %></td>
   </tr>
   <tr>
   <td><%= form.label :completed_at, "Completed at:" %></td>
-  <td><%= form.time_select :completed_at %></td>
+  <td><%= form.time_select :completed_at, { :minute_step => 15 } %></td>
   </tr>
 </table>
 

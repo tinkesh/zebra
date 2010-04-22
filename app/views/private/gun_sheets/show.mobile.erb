@@ -7,19 +7,15 @@
   </tr>
   <tr>
     <td>Location</td>
-    <td></td>
+    <td><%= if @gun_sheet.job_location : @gun_sheet.job_location.name end %> / <%= @gun_sheet.location_name %></td>
   </tr>
   <tr>
-    <td>Worked On</td>
-    <td class="right"><%= @gun_sheet.date.strftime("%B %d, %Y") %></td>
+    <td>Started</td>
+    <td class="right"><%= @gun_sheet.started_on.strftime("%B %d, %Y") %>, <%= @gun_sheet.started_at.strftime("%H:%M") %></td>
   </tr>
   <tr>
-    <td>Start Time</td>
-    <td class="right"><%= @gun_sheet.started_at.strftime("%H:%M") %></td>
-  </tr>
-  <tr>
-    <td>End Time</td>
-    <td class="right"><%= @gun_sheet.completed_at.strftime("%H:%M") %></td>
+    <td>Completed</td>
+    <td class="right"><%= if @gun_sheet.completed_on : @gun_sheet.completed_on.strftime("%B %d, %Y") end %>, <%= @gun_sheet.completed_at.strftime("%H:%M") %></td>
   </tr>
   <tr>
     <td>Created On</td>
