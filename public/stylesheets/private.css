@@ -115,17 +115,20 @@ a.negative:active { background-color:#d12f19; border:1px solid #d12f19; color:#f
 /* tables */
 table { }
 th { background: #333; color: #fff; font-weight: normal; }
+td { border-right: solid 1px #ccc; border-bottom: solid 1px #ccc; ;}
+td.actions { border-right: none; }
 th, td, caption { padding: 2px 2px 2px 4px; }
 tr.even td { background: #ededed; }
-.actions { padding: 0; }
+.actions { padding: 0; width: 120px; }
 #controls { }
 #controls a.button {  }
 .rowodd { }
 .roweven { background: #EDEDED; }
-.sortcol { cursor: pointer; background-repeat: no-repeat; background-position: right center;}
-.sortasc { background-image: url('/images/up.gif'); }
-.sortdesc { background-image: url('/images/down.gif'); }
+.sortcol { cursor: pointer; background-repeat: no-repeat; background-position: left center; }
+.sortasc { background-image: url('/images/up.gif'); padding: 2px 2px 2px 14px; }
+.sortdesc { background-image: url('/images/down.gif'); padding: 2px 2px 2px 14px;  }
 .sortdesc, .sortasc { }
+th.center { padding: 2px 2px 2px 4px;}
 
 /* controls */
 #new { margin: 0; position: absolute; top: 20px; right: 0; }

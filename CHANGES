@@ -1,3 +1,13 @@
+x 2001-04-21 Add total hours to pay period report
+x 2010-04-21 Allow admin to change @time_sheet.lunch to 0
+x 2010-04-21 Change @gun_sheet#new to auto load markings
+x 2010-04-21 @job_sheet#show is not calculating net
+x 2010-04-21 Change directory to office+ only
+x 2010-04-21 Change all marking quantities to integer with 2 decimal points
+x 2010-04-21 Change @gun_sheet#new to auto load client
+x 2010-04-21 Change @gun_sheet#new to use 15 minute steps
+x 2010-04-21 Change @gun_sheet#new to use date for completed_at
+x 2010-04-21 Email links are sending to access denied
 x 2010-04-14 User may edit own account
 x 2010-04-15 Link to @time_entry#edit on @reports#time_entries
 x 2010-04-15 Limit Clock In / Clock Out redirect options

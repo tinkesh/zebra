@@ -1,7 +1,7 @@
 TODO
 - New Clock In / Clock Out / Time Sheet / Job associations
 - Material Report
-- Pagination / Sorting
+- Pagination
 - @obj.locked?
 - @obj.selectable?
 
@@ -18,14 +18,6 @@ CAN WAIT
 - Time sheet with no hours does not display per_diem in @time_sheets#index
 - Quantity of Totes to @material
 - Count down Tote usage for @material, disable when hit
+- Accountant Reoirt
 
-x 2001-04-21 Add total hours to pay period report
-x 2010-04-21 Allow admin to change @time_sheet.lunch to 0
-x 2010-04-21 Change @gun_sheet#new to auto load markings
-x 2010-04-21 @job_sheet#show is not calculating net
-x 2010-04-21 Change directory to office+ only
-x 2010-04-21 Change all marking quantities to integer with 2 decimal points
-x 2010-04-21 Change @gun_sheet#new to auto load client
-x 2010-04-21 Change @gun_sheet#new to use 15 minute steps
-x 2010-04-21 Change @gun_sheet#new to use date for completed_at
-x 2010-04-21 Email links are sending to access denied
+x 2010-04-22 Sorting images and pretty tables
