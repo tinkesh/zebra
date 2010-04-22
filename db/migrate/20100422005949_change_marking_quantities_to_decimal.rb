@@ -1,7 +1,7 @@
 class ChangeMarkingQuantitiesToDecimal < ActiveRecord::Migration
   def self.up
-    change_column :gun_markings, :amount, :decimal, :precision => 2
-    change_column :job_markings, :amount, :decimal, :precision => 2
+    change_column :gun_markings, :amount, :decimal
+    change_column :job_markings, :amount, :decimal
   end
 
   def self.down
