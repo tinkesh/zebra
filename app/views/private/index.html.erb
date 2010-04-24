@@ -8,6 +8,7 @@
 <p>You are not assigned to a crew.</p>
 <% end %>
 
+<% if @jobs || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office) %>
 <div class="span-10">
 <% form_tag :controller => 'private', :action => "navigate" do -%>
 
@@ -30,5 +31,5 @@
 <% end %>
 
 </div>
-
+<% end %>
 <hr>

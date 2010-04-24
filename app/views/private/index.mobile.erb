@@ -8,22 +8,23 @@
 
 <hr>
 
-<% form_tag private_navigate_path do -%>
+<% if @jobs || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office) %>
+  <% form_tag private_navigate_path do -%>
 
-  <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', session[:navigate]) %></p>
+    <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', session[:navigate]) %></p>
 
-  <p>
-     <% if permitted_to? :create, :private_clock_in -%>
-       <label><%= radio_button_tag "navigate", "clock_in" %> Clock In</label><br />
-     <% end %>
-     <% if permitted_to? :create, :private_clock_out -%>
-       <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label><br />
-     <% end %>
-     <% if permitted_to? :read, :private_jobs -%>
-       <label><%= radio_button_tag "navigate", "show_job" %> Show Job</label><br />
-     <% end %>
-  </p>
+    <p>
+       <% if permitted_to? :create, :private_clock_in -%>
+         <label><%= radio_button_tag "navigate", "clock_in" %> Clock In</label><br />
+       <% end %>
+       <% if permitted_to? :create, :private_clock_out -%>
+         <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label><br />
+       <% end %>
+       <% if permitted_to? :read, :private_jobs -%>
+         <label><%= radio_button_tag "navigate", "show_job" %> Show Job</label><br />
+       <% end %>
+    </p>
 
-  <p><%= submit_tag "Submit" %></p>
-
+    <p><%= submit_tag "Submit" %></p>
+  <% end %>
 <% end %>

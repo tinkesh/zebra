@@ -8,7 +8,9 @@ class PrivateController < ApplicationController
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @jobs = Job.find(:all)
     else
-      @jobs = current_user.crew.jobs
+      if @crew
+        @jobs = current_user.crew.jobs
+      end
     end
   end
 

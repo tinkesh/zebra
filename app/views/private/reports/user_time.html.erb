@@ -43,8 +43,10 @@
 <% ot += entry.over_time %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td>
-      <% entry.time_sheet.jobs.each do |job| %>
-        <%= link_to job_label(entry.job), private_job_path(entry.job), :class => "show" %>
+      <% if entry.time_sheet %>
+        <% entry.time_sheet.jobs.each do |job| %>
+          <%= link_to "Job ##{job.id}", private_job_path(job) %><br>
+        <% end %>
       <% end %>
     </td>
     <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
