@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20100424033843) do
     t.integer  "crew_size"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "job_label",     :limit => nil
   end
 
   create_table "gun_marking_categories", :force => true do |t|
@@ -117,48 +116,48 @@ ActiveRecord::Schema.define(:version => 20100424033843) do
   end
 
   create_table "gun_markings", :force => true do |t|
-    t.integer  "gun_sheet_id"
-    t.integer  "gun_marking_category_id"
-    t.decimal  "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "gun_sheet_id"
+    t.integer   "gun_marking_category_id"
+    t.decimal   "amount"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "gun_markings", ["gun_sheet_id"], :name => "index_gun_markings_on_gun_sheet_id"
 
   create_table "gun_sheets", :force => true do |t|
-    t.integer  "client_id"
-    t.integer  "job_id"
-    t.boolean  "is_new_construction"
-    t.string   "control_section"
-    t.date     "started_on"
-    t.time     "started_at"
-    t.time     "completed_at"
-    t.integer  "sides"
-    t.integer  "interchanges"
-    t.string   "note"
-    t.decimal  "solid_y1"
-    t.decimal  "solid_y2"
-    t.decimal  "solid_y3"
-    t.decimal  "solid_w4"
-    t.decimal  "solid_w5"
-    t.decimal  "solid_w6"
-    t.decimal  "solid_w7"
-    t.decimal  "skip_y1"
-    t.decimal  "skip_y2"
-    t.decimal  "skip_y3"
-    t.decimal  "skip_w4"
-    t.decimal  "skip_w5"
-    t.decimal  "skip_w6"
-    t.decimal  "skip_w7"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "location_name"
-    t.integer  "job_location_id"
-    t.datetime "versioned_at"
-    t.date     "completed_on"
+    t.integer   "client_id"
+    t.integer   "job_id"
+    t.boolean   "is_new_construction"
+    t.string    "control_section"
+    t.date      "started_on"
+    t.time      "started_at"
+    t.time      "completed_at"
+    t.integer   "sides"
+    t.integer   "interchanges"
+    t.string    "note"
+    t.decimal   "solid_y1"
+    t.decimal   "solid_y2"
+    t.decimal   "solid_y3"
+    t.decimal   "solid_w4"
+    t.decimal   "solid_w5"
+    t.decimal   "solid_w6"
+    t.decimal   "solid_w7"
+    t.decimal   "skip_y1"
+    t.decimal   "skip_y2"
+    t.decimal   "skip_y3"
+    t.decimal   "skip_w4"
+    t.decimal   "skip_w5"
+    t.decimal   "skip_w6"
+    t.decimal   "skip_w7"
+    t.integer   "created_by"
+    t.integer   "updated_by"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "location_name"
+    t.integer   "job_location_id"
+    t.timestamp "versioned_at"
+    t.date      "completed_on"
   end
 
   add_index "gun_sheets", ["job_id"], :name => "index_gun_sheets_on_job_id"
@@ -181,12 +180,12 @@ ActiveRecord::Schema.define(:version => 20100424033843) do
   end
 
   create_table "job_markings", :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "gun_marking_category_id"
-    t.decimal  "amount"
-    t.integer  "rate"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "job_id"
+    t.integer   "gun_marking_category_id"
+    t.decimal   "amount"
+    t.integer   "rate"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "job_markings", ["gun_marking_category_id"], :name => "index_job_markings_on_gun_marking_category_id"
@@ -238,10 +237,8 @@ ActiveRecord::Schema.define(:version => 20100424033843) do
   end
 
   create_table "jobs_time_sheets", :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "time_sheet_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "job_id"
+    t.integer "time_sheet_id"
   end
 
   create_table "load_entries", :force => true do |t|
@@ -395,34 +392,34 @@ ActiveRecord::Schema.define(:version => 20100424033843) do
   end
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "login",                               :null => false
-    t.string   "crypted_password",                    :null => false
-    t.string   "password_salt",                       :null => false
-    t.string   "persistence_token",                   :null => false
-    t.integer  "login_count",         :default => 0,  :null => false
-    t.datetime "last_request_at"
-    t.datetime "last_login_at"
-    t.datetime "current_login_at"
-    t.string   "last_login_ip"
-    t.string   "current_login_ip"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "perishable_token",    :default => "", :null => false
-    t.string   "email",               :default => "", :null => false
-    t.string   "time_zone"
-    t.string   "home_phone"
-    t.string   "cell_phone"
-    t.string   "address"
-    t.string   "city"
-    t.string   "province"
-    t.string   "postal_code"
-    t.integer  "rate"
-    t.boolean  "bank_overtime_hours"
-    t.string   "versioned_role_ids"
-    t.datetime "versioned_at"
-    t.integer  "crew_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "login",                               :null => false
+    t.string    "crypted_password",                    :null => false
+    t.string    "password_salt",                       :null => false
+    t.string    "persistence_token",                   :null => false
+    t.integer   "login_count",         :default => 0,  :null => false
+    t.timestamp "last_request_at"
+    t.timestamp "last_login_at"
+    t.timestamp "current_login_at"
+    t.string    "last_login_ip"
+    t.string    "current_login_ip"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "perishable_token",    :default => "", :null => false
+    t.string    "email",               :default => "", :null => false
+    t.string    "time_zone"
+    t.string    "home_phone"
+    t.string    "cell_phone"
+    t.string    "address"
+    t.string    "city"
+    t.string    "province"
+    t.string    "postal_code"
+    t.integer   "rate"
+    t.boolean   "bank_overtime_hours"
+    t.string    "versioned_role_ids"
+    t.timestamp "versioned_at"
+    t.integer   "crew_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

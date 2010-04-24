@@ -6,9 +6,15 @@
   </ul>
 <% end %>
 
+<% content_for :submenu do %>
+<ol class="noprint">
+  <li><%= link_to 'New crew', new_private_crew_path %></li>
+</ol>
+<% end %>
+
 <p>A user can only be assigned to a one crew at a time. Assignment decides what jobs the user can view, and populates the Clock In / Clock Out forms.</p>
 
-<p id="new"><%= link_to 'New crew', new_private_crew_path %></p>
+<p id="new"></p>
 
 <table class="sortable">
   <tr>
