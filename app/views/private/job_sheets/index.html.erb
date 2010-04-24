@@ -17,8 +17,8 @@
 <% @job_sheets.each do |job_sheet| %>
   <tr>
     <td><%= link_to job_sheet.id, private_job_sheet_path(job_sheet), :class => "show" %></td>
-    <td></td>
-    <td><%= link_to job_label(job_sheet.job), private_job_path(job_sheet.job), :class => "show" %></td>
+    <td><%= if job_sheet.gun_sheets && job_sheet.gun_sheets.first.started_on : job_sheet.gun_sheets.first.started_on.strftime('%b-%d-%y') end %></td>
+    <td><%= link_to job_label(job_sheet.job), private_job_path(job_sheet.job) %></td>
     <td class="actions">
     <%= link_to 'Delete', private_job_sheet_path(job_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_job_sheet_path(job_sheet), :class => "edit" %>

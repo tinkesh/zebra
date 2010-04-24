@@ -12,13 +12,7 @@
   <%= render :partial => 'menus/job_sheets_menu', :layout => false %>
 <% end %>
 
-<% content_for :versions do %>
-<ul id="versions">
-  <li>Total Expenses: $<%= sprintf("%.2f", @job_sheet.total_expenses) %></li>
-  <li>Total Production: $<%= sprintf("%.2f", @job_sheet.total_marking_earnings) %></li>
-  <li>Net: $<%= sprintf("%.2f", (@job_sheet.net)) %></li>
-</ul>
-<% end %>
+
 
 <div id="jobsheet">
 <h2>Gun Sheet Date: <%= @job_sheet.date_range %></h2>
@@ -28,41 +22,40 @@
     <th>Date</th>
     <th>Name</th>
     <th class="right">Per Diem</th>
-    <th class="right">Lunch</th>
     <th class="right">S/T</th>
     <th class="right">O/T</th>
-    <th class="right">Total</th>
     <th class="right">Rate</th>
+    <th class="right">Estimate</td>
     <th class="right">Cost</th>
   </tr>
   <% @job_sheet.time_sheets.each do |time_sheet| %>
+    <% @estimate = Estimate.find(:first, :conditions => { :time_sheet_id => time_sheet.id, :job_id => @job_sheet.job_id }) %>
+    <% @estimated_time_cost = 0 %>
     <% time_sheet.time_entries.each do |entry| %>
+    <% @estimated_time_cost += (entry.rate * @estimate.hours) %>
     <tr class="<%= cycle('odd', 'even') %>">
-      <td><%= entry.time_sheet.id %></td>
-      <td>&nbsp;</td>
+      <td><%= link_to entry.time_sheet.id, private_time_sheet_path(entry.time_sheet) %></td>
+      <td><%= entry.clock_in.strftime('%b-%d-%y') %></td>
       <td><%= entry.user.name %></td>
       <td class="right"><%= if entry.per_diem == 0 : "-" else "$" + sprintf("%.2f", entry.per_diem) end %></td>
-      <td class="right"><%= sprintf("%.2f", entry.time_sheet.lunch.to_f / 60) %></td>
       <td class="right"><%= if entry.straight_time == 0 : "-" else sprintf("%.2f", entry.straight_time) end %></td>
       <td class="right"><%= if entry.over_time == 0 : "-" else sprintf("%.2f", entry.over_time) end %></td>
-      <td class="right"><%= if entry.hours == 0 : "-" else sprintf("%.2f", entry.hours) end %></td>
       <td class="right">$<%= sprintf("%.2f", entry.rate) %></td>
-      <td class="right">$<%= if entry.cost == 0 : "-" else sprintf("%.2f", entry.cost) end %></td>
+      <td class="right"><%= @estimate.hours %></td>
+      <td class="right">$<%= sprintf("%.2f", (entry.rate * @estimate.hours)) %></td>
     </tr>
     <% end %>
   <% end %>
   <tr>
     <th colspan="3">&nbsp;</th>
-    <th class="right"><%= if @job_sheet.total_per_diem == 0 : "-" else "$" + sprintf("%.2f", @job_sheet.total_per_diem) end %></th>
+    <th class="right"><%= if @job_sheet.total_per_diem == 0 : "-" else"$" + sprintf("%.2f", @job_sheet.total_per_diem) end %></th>
     <th class="right"><%= sprintf("%.2f", @job_sheet.total_lunch_time) %></th>
     <th class="right"><%= if @job_sheet.total_straight_time == 0 : "-" else sprintf("%.2f", @job_sheet.total_straight_time) end %></th>
     <th class="right"><%= if @job_sheet.total_over_time == 0 : "-" else sprintf("%.2f", @job_sheet.total_over_time) end %></th>
-    <th class="right"><%= if @job_sheet.total_hours == 0 : "-" else sprintf("%.2f", @job_sheet.total_hours) end %></th>
     <th class="right">&nbsp;</th>
-    <th class="right">$<%= sprintf("%.2f", @job_sheet.total_time_cost) %></th>
+    <th class="right">$<%= sprintf("%.2f", @estimated_time_cost) %></th>
   </tr>
 </table>
-
 
 <div class="span-9 append-1">
   <h2>Miscellaneous</h2>
@@ -218,3 +211,11 @@
   </table>
 </div>
 </div>
+
+<% content_for :versions do %>
+<ul id="versions">
+  <li>Total Expenses: $<%= sprintf("%.2f", @job_sheet.total_expenses + @estimated_time_cost) %></li>
+  <li>Total Production: $<%= sprintf("%.2f", @job_sheet.total_marking_earnings) %></li>
+  <li>Net: $<%= sprintf("%.2f", (@job_sheet.total_marking_earnings - @job_sheet.total_expenses - @estimated_time_cost)) %></li>
+</ul>
+<% end %>

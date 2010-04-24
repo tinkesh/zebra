@@ -69,6 +69,22 @@
 
 <hr />
 
+<h3>Time Spent per Job</h3>
+<table class="no-right-border">
+  <tr>
+    <th class="span-2">Time</th>
+    <th>Job</th>
+  </tr>
+<% @time_sheet.estimates.each do |estimate| %>
+<tr class="<%= cycle 'odd', 'even' %>">
+  <td><%= estimate.hours %></td>
+  <td><%= estimate.job.label %></td>
+</tr>
+<% end %>
+</table>
+
+<hr>
+
 <h3>User Time Entries</h3>
 <table>
   <tr>

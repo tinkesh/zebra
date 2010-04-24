@@ -28,7 +28,7 @@
   <tr>
     <td><%= link_to load_sheet.id, private_load_sheet_path(load_sheet), :class => "show" %></td>
     <td><%= load_sheet.date.strftime('%b-%d-%y') %></td>
-    <td><%= if load_sheet.job_id : (link_to job_label(load_sheet.job), private_job_path(load_sheet.job), :class => "show") end %></td>
+    <td><%= if load_sheet.job_id : (link_to job_label(load_sheet.job), private_job_path(load_sheet.job)) end %></td>
     <td><%= if load_sheet.equipment : load_sheet.equipment.name end %></td>
     <td><%= load_sheet.location_name %></td>
     <td class="actions">

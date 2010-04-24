@@ -4,7 +4,7 @@ class Private::TimeSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @time_sheets = TimeSheet.find(:all, :include => [:job, :time_entries], :order => "created_at DESC")
+    @time_sheets = TimeSheet.find(:all, :include => [:jobs, :time_entries], :order => "created_at DESC")
     @page_title = "Time Sheets"
   end
 
@@ -62,7 +62,7 @@ class Private::TimeSheetsController < ApplicationController
 
   def edit
     @time_sheet = TimeSheet.find(params[:id])
-    @job = Job.find(@time_sheet.job_id)
+    @jobs = @time_sheet.jobs
     @entries = @time_sheet.time_entries
     load_time_sheet_supporting_data
     2.times { @time_sheet.time_tasks.build }

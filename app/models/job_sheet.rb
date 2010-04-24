@@ -9,27 +9,20 @@ class JobSheet < ActiveRecord::Base
   end
 
   def date_range
-    self.gun_sheets.first.date.to_date.strftime('%b-%d-%y')
+    self.gun_sheets.first.started_on.to_date.strftime('%b-%d-%y')
   end
+
 
   def net
     self.total_marking_earnings - self.total_expenses
   end
 
   def total_expenses
-    self.total_time_cost + self.total_misc_cost + self.total_equipment_cost + self.total_material_cost
+    self.total_misc_cost + self.total_equipment_cost + self.total_material_cost
   end
 
   def total_equipment_cost
-    total = [0]
-    if self.job.equipments.length != 0
-      self.job.equipments.each do |equipment|
-        total << equipment.cost(self.id)
-      end
-      total.inject {|sum, n| sum + n.to_f}
-    else
-      0
-    end
+    self.job.equipments.sum(:rate) * self.time_sheets.length
   end
 
   def total_per_diem
@@ -101,7 +94,6 @@ class JobSheet < ActiveRecord::Base
     end
     total.inject {|sum, n| sum + n.to_f}
   end
-
 
   def total_misc_cost
     self.total_hotel + self.total_fuel
