@@ -9,11 +9,11 @@ class Private::JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :time_sheets, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
+    @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
 
-    unless @job.users.include?(current_user) || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
-      redirect_to '/admin'
-    end
+#    unless @job.crews.users.include?(current_user) || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
+#      redirect_to '/admin'
+#    end
 
     if params[:version]
       if params[:version].to_i >= @job.last_version
@@ -24,21 +24,11 @@ class Private::JobsController < ApplicationController
     end
     @page_title = @job.label
 
-    @job.revert_to(params[:version].to_i) if params[:version]
-    if @job.versioned_user_ids
-      @users = User.find(:all, :conditions => { :id => @job.versioned_user_ids.split(", ") })
-      else
-      @users = @job.users
-    end
-    if @job.versioned_equipment_ids
-      @equipments = Equipment.find(:all, :conditions => { :id => @job.versioned_equipment_ids.split(", ") })
-      else
-      @equipments = @job.equipments
-    end
   end
 
   def new
     @job = Job.new
+    @crews = Crew.find(:all)
     1.times { @job.job_markings.build }
     @page_title = "New Job on Hand"
     load_job_supporting_data
@@ -62,16 +52,17 @@ class Private::JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
+    @crews = Crew.find(:all)
     @page_title = "Edit #{@job.label}"
     load_job_supporting_data
   end
 
   def update
     @job = Job.find(params[:id])
-    params[:job][:user_ids] ||= []
+#    params[:job][:user_ids] ||= []
     params[:job][:equipment_ids] ||= []
     @job.versioned_at = Time.now
-    if params[:job][:user_ids] : @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s else '' end
+#    if params[:job][:user_ids] : @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s else '' end
     if params[:job][:equipment_ids] : (@job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s) else '' end
     if @job.update_attributes(params[:job])
       flash[:notice] = "Job on Hand updated!"

@@ -20,12 +20,16 @@
     <td><%= form.label :hotel, "Hotel Cost" %></td>
     <td><%= form.text_field :hotel, :size => "10", :value => "0" %></td>
   </tr>
+  <tr>
+  <td><%= form.label :lunch, "Lunch Break" %></td>
+  <td><%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false, :selected => "30") %></td>
+  </tr>
 </table>
 
 <hr />
 
 <h3>Tasks</h3>
-<p>Fill out a detailed summary of what you did today.</p>
+<p>Describe what you did, from the beginning of the day to the end.</p>
 
 <table>
 <tr>
@@ -36,16 +40,31 @@
   <%= render 'time_task_fields', :form => builder %>
 <% end %>
 
-<tr>
-<td><b><%= form.label :lunch, "Lunch Break" %></b></td>
-<td><%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false, :selected => "30") %></td>
+</table>
+
+<hr>
+
+<h3>Time Spent per Job</h3>
+<p>Estimate the amount of time spent on each job. Do not include travel time.</p>
+<table>
+  <tr>
+    <th class="span-2">Time</th>
+    <th>Job</th>
+  </tr>
+<% i = 0 %>
+<% @jobs.each do |job| %>
+<% i += 1 %>
+<tr class="<%= cycle 'odd', 'even' %>">
+  <td><%= text_field_tag "estimates[#{i}][hours]", nil, :class => "span-1" %> hrs</td>
+  <td><%= job.label %> <%= hidden_field_tag "estimates[#{i}][job_id]", job.id %></td>
 </tr>
+<% end %>
 </table>
 
 <hr />
 
 <h3>Users</h3>
-<p>Select the Clock In / Clock Out entries that should be included with this time sheet. Note that the paid Time will be reduced by the Lunch Break length.</p>
+<p>Select the users who should be included as part of this time sheet.</p>
 <%- if @entries -%>
 <table>
   <tr>
@@ -55,8 +74,6 @@
     <th class="right">Clock Out</th>
     <th class="right">S/T</th>
     <th class="right">O/T</th>
-    <th class="right">T/T</th>
-    <th>Note</th>
   </tr>
   <%- @entries.each do |entry| -%>
   <tr class="<%= cycle 'even', 'odd' %>">
@@ -72,8 +89,6 @@
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
     <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
-    <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)}" else '-' end %></td>
-    <td><%= entry.note %></td>
   </tr>
   <%- end -%>
 </table>

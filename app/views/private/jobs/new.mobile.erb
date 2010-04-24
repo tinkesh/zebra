@@ -10,15 +10,15 @@
   <p><%= f.label :notes, "Notes" %><br>
   <%= f.text_area "notes", :rows => 4 %></p>
 
-  <p>
-  <% for user in @users %>
-      <label>
-      <%= check_box_tag "job[user_ids][]", user.id, @job.users.include?(user) %>
-      <%= user.name %>
-      </label>
-      <br />
+  <ol>
+  <% @job.crews.each do |crew| %>
+    <li>
+      <%= crew.name %>
+      <br>
+      <%= crew.user_list %>
+    </li>
   <% end %>
-  </p>
+  </ol>
 
   <hr>
 

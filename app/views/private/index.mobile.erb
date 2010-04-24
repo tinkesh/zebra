@@ -1,5 +1,13 @@
 <hr>
 
+<% if @crew %>
+<p>You are part of <%= @crew.label %>: <%= @crew.user_list %></p>
+<% else %>
+<p>You are not assigned to a crew.</p>
+<% end %>
+
+<hr>
+
 <% form_tag private_navigate_path do -%>
 
   <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', session[:navigate]) %></p>

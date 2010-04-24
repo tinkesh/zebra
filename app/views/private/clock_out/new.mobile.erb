@@ -15,8 +15,8 @@
       <tr>
         <th>&nbsp;</th>
         <th>Name</th>
-        <th>Clocked In at</th>
-        <th>Clocked Out at</th>
+        <th>Clocked in at</th>
+        <th>Clocked out at</th>
       </tr>
     <% for entry in @entries %>
       <tr class="<%= cycle('odd', 'even') %>">
@@ -46,15 +46,18 @@
 
     <hr>
 
-    <p>Clock Out at...<br>
-      <%= datetime_select 'job', :started_on, { :minute_step => 15, :discard_year => true } %></p>
+    <p>
+      <label>Clock out at...</label><br>
+      <%= datetime_select 'job', :started_on, { :minute_step => 15, :discard_year => true } %>
+    </p>
 
-      <p>
-        After Clock Out...<br>
-        <label><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Clock In / Clock Out times</label><br>
-        <label><%= radio_button_tag "navigate", "clock_in" %> Clock In users</label><br>
-        <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out additional users</label>
-      </p>
+    <p>
+      <label>After clock out...</label><br>
+      <label class="normal"><%= radio_button_tag "navigate", "new_time_sheet", :checked => true %> Submit time sheet</label><br>
+      <label class="normal"><%= radio_button_tag "navigate", "home" %> Go to Home</label><br>
+      <label class="normal"><%= radio_button_tag "navigate", "clock_in" %> Clock in users</label><br>
+      <label class="normal"><%= radio_button_tag "navigate", "clock_out" %> Clock out users</label>
+    </p>
 
     <p><%= submit_tag "Clock Out Selected Users" %></p>
 

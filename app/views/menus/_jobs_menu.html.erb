@@ -6,7 +6,7 @@
     <li><%= active_link_to "Edit", edit_private_job_path(@job) %></li>
   <% end %>
   <% if permitted_to? :create, :private_time_sheets -%>
-    <li><%= active_link_to "New Time Sheet", new_private_job_time_sheet_path(:job_id => @job.id) %></li>
+    <li><%= active_link_to "New Time Sheet", new_private_time_sheet_path(:job_id => @job.id) %></li>
   <% end %>
   <% if permitted_to? :create, :private_gun_sheets -%>
     <li><%= active_link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => @job.id) %></li>

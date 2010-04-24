@@ -58,10 +58,14 @@ Complete: <%= @job.completed_on %>
 
 <hr />
 
-<h3>Users</h3>
+<h3>Crews</h3>
 <ol>
-<% @users.each do |u| %>
-  <li><%= u.name %></li>
+<% @job.crews.each do |crew| %>
+  <li>
+    <%= crew.name %>
+    <br>
+    <%= crew.user_list %>
+  </li>
 <% end %>
 </ol>
 

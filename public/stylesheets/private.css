@@ -129,6 +129,9 @@ tr.even td { background: #ededed; }
 .sortdesc { background-image: url('/images/down.gif'); padding: 2px 2px 2px 14px;  }
 .sortdesc, .sortasc { }
 th.center { padding: 2px 2px 2px 4px;}
+.no-border {  border-bottom: solid 1px #ccc; }
+.no-border td { border: 0; }
+.no-right-border td { border-right: 0; }
 
 /* controls */
 #new { margin: 0; position: absolute; top: 20px; right: 0; }
@@ -142,3 +145,7 @@ th.center { padding: 2px 2px 2px 4px;}
 .new:hover, .new:active, .new-inline:hover, .new-inline:active { color: #529214 ;}
 .new, .edit, .delete { float: right; }
 .plain { background: none; padding: 0; margin: 0; }
+.normal { font-weight: normal; }
+
+/* labels */
+.office, .admin, .foreman { text-decoration: underline; }

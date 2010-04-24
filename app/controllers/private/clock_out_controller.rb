@@ -4,34 +4,36 @@ class Private::ClockOutController < ApplicationController
   filter_access_to :all
 
   def new
-    @job = Job.find(params[:job_id])
+    @crew = current_user.crew
+    @job = Job.new
     @job.started_on = Time.now
-    @clocked_in = TimeEntry.find(:all, :conditions => {:job_id => @job.id, :active => true, :time_sheet_id => nil, :clock_out => nil})
-    @entries = TimeEntry.find(:all, :conditions => {:job_id => @job.id, :time_sheet_id => nil})
-    @page_title = "Clock Out of " + @job.label
+    @clocked_in = TimeEntry.find(:all, :conditions => {:active => true, :time_sheet_id => nil, :clock_out => nil})
+    @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil})
+    @page_title = "Clock Out"
   end
 
   def create
     @clock_out_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)']
     if params[:users]
       params[:users].each do |user|
-        @entry = TimeEntry.find(:first, :conditions => {:job_id => params[:entries][:job_id], :user_id => user, :clock_out => nil})
+        @entry = TimeEntry.find(:first, :conditions => {:user_id => user, :clock_out => nil, :time_sheet_id => nil})
         if @entry.active
-          @entry.clock_out =Time.parse(@clock_out_time)
+          @entry.clocked_out_by = current_user.id
+          @entry.clock_out = Time.parse(@clock_out_time)
           @entry.clocked_out_at = Time.now
         end
         @entry.save
       end
     end
 
-    if params[:navigate] && params[:job_id]
-      @job = Job.find(params[:job_id])
+    if params[:navigate]
       case params[:navigate]
-        when "show_job" : @redirect = private_job_path(@job)
-        when "clock_in" : @redirect = url_for :controller => "private/clock_in",  :action => "new", :job_id => @job.id
-        when "clock_out" : @redirect = url_for :controller => "private/clock_out", :action => "new", :job_id => @job.id
-        when "new_time_sheet" : @redirect = url_for new_private_job_time_sheet_path(:job_id => @job.id)
+        when "clock_in" : @redirect = url_for :controller => "private/clock_in",  :action => "new"
+        when "clock_out" : @redirect = url_for :controller => "private/clock_out", :action => "new"
+        when "home" : @redirect = url_for private_home_path
+        when "new_time_sheet" : @redirect = url_for new_private_time_sheet_path
       end
+      flash[:notice] = "Users clocked out!"
       redirect_to @redirect
     else
       redirect_to :controller => 'private/clock_out', :action => :new

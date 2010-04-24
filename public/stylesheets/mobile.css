@@ -17,3 +17,5 @@ tr.even td { background: #ededed; }
 
 input[type="text"], input[type="password"], input.text, input.title, textarea, select { padding: 0.2em; font-size: 12px; margin: 0; font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
 input[type="checkbox"], input[type="radio"], input.checkbox, input.radio { top:0; }
+
+.office, .admin, .foreman { text-decoration: underline; }

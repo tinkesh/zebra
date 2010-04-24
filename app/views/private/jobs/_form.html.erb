@@ -33,14 +33,15 @@
 </div>
 
 <div class="span-5 append-1 append-bottom">
-  <%= form.label :user_ids, "Assign Users" %><br>
+  <%= form.label :crew_ids, "Assign Crew" %><br>
   <ul class="habtm">
-  <% for user in @users %>
-    <li>
+  <% for crew in @crews %>
+    <li style="margin-bottom: 1em">
       <label>
-      <%= check_box_tag "job[user_ids][]", user.id, @job.users.include?(user) %>
-      <%= user.name %>
-      </label>
+        <%= check_box_tag "job[crew_ids][]", crew.id, @job.crews.include?(crew) %>
+        <%= crew.label %>
+      </label><br>
+      <%= crew.user_list %>
     </li>
   <% end %>
   </ul>

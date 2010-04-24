@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
   acts_as_authentic
   versioned :only => [:first_name, :last_name, :rate, :login, :email, :time_zone, :home_phone, :cell_phone, :address, :city, :province, :postal_code, :bank_overtime_hours, :versioned_role_ids, :versioned_at]
 
-  has_and_belongs_to_many :roles
-  has_and_belongs_to_many :jobs
+  belongs_to :crew
   has_many :time_entries
+  has_and_belongs_to_many :roles
 
   validates_presence_of :first_name
   validates_presence_of :last_name

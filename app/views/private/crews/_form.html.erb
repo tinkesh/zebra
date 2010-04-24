@@ -1,0 +1,20 @@
+<div class="span-6 append-bottom">
+  <p><%= form.label :name, "Name" %><br>
+  <%= form.text_field :name, :class => "span-6" %></p>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :user_ids, "Assign Users" %><br>
+  <ul class="habtm">
+  <% for user in @users %>
+    <li>
+      <label>
+      <%= check_box_tag "crew[user_ids][]", user.id, @crew.users.include?(user) %>
+      <%= user.name %>
+      </label>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<br class="clear">

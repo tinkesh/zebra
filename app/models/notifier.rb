@@ -10,7 +10,7 @@ class Notifier < ActionMailer::Base
   end
 
   def new_time_sheet(time_sheet)
-    subject       "[AAAS] New Time Sheet (##{time_sheet.id}) for #{time_sheet.job.label}"
+    subject       "[AAAS] New Time Sheet (##{time_sheet.id})"
     from          "notifier@aaastriping.ca"
     recipients    "dorian@aaastriping.ca"
     sent_on       Time.now

@@ -2,6 +2,12 @@
   <%= render :partial => 'menus/dashboard_menu', :layout => false %>
 <% end %>
 
+<% if @crew %>
+<p>You are part of <%= @crew.label %>: <%= @crew.user_list %></p>
+<% else %>
+<p>You are not assigned to a crew.</p>
+<% end %>
+
 <div class="span-10">
   <h2>Jobs on Hand</h2>
 <% form_tag :controller => 'private', :action => "navigate" do -%>
@@ -10,13 +16,13 @@
 
   <ul class="jobs">
     <% if permitted_to? :create, :private_clock_in -%>
-      <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_in" %> Clock In</label></li>
+      <li><label class="normal"><%= radio_button_tag "navigate", "clock_in" %> Clock In</label></li>
     <% end %>
     <% if permitted_to? :create, :private_clock_out -%>
-      <li><label class="edit-inline"><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label></li>
+      <li><label class="normal"><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label></li>
     <% end %>
     <% if permitted_to? :show, :private_job -%>
-      <li><label class="show"><%= radio_button_tag "navigate", "show_job" %> Show Job</label></li>
+      <li><label class="normal"><%= radio_button_tag "navigate", "show_job" %> Show Job</label></li>
     <% end %>
   </ul>
 

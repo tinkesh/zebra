@@ -2,16 +2,14 @@
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
-    <li><%= link_to 'Time Sheets', private_time_sheets_path %></li>
+    <li><%= link_to 'Crews', private_crews_path %></li>
     <li>»</li>
     <li><%= @page_title %></li>
   </ul>
 <% end %>
 
-<% form_for [:private, @time_sheet] do |f| %>
+<% form_for @crew, :url => private_crews_path(@crew) do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <br class="clear">
-  <hr>
-  <%= f.submit "Create Time Sheet" %> or <%= link_to 'Cancel', private_home_path %>
+  <%= f.submit "Create Crew" %> or <%= link_to 'Cancel', private_crews_path %>
 <% end %>

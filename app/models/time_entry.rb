@@ -4,7 +4,7 @@ class TimeEntry < ActiveRecord::Base
 
   belongs_to :time_sheet
   belongs_to :user
-  belongs_to :job
+  has_and_belongs_to_many :jobs
 
   def hours
     if self.clock_out && self.clock_in : (self.clock_out - self.clock_in)/3600 else 0 end

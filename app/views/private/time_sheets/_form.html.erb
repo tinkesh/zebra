@@ -26,64 +26,86 @@
   <%= form.radio_button "per_diem", false, :checked => true %> No
 </div>
 
-<hr>
-
-<h3>Tasks</h3>
-<% unless @time_sheet.new_record? %>
-<p>If you require additional rows of tasks, save and re-edit. 2 new rows are added each time.</p>
-<% end %>
-
-<% form.fields_for :time_tasks do |builder| %>
-  <%= render 'time_task_fields', :form => builder %>
-<% end %>
-
-<br class="clear">
-
-<div class="append-bottom">
+<div class="span-4 append-bottom">
   <%= form.label :lunch, "Lunch Break" %><br>
   <%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false) %>
 </div>
 
 <hr>
 
-<h3>Users</h3>
+<h3>Task Summary</h3>
+<p>Describe what you did, from the beginning of the day to the end.
 <% unless @time_sheet.new_record? %>
-<p>Time Entries cannot be added or removed once a time sheet has been created. You may manually Clock In, Clock Out users from a Job and then submit a new time sheet, or you may edit the individual time entries.</p>
-<% else %>
-<p>Select the Clock In / Clock Out entries that should be included with this time sheet. Note that the paid Time will be reduced by the Lunch Break length.</p>
+If you require additional rows of tasks, save and re-edit. 2 new rows are added each time.
 <% end %>
+</p>
 
-<%- if @entries -%>
-<table>
+<table class="no-border">
   <tr>
-    <th>&nbsp;</th>
+    <th>At</th>
+    <th>We</th>
+    <th>Note</th>
+  </tr>
+<% form.fields_for :time_tasks do |builder| %>
+  <%= render 'time_task_fields', :form => builder %>
+<% end %>
+</table>
+
+<br>
+
+<h3>Time Spent per Job</h3>
+<p>Estimate the amount of time spent on each job. Do not include travel time.</p>
+<table class="no-right-border">
+  <tr>
+    <th class="span-2">Time</th>
+    <th>Job</th>
+  </tr>
+<% i = 0 %>
+<% @jobs.each do |job| %>
+<% i += 1 %>
+<tr class="<%= cycle 'odd', 'even' %>">
+  <td><%= text_field_tag "estimates[#{i}][hours]", nil, :class => "span-1" %> hrs</td>
+  <td><%= job.label %> <%= hidden_field_tag "estimates[#{i}][job_id]", job.id %></td>
+</tr>
+<% end %>
+</table>
+
+<br>
+
+<h3>Users</h3>
+<p>Select the users who should be included as part of this time sheet.</p>
+<%- if @entries -%>
+<table class="no-right-border">
+  <tr>
+    <th class="span-2">&nbsp;</th>
     <th>Name</th>
     <th class="right">Clock In</th>
     <th class="right">Clock Out</th>
     <th class="right">S/T</th>
     <th class="right">O/T</th>
-    <th class="right">T/T</th>
+  <% if permitted_to? :manage, :private_time_entries -%>
     <th>&nbsp;</th>
+  <% end %>
   </tr>
   <%- @entries.each do |entry| -%>
-  <tr class="<%= cycle 'even', 'odd' %>">
+  <tr class="<%= cycle 'odd', 'even' %>">
     <td>
-    <%- if entry.clock_in && entry.clock_out && entry.active && entry.time_sheet_id == nil -%>
-      <%= check_box_tag "time_entry_ids[]", entry.id, :checked => true -%>
-    <%- else %>
-      <%= check_box_tag "user", "active", true, :disabled => true -%>
-    <%- end -%>
-
+      <%- if entry.clock_in && entry.clock_out && entry.active && entry.time_sheet_id == nil -%>
+        <%= check_box_tag "time_entry_ids[]", entry.id, :checked => true -%>
+      <%- else %>
+        <%= check_box_tag "user", "active", true, :disabled => true -%>
+      <%- end -%>
     </td>
     <td><%= entry.user.name %></td>
     <td class="span-5 right"><%= if entry.clock_in : entry.clock_in.strftime('%Y-%m-%d %I:%M %p') else '-' end %></td>
     <td class="span-5 right"><%= if entry.clock_out : entry.clock_out.strftime('%Y-%m-%d %I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
     <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
-    <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)} Hours" else '-' end %></td>
+  <% if permitted_to? :manage, :private_time_entries -%>
     <td class="right">
       <%= link_to 'Edit', edit_private_time_entry_url(entry) %>
     </td>
+  <% end %>
   </tr>
   <%- end -%>
 </table>

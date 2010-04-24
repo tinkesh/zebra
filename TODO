@@ -1,23 +1,23 @@
 TODO
 - New Clock In / Clock Out / Time Sheet / Job associations
 - Material Report
+
+CAN WAIT
 - Pagination
 - @obj.locked?
 - @obj.selectable?
-
-CAN WAIT
-- Email addresses in Settings
 - Search
 - Event Log
 - Format job_sheet to print on 1 page / landscape format
 - CRUD customer from @job#new
-- cannot submit a timesheet if not clocked out
 - OT warning at 160 hours within pay period to notices@
 - OT warning at 190 hours within pay period to notices@
-- >15hr work day warning to kwame@
+- >15hr work day warning to kwame@aaastriping.ca
 - Time sheet with no hours does not display per_diem in @time_sheets#index
 - Quantity of Totes to @material
 - Count down Tote usage for @material, disable when hit
-- Accountant Reoirt
+- Accountant Report
 
+
+x 2010-04-23 User can only be clocked in / clocked out once
 x 2010-04-22 Sorting images and pretty tables

@@ -67,21 +67,29 @@
 </div><!-- span-6 append-1 -->
 
 <div class="span-10 append-1">
-  <h3>Users</h3>
+  <h3>Crews</h3>
   <ol>
-  <% @users.each do |u| %>
-    <li><%= u.name %></li>
+  <% @job.crews.each do |crew| %>
+    <li>
+      <b><%= crew.name %></b>
+      <br>
+      <%= crew.user_list %>
+    </li>
   <% end %>
   </ol>
 
   <hr>
 
   <h3>Equipment</h3>
+  <% if @equipments %>
   <ol>
   <% @equipments.each do |e| %>
     <li><%= e.unit %> - <%= e.name %></li>
   <% end %>
   </ol>
+  <% else %>
+  <p>No equipment assigned.</p>
+  <% end %>
 
   <hr>
 

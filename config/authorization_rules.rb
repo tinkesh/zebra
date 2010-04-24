@@ -11,7 +11,7 @@ authorization do
     includes :crewman
     has_permission_on :private, :to => :settings
     has_permission_on :private_directory, :to => :index
-    has_permission_on [:private_clients, :private_completions, :private_costs, :private_equipments,
+    has_permission_on [:private_crews, :private_clients, :private_completions, :private_costs, :private_equipments,
                        :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
                        :private_time_task_categories, :private_time_note_categories], :to => :manage
 

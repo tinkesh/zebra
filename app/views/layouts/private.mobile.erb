@@ -10,13 +10,14 @@
 
     <%= render :partial => 'menus/private_menu', :layout => false %>
 
-    <hr />
+
 
     <% flash.each do |key, value| -%>
       <p><%=h value %></p>
     <% end -%>
 
     <% if @page_title %>
+      <hr />
       <h2><%= @page_title %></h2>
     <% end %>
 

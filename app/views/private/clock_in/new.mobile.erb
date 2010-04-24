@@ -12,8 +12,8 @@
   <tr>
     <th>&nbsp;</th>
     <th>Name</th>
-    <th>Clocked In at</th>
-    <th>Comment</th>
+    <th>Clocked in at</th>
+    <th>Clocked out at</th>
   </tr>
   <% @job.users.each do |user| %>
     <tr class="<%= cycle('odd', 'even') %>">
@@ -21,8 +21,7 @@
       <td class="span-1"><%= check_box_tag "users[][active]", "true", :checked => true %></td>
       <td class="span-4"><%= user.name %></td>
       <td>-</td>
-      <td>
-        <%= text_field_tag "users[][note]" %>
+      <td>-
         <%= hidden_field_tag "users[][user_id]", user.id %>
         <%= hidden_field_tag "users[][job_id]", @job.id %>
         <%= hidden_field_tag "users[][rate]", user.rate %>
@@ -33,7 +32,7 @@
       <td class="span-1"><%= check_box_tag "user", "active", true, :disabled => true %></td>
       <td class="span-4"><span class="quiet"><%= user.name %></span></td>
       <td><span class="quiet"><%= if @entry : @entry.clock_in.strftime('%b-%d-%y at %I:%M %p') else "Error" end %></span></td>
-      <td>-</td>
+      <td><span class="quiet"><%= if @entry : @entry.clock_out.strftime('%b-%d-%y at %I:%M %p') else "Error" end %></span></td>
     <% end %>
     </tr>
   <% end %>
@@ -43,15 +42,18 @@
 
   <hr>
 <% unless @clocked_in_ids.length == @job.users.length %>
-  <p>Clock In at...
-    <br><%= datetime_select 'job', :started_on, { :minute_step => 15, :discard_year => true } %>
+  <p>
+    <label>Clock In at...</label><br>
+    <%= datetime_select 'job', :started_on, { :minute_step => 15, :discard_year => true } %>
   </p>
 
-  <p>After Clock In...<br>
-    <label><%= radio_button_tag "navigate", "show_job", :checked => true %> Take me to the Job</label><br>
-    <label><%= radio_button_tag "navigate", "clock_in" %> Clock In additional users</label><br>
-    <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out users</label>
+  <p>
+    <label>After Clock In...</label><br>
+    <label class="normal"><%= radio_button_tag "navigate", "home", :checked => true %> Go to Home</label><br>
+    <label class="normal"><%= radio_button_tag "navigate", "clock_in" %> Clock in more users</label><br>
+    <label class="normal"><%= radio_button_tag "navigate", "clock_out" %> Clock out users</label>
   </p>
+
   <p><%= submit_tag "Clock In Selected Users" %></p>
 <% else %>
   <p>All assigned users are already clocked in.
