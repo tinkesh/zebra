@@ -7,6 +7,7 @@ class GunSheet < ActiveRecord::Base
   belongs_to :job_location
   has_many :gun_markings, :dependent => :destroy
   has_and_belongs_to_many :job_sheets
+  has_and_belongs_to_many :material_reports
   accepts_nested_attributes_for :gun_markings, :reject_if => lambda { |a| a[:amount].blank? }, :allow_destroy => true
   validates_presence_of [:solid_y1, :solid_y2, :solid_y3, :solid_w4,
                          :solid_w5, :solid_w6, :solid_w7,

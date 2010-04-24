@@ -59,15 +59,34 @@ If you require additional rows of tasks, save and re-edit. 2 new rows are added 
   <tr>
     <th class="span-2">Time</th>
     <th>Job</th>
+    <% if @estimates -%>
+    <th>&nbsp;</th>
+    <% end %>
   </tr>
-<% i = 0 %>
-<% @jobs.each do |job| %>
-<% i += 1 %>
-<tr class="<%= cycle 'odd', 'even' %>">
-  <td><%= text_field_tag "estimates[#{i}][hours]", nil, :class => "span-1" %> hrs</td>
-  <td><%= job.label %> <%= hidden_field_tag "estimates[#{i}][job_id]", job.id %></td>
-</tr>
-<% end %>
+  <% if @estimates -%>
+    <% @estimates.each do |estimate| -%>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= estimate.hours %> hrs</td>
+        <td><%= estimate.job.label %></td>
+        <td class="right">
+          <% if permitted_to? :manage, :private_estimates -%>
+            <%= link_to 'Edit', edit_private_estimate_url(estimate) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end -%>
+  <% end %>
+
+  <% if @jobs %>
+    <% i = 0 %>
+    <% @jobs.each do |job| %>
+      <% i += 1 %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= text_field_tag "estimates[#{i}][hours]", nil, :class => "span-1" %> hrs</td>
+        <td><%= job.label %> <%= hidden_field_tag "estimates[#{i}][job_id]", job.id %></td>
+      </tr>
+    <% end %>
+  <% end %>
 </table>
 
 <br>

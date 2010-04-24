@@ -9,7 +9,6 @@
 <% end %>
 
 <div class="span-10">
-  <h2>Jobs on Hand</h2>
 <% form_tag :controller => 'private', :action => "navigate" do -%>
 
   <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', session[:navigate]) %></p>
@@ -21,8 +20,8 @@
     <% if permitted_to? :create, :private_clock_out -%>
       <li><label class="normal"><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label></li>
     <% end %>
-    <% if permitted_to? :show, :private_job -%>
-      <li><label class="normal"><%= radio_button_tag "navigate", "show_job" %> Show Job</label></li>
+    <% if permitted_to? :show, :private_jobs -%>
+      <li><label class="normal"><%= radio_button_tag "navigate", "show_job", :selected => true %> Show Job</label></li>
     <% end %>
   </ul>
 
@@ -33,5 +32,3 @@
 </div>
 
 <hr>
-
-<p>Last Update: 2010-04-16 9:09am</p>

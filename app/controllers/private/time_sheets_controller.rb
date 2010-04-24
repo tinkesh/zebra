@@ -28,7 +28,6 @@ class Private::TimeSheetsController < ApplicationController
   end
 
   def create
-#    @crew = Job.find(params[:job_id])
     load_time_sheet_supporting_data
     @page_title = "Submit Clock In/Clock Out Times"
     @time_sheet = TimeSheet.new(params[:time_sheet])
@@ -62,7 +61,8 @@ class Private::TimeSheetsController < ApplicationController
 
   def edit
     @time_sheet = TimeSheet.find(params[:id])
-    @jobs = @time_sheet.jobs
+    @crew = current_user.crew
+    @estimates = Estimate.find(:all, :conditions => { :time_sheet_id => @time_sheet.id})
     @entries = @time_sheet.time_entries
     load_time_sheet_supporting_data
     2.times { @time_sheet.time_tasks.build }
@@ -73,7 +73,7 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.find(params[:id])
     if @time_sheet.update_attributes(params[:time_sheet])
       flash[:notice] = "Time Sheet updated!"
-      redirect_to private_home_url
+      redirect_to private_time_sheet_url(@time_sheet)
     else
       render :action => :edit
     end

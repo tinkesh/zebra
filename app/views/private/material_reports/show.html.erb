@@ -1,0 +1,158 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Material Reports', private_material_reports_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<% content_for :submenu do %>
+  <%= render :partial => 'menus/material_reports_menu', :layout => false %>
+<% end %>
+
+<h2>Tank Level</h2>
+
+<table>
+  <tr>
+    <th class="span-3">&nbsp;</th>
+    <th class="span-3 right">Start cm</th>
+    <th class="span-3 right">End cm</th>
+    <th class="span-3 right">Used cm</th>
+    <th class="span-3 right">Calculation</th>
+    <th class="span-3 right">Total Used</th>
+  </tr>
+
+  <% if @material_report.load_sheets %>
+    <%
+      @total_yellow_used = 0
+      @total_white_used = 0
+    %>
+    <% @material_report.load_sheets.each do |load| %>
+      <%
+        @total_yellow_used += (@material_report.yellow_rate * load.yellow_dip_used)
+        @total_white_used += (@material_report.white_rate * load.white_dip_used)
+      %>
+      <tr>
+        <th class="right">Yellow</th>
+        <td class="right"><%= load.yellow_dip_start %></td>
+        <td class="right"><%= load.yellow_dip_end %></td>
+        <td class="right"><%= load.yellow_dip_used %></td>
+        <td class="right"><%= @material_report.yellow_rate %></td>
+        <td class="right"><%= @total_yellow_used %></td>
+      </tr>
+      <tr>
+        <th class="right">White</th>
+        <td class="right"><%= load.white_dip_start %></td>
+        <td class="right"><%= load.white_dip_end %></td>
+        <td class="right"><%= load.white_dip_used %></td>
+        <td class="right"><%= @material_report.white_rate %></td>
+        <td class="right"><%= @total_white_used %></td>
+      </tr>
+      <tr>
+        <th class="right">Bead</th>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<h2>Meters</h2>
+<table>
+  <tr>
+    <th class="span-3">&nbsp;</th>
+    <th class="span-3 right">Y-1</th>
+    <th class="span-3 right">Y-2</th>
+    <th class="span-3 right">Y-3</th>
+    <th class="span-3 right">W-4</th>
+    <th class="span-3 right">W-5</th>
+    <th class="span-3 right">W-6</th>
+    <th class="span-3 right last">W-7</th>
+  </tr>
+  <% if @material_report.gun_sheets %>
+  <%
+    @yellow_l_km = 0
+    @white_l_km = 0
+  %>
+    <% @material_report.gun_sheets.each do |gun| %>
+    <% @yellow_l_km += (gun.solid_y1 + gun.solid_y2 + gun.solid_y3 + gun.skip_y1 + gun.skip_y2 + gun.skip_y3) %>
+    <% @white_l_km += (gun.solid_w4 + gun.solid_w5 + gun.solid_w6 + gun.solid_w7 + gun.skip_w4 + gun.skip_w5 + gun.skip_w6 + gun.skip_w7) %>
+      <tr>
+        <th class="right">Solid</th>
+        <td class="right"><%= gun.solid_y1 %></td>
+        <td class="right"><%= gun.solid_y2 %></td>
+        <td class="right"><%= gun.solid_y3 %></td>
+        <td class="right"><%= gun.solid_w4 %></td>
+        <td class="right"><%= gun.solid_w5 %></td>
+        <td class="right"><%= gun.solid_w6 %></td>
+        <td class="right"><%= gun.solid_w7 %></td>
+      </tr>
+      <tr>
+        <th class="right">Skip</th>
+        <td class="right"><%= gun.skip_y1 %></td>
+        <td class="right"><%= gun.skip_y2 %></td>
+        <td class="right"><%= gun.skip_y3 %></td>
+        <td class="right"><%= gun.skip_w4 %></td>
+        <td class="right"><%= gun.skip_w5 %></td>
+        <td class="right"><%= gun.skip_w6 %></td>
+        <td class="right"><%= gun.skip_w7 %></td>
+      </tr>
+      <tr>
+        <th class="right">Total</th>
+        <td class="right"><%= gun.solid_y1 + gun.skip_y1 %></td>
+        <td class="right"><%= gun.solid_y2 + gun.skip_y2 %></td>
+        <td class="right"><%= gun.solid_y3 + gun.skip_y3 %></td>
+        <td class="right"><%= gun.solid_w4 + gun.skip_w4 %></td>
+        <td class="right"><%= gun.solid_w5 + gun.skip_w5 %></td>
+        <td class="right"><%= gun.solid_w6 + gun.skip_w6 %></td>
+        <td class="right"><%= gun.solid_w7 + gun.skip_w7 %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<h2>Summary</h2>
+
+<table>
+  <tr>
+    <th class="span-3">&nbsp;</th>
+    <th class="right">Batch #</th>
+    <th class="right">Litres</th>
+    <th class="right">L.KM</th>
+    <th class="right">L/KM</th>
+    <th class="right">Target</th>
+  </tr>
+  <% if @material_report.load_sheets && @material_report.gun_sheets %>
+    <tr>
+      <th>Yellow</th>
+      <td class="right">&nbsp;</td>
+      <td class="right"><%= sprintf("%.3f", @total_yellow_used) %></td>
+      <td class="right"><%= sprintf("%.3f", @yellow_l_km) %></td>
+      <td class="right"><%= sprintf("%.3f", @total_yellow_used / @yellow_l_km) %></td>
+      <td class="right">38 L/KM</td>
+    </tr>
+
+    <tr>
+      <th>White</th>
+      <td class="right">&nbsp;</td>
+      <td class="right"><%= sprintf("%.3f", @total_white_used) %></td>
+      <td class="right"><%= sprintf("%.3f", @white_l_km) %></td>
+      <td class="right"><%= sprintf("%.3f", @total_white_used / @white_l_km) %></td>
+      <td class="right">38 L/KM</td>
+    </tr>
+
+    <tr>
+      <th>Bead</th>
+      <td class="right">&nbsp;</td>
+      <td class="right">-</td>
+      <td class="right">-</td>
+      <td class="right">-</td>
+      <td class="right">22.2 KG/KM</td>
+    </tr>
+  <% end %>
+</table>

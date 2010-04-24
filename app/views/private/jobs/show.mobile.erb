@@ -2,13 +2,13 @@
 
   <p>
     <% if permitted_to? :create, :private_clock_in -%>
-      <label><%= radio_button_tag "navigate", "clock_in" %> Clock In</label><br />
+      <label><%= radio_button_tag "navigate", "clock_in" %> Clock in</label><br />
     <% end %>
     <% if permitted_to? :create, :private_clock_out -%>
-      <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label><br />
+      <label><%= radio_button_tag "navigate", "clock_out" %> Clock out</label><br />
     <% end %>
     <% if permitted_to? :create, :private_time_sheets -%>
-      <label><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Clock In / Clock Out Times</label><br />
+      <label><%= radio_button_tag "navigate", "new_time_sheet" %> Submit time sheet</label><br />
     <% end %>
     <% if permitted_to? :create, :private_gun_sheets -%>
       <label><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label><br />
@@ -19,7 +19,9 @@
   </p>
 
   <%= hidden_field "job", "id" %>
-  <p><%= submit_tag "Go to Page" %></p>
+  <% if permitted_to? :navigate, :private_jobs %>
+    <p><%= submit_tag "Go to Page" %></p>
+  <% end %>
 
 <% end %>
 
@@ -59,24 +61,32 @@ Complete: <%= @job.completed_on %>
 <hr />
 
 <h3>Crews</h3>
-<ol>
-<% @job.crews.each do |crew| %>
-  <li>
-    <%= crew.name %>
-    <br>
-    <%= crew.user_list %>
-  </li>
-<% end %>
-</ol>
+<% unless @job.crews.length != 0 -%>
+  <ol>
+  <% @job.crews.each do |crew| -%>
+    <li>
+      <%=h crew.name %>
+      <br>
+      <%=h crew.user_list %>
+    </li>
+  <% end -%>
+  </ol>
+<% else -%>
+  <p>There are no crews assigned.</p>
+<% end -%>
 
 <hr>
 
 <h3>Equipment</h3>
-<ol>
-<% @equipments.each do |e| %>
-  <li><%= e.unit %> - <%= e.name %></li>
+<% unless @equipments.blank? %>
+  <ol>
+  <% @equipments.each do |e| %>
+    <li><%= e.unit %> - <%= e.name %></li>
+  <% end %>
+  </ol>
+<% else %>
+  <p>There is no equipment assigned.</p>
 <% end %>
-</ol>
 
 <hr />
 

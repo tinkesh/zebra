@@ -40,8 +40,8 @@ a:hover { color: #3344FF; text-decoration: underline; }
 #header { background: #333; border-top: solid 5px #333; }
 #header ol { background: #333; list-style-type: none; margin: 0; padding: 0; }
 #header li, #submenu li { margin: 0; padding: 0; display: inline; }
-#header a { color: #fff; font-weight: normal; font-size: 14px; text-decoration: none; background: url('/images/header_li_bg.gif') no-repeat; background-position: 5px 50%; padding: 3px 5px 3px 20px; display: inline-block; }
-#header a.active { background: #666 url('/images/header_li_bg.gif') no-repeat; background-position: 5px 50%; }
+#header a { color: #fff; font-weight: normal; font-size: 14px; text-decoration: none; padding: 3px 8px; display: inline-block; }
+#header a.active { background: #666 }
 #header a:hover, #submenu a:hover { text-decoration: underline; color: #fcd40d; }
 #title { position: absolute; top: 10px; left: 20px; font-size: 25px; font-weight: normal; }
 #logout { position: absolute; bottom: 0; right: 5px; }

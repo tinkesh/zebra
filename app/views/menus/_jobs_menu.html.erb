@@ -17,6 +17,9 @@
   <% if permitted_to? :create, :private_job_sheets -%>
     <li><%= active_link_to 'New Job Sheet', new_private_job_job_sheet_path(:job_id => @job.id) %></li>
   <% end %>
+  <% if permitted_to? :create, :private_material_reports -%>
+    <li><%= active_link_to 'New Material Report', new_private_job_material_report_path(:job_id => @job.id) %></li>
+  <% end %>
   <% if permitted_to? :create, :private_jobs -%>
     <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
   <% end %>

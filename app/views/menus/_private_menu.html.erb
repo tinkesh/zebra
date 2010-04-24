@@ -16,6 +16,9 @@
     <% if permitted_to? :read, :private_job_sheets -%>
       <li><%= active_link_to 'Job Sheets', private_job_sheets_path %></li>
     <% end -%>
+    <% if permitted_to? :read, :private_material_reports -%>
+      <li><%= active_link_to 'M. Reports', private_material_reports_path %></li>
+    <% end -%>
     <% if permitted_to? :manage, :private_crews -%>
       <li><%= active_link_to 'Crews', private_crews_path %></li>
     <% end -%>

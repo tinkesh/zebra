@@ -32,7 +32,7 @@
         <% @entry = TimeEntry.find(:first, :conditions => {:user_id => user.id, :time_sheet_id => nil, :active => true}) %>
         <td class="span-1"><%= check_box_tag "user", "active", true, :disabled => true %></td>
         <td class="span-4"><span class="quiet"><%= user.name %></span></td>
-        <td><span class="quiet"><%= if @entry && @entry.clock_in : @entry.clock_in.strftime('%b-%d-%y at %I:%M %p') else "Error!" end %></span></td>
+        <td><span class="quiet"><%= if @entry && @entry.clock_in : @entry.clock_in.strftime('%b-%d-%y at %I:%M %p') else "-" end %></span></td>
         <td><span class="quiet"><%= if @entry && @entry.clock_out : @entry.clock_out.strftime('%b-%d-%y at %I:%M %p') else "-" end %></span></td>
       <% end %>
       </tr>

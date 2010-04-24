@@ -8,13 +8,11 @@ class PrivateController < ApplicationController
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @jobs = Job.find(:all)
     else
-      @jobs = current_user.jobs
+      @jobs = current_user.crew.jobs
     end
-#    @page_title = "Dashboard"
   end
 
   def navigate
-    # set current_job session
     if params[:navigate] && params[:job][:id]
       @job = Job.find(params[:job][:id])
       session[:navigate] = @job.id

@@ -24,7 +24,7 @@ class Private::ReportsController < ApplicationController
     @entries = TimeEntry.find(:all,
       :conditions => { :clock_in => @back.to_date...@front.to_date },
       :order => "created_at ASC",
-      :include => [:job, :user, :time_sheet])
+      :include => [:user, :time_sheet])
   end
 
   def increase_offset
@@ -49,8 +49,8 @@ private
       @back  = @date.year.to_s + "-" + (@date.month - 1).to_s + "-" + "24"
       @front = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
     else
-      @front = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
-      @back  = @date.year.to_s + "-" + (@date.month + 1).to_s + "-" + "24"
+      @back = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
+      @front  = @date.year.to_s + "-" + (@date.month + 1).to_s + "-" + "24"
     end
   end
 
@@ -59,8 +59,8 @@ private
   end
 
   def kickout
-    unless params[:id] == current_user.id || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
-      redirect_to :action => :user_time, :id => current_user.id
+    unless params[:id] == current_user.id.to_s || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
+      redirect_to private_home_path
     end
   end
 

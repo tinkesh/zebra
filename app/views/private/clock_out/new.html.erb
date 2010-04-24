@@ -8,8 +8,6 @@
 
 <% form_tag :controller => 'private/clock_out', :action => "create", :method => :post do -%>
 
-  <% unless @clocked_in.empty? %>
-
     <h3>Clock Out Users</h3>
     <table>
       <tr>
@@ -41,6 +39,8 @@
       </tr>
     <% end -%>
     </table>
+
+    <% unless @clocked_in.empty? %>
 
     <p>
       <label>Clock out at...</label><br>

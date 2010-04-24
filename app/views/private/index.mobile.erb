@@ -19,7 +19,7 @@
      <% if permitted_to? :create, :private_clock_out -%>
        <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label><br />
      <% end %>
-     <% if permitted_to? :show, :private_job -%>
+     <% if permitted_to? :read, :private_jobs -%>
        <label><%= radio_button_tag "navigate", "show_job" %> Show Job</label><br />
      <% end %>
   </p>

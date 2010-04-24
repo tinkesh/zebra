@@ -11,31 +11,16 @@
 <% end %>
 
 <% content_for :submenu do %>
-  <%= render :partial => 'menus/time_entries_menu', :layout => false %>
+  <%= render :partial => 'menus/estimates_menu', :layout => false %>
 <% end %>
 
-<% form_for [:private, @job, @time_entry] do |f| %>
+<% form_for [:private, @estimate] do |f| %>
   <%= f.error_messages %>
 
-
-  <h3><%= @time_entry.user.name %></h3>
-
   <p>
-    <label>Clock In Time</label>
+    <label>Hours</label>
     <br>
-    <%= datetime_select 'time_entry', :clock_in, { :minute_step => 15, :discard_year => true } %>
-  </p>
-
-  <p>
-    <label>Clock Out Time</label>
-    <br>
-    <%= datetime_select 'time_entry', :clock_out, { :minute_step => 15, :discard_year => true } %>
-  </p>
-
-  <p>
-    <label>Notes</label>
-    <br>
-    <%= f.text_field :note, :class => "span-7" %>
+    <%= f.text_field :hours, :class => "span-7" %>
   </p>
 
   <hr>

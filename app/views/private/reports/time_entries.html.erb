@@ -13,27 +13,27 @@
 <h3><%= @back.to_date.strftime('%b-%d-%y') %> to <%= (@front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
 <table>
   <tr>
-    <td colspan="2">&nbsp;</td>
-    <th class="center" colspan="3">Reported</th>
-    <th class="center" colspan="3">Actual</th>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
     <th class="span-3">User</th>
     <th class="span-6">Job</th>
-    <th class="right span-3">Date</th>
-    <th class="right span-2">Clock In</th>
-    <th class="right span-2">Clock Out</th>
-    <th class="right span-3">Date</th>
-    <th class="right span-2">Clock In</th>
-    <th class="right span-2">Clock Out</th>
+    <th class="right span-3">R date</th>
+    <th class="right span-2">R c/in</th>
+    <th class="right span-2">R c/out</th>
+    <th class="right span-3">A date</th>
+    <th class="right span-2">A c/in</th>
+    <th class="right span-2">A c/out</th>
     <th class="right span-1 last">T/S</th>
     <th>&nbsp;</th>
   </tr>
 <% @entries.each do |entry| %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td><%= link_to entry.user.name, report_user_time_path(:id => entry.user_id) %></td>
-    <td><%= link_to job_label(entry.job), private_job_path(entry.job) %></td>
+    <td>
+      <% if entry.time_sheet %>
+        <% entry.time_sheet.jobs.each do |job| %>
+          <%= link_to "Job ##{job.id}", private_job_path(job) %><br>
+        <% end %>
+      <% end %>
+    </td>
     <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>

@@ -1,0 +1,28 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<table class="sortable">
+  <tr>
+    <th class="span-2 center number">#</th>
+    <th class="span-2 center">Date</th>
+    <th class="number">Job</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% @material_reports.each do |material_report| %>
+  <tr>
+    <td><%= link_to material_report.id, private_material_report_path(material_report), :class => "show" %></td>
+    <td><%= if material_report.gun_sheets && material_report.gun_sheets.first.started_on : material_report.gun_sheets.first.started_on.strftime('%b-%d-%y') end %></td>
+    <td><%= link_to job_label(material_report.job), private_job_path(material_report.job) %></td>
+    <td class="actions">
+    <%= link_to 'Delete', private_material_report_path(material_report), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_material_report_path(material_report), :class => "edit" %>
+    </td>
+  </tr>
+<% end %>
+</table>

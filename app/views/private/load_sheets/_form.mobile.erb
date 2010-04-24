@@ -9,11 +9,11 @@
 </tr>
 <tr>
 <td><%= form.label :job_id, "Job" %></td>
-<td><%= form.select (:job_id, @jobs.map {|u| ["Job ##{u.id}",u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
+<td><%= form.select (:job_id, @crew.jobs.map {|u| [u.label,u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
 </tr>
 <tr>
-<td>Location</td>
-<td></td>
+<td><%= form.label :location_name, "Location" %></td>
+<td><%= form.text_field :location_name, :class => "span-6" %></td>
 </tr>
 </table>
 
@@ -52,5 +52,4 @@
 
 <hr />
 
-<p><%= form.label :note, "Note" %><br />
-<%= form.text_field :note %></p>
+<p><%= form.label :note, "Notes" %> <%= form.text_field :note %></p>

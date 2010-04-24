@@ -42,7 +42,11 @@
 <% st += entry.straight_time %>
 <% ot += entry.over_time %>
   <tr class="<%= cycle('odd', 'even') %>">
-    <td><%= link_to job_label(entry.job), private_job_path(entry.job), :class => "show" %></td>
+    <td>
+      <% entry.time_sheet.jobs.each do |job| %>
+        <%= link_to job_label(entry.job), private_job_path(entry.job), :class => "show" %>
+      <% end %>
+    </td>
     <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>

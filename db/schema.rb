@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100423155820) do
+ActiveRecord::Schema.define(:version => 20100424033843) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20100423155820) do
     t.integer  "crew_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "job_label",     :limit => nil
   end
 
   create_table "gun_marking_categories", :force => true do |t|
@@ -165,6 +166,11 @@ ActiveRecord::Schema.define(:version => 20100423155820) do
   create_table "gun_sheets_job_sheets", :id => false, :force => true do |t|
     t.integer "gun_sheet_id"
     t.integer "job_sheet_id"
+  end
+
+  create_table "gun_sheets_material_reports", :id => false, :force => true do |t|
+    t.integer "gun_sheet_id"
+    t.integer "material_report_id"
   end
 
   create_table "job_locations", :force => true do |t|
@@ -268,6 +274,11 @@ ActiveRecord::Schema.define(:version => 20100423155820) do
 
   add_index "load_sheets", ["job_id"], :name => "index_load_sheets_on_job_id"
 
+  create_table "load_sheets_material_reports", :id => false, :force => true do |t|
+    t.integer "load_sheet_id"
+    t.integer "material_report_id"
+  end
+
   create_table "locations", :force => true do |t|
     t.string    "name"
     t.timestamp "created_at"
@@ -280,6 +291,14 @@ ActiveRecord::Schema.define(:version => 20100423155820) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.integer   "amount"
+  end
+
+  create_table "material_reports", :force => true do |t|
+    t.integer  "job_id"
+    t.decimal  "yellow_rate"
+    t.decimal  "white_rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "materials", :force => true do |t|

@@ -10,7 +10,7 @@
 
 <div class="span-10 last append-bottom">
   <%= form.label :job_id, "Job" %><br>
-  <%= form.select (:job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id]) %>
+  <%= form.select (:job_id, @crew.jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id]) %>
 </div>
 
 <div class="span-6 append-bottom">

@@ -1,5 +1,6 @@
 <div class="span-12 colborder">
 
+<% if permitted_to? :manage, :users -%>
   <div class="span-6 append-bottom">
     <%= form.label :first_name, "First Name" %><br>
     <%= form.text_field :first_name, :class => "span-6" %>
@@ -10,9 +11,6 @@
     <%= form.text_field :last_name, :class => "span-6" %>
   </div>
 
-  <br class="clear">
-
-<% if permitted_to? :manage, :users -%>
   <div class="span-6 append-bottom">
     <%= form.label :login %><br />
     <%= form.text_field :login, :class => "span-6" %>

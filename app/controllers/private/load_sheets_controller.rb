@@ -24,6 +24,7 @@ class Private::LoadSheetsController < ApplicationController
 
   def new
     @load_sheet = LoadSheet.new
+    @crew = current_user.crew
     load_load_sheet_supporting_data
     6.times { @load_sheet.load_entries.build }
     @page_title = "New Load Sheet"
