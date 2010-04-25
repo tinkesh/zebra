@@ -54,9 +54,10 @@
 
       <p><%= submit_tag "Clock In Selected Users" %></p>
     <% else %>
-      <p>All assigned users are already clocked in.
-        <%= link_to "Clock Out now", {:controller => "private/clock_out", :action => "new", :job_id => @job.id} %>.
-      </p>
+    <p>There are no users who can clock in!
+      <%= link_to "Clock out", {:controller => "private/clock_out", :action => "new", :job_id => @job.id} %> or
+      <%= link_to "submit a time sheet", new_private_time_sheet_path %>.
+    </p>
     <% end %>
 
   <% end -%>
