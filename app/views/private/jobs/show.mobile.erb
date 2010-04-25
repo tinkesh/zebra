@@ -109,27 +109,35 @@ Complete: <%= @job.completed_on %>
 
 <hr>
 
-<h3>Time Sheets</h3>
-<ol>
-<% @job.time_sheets.each do |time_sheet| %>
-  <li><%= link_to time_sheet.label, private_time_sheet_path(time_sheet) %></li>
+<% if permitted_to? :show, :private_time_sheets -%>
+  <h3>Time Sheets</h3>
+  <ol>
+  <% @job.time_sheets.each do |time_sheet| %>
+    <li><%= link_to time_sheet.label, private_time_sheet_path(time_sheet) %></li>
+  <% end %>
+  </ol>
+
+  <hr>
+<% end -%>
+
+<% if permitted_to? :show, :private_load_sheets -%>
+  <h3>Load Sheets</h3>
+  <ol>
+  <% @job.load_sheets.each do |load_sheet| %>
+    <li><%= link_to load_sheet.label, private_load_sheet_path(load_sheet) %></li>
+  <% end %>
+  </ol>
+
+  <hr>
 <% end %>
-</ol>
 
-<hr />
+<% if permitted_to? :show, :private_gun_sheets -%>
+  <h3>Gun Sheets</h3>
+  <ol>
+  <% @job.gun_sheets.each do |gun_sheet| %>
+    <li><%= link_to gun_sheet.label, private_gun_sheet_path(gun_sheet) %></li>
+  <% end %>
+  </ol>
 
-<h3>Load Sheets</h3>
-<ol>
-<% @job.load_sheets.each do |load_sheet| %>
-  <li><%= link_to load_sheet.label, private_load_sheet_path(load_sheet) %></li>
+  <hr>
 <% end %>
-</ol>
-
-<hr />
-
-<h3>Gun Sheets</h3>
-<ol>
-<% @job.gun_sheets.each do |gun_sheet| %>
-  <li><%= link_to gun_sheet.label, private_gun_sheet_path(gun_sheet) %></li>
-<% end %>
-</ol>

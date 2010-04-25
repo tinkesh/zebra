@@ -20,13 +20,13 @@
     <% @crew.users.each do |user| %>
       <tr class="<%= cycle('odd', 'even') %>">
       <% unless @clocked_in_ids.include?(user.id) %>
-        <td class="span-1"><%= check_box_tag "users[][active]", "true", :checked => true %></td>
+        <td class="span-1"><%= check_box_tag "users[#{user.id}][active]", true, false, :checked => true %></td>
         <td class="span-4"><%= user.name %></td>
         <td>-</td>
         <td>-
-          <%= hidden_field_tag "users[][user_id]", user.id %>
-          <%= hidden_field_tag "users[][rate]", user.rate %>
-          <%= hidden_field_tag "users[][bank_overtime_hours]", user.bank_overtime_hours %>
+          <%= hidden_field_tag "users[#{user.id}][user_id]", user.id %>
+          <%= hidden_field_tag "users[#{user.id}][rate]", user.rate %>
+          <%= hidden_field_tag "users[#{user.id}][bank_overtime_hours]", user.bank_overtime_hours %>
         </td>
       <% else %>
         <% @entry = TimeEntry.find(:first, :conditions => {:user_id => user.id, :time_sheet_id => nil, :active => true}) %>

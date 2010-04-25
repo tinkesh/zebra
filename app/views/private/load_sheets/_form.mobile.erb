@@ -8,8 +8,14 @@
 <td><%= form.select (:equipment_id, @equipment.map {|u| ["#{u.unit} - #{u.name}",u.id]}, :include_blank => true) %></td>
 </tr>
 <tr>
-<td><%= form.label :job_id, "Job" %></td>
-<td><%= form.select (:job_id, @crew.jobs.map {|u| [u.label,u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
+<% if @crew && @crew.jobs.length != 0 %>
+  <td><%= form.label :job_id, "Job" %></td>
+  <td><%= form.select (:job_id, @crew.jobs.map {|u| [u.label,u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
+<% else %>
+  <td colspan="2">
+    <span class='error'>You cannot assign this load sheet to a job. This is either because you have no crew, or your crew has no jobs.</span>
+  </td>
+<% end %>
 </tr>
 <tr>
 <td><%= form.label :location_name, "Location" %></td>

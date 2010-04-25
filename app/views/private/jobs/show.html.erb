@@ -113,7 +113,7 @@
 </div><!-- span-10 append-1 -->
 
 <div class="span-6 last noprint">
-  <% if permitted_to? :read, :private_time_sheets -%>
+  <% if permitted_to? :show, :private_time_sheets -%>
     <h3>Time Sheets</h3>
     <ol>
     <% @job.time_sheets.each do |time_sheet| %>
@@ -124,7 +124,7 @@
     <hr>
   <% end -%>
 
-  <% if permitted_to? :read, :private_load_sheets -%>
+  <% if permitted_to? :show, :private_load_sheets -%>
     <h3>Load Sheets</h3>
     <ol>
     <% @job.load_sheets.each do |load_sheet| %>
@@ -135,7 +135,7 @@
     <hr>
   <% end %>
 
-  <% if permitted_to? :read, :private_time_sheets -%>
+  <% if permitted_to? :show, :private_gun_sheets -%>
     <h3>Gun Sheets</h3>
     <ol>
     <% @job.gun_sheets.each do |gun_sheet| %>
@@ -146,7 +146,7 @@
     <hr>
   <% end %>
 
-  <% if permitted_to? :read, :private_job_sheets -%>
+  <% if permitted_to? :show, :private_job_sheets -%>
     <h3>Job Sheets</h3>
     <ol>
     <% @job.job_sheets.each do |job_sheet| %>

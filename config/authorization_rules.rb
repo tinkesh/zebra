@@ -24,6 +24,9 @@ authorization do
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets,
                        :private_gun_sheets, :private_load_sheets], :to => [:create, :show]
     has_permission_on [:private_jobs], :to => [:show, :navigate]
+    has_permission_on :private_job_sheets, :to => [:create, :update, :show] do
+      if_attribute :created_by => is { user.id }
+    end
   end
 
   role :crewman do

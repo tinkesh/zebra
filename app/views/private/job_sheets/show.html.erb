@@ -12,8 +12,6 @@
   <%= render :partial => 'menus/job_sheets_menu', :layout => false %>
 <% end %>
 
-
-
 <div id="jobsheet">
 <h2>Gun Sheet Date: <%= @job_sheet.date_range %></h2>
 <table>
@@ -175,8 +173,10 @@
       <th>Category</th>
       <th class="right">Ordered</th>
       <th class="right">Tally</th>
+    <% if permitted_to? :manage, :private_job_sheets -%>
       <th class="right">Rate</th>
       <th class="right">Total</th>
+    <% end %>
     </tr>
 
     <% @job_sheet.job.job_markings.each do |marking| %>
@@ -185,8 +185,10 @@
         <td><%= marking.gun_marking_category.name %></td>
         <td class="right"><%= marking.amount %></td>
         <td class="right"><%= sprintf("%.0f", @job_sheet.total_markings(marking.gun_marking_category)) %></td>
+        <% if permitted_to? :manage, :private_job_sheets -%>
         <td class="right">$<%= sprintf("%.2f", marking.rate) %></td>
         <td class="right">$<%= sprintf("%.2f", @job_sheet.marking_earnings(marking)) %></td>
+        <% end %>
       </tr>
     <% end %>
 
@@ -204,9 +206,11 @@
       <% end %>
     <% end %>
 
+    <% if permitted_to? :manage, :private_job_sheets -%>
     <tr>
       <th colspan="5" class="right">$<%= sprintf("%.2f", @job_sheet.total_marking_earnings) %></th>
     </tr>
+    <% end %>
 
   </table>
 </div>
@@ -215,7 +219,9 @@
 <% content_for :versions do %>
 <ul id="versions">
   <li>Total Expenses: $<%= sprintf("%.2f", @job_sheet.total_expenses + @estimated_time_cost) %></li>
+  <% if permitted_to? :manage, :private_job_sheets -%>
   <li>Total Production: $<%= sprintf("%.2f", @job_sheet.total_marking_earnings) %></li>
   <li>Net: $<%= sprintf("%.2f", (@job_sheet.total_marking_earnings - @job_sheet.total_expenses - @estimated_time_cost)) %></li>
+  <% end %>
 </ul>
 <% end %>

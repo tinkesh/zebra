@@ -133,7 +133,7 @@
       <td class="right">&nbsp;</td>
       <td class="right"><%= sprintf("%.3f", @total_yellow_used) %></td>
       <td class="right"><%= sprintf("%.3f", @yellow_l_km) %></td>
-      <td class="right"><%= sprintf("%.3f", @total_yellow_used / @yellow_l_km) %></td>
+      <td class="right"><%= sprintf("%.3f", (@total_yellow_used / @yellow_l_km)) %></td>
       <td class="right">38 L/KM</td>
     </tr>
 
@@ -142,7 +142,7 @@
       <td class="right">&nbsp;</td>
       <td class="right"><%= sprintf("%.3f", @total_white_used) %></td>
       <td class="right"><%= sprintf("%.3f", @white_l_km) %></td>
-      <td class="right"><%= sprintf("%.3f", @total_white_used / @white_l_km) %></td>
+      <td class="right"><%= sprintf("%.3f", (@total_white_used / @white_l_km)) %></td>
       <td class="right">38 L/KM</td>
     </tr>
 

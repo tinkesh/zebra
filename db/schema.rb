@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100424033843) do
+ActiveRecord::Schema.define(:version => 20100425174525) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20100424033843) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.decimal   "material_rate"
+    t.integer   "created_by"
   end
 
   add_index "job_sheets", ["job_id"], :name => "index_job_sheets_on_job_id"

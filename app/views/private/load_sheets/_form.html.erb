@@ -9,8 +9,12 @@
 </div>
 
 <div class="span-10 last append-bottom">
-  <%= form.label :job_id, "Job" %><br>
-  <%= form.select (:job_id, @crew.jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id]) %>
+  <% if @crew && @crew.jobs.length != 0 %>
+    <%= form.label :job_id, "Job" %><br>
+    <%= form.select (:job_id, @crew.jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id]) %>
+  <% else %>
+    <p class='error'>You cannot assign this load sheet to a job. This is either because you have no crew, or your crew has no jobs.</p>
+  <% end %>
 </div>
 
 <div class="span-6 append-bottom">

@@ -2,6 +2,8 @@ class Private::JobSheetsController < ApplicationController
 
   layout "private"
   filter_access_to :all
+  filter_access_to [:show, :edit, :update], :attribute_check => true
+  filter_access_to [:index, :destroy], :attribute_check => false
 
   def index
     @job_sheets = JobSheet.find(:all)
@@ -23,6 +25,7 @@ class Private::JobSheetsController < ApplicationController
   def create
     @job = Job.find(params[:job_id])
     @job_sheet = @job.job_sheets.build(params[:job_sheet])
+    @job_sheet.created_by = current_user.id
     if @job_sheet.save
       flash[:notice] = "Job Sheet created!"
       redirect_to private_job_sheet_url(@job_sheet)
