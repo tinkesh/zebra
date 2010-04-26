@@ -47,15 +47,15 @@
   </tr>
   <tr>
     <td>Last request at:</td>
-    <td><%=h @user.last_request_at.strftime('%Y-%m-%d %H:%m') %></td>
+    <td><%= if @user.last_request_at then @user.last_request_at.strftime('%Y-%m-%d %H:%m') end %></td>
   </tr>
   <tr>
     <td>Last login at:</td>
-    <td><%=h @user.last_login_at.strftime('%Y-%m-%d %H:%m') %></td>
+    <td><%= if @user.last_login_at then @user.last_login_at.strftime('%Y-%m-%d %H:%m') end %></td>
   </tr>
   <tr>
     <td>Current login at:</td>
-    <td><%=h @user.current_login_at.strftime('%Y-%m-%d %H:%m') %></td>
+    <td><%= if @user.current_login_at then @user.current_login_at.strftime('%Y-%m-%d %H:%m') end %></td>
   </tr>
   <tr>
     <td>Last login ip:</td>
