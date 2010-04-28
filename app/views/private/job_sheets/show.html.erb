@@ -30,20 +30,26 @@
   </tr>
   <% @job_sheet.time_sheets.each do |time_sheet| %>
     <% @estimate = Estimate.find(:first, :conditions => { :time_sheet_id => time_sheet.id, :job_id => @job_sheet.job_id }) %>
-    <% @estimated_time_cost = 0 %>
-    <% time_sheet.time_entries.each do |entry| %>
-    <% @estimated_time_cost += (entry.rate * @estimate.hours) %>
-    <tr class="<%= cycle('odd', 'even') %>">
-      <td><%= link_to entry.time_sheet.id, private_time_sheet_path(entry.time_sheet) %></td>
-      <td><%= entry.clock_in.strftime('%b-%d-%y') %></td>
-      <td><%= entry.user.name %></td>
-      <td class="right"><%= if entry.per_diem == 0 : "-" else "$" + sprintf("%.2f", entry.per_diem) end %></td>
-      <td class="right"><%= if entry.straight_time == 0 : "-" else sprintf("%.2f", entry.straight_time) end %></td>
-      <td class="right"><%= if entry.over_time == 0 : "-" else sprintf("%.2f", entry.over_time) end %></td>
-      <td class="right">$<%= sprintf("%.2f", entry.rate) %></td>
-      <td class="right"><%= @estimate.hours %></td>
-      <td class="right">$<%= sprintf("%.2f", (entry.rate * @estimate.hours)) %></td>
-    </tr>
+    <% if @estimate %>
+      <% @estimated_time_cost = 0 %>
+      <% time_sheet.time_entries.each do |entry| %>
+      <% @estimated_time_cost += (entry.rate * @estimate.hours) %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= link_to entry.time_sheet.id, private_time_sheet_path(entry.time_sheet) %></td>
+        <td><%= entry.clock_in.strftime('%b-%d-%y') %></td>
+        <td><%= entry.user.name %></td>
+        <td class="right"><%= if entry.per_diem == 0 : "-" else "$" + sprintf("%.2f", entry.per_diem) end %></td>
+        <td class="right"><%= if entry.straight_time == 0 : "-" else sprintf("%.2f", entry.straight_time) end %></td>
+        <td class="right"><%= if entry.over_time == 0 : "-" else sprintf("%.2f", entry.over_time) end %></td>
+        <td class="right">$<%= sprintf("%.2f", entry.rate) %></td>
+        <td class="right"><%= @estimate.hours %></td>
+        <td class="right">$<%= sprintf("%.2f", (entry.rate * @estimate.hours)) %></td>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td colspan="9">No estimate provided</td>
+      </tr>
     <% end %>
   <% end %>
   <tr>

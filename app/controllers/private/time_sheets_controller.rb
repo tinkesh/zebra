@@ -19,7 +19,7 @@ class Private::TimeSheetsController < ApplicationController
 
     @crew = current_user.crew
     @jobs = current_user.crew.jobs
-    @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil}, :include => :user)
+    @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil, :user_id => @crew.user_ids}, :include => :user)
     load_time_sheet_supporting_data
 
     5.times { @time_sheet.time_tasks.build }

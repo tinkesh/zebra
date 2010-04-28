@@ -7,8 +7,8 @@ class Private::ClockOutController < ApplicationController
     @crew = current_user.crew
     @job = Job.new
     @job.started_on = Time.now
-    @clocked_in = TimeEntry.find(:all, :conditions => {:active => true, :time_sheet_id => nil, :clock_out => nil})
-    @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil})
+    @clocked_in = TimeEntry.find(:all, :conditions => {:active => true, :time_sheet_id => nil, :clock_out => nil, :user_id => @crew.user_ids})
+    @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil, :user_id => @crew.user_ids})
     @page_title = "Clock Out"
   end
 
