@@ -7,7 +7,7 @@ class TimeEntry < ActiveRecord::Base
   has_and_belongs_to_many :jobs
 
   def hours
-    if self.clock_out && self.clock_in && self.time_sheet : ((self.clock_out - self.clock_in- (self.time_sheet.lunch * 60))/3600) else 0 end
+    if self.clock_out && self.clock_in && self.time_sheet : ((self.clock_out - self.clock_in - (self.time_sheet.lunch * 60))/3600) else 0 end
   end
 
   def per_diem
