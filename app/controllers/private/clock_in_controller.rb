@@ -6,7 +6,7 @@ class Private::ClockInController < ApplicationController
   def new
 #    @crew = current_user.crew
     @job = Job.new
-    @job.started_on = Time.now
+    @job.started_on = Time.zone.now
     @clock_in = TimeEntry.new
     build_clocked_in_ids
     @not_clocked_in = TimeEntry.find(:all, :conditions => {:clock_out => nil, :active => nil, :user_id => @crew.user_ids})
@@ -14,7 +14,7 @@ class Private::ClockInController < ApplicationController
   end
 
   def create
-    @clock_in_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)']
+    @clock_in_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)'] + ":00"
     build_clocked_in_ids
 
     if params[:users]
@@ -26,8 +26,8 @@ class Private::ClockInController < ApplicationController
           @entry = TimeEntry.new(user[1])
         end
         if @entry.active
-          @entry.clock_in = Time.parse(@clock_in_time)
-          @entry.clocked_in_at = Time.now
+          @entry.clock_in = Time.zone.parse(@clock_in_time)
+          @entry.clocked_in_at = Time.zone.now
           @entry.clocked_in_by = current_user.id
         end
         @entry.save

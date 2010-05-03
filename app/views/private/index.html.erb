@@ -2,6 +2,9 @@
   <%= render :partial => 'menus/dashboard_menu', :layout => false %>
 <% end %>
 
+<p>Current time zone: <%= Time.zone.name %><br>
+Current time: <%= Time.zone.now.inspect %></p>
+
 <% if @crew %>
 <p>You are part of <%= @crew.label %>: <%= @crew.user_list %></p>
 <% else %>
