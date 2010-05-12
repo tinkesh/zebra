@@ -1,6 +1,15 @@
+UNBILLABLE
+- Time being entered is off by one hour... ?
+
 TODO
 - Foreman can create timesheet, but cannot see profits
-- New Supervisor role
+- New Supervisor role (assign crews to a job, Look at all crews timesheets, load sheets, gun sheets, job reports)
+- Suggestion for clocking people in/out of crews
+- Add dropdown to @user for employment_state (Employed, Laid Off, Fired, Quit)
+- Remove users without Employed from being assigned to a crew
+- Display per diem days in pay period report, with total on bottom
+- Create job sheet from phone
+
 
 CAN WAIT
 - Pagination
@@ -19,5 +28,5 @@ CAN WAIT
 - Accountant Report
 
 Material Report
-User can only be clocked in / clocked out once
-Sorting images and pretty tables
+x User can only be clocked in / clocked out once
+x Sorting images and pretty tables
