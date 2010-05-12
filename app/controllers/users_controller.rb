@@ -37,7 +37,9 @@ class UsersController < ApplicationController
         @user.revert_to(params[:version].to_i)
       end
     end
-    @roles = Role.find(:all, :conditions => { :id => @user.versioned_role_ids.split(", ") })
+    if @user.versioned_role_ids
+      @roles = Role.find(:all, :conditions => { :id => @user.versioned_role_ids.split(", ") })
+    end
   end
 
   def edit

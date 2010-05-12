@@ -4,7 +4,7 @@
     <li>»</li>
     <li><%= link_to 'Time Sheets', private_time_sheets_path %></li>
     <li>»</li>
-    <li><%= link_to @time_sheet.label, private_time_sheet_path(@time_sheet) %></li>
+    <li><%= link_to @time_sheet.label, private_time_sheet_path(@time_sheet) if @time_sheet %></li>
     <li>»</li>
     <li><%= @page_title %></li>
   </ul>
@@ -39,5 +39,5 @@
   </p>
 
   <hr>
-  <%= f.submit "Save and Return to Time Sheet" %> or <%= link_to 'Cancel', edit_private_time_sheet_path(@time_sheet.id) %>
+  <%= f.submit "Save and Return to Time Sheet" %> or <%= link_to 'Cancel', edit_private_time_sheet_path(@time_sheet.id) if @time_sheet %>
 <% end %>
