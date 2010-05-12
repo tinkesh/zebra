@@ -15,8 +15,11 @@ authorization do
                        :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
                        :private_time_task_categories, :private_time_note_categories, :private_material_reports], :to => :manage
 
+    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets], :to => [:create, :show]
+
     has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage]
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destory]
+
   end
 
   role :foreman do
