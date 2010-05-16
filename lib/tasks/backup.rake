@@ -41,8 +41,8 @@ namespace :backups do
 
     puts "uploading #{backup_name} to S3..."
       AWS::S3::Base.establish_connection!(
-        :access_key_id     => ENV['S3_KEY'],
-        :secret_access_key => ENV['S3_SECRET']
+        :access_key_id     => "AKIAJTXZQ76ZDT44M5CQ",
+        :secret_access_key => "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"
       )
 
     begin
