@@ -1,3 +1,4 @@
+require 'aws/s3'
 require 'yaml'
 
 # Heroku SQL to S3 Database backup task
