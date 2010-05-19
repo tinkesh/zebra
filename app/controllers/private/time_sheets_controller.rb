@@ -17,11 +17,20 @@ class Private::TimeSheetsController < ApplicationController
   def new
     @time_sheet = TimeSheet.new
 
-    @crew = current_user.crew
-    @jobs = current_user.crew.jobs
-    @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil, :user_id => @crew.user_ids}, :include => :user)
-    load_time_sheet_supporting_data
+    if current_user.crew
+      user_ids = []
+      @users = current_user.crew.users
+      @users.each { |u| user_ids << u.id }
+      @jobs = current_user.crew.jobs
+      @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil, :user_id => user_ids}, :include => :user)
+    else
+      @users = User.find(:all)
+      @jobs = Job.find(:all)
+      @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil}, :include => :user)
+    end
 
+
+    load_time_sheet_supporting_data
     5.times { @time_sheet.time_tasks.build }
 
     @page_title = "Submit Time Sheet"
@@ -45,7 +54,7 @@ class Private::TimeSheetsController < ApplicationController
 
       if params[:estimates]
         params[:estimates].each do |estimate|
-          @estimate = @time_sheet.estimates.build(:job_id => estimate[1][:job_id], :hours => estimate[1][:hours], :crew_size => current_user.crew.users.length)
+          @estimate = @time_sheet.estimates.build(:job_id => estimate[1][:job_id], :hours => estimate[1][:hours], :crew_size => params[:time_entry_ids].length)
           if @estimate.hours
             @estimate.save
           end
