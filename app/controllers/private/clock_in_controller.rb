@@ -4,12 +4,11 @@ class Private::ClockInController < ApplicationController
   filter_access_to :all
 
   def new
-#    @crew = current_user.crew
     @job = Job.new
     @job.started_on = Time.zone.now
     @clock_in = TimeEntry.new
-    build_clocked_in_ids
-    @not_clocked_in = TimeEntry.find(:all, :conditions => {:clock_out => nil, :active => nil, :user_id => @crew.user_ids})
+    build_clocked_in_ids # also sets @crew and clocked_in_ids
+    @not_clocked_in = TimeEntry.find(:all, :conditions => {:clock_out => nil, :active => nil, :user_id => @users})
     @page_title = "Clock In"
   end
 
@@ -50,14 +49,19 @@ class Private::ClockInController < ApplicationController
 private
 
   def build_clocked_in_ids
-    @crew = current_user.crew
-    @clocked_in = TimeEntry.find(:all, :conditions => { :time_sheet_id => nil, :active => true, :user_id => @crew.user_ids})
+    @crew = current_user.try(:crew)
+    user_ids = []
     @clocked_in_ids = []
-    unless @clocked_in.empty?
-      @clocked_in.each do |entry|
-        @clocked_in_ids << entry.user_id
-      end
+
+    if @crew
+      @users = @crew.users
+      @crew.users.each {|user| user_ids << user.id}
+    else
+      @users = User.all
+      @users.each {|user| user_ids << user.id}
     end
+    @clocked_in = TimeEntry.find(:all, :conditions => { :time_sheet_id => nil, :active => true, :user_id => user_ids})
+    @clocked_in.each { |entry| @clocked_in_ids << entry.user_id } if @clocked_in
   end
 
 end

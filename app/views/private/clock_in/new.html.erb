@@ -6,7 +6,6 @@
   </ul>
 <% end %>
 
-<% if @crew %>
 
   <% form_tag :controller => 'private/clock_in', :action => "create", :method => :post do -%>
 
@@ -17,7 +16,7 @@
         <th>Clocked in at</th>
         <th>Clocked out at</th>
       </tr>
-    <% @crew.users.each do |user| %>
+    <% @users.each do |user| %>
       <tr class="<%= cycle('odd', 'even') %>">
       <% unless @clocked_in_ids.include?(user.id) %>
         <td class="span-1"><%= check_box_tag "users[#{user.id}][active]", true, false, :checked => true %></td>
@@ -39,7 +38,7 @@
     <% end %>
     </table>
 
-    <% unless @clocked_in_ids.length == @crew.users.length %>
+    <% unless @clocked_in_ids.length == @users.length %>
       <p>
         <label>Clock in at...</label>
         <br><%= datetime_select 'job', :started_on, { :minute_step => 15, :discard_year => true } %>
@@ -62,6 +61,3 @@
 
   <% end -%>
 
-<% else %>
-  <p>You are not assigned to a crew and cannot clock in.</p>
-<% end %>

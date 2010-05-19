@@ -4,11 +4,12 @@ class Private::ClockOutController < ApplicationController
   filter_access_to :all
 
   def new
-    @crew = current_user.crew
+    build_crew_and_users
+
     @job = Job.new
     @job.started_on = Time.zone.now
-    @clocked_in = TimeEntry.find(:all, :conditions => {:active => true, :time_sheet_id => nil, :clock_out => nil, :user_id => @crew.user_ids})
-    @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil, :user_id => @crew.user_ids})
+    @clocked_in = TimeEntry.find(:all, :conditions => {:active => true, :time_sheet_id => nil, :clock_out => nil, :user_id => @users})
+    @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil, :user_id => @users})
     @page_title = "Clock Out"
   end
 
@@ -39,6 +40,22 @@ class Private::ClockOutController < ApplicationController
       redirect_to :controller => 'private/clock_out', :action => :new
     end
 
+  end
+
+private
+
+  def build_crew_and_users
+
+    @crew = current_user.crew if current_user.crew
+    user_ids = []
+
+    if @crew
+      @users = @crew.users
+      @crew.users.each {|user| user_ids << user.id}
+    else
+      current_user.role_symbols.include?(:office) ? @users = User.all : @users = current_user
+      User.all.each { |user| user_ids << user.id }
+    end
   end
 
 end

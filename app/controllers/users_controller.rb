@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def index
 
-    @users = User.all
+    @users = User.find(:all, :include => :roles)
     @page_title = "Users"
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id], :include => :roles)
     @page_title = "#{@user.first_name} #{@user.last_name} details"
     if params[:version]
       if params[:version].to_i >= @user.last_version
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(params[:id], :include => :roles)
     @page_title = "Edit #{@user.first_name} #{@user.last_name}"
   end
 

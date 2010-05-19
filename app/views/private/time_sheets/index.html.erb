@@ -24,7 +24,7 @@
   <tr>
     <td><%= link_to time_sheet.id, private_time_sheet_path(time_sheet), :class => "show" %></td>
     <td><%= time_sheet.created_at.strftime('%b-%d-%y') %></td>
-    <td><%= if time_sheet.time_entries : time_sheet.time_entries.first.clock_in.strftime('%b-%d-%y') end %></td>
+    <td><%= if time_sheet.time_entries && time_sheet.time_entries.first : time_sheet.time_entries.first.clock_in.strftime('%b-%d-%y') end %></td>
     <td>
       <% time_sheet.jobs.each do |job| %>
         <%= link_to job_label(job), private_job_path(job) %><br>
