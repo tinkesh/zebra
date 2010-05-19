@@ -35,6 +35,7 @@ a:hover { color: #3344FF; text-decoration: underline; }
 .right { text-align: right; }
 .center { text-align: center; }
 .hidden { display: none; }
+.noborder { border: none; }
 
 /* header */
 #header .container { position: relative; }
@@ -51,7 +52,7 @@ a:hover { color: #3344FF; text-decoration: underline; }
 #submenu .container { position: relative; }
 #submenu { background: #666; border-top: solid 5px #666; }
 #submenu ol { list-style-type: none; margin: 0; padding: 0; }
-#submenu a { color: #fff; font-weight: normal; font-size: 13px; text-decoration: none; padding: 1px 8px 1px 8px; display: inline-block; margin: 0  10px 0 0; }
+#submenu a { color: #fff; font-weight: normal; font-size: 13px; text-decoration: none; padding: 2px 8px; display: inline-block; margin: 0  10px 0 0; }
 #submenu a.active { background: #efefef; color: #000; }
 
 /* breadcrumb */

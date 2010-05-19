@@ -15,21 +15,20 @@
 <table>
   <tr>
     <td>&nbsp;</td>
-    <th class="center" colspan="3">Reported</th>
-    <td>&nbsp;</td>
     <th class="center" colspan="3">Actual</th>
-    <td colspan="6">&nbsp;</td>
+    <td>&nbsp;</td>
+    <th class="center" colspan="3">Reported</th>
+    <td colspan="3" class="noborder" >&nbsp;</td>
   </tr>
   <tr>
     <th>Job</th>
     <th class="right span-3">Date</th>
-    <th class="right span-2">Clock In</th>
-    <th class="right span-2">Clock Out</th>
+    <th class="right span-2">C/In</th>
+    <th class="right span-2">C/Out</th>
     <th class="right span-1">&nbsp;</th>
     <th class="right span-3">Date</th>
-    <th class="right span-2">Clock In</th>
-    <th class="right span-2">Clock Out</th>
-    <th class="right span-1">&nbsp;</th>
+    <th class="right span-2">C/In</th>
+    <th class="right span-2">C/Out</th>
     <th class="right">S/T</th>
     <th class="right">OT</th>
     <% if permitted_to? :manage, :private_time_entries -%>
@@ -49,25 +48,24 @@
         <% end %>
       <% end %>
     </td>
-    <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
-    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-    <td>&nbsp;</td>
     <td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
     <td>&nbsp;</td>
+    <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
+    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
+    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
     <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
     <% if permitted_to? :manage, :private_time_entries -%>
-    <td class="right"><%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit plain" %></td>
+    <td class="noprint right"><%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit plain" %></td>
     <% end %>
   </tr>
 <% end%>
   <tr>
-    <th colspan="10" class="right"><%= st %></th>
+    <th colspan="9" class="right"><%= st %></th>
     <th class="right"><%= ot %></th>
     <% if permitted_to? :manage, :private_time_entries -%>
-    <th>&nbsp;</th>
+    <th class="noprint ">&nbsp;</th>
     <% end %>
 </table>

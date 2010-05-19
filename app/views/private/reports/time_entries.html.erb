@@ -14,15 +14,16 @@
 <table>
   <tr>
     <th class="span-3">User</th>
-    <th class="span-6">Job</th>
-    <th class="right span-3">R date</th>
-    <th class="right span-2">R c/in</th>
-    <th class="right span-2">R c/out</th>
-    <th class="right span-3">A date</th>
-    <th class="right span-2">A c/in</th>
-    <th class="right span-2">A c/out</th>
+    <th class="span-5">Job</th>
+    <th class="right span-3">R Date</th>
+    <th class="right span-2">R C/In</th>
+    <th class="right span-2">R C/Out</th>
+    <th class="span-1">&nbsp;</th>
+    <th class="right span-3">A Date</th>
+    <th class="right span-2">A C/In</th>
+    <th class="right span-2">A C/Out</th>
     <th class="right span-1 last">T/S</th>
-    <th>&nbsp;</th>
+    <th class="noprint">&nbsp;</th>
   </tr>
 <% @entries.each do |entry| %>
   <tr class="<%= cycle('odd', 'even') %>">
@@ -37,11 +38,12 @@
     <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') %></td>
+    <td>&nbsp;</td>
+    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%a, %b-%d-%y') else "-" end %></td>
     <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.time_sheet_id == nil : "-" else link_to("##{entry.time_sheet.id}", private_time_sheet_path(entry.time_sheet)) end %></td>
-    <td class="right"><%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit plain" %></td>
+    <td class="right noprint"><%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit plain" %></td>
   </tr>
 <% end%>
 </table>
