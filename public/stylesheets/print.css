@@ -8,3 +8,17 @@ hr { display: none;}
 .noprint { display: none; }
 td, th { text-align: left; }
 .right { text-align: right; }
+.center { text-align: center; }
+a:link, a:visited {background:transparent;font-weight:normal;text-decoration:none; color: #000; }
+table { border-collapse:collapse; }
+table th { border-bottom: solid 1px #ccc; padding: 0; margin: 0; }
+table td { border-bottom: solid 1px #ccc; padding: 3px; margin: 0; }
+table tr { margin: 0; padding: 0; }
+.rowodd { }
+.roweven { }
+.actions { display: none; }
+#header { display: none; }
+#submenu { display: none; }
+a:link:after, a:visited:after {content:"";font-size:100%;}
+.print-break { page-break-before: always; }
+.print-break td { border-top: solid 1px #ccc; }

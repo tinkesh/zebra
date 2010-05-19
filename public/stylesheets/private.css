@@ -34,6 +34,7 @@ a:hover { color: #3344FF; text-decoration: underline; }
 .no_list { list-style-type: none; margin: 0 0 1.5em 0; }
 .right { text-align: right; }
 .center { text-align: center; }
+.hidden { display: none; }
 
 /* header */
 #header .container { position: relative; }

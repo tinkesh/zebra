@@ -20,7 +20,26 @@
     <th class="actions nosort"></th>
   </tr>
 
+<% i = 0 %>
 <% @time_sheets.each do |time_sheet| %>
+<% if i == 25 %>
+  <tr class="hidden print-break">
+    <th class="center span-2 number">#</th>
+    <th class="center span-2">Submited</th>
+    <th class="center">Date</th>
+    <th class="nosort">Jobs</th>
+    <th class="center">S/T</th>
+    <th class="center">O/T</th>
+    <th class="center">T/T</th>
+    <th class="center">Lunch</th>
+    <th class="center">Per Diem</th>
+    <th class="actions nosort"></th>
+  </tr>
+  <% i = 0 %>
+<% else %>
+  <% i += 1 %>
+<% end %>
+
   <tr>
     <td><%= link_to time_sheet.id, private_time_sheet_path(time_sheet), :class => "show" %></td>
     <td><%= time_sheet.created_at.strftime('%b-%d-%y') %></td>
