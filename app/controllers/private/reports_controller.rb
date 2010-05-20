@@ -50,7 +50,7 @@ class Private::ReportsController < ApplicationController
     generate_front_to_back
 
     csv_string = FasterCSV.generate do |csv|
-      csv << ["Name", "Rate", "Straight Time", "Over Time", "Per Diem",
+      csv << ["Name", "Rate", "Straight Time", "Over Time", "Per Diem", "Bank or Pay",
               "Less Advance", "Less 50% Benefits", "Direct Deposit", "SIN", "Start Date", "Notes"]
       @users = User.all
       @users.each do |u|
@@ -62,7 +62,8 @@ class Private::ReportsController < ApplicationController
           straight_time = sprintf("%.2f", @entries.sum(&:straight_time))
           over_time     = sprintf("%.2f", @entries.sum(&:over_time))
           per_diem      = sprintf("%.2f", @entries.sum(&:per_diem))
-          csv << [u.name, u.rate, straight_time, over_time, per_diem]
+          u.bank_overtime_hours ? bank = "Bank" : bank = "Pay Out"
+          csv << [u.name, u.rate, straight_time, over_time, per_diem, bank]
         else
           csv << [u.name, u.rate]
         end
