@@ -30,7 +30,7 @@
     <td><%= link_to entry.user.name, report_user_time_path(:id => entry.user_id) %></td>
     <td>
       <% if entry.time_sheet %>
-        <% entry.time_sheet.jobs.each do |job| %>
+        <% entry.time_sheet.estimates.each do |job| %>
           <%= link_to "Job ##{job.id}", private_job_path(job) %><br>
         <% end %>
       <% end %>

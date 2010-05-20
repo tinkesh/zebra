@@ -4,11 +4,13 @@ authorization do
     includes :office
     includes :foreman
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
+    has_permission_on :private_reports, :to => [:accountant_csv, :user_time_csv]
   end
 
   role :office do
     includes :crewman
     has_permission_on :private_reports, :to => :time_entries
+    has_permission_on :private_reports, :to => [:accountant_csv, :user_time_csv]
     has_permission_on :private, :to => :settings
     has_permission_on :private_directory, :to => :index
     has_permission_on [:private_crews, :private_clients, :private_completions, :private_costs, :private_equipments,
