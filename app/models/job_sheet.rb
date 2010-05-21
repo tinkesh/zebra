@@ -4,6 +4,8 @@ class JobSheet < ActiveRecord::Base
   has_and_belongs_to_many :time_sheets
   has_and_belongs_to_many :gun_sheets
 
+  validates_presence_of :material_rate, :message => "can't be blank"
+
   def label
     "Job Sheet ##{self.id}"
   end
@@ -18,11 +20,11 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_expenses
-    self.total_misc_cost + self.total_equipment_cost + self.total_material_cost
+    0 + self.total_misc_cost + self.total_equipment_cost + self.total_material_cost
   end
 
   def total_equipment_cost
-    self.job.equipments.sum(:rate) * self.time_sheets.length
+    0 + self.job.equipments.sum(:rate) * self.time_sheets.length
   end
 
   def total_per_diem

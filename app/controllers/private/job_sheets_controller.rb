@@ -42,6 +42,7 @@ class Private::JobSheetsController < ApplicationController
 
   def update
     @job_sheet = JobSheet.find(params[:id])
+    @job = Job.find(@job_sheet.job_id)
     if @job_sheet.update_attributes(params[:job_sheet])
       flash[:notice] = "Job Sheet updated!"
       redirect_to private_job_sheet_url(@job_sheet)

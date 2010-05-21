@@ -59,7 +59,7 @@
     <th class="right"><%= if @job_sheet.total_straight_time == 0 : "-" else sprintf("%.2f", @job_sheet.total_straight_time) end %></th>
     <th class="right"><%= if @job_sheet.total_over_time == 0 : "-" else sprintf("%.2f", @job_sheet.total_over_time) end %></th>
     <th class="right">&nbsp;</th>
-    <th class="right">$<%= sprintf("%.2f", @estimated_time_cost) %></th>
+    <th class="right">$<%= sprintf("%.2f", @estimated_time_cost) if @estimated_time_cost != 0 %></th>
   </tr>
 </table>
 <% end %>
@@ -101,12 +101,12 @@
       <td><%= equipment.unit %></td>
       <td><%= equipment.name %></td>
       <td class="right">$<%= if equipment.rate : sprintf("%.2f", equipment.rate) else "-" end %></td>
-      <td class="right">$<%= sprintf("%.2f", equipment.cost(@job_sheet)) %></td>
+      <td class="right">$<%= sprintf("%.2f", equipment.cost(@job_sheet)) if equipment.cost(@job_sheet) != 0 %></td>
     </tr>
   <% end %>
     <tr>
       <th colspan="3">&nbsp;</th>
-      <th class="right">$<%= sprintf("%.2f", @job_sheet.total_equipment_cost) %></th>
+      <th class="right">$<%= sprintf("%.2f", @job_sheet.total_equipment_cost) if @job_sheet.total_equipment_cost != 0 %></th>
     </tr>
   </table>
 </div>
@@ -116,7 +116,7 @@
 <div class="span-20 append-4" style="position: relative">
   <h2>Materials</h2>
   <p id="material-rate">
-    Material Rate: $<%= sprintf("%.2f", @job_sheet.material_rate) %>/L
+    Material Rate: $<%= sprintf("%.2f", @job_sheet.material_rate) if @job_sheet.material_rate %>/L
     <br>
     Bead Rate: $0.48/K
   </p>
@@ -164,7 +164,7 @@
       <% end %>
     </tr>
     <tr>
-      <th colspan="4" class="right">$<%= sprintf("%.2f", @job_sheet.total_material_cost) %></th>
+      <th colspan="4" class="right">$<%= sprintf("%.2f", @job_sheet.total_material_cost) if @job_sheet.total_material_cost != 0 %></th>
     </tr>
   </table>
 </div>
