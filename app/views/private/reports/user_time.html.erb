@@ -43,8 +43,8 @@
   <tr class="<%= cycle('odd', 'even') %>">
     <td>
       <% if entry.time_sheet %>
-        <% entry.time_sheet.estimates.each do |job| %>
-          <%= link_to "Job ##{job.id}", private_job_path(job) %><br>
+        <% entry.time_sheet.estimates.each do |e| %>
+          <%= link_to "Job ##{e.job_id}", private_job_path(e.job_id) %><br>
         <% end %>
       <% end %>
     </td>
