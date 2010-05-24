@@ -46,14 +46,14 @@ private
 
   def build_crew_and_users
 
-    @crew = current_user.crew if current_user.crew
+    @crew = current_user.try(:crew)
     user_ids = []
 
     if @crew
       @users = @crew.users
       @crew.users.each {|user| user_ids << user.id}
     else
-      current_user.role_symbols.include?(:office) ? @users = User.all : @users = current_user
+      @users = User.all
       User.all.each { |user| user_ids << user.id }
     end
   end
