@@ -21,9 +21,9 @@
       <% if entry.active -%>
         <% if entry.clock_out -%>
           <td><%= check_box_tag "user", "active", false, :disabled => true %></td>
-          <td><%= entry.user.name %></td>
-          <td><%= entry.clock_in.strftime('%b-%d-%y at %I:%M %p') %></td>
-          <td><%= entry.clock_out.strftime('%b-%d-%y at %I:%M %p') %></td>
+          <td class="quiet"><%= entry.user.name %></td>
+          <td class="quiet"><%= entry.clock_in.strftime('%b-%d-%y at %I:%M %p') %></td>
+          <td class="quiet"><%= entry.clock_out.strftime('%b-%d-%y at %I:%M %p') %></td>
         <% else -%>
           <td><%= check_box_tag "users[]", entry.user.id, :checked => true %></td>
           <td><%= entry.user.name %></td>
