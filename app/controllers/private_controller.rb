@@ -15,7 +15,7 @@ class PrivateController < ApplicationController
   end
 
   def navigate
-    if params[:navigate] && params[:job][:id]
+    if params[:navigate] && params[:job] && params[:job][:id]
       @job = Job.find(params[:job][:id])
       session[:navigate] = @job.id
       case params[:navigate]

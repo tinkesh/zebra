@@ -11,6 +11,6 @@
   <% if permitted_to? :index, :private_directory -%>
     <%= link_to 'Directory', directory_path %> |
   <% end %>
-  <%= link_to "Logout", user_session_path, :method => :delete %>
+  <%= link_to "Logout", logout_path, :method => :delete %>
 <% end %>
 </div>

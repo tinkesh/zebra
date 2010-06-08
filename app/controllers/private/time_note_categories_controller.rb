@@ -18,7 +18,7 @@ class Private::TimeNoteCategoriesController < ApplicationController
     @page_title = "New Time Sheet Note Category"
     if @time_note_category.save
       flash[:notice] = "Time Sheet Note Category created!"
-      redirect_back_or_default private_time_note_categories_url
+      redirect_to private_time_note_categories_url
     else
       render :action => :new
     end

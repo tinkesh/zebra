@@ -8,21 +8,15 @@
 <h3 class="center"><%= @back.to_date.strftime('%b-%d-%y') %> to <%= (@front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
 <table>
   <tr>
-    <td>&nbsp;</td>
-    <th class="center" colspan="3">Reported</th>
-    <th class="center" colspan="3">Actual</th>
-    <td colspan="3">&nbsp;</td>
-  </tr>
-  <tr>
     <th>Job</th>
     <th class="right span-3">Date</th>
-    <th class="right span-2">C/In</th>
-    <th class="right span-2">C/Out</th>
-    <th class="right span-3">Date</th>
-    <th class="right span-2">C/In</th>
-    <th class="right span-2">C/Out</th>
-    <th class="right">S/T</th>
+    <th class="right span-2">In</th>
+    <th class="right span-2">Out</th>
+    <th class="right">ST</th>
     <th class="right">OT</th>
+  </tr>
+  <tr>
+    <td colspan="6"><hr></td>
   </tr>
 <% @entries.each do |entry| %>
   <tr class="<%= cycle('odd', 'even') %>">
@@ -33,12 +27,9 @@
         <% end %>
       <% end %>
     </td>
-    <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
-    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') %></td>
-    <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
+    <td class="right"><%= entry.created_at.strftime('%b-%d-%y') %></td>
+    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%H:%M') else '-' end %></td>
+    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%H:%M') else '-' end %></td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
     <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
   </tr>
