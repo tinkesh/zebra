@@ -11,7 +11,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def date_range
-    self.gun_sheets.first.started_on.to_date.strftime('%b-%d-%y')
+    self.gun_sheets.first.started_on.to_date.strftime('%b-%d-%y') if self.gun_sheets.first && self.gun_sheets.first.started_on
   end
 
 

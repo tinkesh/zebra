@@ -106,7 +106,7 @@
   <h3>Marking Quantities</h3>
   <ol>
   <% @job.job_markings.each do |m| %>
-    <li><%= m.amount %> <%= m.gun_marking_category.name %></li>
+    <li><%= m.amount %> <%= m.gun_marking_category.name if m.gun_marking_category %></li>
   <% end %>
   </ol>
 

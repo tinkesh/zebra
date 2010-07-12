@@ -1,13 +1,8 @@
 2010-07-06 Dana - I will move all of these into Trac with more detail
 
 TODO
-- Add 'Location' to Jobs on Hand
 - Update Foreman role to create timesheet, but disable profits display
 - New Supervisor role (assign crews to a job, Look at all crews timesheets, load sheets, gun sheets, job reports)
-- Add dropdown for @user.employment_state (Employed, Laid Off, Fired, Quit) when creating or editing a user
-- Prevent users without @user.employment_state == Employed from being assigned to a crew
-- Prevent users without @user.employment_state == Employed from appearing in the Directory
-- Prevent users without @user.employment_state == from logging in
 - Display per diem days in pay period report, with total on bottom
 - Allow @job_sheet#new to be performed in mobile
 

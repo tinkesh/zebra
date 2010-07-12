@@ -4,6 +4,9 @@ class MaterialReport < ActiveRecord::Base
   has_and_belongs_to_many :load_sheets
   has_and_belongs_to_many :gun_sheets
 
+  validates_presence_of :yellow_rate, :on => :save, :message => "can't be blank"
+  validates_presence_of :white_rate, :on => :save, :message => "can't be blank"
+
   def label
     "Material Report ##{self.id}"
   end

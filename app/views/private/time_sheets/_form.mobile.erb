@@ -84,7 +84,7 @@
         <%= check_box_tag "user", "active", false, :disabled => true -%>
       <%- end -%>
     </td>
-    <td><%= entry.user.name %></td>
+    <td><%= entry.user.name if entry.user %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
