@@ -27,7 +27,7 @@ authorization do
   role :foreman do
     includes :crewman
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets,
-                       :private_gun_sheets, :private_load_sheets], :to => [:create, :show]
+                       :private_gun_sheets, :private_load_sheets], :to => [:create, :show, :index]
     has_permission_on [:private_jobs], :to => [:show, :navigate]
     has_permission_on :private_job_sheets, :to => [:create, :update, :show] do
       if_attribute :created_by => is { user.id }
