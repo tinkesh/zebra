@@ -1,6 +1,10 @@
 --- !ruby/object:Gem::Specification 
 name: declarative_authorization
 version: !ruby/object:Gem::Version 
+  hash: 3
+  segments: 
+  - 0
+  - 4
   version: "0.4"
 platform: ruby
 authors: 
@@ -14,14 +18,20 @@ default_executable:
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: rails
-  type: :runtime
-  version_requirement: 
-  version_requirements: !ruby/object:Gem::Requirement 
+  requirement: &id001 !ruby/object:Gem::Requirement 
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
+        hash: 11
+        segments: 
+        - 2
+        - 1
+        - 0
         version: 2.1.0
     version: 
+  type: :runtime
+  version_requirement: 
+  version_requirements: *id001
 description: 
 email: sbartsch@tzi.org
 executables: []
@@ -86,18 +96,26 @@ required_ruby_version: !ruby/object:Gem::Requirement
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 59
+      segments: 
+      - 1
+      - 8
+      - 6
       version: 1.8.6
   version: 
 required_rubygems_version: !ruby/object:Gem::Requirement 
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
       version: "0"
   version: 
 requirements: []
 
 rubyforge_project: 
-rubygems_version: 1.3.5
+rubygems_version: 1.3.7
 signing_key: 
 specification_version: 3
 summary: declarative_authorization is a Rails plugin for authorization based on readable authorization rules.
