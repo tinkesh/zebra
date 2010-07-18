@@ -24,7 +24,7 @@ class Private::TimeSheetsController < ApplicationController
       @jobs = current_user.crew.jobs
       @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil, :user_id => user_ids}, :include => :user)
     else
-      @users = User.find(:all)
+      @users = User.find(:all, :conditions => {:employment_state => "Employed"})
       @jobs = Job.find(:all)
       @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil}, :include => :user)
     end

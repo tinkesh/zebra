@@ -17,6 +17,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :perishable_token, :default => "", :null => false
       t.string :email, :default => "", :null => false
       t.string :time_zone
+      t.string :employment_state, :default => "Employed"
+      t.string :employment_start_date
+      t.string :employment_end_date
+      t.string :employment_notes
     end
     
     add_index :users, :login

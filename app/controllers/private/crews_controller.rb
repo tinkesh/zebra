@@ -10,7 +10,7 @@ class Private::CrewsController < ApplicationController
 
   def new
     @crew = Crew.new
-    @users = User.find(:all, :order => "first_name ASC")
+    @users = User.find(:all, :order => "first_name ASC", :conditions => {:employment_state => "Employed"})
     @page_title = "New Crew"
   end
 
@@ -27,7 +27,7 @@ class Private::CrewsController < ApplicationController
 
   def edit
     @crew = Crew.find(params[:id])
-    @users = User.find(:all, :order => "first_name ASC")
+    @users = User.find(:all, :order => "first_name ASC", :conditions => {:employment_state => "Employed"})
     @page_title = "Edit #{@crew.name}"
   end
 

@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.new(params[:user])
     @user = User.find(params[:id])
     if params[:user][:role_ids] then
       @user.versioned_at = Time.now

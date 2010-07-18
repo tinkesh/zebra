@@ -23,6 +23,7 @@
     <th class="span-2 center">Start</th>
     <th class="span-2 center">End</th>
     <th>Client</th>
+	<th>Location</th>
     <th class="actions nosort"></th>
   </tr>
 <% i = 0 %>
@@ -36,6 +37,7 @@
       <th class="center">Start</th>
       <th class="center">End</th>
       <th>Client</th>
+
       <th class="actions"></th>
     </tr>
     <% i = 0 %>
@@ -54,6 +56,7 @@
     <%= "<br />W: #{job.client.work_phone}" if job.client.work_phone != "" %>
     <%= "<br />C: #{job.client.cell_phone}" if job.client.cell_phone != "" %>
     </td>
+	<td><%= if job.location_name : job.location_name else '' end %></td>
     <td class="actions">
     <%= link_to 'Delete', private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_job_path(job), :class => "edit" %>

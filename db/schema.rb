@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100425174525) do
+ActiveRecord::Schema.define(:version => 20100718182118) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -76,9 +76,9 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
   end
 
   create_table "crews", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "crews_jobs", :id => false, :force => true do |t|
@@ -102,12 +102,12 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
   end
 
   create_table "estimates", :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "time_sheet_id"
-    t.decimal  "hours"
-    t.integer  "crew_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "job_id"
+    t.integer   "time_sheet_id"
+    t.decimal   "hours"
+    t.integer   "crew_size"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "gun_marking_categories", :force => true do |t|
@@ -230,11 +230,11 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
   end
 
   create_table "jobs_time_entries", :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "time_entry_id"
-    t.decimal  "hours"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "job_id"
+    t.integer   "time_entry_id"
+    t.decimal   "hours"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "jobs_time_sheets", :force => true do |t|
@@ -292,11 +292,11 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
   end
 
   create_table "material_reports", :force => true do |t|
-    t.integer  "job_id"
-    t.decimal  "yellow_rate"
-    t.decimal  "white_rate"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "job_id"
+    t.decimal   "yellow_rate"
+    t.decimal   "white_rate"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "materials", :force => true do |t|
@@ -330,21 +330,21 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "time_entries", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "time_sheet_id"
-    t.date     "date"
-    t.datetime "clock_in"
-    t.datetime "clock_out"
-    t.string   "note"
-    t.decimal  "rate"
-    t.datetime "clocked_in_at"
-    t.datetime "clocked_out_at"
-    t.integer  "clocked_in_by"
-    t.integer  "clocked_out_by"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "bank_overtime_hours"
+    t.integer   "user_id"
+    t.integer   "time_sheet_id"
+    t.date      "date"
+    t.timestamp "clock_in"
+    t.timestamp "clock_out"
+    t.string    "note"
+    t.decimal   "rate"
+    t.timestamp "clocked_in_at"
+    t.timestamp "clocked_out_at"
+    t.integer   "clocked_in_by"
+    t.integer   "clocked_out_by"
+    t.boolean   "active"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "bank_overtime_hours"
   end
 
   add_index "time_entries", ["clock_in"], :name => "index_time_entries_on_clock_in"
@@ -356,23 +356,23 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
   end
 
   create_table "time_sheets", :force => true do |t|
-    t.integer  "location_id"
-    t.integer  "time_note_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by"
-    t.string   "note"
-    t.datetime "started_at"
-    t.datetime "completed_at"
-    t.integer  "updated_by"
-    t.integer  "lunch"
-    t.boolean  "per_diem"
-    t.integer  "per_diem_rate"
-    t.decimal  "fuel"
-    t.decimal  "hotel"
-    t.decimal  "fuel_rate"
-    t.datetime "versioned_at"
-    t.string   "versioned_time_entry_ids"
+    t.integer   "location_id"
+    t.integer   "time_note_category_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "created_by"
+    t.string    "note"
+    t.timestamp "started_at"
+    t.timestamp "completed_at"
+    t.integer   "updated_by"
+    t.integer   "lunch"
+    t.boolean   "per_diem"
+    t.integer   "per_diem_rate"
+    t.decimal   "fuel"
+    t.decimal   "hotel"
+    t.decimal   "fuel_rate"
+    t.timestamp "versioned_at"
+    t.string    "versioned_time_entry_ids"
   end
 
   create_table "time_task_categories", :force => true do |t|
@@ -395,11 +395,11 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
   create_table "users", :force => true do |t|
     t.timestamp "created_at"
     t.timestamp "updated_at"
-    t.string    "login",                               :null => false
-    t.string    "crypted_password",                    :null => false
-    t.string    "password_salt",                       :null => false
-    t.string    "persistence_token",                   :null => false
-    t.integer   "login_count",         :default => 0,  :null => false
+    t.string    "login",                                         :null => false
+    t.string    "crypted_password",                              :null => false
+    t.string    "password_salt",                                 :null => false
+    t.string    "persistence_token",                             :null => false
+    t.integer   "login_count",           :default => 0,          :null => false
     t.timestamp "last_request_at"
     t.timestamp "last_login_at"
     t.timestamp "current_login_at"
@@ -407,8 +407,8 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
     t.string    "current_login_ip"
     t.string    "first_name"
     t.string    "last_name"
-    t.string    "perishable_token",    :default => "", :null => false
-    t.string    "email",               :default => "", :null => false
+    t.string    "perishable_token",      :default => "",         :null => false
+    t.string    "email",                 :default => "",         :null => false
     t.string    "time_zone"
     t.string    "home_phone"
     t.string    "cell_phone"
@@ -421,6 +421,10 @@ ActiveRecord::Schema.define(:version => 20100425174525) do
     t.string    "versioned_role_ids"
     t.timestamp "versioned_at"
     t.integer   "crew_id"
+    t.string    "employment_state",      :default => "Employed"
+    t.string    "employment_start_date"
+    t.string    "employment_end_date"
+    t.string    "employment_notes"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
