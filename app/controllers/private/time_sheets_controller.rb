@@ -16,6 +16,7 @@ class Private::TimeSheetsController < ApplicationController
 
   def new
     @time_sheet = TimeSheet.new
+    @time_sheet.created_by = current_user.name
 
     if current_user.crew
       user_ids = []
@@ -40,6 +41,7 @@ class Private::TimeSheetsController < ApplicationController
     load_time_sheet_supporting_data
     @page_title = "Submit Clock In/Clock Out Times"
     @time_sheet = TimeSheet.new(params[:time_sheet])
+    @time_sheet.created_by = current_user.id
     if params[:time_sheet][:fuel].blank? : @time_sheet.fuel = 0 end
     if params[:time_sheet][:hotel].blank? : @time_sheet.hotel = 0 end
     if @time_sheet.save
