@@ -25,6 +25,7 @@ ActionController::Routing::Routes.draw do |map|
     priv.resources :time_sheets,            :controller => "time_sheets",            :path_prefix => "admin"
     priv.resources :time_note_categories,   :controller => "time_note_categories",   :path_prefix => "admin"
     priv.resources :time_task_categories,   :controller => "time_task_categories",   :path_prefix => "admin"
+    priv.thing "archived_jobs",             :action => 'archived_jobs',             :controller => "jobs",   :path_prefix => "admin"
 
     # clocking in and out
     priv.connect "clock_in/:action/:id",  :controller => "clock_in",  :path_prefix => "admin"

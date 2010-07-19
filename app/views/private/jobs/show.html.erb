@@ -69,6 +69,7 @@
 <div class="span-10 append-1">
   <h3>Crews</h3>
   <ol>
+<% if @job.is_archived == false %>
   <% @job.crews.each do |crew| %>
     <li>
       <b><%= crew.name %></b>
@@ -76,7 +77,12 @@
       <%= crew.user_list %>
     </li>
   <% end %>
-  </ol>
+
+<% else %>
+<p><b>Job is Archived</b> <br>
+	No Crews Assigned</p>
+<% end %>
+</ol>
 
   <hr>
 
