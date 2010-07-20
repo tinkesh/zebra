@@ -23,6 +23,9 @@
        <% if permitted_to? :show, :private_jobs -%>
          <label><%= radio_button_tag "navigate", "show_job" %> Show Job</label><br />
        <% end %>
+       <% if permitted_to? :create, :private_time_sheets -%>
+         <label class="normal"><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Time Sheet</label>
+       <% end %>
     </p>
 
     <p><%= submit_tag "Submit" %></p>
