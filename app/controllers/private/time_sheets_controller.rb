@@ -2,7 +2,7 @@ class Private::TimeSheetsController < ApplicationController
 
   layout "private"
   filter_access_to :all
-
+  
   def index
     @time_sheets = TimeSheet.find(:all, :include => [:jobs, :time_entries], :order => "created_at DESC")
     @page_title = "Time Sheets"
@@ -51,6 +51,13 @@ class Private::TimeSheetsController < ApplicationController
           @entry = TimeEntry.find(entry)
           @entry.time_sheet_id = @time_sheet.id
           @entry.save
+          
+          generate_front_to_back
+          @entries = TimeEntry.find(:all,
+            :conditions => { :clock_in => @back.to_date...@front.to_date, :user_id => @entry.user_id },
+            :include => { :time_sheet => :estimates},
+            :order => "clock_in ASC")
+          @time_sheet.check_hours_of_user_time(@entries)
         end
       end
 
@@ -127,5 +134,17 @@ private
       end
     end
   end
+  
+    def generate_front_to_back
+      @date = Time.now
+      if @date.day <= 23
+        @back  = @date.year.to_s + "-" + (@date.month - 1).to_s + "-" + "24"
+        @front = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
+      else
+        @back = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
+        @front  = @date.year.to_s + "-" + (@date.month + 1).to_s + "-" + "24"
+      end
+    end
+  
 
 end

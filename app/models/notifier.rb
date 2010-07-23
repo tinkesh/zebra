@@ -48,5 +48,21 @@ class Notifier < ActionMailer::Base
     sent_on       Time.now
     body          :career => career
   end
+  
+  def time_sheet_over_hours(time_sheet,hours,user)
+    subject       "[AAAS] #{hours} Hours Worked In One Shift"
+    from          "notify@aaastriping.ca"
+    recipients    "info@aaastriping.ca"
+    sent_on       Time.now
+    body          :time_sheet => time_sheet, :hours => hours, :user => user
+ end
+  
+  def time_sheet_many_hours(time_sheet,hours,user)
+    subject       "[AAAS] #{hours} Total Worked In One Pay Period"
+    from          "notify@aaastriping.ca"
+    recipients    "info@aaastriping.ca"
+    sent_on       Time.now
+    body          :time_sheet => time_sheet, :hours => hours, :user => user
+  end
 
 end
