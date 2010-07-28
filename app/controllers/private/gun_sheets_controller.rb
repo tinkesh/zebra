@@ -25,7 +25,6 @@ class Private::GunSheetsController < ApplicationController
     @job = Job.find(params[:job_id])
     @gun_sheet = GunSheet.new
     load_gun_sheet_supporting_data
-
     @job.job_markings.each do |marking|
       @gun_sheet.gun_markings.build(:gun_marking_category_id => marking.gun_marking_category_id)
     end
@@ -33,10 +32,11 @@ class Private::GunSheetsController < ApplicationController
     2.times do @gun_sheet.gun_markings.build end
 
     @page_title = "New Gun Sheet for " + @job.label
-  end
+      end
 
   def create
     @job = Job.find(params[:job_id])
+
     @gun_sheet = @job.gun_sheets.build(params[:gun_sheet])
     load_gun_sheet_supporting_data
 
@@ -50,7 +50,7 @@ class Private::GunSheetsController < ApplicationController
 
   def edit
     @gun_sheet = GunSheet.find(params[:id])
-    @job = Job.find(@gun_sheet.job_id)
+     @job = Job.find(@gun_sheet.job_id)
     load_gun_sheet_supporting_data
 
     4.times do @gun_sheet.gun_markings.build end
@@ -88,9 +88,10 @@ private
 
   def load_gun_sheet_supporting_data
     @job_locations = @job.job_locations
+    @equipments = @job.equipments
     @clients = Client.find(:all, :order => :name)
     @equipment = Equipment.find(:all, :order => :unit)
-    @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
+     @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
   end
 
 end

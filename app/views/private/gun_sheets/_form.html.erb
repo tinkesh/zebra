@@ -7,7 +7,12 @@
 
 <div class="span-12 append-bottom">
   <%= form.label :job_location_id, "Location" %><br>
-  <%= form.select (:job_location_id, @job_locations.map {|u| [u.name,u.id]}, :include_blank => false) %>
+  <%= form.select(:job_location_id, @job_locations.map{|u| [u.name,u.id]}, :include_blank => false) %>
+</div>
+
+<div class ="span-12 append-bottom">
+     <% form.label :equipment, "Equipment" %><br>
+     <%= form.collection_select(:equipment_id, @equipments, :id, :name) %>
 </div>
 
 <div class="span-12 last append-bottom">

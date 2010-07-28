@@ -54,6 +54,11 @@
     <td>Updated On</td>
     <td class="right"><%= @gun_sheet.updated_at.strftime("%B %d, %Y") %></td>
   </tr>
+    <tr class="odd">
+    <td>Equipment</td>
+    <td class="right"><%= @gun_sheet.equipment.try(:name) {|p| p.name }  %></td>
+  </tr>
+
 </table>
 
 <hr>
