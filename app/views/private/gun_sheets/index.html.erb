@@ -13,6 +13,8 @@
     <th class="span-2 center number">#</th>
     <th class="span-2 center">Started</th>
     <th class="number">Job</th>
+     <th class="number">Location</th>
+     <th class="number">Created By</th>
     <th class="number">Equipment</th>
     <th class="actions nosort"></th>
   </tr>
@@ -22,7 +24,16 @@
     <td><%= link_to gun_sheet.id, private_gun_sheet_path(gun_sheet), :class => "show" %></td>
     <td><%= gun_sheet.started_on.strftime('%b-%d-%y') %></td>
     <td><%= if gun_sheet.job : link_to job_label(gun_sheet.job), private_job_path(gun_sheet.job) end %></td>
-    <td><%= gun_sheet.equipment.try(:name) {|p| p.name } %></td>
+    <td><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> / <%= gun_sheet.location_name %></td>
+    <td>
+        <% u_id = gun_sheet.created_by %>
+		<% if u_id == 0 || u_id == nil %>
+		<% else %>
+		<% user = User.find(u_id) %>
+		<%= user.first_name + " " + user.last_name %>
+		<% end %>
+    </td>
+    <td><%= gun_sheet.equipment.try(:name) { |u| u.name} %></td>
     <td class="actions">
     <%= link_to 'Delete', private_gun_sheet_path(gun_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_gun_sheet_path(gun_sheet), :class => "edit" %>

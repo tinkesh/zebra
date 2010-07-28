@@ -6,6 +6,7 @@ class Private::GunSheetsController < ApplicationController
   def index
     @gun_sheets = GunSheet.find(:all)
     @page_title = "Gun Sheets"
+
   end
 
   def show
@@ -19,11 +20,17 @@ class Private::GunSheetsController < ApplicationController
         @gun_sheet.revert_to(params[:version].to_i)
       end
     end
+
+    if @gun_sheet.created_by
+    name = User.find(:all, :conditions => {:id => @gun_sheet.created_by})
+    @name = name[0].first_name + " " + name[0].last_name
+    end
   end
 
   def new
     @job = Job.find(params[:job_id])
     @gun_sheet = GunSheet.new
+  @gun_sheet.created_by= current_user.id
     load_gun_sheet_supporting_data
     @job.job_markings.each do |marking|
       @gun_sheet.gun_markings.build(:gun_marking_category_id => marking.gun_marking_category_id)
@@ -36,8 +43,8 @@ class Private::GunSheetsController < ApplicationController
 
   def create
     @job = Job.find(params[:job_id])
-
     @gun_sheet = @job.gun_sheets.build(params[:gun_sheet])
+    @gun_sheet.created_by= current_user.id
     load_gun_sheet_supporting_data
 
     if @gun_sheet.save
