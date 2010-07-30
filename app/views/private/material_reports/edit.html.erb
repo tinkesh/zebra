@@ -1,20 +1,20 @@
 <% content_for :breadcrumb do %>
-  <ul id="breadcrumb">
-    <li><%= link_to 'Dashboard', private_home_path %></li>
-    <li>»</li>
-    <li><%= link_to 'Material Reports', private_material_reports_path %></li>
-    <li>»</li>
-    <li><%= @page_title %></li>
-  </ul>
+    <ul id="breadcrumb">
+      <li><%= link_to 'Dashboard', private_home_path %></li>
+      <li>»</li>
+      <li><%= link_to 'Material Reports', private_material_reports_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
 <% end %>
 
 <% content_for :submenu do %>
-  <%= render :partial => 'menus/material_reports_menu', :layout => false %>
+    <%= render :partial => 'menus/material_reports_menu', :layout => false %>
 <% end %>
 
 <% form_for [:private, @job, @material_report] do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-  <hr>
-  <%= f.submit "Save Material Report" %> or <%= link_to 'Cancel', private_material_reports_path %>
+    <%= f.error_messages %>
+    <%= render :partial => "form", :object => f %>
+    <hr>
+    <%= f.submit "Save Material Report" %> or <%= link_to 'Cancel', private_material_reports_path %>
 <% end %>
