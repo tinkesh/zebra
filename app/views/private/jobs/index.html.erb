@@ -1,1 +1,22 @@
-<%= render :partial => "display" %>
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<% content_for :submenu do %>
+  <% if permitted_to? :create, :private_jobs -%>
+    <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
+  <% end %>
+  <% if permitted_to? :create, :private_load_sheets -%>
+    <%= link_to "New Load Sheet", new_private_load_sheet_path %>
+  <% end %>
+  <% if permitted_to? :create, :private_jobs -%>
+    <%= link_to "Archived Jobs", '/admin/archived_jobs' %>
+  <% end %>
+<% end %>
+
+
+<%= render :partial => "display", :locals =>{:jobs => @jobs} %>
