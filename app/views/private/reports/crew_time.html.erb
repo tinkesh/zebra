@@ -1,0 +1,17 @@
+<% content_for :versions do %>
+<ol id="versions" class="noprint">
+    <li><%= link_to '<< Previous Pay Period', report_decrease_offset_path(@crew.id) %></li>
+    <li><%= link_to 'Today', report_reset_offset_path(:id => @crew.id) %></li>
+    <li><%= link_to 'Next Pay Period >>', report_increase_offset_path(@crew.id) %></li>
+</ol>
+<% end %>
+
+<% @users.each do |user| %>
+    <%   @entries =  TimeEntry.find(:all,
+       :conditions => { :clock_in => @back.to_date...@front.to_date, :user_id => user.id },
+       :include => { :time_sheet => :estimates},
+       :order => "clock_in ASC")     %>
+
+<%= render :partial => 'display_table', :locals => {:user => user, :back => @back, :front => @front, :entries => @entries } %>
+
+<% end %>

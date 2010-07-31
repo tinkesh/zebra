@@ -1,37 +1,6 @@
-<h2 class="center"><%= @user.name %>'s Hours</h2>
 <p class="center">
   <%= link_to '<< Previous Pay Period', report_decrease_offset_path(:id => @user.id) %> |
   <%= link_to 'Today', report_reset_offset_path(:id => @user.id) %> |
   <%= link_to 'Next Pay Period >>', report_increase_offset_path(:id => @user.id) %>
 </p>
-
-<h3 class="center"><%= @back.to_date.strftime('%b-%d-%y') %> to <%= (@front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
-<table>
-  <tr>
-    <th>Job</th>
-    <th class="right span-3">Date</th>
-    <th class="right span-2">In</th>
-    <th class="right span-2">Out</th>
-    <th class="right">ST</th>
-    <th class="right">OT</th>
-  </tr>
-  <tr>
-    <td colspan="6"><hr></td>
-  </tr>
-<% @entries.each do |entry| %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td>
-      <% if entry.time_sheet %>
-        <% entry.time_sheet.jobs.each do |job| %>
-          <%= link_to "Job ##{job.id}", private_job_path(job) %><br>
-        <% end %>
-      <% end %>
-    </td>
-    <td class="right"><%= entry.created_at.strftime('%b-%d-%y') %></td>
-    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%H:%M') else '-' end %></td>
-    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%H:%M') else '-' end %></td>
-    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
-    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
-  </tr>
-<% end%>
-</table>
+<%= render :partial => "display_table", :locals => {:user => @user, :back => @back, :front => @front, :entries => @entries } %>

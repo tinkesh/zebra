@@ -2,6 +2,7 @@ class Private::ReportsController < ApplicationController
 
   layout "private"
   before_filter :load_user, :only => [:user_time]
+  before_filter :load_crew, :only => [:crew_time]
   before_filter :kickout, :only => :user_time
   require 'fastercsv'
 
@@ -16,6 +17,15 @@ class Private::ReportsController < ApplicationController
       :conditions => { :clock_in => @back.to_date...@front.to_date, :user_id => params[:id] },
       :include => { :time_sheet => :estimates},
       :order => "clock_in ASC")
+  end
+
+    def crew_time
+    session[:report] = "crew_time"
+    if session[:offset].blank? : session[:offset] = Time.now end
+    @date = session[:offset]
+    generate_front_to_back
+    @users = @crew.users
+
   end
 
   def time_entries
@@ -117,6 +127,20 @@ private
 
   def load_user
     @user = User.find(params[:id])
+  end
+
+    def load_crew
+    @crew = Crew.find(params[:id])
+    roles = Role.find(:all, :conditions => { :id => current_user.versioned_role_ids.split(", ") })
+  if roles.include?(Role.find(:first, :conditions =>{ :name => "office"})) or roles.include?(Role.find(:first, :conditions =>{ :name => "admin"}))
+    else
+      if ! @crew.id.eql?(current_user.crew_id)
+                 flash[:notice] = "You do not have permission to view the hours for this crew"
+         redirect_to private_home_path
+
+          end
+      end                                               
+
   end
 
   def kickout

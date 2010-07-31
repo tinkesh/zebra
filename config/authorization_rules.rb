@@ -9,6 +9,7 @@ authorization do
 
   role :office do
     includes :crewman
+    has_permission_on :private_reports, :to => :crew_time
     has_permission_on :private_reports, :to => :time_entries
     has_permission_on :private_reports, :to => [:accountant_csv, :user_time_csv]
     has_permission_on :private, :to => :settings
@@ -26,6 +27,7 @@ authorization do
 
   role :foreman do
     includes :crewman
+    has_permission_on :private_reports, :to => :crew_time
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets,
                        :private_gun_sheets, :private_load_sheets], :to => [:create, :show]
     has_permission_on [:private_jobs], :to => [:show, :navigate]
