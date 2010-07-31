@@ -3,7 +3,11 @@
 
 class ApplicationController < ActionController::Base
 
+<<<<<<< HEAD
   has_mobile_fu
+=======
+  has_mobile_fu 
+>>>>>>> colin12
 
   helper :all # include all helpers, all the time
 
