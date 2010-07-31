@@ -1,0 +1,232 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>È</li>
+    <li><%= link_to 'Job Sheets', private_job_sheets_path %></li>
+    <li>È</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<div id="jobsheet">
+<h2>Gun Sheet Date: <%= @job_sheet.date_range %></h2>
+<% @estimated_time_cost = 0 %>
+<% if @job_sheet.time_sheets.length != 0 %>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Date</th>
+    <th>Name</th>
+    <th class="right">Per Diem</th>
+    <th class="right">S/T</th>
+    <th class="right">O/T</th>
+    <th class="right">Rate</th>
+    <th class="right">Estimate</th>
+    <th class="right">Cost</th>
+  </tr>
+  <% @job_sheet.time_sheets.each do |time_sheet| %>
+    <% @estimate = Estimate.find(:first, :conditions => { :time_sheet_id => time_sheet.id, :job_id => @job_sheet.job_id }) %>
+    <% if @estimate %>
+      <% @estimated_time_cost = 0 %>
+      <% time_sheet.time_entries.each do |entry| %>
+      <% @estimated_time_cost += (entry.rate * @estimate.hours) %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= link_to entry.time_sheet.id, private_time_sheet_path(entry.time_sheet) %></td>
+        <td><%= entry.clock_in.strftime('%b-%d-%y') %></td>
+        <td><%= entry.user.name %></td>
+        <td class="right"><%= if entry.per_diem == 0 : "-" else "$" + sprintf("%.2f", entry.per_diem) end %></td>
+        <td class="right"><%= if entry.straight_time == 0 : "-" else sprintf("%.2f", entry.straight_time) end %></td>
+        <td class="right"><%= if entry.over_time == 0 : "-" else sprintf("%.2f", entry.over_time) end %></td>
+        <td class="right">$<%= sprintf("%.2f", entry.rate) %></td>
+        <td class="right"><%= @estimate.hours %></td>
+        <td class="right">$<%= sprintf("%.2f", (entry.rate * @estimate.hours)) %></td>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td colspan="9">No estimate provided</td>
+      </tr>
+    <% end %>
+  <% end %>
+  <tr>
+    <th colspan="3">&nbsp;</th>
+    <th class="right"><%= if @job_sheet.total_per_diem == 0 : "-" else"$" + sprintf("%.2f", @job_sheet.total_per_diem) end %></th>
+    <th class="right"><%= sprintf("%.2f", @job_sheet.total_lunch_time) %></th>
+    <th class="right"><%= if @job_sheet.total_straight_time == 0 : "-" else sprintf("%.2f", @job_sheet.total_straight_time) end %></th>
+    <th class="right"><%= if @job_sheet.total_over_time == 0 : "-" else sprintf("%.2f", @job_sheet.total_over_time) end %></th>
+    <th class="right">&nbsp;</th>
+    <th class="right">$<%= sprintf("%.2f", @estimated_time_cost) if @estimated_time_cost != 0 %></th>
+  </tr>
+</table>
+<% end %>
+<div >
+  <h2>Miscellaneous</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th class="right">Cost</th>
+    </tr>
+    <tr>
+      <td>Fuel</td>
+      <td class="right"><%= if @job_sheet.total_fuel != 0 : "$#{sprintf("%.2f", @job_sheet.total_fuel)}" else "-" end %></td>
+    </tr>
+    <tr class="even">
+      <td>Hotels</td>
+      <td class="right"><%= if @job_sheet.total_hotel != 0 : "$#{sprintf("%.2f", @job_sheet.total_hotel)}" else "-" end %></td>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <th class="right">$<%= @job_sheet.total_misc_cost %></th>
+    </tr>
+  </table>
+<br>
+</div>
+  <br>
+<br>
+<div >
+  <h2>Equipment</h2>
+  <p id="equipment-rate">Equipment Cost is<br>Rate x # of Time Sheets</p>
+  <table class="span-10">
+    <tr>
+      <th>Unit</th>
+      <th>Name</th>
+      <th class="right">Rate</th>
+      <th class="right">Cost</th>
+    </tr>
+  <% @job_sheet.job.equipments.each do |equipment| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= equipment.unit %></td>
+      <td><%= equipment.name %></td>
+      <td class="right">$<%= if equipment.rate : sprintf("%.2f", equipment.rate) else "-" end %></td>
+      <td class="right">$<%= sprintf("%.2f", equipment.cost(@job_sheet)) if equipment.cost(@job_sheet) != 0 %></td>
+    </tr>
+  <% end %>
+    <tr>
+      <th colspan="3">&nbsp;</th>
+      <th class="right">$<%= sprintf("%.2f", @job_sheet.total_equipment_cost) if @job_sheet.total_equipment_cost != 0 %></th>
+    </tr>
+  </table>
+</div>
+
+<br class="clear">
+
+<div class="span-20 append-4" style="position: relative">
+  <h2>Materials</h2>
+  <p id="material-rate">
+    Material Rate: $<%= sprintf("%.2f", @job_sheet.material_rate) if @job_sheet.material_rate %>/L
+    <br>
+    Bead Rate: $0.48/K
+  </p>
+  <table>
+    <tr>
+      <th>Material</th>
+      <th class="right">Distance</th>
+      <th class="right">Usage</th>
+      <th class="right">Cost</th>
+    </tr>
+    <tr>
+      <td>Yellow Paint</td>
+      <% if @job_sheet.total_yellow_paint != 0 %>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint) %> m</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_yellow_paint * 38.2 / 1000) %> L</td>
+        <td class="right">$<%= sprintf("%.2f", ((@job_sheet.total_yellow_paint * 38.2 / 1000) * @job_sheet.material_rate)) %></td>
+      <% else %>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+      <% end %>
+    </tr>
+    <tr class="even">
+      <td>White Paint</td>
+      <% if @job_sheet.total_white_paint != 0 %>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_white_paint) %> m</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_white_paint_usage) %> L</td>
+        <td class="right">$<%= sprintf("%.2f", @job_sheet.total_white_paint_cost) %></td>
+      <% else %>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Beads</td>
+      <% if @job_sheet.total_bead != 0 %>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_bead_distance) %> m</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_bead) %> K</td>
+        <td class="right">$<%= sprintf("%.2f", @job_sheet.total_bead_cost) %></td>
+      <% else %>
+        <td class="right">-</td>
+        <td class="right">-</td>
+        <td class="right">-</td>
+      <% end %>
+    </tr>
+    <tr>
+      <th colspan="4" class="right">$<%= sprintf("%.2f", @job_sheet.total_material_cost) if @job_sheet.total_material_cost != 0 %></th>
+    </tr>
+  </table>
+</div>
+
+<br class="clear">
+
+<div class="span-20 last">
+  <h2>Production</h2>
+  <p id="production-note">
+    Production Total does not include any work not assigned under Job Marking Quantities.
+  </p>
+  <table>
+    <tr>
+      <th>Category</th>
+      <th class="right">Ordered</th>
+      <th class="right">Tally</th>
+    <% if permitted_to? :manage, :private_job_sheets -%>
+      <th class="right">Rate</th>
+      <th class="right">Total</th>
+    <% end %>
+    </tr>
+
+    <% @job_sheet.job.job_markings.each do |marking| %>
+      <% @job_marking_cats << marking.gun_marking_category_id %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= marking.gun_marking_category.name %></td>
+        <td class="right"><%= marking.amount %></td>
+        <td class="right"><%= sprintf("%.0f", @job_sheet.total_markings(marking.gun_marking_category)) %></td>
+        <% if permitted_to? :manage, :private_job_sheets -%>
+        <td class="right">$<%= sprintf("%.2f", marking.rate) %></td>
+        <td class="right">$<%= sprintf("%.2f", @job_sheet.marking_earnings(marking)) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+
+    <% @job_sheet.gun_sheets.each do |gun| %>
+      <% gun.gun_markings.each do |marking| %>
+        <% unless @job_marking_cats.include?(marking.gun_marking_category_id.to_i) %>
+          <tr>
+            <td><%= marking.gun_marking_category.name %></td>
+            <td class="right">-</td>
+            <td class="right"><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
+            <td class="right">-</td>
+            <td class="right">-</td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if permitted_to? :manage, :private_job_sheets -%>
+    <tr>
+      <th colspan="5" class="right">$<%= sprintf("%.2f", @job_sheet.total_marking_earnings) %></th>
+    </tr>
+    <% end %>
+
+  </table>
+</div>
+</div>
+
+<% content_for :versions do %>
+<ul id="versions">
+  <li>Total Expenses: $<%= sprintf("%.2f", @job_sheet.total_expenses + @estimated_time_cost) %></li>
+  <% if permitted_to? :manage, :private_job_sheets -%>
+  <li>Total Production: $<%= sprintf("%.2f", @job_sheet.total_marking_earnings) %></li>
+  <li>Net: $<%= sprintf("%.2f", (@job_sheet.total_marking_earnings - @job_sheet.total_expenses - @estimated_time_cost)) %></li>
+  <% end %>
+</ul>
+<% end %>

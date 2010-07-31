@@ -34,6 +34,7 @@ class PrivateController < ApplicationController
         when "new_time_sheet" : @redirect = url_for new_private_time_sheet_path
         when "new_load_sheet" : @redirect = url_for new_private_load_sheet_path
         when "new_gun_sheet" : @redirect = url_for new_private_job_gun_sheet_path(:job_id => @job.id)
+        when "new_job_sheet" : @redirect = url_for new_private_job_sheet_path(:job_id => @job.id)
       end
       redirect_to @redirect
     else

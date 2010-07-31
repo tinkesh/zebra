@@ -1,0 +1,16 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>È</li>
+    <li><%= link_to 'Job Sheets', private_job_sheets_path %></li>
+    <li>È</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<% form_for [:private, @job, @job_sheet] do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <hr>
+  <%= f.submit "Create Job Sheet" %> or <%= link_to 'Cancel', private_home_path %>
+<% end %>
