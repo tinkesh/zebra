@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100728030610) do
+ActiveRecord::Schema.define(:version => 20100730043822) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -270,6 +270,7 @@ ActiveRecord::Schema.define(:version => 20100728030610) do
     t.timestamp "updated_at"
     t.string    "location_name"
     t.timestamp "versioned_at"
+    t.integer   "created_by"
   end
 
   add_index "load_sheets", ["job_id"], :name => "index_load_sheets_on_job_id"
@@ -299,6 +300,7 @@ ActiveRecord::Schema.define(:version => 20100728030610) do
     t.decimal   "white_rate"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.integer   "created_by"
   end
 
   create_table "materials", :force => true do |t|

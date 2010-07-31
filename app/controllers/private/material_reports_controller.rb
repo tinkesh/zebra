@@ -18,12 +18,14 @@ class Private::MaterialReportsController < ApplicationController
     @job = Job.find(params[:job_id])
     @load_sheets = LoadSheet.find(:all)
     @material_report = MaterialReport.new
+    @material_report.created_by= current_user.id
     @page_title = "New Material Report for #{@job.label}"
   end
 
   def create
     @job = Job.find(params[:job_id])
     @material_report = @job.material_reports.build(params[:material_report])
+    @material_report.created_by= current_user.id
     if @material_report.save
       flash[:notice] = "Material Report created!"
       redirect_to private_material_report_url(@material_report)
