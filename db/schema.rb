@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100718220045) do
+ActiveRecord::Schema.define(:version => 20100728030610) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20100718220045) do
     t.integer   "job_location_id"
     t.timestamp "versioned_at"
     t.date      "completed_on"
+    t.integer   "equipment_id"
   end
 
   add_index "gun_sheets", ["job_id"], :name => "index_gun_sheets_on_job_id"

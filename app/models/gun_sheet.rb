@@ -16,7 +16,8 @@ class GunSheet < ActiveRecord::Base
 
   after_create :deliver_new_gun_sheet
 
-  def deliver_new_gun_sheet
+
+   def deliver_new_gun_sheet
     Notifier.deliver_new_gun_sheet(self)
   end
 
