@@ -40,6 +40,17 @@
     <td>Created On</td>
     <td class="right"><%= @time_sheet.created_at.strftime("%B %d, %Y") %></td>
   </tr>
+ <tr>
+	<td>Created By</td>
+	<td class="right"> 
+		<% u_id = @time_sheet.created_by %>
+		<% if u_id == 0 || u_id == nil %>
+		<% else %>
+		<% user = User.find(u_id) %>
+		<%= user.first_name + " " + user.last_name %>
+		<% end %>
+	</tr>
+	</td>
   <tr class="even">
     <td>Updated On</td>
     <td class="right"><%= @time_sheet.updated_at.strftime("%B %d, %Y") %></td>
