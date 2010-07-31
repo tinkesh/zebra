@@ -4,6 +4,11 @@ class PrivateController < ApplicationController
   filter_access_to :all
 
   def index
+    if current_user.employment_state != "Employed"
+      flash[:notice] = "Must be employed to log in"
+      current_user_session.destroy
+      redirect_to root_url
+    end  
     @crew = current_user.crew
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @jobs = Job.find(:all)

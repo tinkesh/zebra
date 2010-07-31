@@ -4,7 +4,7 @@ class Private::DirectoryController < ApplicationController
   filter_access_to :all
 
   def index
-    @users = User.find(:all, :order => "last_name ASC")
+    @users = User.find(:all, :order => "last_name ASC", :conditions => {:employment_state => "Employed"})
   end
 
 end

@@ -1,21 +1,22 @@
---- !ruby/object:Gem::Specification 
+--- !ruby/object:Gem::Specification
 name: stringex
-version: !ruby/object:Gem::Version 
+version: !ruby/object:Gem::Version
   hash: 19
-  segments: 
+  prerelease: false
+  segments:
   - 1
   - 1
   - 0
   version: 1.1.0
 platform: ruby
-authors: 
+authors:
 - Russell Norris
-autorequire: 
+autorequire:
 bindir: bin
 cert_chain: []
 
 date: 2009-10-11 00:00:00 -06:00
-default_executable: 
+default_executable:
 dependencies: []
 
 description: "Some [hopefully] useful extensions to Ruby\xE2\x80\x99s String class. Stringex is made up of three libraries: ActsAsUrl [permalink solution with better character translation], Unidecoder [Unicode to Ascii transliteration], and StringExtensions [miscellaneous helper methods for the String class]."
@@ -24,10 +25,10 @@ executables: []
 
 extensions: []
 
-extra_rdoc_files: 
+extra_rdoc_files:
 - MIT-LICENSE
 - README.rdoc
-files: 
+files:
 - MIT-LICENSE
 - README.rdoc
 - Rakefile
@@ -224,41 +225,41 @@ has_rdoc: true
 homepage: http://github.com/rsl/stringex
 licenses: []
 
-post_install_message: 
-rdoc_options: 
+post_install_message:
+rdoc_options:
 - --main
 - README.rdoc
 - --charset
 - utf-8
 - --line-numbers
-require_paths: 
+require_paths:
 - lib
-required_ruby_version: !ruby/object:Gem::Requirement 
-  requirements: 
+required_ruby_version: !ruby/object:Gem::Requirement
+  none: false
+  requirements:
   - - ">="
-    - !ruby/object:Gem::Version 
+    - !ruby/object:Gem::Version
       hash: 3
-      segments: 
+      segments:
       - 0
       version: "0"
-  version: 
-required_rubygems_version: !ruby/object:Gem::Requirement 
-  requirements: 
+required_rubygems_version: !ruby/object:Gem::Requirement
+  none: false
+  requirements:
   - - ">="
-    - !ruby/object:Gem::Version 
+    - !ruby/object:Gem::Version
       hash: 3
-      segments: 
+      segments:
       - 0
       version: "0"
-  version: 
 requirements: []
 
 rubyforge_project: stringex
 rubygems_version: 1.3.7
-signing_key: 
+signing_key:
 specification_version: 3
 summary: "Some [hopefully] useful extensions to Ruby\xE2\x80\x99s String class"
-test_files: 
+test_files:
 - test/acts_as_url_test.rb
 - test/string_extensions_test.rb
 - test/unidecoder_test.rb

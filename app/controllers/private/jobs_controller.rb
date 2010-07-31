@@ -95,7 +95,7 @@ private
   def load_job_supporting_data
     @clients = Client.find(:all, :order => :name)
     @completions = Completion.find(:all, :order => :id)
-    @users = User.find(:all, :order => :first_name)
+    @users = User.find(:all, :order => :first_name, :conditions => {:employment_state => "Employed"})
     @equipments = Equipment.find(:all, :order => :unit)
     @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
   end
