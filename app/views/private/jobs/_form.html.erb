@@ -30,8 +30,14 @@
     <%= form.text_area "notes", :class => "span-7", :rows => 4 %>
   </div>
 
+<div class="append-bottom">
+	<% grouped_options = [true,false] %>
+	<%= form.label :is_archived, "Job is Archived?" %><br />
+	<%= form.select(:is_archived, grouped_options)%>
 </div>
 
+</div>
+<% if @job.is_archived == false %>
 <div class="span-5 append-1 append-bottom">
   <%= form.label :crew_ids, "Assign Crew" %><br>
   <ul class="habtm">
@@ -46,6 +52,7 @@
   <% end %>
   </ul>
 </div>
+<% end %>
 
 <div class="span-8 append-bottom">
   <%= form.label :equipment_ids, "Assign Equipment" %><br>
@@ -81,5 +88,4 @@
 <% end %>
 
 <p><%= link_to_add_fields "Add Another Location", form, :job_locations %></p>
-
 <hr>

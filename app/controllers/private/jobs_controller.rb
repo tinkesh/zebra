@@ -1,13 +1,19 @@
 class Private::JobsController < ApplicationController
 
   layout "private"
-  filter_access_to :all
+  filter_access_to :only => [:index, :new, :update, :edit, :destroy, :create, :revert, :load_job_supporting_data]
 
   def index
-    @jobs = Job.find(:all, :include => [:client, :completion])
+    @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => false})
     @page_title = "Jobs on Hand"
   end
-
+  
+  
+  def archived_jobs
+    @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => true})
+    @page_title = "Archived Jobs"
+  end
+  
   def show
     @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
 
@@ -65,7 +71,13 @@ class Private::JobsController < ApplicationController
 #    if params[:job][:user_ids] : @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s else '' end
     if params[:job][:equipment_ids] : (@job.versioned_equipment_ids = params[:job][:equipment_ids].join(', ').to_s) else '' end
     if @job.update_attributes(params[:job])
-      flash[:notice] = "Job on Hand updated!"
+     # flash[:notice] = "Job on Hand updated!"
+     if @job.is_archived == true
+       @job.crews.each do |g|
+         g = nil
+       end
+       @job.update_attributes({:crews => []})
+     end
       redirect_to private_job_url(@job)
     else
       render :action => :edit
