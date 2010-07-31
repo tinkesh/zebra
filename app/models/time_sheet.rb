@@ -20,6 +20,32 @@ class TimeSheet < ActiveRecord::Base
   def deliver_new_time_sheet
     Notifier.deliver_new_time_sheet(self)
   end
+  
+  def check_hours_of_user_time(entries)
+      total_time = 0
+      today_time = 0
+      
+
+     if entries 
+       id = User.find(:all, :conditions => {:id => entries[0].user_id})
+       name = id[0].first_name + ' ' + id[0].last_name
+       
+       entries.each do |ent|
+        total_time += ent.straight_time
+        total_time += ent.over_time
+      if ent.time_sheet_id.eql?(self.id)
+        today_time = (ent.straight_time + ent.over_time)
+        if today_time >= 15
+          Notifier.deliver_time_sheet_over_hours(self,today_time,name)
+        end
+      end
+      end
+    end    
+      
+      if total_time  == 160 || total_time  == 215 || total_time  == 230 || total_time  >= 250
+        Notifier.deliver_time_sheet_many_hours(self,total_time,name)
+      end
+  end
 
   def label
     "Time Sheet ##{self.id} #{self.created_at.strftime('%b-%d-%y')}"
