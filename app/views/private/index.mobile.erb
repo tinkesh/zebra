@@ -1,3 +1,9 @@
+<p class="center">
+  <%= link_to '<< Previous Pay Period', report_decrease_offset_path(:id => current_user.id) %> |
+  <%= link_to 'Today', report_reset_offset_path(:id => current_user.id) %> |
+  <%= link_to 'Next Pay Period >>', report_increase_offset_path(:id => current_user.id) %>
+</p>
+
 <hr>
 
 <% if @crew %>

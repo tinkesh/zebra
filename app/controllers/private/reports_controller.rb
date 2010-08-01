@@ -29,10 +29,12 @@ class Private::ReportsController < ApplicationController
   end
 
   def time_entries
+    reset_offset
     session[:report] = "time_entries"
     if session[:offset].blank? : session[:offset] = Time.now end
     @date = session[:offset]
     generate_front_to_back
+
     @entries = TimeEntry.find(:all,
       :conditions => { :clock_in => @back.to_date...@front.to_date },
       :order => "clock_in ASC",
@@ -144,7 +146,7 @@ private
   end
 
   def kickout
-    unless params[:id] == current_user.id.to_s || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
+    unless params[:id] == current_user.id.to_s || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office) || current_user.role_symbols.include?(:foreman)
       redirect_to private_home_path
     end
   end
