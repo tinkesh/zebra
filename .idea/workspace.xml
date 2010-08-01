@@ -60,10 +60,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reports_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="reports_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/private/reports_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="152" column="78" selection-start="5586" selection-end="5586" vertical-scroll-proportion="1.5232198">
+            <state line="152" column="78" selection-start="5586" selection-end="5586" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20100801012746_add_role_supervisor.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20100801012746_add_role_supervisor.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="38" selection-start="102" selection-end="102" vertical-scroll-proportion="0.036308624">
               <folding />
             </state>
           </provider>
@@ -118,7 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/private/equipments/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/private/equipments/index.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20100731235557_change_strings_to_datetime_on_users_for_employment_dates.rb" />
         <option value="$PROJECT_DIR$/app/views/users/_form.html.erb" />
@@ -134,6 +142,7 @@
         <option value="$PROJECT_DIR$/app/views/private/reports/user_time.mobile.erb" />
         <option value="$PROJECT_DIR$/app/views/private/reports/_display_table.mobile.erb" />
         <option value="$PROJECT_DIR$/app/controllers/private/reports_controller.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20100801012746_add_role_supervisor.rb" />
       </list>
     </option>
   </component>
@@ -653,13 +662,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/private/jobs/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="2" selection-start="977" selection-end="977" vertical-scroll-proportion="0.58582675">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/private.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="116" column="3" selection-start="6174" selection-end="6174" vertical-scroll-proportion="0.0">
@@ -760,7 +762,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/private/reports_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="78" selection-start="5586" selection-end="5586" vertical-scroll-proportion="1.5232198">
+        <state line="152" column="78" selection-start="5586" selection-end="5586" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20100801012746_add_role_supervisor.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="38" selection-start="102" selection-end="102" vertical-scroll-proportion="0.036308624">
           <folding />
         </state>
       </provider>
