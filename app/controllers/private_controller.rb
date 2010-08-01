@@ -9,8 +9,10 @@ class PrivateController < ApplicationController
       current_user_session.destroy
       redirect_to root_url
     end  
-    
+
+
     @search = Job.search(params[:search])
+    @search << Job.client_contact_like(params[:search])
     @searched_jobs = @search.all
     
     @crew = current_user.crew
