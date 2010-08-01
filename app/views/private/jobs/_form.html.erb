@@ -31,9 +31,11 @@
   </div>
 
 <div class="append-bottom">
+  
 	<% grouped_options = [true,false] %>
-	<%= form.label :is_archived, "Job is Archived?" %><br />
-	<%= form.select(:is_archived, grouped_options)%>
+	<%= form.label :is_archived, "Archived" %><br />
+	<%= form.check_box(:is_archived)%>
+    <p style=font-size:10px;>Will remove from Jobs on Hand and remove all crew assignments if checked.</p>
 </div>
 
 </div>
