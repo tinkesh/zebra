@@ -1,3 +1,4 @@
+<div class="container">
 <div class="span-12 last append-bottom">
   <%= form.label :note, "Comments" %><br>
   <%= form.text_field "note", :class => "span-12" %>
@@ -118,3 +119,4 @@
 <% form.fields_for :gun_markings do |builder| %>
   <%= render 'gun_markings_fields', :form => builder %>
 <% end %>
+    </div>

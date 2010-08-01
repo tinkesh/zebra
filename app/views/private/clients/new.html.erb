@@ -1,3 +1,4 @@
+<div class="container">
 <% content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
@@ -15,3 +16,4 @@
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Create Client" %> or <%= link_to 'Cancel', private_clients_path %>
 <% end %>
+    </div>
