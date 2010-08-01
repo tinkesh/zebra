@@ -12,6 +12,8 @@ class Private::MaterialReportsController < ApplicationController
     @material_report = MaterialReport.find(params[:id], :include => [:load_sheets, :gun_sheets])
     @page_title = @material_report.label
     @job_marking_cats = Array.new
+    @gun_sheets = @material_report.gun_sheets
+    @load_sheets = @material_report.load_sheets
   end
 
   def new

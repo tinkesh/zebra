@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100730043822) do
+ActiveRecord::Schema.define(:version => 20100801000627) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(:version => 20100730043822) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.integer   "rate"
+    t.integer   "yellow_rate"
+    t.integer   "white_rate"
   end
 
   create_table "equipment_jobs", :id => false, :force => true do |t|
@@ -295,12 +297,10 @@ ActiveRecord::Schema.define(:version => 20100730043822) do
   end
 
   create_table "material_reports", :force => true do |t|
-    t.integer   "job_id"
-    t.decimal   "yellow_rate"
-    t.decimal   "white_rate"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "created_by"
+    t.integer  "job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "created_by"
   end
 
   create_table "materials", :force => true do |t|
@@ -397,38 +397,38 @@ ActiveRecord::Schema.define(:version => 20100730043822) do
   end
 
   create_table "users", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "login",                                         :null => false
-    t.string    "crypted_password",                              :null => false
-    t.string    "password_salt",                                 :null => false
-    t.string    "persistence_token",                             :null => false
-    t.integer   "login_count",           :default => 0,          :null => false
-    t.timestamp "last_request_at"
-    t.timestamp "last_login_at"
-    t.timestamp "current_login_at"
-    t.string    "last_login_ip"
-    t.string    "current_login_ip"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.string    "perishable_token",      :default => "",         :null => false
-    t.string    "email",                 :default => "",         :null => false
-    t.string    "time_zone"
-    t.string    "home_phone"
-    t.string    "cell_phone"
-    t.string    "address"
-    t.string    "city"
-    t.string    "province"
-    t.string    "postal_code"
-    t.integer   "rate"
-    t.boolean   "bank_overtime_hours"
-    t.string    "versioned_role_ids"
-    t.timestamp "versioned_at"
-    t.integer   "crew_id"
-    t.string    "employment_state",      :default => "Employed"
-    t.string    "employment_start_date"
-    t.string    "employment_end_date"
-    t.string    "employment_notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "login",                                                        :null => false
+    t.string   "crypted_password",                                             :null => false
+    t.string   "password_salt",                                                :null => false
+    t.string   "persistence_token",                                            :null => false
+    t.integer  "login_count",                          :default => 0,          :null => false
+    t.datetime "last_request_at"
+    t.datetime "last_login_at"
+    t.datetime "current_login_at"
+    t.string   "last_login_ip"
+    t.string   "current_login_ip"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "perishable_token",                     :default => "",         :null => false
+    t.string   "email",                                :default => "",         :null => false
+    t.string   "time_zone"
+    t.string   "home_phone"
+    t.string   "cell_phone"
+    t.string   "address"
+    t.string   "city"
+    t.string   "province"
+    t.string   "postal_code"
+    t.integer  "rate"
+    t.boolean  "bank_overtime_hours"
+    t.string   "versioned_role_ids"
+    t.datetime "versioned_at"
+    t.integer  "crew_id"
+    t.string   "employment_state",                     :default => "Employed"
+    t.datetime "employment_start_date", :limit => 255
+    t.datetime "employment_end_date",   :limit => 255
+    t.string   "employment_notes"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
