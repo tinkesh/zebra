@@ -4,13 +4,13 @@ class Private::JobsController < ApplicationController
   filter_access_to :only => [:index, :new, :update, :edit, :destroy, :create, :revert, :load_job_supporting_data]
 
   def index
-    @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => 0})
+    @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => false})
     @page_title = "Jobs on Hand"
   end
 
 
   def archived_jobs
-    @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => 1})
+    @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => true})
     @page_title = "Archived Jobs"
   end
 
