@@ -14,6 +14,8 @@
   <tr>
     <th>Name</th>
     <th>Unit Number</th>
+    <th>Yellow Rate</th>
+    <th>White Rate</th>
     <th>Daily Rate</th>
     <th class="actions nosort"></th>
   </tr>
@@ -22,6 +24,8 @@
   <tr>
     <td><%= equipment.name %></td>
     <td><%= equipment.unit %></td>
+    <td>$<%= equipment.try(:yellow_rate) %></td>
+    <td>$<%= equipment.try(:white_rate) %></td>
     <td><%= if equipment.rate : "$#{equipment.rate}" end %></td>
     <td class="actions">
     <%= link_to 'Delete', private_equipment_path(equipment), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>

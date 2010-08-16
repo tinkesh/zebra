@@ -14,6 +14,7 @@
                          <%= hold.try(:first_name) %>
                           <%= hold.try(:last_name) %>
                  <% end %>
+                | <%= load_sheet.equipment.try(:name) %>
               </label>
             </li>
         <% end %>
@@ -44,14 +45,3 @@
   <% end %>
 </div>
 
-<br class="clear">
-
-<div class="append-bottom">
-  <h3>Calculation Rate for Yellow Paint</h3>
-  <%= form.text_field "yellow_rate", :class => "span-6" %>
-</div>
-
-<div class="append-bottom">
-  <h3>Calculation Rate for White Paint</h3>
-  <%= form.text_field "white_rate", :class => "span-6" %>
-</div>
