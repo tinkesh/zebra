@@ -71,7 +71,7 @@ a:hover { color: #3344FF; text-decoration: underline; }
 
 /* content */
 #content { border-top: solid 25px #efefef; }
-#content .container { padding: 20px 0 30px 0; position: relative; }
+#content .container { padding: 20px 0 0 0; position: relative; }
 
 /* sidebar */
 #sidebar ul { list-style-type: none; margin: 0; padding: 0; background: #333; border-left: solid 7px #fcd40d; }

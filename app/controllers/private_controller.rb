@@ -8,19 +8,19 @@ class PrivateController < ApplicationController
       flash[:notice] = "Must be employed to log in"
       current_user_session.destroy
       redirect_to root_url
-    end  
+    end
 
 
     @search = Job.search(params[:search])
     @search << Job.client_contact_like(params[:search])
     @searched_jobs = @search.all
-    
+
     @crew = current_user.crew
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
-      @jobs = Job.find(:all)
+      @jobs = Job.find(:all, :order => :id)
     else
       if @crew
-        @jobs = current_user.crew.jobs
+        @jobs = Job.find(:all, :conditions => {:crew_id => current_user.crew_id}, :order => :id)
       end
     end
   end

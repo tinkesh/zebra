@@ -1,10 +1,6 @@
-<div class="container">
 <% content_for :submenu do %>
   <%= render :partial => 'menus/dashboard_menu', :layout => false %>
 <% end %>
-
-<p>Current time zone: <%= Time.zone.name %><br>
-Current time: <%= Time.zone.now.inspect %></p>
 
 <% if @crew %>
 <p>You are part of <%= @crew.label %>: <%= @crew.user_list %></p>
@@ -40,7 +36,7 @@ Current time: <%= Time.zone.now.inspect %></p>
 </div>
 <% end %>
 <hr>
- <table class="no-border"> 
+ <table class="no-border">
 <% form_for @search do |f| %>
 
    <tr class="no-border"><td class="no-border">
@@ -69,7 +65,7 @@ Current time: <%= Time.zone.now.inspect %></p>
 <% end %>
 
 </table>
- </div>
+
 <% if @jobs != @search.all %>
 <%= render :partial => "private/jobs/display", :locals => {:jobs => @searched_jobs} %>
 <% end %>
