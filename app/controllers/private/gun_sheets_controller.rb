@@ -4,9 +4,8 @@ class Private::GunSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @gun_sheets = GunSheet.find(:all)
+    @gun_sheets = GunSheet.find(:all, :order => 'id DESC', :include => [:equipment, :job])
     @page_title = "Gun Sheets"
-
   end
 
   def show
@@ -30,7 +29,7 @@ class Private::GunSheetsController < ApplicationController
   def new
     @job = Job.find(params[:job_id])
     @gun_sheet = GunSheet.new
-  @gun_sheet.created_by= current_user.id
+    @gun_sheet.created_by = current_user.id
     load_gun_sheet_supporting_data
     @job.job_markings.each do |marking|
       @gun_sheet.gun_markings.build(:gun_marking_category_id => marking.gun_marking_category_id)
@@ -57,7 +56,7 @@ class Private::GunSheetsController < ApplicationController
 
   def edit
     @gun_sheet = GunSheet.find(params[:id])
-     @job = Job.find(@gun_sheet.job_id)
+    @job = Job.find(@gun_sheet.job_id)
     load_gun_sheet_supporting_data
 
     4.times do @gun_sheet.gun_markings.build end
@@ -98,7 +97,7 @@ private
     @equipments = @job.equipments
     @clients = Client.find(:all, :order => :name)
     @equipment = Equipment.find(:all, :order => :unit)
-     @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
+    @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
   end
 
 end

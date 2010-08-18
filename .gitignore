@@ -12,3 +12,4 @@ tmp/sent_mails/*
 .idea/.rakeTasks
 .idea/.*
 db/development.sqlite3
+db/*.sqlite3

@@ -70,21 +70,21 @@
   </div>
 <% if permitted_to? :manage, :users -%>
   <div class="span-6 append-bottom">
-	<% grouped_options = ["Employed", "Laid Off", "Fired", "Quit"] %>
-	<%= form.label :employment_state %><br />
-	<%= form.select(:employment_state, grouped_options)%>
+  	<% grouped_options = ["Employed", "Laid Off", "Fired", "Quit"] %>
+  	<%= form.label :employment_state %><br />
+  	<%= form.select(:employment_state, grouped_options)%>
   </div>
   <div class="span-6 append-bottom">
-	<%= form.label :employment_notes %><br />
-	<%= form.text_area :employment_notes %>
-  </div>
-  <div class="span-6 append-bottom">
-	<%= form.label :employment_start_date %><br />
-	<%= form.date_select :employment_start_date %>
+  	<%= form.label :employment_start_date %><br />
+  	<%= form.date_select :employment_start_date, :include_blank => true %>
   </div>
   <div class="span-6 append-bottom last">
-	<%= form.label :employment_end_date %><br />
-	<%= form.date_select :employment_end_date %>
+  	<%= form.label :employment_end_date %><br />
+  	<%= form.date_select :employment_end_date, :include_blank => true %>
+  </div>
+  <div class="span-6 append-bottom">
+  	<%= form.label :employment_notes %><br />
+  	<%= form.text_area :employment_notes %>
   </div>
 <% end %>
   <br class="clear">

@@ -4,12 +4,16 @@
   <td><%= form.text_field "note", :size => "20" %></td>
   </tr>
   <tr>
-    <td><%= form.label :job_location_id, "Location" %></td>
-    <td><%= form.select (:job_location_id, @job_locations.map {|u| [u.name,u.id]}, :include_blank => false) %></td>
+  <td><%= form.label :equipment, "Equipment" %></td>
+  <td><%= form.collection_select(:equipment_id, @equipments, :id, :name) %></td>
   </tr>
   <tr>
-    <td><%= form.label :location_name, "Custom Location" %></td>
-    <td><%= form.text_field "location_name", :size => "20" %></td>
+  <td><%= form.label :job_location_id, "Specific Location" %></td>
+  <td><%= form.select (:job_location_id, @job_locations.map {|u| [u.name,u.id]}, :include_blank => false) %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :location_name, "Custom Location" %></td>
+  <td><%= form.text_field "location_name", :size => "20" %></td>
   </tr>
   <tr>
   <td><%= form.label :control_section, "Control Section:" %></td>

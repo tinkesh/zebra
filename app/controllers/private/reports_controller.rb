@@ -29,7 +29,6 @@ class Private::ReportsController < ApplicationController
   end
 
   def time_entries
-    reset_offset
     session[:report] = "time_entries"
     if session[:offset].blank? : session[:offset] = Time.now end
     @date = session[:offset]
@@ -131,18 +130,16 @@ private
     @user = User.find(params[:id])
   end
 
-    def load_crew
+  def load_crew
     @crew = Crew.find(params[:id])
     roles = Role.find(:all, :conditions => { :id => current_user.versioned_role_ids.split(", ") })
-  if roles.include?(Role.find(:first, :conditions =>{ :name => "office"})) or roles.include?(Role.find(:first, :conditions =>{ :name => "admin"}))
+    if roles.include?(Role.find(:first, :conditions =>{ :name => "office"})) or roles.include?(Role.find(:first, :conditions =>{ :name => "admin"}))
     else
       if ! @crew.id.eql?(current_user.crew_id)
-                 flash[:notice] = "You do not have permission to view the hours for this crew"
-         redirect_to private_home_path
-
-          end
-      end                                               
-
+        flash[:notice] = "You do not have permission to view the hours for this crew"
+        redirect_to private_home_path
+      end
+    end
   end
 
   def kickout

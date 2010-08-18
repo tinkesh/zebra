@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   filter_access_to :index, :attribute_check => false
 
   def index
-
-    @users = User.find(:all, :include => :roles)
+    @users = User.find(:all, :include => :roles, :order => :first_name)
     @page_title = "Users"
   end
 

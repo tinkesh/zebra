@@ -136,7 +136,7 @@ th.center { padding: 2px 2px 2px 4px;}
 .no-right-border td { border-right: 0; }
 
 /* controls */
-#new { margin: 0; position: absolute; top: 20px; right: 0; }
+#new { float: right; margin: -25px 0 0 0; }
 #new a { color: #529214; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
 .delete-inline, .delete { color: #8a1f11; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/delete_12x12.gif') no-repeat; background-position: 0 50% ; border: none; width: 39px; }
 .delete:hover, .delete:focus, .delete-inline:focus, .delete-inline:hover { color: #8a1f11; }

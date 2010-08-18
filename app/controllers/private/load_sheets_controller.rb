@@ -4,7 +4,7 @@ class Private::LoadSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @load_sheets = LoadSheet.find(:all)
+    @load_sheets = LoadSheet.find(:all, :order => 'id DESC', :include => [:equipment, :job])
     @page_title = "Load Sheets"
   end
 

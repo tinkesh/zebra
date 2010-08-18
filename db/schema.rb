@@ -426,8 +426,8 @@ ActiveRecord::Schema.define(:version => 20100801012746) do
     t.datetime "versioned_at"
     t.integer  "crew_id"
     t.string   "employment_state",                     :default => "Employed"
-    t.datetime "employment_start_date", :limit => 255
-    t.datetime "employment_end_date",   :limit => 255
+    t.date     "employment_start_date", :limit => 255
+    t.date     "employment_end_date",   :limit => 255
     t.string   "employment_notes"
   end
 

@@ -11,4 +11,12 @@ class MaterialReport < ActiveRecord::Base
     "Material Report ##{self.id}"
   end
 
+  def yellow_rate
+    0
+  end
+
+  def white_rate
+    0
+  end
+
 end

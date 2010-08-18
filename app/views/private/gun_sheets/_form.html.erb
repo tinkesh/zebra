@@ -1,19 +1,19 @@
 <div class="container">
-<div class="span-12 last append-bottom">
+<div class="span-12 append-bottom">
   <%= form.label :note, "Comments" %><br>
   <%= form.text_field "note", :class => "span-12" %>
+</div>
+
+<div class ="span-12 last append-bottom">
+ <%= form.label :equipment, "Equipment" %><br>
+ <%= form.collection_select(:equipment_id, @equipments, :id, :name) %>
 </div>
 
 <br class="clear">
 
 <div class="span-12 append-bottom">
-  <%= form.label :job_location_id, "Location" %><br>
+  <%= form.label :job_location_id, "Specific Location" %><br>
   <%= form.select(:job_location_id, @job_locations.map{|u| [u.name,u.id]}, :include_blank => false) %>
-</div>
-
-<div class ="span-12 append-bottom">
-     <% form.label :equipment, "Equipment" %><br>
-     <%= form.collection_select(:equipment_id, @equipments, :id, :name) %>
 </div>
 
 <div class="span-12 last append-bottom">

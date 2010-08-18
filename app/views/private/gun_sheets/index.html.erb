@@ -28,9 +28,9 @@
     <td>
       <%= User.find(gun_sheet.created_by).name unless gun_sheet.created_by.blank? %>
     </td>
-    <td><%= gun_sheet.equipment.try(:name) { |u| u.name} %></td>
+    <td><%= gun_sheet.equipment.try(:unit) { |u| u.unit } %></td>
     <td class="actions">
-    <%= link_to 'Delete', private_gun_sheet_path(gun_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to 'Delete',private_gun_sheet_path(gun_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_gun_sheet_path(gun_sheet), :class => "edit" %>
     </td>
   </tr>

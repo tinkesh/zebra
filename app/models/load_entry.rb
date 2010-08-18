@@ -5,7 +5,7 @@ class LoadEntry < ActiveRecord::Base
 
 
   def amount
-    if self.material && self.material.manufacturer
+    if self.material && self.material.manufacturer && self.tote_quantity
       self.tote_quantity * self.material.manufacturer.amount
     else
       0
