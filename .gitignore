@@ -6,3 +6,9 @@ tmp/
 /log/*.pid
 public/system/*
 tmp/sent_mails/*
+.idea/
+.idea/*
+.idea/.generators
+.idea/.rakeTasks
+.idea/.*
+db/development.sqlite3

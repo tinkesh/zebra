@@ -18,12 +18,14 @@ class Private::ClockOutController < ApplicationController
     if params[:users]
       params[:users].each do |user|
         @entry = TimeEntry.find(:first, :conditions => {:user_id => user, :clock_out => nil, :time_sheet_id => nil})
-        if @entry.active
-          @entry.clocked_out_by = current_user.id
-          @entry.clock_out = Time.zone.parse(@clock_out_time)
-          @entry.clocked_out_at = Time.zone.now
+        if @entry
+          if @entry.active
+            @entry.clocked_out_by = current_user.id
+            @entry.clock_out = Time.zone.parse(@clock_out_time)
+            @entry.clocked_out_at = Time.zone.now
+          end
+          @entry.save
         end
-        @entry.save
       end
     end
 

@@ -26,12 +26,7 @@
     <td><%= if gun_sheet.job : link_to job_label(gun_sheet.job), private_job_path(gun_sheet.job) end %></td>
     <td><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> / <%= gun_sheet.location_name %></td>
     <td>
-        <% u_id = gun_sheet.created_by %>
-		<% if u_id == 0 || u_id == nil %>
-		<% else %>
-		<% user = User.find(u_id) %>
-		<%= user.first_name + " " + user.last_name %>
-		<% end %>
+      <%= User.find(gun_sheet.created_by).name unless gun_sheet.created_by.blank? %>
     </td>
     <td><%= gun_sheet.equipment.try(:name) { |u| u.name} %></td>
     <td class="actions">

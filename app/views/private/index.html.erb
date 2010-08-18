@@ -28,7 +28,7 @@ Current time: <%= Time.zone.now.inspect %></p>
     <% if permitted_to? :show, :private_jobs -%>
       <li><label class="normal"><%= radio_button_tag "navigate", "show_job", :selected => true %> Show Job</label></li>
     <% end %>
-    <% if permitted_to? :time_entries, :private_reports -%>
+    <% if permitted_to? :create, :private_time_sheets -%>
       <li><label class="normal"><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Time Sheet</label></li>
     <% end %>
   </ul>
