@@ -1,3 +1,4 @@
+<div class="container">
 <% content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
@@ -15,3 +16,4 @@
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Save Time Note Category" %> or <%= link_to 'Cancel', private_time_note_categories_path %>
 <% end %>
+    </div>

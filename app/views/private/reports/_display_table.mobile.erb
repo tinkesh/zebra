@@ -1,12 +1,4 @@
-<h3><%= user.name %>'s Hours</h3>
-<h3><%= back.to_date.strftime('%b-%d-%y') %> to <%= (front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
-<table width="400px">
 
-  <tr>
-    <th>Job</th>
-    <th >S/T</th>
-    <th >OT</th>
-  </tr>
 <% st = 0 %>
 <% ot = 0 %>
 <% entries.each do |entry| %>
@@ -14,11 +6,8 @@
 <% ot += entry.over_time %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td>
-      <% if entry.time_sheet %>
-        <% entry.time_sheet.estimates.each do |e| %>
-          <%= link_to "Job ##{e.job_id}", private_job_path(e.job_id) %><br>
-        <% end %>
-      <% end %>
+      <% @link = "/admin/reports/user_time/"+user.id.to_s %>
+        <%= link_to user.name, @link %>
     </td>
     <td ><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
     <td ><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
@@ -30,4 +19,3 @@
     <th ><%= st %></th>
     <th ><%= ot %></th>
 
-</table>

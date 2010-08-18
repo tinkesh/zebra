@@ -1,3 +1,4 @@
+<div class="container">
 <div class="span-10 append-bottom">
   <%= form.label :time_note_category_id, "Comment" %><br>
   <%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %>
@@ -133,3 +134,4 @@ If you require additional rows of tasks, save and re-edit. 2 new rows are added 
   <%- end -%>
 </table>
 <%- end -%>
+</div>    
