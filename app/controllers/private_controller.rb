@@ -20,7 +20,7 @@ class PrivateController < ApplicationController
       @jobs = Job.find(:all, :order => :id)
     else
       if @crew
-        @jobs = Job.find(:all, :conditions => {:crew_id => current_user.crew_id}, :order => :id)
+        @jobs = current_user.crew.jobs
       end
     end
   end
