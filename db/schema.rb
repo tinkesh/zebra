@@ -297,10 +297,10 @@ ActiveRecord::Schema.define(:version => 20100801012746) do
   end
 
   create_table "material_reports", :force => true do |t|
-    t.integer  "job_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by"
+    t.integer   "job_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "created_by"
   end
 
   create_table "materials", :force => true do |t|
