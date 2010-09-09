@@ -1,52 +1,17 @@
-<script type="text/javascript">
-
-function change_values(sender){
-	var check =  sender.name;
-	var hold = parseInt(sender.id); 
-	if (check == "plus") {
-	var start = sender;
-	var stop = document.getElementById(hold+1);
-	hold = hold + 1;
-	}
-	else{
-	var start = document.getElementById(hold-1);
-	var stop = sender;	
-	}
-	var combined = stop.value-start.value;
-	var calculation = document.getElementById(hold+2).innerHTML;
-	var totalUsed = combined * calculation;
-	
-	document.getElementById(hold+1).innerHTML = combined;
-	document.getElementById(hold+3).innerHTML = totalUsed;
-
-	
-} 
-
-function save_values(sender){
-	
-	var id = sender.id;
-	var start = document.getElementById(id-5);
-	var stop = document.getElementById(id-4);
-	var combined = document.getElementById(id-3);
-	var total = document.getElementById(id-1);
+<style type="text/css">
+.table {
+	border:1px solid black;
 }
-	
-</script>
-
-<% content_for :breadcrumb do %>
-    <ul id="breadcrumb">
-      <li><%= link_to 'Dashboard', private_home_path %></li>
-      <li>»</li>
-      <li><%= link_to 'Material Reports', private_material_reports_path %></li>
-      <li>»</li>
-      <li><%= @page_title %></li>
-    </ul>
-<% end %>
-
-<% content_for :submenu do %>
-    <%= render :partial => 'menus/material_reports_menu', :layout => false %>
-<% end %>
-<%= link_to "Printer Friendly Page", private_mat_print_url %>
+td{
+	border:1px solid black;
+}
+tr{
+	border:1px solid black;
+}
+</style>
+<%= @page_title %>
+<table>
+	<tr><td>
 <table>
   <th>Equipment Used:</th>
 
@@ -70,7 +35,8 @@ function save_values(sender){
   <% end %>
 
 </table>
-
+</td>
+<td>
 <table>
   <th>
     Location:
@@ -95,7 +61,6 @@ function save_values(sender){
 
 </table>
 
-
 <table>
   <th>
     Created By:
@@ -111,7 +76,11 @@ function save_values(sender){
     </Td>
   </tr>
 </table>
-<h2>Tank Level</h2>
+</td>
+</tr>
+<tr>
+<td>
+<h4>Tank Level</h4>
 
 <table>
   <tr>
@@ -147,19 +116,13 @@ function save_values(sender){
             <td class="right"><%= @total_yellow_used %></td>
           </tr>
           <tr>
-			<% i = 0 %>
-			<% form_for load, :url => {:action=>:"my_edit"}  do |f| %>
             <th class="right">Adjusted Yellow</th>
-            <td class="right"><%= f.text_field :adjusted_yellow_dip_start, :id => i, :name => "plus", :onChange => "change_values(this);" %></td><% i += 1%>
-            <td class="right"><%= f.text_field :adjusted_yellow_dip_stop, :id => i, :name => "subtract", :onChange => "change_values(this);" %></td><% i += 1%>
-            <td class="right"><label id="<%=i%>"><%= load.adjusted_yellow_dip_used %></label></td><% i += 1%>
-            <td class="right"><label id="<%= i %>" ><%= @material_report.yellow_rate %><label></td><% i += 1%>
-            <td class="right"><label id="<%=i%>"><%= @adjusted_total_yellow_used %></label></td><% i += 1%>
+            <td class="right"><%= load.adjusted_yellow_dip_start %></td>
+            <td class="right"><%= load.adjusted_yellow_dip_stop %></td>
+            <td class="right"><%= load.adjusted_yellow_dip_used %></td>
+            <td class="right"><%= @material_report.yellow_rate %></td>
+            <td class="right"><%= @adjusted_total_yellow_used %></td>
 	      </tr>
-		  <tr>
-			<td colspan="6" class="right"><%= f.submit "Save yellow values", :name => load.id %></td>
-	       </tr>
-			<%end%>
           <tr>
             <th class="right">White</th>
             <td class="right"><%= load.white_dip_start %></td>
@@ -169,18 +132,13 @@ function save_values(sender){
             <td class="right"><%= @total_white_used %></td>
           </tr>
           <tr>
-			<% form_for load, :url => {:action=>:"my_edit"}  do |f| %>
             <th class="right">Adjusted White</th>
-            <td class="right"><%= f.text_field :adjusted_white_dip_start, :id => i, :name => "plus", :onChange => "change_values(this);" %></td><% i += 1%>
-            <td class="right"><%= f.text_field :adjusted_white_dip_stop, :id => i, :name => "subtract", :onChange => "change_values(this);" %></td><% i += 1%>
-            <td class="right"><label id="<%=i%>"><%= load.adjusted_white_dip_used %></label></td><% i += 1%>
-            <td class="right"><label id="<%= i %>" ><%= @material_report.white_rate %><label></td><% i += 1%>
-            <td class="right"><label id="<%=i%>"><%= @adjusted_total_white_used %></label></td><% i += 1%>
+            <td class="right"><%= load.adjusted_white_dip_start %></td>
+            <td class="right"><%= load.adjusted_white_dip_stop %></td>
+            <td class="right"><%= load.adjusted_white_dip_used %></td>
+            <td class="right"><%= @material_report.white_rate %></td>
+            <td class="right"><%= @adjusted_total_white_used %></td>
 	      </tr>
-		  <tr>
-			<td colspan="6" class="right"><%= f.submit "Save white values", :name => load.id %></td>
-	       </tr>
-			<%end%>
           <tr>
             <th class="right">Bead</th>
             <td class="right">-</td>
@@ -192,8 +150,10 @@ function save_values(sender){
       <% end %>
   <% end %>
 </table>
+</td>
 
-<h2>Meters</h2>
+<td>	
+<h4>Meters</h4>
 <table>
   <tr>
     <th class="span-3">&nbsp;</th>
@@ -246,8 +206,11 @@ function save_values(sender){
       <% end %>
   <% end %>
 </table>
-
-<h2>Summary</h2>
+</td>
+</tr>
+<tr>
+<td>
+<h4>Summary</h4>
 
 <table>
   <tr>
@@ -307,8 +270,22 @@ function save_values(sender){
       </tr>
   <% end %>
 </table>
-
-<h3>Markings</h3>
+<h4>Equipment</h4>
+<table>
+  <tr>
+    <th>Load Sheet</th>
+    <th>Equipment</th>
+  </tr>
+  <% @load_sheets.each do |load_sheet|      %>
+    <tr class="<%= cycle('even', 'odd') %>">
+      <td><%= load_sheet.try(:label) %></td>
+      <td><%= load_sheet.equipment.try(:name) %></td>
+    </tr>
+  <% end %>
+</table>
+</td>
+<td>
+<h4>Markings</h4>
 <table>
   <tr>
     <th>Gun Sheet</th>
@@ -326,7 +303,7 @@ function save_values(sender){
   <% end %>
 </table>
 
-<h3>Interchanges and Sides</h3>
+<h4>Interchanges and Sides</h4>
 <table>
   <tr>
     <th>Gun Sheet</th>
@@ -341,18 +318,12 @@ function save_values(sender){
     </tr>
   <% end %>
 </table>
+</td>
+</tr>
+<tr>
+<td>
 
 
-<h3>Equipment</h3>
-<table>
-  <tr>
-    <th>Load Sheet</th>
-    <th>Equipment</th>
-  </tr>
-  <% @load_sheets.each do |load_sheet|      %>
-    <tr class="<%= cycle('even', 'odd') %>">
-      <td><%= load_sheet.try(:label) %></td>
-      <td><%= load_sheet.equipment.try(:name) %></td>
-    </tr>
-  <% end %>
+</td>
+</tr>
 </table>

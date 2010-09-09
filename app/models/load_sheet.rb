@@ -25,5 +25,14 @@ class LoadSheet < ActiveRecord::Base
    def white_dip_used
      self.white_dip_end - self.white_dip_start
    end
+      
+   def adjusted_yellow_dip_used
+     self.adjusted_yellow_dip_stop - self.adjusted_yellow_dip_start
+   end
+
+   def adjusted_white_dip_used
+     self.adjusted_white_dip_stop - self.adjusted_white_dip_start
+   end
+
 
 end

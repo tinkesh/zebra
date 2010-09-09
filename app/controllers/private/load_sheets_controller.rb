@@ -29,6 +29,10 @@ class Private::LoadSheetsController < ApplicationController
     6.times { @load_sheet.load_entries.build }
     @page_title = "New Load Sheet"
   end
+  
+  def edit_stuff
+    redirect_to 
+  end
 
   def create
     @load_sheet = LoadSheet.new(params[:load_sheet])
