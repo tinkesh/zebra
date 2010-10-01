@@ -10,11 +10,6 @@ class PrivateController < ApplicationController
       redirect_to root_url
     end
 
-
-    @search = Job.search(params[:search])
-    @search << Job.client_contact_like(params[:search])
-    @searched_jobs = @search.all
-
     @crew = current_user.crew
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @jobs = Job.find(:all, :order => :id)

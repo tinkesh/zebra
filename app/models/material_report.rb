@@ -1,22 +1,23 @@
 class MaterialReport < ActiveRecord::Base
 
   belongs_to :job
-  has_and_belongs_to_many :load_sheets
-  has_and_belongs_to_many :gun_sheets
+  belongs_to :load_sheet
+  belongs_to :gun_sheet
 
-  validates_presence_of :yellow_rate, :on => :save, :message => "can't be blank"
-  validates_presence_of :white_rate, :on => :save, :message => "can't be blank"
+  validates_presence_of :job, :on => :create, :message => "can't be blank"
+  validates_presence_of :gun_sheet, :on => :create, :message => "can't be blank"
+  validates_presence_of :load_sheet, :on => :create, :message => "can't be blank"
 
   def label
     "Material Report ##{self.id}"
   end
 
   def yellow_rate
-    0
+    33.97
   end
 
   def white_rate
-    0
+    33.97
   end
 
 end

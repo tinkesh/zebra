@@ -8,7 +8,7 @@
 
 <table class="sortable">
   <tr>
-    <th class="span-2 center number">#</th>
+    <th class="center number">#</th>
     <th class="span-2 center">Date</th>
     <th class="number">Job</th>
     <th class="number">Equipment</th>
@@ -17,62 +17,21 @@
     <th class="actions nosort"></th>
   </tr>
 
-  <% @material_reports.each do |material_report| %>
+  <% @material_reports.each do |m| %>
       <tr>
-        <td><%= link_to material_report.id, private_material_report_path(material_report), :class => "show" %></td>
-        <td><%= if material_report.gun_sheets && material_report.gun_sheets.first.try(:started_on) :
-            material_report.gun_sheets.first.started_on.strftime('%b-%d-%y')
-        end %></td>
-        <td><%= link_to job_label(material_report.job), private_job_path(material_report.job) %></td>
-        <Td>
-
-          <% material_report.gun_sheets.each do |gun| %>
-              <% if gun.try(:equipment_id) %>
-                  <% hold = Equipment.find(:first, :conditions => {:id => gun.equipment_id}) %>
-                  <%= hold.name %>
-                  <br>
-              <% end %>
-          <% end %>
-
-          <% material_report.load_sheets.each do |load| %>
-              <% if load.try(:equipment_id) %>
-                  <% hold = Equipment.find(:first, :conditions => {:id => load.equipment_id}) %>
-                  <%= hold.name %>
-                  <br>
-              <% end %>
-          <% end %>
-
-
-        </Td>
-        <Td>
-
-
-          <% material_report.gun_sheets.each do |gun| %>
-              <%= if gun.job_location :
-                  gun.job_location.name
-              end %> / <%= gun.location_name %>
-              <br>
-          <% end %>
-
-          <% material_report.load_sheets.each do |load| %>
-              <% if not load.location_id.nil? %>
-                  <% hold = JobLocation.Find(:first, :conditions => {:id => load.location_id}) %>
-                  <%= hold.name %>
-                  <br>
-              <% end %>
-          <% end %>
-        </Td>
+        <td><%= m.id %></td>
+        <td><%= (m.gun_sheet && m.gun_sheet.try(:started_on)) ? m.gun_sheet.started_on.strftime('%b-%d-%y') : "-" %></td>
         <td>
-          <% if material_report.try(:created_by) %>
-              <% hold = User.find(:first, :conditions => {:id => material_report.created_by}) %>
-              <%= hold.first_name + ' ' + hold.last_name %>
-          <% end %>
-
-
-        </td>
+          <%= job_label(m.job) %>
+          <%= link_to image_tag("open-link.png"), private_job_path(m.job) %>
+          </td>
+        <td><%= (m.gun_sheet && m.gun_sheet.equipment ? m.gun_sheet.equipment.name : "-" )%></td>
+        <td>Location</td>
+        <td><%= m.created_by %></td>
         <td class="actions">
-          <%= link_to 'Delete', private_material_report_path(material_report), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
-          <%= link_to "Edit", edit_private_material_report_path(material_report), :class => "edit" %>
+          <%= link_to "Delete", private_material_report_path(m), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+          <%= link_to "Edit", edit_private_material_report_path(m), :class => "edit" %>
+          <%= link_to "Show", private_material_report_path(m), :class => "show" %>
         </td>
       </tr>
   <% end %>

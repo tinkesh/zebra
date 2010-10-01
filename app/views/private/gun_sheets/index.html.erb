@@ -10,28 +10,34 @@
 
 <table class="sortable">
   <tr>
-    <th class="span-2 center number">#</th>
+    <th class="center number">#</th>
     <th class="span-2 center">Started</th>
     <th class="number">Job</th>
-     <th class="number">Location</th>
-     <th class="number">Created By</th>
+    <th class="number">Location</th>
+    <th class="number">Created By</th>
     <th class="number">Equipment</th>
     <th class="actions nosort"></th>
   </tr>
 
 <% @gun_sheets.each do |gun_sheet| %>
   <tr>
-    <td><%= link_to gun_sheet.id, private_gun_sheet_path(gun_sheet), :class => "show" %></td>
+    <td><%= gun_sheet.id %></td>
     <td><%= gun_sheet.started_on.strftime('%b-%d-%y') %></td>
-    <td><%= if gun_sheet.job : link_to job_label(gun_sheet.job), private_job_path(gun_sheet.job) end %></td>
-    <td><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> / <%= gun_sheet.location_name %></td>
+    <td>
+      <% if gun_sheet.job %>
+        <%= job_label(gun_sheet.job) %>
+        <%= link_to image_tag("open-link.png"), private_job_path(gun_sheet.job) %>
+      <% end %>
+    </td>
+    <td><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> <%= gun_sheet.location_name %></td>
     <td>
       <%= User.find(gun_sheet.created_by).name unless gun_sheet.created_by.blank? %>
     </td>
     <td><%= gun_sheet.equipment.try(:unit) { |u| u.unit } %></td>
     <td class="actions">
-    <%= link_to 'Delete',private_gun_sheet_path(gun_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Delete", private_gun_sheet_path(gun_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_gun_sheet_path(gun_sheet), :class => "edit" %>
+    <%= link_to "Show", private_gun_sheet_path(gun_sheet), :class => "show" %>
     </td>
   </tr>
 <% end %>

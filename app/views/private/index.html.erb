@@ -35,37 +35,3 @@
 
 </div>
 <% end %>
-<hr>
- <table class="no-border">
-<% form_for @search do |f| %>
-
-   <tr class="no-border"><td class="no-border">
-  <p>
-    <%= f.label :name_like, "Name" %><br />
-    <%= f.text_field :name_like %>
-  </p>
-     </td>
-        <td class="no-border">
-  <p>
-    <%= f.label :location_name_like, "Location" %><br />
-    <%= f.text_field :location_name_like %>
-  </p>
-        </td>
-        <td class="no-border">
-  <p>
-  <%= f.label :client_name_like , "Client" %><br />
-  <%= f.text_field :client_name_like %>
-  </p>
-         </td>
-        <td class="no-border">
-  <p>
-    <%= f.submit "Submit" %>
-  </p>
-        </td></tr>
-<% end %>
-
-</table>
-
-<% if @jobs != @search.all %>
-<%= render :partial => "private/jobs/display", :locals => {:jobs => @searched_jobs} %>
-<% end %>
