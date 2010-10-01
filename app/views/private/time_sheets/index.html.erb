@@ -8,8 +8,8 @@
 
 <table class="sortable">
   <tr>
-    <th class="center span-2 number">#</th>
-    <th class="center span-2">Submited</th>
+    <th class="center number">#</th>
+    <th class="center span-2">Submitted</th>
     <th class="center">Date</th>
     <th class="nosort">Jobs</th>
 	<th class="center">Created By</th>
@@ -25,8 +25,8 @@
 <% @time_sheets.each do |time_sheet| %>
 <% if i == 25 %>
   <tr class="hidden print-break">
-    <th class="center span-2 number">#</th>
-    <th class="center span-2">Submited</th>
+    <th class="center number">#</th>
+    <th class="center span-2">Submitted</th>
     <th class="center">Date</th>
     <th class="nosort">Jobs</th>
 	<th class="center">Created By</th>
@@ -43,12 +43,13 @@
 <% end %>
 
   <tr>
-    <td><%= link_to time_sheet.id, private_time_sheet_path(time_sheet), :class => "show" %></td>
+    <td><%= time_sheet.id %></td>
     <td><%= time_sheet.created_at.strftime('%b-%d-%y') %></td>
     <td><%= if time_sheet.time_entries && time_sheet.time_entries.first : time_sheet.time_entries.first.clock_in.strftime('%b-%d-%y') end %></td>
     <td>
       <% time_sheet.jobs.each do |job| %>
-        <%= link_to job_label(job), private_job_path(job) %><br>
+        <%= job_label(job) %>
+        <%= link_to image_tag("open-link.png"), private_job_path(job) %><br>
       <% end %>
     </td>
 	<td> <% u_id = time_sheet.created_by %>
@@ -59,19 +60,20 @@
 		<% end %>
 	</td>
     <td class="right">
-      <%= if time_sheet.total_straight_time != 0 : "#{sprintf('%.2f', time_sheet.total_straight_time)}" else '-' end %>
+      <%= time_sheet.total_straight_time != 0 ? "#{sprintf('%.2f', time_sheet.total_straight_time)}" : '-' %>
     </td>
     <td class="right">
-      <%= if time_sheet.total_over_time != 0 : "#{sprintf('%.2f', time_sheet.total_over_time)}" else '-' end %>
+      <%= time_sheet.total_over_time != 0 ? "#{sprintf('%.2f', time_sheet.total_over_time)}" : '-' %>
     </td>
     <td class="right">
-      <%= if time_sheet.total_hours != 0 : "#{sprintf('%.2f', time_sheet.total_hours)}" else '-' end %>
+      <%= time_sheet.total_hours != 0 ? "#{sprintf('%.2f', time_sheet.total_hours)}" : '-' %>
     </td>
     <td class="right"><%= sprintf("%.2f", time_sheet.total_lunch_time) -%></td>
-    <td class="right"><%= if time_sheet.total_per_diem != 0 then "$" + sprintf("%.2f", "#{time_sheet.total_per_diem}") else '-' end -%></td>
+    <td class="right"><%= time_sheet.total_per_diem != 0 ? "$" + sprintf("%.2f", "#{time_sheet.total_per_diem}") : '-' -%></td>
     <td class="actions">
-    <%= link_to 'Delete', private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Delete", private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_time_sheet_path(time_sheet), :class => "edit" %>
+    <%= link_to "Show", private_time_sheet_path(time_sheet), :class => "show" %>
     </td>
   </tr>
 <% end %>

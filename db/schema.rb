@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100801012746) do
+ActiveRecord::Schema.define(:version => 20100909160243) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -170,11 +170,6 @@ ActiveRecord::Schema.define(:version => 20100801012746) do
     t.integer "job_sheet_id"
   end
 
-  create_table "gun_sheets_material_reports", :id => false, :force => true do |t|
-    t.integer "gun_sheet_id"
-    t.integer "material_report_id"
-  end
-
   create_table "job_locations", :force => true do |t|
     t.integer   "job_id"
     t.string    "name"
@@ -273,14 +268,13 @@ ActiveRecord::Schema.define(:version => 20100801012746) do
     t.string    "location_name"
     t.timestamp "versioned_at"
     t.integer   "created_by"
+    t.integer   "adjusted_yellow_dip_start", :default => 0
+    t.integer   "adjusted_yellow_dip_stop",  :default => 0
+    t.integer   "adjusted_white_dip_start",  :default => 0
+    t.integer   "adjusted_white_dip_stop",   :default => 0
   end
 
   add_index "load_sheets", ["job_id"], :name => "index_load_sheets_on_job_id"
-
-  create_table "load_sheets_material_reports", :id => false, :force => true do |t|
-    t.integer "load_sheet_id"
-    t.integer "material_report_id"
-  end
 
   create_table "locations", :force => true do |t|
     t.string    "name"
@@ -297,10 +291,19 @@ ActiveRecord::Schema.define(:version => 20100801012746) do
   end
 
   create_table "material_reports", :force => true do |t|
+<<<<<<< HEAD
     t.integer   "job_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.integer   "created_by"
+=======
+    t.integer  "job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "created_by"
+    t.integer  "gun_sheet_id"
+    t.integer  "load_sheet_id"
+>>>>>>> colin24
   end
 
   create_table "materials", :force => true do |t|

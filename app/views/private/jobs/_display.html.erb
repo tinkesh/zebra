@@ -1,7 +1,7 @@
 
 <table class="sortable">
   <tr>
-    <th class="span-2 center number">#</th>
+    <th class="center number">#</th>
     <th>Name</th>
     <th class="center">%</th>
     <th class="span-2 center">Start</th>
@@ -30,20 +30,17 @@
   <% end %>
 
   <tr>
-    <td><%= link_to job.id, private_job_path(job), :class => "show" %></td>
-    <td><%= link_to job.name, private_job_path(job) %></td>
+    <td><%= job.id %></td>
+    <td><%= job.name %></td>
     <td class="right"><%= if job.completion : job.completion.name else "-" end %></td>
     <td class="right"><%= if job.started_on : job.started_on.strftime('%b-%d-%y') else "-" end %></td>
     <td class="right"><%= if job.completed_on : job.completed_on.strftime('%b-%d-%y') else '' end %></td>
-    <td><%= job.client.name %>
-    <%= "<br />#{job.client.contact}" if job.client.contact != "" %>
-    <%= "<br />W: #{job.client.work_phone}" if job.client.work_phone != "" %>
-    <%= "<br />C: #{job.client.cell_phone}" if job.client.cell_phone != "" %>
-    </td>
-	<td><%= if job.location_name : job.location_name else '' end %></td>
+    <td><%= job.client.name %></td>
+  	<td><%= if job.location_name : job.location_name else '' end %></td>
     <td class="actions">
-    <%= link_to 'Delete', private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
-    <%= link_to "Edit", edit_private_job_path(job), :class => "edit" %>
+      <%= link_to "Delete", private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+      <%= link_to "Edit", edit_private_job_path(job), :class => "edit" %>
+      <%= link_to "Show", private_job_path(job), :class => "show" %>
     </td>
   </tr>
 <% end %>

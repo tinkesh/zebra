@@ -36,9 +36,12 @@ a:hover { color: #3344FF; text-decoration: underline; }
 .center { text-align: center; }
 .hidden { display: none; }
 .noborder { border: none; }
+.inline { display: inline; }
+a.plain { background: none; padding: 0; margin: 0; font-weight: normal; }
+.normal { font-weight: normal; }
 
 /* header */
-#header .container { position: relative; }
+#header { position: relative; }
 #header { background: #333; border-top: solid 5px #333; }
 #header ol { background: #333; list-style-type: none; margin: 0; padding: 0; }
 #header li, #submenu li { margin: 0; padding: 0; display: inline; }
@@ -70,7 +73,7 @@ a:hover { color: #3344FF; text-decoration: underline; }
 #material-rate, #equipment-rate { position: absolute; right: 0; top: 36px; }
 
 /* content */
-#content { border-top: solid 25px #efefef; }
+#content { border-top: solid 25px #efefef; padding: 10px; }
 #content .container { padding: 20px 0 0 0; position: relative; }
 
 /* sidebar */
@@ -121,7 +124,8 @@ td { border-right: solid 1px #ccc; border-bottom: solid 1px #ccc; ;}
 td.actions { border-right: none; }
 th, td, caption { padding: 2px 2px 2px 4px; }
 tr.even td { background: #ededed; }
-.actions { padding: 0; width: 120px; }
+table.sortable tr:hover { background: #FCD40D; }
+
 #controls { }
 #controls a.button {  }
 .rowodd { }
@@ -137,17 +141,18 @@ th.center { padding: 2px 2px 2px 4px;}
 
 /* controls */
 #new { float: right; margin: -25px 0 0 0; }
-#new a { color: #529214; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; }
-.delete-inline, .delete { color: #8a1f11; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/delete_12x12.gif') no-repeat; background-position: 0 50% ; border: none; width: 39px; }
-.delete:hover, .delete:focus, .delete-inline:focus, .delete-inline:hover { color: #8a1f11; }
-.show { color: #3344FF; margin: 0; display: block; padding: 0 0 0 17px; background: url('/images/show_12x12.gif') no-repeat; background-position: 0 50% ; border: none; font-weight: normal; }
-.edit, .edit-inline { color: #941494; margin: 0 10px 0 0; display: block; padding: 0 0 0 17px; background: url('/images/edit_12x12.gif') no-repeat; background-position: 0 50% ; border: none; font-weight: normal; }
-.edit:hover, .edit:focus { color: #529214 ;}
-.new, .new-inline { color: #529214; margin: 0 10px 0 0; padding: 0 0 0 17px; background: url('/images/new_12x12.gif') no-repeat; background-position: 0 50% ; border: none; font-weight: normal; }
-.new:hover, .new:active, .new-inline:hover, .new-inline:active { color: #529214 ;}
-.new, .edit, .delete { float: right; }
-.plain { background: none; padding: 0; margin: 0; }
-.normal { font-weight: normal; }
+#new a { color: #529214; margin: 0; display: block; border: none; }
+.actions { padding: 0; width: 150px; }
+.edit, .delete, .show { margin: 0; border: none; font-weight: bold; padding: 0 4px; }
+.edit:hover, .delete:hover, .show:hover { text-decoration: none; color: #fff; }
+.edit { color: #941494; }
+.edit:hover { background: #941494; }
+.delete { color: #8a1f11; }
+.delete:hover { background: #8a1f11; }
+.show { color: #3344FF; }
+.show:hover { background: #3344FF; }
+.actions .show, .actions .edit, .actions .delete { float: right; }
+
 
 /* labels */
 .office, .admin, .foreman { text-decoration: underline; }

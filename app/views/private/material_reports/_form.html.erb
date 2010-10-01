@@ -1,49 +1,7 @@
 <div class="container">
-<div class="span-12">
-  <h3>Load Sheets</h3>
-  <% if @load_sheets.empty? %>
-      <p>There are no load sheets available!</p>
-  <% else %>
-      <ul class="habtm">
-        <% for load_sheet in @load_sheets %>
-            <li>
-              <label>
-                <%= check_box_tag "material_report[load_sheet_ids][]", load_sheet.id, @material_report.load_sheets.include?(load_sheet) %>
-                <%= load_sheet.label %>  |
-                 <% if load_sheet.try(:created_by)  %>
-                         <% hold = User.find(:first, :conditions => {:id => load_sheet.created_by}) %>
-                         <%= hold.try(:first_name) %>
-                          <%= hold.try(:last_name) %>
-                 <% end %>
-                | <%= load_sheet.equipment.try(:name) %>
-              </label>
-            </li>
-        <% end %>
-      </ul>
-  <% end %>
-</div>
+  <p><%= form.label :load_sheet_id %><br>
+  <%= select ("material_report", "load_sheet_id", @load_sheets.map {|m| [m.label,m.id]}) %></p>
 
-<div class="span-12 last">
-  <h3>Gun Sheets</h3>
-  <% if @job.gun_sheets.empty? %>
-      <p>There are no gun sheets assigned to this job.</p>
-  <% else %>
-      <ul class="habtm">
-        <% for gun_sheet in @job.gun_sheets %>
-            <li>
-              <label>
-                <%= check_box_tag "material_report[gun_sheet_ids][]", gun_sheet.id, @material_report.gun_sheets.include?(gun_sheet) %>
-                <%= gun_sheet.label %> |
-                <% if gun_sheet.try(:created_by)  %>
-                         <% hold = User.find(:first, :conditions => {:id => gun_sheet.created_by}) %>
-                         <%= hold.try(:first_name)          %>
-                             <%= hold.try(:last_name) %>
-                 <% end %>
-              </label>
-            </li>
-        <% end %>
-      </ul>
-  <% end %>
+  <p><%= form.label :gun_sheet_id %><br>
+  <%= select ("material_report", "gun_sheet_id", @gun_sheets.map {|m| [m.label,m.id]}) %></p>
 </div>
-    </div>
-
