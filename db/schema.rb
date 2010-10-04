@@ -291,19 +291,12 @@ ActiveRecord::Schema.define(:version => 20100909160243) do
   end
 
   create_table "material_reports", :force => true do |t|
-<<<<<<< HEAD
-    t.integer   "job_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "created_by"
-=======
     t.integer  "job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
     t.integer  "gun_sheet_id"
     t.integer  "load_sheet_id"
->>>>>>> colin24
   end
 
   create_table "materials", :force => true do |t|

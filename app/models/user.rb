@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
       role.name.underscore.to_sym
     end
   end
-  
+
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)

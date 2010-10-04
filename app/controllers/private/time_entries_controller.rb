@@ -20,4 +20,11 @@ class Private::TimeEntriesController < ApplicationController
     end
   end
 
+  def destroy
+    @time_entry = TimeEntry.find(params[:id])
+    @time_entry.destroy
+    flash[:notice] = 'Time Entry deleted!'
+    redirect_to report_time_entries_url
+  end
+
 end

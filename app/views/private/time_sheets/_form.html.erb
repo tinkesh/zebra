@@ -118,7 +118,7 @@ If you require additional rows of tasks, save and re-edit. 2 new rows are added 
         <%= check_box_tag "user", "active", true, :disabled => true -%>
       <%- end -%>
     </td>
-    <td><%= entry.user.name if entry.user %></td>
+    <td><%= entry.user ? entry.user.name : entry.user_id %></td>
     <td class="span-5 right"><%= if entry.clock_in : entry.clock_in.strftime('%Y-%m-%d %I:%M %p') else '-' end %></td>
     <td class="span-5 right"><%= if entry.clock_out : entry.clock_out.strftime('%Y-%m-%d %I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
@@ -134,4 +134,4 @@ If you require additional rows of tasks, save and re-edit. 2 new rows are added 
   <%- end -%>
 </table>
 <%- end -%>
-</div>    
+</div>

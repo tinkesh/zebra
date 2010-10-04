@@ -24,7 +24,7 @@
         <td>
           <%= job_label(m.job) %>
           <%= link_to image_tag("open-link.png"), private_job_path(m.job) %>
-          </td>
+        </td>
         <td><%= (m.gun_sheet && m.gun_sheet.equipment ? m.gun_sheet.equipment.name : "-" )%></td>
         <td>Location</td>
         <td><%= m.created_by %></td>

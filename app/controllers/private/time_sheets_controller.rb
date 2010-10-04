@@ -30,7 +30,6 @@ class Private::TimeSheetsController < ApplicationController
       @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil}, :include => :user)
     end
 
-
     load_time_sheet_supporting_data
     5.times { @time_sheet.time_tasks.build }
 
@@ -59,15 +58,16 @@ class Private::TimeSheetsController < ApplicationController
             :order => "clock_in ASC")
           @time_sheet.check_hours_of_user_time(@entries)
         end
-      end
 
-      if params[:estimates]
-        params[:estimates].each do |estimate|
-          @estimate = @time_sheet.estimates.build(:job_id => estimate[1][:job_id], :hours => estimate[1][:hours], :crew_size => params[:time_entry_ids].length)
-          if @estimate.hours
-            @estimate.save
+        if params[:estimates]
+          params[:estimates].each do |estimate|
+            @estimate = @time_sheet.estimates.build(:job_id => estimate[1][:job_id], :hours => estimate[1][:hours], :crew_size => params[:time_entry_ids].length)
+            if @estimate.hours
+              @estimate.save
+            end
           end
         end
+
       end
 
       flash[:notice] = "Time Sheet created!"

@@ -9,6 +9,7 @@ class Private::ReportsController < ApplicationController
   filter_access_to :all
 
   def user_time
+    @page_title = "User Time"
     session[:report] = "user_time"
     if session[:offset].blank? : session[:offset] = Time.now end
     @date = session[:offset]
@@ -29,6 +30,7 @@ class Private::ReportsController < ApplicationController
   end
 
   def time_entries
+    @page_title = "Recent Time Entries"
     session[:report] = "time_entries"
     if session[:offset].blank? : session[:offset] = Time.now end
     @date = session[:offset]

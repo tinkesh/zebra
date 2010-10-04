@@ -34,8 +34,8 @@
     <%= f.label :client_name_like , "Client" %><br />
     <%= f.text_field :client_name_like %>
   </td>
-  <td class="no-border">
-    &nbsp;<br />
+  <td class="no-border right">
+    <%= link_to "Clear Search", private_jobs_path %><br />
     <%= f.submit "Search" %>
   </td></tr>
 <% end %>

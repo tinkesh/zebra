@@ -43,7 +43,10 @@
     <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.time_sheet_id == nil : "-" else link_to("##{entry.time_sheet.id}", private_time_sheet_path(entry.time_sheet)) end %></td>
-    <td class="right noprint"><%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit plain" %></td>
+    <td class="right noprint">
+      <%= link_to "Delete", private_time_entry_path(entry), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+      <%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit" %>
+    </td>
   </tr>
 <% end%>
 </table>
