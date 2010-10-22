@@ -1,21 +1,18 @@
-
-<% st = 0 %>
-<% ot = 0 %>
+<% st = 0 -%>
+<% ot = 0 -%>
+<% pt = 0 -%>
 <% entries.each do |entry| %>
 <% st += entry.straight_time %>
 <% ot += entry.over_time %>
+<% pt += entry.per_diem %>
   <tr class="<%= cycle('odd', 'even') %>">
-    <td>
-      <% @link = "/admin/reports/user_time/"+user.id.to_s %>
-        <%= link_to user.name, @link %>
-    </td>
-    <td ><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
-    <td ><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
-
+    <td><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
+    <td><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
+    <td><%= if entry.per_diem %></td>
   </tr>
 <% end%>
   <tr>
-    <th></th>
-    <th ><%= st %></th>
-    <th ><%= ot %></th>
-
+    <th><%= st %></th>
+    <th><%= ot %></th>
+    <th><%= pt %></th>
+  </tr>

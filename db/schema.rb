@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100909160243) do
+ActiveRecord::Schema.define(:version => 20101021194409) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -291,12 +291,12 @@ ActiveRecord::Schema.define(:version => 20100909160243) do
   end
 
   create_table "material_reports", :force => true do |t|
-    t.integer  "job_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by"
-    t.integer  "gun_sheet_id"
-    t.integer  "load_sheet_id"
+    t.integer   "job_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "created_by"
+    t.integer   "gun_sheet_id"
+    t.integer   "load_sheet_id"
   end
 
   create_table "materials", :force => true do |t|
@@ -356,23 +356,23 @@ ActiveRecord::Schema.define(:version => 20100909160243) do
   end
 
   create_table "time_sheets", :force => true do |t|
-    t.integer   "location_id"
-    t.integer   "time_note_category_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "created_by"
-    t.string    "note"
-    t.timestamp "started_at"
-    t.timestamp "completed_at"
-    t.integer   "updated_by"
-    t.integer   "lunch"
-    t.boolean   "per_diem"
-    t.integer   "per_diem_rate"
-    t.decimal   "fuel"
-    t.decimal   "hotel"
-    t.decimal   "fuel_rate"
-    t.timestamp "versioned_at"
-    t.string    "versioned_time_entry_ids"
+    t.integer  "location_id"
+    t.integer  "time_note_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "created_by"
+    t.string   "note"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.integer  "updated_by"
+    t.integer  "lunch"
+    t.integer  "per_diem_rate"
+    t.decimal  "fuel"
+    t.decimal  "hotel"
+    t.decimal  "fuel_rate"
+    t.datetime "versioned_at"
+    t.string   "versioned_time_entry_ids"
+    t.decimal  "per_diem_percent",         :default => 0.0
   end
 
   create_table "time_task_categories", :force => true do |t|
@@ -393,38 +393,38 @@ ActiveRecord::Schema.define(:version => 20100909160243) do
   end
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "login",                                                        :null => false
-    t.string   "crypted_password",                                             :null => false
-    t.string   "password_salt",                                                :null => false
-    t.string   "persistence_token",                                            :null => false
-    t.integer  "login_count",                          :default => 0,          :null => false
-    t.datetime "last_request_at"
-    t.datetime "last_login_at"
-    t.datetime "current_login_at"
-    t.string   "last_login_ip"
-    t.string   "current_login_ip"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "perishable_token",                     :default => "",         :null => false
-    t.string   "email",                                :default => "",         :null => false
-    t.string   "time_zone"
-    t.string   "home_phone"
-    t.string   "cell_phone"
-    t.string   "address"
-    t.string   "city"
-    t.string   "province"
-    t.string   "postal_code"
-    t.integer  "rate"
-    t.boolean  "bank_overtime_hours"
-    t.string   "versioned_role_ids"
-    t.datetime "versioned_at"
-    t.integer  "crew_id"
-    t.string   "employment_state",                     :default => "Employed"
-    t.date     "employment_start_date", :limit => 255
-    t.date     "employment_end_date",   :limit => 255
-    t.string   "employment_notes"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "login",                                         :null => false
+    t.string    "crypted_password",                              :null => false
+    t.string    "password_salt",                                 :null => false
+    t.string    "persistence_token",                             :null => false
+    t.integer   "login_count",           :default => 0,          :null => false
+    t.timestamp "last_request_at"
+    t.timestamp "last_login_at"
+    t.timestamp "current_login_at"
+    t.string    "last_login_ip"
+    t.string    "current_login_ip"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "perishable_token",      :default => "",         :null => false
+    t.string    "email",                 :default => "",         :null => false
+    t.string    "time_zone"
+    t.string    "home_phone"
+    t.string    "cell_phone"
+    t.string    "address"
+    t.string    "city"
+    t.string    "province"
+    t.string    "postal_code"
+    t.integer   "rate"
+    t.boolean   "bank_overtime_hours"
+    t.string    "versioned_role_ids"
+    t.timestamp "versioned_at"
+    t.integer   "crew_id"
+    t.string    "employment_state",      :default => "Employed"
+    t.text      "employment_start_date"
+    t.text      "employment_end_date"
+    t.string    "employment_notes"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

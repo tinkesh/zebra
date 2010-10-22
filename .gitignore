@@ -13,3 +13,4 @@ tmp/sent_mails/*
 .idea/.*
 db/development.sqlite3
 db/*.sqlite3
+TODO

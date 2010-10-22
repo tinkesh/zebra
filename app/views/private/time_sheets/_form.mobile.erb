@@ -8,9 +8,10 @@
     <td><%= form.text_field :note, :size => "25" %></td>
   </tr>
   <tr>
-    <td><%= form.label :note, "Per Diem" %></td>
-    <td><%= form.radio_button "per_diem", true %> Yes
-    <%= form.radio_button "per_diem", false, :checked => true %> No</td>
+    <td><%= form.label :per_diem_percent, "Per Diem" %></td>
+    <td><%= form.radio_button "per_diem_percent", 1 %> Full Day<br>
+    <%= form.radio_button "per_diem_percent", 0.5 %> Half Day<br>
+    <%= form.radio_button "per_diem_percent", 0, :checked => true %> None</td>
   </tr>
   <tr>
     <td><%= form.label :fuel, "Purchased Fuel Liters" %></td>

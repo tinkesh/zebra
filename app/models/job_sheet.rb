@@ -30,12 +30,8 @@ class JobSheet < ActiveRecord::Base
   def total_per_diem
     total = [0]
     self.time_sheets.each do |time_sheet|
-      time_sheet.time_entries.each do |entry|
-        if entry.time_sheet.per_diem == true
-          total << entry.time_sheet.per_diem_rate
-        else
-          total << 0
-        end
+      if time_sheet.per_diem_percent != 0
+        total << (time_sheet.per_diem_percent * time_sheet.entries.length)
       end
     end
     total.inject {|sum, n| sum + n.to_f}

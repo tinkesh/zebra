@@ -3,39 +3,40 @@
 <table>
   <tr>
     <th class="center" colspan="3">Actual</th>
-    <td>&nbsp;</td>
     <th class="center" colspan="3">Reported</th>
     <td colspan="3" class="noborder" >&nbsp;</td>
   </tr>
   <tr>
     <th class="right span-3">Date</th>
-    <th class="right span-2">C/In</th>
-    <th class="right span-2">C/Out</th>
-    <th class="right span-1">&nbsp;</th>
+    <th class="right span-3">In</th>
+    <th class="right span-3">Out</th>
     <th class="right span-3">Date</th>
-    <th class="right span-2">C/In</th>
-    <th class="right span-2">C/Out</th>
+    <th class="right span-3">In</th>
+    <th class="right span-3">Out</th>
     <th class="right">S/T</th>
-    <th class="right">OT</th>
+    <th class="right">O/T</th>
+    <th class="right">Diem</th>
     <% if permitted_to? :manage, :private_time_entries -%>
     <th>&nbsp;</th>
     <% end %>
   </tr>
 <% st = 0 %>
 <% ot = 0 %>
+<% pt = 0 %>
 <% entries.each do |entry| %>
 <% st += entry.straight_time %>
 <% ot += entry.over_time %>
+<% pt += entry.per_diem %>
   <tr class="<%= cycle('odd', 'even') %>">
     <td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
-    <td>&nbsp;</td>
     <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
     <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
+    <td class="right"><%= entry.per_diem != 0 ? entry.per_diem : "-" %></td>
     <% if permitted_to? :manage, :private_time_entries -%>
     <td class="noprint right">
       <%= link_to "Delete", private_time_entry_path(entry), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
@@ -45,8 +46,9 @@
   </tr>
 <% end%>
   <tr>
-    <th colspan="8" class="right"><%= st %></th>
+    <th colspan="7" class="right"><%= st %></th>
     <th class="right"><%= ot %></th>
+    <th class="right"><%= pt %></th>
     <% if permitted_to? :manage, :private_time_entries -%>
     <th class="noprint ">&nbsp;</th>
     <% end %>

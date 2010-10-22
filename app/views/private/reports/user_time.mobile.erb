@@ -1,4 +1,4 @@
- <h3><%= @user.name %>'s Hours</h3>
+<h2><%= @user.name %>'s Hours</h2>
 
 <h3><%= @back.to_date.strftime('%b-%d-%y') %> to <%= (@front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
   <p class="center">
@@ -7,12 +7,10 @@
   <%= link_to 'Next Pay Period >>', report_increase_offset_path(:id => @user.id) %>
 </p>
 <table>
-    <tr>
-    <th>User</th>
-    <th >S/T</th>
-    <th >OT</th>
+  <tr>
+    <th>S/T</th>
+    <th>OT</th>
+    <th>Diem</th>
   </tr>
-
-
-<%= render :partial => "display_table", :locals => {:user => @user, :back => @back, :front => @front, :entries => @entries } %>
-</table>    
+  <%= render :partial => "display_table", :locals => {:user => @user, :back => @back, :front => @front, :entries => @entries } %>
+</table>

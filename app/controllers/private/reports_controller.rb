@@ -74,7 +74,7 @@ class Private::ReportsController < ApplicationController
         if @entries
           straight_time = sprintf("%.2f", @entries.sum(&:straight_time))
           over_time     = sprintf("%.2f", @entries.sum(&:over_time))
-          per_diem      = sprintf("%.2f", @entries.sum(&:per_diem))
+          per_diem      = sprintf("%.2f", @entries.sum(&:per_diem_cost))
           u.bank_overtime_hours ? bank = "Bank" : bank = "Pay Out"
           csv << [u.name, u.rate, straight_time, over_time, per_diem, bank]
         else

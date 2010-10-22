@@ -11,7 +11,11 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def per_diem
-    if (self.time_sheet && self.time_sheet.per_diem == true) : self.time_sheet.per_diem_rate else 0 end
+    self.time_sheet ? self.time_sheet.per_diem_percent : 0
+  end
+
+  def per_diem_cost
+    self.time_sheet ? self.per_diem * self.time_sheet.per_diem_rate : 0
   end
 
   def straight_time
@@ -23,7 +27,7 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def cost
-    (self.straight_time.to_f * self.rate) + (self.over_time.to_f * self.rate * 1.5) + self.per_diem.to_f
+    (self.straight_time.to_f * self.rate) + (self.over_time.to_f * self.rate * 1.5) + self.per_diem_cost
   end
 
 end

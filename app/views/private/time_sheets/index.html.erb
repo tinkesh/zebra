@@ -52,7 +52,7 @@
         <%= link_to image_tag("open-link.png"), private_job_path(job) %><br>
       <% end %>
     </td>
-	<td> <% u_id = time_sheet.created_by %>
+	<td><% u_id = time_sheet.created_by %>
 		<% if u_id == 0 || u_id == nil %>
 		<% else %>
 		<% user = User.find(u_id) %>
@@ -68,8 +68,8 @@
     <td class="right">
       <%= time_sheet.total_hours != 0 ? "#{sprintf('%.2f', time_sheet.total_hours)}" : '-' %>
     </td>
-    <td class="right"><%= sprintf("%.2f", time_sheet.total_lunch_time) -%></td>
-    <td class="right"><%= time_sheet.total_per_diem != 0 ? "$" + sprintf("%.2f", "#{time_sheet.total_per_diem}") : '-' -%></td>
+    <td class="right"><%= sprintf("%.1f", time_sheet.total_lunch_time) -%></td>
+    <td class="right"><%= time_sheet.total_per_diem != 0 ? sprintf("%.1f", "#{time_sheet.total_per_diem}") : '-' -%></td>
     <td class="actions">
     <%= link_to "Delete", private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_time_sheet_path(time_sheet), :class => "edit" %>

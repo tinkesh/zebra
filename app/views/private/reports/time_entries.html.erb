@@ -11,18 +11,18 @@
 <% end %>
 
 <h3><%= @back.to_date.strftime('%b-%d-%y') %> to <%= (@front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
-<table>
+<table class="sortable">
   <tr>
-    <th class="span-3">User</th>
-    <th class="span-5">Job</th>
+    <th>User</th>
+    <th>Job</th>
+    <th class="right">T/S</th>
     <th class="right span-3">R Date</th>
-    <th class="right span-2">R C/In</th>
-    <th class="right span-2">R C/Out</th>
-    <th class="span-1">&nbsp;</th>
+    <th class="right span-2">R In</th>
+    <th class="right span-2">R Out</th>
     <th class="right span-3">A Date</th>
-    <th class="right span-2">A C/In</th>
-    <th class="right span-2">A C/Out</th>
-    <th class="right span-1 last">T/S</th>
+    <th class="right span-2">A In</th>
+    <th class="right span-2">A Out</th>
+    <th class="right span-1 last">Diem</th>
     <th class="noprint">&nbsp;</th>
   </tr>
 <% @entries.each do |entry| %>
@@ -31,18 +31,19 @@
     <td>
       <% if entry.time_sheet %>
         <% entry.time_sheet.estimates.each do |e| %>
-          <%= link_to "Job ##{e.job_id}", private_job_path(e.job_id) %><br>
+          #<%= e.job_id %> <%= e.job.name %>
+          <%= link_to image_tag("open-link.png"), private_job_path(e.job_id) %><b>
         <% end %>
       <% end %>
     </td>
-    <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
+    <td class="right"><%= if entry.time_sheet_id == nil : "-" else link_to("##{entry.time_sheet.id}", private_time_sheet_path(entry.time_sheet)) end %></td>
+    <td class="right"><%= entry.created_at.strftime('%a %b-%d-%y') %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-    <td>&nbsp;</td>
-    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%a, %b-%d-%y') else "-" end %></td>
+    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%a %b-%d-%y') else "-" end %></td>
     <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.time_sheet_id == nil : "-" else link_to("##{entry.time_sheet.id}", private_time_sheet_path(entry.time_sheet)) end %></td>
+    <td class="right"><%= entry.per_diem == 0 ? "-" : entry.per_diem %></td>
     <td class="right noprint">
       <%= link_to "Delete", private_time_entry_path(entry), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
       <%= link_to 'Edit', edit_private_time_entry_url(entry), :class => "edit" %>

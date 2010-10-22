@@ -43,7 +43,7 @@ class TimeSheet < ActiveRecord::Base
 
     end
 
-    if total_time  == 160 || total_time  == 215 || total_time  == 230 || total_time  >= 250
+    if total_time  >= 160 || total_time  >= 215 || total_time  >= 230 || total_time  >= 250
       Notifier.deliver_time_sheet_many_hours(self,total_time,name)
     end
   end
@@ -53,13 +53,7 @@ class TimeSheet < ActiveRecord::Base
   end
 
   def total_per_diem
-    total = [0]
-    if self.per_diem == true
-      self.time_entries.each do |entry|
-        total << entry.time_sheet.per_diem_rate
-      end
-    end
-    total.inject {|sum, n| sum + n.to_f}
+    self.per_diem_percent != 0 ? (self.per_diem_percent * self.time_entries.length) : 0
   end
 
   def total_straight_time
