@@ -1,6 +1,7 @@
 class LoadSheet < ActiveRecord::Base
 
   versioned
+  default_scope :order => 'created_at DESC'
 
   belongs_to :job
   belongs_to :equipment
@@ -15,7 +16,7 @@ class LoadSheet < ActiveRecord::Base
    end
 
    def label
-     "Load Sheet ##{self.id} #{self.date.to_date.strftime('%b-%d-%y')}"
+     "LS ##{self.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.date.to_date.strftime('%b-%d-%y')}"
    end
 
    def yellow_dip_used

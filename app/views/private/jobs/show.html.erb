@@ -14,6 +14,7 @@
 <% end %>
 
 <% content_for :versions do %>
+<!--
 <ol id="versions" class="noprint">
     <li>Version <%= @job.version %> of <%= @job.last_version %></li>
     <li><%= if @job.versioned_at : @job.versioned_at.strftime("%Y-%m-%d %H:%M") else @job.created_at.strftime("%Y-%m-%d %H:%M") end %></li>
@@ -30,6 +31,7 @@
     <li>Revert</li>
   <% end %>
 </ol>
+-->
 <% end %>
 
 <div class="span-6 append-1">
@@ -65,25 +67,25 @@
     <% end %>
   </p>
 
-</div><!-- span-6 append-1 -->
+</div><!-- span-6 -->
 
-<div class="span-10 append-1">
+<div class="span-8 append-1">
   <h3>Crews</h3>
-  <ol>
-<% if @job.is_archived == false %>
-  <% @job.crews.each do |crew| %>
-    <li>
-      <b><%= crew.name %></b>
-      <br>
-      <%= crew.user_list %>
-    </li>
-  <% end %>
 
-<% else %>
-<p><b>Job is Archived</b> <br>
-	No Crews Assigned</p>
-<% end %>
-</ol>
+  <% if @job.is_archived == false %>
+    <ol>
+    <% @job.crews.each do |crew| %>
+      <li>
+        <b><%= crew.name %></b>
+        <br>
+        <%= crew.user_list %>
+      </li>
+    <% end %>
+  </ol>
+  <% else %>
+  <p><b>Job is Archived</b><br />
+  No Crews Assigned</p>
+  <% end %>
 
   <hr>
 
@@ -111,15 +113,19 @@
   <hr>
 
   <h3>Marking Quantities</h3>
-  <ol>
-  <% @job.job_markings.each do |m| %>
-    <li><%= m.amount %> <%= m.gun_marking_category.name if m.gun_marking_category %></li>
+  <% if @job.job_markings.length != 0 %>
+    <ol>
+    <% @job.job_markings.each do |m| %>
+      <li><%= m.amount %> <%= m.gun_marking_category.name if m.gun_marking_category %></li>
+    <% end %>
+    </ol>
+  <% else %>
+    <p>No markings assigned.</p>
   <% end %>
-  </ol>
 
 </div><!-- span-10 append-1 -->
 
-<div class="span-6 last noprint">
+<div class="span-8 noprint last">
   <% if permitted_to? :show, :private_time_sheets -%>
     <h3>Time Sheets</h3>
     <ol>
@@ -127,10 +133,27 @@
       <li><%= link_to time_sheet.label, private_time_sheet_path(time_sheet), :class => "show plain" %></li>
     <% end %>
     </ol>
-
-    <hr>
   <% end -%>
 
+  <hr>
+
+  <% if permitted_to? :show, :private_job_sheets -%>
+    <h3>Job Sheets</h3>
+    <% if @job.job_sheets.length != 0 %>
+      <ol>
+      <% @job.job_sheets.each do |job_sheet| %>
+        <li><%= link_to job_sheet.label, private_job_sheet_path(job_sheet), :class => "show plain" %></li>
+      <% end %>
+      </ol>
+    <% else %>
+      <p>No Job Sheets.</p>
+    <% end %>
+  <% end %>
+</div>
+
+<hr>
+
+<div class="span-12 noprint">
   <% if permitted_to? :show, :private_load_sheets -%>
     <h3>Load Sheets</h3>
     <ol>
@@ -138,10 +161,10 @@
       <li><%= link_to load_sheet.label, private_load_sheet_path(load_sheet), :class => "show plain" %></li>
     <% end %>
     </ol>
-
-    <hr>
   <% end %>
+</div>
 
+<div class="span-12 noprint last">
   <% if permitted_to? :show, :private_gun_sheets -%>
     <h3>Gun Sheets</h3>
     <ol>
@@ -149,17 +172,7 @@
       <li><%= link_to gun_sheet.label, private_gun_sheet_path(gun_sheet), :class => "show plain" %></li>
     <% end %>
     </ol>
-
-    <hr>
   <% end %>
+</div>
 
-  <% if permitted_to? :show, :private_job_sheets -%>
-    <h3>Job Sheets</h3>
-    <ol>
-    <% @job.job_sheets.each do |job_sheet| %>
-      <li><%= link_to job_sheet.label, private_job_sheet_path(job_sheet), :class => "show plain" %></li>
-    <% end %>
-    </ol>
-  <% end %>
-</div><!-- span-6 last -->
-    </div>
+</div>

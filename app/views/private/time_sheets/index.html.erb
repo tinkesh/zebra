@@ -6,6 +6,8 @@
   </ul>
 <% end %>
 
+<%= will_paginate @time_sheets %>
+
 <table class="sortable">
   <tr>
     <th class="center number">#</th>
@@ -27,9 +29,9 @@
   <tr class="hidden print-break">
     <th class="center number">#</th>
     <th class="center span-2">Submitted</th>
-    <th class="center">Date</th>
+    <th class="center span-2">Date</th>
     <th class="nosort">Jobs</th>
-	<th class="center">Created By</th>
+  	<th class="center">Created By</th>
     <th class="center">S/T</th>
     <th class="center">O/T</th>
     <th class="center">T/T</th>
@@ -52,12 +54,7 @@
         <%= link_to image_tag("open-link.png"), private_job_path(job) %><br>
       <% end %>
     </td>
-	<td><% u_id = time_sheet.created_by %>
-		<% if u_id == 0 || u_id == nil %>
-		<% else %>
-		<% user = User.find(u_id) %>
-		<%= user.first_name + " " + user.last_name %>
-		<% end %>
+	<td><%= time_sheet.created_by ? User.find_by_id(time_sheet.created_by).name : "-" %>
 	</td>
     <td class="right">
       <%= time_sheet.total_straight_time != 0 ? "#{sprintf('%.2f', time_sheet.total_straight_time)}" : '-' %>
@@ -78,3 +75,5 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @time_sheets %>

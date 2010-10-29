@@ -1,6 +1,7 @@
 class GunSheet < ActiveRecord::Base
 
   versioned
+  default_scope :order => 'created_at DESC'
 
   belongs_to :job
   belongs_to :equipment
@@ -17,16 +18,16 @@ class GunSheet < ActiveRecord::Base
   after_create :deliver_new_gun_sheet
 
 
-   def deliver_new_gun_sheet
+  def deliver_new_gun_sheet
     Notifier.deliver_new_gun_sheet(self)
   end
 
   def label
-    "Gun Sheet ##{self.id} #{self.started_on.to_date.strftime('%b-%d-%y')}"
+    "GS ##{self.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.started_on.to_date.strftime('%b-%d-%y')}"
   end
 
   def yellow_length
-    0 + self.solid_y1 + self.solid_y2 + self.solid_y3 + self.skip_y1 + self.skip_y2 + self.skip_y3
+    (0 + self.solid_y1 + self.solid_y2 + self.solid_y3 + self.skip_y1 + self.skip_y2 + self.skip_y3) / 1000
   end
 
   def white_length

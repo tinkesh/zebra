@@ -12,43 +12,66 @@
   <%= render :partial => 'menus/material_reports_menu', :layout => false %>
 <% end %>
 
-<%= link_to "Printer Friendly Page", private_mat_print_url %>
+<% content_for :versions do %>
+<ol id="versions">
+    <li><%= link_to "Printer Friendly Page", private_mat_print_url %></li>
+</ol>
+
+
+<% end %>
 
 <table>
   <tr>
-    <th>Equipment Used:</th>
+    <th class="span-3">Gun Sheet</th>
+    <td>
+      <% if @material_report.gun_sheet %>
+        <%= @material_report.gun_sheet.label %>
+        <%= link_to image_tag("open-link.png"), edit_private_gun_sheet_path(@material_report.gun_sheet) %>
+      <% end %>
+    </td>
     <td>
     <% if @material_report.gun_sheet %>
       <% if @material_report.gun_sheet.equipment_id %>
         <%= @material_report.gun_sheet.equipment.name %>
+        <%= link_to image_tag("open-link.png"), edit_private_equipment_path(@material_report.gun_sheet.equipment) %><br />
       <% end %>
     <% end %>
-
+    </td>
+  </tr>
+  <tr>
+    <th class="span-3">Load Sheet</th>
+    <td>
+      <% if @material_report.load_sheet %>
+        <%= @material_report.load_sheet.label %>
+        <%= link_to image_tag("open-link.png"), edit_private_load_sheet_path(@material_report.load_sheet) %>
+      <% end %>
+    </td>
+    <td>
     <% if @material_report.load_sheet %>
       <% if @material_report.load_sheet.equipment %>
         <%= @material_report.load_sheet.equipment.name %>
+        <%= link_to image_tag("open-link.png"), edit_private_equipment_path(@material_report.load_sheet.equipment) %><br />
       <% end %>
     <% end %>
+    </td>
     </tr>
   </td>
 
   <tr>
     <th>Location:</th>
-    <td>TODO</td>
+    <td colspan="2"><%= @material_report.gun_sheet ? @material_report.gun_sheet.location_name : "Unknown" %></td>
   </tr>
 
   <tr>
     <th>Created By:</th>
-
-    <td>
-      <% if @material_report.try(:created_by) %>
-        <% User.find_by_id(@material_report.created_by).name %>
+    <td colspan="2">
+      <% if @material_report.created_by %>
+        <%= User.find_by_id(@material_report.created_by).name %>
+        <%= link_to image_tag("open-link.png"), edit_user_path(@material_report.created_by) %>
       <% end %>
     </td>
   </tr>
 </table>
-
-<h2>Tank Levels</h2>
 
 <table>
   <tr>
@@ -73,7 +96,9 @@
         <%= text_field_tag 'custom_yellow_end', @material_report.load_sheet.yellow_dip_end, :class => "span-2" %>
       </td>
       <td class="right" id="yellow_used"><%= @material_report.load_sheet.yellow_dip_used %></td>
-      <td class="right" id="yellow_rate"><%= @material_report.yellow_rate %></td>
+      <td class="right" id="yellow_rate">
+        <%= @material_report.yellow_rate %>
+      </td>
       <td class="right" id="tank_levels_total_yellow_used"></td>
     </tr>
     <tr>
@@ -89,7 +114,9 @@
         <%= text_field_tag 'custom_white_end', @material_report.load_sheet.white_dip_end, :class => "span-2" %>
       </td>
       <td class="right" id="white_used"><%= @material_report.load_sheet.white_dip_used %></td>
-      <td class="right" id="white_rate"><%= @material_report.white_rate %></td>
+      <td class="right" id="white_rate">
+        <%= @material_report.white_rate %>
+      </td>
       <td class="right" id="tank_levels_total_white_used"></td>
     </tr>
   </form>
@@ -104,17 +131,16 @@
   <% end %>
 </table>
 
-<h2>Meters</h2>
 <table>
   <tr>
     <th class="span-3">&nbsp;</th>
-    <th class="span-3 right">Y-1</th>
-    <th class="span-3 right">Y-2</th>
-    <th class="span-3 right">Y-3</th>
-    <th class="span-3 right">W-4</th>
-    <th class="span-3 right">W-5</th>
-    <th class="span-3 right">W-6</th>
-    <th class="span-3 right last">W-7</th>
+    <th class="right">Y-1</th>
+    <th class="right">Y-2</th>
+    <th class="right">Y-3</th>
+    <th class="right">W-4</th>
+    <th class="right">W-5</th>
+    <th class="right">W-6</th>
+    <th class="right last">W-7</th>
   </tr>
   <%
      @yellow_l_km = 0
@@ -124,7 +150,7 @@
   <% @yellow_l_km = @material_report.gun_sheet.yellow_length %>
   <% @white_l_km = @material_report.gun_sheet.white_length %>
     <tr>
-      <th class="right">Solid</th>
+      <th class="right span-3">Solid</th>
       <td class="right"><%= @material_report.gun_sheet.solid_y1 %></td>
       <td class="right"><%= @material_report.gun_sheet.solid_y2 %></td>
       <td class="right"><%= @material_report.gun_sheet.solid_y3 %></td>
@@ -134,7 +160,7 @@
       <td class="right"><%= @material_report.gun_sheet.solid_w7 %></td>
     </tr>
     <tr>
-      <th class="right">Skip</th>
+      <th class="right span-3">Skip</th>
       <td class="right"><%= @material_report.gun_sheet.skip_y1 %></td>
       <td class="right"><%= @material_report.gun_sheet.skip_y2 %></td>
       <td class="right"><%= @material_report.gun_sheet.skip_y3 %></td>
@@ -144,7 +170,7 @@
       <td class="right"><%= @material_report.gun_sheet.skip_w7 %></td>
     </tr>
     <tr>
-      <th class="right">Total</th>
+      <th class="right span-3">Total</th>
       <td class="right"><%= @material_report.gun_sheet.solid_y1 + @material_report.gun_sheet.skip_y1 %></td>
       <td class="right"><%= @material_report.gun_sheet.solid_y2 + @material_report.gun_sheet.skip_y2 %></td>
       <td class="right"><%= @material_report.gun_sheet.solid_y3 + @material_report.gun_sheet.skip_y3 %></td>
@@ -156,43 +182,37 @@
   <% end %>
 </table>
 
-<h2>Summary</h2>
-
 <table>
   <tr>
     <th class="span-3">&nbsp;</th>
-    <th class="right">Batch #</th>
     <th class="right">Total Litres Used</th>
     <th class="right">Total Line KM</th>
     <th class="right">Litres/Line KM</th>
     <th class="right">Target</th>
   </tr>
-      <tr>
-        <th class="right">Yellow</th>
-        <td class="right">TODO</td>
-        <td class="right" id="summary_total_yellow_used"></td>
-        <td class="right" id="summary_yellow_length"><%= @material_report.gun_sheet.yellow_length %></td>
-        <td class="right" id="liters_per_line_km_yellow"></td>
-        <td class="right">38 L/KM</td>
-      </tr>
+  <tr>
+    <th class="right">Yellow</th>
+    <td class="right" id="summary_total_yellow_used"></td>
+    <td class="right" id="summary_yellow_length"><%= @material_report.gun_sheet.yellow_length %></td>
+    <td class="right" id="liters_per_line_km_yellow"></td>
+    <td class="right">38 L/KM</td>
+  </tr>
 
-      <tr>
-        <th class="right">White</th>
-        <td class="right">TODO</td>
-        <td class="right" id="summary_total_white_used"></td>
-        <td class="right" id="summary_white_length"><%= @material_report.gun_sheet.white_length %></td>
-        <td class="right" id="liters_per_line_km_white"></td>
-        <td class="right">38 L/KM</td>
-      </tr>
+  <tr>
+    <th class="right">White</th>
+    <td class="right" id="summary_total_white_used"></td>
+    <td class="right" id="summary_white_length"><%= @material_report.gun_sheet.white_length %></td>
+    <td class="right" id="liters_per_line_km_white"></td>
+    <td class="right">38 L/KM</td>
+  </tr>
 
-      <tr>
-        <th class="right">Bead</th>
-        <td class="right">-</td>
-        <td class="right">-</td>
-        <td class="right">-</td>
-        <td class="right">-</td>
-        <td class="right">22.2 KG/KM</td>
-      </tr>
+  <tr>
+    <th class="right">Bead</th>
+    <td class="right">-</td>
+    <td class="right">-</td>
+    <td class="right">-</td>
+    <td class="right">22.2 KG/KM</td>
+  </tr>
 </table>
 
 <h3>Markings</h3>
@@ -204,7 +224,7 @@
   </tr>
   <% if @material_report.gun_sheet %>
     <% @material_report.gun_sheet.gun_markings.each do |marking| %>
-      <tr class="<%= cycle('even', 'odd') %>">
+      <tr>
         <td><%= gun_sheet.try(:label) %></td>
         <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %></td>
         <td><%= marking.amount %></td>
@@ -221,7 +241,7 @@
     <th>sides</th>
   </tr>
   <% if @material_report.gun_sheet %>
-    <tr class="<%= cycle('even', 'odd') %>">
+    <tr>
       <td><%= @material_report.gun_sheet.try(:label) %></td>
       <td><%= @material_report.gun_sheet.try(:interchanges) %></td>
       <td><%= @material_report.gun_sheet.try(:sides)  %></td>
@@ -229,26 +249,10 @@
   <% end %>
 </table>
 
-
-<h3>Equipment</h3>
-<table>
-  <tr>
-    <th>Load Sheet</th>
-    <th>Equipment</th>
-  </tr>
-  <% if @material_report.load_sheet %>
-    <tr class="<%= cycle('even', 'odd') %>">
-      <td><%= @material_report.load_sheet.try(:label) %></td>
-      <td><%= @material_report.load_sheet.equipment.try(:name) %></td>
-    </tr>
-  <% end %>
-</table>
-
 <script type="text/javascript" language="javascript">
-
   function updateTable() {
-    $('white_used').innerHTML = $('custom_white_end').getValue() - $('custom_white_start').getValue()
-    $('yellow_used').innerHTML = $('custom_yellow_end').getValue() - $('custom_yellow_start').getValue()
+    $('white_used').innerHTML = $('custom_white_start').getValue() - $('custom_white_end').getValue()
+    $('yellow_used').innerHTML = $('custom_yellow_start').getValue() - $('custom_yellow_end').getValue()
     $('tank_levels_total_white_used').innerHTML = ($('white_rate').innerHTML * $('white_used').innerHTML).toFixed(2)
     $('tank_levels_total_yellow_used').innerHTML = ($('yellow_rate').innerHTML * $('yellow_used').innerHTML).toFixed(2)
     $('summary_total_white_used').innerHTML = ($('white_rate').innerHTML * $('white_used').innerHTML).toFixed(2)
@@ -263,8 +267,6 @@
     $('custom_yellow_start').observe('keyup', updateTable);
 </script>
 
-<Script Language="JavaScript">
-//  new Form.Observer($("custom_dips"), 0.3, updateTable());
-//  new Form.EventObserver($("custom_dips"), myCallBackFunction);
+<script language="javascript">
   updateTable();
-</Script>
+</script>

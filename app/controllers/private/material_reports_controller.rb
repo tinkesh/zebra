@@ -4,7 +4,7 @@ class Private::MaterialReportsController < ApplicationController
   filter_access_to :all
 
   def index
-    @material_reports = MaterialReport.find(:all, :order => 'id DESC', :include => [:job, :gun_sheet, :load_sheet])
+    @material_reports = MaterialReport.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:job, :gun_sheet, :load_sheet]
     @page_title = "Material Reports"
   end
 

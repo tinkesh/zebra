@@ -25,7 +25,7 @@ module ApplicationHelper
 
   def job_label(job)
     if job
-      export = 'Job #' + job.id.to_s
+      export = '#' + job.id.to_s
       if job.name : export += ", " + job.name end
     else
       export = "No Job"

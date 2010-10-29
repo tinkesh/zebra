@@ -11,10 +11,10 @@
     <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
   <% end %>
   <% if permitted_to? :create, :private_load_sheets -%>
-    <%= link_to "New Load Sheet", new_private_load_sheet_path %>
+    <li><%= link_to "New Load Sheet", new_private_load_sheet_path %></li>
   <% end %>
   <% if permitted_to? :create, :private_jobs -%>
-    <%= link_to "Archived Jobs", '/admin/archived_jobs' %>
+    <li><%= link_to "Archived Jobs", '/admin/archived_jobs' %></li>
   <% end %>
 <% end %>
 

@@ -78,7 +78,7 @@
   </tr>
   <% @load_sheet.load_entries.each do |entry| %>
   <% if entry %>
-    <tr class="<%= cycle('even', 'odd') %>">
+    <tr>
       <td><%= entry.category %></td>
       <td><%= if entry.material && entry.material.manufacturer : entry.material.manufacturer.name end %></td>
       <td><%= if entry.material : entry.material.batch end %></td>

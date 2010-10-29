@@ -31,10 +31,14 @@ class JobSheet < ActiveRecord::Base
     total = [0]
     self.time_sheets.each do |time_sheet|
       if time_sheet.per_diem_percent != 0
-        total << (time_sheet.per_diem_percent * time_sheet.entries.length)
+        total << (time_sheet.per_diem_percent * time_sheet.time_entries.length)
       end
     end
     total.inject {|sum, n| sum + n.to_f}
+  end
+
+  def total_per_diem_cost
+    self.total_per_diem * Cost.find_by_name('per diem').value.to_i
   end
 
   def total_straight_time
@@ -94,7 +98,7 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_misc_cost
-    self.total_hotel + self.total_fuel
+    self.total_hotel + self.total_fuel + self.total_per_diem_cost
   end
 
   def marking_earnings(marking)

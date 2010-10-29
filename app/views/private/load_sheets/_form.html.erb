@@ -4,12 +4,12 @@
   <%= form.date_select :date %>
 </div>
 
-<div class="span-8 append-bottom">
+<div class="span-10 append-bottom">
   <%= form.label :equipment_id, "Equipment" %><br>
   <%= form.select (:equipment_id, @equipment.map {|u| ["#{u.unit} - #{u.name}",u.id]}, :include_blank => true) %>
 </div>
 
-<div class="span-10 last append-bottom">
+<div class="span-8 last append-bottom">
   <% if @crew && @crew.jobs.length != 0 %>
     <%= form.label :job_id, "Job" %><br>
     <%= form.select (:job_id, @crew.jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id]) %>

@@ -6,7 +6,7 @@ class Private::JobSheetsController < ApplicationController
   filter_access_to [:index, :destroy], :attribute_check => false
 
   def index
-    @job_sheets = JobSheet.find(:all)
+    @job_sheets = JobSheet.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 50
     @page_title = "Job Sheets"
   end
 

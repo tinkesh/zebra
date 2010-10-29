@@ -6,33 +6,33 @@
     </ul>
 <% end %>
 
+<%= will_paginate @material_reports %>
+
 <table class="sortable">
   <tr>
     <th class="center number">#</th>
-    <th class="span-2 center">Date</th>
     <th class="number">Job</th>
-    <th class="number">Equipment</th>
-    <th class="number">Location</th>
-    <th class="number">Created By</th>
+    <th class="number">Load Sheet</th>
+    <th class="number">Gun Sheet</th>
     <th class="actions nosort"></th>
   </tr>
 
-  <% @material_reports.each do |m| %>
-      <tr>
-        <td><%= m.id %></td>
-        <td><%= (m.gun_sheet && m.gun_sheet.try(:started_on)) ? m.gun_sheet.started_on.strftime('%b-%d-%y') : "-" %></td>
-        <td>
-          <%= job_label(m.job) %>
-          <%= link_to image_tag("open-link.png"), private_job_path(m.job) %>
-        </td>
-        <td><%= (m.gun_sheet && m.gun_sheet.equipment ? m.gun_sheet.equipment.name : "-" )%></td>
-        <td>Location</td>
-        <td><%= m.created_by %></td>
-        <td class="actions">
-          <%= link_to "Delete", private_material_report_path(m), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
-          <%= link_to "Edit", edit_private_material_report_path(m), :class => "edit" %>
-          <%= link_to "Show", private_material_report_path(m), :class => "show" %>
-        </td>
-      </tr>
-  <% end %>
+<% @material_reports.each do |m| %>
+  <tr>
+    <td><%= m.id %></td>
+    <td>
+      <%= job_label(m.job) %>
+      <%= link_to image_tag("open-link.png"), private_job_path(m.job) %>
+    </td>
+    <td><%= m.load_sheet ? m.load_sheet.label : "-" %></td>
+    <td><%= m.gun_sheet ? m.gun_sheet.label : "-" %></td>
+    <td class="actions">
+      <%= link_to "Delete", private_material_report_path(m), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+      <%= link_to "Edit", edit_private_material_report_path(m), :class => "edit" %>
+      <%= link_to "Show", private_material_report_path(m), :class => "show" %>
+    </td>
+  </tr>
+<% end %>
 </table>
+
+<%= will_paginate @material_reports %>

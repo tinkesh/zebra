@@ -13,11 +13,27 @@ class MaterialReport < ActiveRecord::Base
   end
 
   def yellow_rate
-    33.97
+    if self.gun_sheet
+      if self.gun_sheet.equipment
+        self.gun_sheet.equipment.yellow_rate
+      else
+        0
+      end
+    else
+      0
+    end
   end
 
   def white_rate
-    33.97
+    if self.gun_sheet
+      if self.gun_sheet.equipment
+        self.gun_sheet.equipment.white_rate
+      else
+        0
+      end
+    else
+      0
+    end
   end
 
 end

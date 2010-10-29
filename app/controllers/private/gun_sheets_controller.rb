@@ -4,7 +4,7 @@ class Private::GunSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @gun_sheets = GunSheet.find(:all, :order => 'id DESC', :include => [:equipment, :job])
+    @gun_sheets = GunSheet.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:job, :equipment]
     @page_title = "Gun Sheets"
   end
 

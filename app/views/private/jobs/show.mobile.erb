@@ -16,9 +16,6 @@
     <% if permitted_to? :create, :private_load_sheets -%>
       <label><%= radio_button_tag "navigate", "new_load_sheet" %> New Load Sheet</label><br />
     <% end %>
-    <% if permitted_to? :create, :private_job_sheets -%>
-      <label><%= radio_button_tag "navigate", "new_job_sheet" %> New Job Sheet</label><br />
-    <% end %>
   </p>
 
   <%= hidden_field "job", "id" %>

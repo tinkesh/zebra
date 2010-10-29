@@ -4,7 +4,7 @@ class Private::LoadSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @load_sheets = LoadSheet.find(:all, :order => 'id DESC', :include => [:equipment, :job])
+    @load_sheets = LoadSheet.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:equipment, :job]
     @page_title = "Load Sheets"
   end
 
@@ -29,9 +29,9 @@ class Private::LoadSheetsController < ApplicationController
     6.times { @load_sheet.load_entries.build }
     @page_title = "New Load Sheet"
   end
-  
+
   def edit_stuff
-    redirect_to 
+    redirect_to
   end
 
   def create

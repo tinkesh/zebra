@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021194409) do
+ActiveRecord::Schema.define(:version => 20101026152530) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -87,13 +87,13 @@ ActiveRecord::Schema.define(:version => 20101021194409) do
   end
 
   create_table "equipment", :force => true do |t|
-    t.string    "unit"
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "rate"
-    t.integer   "yellow_rate"
-    t.integer   "white_rate"
+    t.string   "unit"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "rate"
+    t.decimal  "yellow_rate", :precision => 5, :scale => 2
+    t.decimal  "white_rate",  :precision => 5, :scale => 2
   end
 
   create_table "equipment_jobs", :id => false, :force => true do |t|

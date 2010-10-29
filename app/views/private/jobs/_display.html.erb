@@ -31,11 +31,11 @@
   <tr>
     <td><%= job.id %></td>
     <td><%= job.name %></td>
-    <td class="right"><%= if job.completion : job.completion.name else "-" end %></td>
-    <td class="right"><%= if job.started_on : job.started_on.strftime('%b-%d-%y') else "-" end %></td>
-    <td class="right"><%= if job.completed_on : job.completed_on.strftime('%b-%d-%y') else '' end %></td>
+    <td class="right"><%= job.completion ? job.completion.name : "-" %></td>
+    <td class="right"><%= job.started_on ? job.started_on.strftime('%b-%d-%y') : "-" %></td>
+    <td class="right"><%= job.completed_on ? job.completed_on.strftime('%b-%d-%y') : '-' %></td>
     <td><%= job.client.name %></td>
-  	<td><%= if job.location_name : job.location_name else '' end %></td>
+  	<td><%= job.location_name ? job.location_name : '-' %></td>
     <td class="actions">
       <%= link_to "Delete", private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
       <%= link_to "Edit", edit_private_job_path(job), :class => "edit" %>

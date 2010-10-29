@@ -277,7 +277,7 @@ tr{
     <th>Equipment</th>
   </tr>
   <% @load_sheets.each do |load_sheet|      %>
-    <tr class="<%= cycle('even', 'odd') %>">
+    <tr>
       <td><%= load_sheet.try(:label) %></td>
       <td><%= load_sheet.equipment.try(:name) %></td>
     </tr>
@@ -294,7 +294,7 @@ tr{
   </tr>
   <% @gun_sheets.each do |gun_sheet|      %>
   <% gun_sheet.gun_markings.each do |marking| %>
-    <tr class="<%= cycle('even', 'odd') %>">
+    <tr>
       <td><%= gun_sheet.try(:label) %></td>
       <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %></td>
       <td><%= marking.amount %></td>
@@ -311,7 +311,7 @@ tr{
     <th>sides</th>
   </tr>
   <% @gun_sheets.each do |gun_sheet|      %>
-    <tr class="<%= cycle('even', 'odd') %>">
+    <tr>
       <td><%= gun_sheet.try(:label) %></td>
       <td><%= gun_sheet.try(:interchanges) %></td>
       <td><%= gun_sheet.try(:sides)  %></td>

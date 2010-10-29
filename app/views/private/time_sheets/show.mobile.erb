@@ -97,7 +97,7 @@
   </tr>
   <% @time_entries_total = 0 %>
   <% @time_sheet.time_entries.each do |entry| %>
-    <tr class="<%= cycle('even', 'odd') %>">
+    <tr>
       <td><%= entry.user.name %></td>
       <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
       <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>

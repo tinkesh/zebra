@@ -4,7 +4,7 @@ class Private::TimeSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @time_sheets = TimeSheet.find(:all, :include => [:jobs, :time_entries], :order => "created_at DESC")
+    @time_sheets = TimeSheet.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 50, :include => [:jobs, :time_entries]
     @page_title = "Time Sheets"
   end
 
@@ -16,7 +16,7 @@ class Private::TimeSheetsController < ApplicationController
 
   def new
     @time_sheet = TimeSheet.new
-    @time_sheet.created_by = current_user.name
+    @time_sheet.created_by = current_user.id
 
     if current_user.crew
       user_ids = []
@@ -135,16 +135,15 @@ private
     end
   end
 
-    def generate_front_to_back
-      @date = Time.now
-      if @date.day <= 23
-        @back  = @date.year.to_s + "-" + (@date.month - 1).to_s + "-" + "24"
-        @front = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
-      else
-        @back = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
-        @front  = @date.year.to_s + "-" + (@date.month + 1).to_s + "-" + "24"
-      end
+  def generate_front_to_back
+    @date = Time.now
+    if @date.day <= 23
+      @back  = @date.year.to_s + "-" + (@date.month - 1).to_s + "-" + "24"
+      @front = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
+    else
+      @back = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
+      @front  = @date.year.to_s + "-" + (@date.month + 1).to_s + "-" + "24"
     end
-
+  end
 
 end

@@ -6,7 +6,9 @@
   </ul>
 <% end %>
 
-<!-- <p id="new"><%= link_to 'New Gun Sheet', new_private_gun_sheet_path %></p> -->
+<p class="hint">To create a new gun sheet, view the related Job and choose 'New Gun Sheet' from the sub-menu.</p>
+
+<%= will_paginate @time_sheets %>
 
 <table class="sortable">
   <tr>
@@ -15,7 +17,7 @@
     <th class="number">Job</th>
     <th class="number">Location</th>
     <th class="number">Created By</th>
-    <th class="number">Equipment</th>
+    <th class="number">Truck</th>
     <th class="actions nosort"></th>
   </tr>
 
@@ -42,3 +44,5 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @time_sheets %>

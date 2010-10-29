@@ -1,7 +1,18 @@
-<div class="container">
-  <p><%= form.label :load_sheet_id %><br>
-  <%= select ("material_report", "load_sheet_id", @load_sheets.map {|m| [m.label,m.id]}) %></p>
+<p>
+  <%= form.label :load_sheet_id %><br>
+  <% if @load_sheets %>
+    <%= select ("material_report", "load_sheet_id", @load_sheets.map {|m| [m.label,m.id]}) %>
+  <% else %>
+    There are no Load Sheets recorded for this job.
+  <% end %>
+</p>
 
-  <p><%= form.label :gun_sheet_id %><br>
-  <%= select ("material_report", "gun_sheet_id", @gun_sheets.map {|m| [m.label,m.id]}) %></p>
-</div>
+
+<p>
+  <%= form.label :gun_sheet_id %><br>
+  <% if @gun_sheets %>
+    <%= select ("material_report", "gun_sheet_id", @gun_sheets.map {|g| [g.label,g.id]}) %>
+  <% else %>
+    There are no Gun Sheets recorded for this job.
+  <% end %>
+</p>
