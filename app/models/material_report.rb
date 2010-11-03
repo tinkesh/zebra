@@ -13,27 +13,15 @@ class MaterialReport < ActiveRecord::Base
   end
 
   def yellow_rate
-    if self.gun_sheet
-      if self.gun_sheet.equipment
-        self.gun_sheet.equipment.yellow_rate
-      else
-        0
-      end
-    else
-      0
-    end
+    self.gun_sheet ? (self.gun_sheet.equipment ? self.gun_sheet.equipment.yellow_rate : 0) : 0
   end
 
   def white_rate
-    if self.gun_sheet
-      if self.gun_sheet.equipment
-        self.gun_sheet.equipment.white_rate
-      else
-        0
-      end
-    else
-      0
-    end
+    self.gun_sheet ? (self.gun_sheet.equipment ? self.gun_sheet.equipment.white_rate : 0) : 0
+  end
+
+  def bead_used
+    (self.load_sheet.yellow_dip_used + self.load_sheet.white_dip_used) * 0.6
   end
 
 end

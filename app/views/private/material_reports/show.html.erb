@@ -76,30 +76,28 @@
 <table>
   <tr>
     <th class="span-3">&nbsp;</th>
-    <th class="right">Tank Start cm</th>
-    <th class="right">Tank End cm</th>
-    <th class="right">Tank Used cm</th>
+    <th class="right">Tank Start</th>
+    <th class="right">Tank End</th>
+    <th class="right">Tank Used</th>
     <th class="right">Truck Calculation Rate</th>
-    <th class="right">Total Litres Used</th>
+    <th class="right">Total Used</th>
   </tr>
 
   <% if @material_report.load_sheet %>
-  <form id="custom_dips" action="#">
+  <form id="adjusted_dips" action="#">
     <tr>
       <th class="right">Yellow</th>
       <td class="right" id="yellow_start">
         <%= @material_report.load_sheet.yellow_dip_start %>
-        <%= text_field_tag 'custom_yellow_start', @material_report.load_sheet.yellow_dip_start, :class => "span-2" %>
+        <%= text_field_tag 'adjusted_yellow_start', @material_report.load_sheet.yellow_dip_start, :class => "span-2" %>
       </td>
       <td class="right" id="yellow_end">
         <%= @material_report.load_sheet.yellow_dip_end %>
-        <%= text_field_tag 'custom_yellow_end', @material_report.load_sheet.yellow_dip_end, :class => "span-2" %>
+        <%= text_field_tag 'adjusted_yellow_end', @material_report.load_sheet.yellow_dip_end, :class => "span-2" %>
       </td>
-      <td class="right" id="yellow_used"><%= @material_report.load_sheet.yellow_dip_used %></td>
-      <td class="right" id="yellow_rate">
-        <%= @material_report.yellow_rate %>
-      </td>
-      <td class="right" id="tank_levels_total_yellow_used"></td>
+      <td class="right"><span id="yellow_used"><%= @material_report.load_sheet.yellow_dip_used %></span> cm</td>
+      <td class="right"><span id="yellow_rate"><%= @material_report.yellow_rate %></span> L/cm</td>
+      <td class="right"><span id="tank_yellow_calc"></span> L</td>
     </tr>
     <tr>
 
@@ -107,26 +105,24 @@
       <th class="right">White</th>
       <td class="right" id="white_start">
         <%= @material_report.load_sheet.white_dip_start %>
-        <%= text_field_tag 'custom_white_start', @material_report.load_sheet.white_dip_start, :class => "span-2" %>
+        <%= text_field_tag 'adjusted_white_start', @material_report.load_sheet.white_dip_start, :class => "span-2" %>
       </td>
       <td class="right" id="white_end">
         <%= @material_report.load_sheet.white_dip_end %>
-        <%= text_field_tag 'custom_white_end', @material_report.load_sheet.white_dip_end, :class => "span-2" %>
+        <%= text_field_tag 'adjusted_white_end', @material_report.load_sheet.white_dip_end, :class => "span-2" %>
       </td>
-      <td class="right" id="white_used"><%= @material_report.load_sheet.white_dip_used %></td>
-      <td class="right" id="white_rate">
-        <%= @material_report.white_rate %>
-      </td>
-      <td class="right" id="tank_levels_total_white_used"></td>
+      <td class="right"><span id="white_used"><%= @material_report.load_sheet.white_dip_used %></span> cm</td>
+      <td class="right"><span id="white_rate"><%= @material_report.white_rate %></span> L/cm</td>
+      <td class="right"><span id="tank_white_calc"></span> L</td>
     </tr>
   </form>
     <tr>
       <th class="right">Bead</th>
-      <td class="right">-</td>
-      <td class="right">-</td>
-      <td class="right">-</td>
-      <td class="right">-</td>
-      <td class="right">-</td>
+      <td class="right"></td>
+      <td class="right"></td>
+      <td class="right"></td>
+      <td class="right"></td>
+      <td class="right"><span id="bead_used"></span> KG</td>
     </tr>
   <% end %>
 </table>
@@ -185,86 +181,86 @@
 <table>
   <tr>
     <th class="span-3">&nbsp;</th>
-    <th class="right">Total Litres Used</th>
-    <th class="right">Total Line KM</th>
+    <th class="right">Total Used</th>
+    <th class="right">Solid+Skip KM</th>
     <th class="right">Litres/Line KM</th>
     <th class="right">Target</th>
   </tr>
   <tr>
     <th class="right">Yellow</th>
-    <td class="right" id="summary_total_yellow_used"></td>
+    <td class="right"><span id="summary_total_yellow_used"></span> L</td>
     <td class="right" id="summary_yellow_length"><%= @material_report.gun_sheet.yellow_length %></td>
-    <td class="right" id="liters_per_line_km_yellow"></td>
+    <td class="right" id="summary_yellow_calculation"></td>
     <td class="right">38 L/KM</td>
   </tr>
 
   <tr>
     <th class="right">White</th>
-    <td class="right" id="summary_total_white_used"></td>
+    <td class="right"><span id="summary_total_white_used"></span> L</td>
     <td class="right" id="summary_white_length"><%= @material_report.gun_sheet.white_length %></td>
-    <td class="right" id="liters_per_line_km_white"></td>
+    <td class="right" id="summary_white_calculation"></td>
     <td class="right">38 L/KM</td>
   </tr>
 
   <tr>
     <th class="right">Bead</th>
-    <td class="right">-</td>
-    <td class="right">-</td>
-    <td class="right">-</td>
+    <td class="right"><span id="summary_bead_used"></span> KG</td>
+    <td class="right" id="summary_bead_length"></td>
+    <td class="right" id="summary_bead_calculation"></td>
     <td class="right">22.2 KG/KM</td>
   </tr>
 </table>
 
+<% if @material_report.gun_sheet %>
 <h3>Markings</h3>
 <table>
   <tr>
-    <th>Gun Sheet</th>
     <th>Category</th>
     <th>Amount</th>
   </tr>
-  <% if @material_report.gun_sheet %>
     <% @material_report.gun_sheet.gun_markings.each do |marking| %>
       <tr>
-        <td><%= gun_sheet.try(:label) %></td>
-        <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %></td>
+        <td><%= marking.gun_marking_category ? marking.gun_marking_category.name : "Unknown Category" %></td>
         <td><%= marking.amount %></td>
       </tr>
     <% end %>
-  <% end %>
 </table>
 
 <h3>Interchanges and Sides</h3>
 <table>
   <tr>
-    <th>Gun Sheet</th>
     <th>Interchanges</th>
     <th>sides</th>
   </tr>
-  <% if @material_report.gun_sheet %>
     <tr>
-      <td><%= @material_report.gun_sheet.try(:label) %></td>
       <td><%= @material_report.gun_sheet.try(:interchanges) %></td>
       <td><%= @material_report.gun_sheet.try(:sides)  %></td>
     </tr>
-  <% end %>
 </table>
+<% end %>
 
 <script type="text/javascript" language="javascript">
   function updateTable() {
-    $('white_used').innerHTML = $('custom_white_start').getValue() - $('custom_white_end').getValue()
-    $('yellow_used').innerHTML = $('custom_yellow_start').getValue() - $('custom_yellow_end').getValue()
-    $('tank_levels_total_white_used').innerHTML = ($('white_rate').innerHTML * $('white_used').innerHTML).toFixed(2)
-    $('tank_levels_total_yellow_used').innerHTML = ($('yellow_rate').innerHTML * $('yellow_used').innerHTML).toFixed(2)
+    $('white_used').innerHTML = ($('adjusted_white_start').getValue() - $('adjusted_white_end').getValue()).toFixed(2)
+    $('yellow_used').innerHTML = ($('adjusted_yellow_start').getValue() - $('adjusted_yellow_end').getValue()).toFixed(2)
+    $('tank_white_calc').innerHTML = ($('white_rate').innerHTML * $('white_used').innerHTML).toFixed(2)
+    $('tank_yellow_calc').innerHTML = ($('yellow_rate').innerHTML * $('yellow_used').innerHTML).toFixed(2)
+    $('bead_used').innerHTML = (($('tank_white_calc').innerHTML * 1) + ($('tank_yellow_calc').innerHTML * 1) * 0.6).toFixed(2)
+
     $('summary_total_white_used').innerHTML = ($('white_rate').innerHTML * $('white_used').innerHTML).toFixed(2)
     $('summary_total_yellow_used').innerHTML = ($('yellow_rate').innerHTML * $('yellow_used').innerHTML).toFixed(2)
-    $('liters_per_line_km_yellow').innerHTML = ($('summary_total_yellow_used').innerHTML / $('summary_yellow_length').innerHTML).toFixed(3)
-    $('liters_per_line_km_white').innerHTML = ($('summary_total_white_used').innerHTML / $('summary_white_length').innerHTML).toFixed(3)
+    $('summary_yellow_calculation').innerHTML = ($('summary_total_yellow_used').innerHTML / $('summary_yellow_length').innerHTML).toFixed(3)
+    $('summary_white_calculation').innerHTML = ($('summary_total_white_used').innerHTML / $('summary_white_length').innerHTML).toFixed(3)
+
+    $('summary_bead_used').innerHTML = (($('tank_white_calc').innerHTML * 1) + ($('tank_yellow_calc').innerHTML * 1) * 0.6).toFixed(2)
+    $('summary_bead_length').innerHTML = (($('summary_yellow_length').innerHTML * 1) + ($('summary_white_length').innerHTML * 1)).toFixed(2)
+    $('summary_bead_calculation').innerHTML = ($('summary_bead_used').innerHTML / $('summary_bead_length').innerHTML).toFixed(2)
     };
 
-    $('custom_white_end').observe('keyup', updateTable);
-    $('custom_white_start').observe('keyup', updateTable);
-    $('custom_yellow_end').observe('keyup', updateTable);
-    $('custom_yellow_start').observe('keyup', updateTable);
+    $('adjusted_white_end').observe('keyup', updateTable);
+    $('adjusted_white_start').observe('keyup', updateTable);
+    $('adjusted_yellow_end').observe('keyup', updateTable);
+    $('adjusted_yellow_start').observe('keyup', updateTable);
 </script>
 
 <script language="javascript">

@@ -11,7 +11,7 @@ class Private::MaterialsController < ApplicationController
   def new
     @material = Material.new
     @page_title = "New Material"
-    @manufacturers = Manufacturer.find(:all)
+    @manufacturers = Manufacturer.find(:all, :order => 'name ASC')
   end
 
   def create
@@ -28,7 +28,7 @@ class Private::MaterialsController < ApplicationController
 
   def edit
     @material = Material.find(params[:id])
-    @manufacturers = Manufacturer.find(:all)
+    @manufacturers = Manufacturer.find(:all, :order => 'name ASC')
     @page_title = "Edit #{@material.manufacturer.abbreviation} Batch ##{@material.batch}"
   end
 

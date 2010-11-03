@@ -84,7 +84,7 @@ class Private::LoadSheetsController < ApplicationController
 private
 
   def load_load_sheet_supporting_data
-    @materials = Material.find(:all, :include => :manufacturer, :order => "manufacturers.name ASC")
+    @materials = Material.find(:all, :include => :manufacturer, :order => "category, manufacturers.name")
     @equipment = Equipment.find(:all, :order => :unit)
     @jobs = Job.find(:all)
   end

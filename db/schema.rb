@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101026152530) do
+ActiveRecord::Schema.define(:version => 20101102161224) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20101026152530) do
     t.integer  "rate"
     t.decimal  "yellow_rate", :precision => 5, :scale => 2
     t.decimal  "white_rate",  :precision => 5, :scale => 2
+    t.integer  "tank_size"
   end
 
   create_table "equipment_jobs", :id => false, :force => true do |t|
@@ -242,13 +243,12 @@ ActiveRecord::Schema.define(:version => 20101026152530) do
   end
 
   create_table "load_entries", :force => true do |t|
-    t.integer   "load_sheet_id"
-    t.integer   "material_id"
-    t.decimal   "tote_number"
-    t.decimal   "tote_quantity"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "category"
+    t.integer  "load_sheet_id"
+    t.integer  "material_id"
+    t.decimal  "tote_number"
+    t.decimal  "tote_quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "load_entries", ["load_sheet_id"], :name => "index_load_entries_on_load_sheet_id"
