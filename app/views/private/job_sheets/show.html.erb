@@ -162,7 +162,7 @@
       <td>Beads</td>
       <% if @job_sheet.total_bead != 0 %>
         <td class="right"><%= sprintf("%.2f", @job_sheet.total_bead_distance) %> m</td>
-        <td class="right"><%= sprintf("%.2f", @job_sheet.total_bead) %> K</td>
+        <td class="right"><%= sprintf("%.2f", @job_sheet.total_bead) %> KG</td>
         <td class="right">$<%= sprintf("%.2f", @job_sheet.total_bead_cost) %></td>
       <% else %>
         <td class="right">-</td>

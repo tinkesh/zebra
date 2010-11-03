@@ -6,7 +6,7 @@
 
 <div class ="span-12 last append-bottom">
  <%= form.label :equipment, "Equipment" %><br>
- <%= form.collection_select(:equipment_id, @equipments, :id, :name) %>
+ <%= form.collection_select(:equipment_id, @equipment, :id, :label) %>
 </div>
 
 <br class="clear">

@@ -6,6 +6,7 @@ div.span-6 { float: left; width: 25%; }
 div.span-10 { float: left; width: 50%; }
 hr { display: none;}
 .noprint { display: none; }
+.onlyprint { display: visible; }
 td, th { text-align: left; }
 .right { text-align: right; }
 .center { text-align: center; }

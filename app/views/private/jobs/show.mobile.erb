@@ -78,9 +78,9 @@ Complete: <%= @job.completed_on %>
 <hr>
 
 <h3>Equipment</h3>
-<% unless @equipments.blank? %>
+<% unless @equipment.blank? %>
   <ol>
-  <% @equipments.each do |e| %>
+  <% @equipment.each do |e| %>
     <li><%= e.unit %> - <%= e.name %></li>
   <% end %>
   </ol>

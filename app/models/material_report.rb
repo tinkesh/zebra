@@ -9,7 +9,7 @@ class MaterialReport < ActiveRecord::Base
   validates_presence_of :load_sheet, :on => :create, :message => "can't be blank"
 
   def label
-    "Material Report ##{self.id}"
+    "MR ##{self.id} with GS ##{self.gun_sheet_id}, LS ##{self.load_sheet_id}"
   end
 
   def yellow_rate

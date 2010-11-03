@@ -22,56 +22,19 @@ class Private::MaterialReportsController < ApplicationController
     @load_sheets = @material_report.load_sheets
   end
 
-  def my_edit
-
-    @params = params
-    @flag = false
-
-    @params.each do |p|
-      if p.length > 1
-      if p[0] == "subtract"
-        @end = p[1]
-      elsif p[0] == "plus"
-        @start = p[1]
-      elsif p[1] == "Save yellow values"
-        @flag = true
-        @load_id = p[0]
-      elsif p[1] == "Save white values"
-        @flag = false
-        @load_id = p[0]
-      end
-    end
-    end
-      @load = LoadSheet.find(:first, :conditions => { :id => @load_id})
-
-      if @flag
-      @load.adjusted_yellow_dip_start  = @start
-      @load.adjusted_yellow_dip_stop  = @end
-      else
-        @load.adjusted_white_dip_start  = @start
-        @load.adjusted_white_dip_stop  = @end
-      end
-
-      if @load.save
-        flash[:notice] = "Material reports sheet has been updated"
-      end
-    @mat = MaterialReport.find(:first, :conditions=> {:id => params[:id]})
-    redirect_to private_material_report_path(@mat.id)
-
-  end
-
   def new
-    @job = Job.find(params[:job_id])
-    @load_sheets = LoadSheet.find(:all)
+    @job = Job.find(params[:job_id], :include => [:load_sheets, :gun_sheets])
+    @load_sheets = @job.load_sheets(:order => 'id ASC')
+    @gun_sheets = @job.gun_sheets(:order => 'id ASC')
     @material_report = MaterialReport.new
-    @material_report.created_by= current_user.id
+    @material_report.created_by = current_user.id
     @page_title = "New Material Report for #{@job.label}"
   end
 
   def create
     @job = Job.find(params[:job_id])
     @material_report = @job.material_reports.build(params[:material_report])
-    @material_report.created_by= current_user.id
+    @material_report.created_by = current_user.id
     if @material_report.save
       flash[:notice] = "Material Report created!"
       redirect_to private_material_report_url(@material_report)
@@ -94,6 +57,18 @@ class Private::MaterialReportsController < ApplicationController
       redirect_to private_material_report_url(@material_report)
     else
       render :action => :edit
+    end
+  end
+
+  def update_dips
+    @material_report = MaterialReport.find(params[:id])
+    @load_sheet = @material_report.load_sheet
+    @load_sheet.versioned_at = Time.now
+    if @load_sheet.update_attributes(params[:load_sheet])
+      flash[:notice] = "Load Sheet Dips saved!"
+      redirect_to private_material_report_url(@material_report)
+    else
+      render :action => :show
     end
   end
 

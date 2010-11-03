@@ -4,7 +4,6 @@ authorization do
     includes :office
     includes :foreman
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
-    has_permission_on :private_reports, :to => [:accountant_csv, :user_time_csv]
   end
 
   role :office do
@@ -17,8 +16,7 @@ authorization do
     has_permission_on [:private_crews, :private_clients, :private_completions, :private_costs, :private_equipments,
                        :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
                        :private_time_task_categories, :private_time_note_categories, :private_material_reports], :to => :manage
-    has_permission_on :private_material_reports, :to => :my_edit
-    has_permission_on :private_material_reports, :to => :print
+    has_permission_on :private_material_reports, :to => [:update_dips, :print]
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets], :to => [:create, :show]
 
     has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage]

@@ -90,9 +90,9 @@
   <hr>
 
   <h3>Equipment</h3>
-  <% if @equipments %>
+  <% if @equipment %>
   <ol>
-  <% @equipments.each do |e| %>
+  <% @equipment.each do |e| %>
     <li><%= e.unit %> - <%= e.name %></li>
   <% end %>
   </ol>
@@ -133,9 +133,8 @@
       <li><%= link_to time_sheet.label, private_time_sheet_path(time_sheet), :class => "show plain" %></li>
     <% end %>
     </ol>
-  <% end -%>
-
   <hr>
+  <% end -%>
 
   <% if permitted_to? :show, :private_job_sheets -%>
     <h3>Job Sheets</h3>
@@ -147,6 +146,21 @@
       </ol>
     <% else %>
       <p>No Job Sheets.</p>
+    <% end %>
+
+  <hr>
+  <% end %>
+
+  <% if permitted_to? :show, :private_material_reports -%>
+    <h3>Material Reports</h3>
+    <% if @job.material_reports.length != 0 %>
+      <ol>
+      <% @job.material_reports.each do |m| %>
+        <li><%= link_to m.label, private_material_report_path(m.id), :class => "show plain" %></li>
+      <% end %>
+      </ol>
+    <% else %>
+      <p>No Material Reports.</p>
     <% end %>
   <% end %>
 </div>

@@ -5,7 +5,7 @@
   </tr>
   <tr>
   <td><%= form.label :equipment, "Equipment" %></td>
-  <td><%= form.collection_select(:equipment_id, @equipments, :id, :name) %></td>
+  <td><%= form.collection_select(:equipment_id, @equipment, :id, :label) %></td>
   </tr>
   <tr>
   <td><%= form.label :job_location_id, "Specific Location" %></td>

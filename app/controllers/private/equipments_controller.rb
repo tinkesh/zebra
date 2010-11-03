@@ -4,7 +4,7 @@ class Private::EquipmentsController < ApplicationController
   filter_access_to :all
 
   def index
-    @equipments = Equipment.find(:all, :order => "name ASC")
+    @equipment = Equipment.find(:all, :order => "name ASC")
     @page_title = "Equipment"
   end
 

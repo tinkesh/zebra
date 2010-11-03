@@ -16,4 +16,8 @@ class Equipment < ActiveRecord::Base
     end
   end
 
+  def label
+    self.unit + " " + self.name
+  end
+
 end

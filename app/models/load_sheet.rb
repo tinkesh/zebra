@@ -10,6 +10,7 @@ class LoadSheet < ActiveRecord::Base
   accepts_nested_attributes_for :load_entries, :reject_if => lambda { |a| a[:material_id].blank? }, :allow_destroy => true
 
   after_create :deliver_new_load_sheet
+  after_create :update_adjusted_dips
 
   def deliver_new_load_sheet
     Notifier.deliver_new_load_sheet(self)
@@ -28,11 +29,21 @@ class LoadSheet < ActiveRecord::Base
   end
 
   def adjusted_yellow_dip_used
-    self.adjusted_yellow_dip_stop - self.adjusted_yellow_dip_start
+    self.adjusted_yellow_dip_end - self.adjusted_yellow_dip_start
   end
 
   def adjusted_white_dip_used
-    self.adjusted_white_dip_stop - self.adjusted_white_dip_start
+    self.adjusted_white_dip_end - self.adjusted_white_dip_start
+  end
+
+private
+
+  def update_adjusted_dips
+    self.update_attributes(
+      :adjusted_yellow_dip_end => self.yellow_dip_end,
+      :adjusted_yellow_dip_start => self.yellow_dip_start,
+      :adjusted_white_dip_end => self.white_dip_end,
+      :adjusted_white_dip_start => self.white_dip_start)
   end
 
 end
