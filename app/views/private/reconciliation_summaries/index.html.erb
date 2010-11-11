@@ -1,0 +1,54 @@
+<% content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<hr>
+
+<table class="sortable">
+  <tr>
+    <th class="center number">#</th>
+    <th>Name</th>
+    <th class="center">%</th>
+    <th class="span-2 center">Start</th>
+    <th class="span-2 center">End</th>
+    <th>Client</th>
+	<th>Location</th>
+    <th class="actions nosort"></th>
+  </tr>
+<% i = 0 %>
+<% @jobs.each do |job| %>
+
+  <% if i == 18 %>
+    <tr class="hidden print-break">
+      <th class="center">#</th>
+      <th>Name</th>
+      <th class="center">%</th>
+      <th class="center">Start</th>
+      <th class="center">End</th>
+      <th>Client</th>
+
+      <th class="actions"></th>
+    </tr>
+    <% i = 0 %>
+  <% else %>
+    <% i += 1 %>
+  <% end %>
+
+  <tr>
+    <td><%= job.id %></td>
+    <td><%= job.name %></td>
+    <td class="right"><%= job.completion ? job.completion.name : "-" %></td>
+    <td class="right"><%= job.started_on ? job.started_on.strftime('%b-%d-%y') : "-" %></td>
+    <td class="right"><%= job.completed_on ? job.completed_on.strftime('%b-%d-%y') : '-' %></td>
+    <td><%= job.client.name %></td>
+  	<td><%= job.location_name ? job.location_name : '-' %></td>
+    <td class="actions">
+      <%= hlpRsummaries_reconciliation_summary_action_link(job) %>
+    </td>
+  </tr>
+<% end %>
+</table>
