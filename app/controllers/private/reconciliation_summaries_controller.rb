@@ -4,8 +4,11 @@ class Private::ReconciliationSummariesController < ApplicationController
 
   def index
     @page_title = "Reconciliation Summaries"
-
     @jobs = Job.active
+  end
+
+  def show
+    @job = Job.find(params[:id], :include => [:job_markings, :gun_sheets])
   end
 
 end

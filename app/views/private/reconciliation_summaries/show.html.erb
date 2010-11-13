@@ -1,0 +1,35 @@
+<div class="container">
+
+<h3>Expected Production from Job Markings</h3>
+<% if @job.job_markings.length != 0 %>
+  <ol>
+    <% @job.job_markings.each do |m| %>
+      <li><%= m.amount %> <%= m.gun_marking_category.name if m.gun_marking_category %></li>
+    <% end %>
+  </ol>
+<% else %>
+  <p>No markings assigned.</p>
+<% end %>
+
+
+<h3>Gun Sheets</h3>
+
+<% if permitted_to? :show, :private_gun_sheets -%>
+  <% @job.gun_sheets.each do |gun_sheet| %>
+    <h4><%= link_to gun_sheet.label, private_gun_sheet_path(gun_sheet), :class => "show plain" %></h4>
+    <table>
+      <tr>
+        <th>Category</th>
+        <th width="50%">Amount</th>
+      </tr>
+      <% gun_sheet.gun_markings.each do |marking| %>
+        <tr>
+          <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %></td>
+          <td><%= marking.amount %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>
+
+</div>
