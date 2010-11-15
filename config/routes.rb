@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
     priv.resources :estimates,              :controller => "estimates" ,             :path_prefix => "admin"
     priv.resources :equipments,             :controller => "equipments",             :path_prefix => "admin"
     priv.resources :gun_sheets,             :controller => "gun_sheets",             :path_prefix => "admin"
+    priv.gun_sheets_print_selected 'private/gun_sheets/print_selected', :action => 'print_selected', :controller => 'gun_sheets', :path_prefix => "admin"
+
     priv.resources :gun_marking_categories, :controller => "gun_marking_categories", :path_prefix => "admin"
     priv.resources :jobs,                   :controller => "jobs",                   :path_prefix => "admin", :has_many => [:gun_sheets, :job_sheets, :material_reports]
     priv.resources :job_sheets,             :controller => "job_sheets",             :path_prefix => "admin"

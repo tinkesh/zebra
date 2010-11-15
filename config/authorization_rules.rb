@@ -62,6 +62,7 @@ authorization do
     has_permission_on :users, :to => :update do
       if_attribute :id => is { user.id }
     end
+    has_permission_on :private_gun_sheets, :to => :print_selected
   end
 end
 

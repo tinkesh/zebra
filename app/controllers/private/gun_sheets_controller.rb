@@ -90,6 +90,10 @@ class Private::GunSheetsController < ApplicationController
     redirect_to private_gun_sheet_url(@gun_sheet)
   end
 
+  def print_selected
+    @gun_sheets = GunSheet.find_all_by_id(params[:gun_sheet_ids])
+  end
+
 private
 
   def load_gun_sheet_supporting_data
