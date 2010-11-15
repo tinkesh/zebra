@@ -11,8 +11,7 @@
 <%= will_paginate @time_sheets %>
 
 <% form_tag private_gun_sheets_print_selected_path, :method => :post, :target => '_blank' do -%>
-  <%= submit_tag "print selected" %>
-
+  <%= submit_tag "Print Selected", :style => "margin-bottom:10px;" %>
   <table class="sortable">
     <tr>
       <th></th>
@@ -52,7 +51,7 @@
     <% end %>
   </table>
 
-  <%= submit_tag "print selected" %>
+  <%= submit_tag "Print Selected" %>
 <% end %>
 
 <%= will_paginate @time_sheets %>
