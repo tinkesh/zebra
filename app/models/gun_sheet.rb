@@ -15,11 +15,24 @@ class GunSheet < ActiveRecord::Base
                          :skip_y1, :skip_y2, :skip_y3, :skip_w4,
                          :skip_w5, :skip_w6, :skip_w7], :on => :create, :message => "can't be blank"
 
-  after_create :deliver_new_gun_sheet
+  after_create :deliver_new_gun_sheet, :verify_actual_vs_expected_production
 
 
   def deliver_new_gun_sheet
     Notifier.deliver_new_gun_sheet(self)
+  end
+
+  #--------------------------------------------------------------------
+  # If the actual is greater than expected, send an email via Notifier
+  #
+  def verify_actual_vs_expected_production
+    job.job_markings.each do |marking|
+      puts marking.actual_production
+      puts marking.amount
+      if marking.actual_production > marking.amount
+        Notifier.deliver_job_marking_production_over_expected(marking)
+      end
+    end
   end
 
   def label
