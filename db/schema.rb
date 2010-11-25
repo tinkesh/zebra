@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20101103140712) do
     t.integer  "rate"
     t.decimal  "yellow_rate", :precision => 5, :scale => 2
     t.decimal  "white_rate",  :precision => 5, :scale => 2
-    t.integer  "tank_size"
   end
 
   create_table "equipment_jobs", :id => false, :force => true do |t|

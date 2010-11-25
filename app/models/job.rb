@@ -7,6 +7,7 @@ class Job < ActiveRecord::Base
   belongs_to :completion
   has_many :load_sheets
   has_many :gun_sheets
+  has_many :gun_markings, :through => :gun_sheets
   has_many :job_sheets
   has_many :job_markings
   has_many :job_locations
