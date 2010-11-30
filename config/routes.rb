@@ -18,12 +18,12 @@ ActionController::Routing::Routes.draw do |map|
     priv.gun_sheets_print_selected 'private/gun_sheets/print_selected', :action => 'print_selected', :controller => 'gun_sheets', :path_prefix => "admin"
 
     priv.resources :gun_marking_categories, :controller => "gun_marking_categories", :path_prefix => "admin"
-    priv.resources :jobs,                   :controller => "jobs",                   :path_prefix => "admin", :has_many => [:gun_sheets, :job_sheets, :material_reports]
+    priv.resources :jobs,                   :controller => "jobs",                   :path_prefix => "admin", :has_many => [:gun_sheets, :job_sheets, :material_reports], :has_one => :reconciliation_summary
     priv.resources :job_sheets,             :controller => "job_sheets",             :path_prefix => "admin"
     priv.resources :load_sheets,            :controller => "load_sheets",            :path_prefix => "admin"
     priv.resources :manufacturers,          :controller => "manufacturers",          :path_prefix => "admin"
     priv.resources :material_reports,       :controller => "material_reports",       :path_prefix => "admin"
-    priv.resources :reconciliation_summaries, :controller => "reconciliation_summaries", :path_prefix => "admin", :only => [:index, :show]
+    priv.resources :reconciliation_summaries, :controller => "reconciliation_summaries", :path_prefix => "admin", :only => [:index]
     priv.resources :materials,              :controller => "materials",              :path_prefix => "admin"
     priv.resources :time_sheets,            :controller => "time_sheets",            :path_prefix => "admin"
     priv.resources :time_note_categories,   :controller => "time_note_categories",   :path_prefix => "admin"

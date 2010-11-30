@@ -24,6 +24,6 @@
     <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
   <% end %>
   <% if permitted_to? :read, :private_reconciliation_summaries -%>
-    <li><%= active_link_to 'R. Summary', private_reconciliation_summary_path(@job.id) %></li>
+    <li><%= active_link_to 'R. Summary', private_job_reconciliation_summary_path(@job.id) %></li>
   <% end -%>
 </ol>

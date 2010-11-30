@@ -8,7 +8,8 @@ class Private::ReconciliationSummariesController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id], :include => [:job_markings, :gun_sheets])
+    @page_title = "R. Summary"
+    @job = Job.find(params[:job_id], :include => [:job_markings, :gun_sheets])
   end
 
 end

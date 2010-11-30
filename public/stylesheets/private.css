@@ -16,7 +16,6 @@ h1 { font-size: 2.5em; }
 a { color: #3344FF; text-decoration: none; }
 a:hover { color: #3344FF; text-decoration: underline; }
 
-
 /* misc */
 .jobs .new, .jobs .edit, .jobs .show { float: none; }
 .jobs ul { list-style-type: none; margin: 0 0 1.5em 0; padding: 0; }
@@ -47,7 +46,7 @@ a.plain { background: none; padding: 0; margin: 0; font-weight: normal; }
 #header { background: #333; border-top: solid 5px #333; }
 #header ol { background: #333; list-style-type: none; margin: 0; padding: 0; }
 #header li, #submenu li { margin: 0; padding: 0; display: inline; }
-#header a { color: #fff; font-weight: normal; font-size: 14px; text-decoration: none; padding: 3px 8px; display: inline-block; }
+#header a { color: #fff; font-weight: normal; font-size: 13px; text-decoration: none; padding: 3px 8px; display: inline-block; }
 #header a.active { background: #666 }
 #header a:hover, #submenu a:hover { text-decoration: underline; color: #fcd40d; }
 #title { position: absolute; top: 10px; left: 20px; font-size: 25px; font-weight: normal; }
@@ -162,6 +161,6 @@ th.center { padding: 2px 2px 2px 4px;}
 .pagination a { padding: 1px 4px; margin: 0; }
 .pagination a:hover { color: #fff; background: #3344FF; text-decoration: none; }
 
-.hint { color: #999; text-align: center; font-size: 12px; margin: 0; }
 /* labels */
 .office, .admin, .foreman { text-decoration: underline; }
+.hint { color: #999; text-align: center; font-size: 12px; margin: 0; }
