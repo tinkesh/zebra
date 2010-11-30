@@ -7,6 +7,7 @@ class Job < ActiveRecord::Base
   belongs_to :completion
   has_many :load_sheets
   has_many :gun_sheets
+  has_many :gun_markings, :through => :gun_sheets
   has_many :job_sheets
   has_many :job_markings
   has_many :job_locations
@@ -18,6 +19,9 @@ class Job < ActiveRecord::Base
   accepts_nested_attributes_for :time_sheets, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :job_markings, :reject_if => lambda { |a| a[:amount].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :job_locations, :reject_if => lambda { |a| a[:name].blank? },  :allow_destroy => true
+
+  # Is active or not
+  named_scope :active, :conditions => {:is_archived => false}
 
   def label
     label = '#' + self.id.to_s

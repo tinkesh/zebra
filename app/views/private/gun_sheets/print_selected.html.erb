@@ -1,0 +1,108 @@
+<script type="text/javascript">
+Event.observe(window, 'load', function() {
+    window.print();
+});
+</script>
+
+<% @gun_sheets.each_with_index do |gun_sheet,index| %>
+
+  <div <%= "class='print-break'" unless index == 0 %>>
+
+    <h1><%= gun_sheet.label %></h1>
+
+    <table>
+      <tr>
+        <th colspan="2"><%= job_label(gun_sheet.job) %></th>
+      </tr>
+      <tr class="odd">
+        <td>Location</td>
+        <td class="right"><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> / <%= gun_sheet.location_name %></td>
+      </tr>
+      <tr class="odd">
+        <td>Started</td>
+        <td class="right"><%= gun_sheet.started_on.strftime("%B %d, %Y") %>, <%= gun_sheet.started_at.strftime("%H:%M") %></td>
+      </tr>
+      <tr class="even">
+        <td>Completed</td>
+        <td class="right"><%= if gun_sheet.completed_on : gun_sheet.completed_on.strftime("%B %d, %Y") end %>, <%= gun_sheet.completed_at.strftime("%H:%M") %></td>
+      </tr>
+      <tr class="odd">
+        <td>Created On</td>
+        <td class="right"><%= gun_sheet.created_at.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr class="even">
+        <td>Updated On</td>
+        <td class="right"><%= gun_sheet.updated_at.strftime("%B %d, %Y") %></td>
+      </tr>
+      <tr class="odd">
+        <td>Created by</td>
+        <td class="right"><%=  @name %></td>
+      </tr>
+      <tr class="even">
+        <td>Equipment</td>
+        <td class="right"><%= gun_sheet.equipment.try(:name) {|p| p.name }  %></td>
+      </tr>
+
+    </table>
+
+    <hr>
+
+    <h3>Comments</h3>
+    <p>
+      <%= gun_sheet.note %>
+    </p>
+
+    <hr>
+
+    <h3>Guns</h3>
+    <table>
+      <tr>
+        <th class="span-3">&nbsp;</th>
+        <th class="span-3 right">Y-1</th>
+        <th class="span-3 right">Y-2</th>
+        <th class="span-3 right">Y-3</th>
+        <th class="span-3 right">W-4</th>
+        <th class="span-3 right">W-5</th>
+        <th class="span-3 right">W-6</th>
+        <th class="span-3 right">W-7</th>
+      </tr>
+      <tr class="even">
+        <td>Solid</td>
+        <td class="right"><%= gun_sheet.solid_y1 %> m</td>
+        <td class="right"><%= gun_sheet.solid_y2 %> m</td>
+        <td class="right"><%= gun_sheet.solid_y3 %> m</td>
+        <td class="right"><%= gun_sheet.solid_w4 %> m</td>
+        <td class="right"><%= gun_sheet.solid_w5 %> m</td>
+        <td class="right"><%= gun_sheet.solid_w6 %> m</td>
+        <td class="right"><%= gun_sheet.solid_w7 %> m</td>
+      </tr>
+      <tr class="odd">
+        <td>Skip</td>
+        <td class="right"><%= gun_sheet.skip_y1 %> m</td>
+        <td class="right"><%= gun_sheet.skip_y2 %> m</td>
+        <td class="right"><%= gun_sheet.skip_y3 %> m</td>
+        <td class="right"><%= gun_sheet.skip_w4 %> m</td>
+        <td class="right"><%= gun_sheet.skip_w5 %> m</td>
+        <td class="right"><%= gun_sheet.skip_w6 %> m</td>
+        <td class="right"><%= gun_sheet.skip_w7 %> m</td>
+      </tr>
+    </table>
+
+    <hr>
+
+    <h3>Markings</h3>
+    <table>
+      <tr>
+        <th>Category</th>
+        <th>Amount</th>
+      </tr>
+      <% gun_sheet.gun_markings.each do |marking| %>
+        <tr>
+          <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %></td>
+          <td><%= marking.amount %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+<% end %>
