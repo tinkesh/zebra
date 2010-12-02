@@ -6,6 +6,11 @@ class Private::GunSheetsController < ApplicationController
   def index
     @gun_sheets = GunSheet.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:job, :equipment]
     @page_title = "Gun Sheets"
+
+    @search = GunSheet.search(params[:search])
+    if params[:commit] == "Search"
+      @gun_sheets = @search.paginate :page => params[:page], :per_page => 50, :order => 'id DESC', :include => [:job, :equipment]
+    end
   end
 
   def show

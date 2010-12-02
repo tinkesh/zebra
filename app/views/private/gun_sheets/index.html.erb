@@ -10,6 +10,27 @@
 
 <%= will_paginate @time_sheets %>
 
+<table>
+<% form_for @search do |f| %>
+  <tr class="no-border"><td class="no-border">
+    <%= f.label :job_name_like, "Job Name" %><br />
+    <%= f.text_field :job_name_like %>
+  </td>
+  <td class="no-border"><td class="no-border">
+    <%= f.label :job_location_name_like, "Location" %><br />
+    <%= f.text_field :job_location_name_like %>
+  </td>
+  <td class="no-border"><td class="no-border">
+    <%= f.label :equipment_name_like, "Equipment Name" %><br />
+    <%= f.text_field :equipment_name_like %>
+  </td>
+  <td class="no-border right">
+    <%= link_to "Clear Search", private_gun_sheets_path %><br />
+    <%= f.submit "Search" %>
+  </td></tr>
+<% end %>
+</table>
+
 <% form_tag private_gun_sheets_print_selected_path, :method => :post, :target => '_blank' do -%>
   <%= submit_tag "Print Selected", :style => "margin-bottom:10px;" %>
   <table class="sortable">
