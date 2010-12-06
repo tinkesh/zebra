@@ -24,6 +24,10 @@
     <%= f.label :equipment_name_like, "Equipment Name" %><br />
     <%= f.text_field :equipment_name_like %>
   </td>
+  <td class="no-border"><td class="no-border">
+    <%= f.label :created_by_name, "Created By" %><br />
+    <%= f.text_field :created_by_name %>
+  </td>
   <td class="no-border right">
     <%= link_to "Clear Search", private_gun_sheets_path %><br />
     <%= f.submit "Search" %>

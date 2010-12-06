@@ -6,6 +6,7 @@ class GunSheet < ActiveRecord::Base
   belongs_to :job
   belongs_to :equipment
   belongs_to :job_location
+  belongs_to :user, :foreign_key => "created_by"
   has_many :gun_markings, :dependent => :destroy
   has_many :material_reports
   has_and_belongs_to_many :job_sheets
@@ -16,7 +17,6 @@ class GunSheet < ActiveRecord::Base
                          :skip_w5, :skip_w6, :skip_w7], :on => :create, :message => "can't be blank"
 
   after_create :deliver_new_gun_sheet, :verify_actual_vs_expected_production
-
 
   def deliver_new_gun_sheet
     Notifier.deliver_new_gun_sheet(self)
@@ -46,5 +46,12 @@ class GunSheet < ActiveRecord::Base
   def white_length
     (0 + self.solid_w4 + self.solid_w5 + self.solid_w6 + self.solid_w7 + self.skip_w4 + self.skip_w5 + self.skip_w6 + self.skip_w7) / 1000
   end
+
+  named_scope :created_by_name, lambda {|name| 
+    {
+      :joins => :user,
+      :conditions =>["users.first_name LIKE ?", name]
+    }
+  }
 
 end

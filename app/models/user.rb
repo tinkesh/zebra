@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :time_entries
   has_and_belongs_to_many :roles
 
+  has_many :gun_sheets, :foreign_key => "created_by"
+
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :rate
