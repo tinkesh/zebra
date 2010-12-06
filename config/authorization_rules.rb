@@ -15,8 +15,8 @@ authorization do
     has_permission_on :private_directory, :to => :index
     has_permission_on [:private_crews, :private_clients, :private_completions, :private_costs, :private_equipments,
                        :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
-                       :private_time_task_categories, :private_time_note_categories, :private_material_reports, :private_reconciliation_summaries], :to => :manage
-    has_permission_on :private_material_reports, :to => [:update_dips, :print]
+                       :private_time_task_categories, :private_time_note_categories, :private_material_reports, :private_material_report_summaries, :private_reconciliation_summaries], :to => :manage
+    has_permission_on :private_material_reports, :private_material_report_summaries, :to => [:update_dips, :print]
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets], :to => [:create, :show]
 
     has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage]
@@ -36,7 +36,7 @@ authorization do
                        :private_clock_in, :private_clock_out, :private_time_sheets,
                        :private_clients, :private_completions, :private_costs, :private_equipments,
                        :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
-                       :private_time_task_categories, :private_time_note_categories, :private_material_reports, :private_directory
+                       :private_time_task_categories, :private_time_note_categories, :private_material_reports, :private_material_report_summaries, :private_directory
                        ], :to => [:read]
 
     has_permission_on [:private_crews, :private_jobs], :to => [:manage]

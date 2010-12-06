@@ -1,0 +1,38 @@
+<% content_for :breadcrumb do %>
+    <ul id="breadcrumb">
+      <li><%= link_to 'Dashboard', private_home_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
+<% end %>
+
+<%= will_paginate @material_report_summaries %>
+
+<table class="sortable">
+  <tr>
+    <th class="center number">#</th>
+    <th class="number">Job</th>
+    <th class="number">Gun Sheets</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% @material_report_summaries.each do |m| %>
+  <tr>
+    <td><%= m.id %></td>
+    <td>
+      <%= job_label(m.job) %>
+      <%= link_to image_tag("open-link.png"), private_job_path(m.job) %>
+    </td>
+    <td>
+      <%= m.gun_sheets.collect{|g| "#{g.id} #{link_to(image_tag("open-link.png"),private_gun_sheet_path(g))}"}.join(',') %>
+    </td>
+    <td class="actions">
+      <%= link_to "Delete", private_material_report_summary_path(m), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+      <%= link_to "Edit", edit_private_material_report_summary_path(m), :class => "edit" %>
+      <%= link_to "Show", private_material_report_summary_path(m), :class => "show" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @material_reports %>

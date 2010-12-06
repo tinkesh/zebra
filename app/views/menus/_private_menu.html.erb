@@ -19,6 +19,9 @@
     <% if permitted_to? :read, :private_material_reports -%>
       <li><%= active_link_to 'M. Reports', private_material_reports_path %></li>
     <% end -%>
+    <% if permitted_to? :read, :private_material_report_summaries -%>
+      <li><%= active_link_to 'M. Report Summaries', private_material_report_summaries_path %></li>
+    <% end -%>
     <% if permitted_to? :read, :private_reconciliation_summaries -%>
       <li><%= active_link_to 'R. Summaries', private_reconciliation_summaries_path %></li>
     <% end -%>

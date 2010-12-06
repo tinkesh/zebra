@@ -1,0 +1,12 @@
+<ol class="noprint">
+  <% if permitted_to? :show, :private_material_report_summaries -%>
+    <li><%= active_link_to "Show", private_material_report_summary_path(@material_report_summary), :active => { :when => :self_only }  %></li>
+  <% end %>
+  <% if permitted_to? :show, :private_jobs -%>
+    <li><%= active_link_to "Show Job", private_job_path(@material_report_summary.job_id) %></li>
+  <% end %>
+  <% if permitted_to? :create, :private_material_report_summaries -%>
+    <li><%= active_link_to "New Material Summary Report", new_private_job_material_report_summary_path(:job_id => @material_report_summary.job_id) %></li>
+  <% end %>
+</ol>
+
