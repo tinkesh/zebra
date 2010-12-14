@@ -9,22 +9,22 @@
 <% end %>
 
 <% content_for :submenu do %>
-  <%= render :partial => 'menus/material_report_summaries_menu', :layout => false %>
+  <%= render :partial => 'menus/jobs_menu', :layout => false %>
 <% end %>
 
 <table>
   <tr>
     <th class="span-3">Job</th>
     <td colspan="2" style="border-top: solid 1px #ccc">
-      <%= @material_report_summary.job.label %>
-      <%= link_to image_tag("open-link.png"), private_job_path(@material_report_summary.job), :class => "noprint" %>
+      <%= @job.label %>
+      <%= link_to image_tag("open-link.png"), private_job_path(@job), :class => "noprint" %>
     </td>
   </tr>
   <tr>
     <th "span-3">Gun Sheets</th>
     <td>
       <table>
-        <% @material_report_summary.gun_sheets.each do |gun_sheet| %>
+        <% @job.gun_sheets.each do |gun_sheet| %>
           <tr>
             <td>
               <%= gun_sheet.label %>
@@ -41,18 +41,28 @@
       </table>
     </td>
   </tr>
-
   <tr>
-    <th>Created By</th>
-    <td colspan="2">
-      <% if @material_report_summary.user %>
-        <%= @material_report_summary.user.name %>
-        <%= link_to image_tag("open-link.png"), edit_user_path(@material_report_summary.user), :class => "noprint" %>
-      <% else %>
-        Unknown
-      <% end %>
+    <th class="span-3">Load Sheets</th>
+    <td>
+      <table>
+        <% @job.load_sheets.each do |load_sheet| %>
+          <tr>
+            <td>
+              <%= load_sheet.label %>
+              <%= link_to image_tag("open-link.png"), edit_private_load_sheet_path(load_sheet), :class => "noprint" %>
+            </td>
+            <td>
+              <% if load_sheet.equipment %>
+                <%= load_sheet.equipment.name %>
+                <%= link_to image_tag("open-link.png"), edit_private_equipment_path(load_sheet.equipment), :class => "noprint" %><br />
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
     </td>
   </tr>
+
 </table>
 
 <table>
@@ -66,40 +76,35 @@
     <th class="right">W-6</th>
     <th class="right last">W-7</th>
   </tr>
-  <% @yellow_l_km = 0 %>
-  <% @white_l_km = 0 %>
-
-  <% @yellow_l_km = @material_report_summary.gun_sheets.collect(&:yellow_length).sum %>
-  <% @white_l_km = @material_report_summary.gun_sheets.collect(&:white_length).sum %>
   <tr>
     <th class="span-3">Solid</th>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_y1).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_y2).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_y3).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_w4).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_w5).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_w6).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_w7).sum %></td>
+    <td class="right"><%= @job.solid_y1_sum %></td>
+    <td class="right"><%= @job.solid_y2_sum %></td>
+    <td class="right"><%= @job.solid_y3_sum %></td>
+    <td class="right"><%= @job.solid_w4_sum %></td>
+    <td class="right"><%= @job.solid_w5_sum %></td>
+    <td class="right"><%= @job.solid_w6_sum %></td>
+    <td class="right"><%= @job.solid_w7_sum %></td>
   </tr>
   <tr>
     <th class="span-3">Skip</th>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:skip_y1).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:skip_y2).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:skip_y3).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:skip_w4).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:skip_w5).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:skip_w6).sum %></td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect(&:skip_w7).sum %></td>
+    <td class="right"><%= @job.skip_y1_sum %></td>
+    <td class="right"><%= @job.skip_y2_sum %></td>
+    <td class="right"><%= @job.skip_y3_sum %></td>
+    <td class="right"><%= @job.skip_w4_sum %></td>
+    <td class="right"><%= @job.skip_w5_sum %></td>
+    <td class="right"><%= @job.skip_w6_sum %></td>
+    <td class="right"><%= @job.skip_w7_sum %></td>
   </tr>
     <tr>
       <th class="span-3">Total</th>
-      <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_y1).sum + @material_report_summary.gun_sheets.collect(&:skip_y1).sum %></td>
-      <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_y2).sum + @material_report_summary.gun_sheets.collect(&:skip_y2).sum %></td>
-      <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_y3).sum + @material_report_summary.gun_sheets.collect(&:skip_y3).sum %></td>
-      <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_w4).sum + @material_report_summary.gun_sheets.collect(&:skip_w4).sum %></td>
-      <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_w5).sum + @material_report_summary.gun_sheets.collect(&:skip_w5).sum %></td>
-      <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_w6).sum + @material_report_summary.gun_sheets.collect(&:skip_w6).sum %></td>
-      <td class="right"><%= @material_report_summary.gun_sheets.collect(&:solid_w7).sum + @material_report_summary.gun_sheets.collect(&:skip_w7).sum %></td>
+      <td class="right"><%= @job.solid_y1_sum + @job.skip_y1_sum %></td>
+      <td class="right"><%= @job.solid_y2_sum + @job.skip_y2_sum %></td>
+      <td class="right"><%= @job.solid_y3_sum + @job.skip_y3_sum %></td>
+      <td class="right"><%= @job.solid_w4_sum + @job.skip_w4_sum %></td>
+      <td class="right"><%= @job.solid_w5_sum + @job.skip_w5_sum %></td>
+      <td class="right"><%= @job.solid_w6_sum + @job.skip_w6_sum %></td>
+      <td class="right"><%= @job.solid_w7_sum + @job.skip_w7_sum %></td>
     </tr>
 </table>
 
@@ -116,7 +121,7 @@
   <tr>
     <th>Yellow</th>
     <td class="right"><span id="summary_total_yellow_used"></span> L</td>
-    <td class="right" id="summary_yellow_length"><%= @material_report_summary.gun_sheets.collect(&:yellow_length).sum %></td>
+    <td class="right" id="summary_yellow_length"><%= @job.summary_yellow_length %></td>
     <td class="right" id="summary_yellow_calculation"></td>
     <td class="right">38 L/KM</td>
   </tr>
@@ -124,7 +129,7 @@
   <tr>
     <th>White</th>
     <td class="right"><span id="summary_total_white_used"></span> L</td>
-    <td class="right" id="summary_white_length"><%= @material_report_summary.gun_sheets.collect(&:white_length).sum %></td>
+    <td class="right" id="summary_white_length"><%= @job.summary_white_length %></td>
     <td class="right" id="summary_white_calculation"></td>
     <td class="right">38 L/KM</td>
   </tr>
@@ -132,7 +137,7 @@
   <tr>
     <th>Bead</th>
     <td class="right"><span id="summary_bead_used"></span> KG</td>
-    <td class="right" id="summary_bead_length"></td>
+    <td class="right" id="summary_bead_length"><%= @job.summary_bead_length %></td>
     <td class="right" id="summary_bead_calculation"></td>
     <td class="right">22.2 KG/KM</td>
   </tr>
@@ -147,10 +152,10 @@
   </tr>
   <tr>
     <td>Interchanges</td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect{ |gs| if gs.interchanges.blank? then 0 else gs.interchanges end }.sum %></td>
+    <td class="right"><%= @job.total_interchanges %></td>
   </tr>
   <tr>
     <td>Sides</td>
-    <td class="right"><%= @material_report_summary.gun_sheets.collect{|gs| if gs.sides.blank? then 0 else gs.sides end }.sum %></td>
+    <td class="right"><%= @job.total_sides %></td>
   </tr>
 </table>
