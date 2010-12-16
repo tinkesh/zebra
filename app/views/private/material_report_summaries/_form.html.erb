@@ -9,19 +9,5 @@
       <th class="number">Created By</th>
       <th class="number">Truck</th>
     </tr>
-    <% @job.gun_sheets.each do |gun_sheet| %>
-      <tr>
-        <td>
-          <%= check_box_tag 'material_report_summary[gun_sheet_ids][]', gun_sheet.id %>
-        </td>
-        <td><%= gun_sheet.id %></td>
-        <td><%= gun_sheet.started_on.strftime('%b-%d-%y') %></td>
-        <td><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> <%= gun_sheet.location_name %></td>
-        <td>
-          <%= User.find(gun_sheet.created_by).name unless gun_sheet.created_by.blank? %>
-        </td>
-        <td><%= gun_sheet.equipment.try(:unit) { |u| u.unit } %></td>
-      </tr>
-    <% end %>
   </table>
 </p>

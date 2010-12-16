@@ -13,7 +13,6 @@ class Job < ActiveRecord::Base
   has_many :job_locations
   has_many :estimates
   has_many :material_reports
-  has_many :material_report_summaries
   has_many :time_sheets, :through => :estimates
   has_and_belongs_to_many :time_entries
   has_and_belongs_to_many :equipments
@@ -28,6 +27,88 @@ class Job < ActiveRecord::Base
     label = '#' + self.id.to_s
     if self.name : label += ", " + self.name end
     label
+  end
+
+  #############################################################################
+  # Sums of gun sheet properties
+  #############################################################################
+  #
+
+
+  def total_interchanges
+    gun_sheets.collect{|gs| if gs.interchanges.blank? then 0 else gs.interchanges end}.sum
+  end
+
+  def total_sides
+    gun_sheets.collect{|gs| if gs.sides.blank? then 0 else gs.sides end}.sum
+  end
+
+  def summary_white_length
+    gun_sheets.collect(&:white_length).sum
+  end
+
+  def summary_yellow_length
+    gun_sheets.collect(&:yellow_length).sum
+  end
+
+  def summary_bead_length
+    summary_white_length + summary_yellow_length
+  end
+
+  def solid_y1_sum
+    gun_sheets.collect(&:solid_y1).sum
+  end
+
+  def solid_y2_sum
+    gun_sheets.collect(&:solid_y2).sum
+  end
+
+  def solid_y3_sum
+    gun_sheets.collect(&:solid_y3).sum
+  end
+
+  def solid_w4_sum
+    gun_sheets.collect(&:solid_w4).sum
+  end
+
+  def solid_w5_sum
+    gun_sheets.collect(&:solid_w5).sum
+  end
+
+  def solid_w6_sum
+    gun_sheets.collect(&:solid_w6).sum
+  end
+
+  def solid_w7_sum
+    gun_sheets.collect(&:solid_w7).sum
+  end
+
+  def skip_y1_sum
+    gun_sheets.collect(&:skip_y1).sum
+  end
+
+  def skip_y2_sum
+    gun_sheets.collect(&:skip_y2).sum
+  end
+
+  def skip_y3_sum
+    gun_sheets.collect(&:skip_y3).sum
+  end
+
+  def skip_w4_sum
+    gun_sheets.collect(&:skip_w4).sum
+  end
+
+  def skip_w5_sum
+    gun_sheets.collect(&:skip_w5).sum
+  end
+
+  def skip_w6_sum
+    gun_sheets.collect(&:skip_w6).sum
+  end
+
+  def skip_w7_sum
+    gun_sheets.collect(&:skip_w7).sum
   end
 
 end
