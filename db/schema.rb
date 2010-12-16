@@ -87,13 +87,13 @@ ActiveRecord::Schema.define(:version => 20101206100255) do
   end
 
   create_table "equipment", :force => true do |t|
-    t.string   "unit"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "rate"
-    t.decimal  "yellow_rate", :precision => 5, :scale => 2
-    t.decimal  "white_rate",  :precision => 5, :scale => 2
+    t.string    "unit"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "rate"
+    t.decimal   "yellow_rate"
+    t.decimal   "white_rate"
   end
 
   create_table "equipment_jobs", :id => false, :force => true do |t|
@@ -247,35 +247,35 @@ ActiveRecord::Schema.define(:version => 20101206100255) do
   end
 
   create_table "load_entries", :force => true do |t|
-    t.integer  "load_sheet_id"
-    t.integer  "material_id"
-    t.decimal  "tote_number"
-    t.decimal  "tote_quantity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "load_sheet_id"
+    t.integer   "material_id"
+    t.decimal   "tote_number"
+    t.decimal   "tote_quantity"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "load_entries", ["load_sheet_id"], :name => "index_load_entries_on_load_sheet_id"
 
   create_table "load_sheets", :force => true do |t|
-    t.integer  "equipment_id"
-    t.integer  "location_id"
-    t.integer  "job_id"
-    t.integer  "yellow_dip_start"
-    t.integer  "yellow_dip_end"
-    t.integer  "white_dip_start"
-    t.integer  "white_dip_end"
-    t.date     "date"
-    t.string   "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "location_name"
-    t.datetime "versioned_at"
-    t.integer  "created_by"
-    t.integer  "adjusted_yellow_dip_start", :default => 0
-    t.integer  "adjusted_yellow_dip_end",   :default => 0
-    t.integer  "adjusted_white_dip_start",  :default => 0
-    t.integer  "adjusted_white_dip_end",    :default => 0
+    t.integer   "equipment_id"
+    t.integer   "location_id"
+    t.integer   "job_id"
+    t.integer   "yellow_dip_start"
+    t.integer   "yellow_dip_end"
+    t.integer   "white_dip_start"
+    t.integer   "white_dip_end"
+    t.date      "date"
+    t.string    "note"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "location_name"
+    t.timestamp "versioned_at"
+    t.integer   "created_by"
+    t.integer   "adjusted_yellow_dip_start", :default => 0
+    t.integer   "adjusted_yellow_dip_end",   :default => 0
+    t.integer   "adjusted_white_dip_start",  :default => 0
+    t.integer   "adjusted_white_dip_end",    :default => 0
   end
 
   add_index "load_sheets", ["job_id"], :name => "index_load_sheets_on_job_id"
@@ -367,23 +367,23 @@ ActiveRecord::Schema.define(:version => 20101206100255) do
   end
 
   create_table "time_sheets", :force => true do |t|
-    t.integer  "location_id"
-    t.integer  "time_note_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by"
-    t.string   "note"
-    t.datetime "started_at"
-    t.datetime "completed_at"
-    t.integer  "updated_by"
-    t.integer  "lunch"
-    t.integer  "per_diem_rate"
-    t.decimal  "fuel"
-    t.decimal  "hotel"
-    t.decimal  "fuel_rate"
-    t.datetime "versioned_at"
-    t.string   "versioned_time_entry_ids"
-    t.decimal  "per_diem_percent",         :default => 0.0
+    t.integer   "location_id"
+    t.integer   "time_note_category_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "created_by"
+    t.string    "note"
+    t.timestamp "started_at"
+    t.timestamp "completed_at"
+    t.integer   "updated_by"
+    t.integer   "lunch"
+    t.integer   "per_diem_rate"
+    t.decimal   "fuel"
+    t.decimal   "hotel"
+    t.decimal   "fuel_rate"
+    t.timestamp "versioned_at"
+    t.string    "versioned_time_entry_ids"
+    t.decimal   "per_diem_percent",         :default => 0.0
   end
 
   create_table "time_task_categories", :force => true do |t|
