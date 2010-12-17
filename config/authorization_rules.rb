@@ -15,7 +15,8 @@ authorization do
     has_permission_on :private_directory, :to => :index
     has_permission_on [:private_crews, :private_clients, :private_completions, :private_costs, :private_equipments,
                        :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
-                       :private_time_task_categories, :private_time_note_categories, :private_material_reports, :private_material_report_summaries, :private_reconciliation_summaries], :to => :manage
+                       :private_time_task_categories, :private_time_note_categories, :private_material_reports,
+                       :private_material_report_summaries, :private_reconciliation_summaries, :private_report_summaries], :to => :manage
     has_permission_on :private_material_reports, :private_material_report_summaries, :to => [:update_dips, :print]
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets], :to => [:create, :show]
 
@@ -30,13 +31,14 @@ authorization do
     has_permission_on :private_reports, :to => :time_entries
     has_permission_on :private_reports, :to => [:accountant_csv, :user_time_csv]
     has_permission_on :private, :to => :settings
-        has_permission_on :private_directory, :to => :index
+    has_permission_on :private_directory, :to => :index
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets,
                         :private_job_sheets, :private_time_entries, :private_estimates,
                        :private_clock_in, :private_clock_out, :private_time_sheets,
                        :private_clients, :private_completions, :private_costs, :private_equipments,
                        :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
-                       :private_time_task_categories, :private_time_note_categories, :private_material_reports, :private_material_report_summaries, :private_directory
+                       :private_time_task_categories, :private_time_note_categories, :private_material_reports,
+                       :private_material_report_summaries, :private_directory, :private_report_summaries
                        ], :to => [:read]
 
     has_permission_on [:private_crews, :private_jobs], :to => [:manage]

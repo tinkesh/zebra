@@ -45,7 +45,7 @@ a.plain { background: none; padding: 0; margin: 0; font-weight: normal; }
 #header { position: relative; }
 #header { background: #333; border-top: solid 5px #333; }
 #header ol { background: #333; list-style-type: none; margin: 0; padding: 0; }
-#header li, #submenu li { margin: 0; padding: 0; display: inline; }
+#header li, #submenu li { margin: 0; padding: 0; display: inline-block; }
 #header a { color: #fff; font-weight: normal; font-size: 13px; text-decoration: none; padding: 3px 8px; display: inline-block; }
 #header a.active { background: #666 }
 #header a:hover, #submenu a:hover { text-decoration: underline; color: #fcd40d; }
@@ -56,7 +56,7 @@ a.plain { background: none; padding: 0; margin: 0; font-weight: normal; }
 #submenu .container { position: relative; }
 #submenu { background: #666; border-top: solid 5px #666; }
 #submenu ol { list-style-type: none; margin: 0; padding: 0; }
-#submenu a { color: #fff; font-weight: normal; font-size: 13px; text-decoration: none; padding: 2px 8px; display: inline-block; margin: 0  10px 0 0; }
+#submenu a { color: #fff; font-weight: normal; font-size: 13px; text-decoration: none; padding: 2px 8px; display: inline-block; margin: 0; }
 #submenu a.active { background: #efefef; color: #000; }
 
 /* breadcrumb */

@@ -20,13 +20,12 @@ class Private::ReportsController < ApplicationController
       :order => "clock_in ASC")
   end
 
-    def crew_time
+  def crew_time
     session[:report] = "crew_time"
     if session[:offset].blank? : session[:offset] = Time.now end
     @date = session[:offset]
     generate_front_to_back
     @users = @crew.users
-
   end
 
   def time_entries

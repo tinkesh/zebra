@@ -2,7 +2,9 @@
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
-    <li><%= link_to 'Material Reports', private_material_report_summaries_path %></li>
+    <li><%= link_to 'Jobs', private_jobs_path %></li>
+    <li>»</li>
+    <li><%= link_to @job.label, private_job_path(@job) %></li>
     <li>»</li>
     <li><%= @page_title %></li>
   </ul>
