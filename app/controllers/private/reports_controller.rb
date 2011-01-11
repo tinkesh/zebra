@@ -119,11 +119,11 @@ private
 
   def generate_front_to_back
     if @date.day <= 23
-      @back  = @date.year.to_s + "-" + (@date.month - 1).to_s + "-" + "24"
+      @back  = @date.year.to_s + "-" + (@date - 1.month).month.to_s + "-" + "24"
       @front = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
     else
       @back = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
-      @front  = @date.year.to_s + "-" + (@date.month + 1).to_s + "-" + "24"
+      @front  = @date.year.to_s + "-" + (@date + 1.month).month.to_s + "-" + "24"
     end
   end
 
