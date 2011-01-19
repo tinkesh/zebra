@@ -433,9 +433,9 @@ ActiveRecord::Schema.define(:version => 20110119213755) do
     t.datetime "versioned_at"
     t.integer  "crew_id"
     t.string   "employment_state",      :default => "Employed"
-    t.date     "employment_start_date"
-    t.date     "employment_end_date"
     t.string   "employment_notes"
+    t.date     "employment_end_date"
+    t.date     "employment_start_date"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
