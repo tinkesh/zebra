@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101103140712) do
+ActiveRecord::Schema.define(:version => 20110119213755) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -404,38 +404,38 @@ ActiveRecord::Schema.define(:version => 20101103140712) do
   end
 
   create_table "users", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "login",                                         :null => false
-    t.string    "crypted_password",                              :null => false
-    t.string    "password_salt",                                 :null => false
-    t.string    "persistence_token",                             :null => false
-    t.integer   "login_count",           :default => 0,          :null => false
-    t.timestamp "last_request_at"
-    t.timestamp "last_login_at"
-    t.timestamp "current_login_at"
-    t.string    "last_login_ip"
-    t.string    "current_login_ip"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.string    "perishable_token",      :default => "",         :null => false
-    t.string    "email",                 :default => "",         :null => false
-    t.string    "time_zone"
-    t.string    "home_phone"
-    t.string    "cell_phone"
-    t.string    "address"
-    t.string    "city"
-    t.string    "province"
-    t.string    "postal_code"
-    t.integer   "rate"
-    t.boolean   "bank_overtime_hours"
-    t.string    "versioned_role_ids"
-    t.timestamp "versioned_at"
-    t.integer   "crew_id"
-    t.string    "employment_state",      :default => "Employed"
-    t.text      "employment_start_date"
-    t.text      "employment_end_date"
-    t.string    "employment_notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "login",                                         :null => false
+    t.string   "crypted_password",                              :null => false
+    t.string   "password_salt",                                 :null => false
+    t.string   "persistence_token",                             :null => false
+    t.integer  "login_count",           :default => 0,          :null => false
+    t.datetime "last_request_at"
+    t.datetime "last_login_at"
+    t.datetime "current_login_at"
+    t.string   "last_login_ip"
+    t.string   "current_login_ip"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "perishable_token",      :default => "",         :null => false
+    t.string   "email",                 :default => "",         :null => false
+    t.string   "time_zone"
+    t.string   "home_phone"
+    t.string   "cell_phone"
+    t.string   "address"
+    t.string   "city"
+    t.string   "province"
+    t.string   "postal_code"
+    t.integer  "rate"
+    t.boolean  "bank_overtime_hours"
+    t.string   "versioned_role_ids"
+    t.datetime "versioned_at"
+    t.integer  "crew_id"
+    t.string   "employment_state",      :default => "Employed"
+    t.date     "employment_start_date"
+    t.date     "employment_end_date"
+    t.string   "employment_notes"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
