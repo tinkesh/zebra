@@ -4,6 +4,8 @@ authorization do
     includes :office
     includes :foreman
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
+
+    has_permission_on [:private_report_summaries], :to => [:all_job_value, :all_marking_value]
   end
 
   role :office do

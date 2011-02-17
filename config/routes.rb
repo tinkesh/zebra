@@ -50,6 +50,12 @@ ActionController::Routing::Routes.draw do |map|
     page.export_user_time_csv "reports/user_time_csv/:id", :action => "user_time_csv", :path_prefix => "admin"
   end
 
+  # summary reports
+  map.with_options :controller => "private/report_summaries" do |page|
+    page.all_job_value "report_summaries/all_job_value", :action => "all_job_value", :path_prefix => "admin"
+    page.all_marking_value "report_summaries/all_marking_value", :action => "all_marking_value", :path_prefix => "admin"
+  end
+
   # versions
   map.revert_user "users/:id/revert/:version", :controller => "users",         :action => "revert", :path_prefix => "admin"
   map.revert_job  "jobs/:id/revert/:version",  :controller => "private/jobs",  :action => "revert", :path_prefix => "admin"

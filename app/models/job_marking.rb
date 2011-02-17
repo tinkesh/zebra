@@ -12,4 +12,8 @@ class JobMarking < ActiveRecord::Base
     actual
   end
 
+  def total_value
+    amount * rate
+  end
+
 end

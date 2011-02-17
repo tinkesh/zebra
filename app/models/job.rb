@@ -29,12 +29,7 @@ class Job < ActiveRecord::Base
     label
   end
 
-  #############################################################################
   # Sums of gun sheet properties
-  #############################################################################
-  #
-
-
   def total_interchanges
     gun_sheets.collect{|gs| if gs.interchanges.blank? then 0 else gs.interchanges end}.sum
   end
@@ -111,4 +106,12 @@ class Job < ActiveRecord::Base
     gun_sheets.collect(&:skip_w7).sum
   end
 
+  # Report Summaries Properties
+  def num_job_markings
+    job_markings.collect().count
+  end
+
+  def total_job_value
+    job_markings.collect{|m| m.total_value}.sum
+  end
 end

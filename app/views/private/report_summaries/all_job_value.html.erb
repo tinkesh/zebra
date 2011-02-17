@@ -15,24 +15,22 @@
 
 <hr>
 
-<p class="hint">Jobs appear in this list if they are active and have at least one gun sheet.</p>
+<p class="hint">This report shows the value of all active jobs</p>
+
+<p>Total active job value: <%= number_to_currency(@jobs.collect(&:total_job_value).sum) %></p>
 
 <table class="sortable">
   <tr>
     <th class="center number">Job #</th>
     <th>Job Name</th>
-    <th class="nosort">&nbsp;</th>
-    <th class="nosort">&nbsp;</th>
+    <th class="right currency">Total Job Value</th>
   </tr>
 
 <% @jobs.each do |job| %>
-  <% if job.gun_sheets.size != 0 %>
   <tr>
     <td><%= job.id %></td>
     <td><%= job.name %> <%= link_to image_tag("open-link.png"), private_job_path(job) %></td>
-    <td><%= link_to("Reconciliation Summary",  private_job_reconciliation_summary_path(job)) %></td>
-    <td><%= link_to("Material Report Summary",  private_job_material_report_summary_path(job)) %></td>
+    <td class="right"><%= number_to_currency(job.total_job_value) %></td>
   </tr>
-  <% end %>
 <% end %>
 </table>

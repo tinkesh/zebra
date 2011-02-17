@@ -7,4 +7,13 @@ class Private::ReportSummariesController < ApplicationController
     @jobs = Job.active
   end
 
+  def all_job_value
+    @page_title = "All Job Value"
+    @jobs = Job.active
+  end
+
+  def all_marking_value
+    @page_title = "All Marking Value"
+  end
+
 end
