@@ -112,6 +112,6 @@ class Job < ActiveRecord::Base
   end
 
   def total_job_value
-    job_markings.collect{|m| m.total_value}.sum
+    job_markings.collect{|m| m.total_value}.sum rescue 0
   end
 end

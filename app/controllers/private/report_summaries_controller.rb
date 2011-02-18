@@ -14,6 +14,14 @@ class Private::ReportSummariesController < ApplicationController
 
   def all_marking_value
     @page_title = "All Marking Value"
+
+    @groups = GunMarkingGroup.all
+
+    @category_groups = []
+
+    @groups.each do |group|
+      @category_groups << GunMarkingCategory.categories_for_group(group.id)
+    end
   end
 
 end

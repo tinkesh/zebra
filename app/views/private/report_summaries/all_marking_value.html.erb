@@ -15,22 +15,45 @@
 
 <hr>
 
-<p class="hint">This report shows the value of all active jobs</p>
+<p class="hint">This report shows the value of each marking category in active jobs</p>
 
-<p>Total active job value: <%= number_to_currency(@jobs.collect(&:total_job_value).sum) %></p>
+<p>Groups total value: <%= number_to_currency(@groups.collect(&:total_value).sum) %></p>
 
+<h3>Summary</h3>
 <table class="sortable">
   <tr>
-    <th class="center number">Job #</th>
-    <th>Job Name</th>
-    <th class="right currency">Total Job Value</th>
+    <th>Group</th>
+    <th class="right">Total Value</th>
   </tr>
-
-<% @jobs.each do |job| %>
+<% @groups.each do |group| %>
   <tr>
-    <td><%= job.id %></td>
-    <td><%= job.name %> <%= link_to image_tag("open-link.png"), private_job_path(job) %></td>
-    <td class="right"><%= number_to_currency(job.total_job_value) %></td>
+    <td><%= group.title %></td>
+    <td class="right currency"><%= number_to_currency(group.total_value) %></td>
   </tr>
 <% end %>
 </table>
+<br>
+
+<% @groups.each do |group| %>
+  <% @categories = @category_groups.shift %>
+
+<h3><%= group.title %></h3>
+<p>Total for group: <%= number_to_currency(group.total_value) %></p>
+<table class="sortable">
+  <tr>
+    <th class="center number">Category #</th>
+    <th>Category Name</th>
+    <th class="right currency">Total Category Value</th>
+  </tr>
+
+  <% @categories.each do |category| %>
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.name %></td>
+    <td class="right currency"><%= number_to_currency(category.total_value) %></td>
+  </tr>
+  <% end %>
+</table>
+<br>
+
+<% end %>

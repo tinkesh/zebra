@@ -8,4 +8,10 @@
   <%= form.text_field :position, :class => "span-3" %>
 </div>
 
+<div class="span-4 append-bottom">
+  <%= form.label :gun_marking_group, "Gun Marking Group" %><br>
+  <%= form.select (:gun_marking_group_id, GunMarkingGroup.all.map {|u| [u.title,u.id]}, :include_blank => false, :class => "span-6") %>
+</div>
+
+
 <br class="clear">

@@ -13,6 +13,7 @@
 <table class="sortable">
   <tr>
     <th>Name</th>
+    <th>Gun Marking Group</th>
     <th>Display Position</th>
     <th class="actions nosort"></th>
   </tr>
@@ -20,6 +21,7 @@
 <% @gun_marking_categories.each do |gun_marking_category| %>
   <tr>
     <td><%= gun_marking_category.name %></td>
+    <td><%= GunMarkingGroup.find(gun_marking_category.gun_marking_group_id).title %></td>
     <td><%= gun_marking_category.position %></td>
     <td class="actions">
     <%= link_to 'Delete', private_gun_marking_category_path(gun_marking_category), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
