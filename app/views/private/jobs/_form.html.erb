@@ -57,20 +57,6 @@
 </div>
 <% end %>
 
-<div class="span-8 append-bottom">
-  <%= form.label :equipment_ids, "Assign Equipment" %><br>
-  <ul class="habtm">
-  <% for equipment in @equipment %>
-    <li>
-      <label>
-        <%= check_box_tag "job[equipment_ids][]", equipment.id, @job.equipments.include?(equipment) %>
-        <%= equipment.unit %> - <%= equipment.name %>
-      </label>
-    </li>
-  <% end %>
-  </ul>
-</div>
-
 <hr>
 
 <% form.fields_for :job_markings do |builder| %>

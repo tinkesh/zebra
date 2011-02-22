@@ -28,6 +28,7 @@ class Private::CrewsController < ApplicationController
   def edit
     @crew = Crew.find(params[:id])
     @users = User.find(:all, :order => "first_name ASC", :conditions => {:employment_state => "Employed"})
+    @equipment = Equipment.find(:all, :order => :unit)
     @page_title = "Edit #{@crew.name}"
   end
 

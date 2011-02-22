@@ -1,6 +1,6 @@
 class Equipment < ActiveRecord::Base
 
-  has_and_belongs_to_many :jobs
+  has_and_belongs_to_many :crews
   has_many :load_sheets
   has_many :gun_sheets
   validates_presence_of :unit

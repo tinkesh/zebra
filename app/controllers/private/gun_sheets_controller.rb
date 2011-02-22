@@ -103,8 +103,9 @@ private
 
   def load_gun_sheet_supporting_data
     @job_locations = @job.job_locations
-    @equipment = @job.equipments
     @clients = Client.find(:all, :order => :name)
+    @allequipment = Equipment.find(:all, :order => :unit)
+    @equipment = @allequipment.find_all{|item| item.unit.starts_with? 'LPT'}
     @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
   end
 

@@ -6,7 +6,7 @@
 
 <div class="span-10 append-bottom">
   <%= form.label :equipment_id, "Equipment" %><br>
-  <%= form.select (:equipment_id, @equipment.map {|u| ["#{u.unit} - #{u.name}",u.id]}, :include_blank => true) %>
+  <%= form.select (:equipment_id, @equipment.map {|u| ["#{u.unit} - #{u.name}",u.id]}, :include_blank => false) %>
 </div>
 
 <div class="span-8 last append-bottom">
