@@ -85,7 +85,8 @@ private
 
   def load_load_sheet_supporting_data
     @materials = Material.find(:all, :include => :manufacturer, :order => "category, manufacturers.name")
-    @equipment = Equipment.find(:all, :order => :unit)
+    @allequipment = Equipment.find(:all, :order => :unit)
+    @equipment = @allequipment.find_all{|item| item.unit.starts_with? 'LPT'}
     @jobs = Job.find(:all)
   end
 

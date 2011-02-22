@@ -14,19 +14,19 @@
 <% form_for @search do |f| %>
   <tr class="no-border"><td class="no-border">
     <%= f.label :job_name_like, "Job Name" %><br />
-    <%= f.text_field :job_name_like %>
+    <%= f.text_field :job_name_like, :size => "20" %>
   </td>
   <td class="no-border"><td class="no-border">
     <%= f.label :job_location_name_like, "Location" %><br />
-    <%= f.text_field :job_location_name_like %>
+    <%= f.text_field :job_location_name_like, :size => "20" %>
   </td>
   <td class="no-border"><td class="no-border">
     <%= f.label :equipment_unit_like, "Equipment Unit Name" %><br />
-    <%= f.text_field :equipment_unit_like %>
+    <%= f.text_field :equipment_unit_like, :size => "20" %>
   </td>
   <td class="no-border"><td class="no-border">
     <%= f.label :created_by_name, "Created By" %><br />
-    <%= f.text_field :created_by_name %>
+    <%= f.text_field :created_by_name, :size => "20" %>
   </td>
   <td class="no-border right">
     <%= link_to "Clear Search", private_gun_sheets_path %><br />

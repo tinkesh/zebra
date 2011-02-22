@@ -4,11 +4,10 @@ class Private::JobsController < ApplicationController
   filter_access_to :only => [:index, :new, :update, :edit, :destroy, :create, :revert, :load_job_supporting_data]
 
   def index
-    @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => false})
     @page_title = "Jobs on Hand"
     @search = Job.search(params[:search])
     @search << Job.client_contact_like(params[:search])
-    @searched_jobs = @search.all
+    @searched_jobs = @search.is_archived("false").all
   end
 
 

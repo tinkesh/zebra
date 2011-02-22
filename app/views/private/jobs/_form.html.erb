@@ -3,7 +3,7 @@
 
   <div class="append-bottom">
     <%= form.label :client_id %><br>
-    <%= select ("job", "client_id", @clients.map {|u| [u.name,u.id]}) %>
+    <%= select ("job", "client_id", @clients.map {|u| [u.name,u.id]}, {}, :class => "span-7") %>
   </div>
 
   <div class="append-bottom">

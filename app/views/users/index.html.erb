@@ -10,6 +10,7 @@
   <% if permitted_to? :manage, :users -%>
   <ol>
     <li><%= active_link_to 'New User', new_user_path %></li>
+    <li><%= active_link_to 'Inactive Users', "/admin/users?showonly=inactive" %></li>
   </ol>
   <% end %>
 <% end %>
