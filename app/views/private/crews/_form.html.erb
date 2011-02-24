@@ -25,7 +25,7 @@
     <li>
       <label>
         <%= check_box_tag "crew[equipment_ids][]", equipment.id, @crew.equipments.include?(equipment) %>
-        <%= equipment.unit %> - <%= equipment.name %>
+          <%= equipment.unit %> - <%= equipment.name %>
       </label>
     </li>
   <% end %>

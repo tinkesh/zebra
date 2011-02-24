@@ -36,6 +36,23 @@ class LoadSheet < ActiveRecord::Base
     self.adjusted_white_dip_end - self.adjusted_white_dip_start
   end
 
+  # These next 4 printable methods are used by Material Reports#show
+  def printable_white_dip_start
+    self.adjusted_white_dip_start ? self.adjusted_white_dip_start : self.white_dip_start
+  end
+
+  def printable_white_dip_end
+    self.adjusted_white_dip_end ? self.adjusted_white_dip_end : self.white_dip_end
+  end
+
+  def printable_yellow_dip_start
+    self.adjusted_yellow_dip_start ? self.adjusted_yellow_dip_start : self.yellow_dip_start
+  end
+
+  def printable_yellow_dip_end
+    self.adjusted_yellow_dip_end ? self.adjusted_yellow_dip_end : self.yellow_dip_end
+  end
+
 private
 
   def update_adjusted_dips
