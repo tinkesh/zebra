@@ -6,6 +6,11 @@ class Private::MaterialReportsController < ApplicationController
   def index
     @material_reports = MaterialReport.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:job, :gun_sheet, :load_sheet]
     @page_title = "Material Reports"
+
+    @search = MaterialReport.search(params[:search])
+    if params[:commit] == "Search"
+      @material_reports = @search.paginate :page => params[:page], :per_page => 50, :order => 'id DESC', :include => [:job, :gun_sheet, :load_sheet]
+    end
   end
 
   def show

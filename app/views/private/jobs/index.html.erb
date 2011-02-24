@@ -18,27 +18,29 @@
   <% end %>
 <% end %>
 
-
 <hr>
+
 <table>
-<% form_for @search do |f| %>
-  <tr class="no-border"><td class="no-border">
-    <%= f.label :name_like, "Name" %><br />
-    <%= f.text_field :name_like %>
-  </td>
-  <td class="no-border">
-    <%= f.label :location_name_like, "Location" %><br />
-    <%= f.text_field :location_name_like %>
-  </td>
-  <td class="no-border">
-    <%= f.label :client_name_like , "Client" %><br />
-    <%= f.text_field :client_name_like %>
-  </td>
-  <td class="no-border right">
-    <%= link_to "Clear Search", private_jobs_path %><br />
-    <%= f.submit "Search" %>
-  </td></tr>
-<% end %>
+  <% form_for @search do |f| %>
+    <tr class="no-border">
+      <td>
+        <%= f.label :name_like, "Name" %><br />
+        <%= f.text_field :name_like %>
+      </td>
+      <td>
+        <%= f.label :client_name_like , "Client" %><br />
+        <%= f.text_field :client_name_like %>
+      </td>
+      <td>
+        <%= f.label :location_name_like, "Location" %><br />
+        <%= f.text_field :location_name_like %>
+      </td>
+      <td>
+        <%= link_to "Clear Search", private_jobs_path %><br/>
+        <%= f.submit "Search" %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 
 <% if @jobs != @search.all %>

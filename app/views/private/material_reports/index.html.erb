@@ -8,6 +8,21 @@
 
 <p class="hint">To create a new material report, view the related Job and choose 'New Material Report' from the sub-menu. The Job must have at least 1 Load Sheet and Gun Sheet.</p>
 
+<table>
+  <% form_for @search do |f| %>
+    <tr class="no-border">
+      <td>
+        <%= f.label :job_name_like, "Job" %><br />
+        <%= f.text_field :job_name_like %>
+      </td>
+      <td>
+        <%= link_to "Clear Search", private_material_reports_path %><br/>
+        <%= f.submit "Search" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
 <%= will_paginate @material_reports %>
 
 <table class="sortable">

@@ -6,6 +6,17 @@
   </ul>
 <% end %>
 
+<table>
+<% form_for @search do |f| %>
+<tr class="no-border">
+  <td class="no-border right">
+    <%= link_to "Clear Search", private_time_sheets_path %><br />
+    <%= f.submit "Search" %>
+  </td>
+</tr>
+<% end %>
+</table>
+
 <%= will_paginate @time_sheets %>
 
 <table class="sortable">

@@ -6,6 +6,11 @@ class Private::TimeSheetsController < ApplicationController
   def index
     @time_sheets = TimeSheet.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 50, :include => [:jobs, :time_entries]
     @page_title = "Time Sheets"
+
+    @search = TimeSheet.search(params[:search])
+    if params[:commit] == "Search"
+      @time_sheets = @search.paginate :page => params[:page], :per_page => 50, :order => 'created_at DESC', :include => [:jobs, :time_entries]
+    end
   end
 
   def show

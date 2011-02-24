@@ -5,6 +5,11 @@ class Private::ReportSummariesController < ApplicationController
   def index
     @page_title = "Summary Reports"
     @jobs = Job.active
+
+    @search = Job.search(params[:search])
+    if params[:commit] == "Search"
+      @jobs = @search
+    end
   end
 
   def all_job_value
