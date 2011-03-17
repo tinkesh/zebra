@@ -1,6 +1,7 @@
 class Crew < ActiveRecord::Base
 
   has_and_belongs_to_many :jobs
+  has_and_belongs_to_many :equipments
   has_many :users
 
   def label
@@ -15,6 +16,14 @@ class Crew < ActiveRecord::Base
       list << "<span class='#{user.role_symbols}'>#{user.first_name} #{user.last_name}</span>"
     end
     list.join(", ")
+  end
+
+  def clear_used_equipment_from_other_crews(equipment_ids)
+    @equipments = Equipment.find(:all, :conditions => {:id => equipment_ids})
+
+      @equipments.each do |x|
+        x.update_attributes(:crew_ids => nil)
+      end
   end
 
 end

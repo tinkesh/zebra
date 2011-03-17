@@ -9,11 +9,36 @@
 <hr>
 <table>
 <% form_for @search do |f| %>
+<<<<<<< HEAD
   <tr class="no-border"><td class="no-border right">
 		<%= f.text_field :job_name_or_location_name_like %>
 		<%= f.submit "Search" %><br>
 		<em>Searched within job and location</em>
   </td></tr>
+=======
+<tr class="no-border">
+  <td class="no-border">
+    <%= f.label :job_name_like, "Job" %><br />
+    <%= f.text_field :job_name_like, :size => "20" %>
+  </td>
+  <td class="no-border">
+    <%= f.label :job_location_name_like, "Location" %><br />
+    <%= f.text_field :job_location_name_like, :size => "20" %>
+  </td>
+  <td class="no-border">
+    <%= f.label :created_by_name, "Created By" %><br />
+    <%= f.text_field :created_by_name, :size => "20" %>
+  </td>
+  <td class="no-border">
+    <%= f.label :equipment_unit_like, "Truck" %><br />
+    <%= f.text_field :equipment_unit_like, :size => "20" %>
+  </td>
+  <td class="no-border right">
+    <%= link_to "Clear Search", private_gun_sheets_path %><br />
+    <%= f.submit "Search" %>
+  </td>
+</tr>
+>>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
 <% end %>
 </table>
 

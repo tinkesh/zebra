@@ -19,7 +19,9 @@
 <% end %>
 
 <hr>
+
 <table>
+<<<<<<< HEAD
 <% form_for @search do |f| %>
   <tr class="no-border"><td class="no-border right">
 		<%= f.text_field :name_like_or_location_name_like_or_client_name_like %>
@@ -27,6 +29,28 @@
 		<em>Searches within name, client and location</em>
   </td></tr>
 <% end %>
+=======
+  <% form_for @search do |f| %>
+    <tr class="no-border">
+      <td>
+        <%= f.label :name_like, "Name" %><br />
+        <%= f.text_field :name_like %>
+      </td>
+      <td>
+        <%= f.label :client_name_like , "Client" %><br />
+        <%= f.text_field :client_name_like %>
+      </td>
+      <td>
+        <%= f.label :location_name_like, "Location" %><br />
+        <%= f.text_field :location_name_like %>
+      </td>
+      <td>
+        <%= link_to "Clear Search", private_jobs_path %><br/>
+        <%= f.submit "Search" %>
+      </td>
+    </tr>
+  <% end %>
+>>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
 </table>
 
 <% if @jobs != @search.all %>

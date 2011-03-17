@@ -90,15 +90,17 @@
   <hr>
 
   <h3>Equipment</h3>
-  <% if @equipment %>
-  <ol>
-  <% @equipment.each do |e| %>
-    <li><%= e.unit %> - <%= e.name %></li>
-  <% end %>
-  </ol>
-  <% else %>
-  <p>No equipment assigned.</p>
-  <% end %>
+    <ol>
+      <% i = 0 %>
+      <% @job.crews.each do |crew| %>
+        <% crew.equipments.each do |e| %>
+          <li><%= e.unit %> - <%= e.name %> <% i = i + 1 %></li>
+        <% end %>
+      <% end %>
+    </ol>
+    <% if i == 0 %>
+      <p>No Equipment Assigned</p>
+    <% end %>
 
   <hr>
 

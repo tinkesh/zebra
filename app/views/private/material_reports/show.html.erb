@@ -89,8 +89,10 @@
     <table>
       <tr>
         <th class="span-3">&nbsp;</th>
+        <th class="right">Prev End</th>
         <th class="right">Tank Start</th>
         <th class="right">Tank End</th>
+        <th class="right">Next Start</th>
         <th class="right">Tank Used</th>
         <th class="right">Truck Calculation Rate</th>
         <th class="right">Total Used</th>
@@ -98,6 +100,9 @@
 
       <tr>
         <th>Yellow</th>
+        <td class="right">
+          <%= @material_report.prev_report.load_sheet.printable_yellow_dip_end if @material_report.prev_report && @material_report.prev_report.load_sheet %>
+        </td>
         <td class="right">
           <span class="noprint">
             <%= @material_report.load_sheet.yellow_dip_start %>
@@ -112,6 +117,9 @@
           </span>
           <span class="onlyprint"><%= @material_report.load_sheet.adjusted_yellow_dip_end %></span>
         </td>
+        <td class="right">
+          <%= @material_report.next_report.load_sheet.printable_yellow_dip_start if @material_report.next_report && @material_report.next_report.load_sheet %>
+        </td>
         <td class="right"><span id="yellow_used"><%= @material_report.load_sheet.yellow_dip_used %></span> cm</td>
         <td class="right"><span id="yellow_rate"><%= @material_report.yellow_rate %></span> L/cm</td>
         <td class="right"><span id="tank_yellow_calc"></span> L</td>
@@ -119,6 +127,9 @@
 
       <tr>
         <th>White</th>
+        <td class="right">
+          <%= @material_report.prev_report.load_sheet.printable_white_dip_end if @material_report.prev_report && @material_report.prev_report.load_sheet %>
+        </td>
         <td class="right">
           <span class="noprint">
             <%= @material_report.load_sheet.white_dip_start %>
@@ -132,6 +143,9 @@
             <%= f.text_field "adjusted_white_dip_end", :class => "span-2" %>
           </span>
           <span class="onlyprint"><%= @material_report.load_sheet.adjusted_white_dip_end %></span>
+        </td>
+        <td class="right">
+          <%= @material_report.next_report.load_sheet.printable_white_dip_start if @material_report.next_report && @material_report.next_report.load_sheet %>
         </td>
         <td class="right"><span id="white_used"><%= @material_report.load_sheet.white_dip_used %></span> cm</td>
         <td class="right"><span id="white_rate"><%= @material_report.white_rate %></span> L/cm</td>
@@ -288,3 +302,18 @@
 <script language="javascript">
   updateTable();
 </script>
+
+<% if @material_report.load_sheet && @material_report.load_sheet.equipment %>
+<% content_for :versions do %>
+<ul id="versions">
+  <% if @material_report.prev_report %>
+    <li><%= link_to "<< Prev", private_material_report_path(@material_report.prev_report) %></li>
+  <% end %>
+  <li><%= @material_report.load_sheet.equipment.name %></li>
+
+  <% if @material_report.next_report %>
+    <li><%= link_to "Next >>", private_material_report_path(@material_report.next_report) %></li>
+  <% end %>
+</ul>
+<% end %>
+<% end %>

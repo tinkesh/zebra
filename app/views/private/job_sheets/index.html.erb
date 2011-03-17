@@ -6,6 +6,7 @@
   </ul>
 <% end %>
 
+<<<<<<< HEAD
 <hr>
 <table>
 <% form_for @search do |f| %>
@@ -15,6 +16,21 @@
 		<em>Searches within job</em>
   </td></tr>
 <% end %>
+=======
+<table>
+  <% form_for @search do |f| %>
+    <tr class="no-border">
+      <td>
+        <%= f.label :job_name_like, "Job" %><br />
+        <%= f.text_field :job_name_like %>
+      </td>
+      <td>
+        <%= link_to "Clear Search", private_job_sheets_path %><br/>
+        <%= f.submit "Search" %>
+      </td>
+    </tr>
+  <% end %>
+>>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
 </table>
 
 <%= will_paginate @job_sheets %>

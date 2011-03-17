@@ -3,7 +3,7 @@
 
   <div class="append-bottom">
     <%= form.label :client_id %><br>
-    <%= select ("job", "client_id", @clients.map {|u| [u.name,u.id]}) %>
+    <%= select ("job", "client_id", @clients.map {|u| [u.name,u.id]}, {}, :class => "span-7") %>
   </div>
 
   <div class="append-bottom">
@@ -56,20 +56,6 @@
   </ul>
 </div>
 <% end %>
-
-<div class="span-8 append-bottom">
-  <%= form.label :equipment_ids, "Assign Equipment" %><br>
-  <ul class="habtm">
-  <% for equipment in @equipment %>
-    <li>
-      <label>
-        <%= check_box_tag "job[equipment_ids][]", equipment.id, @job.equipments.include?(equipment) %>
-        <%= equipment.unit %> - <%= equipment.name %>
-      </label>
-    </li>
-  <% end %>
-  </ul>
-</div>
 
 <hr>
 

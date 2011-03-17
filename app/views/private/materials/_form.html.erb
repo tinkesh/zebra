@@ -1,6 +1,6 @@
 <div class="span-6 append-bottom">
   <%= form.label :manufacturer, "Manufacturer" %><br />
-  <%= select ("material", "manufacturer_id", @manufacturers.map {|u| [u.name,u.id]}) %>
+  <%= select ("material", "manufacturer_id", @manufacturers.map {|u| [u.name,u.id]}, {}, :class => 'span-6') %>
 </div>
 
 <div class="span-6 append-bottom">

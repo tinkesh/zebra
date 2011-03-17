@@ -1,11 +1,13 @@
 class Equipment < ActiveRecord::Base
 
-  has_and_belongs_to_many :jobs
+  has_and_belongs_to_many :crews
   has_many :load_sheets
   has_many :gun_sheets
   validates_presence_of :unit
   validates_presence_of :name
   validates_presence_of :rate
+
+  named_scope :unassigned, :include => :crews, :conditions => ['crews_equipment.crew_id IS NULL'], :order => "unit ASC"
 
   def cost(job_sheet)
     if self.rate

@@ -24,7 +24,15 @@ class JobSheet < ActiveRecord::Base
   end
 
   def total_equipment_cost
-    0 + self.job.equipments.sum(:rate) * self.time_sheets.length
+    total_cost = 0
+
+    self.gun_sheets.each do |sheet|
+      if sheet.equipment
+        total_cost = total_cost + (sheet.equipment.rate * self.time_sheets.length)
+      end
+    end
+
+    total_cost
   end
 
   def total_per_diem

@@ -8,6 +8,8 @@ class MaterialReport < ActiveRecord::Base
   validates_presence_of :gun_sheet, :on => :create, :message => "can't be blank"
   validates_presence_of :load_sheet, :on => :create, :message => "can't be blank"
 
+  named_scope :by_equipment, lambda { |equipment_id| { :include => :load_sheet, :conditions => ['load_sheets.equipment_id = ?', equipment_id], :order => "load_sheets.date ASC, material_reports.id ASC"}}
+
   def label
     "MR ##{self.id} with GS ##{self.gun_sheet_id}, LS ##{self.load_sheet_id}"
   end
@@ -22,6 +24,22 @@ class MaterialReport < ActiveRecord::Base
 
   def bead_used
     (self.load_sheet.yellow_dip_used + self.load_sheet.white_dip_used) * 0.6
+  end
+
+  def next_report
+    material_reports = MaterialReport.by_equipment(self.load_sheet.equipment_id)
+
+    pos_in_reports = material_reports.index(self)
+
+    pos_in_reports < material_reports.length ? material_reports[pos_in_reports+1] : nil
+  end
+
+  def prev_report
+    material_reports = MaterialReport.by_equipment(self.load_sheet.equipment_id)
+
+    pos_in_reports = material_reports.index(self)
+
+    pos_in_reports > 0 ? material_reports[pos_in_reports-1] : nil
   end
 
 end

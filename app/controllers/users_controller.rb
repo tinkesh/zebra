@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   filter_access_to :index, :attribute_check => false
 
   def index
-    @users = User.find(:all, :include => :roles, :order => :first_name)
+    if(params[:showonly] == 'inactive')
+      @users = User.find(:all, :conditions => ["employment_state NOT LIKE 'Employed'"], :include => :roles, :order => :first_name)
+    else
+      @users = User.find(:all, :conditions => {:employment_state => "Employed"}, :include => :roles, :order => :first_name)
+    end
+
     @page_title = "Users"
     
     @search = User.search(params[:search])

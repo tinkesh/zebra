@@ -8,16 +8,21 @@ class Private::JobSheetsController < ApplicationController
   def index
     @job_sheets = JobSheet.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 50
     @page_title = "Job Sheets"
+<<<<<<< HEAD
     
     @search = JobSheet.search(params[:search])
     
+=======
+
+    @search = JobSheet.search(params[:search])
+>>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
     if params[:commit] == "Search"
       @job_sheets = @search.paginate :page => params[:page], :per_page => 50, :order => 'created_at DESC'
     end
   end
 
   def show
-    @job_sheet = JobSheet.find(params[:id], :include => [{:time_sheets => [:time_entries => :user]}, {:job => [{:gun_sheets => :gun_markings}, :equipments, :job_markings, :estimates]}])
+    @job_sheet = JobSheet.find(params[:id], :include => [{:time_sheets => [:time_entries => :user]}, {:job => [{:gun_sheets => :gun_markings}, :job_markings, :estimates]}])
     @page_title = @job_sheet.job.label
     @job_marking_cats = Array.new
   end

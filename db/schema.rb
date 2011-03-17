@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217204207) do
+ActiveRecord::Schema.define(:version => 20110222221731) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -81,6 +81,13 @@ ActiveRecord::Schema.define(:version => 20110217204207) do
     t.datetime "updated_at"
   end
 
+  create_table "crews_equipment", :id => false, :force => true do |t|
+    t.integer  "equipment_id"
+    t.integer  "crew_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "crews_jobs", :id => false, :force => true do |t|
     t.integer "crew_id"
     t.integer "job_id"
@@ -96,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20110217204207) do
     t.decimal  "white_rate",  :precision => 5, :scale => 2
   end
 
+<<<<<<< HEAD
   create_table "equipment_jobs", :id => false, :force => true do |t|
     t.integer  "equipment_id"
     t.integer  "job_id"
@@ -103,6 +111,8 @@ ActiveRecord::Schema.define(:version => 20110217204207) do
     t.datetime "updated_at"
   end
 
+=======
+>>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
   create_table "estimates", :force => true do |t|
     t.integer  "job_id"
     t.integer  "time_sheet_id"
