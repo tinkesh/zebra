@@ -14,6 +14,17 @@
   <% end %>
 <% end %>
 
+<hr>
+<table>
+<% form_for @search do |f| %>
+  <tr class="no-border"><td class="no-border right">
+		<%= f.text_field :first_name_like_or_last_name_like_or_login_like %>
+		<%= f.submit "Search" %><br>
+		<em>Searches within name and login</em>
+  </td></tr>
+<% end %>
+</table>
+
 <table class="sortable">
   <tr>
     <th>Name</th>

@@ -7,7 +7,6 @@ class Private::JobsController < ApplicationController
     @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => false})
     @page_title = "Jobs on Hand"
     @search = Job.search(params[:search])
-    @search << Job.client_contact_like(params[:search])
     @searched_jobs = @search.all
   end
 

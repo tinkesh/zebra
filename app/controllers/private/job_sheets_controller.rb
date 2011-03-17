@@ -8,6 +8,12 @@ class Private::JobSheetsController < ApplicationController
   def index
     @job_sheets = JobSheet.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 50
     @page_title = "Job Sheets"
+    
+    @search = JobSheet.search(params[:search])
+    
+    if params[:commit] == "Search"
+      @job_sheets = @search.paginate :page => params[:page], :per_page => 50, :order => 'created_at DESC'
+    end
   end
 
   def show

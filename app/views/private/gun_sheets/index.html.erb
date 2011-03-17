@@ -7,35 +7,19 @@
 <% end %>
 
 <hr>
-
-<p class="hint">To create a new gun sheet, view the related Job and choose 'New Gun Sheet' from the sub-menu.</p>
-
 <table>
 <% form_for @search do |f| %>
-  <tr class="no-border"><td class="no-border">
-    <%= f.label :job_name_like, "Job Name" %><br />
-    <%= f.text_field :job_name_like %>
-  </td>
-  <td class="no-border"><td class="no-border">
-    <%= f.label :job_location_name_like, "Location" %><br />
-    <%= f.text_field :job_location_name_like %>
-  </td>
-  <td class="no-border"><td class="no-border">
-    <%= f.label :equipment_unit_like, "Equipment Unit Name" %><br />
-    <%= f.text_field :equipment_unit_like %>
-  </td>
-  <td class="no-border"><td class="no-border">
-    <%= f.label :created_by_name, "Created By" %><br />
-    <%= f.text_field :created_by_name %>
-  </td>
-  <td class="no-border right">
-    <%= link_to "Clear Search", private_gun_sheets_path %><br />
-    <%= f.submit "Search" %>
+  <tr class="no-border"><td class="no-border right">
+		<%= f.text_field :job_name_or_location_name_like %>
+		<%= f.submit "Search" %><br>
+		<em>Searched within job and location</em>
   </td></tr>
 <% end %>
 </table>
 
 <%= will_paginate @time_sheets %>
+
+<p class="hint">To create a new gun sheet, view the related Job and choose 'New Gun Sheet' from the sub-menu.</p>
 
 <% form_tag private_gun_sheets_print_selected_path, :method => :post, :target => '_blank' do -%>
   <%= submit_tag "Print Selected", :style => "margin-bottom:10px;" %>

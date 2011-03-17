@@ -2,7 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-
   has_mobile_fu
 
   helper :all # include all helpers, all the time

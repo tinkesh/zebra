@@ -6,6 +6,17 @@
   </ul>
 <% end %>
 
+<hr>
+<table>
+<% form_for @search do |f| %>
+  <tr class="no-border"><td class="no-border right">
+		<%= f.text_field :job_name_like %>
+		<%= f.submit "Search" %><br>
+		<em>Searches within job</em>
+  </td></tr>
+<% end %>
+</table>
+
 <%= will_paginate @job_sheets %>
 
 <table class="sortable">

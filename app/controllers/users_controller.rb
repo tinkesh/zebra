@@ -7,6 +7,12 @@ class UsersController < ApplicationController
   def index
     @users = User.find(:all, :include => :roles, :order => :first_name)
     @page_title = "Users"
+    
+    @search = User.search(params[:search])
+    
+    if params[:commit] == "Search"
+      @users = @search.all
+    end
   end
 
   def new
