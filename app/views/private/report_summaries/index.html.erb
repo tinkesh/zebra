@@ -16,30 +16,18 @@
 <hr>
 <table>
 <% form_for @search do |f| %>
-  <tr class="no-border"><td class="no-border right">
-		<%= f.text_field :name_like %>
-		<%= f.submit "Search" %><br>
-		<em>Searches within Job Name</em>
-  </td></tr>
+  <tr class="no-border">
+    <td class="no-border right">
+  		<%= f.text_field :name_like %>
+  		<%= f.submit "Search" %><br>
+  		<em>Searches within Job Name</em>
+    </td>
+  </tr>
 <% end %>
 </table>
 
 <p class="hint">Jobs appear in this list if they are active and have at least one gun sheet.</p>
 
-<table>
-<% form_for @search do |f| %>
-<tr class="no-border">
-  <td class="no-border">
-    <%= f.label :name_like, "Job" %><br />
-    <%= f.text_field :name_like, :size => "20" %>
-  </td>
-  <td class="no-border right">
-    <%= link_to "Clear Search", private_report_summaries_path %><br />
-    <%= f.submit "Search" %>
-  </td>
-</tr>
-<% end %>
-</table>
 
 <table class="sortable">
   <tr>

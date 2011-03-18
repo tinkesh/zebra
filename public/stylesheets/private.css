@@ -19,7 +19,8 @@ a:hover { color: #3344FF; text-decoration: underline; }
 /* misc */
 .jobs .new, .jobs .edit, .jobs .show { float: none; }
 .jobs ul { list-style-type: none; margin: 0 0 1.5em 0; padding: 0; }
-.guns th { background: none; color: #333; font-weight: bold; }
+.guns th { border: none; background: none; color: #333; font-weight: bold; }
+.guns td { border: none; }
 .relative { position: relative; }
 .habtm { list-style-type: none; padding: 0; margin: 0 0 1.5em 0; }
 .habtm li { position: relative; }

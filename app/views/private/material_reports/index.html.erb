@@ -11,13 +11,10 @@
 <table>
   <% form_for @search do |f| %>
     <tr class="no-border">
-      <td>
-        <%= f.label :job_name_like, "Job" %><br />
+      <td class="right">
         <%= f.text_field :job_name_like %>
-      </td>
-      <td>
-        <%= link_to "Clear Search", private_material_reports_path %><br/>
-        <%= f.submit "Search" %>
+        <%= f.submit "Search" %><br>
+        <em>Searches within Job Name</em>
       </td>
     </tr>
   <% end %>

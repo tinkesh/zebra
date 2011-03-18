@@ -13,34 +13,13 @@
   <%= render :partial => 'menus/jobs_menu', :layout => false %>
 <% end %>
 
-<% content_for :versions do %>
-<!--
-<ol id="versions" class="noprint">
-    <li>Version <%= @job.version %> of <%= @job.last_version %></li>
-    <li><%= if @job.versioned_at : @job.versioned_at.strftime("%Y-%m-%d %H:%M") else @job.created_at.strftime("%Y-%m-%d %H:%M") end %></li>
-  <% if @job.version > 1 %>
-    <li><%= link_to "Older", :version => @job.version-1 %></li>
-  <% else %>
-    <li>Older</li>
-  <% end %>
-  <% if params[:version] %>
-    <li><%= link_to "Newer", :version => @job.version+1 %></li>
-    <li><%= link_to "Revert", revert_job_path(:version => @job.version) %></li>
-  <% else %>
-    <li>Newer</li>
-    <li>Revert</li>
-  <% end %>
-</ol>
--->
-<% end %>
+<div class="span-24"><h3>Notes</h3>
+  <%= @job.notes.blank? ? "None." : raw(RedCloth.new(@job.notes).to_html) %>
+</div>
+
+<hr>
 
 <div class="span-6 append-1">
-  <h3>Notes</h3>
-  <p>
-    <%= if @job.notes : "#{@job.notes}" else "-" end %>
-  </p>
-
-  <hr>
 
   <h3>Schedule</h3>
   <p>
@@ -58,14 +37,24 @@
       <%= unless @job.client.name.blank?       : "<br>#{@job.client.name}" end %>
       <%= unless @job.client.address.blank?    : "<br>#{@job.client.address}" end %>
       <%= unless @job.client.city.blank?       : "<br>#{@job.client.city}" end %>
-      <%= unless @job.client.province.blank? : ", #{@job.client.province}" end %>
+      <%= unless @job.client.province.blank?   : ", #{@job.client.province}" end %>
       <%= unless @job.client.work_phone.blank? : "<br>Work: #{@job.client.work_phone}" end %>
       <%= unless @job.client.cell_phone.blank? : "<br>Cell: #{@job.client.cell_phone}" end %>
-      <%= unless @job.client.fax.blank?         : "<br>Fax: #{@job.client.fax}" end %>
+      <%= unless @job.client.fax.blank?        : "<br>Fax: #{@job.client.fax}" end %>
       <%= unless @job.client.email.blank?      : "<br>Email: #{@job.client.email}" end %>
-      <%= unless @job.client.notes.blank?       : "<br>#{@job.client.notes}" end %>
+      <%= unless @job.client.notes.blank?      : "<br>#{@job.client.notes}" end %>
     <% end %>
   </p>
+
+  <hr>
+
+  <h3>Location</h3>
+  <p><%= @job.location_name %></p>
+  <ol>
+  <% @job.job_locations.each do |location| %>
+    <li><%= location.name %></li>
+  <% end %>
+  </ol>
 
 </div><!-- span-6 -->
 
@@ -99,18 +88,8 @@
       <% end %>
     </ol>
     <% if i == 0 %>
-      <p>No Equipment Assigned</p>
+      <p>No Equipment Assigned to Crew</p>
     <% end %>
-
-  <hr>
-
-  <h3>Location</h3>
-  <p><%= @job.location_name %></p>
-  <ol>
-  <% @job.job_locations.each do |location| %>
-    <li><%= location.name %></li>
-  <% end %>
-  </ol>
 
   <hr>
 

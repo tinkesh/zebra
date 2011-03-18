@@ -20,6 +20,7 @@ Rails::Initializer.run do |config|
   config.gem 'laserlemon-vestal_versions', :lib => 'vestal_versions', :source => 'http://gems.github.com'
   config.gem "fastercsv"
   config.gem "searchlogic"
+  config.gem 'RedCloth'
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
