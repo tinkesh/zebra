@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
+# This file is auto-generated from the current state of the database. Instead of editing this file,
 # please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(:version => 20110222221731) do
     t.decimal  "white_rate",  :precision => 5, :scale => 2
   end
 
-<<<<<<< HEAD
   create_table "equipment_jobs", :id => false, :force => true do |t|
     t.integer  "equipment_id"
     t.integer  "job_id"
@@ -111,8 +110,6 @@ ActiveRecord::Schema.define(:version => 20110222221731) do
     t.datetime "updated_at"
   end
 
-=======
->>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
   create_table "estimates", :force => true do |t|
     t.integer  "job_id"
     t.integer  "time_sheet_id"

@@ -1,5 +1,5 @@
 <div class="container">
-<div class="span-7 append-1">
+<div class="span-11 append-1">
 
   <div class="append-bottom">
     <%= form.label :client_id %><br>
@@ -8,7 +8,7 @@
 
   <div class="append-bottom">
     <%= form.label :name, "Project Name" %><br>
-    <%= form.text_field "name", :class => "span-7" %>
+    <%= form.text_field "name", :class => "span-10" %>
   </div>
 
   <div class="append-bottom">
@@ -26,22 +26,17 @@
     <%= form.date_select :completed_on, :include_blank => true %>
   </div>
 
-  <div class="append-bottom">
-    <%= form.label :notes, "Notes" %><br>
-    <%= form.text_area "notes", :class => "span-7", :rows => 4 %>
-  </div>
-
 <div class="append-bottom">
-  
 	<% grouped_options = [true,false] %>
 	<%= form.label :is_archived, "Archived" %><br />
-	<%= form.check_box(:is_archived)%>
-    <p style=font-size:10px;>Will remove from Jobs on Hand and remove all crew assignments if checked.</p>
+	<%= form.check_box :is_archived, :style => "float: left;" %>
+  <p style="font-size:10px;float: left;">Will remove from Jobs on Hand and remove all crew assignments if checked.</p>
 </div>
 
 </div>
+
 <% if @job.is_archived == false %>
-<div class="span-5 append-1 append-bottom">
+<div class="span-12 last">
   <%= form.label :crew_ids, "Assign Crew" %><br>
   <ul class="habtm">
   <% for crew in @crews %>
@@ -50,13 +45,19 @@
         <%= check_box_tag "job[crew_ids][]", crew.id, @job.crews.include?(crew) %>
         <%= crew.label %>
       </label><br>
-      <%= crew.user_list %>
+      <span style="padding-left: 20px;"><%= crew.user_list %></span>
     </li>
   <% end %>
   </ul>
 </div>
 <% end %>
 
+<div class="clearfix"></div>
+
+<div class="append-bottom">
+  <%= form.label :notes, "Notes" %><br>
+  <%= form.text_area "notes", :class => "span-24", :rows => 10 %>
+</div>
 <hr>
 
 <% form.fields_for :job_markings do |builder| %>

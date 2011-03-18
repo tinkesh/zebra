@@ -14,7 +14,6 @@
   <% end %>
 <% end %>
 
-<<<<<<< HEAD
 <hr>
 <table>
 <% form_for @search do |f| %>
@@ -23,28 +22,6 @@
 		<%= f.submit "Search" %><br>
 		<em>Searches within job, equipment and location</em>
   </td></tr>
-=======
-<table>
-<% form_for @search do |f| %>
-<tr class="no-border">
-  <td class="no-border">
-    <%= f.label :job_name_like, "Job" %><br />
-    <%= f.text_field :job_name_like, :size => "30" %>
-  </td>
-  <td class="no-border">
-    <%= f.label :equipment_name_like, "Equipment" %><br />
-    <%= f.text_field :equipment_name_like, :size => "30" %>
-  </td>
-  <td class="no-border">
-    <%= f.label :location_name_like, "Location" %><br />
-    <%= f.text_field :location_name_like, :size => "30" %>
-  </td>
-  <td class="no-border right">
-    <%= link_to "Clear Search", private_load_sheets_path %><br />
-    <%= f.submit "Search" %>
-  </td>
-</tr>
->>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
 <% end %>
 </table>
 

@@ -6,17 +6,9 @@ class Private::LoadSheetsController < ApplicationController
   def index
     @load_sheets = LoadSheet.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:equipment, :job]
     @page_title = "Load Sheets"
-<<<<<<< HEAD
     @search = LoadSheet.search(params[:search])
-    
     if params[:commit] == "Search"
       @load_sheets = @search.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:equipment, :job]
-=======
-
-    @search = LoadSheet.search(params[:search])
-    if params[:commit] == "Search"
-      @load_sheets = @search.paginate :page => params[:page], :per_page => 50, :order => 'id DESC', :include => [:job, :equipment]
->>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
     end
   end
 

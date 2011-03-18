@@ -6,12 +6,7 @@ class Private::JobsController < ApplicationController
   def index
     @page_title = "Jobs on Hand"
     @search = Job.search(params[:search])
-<<<<<<< HEAD
     @searched_jobs = @search.all
-=======
-    @search << Job.client_contact_like(params[:search])
-    @searched_jobs = @search.is_archived("false").all
->>>>>>> 47997ff1564b43ec7da48d71469d64fa72e6a29d
   end
 
 
