@@ -7,7 +7,8 @@
 <% end %>
 
 <% form_tag :controller => 'private/clock_in', :action => "create", :method => :post do -%>
-
+<input type="button" onclick="toggleCheckboxes(true)" value="Select All"/>
+<input type="button" onclick="toggleCheckboxes(false)" value="Select None"/>
   <table class="no-border">
     <tr>
       <th>&nbsp;</th>
@@ -60,3 +61,16 @@
 
 <% end -%>
 
+<script type="text/javascript" language="javascript">
+	function toggleCheckboxes(checked_status) {
+		
+		var checkboxes = [];
+		checkboxes = $$('input').each(function(e){ if(e.type == 'checkbox') checkboxes.push(e) });
+		
+		if(checked_status == true)
+			checkboxes.each(function(e){ e.checked = 1 });
+		else
+			checkboxes.each(function(e){ e.checked = 0 });
+	}
+
+</script>

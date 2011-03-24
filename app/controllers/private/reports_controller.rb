@@ -92,8 +92,13 @@ class Private::ReportsController < ApplicationController
     generate_front_to_back
 
     csv_string = FasterCSV.generate do |csv|
+      if permitted_to? :manage, :private_time_entries
       csv << ["Name", "Rate", "Straight Time", "Over Time", "Per Diem",
               "Reported Clock In", "Reported Clock Out", "Actual Clock In", "Actual Clock Out"]
+      else
+        csv << ["Name", "Rate", "Straight Time", "Over Time", "Per Diem",
+                "Clock In", "Clock Out"]
+      end
       @user = User.find(params[:id])
       @entries = TimeEntry.find(:all, :conditions => { :clock_in => @back.to_date...@front.to_date, :user_id => @user.id },
                                 :order => "clock_in ASC",
@@ -104,8 +109,13 @@ class Private::ReportsController < ApplicationController
           clock_out = e.clock_out.strftime('%Y-%m-%d %I:%M %p') if e.clock_out
           clocked_in_at = e.clocked_in_at.strftime('%Y-%m-%d %I:%M %p') if e.clocked_in_at
           clocked_out_at = e.clocked_out_at.strftime('%Y-%m-%d %I:%M %p') if e.clocked_out_at
+          if permitted_to? :manage, :private_time_entries
           csv << [e.user.name, e.user.rate, e.straight_time, e.over_time, e.per_diem,
                   clock_in, clock_out, clocked_in_at, clocked_out_at]
+          else
+            csv << [e.user.name, e.user.rate, e.straight_time, e.over_time, e.per_diem,
+                    clock_in, clock_out]
+          end
         end
       end
 

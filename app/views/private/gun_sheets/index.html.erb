@@ -22,6 +22,8 @@
 <p class="hint">To create a new gun sheet, view the related Job and choose 'New Gun Sheet' from the sub-menu.</p>
 
 <% form_tag private_gun_sheets_print_selected_path, :method => :post, :target => '_blank' do -%>
+<input type="button" onclick="toggleCheckboxes(true)" value="Select All"/>
+<input type="button" onclick="toggleCheckboxes(false)" value="Select None"/>
   <%= submit_tag "Print Selected", :style => "margin-bottom:10px;" %>
   <table class="sortable">
     <tr>
@@ -66,3 +68,17 @@
 <% end %>
 
 <%= will_paginate @time_sheets %>
+
+<script type="text/javascript" language="javascript">
+	function toggleCheckboxes(checked_status) {
+		
+		var checkboxes = [];
+		checkboxes = $$('input').each(function(e){ if(e.type == 'checkbox') checkboxes.push(e) });
+		
+		if(checked_status == true)
+			checkboxes.each(function(e){ e.checked = 1 });
+		else
+			checkboxes.each(function(e){ e.checked = 0 });
+	}
+
+</script>

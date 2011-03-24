@@ -2,14 +2,18 @@
 <h3><%= back.to_date.strftime('%b-%d-%y') %> to <%= (front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
 <table>
   <tr>
-    <th class="center" colspan="3">Actual</th>
+		<% if permitted_to? :manage, :private_time_entries %>
+    	<th class="center" colspan="3">Actual</th>
+		<% end %>
     <th class="center" colspan="3">Reported</th>
     <td colspan="3" class="noborder" >&nbsp;</td>
   </tr>
   <tr>
-    <th class="right span-3">Date</th>
-    <th class="right span-3">In</th>
-    <th class="right span-3">Out</th>
+		<% if permitted_to? :manage, :private_time_entries %>
+    	<th class="right span-3">Date</th>
+    	<th class="right span-3">In</th>
+    	<th class="right span-3">Out</th>
+		<% end %>
     <th class="right span-3">Date</th>
     <th class="right span-3">In</th>
     <th class="right span-3">Out</th>
@@ -28,9 +32,11 @@
 <% ot += entry.over_time %>
 <% pt += entry.per_diem %>
   <tr class="<%= cycle('odd', 'even') %>">
-    <td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') %></td>
-    <td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
+		<% if permitted_to? :manage, :private_time_entries %>
+    	<td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') %></td>
+    	<td class="right"><%= if entry.clocked_in_at : entry.clocked_in_at.strftime('%I:%M %p') else '-' end %></td>
+    	<td class="right"><%= if entry.clocked_out_at : entry.clocked_out_at.strftime('%I:%M %p') else '-' end %></td>
+		<% end %>
     <td class="right"><%= entry.created_at.strftime('%a, %b-%d-%y') %></td>
     <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
     <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
@@ -46,7 +52,11 @@
   </tr>
 <% end%>
   <tr>
-    <th colspan="7" class="right"><%= st %></th>
+		<% if permitted_to? :manage, :private_time_entries %>
+    	<th colspan="7" class="right"><%= st %></th>
+		<% else %>
+			<th colspan="4" class="right"><%= st %></th>
+		<% end %>
     <th class="right"><%= ot %></th>
     <th class="right"><%= pt %></th>
     <% if permitted_to? :manage, :private_time_entries -%>
