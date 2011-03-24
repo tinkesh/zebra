@@ -11,7 +11,7 @@ class Private::JobsController < ApplicationController
 
 
   def archived_jobs
-    @page_title = "Archived Hand"
+    @page_title = "Archived Jobs on Hand"
     @search = Job.search(params[:search])
     @searched_jobs = @search.all(:conditions => {:is_archived => true}, :include => [:client, :completion])
   end
