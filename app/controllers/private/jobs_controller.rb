@@ -6,13 +6,14 @@ class Private::JobsController < ApplicationController
   def index
     @page_title = "Jobs on Hand"
     @search = Job.search(params[:search])
-    @searched_jobs = @search.all
+    @searched_jobs = @search.all(:conditions => {:is_archived => false}, :include => [:client, :completion])
   end
 
 
   def archived_jobs
-    @jobs = Job.find(:all, :include => [:client, :completion], :conditions => {:is_archived => true})
-    @page_title = "Archived Jobs"
+    @page_title = "Archived Hand"
+    @search = Job.search(params[:search])
+    @searched_jobs = @search.all(:conditions => {:is_archived => true}, :include => [:client, :completion])
   end
 
   def show

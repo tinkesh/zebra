@@ -18,4 +18,16 @@
   <% end %>
 <% end %>
 
-<%= render :partial => "display", :locals =>{:jobs => @jobs} %>
+<hr>
+
+<table>
+<% form_for @search do |f| %>
+  <tr class="no-border"><td class="no-border right">
+		<%= f.text_field :name_like_or_location_name_like_or_client_name_like %>
+		<%= f.submit "Search" %><br>
+		<em>Searches within name, client and location</em>
+  </td></tr>
+<% end %>
+</table>
+
+<%= render :partial => "display", :locals =>{:jobs => @searched_jobs} %>
