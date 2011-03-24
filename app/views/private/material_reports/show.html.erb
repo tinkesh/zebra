@@ -276,18 +276,18 @@
 
 <script type="text/javascript" language="javascript">
   function updateTable() {
-    $('white_used').innerHTML = ($('load_sheet_adjusted_white_dip_start').getValue() - $('load_sheet_adjusted_white_dip_end').getValue()).toFixed(2)
-    $('yellow_used').innerHTML = ($('load_sheet_adjusted_yellow_dip_start').getValue() - $('load_sheet_adjusted_yellow_dip_end').getValue()).toFixed(2)
-    $('tank_white_calc').innerHTML = ($('white_rate').innerHTML * $('white_used').innerHTML).toFixed(2)
-    $('tank_yellow_calc').innerHTML = ($('yellow_rate').innerHTML * $('yellow_used').innerHTML).toFixed(2)
-    $('bead_used').innerHTML = ((($('tank_white_calc').innerHTML * 1) + ($('tank_yellow_calc').innerHTML * 1)) * 0.6).toFixed(2)
+    $('white_used').innerHTML = Math.abs(($('load_sheet_adjusted_white_dip_start').getValue() - $('load_sheet_adjusted_white_dip_end').getValue())).toFixed(2)
+    $('yellow_used').innerHTML = Math.abs(($('load_sheet_adjusted_yellow_dip_start').getValue() - $('load_sheet_adjusted_yellow_dip_end').getValue())).toFixed(2)
+    $('tank_white_calc').innerHTML = Math.abs(($('white_rate').innerHTML * $('white_used').innerHTML)).toFixed(2)
+    $('tank_yellow_calc').innerHTML = Math.abs(($('yellow_rate').innerHTML * $('yellow_used').innerHTML)).toFixed(2)
+    $('bead_used').innerHTML = Math.abs(((($('tank_white_calc').innerHTML * 1) + ($('tank_yellow_calc').innerHTML * 1)) * 0.6)).toFixed(2)
 
     $('summary_total_white_used').innerHTML = ($('white_rate').innerHTML * $('white_used').innerHTML).toFixed(2)
     $('summary_total_yellow_used').innerHTML = ($('yellow_rate').innerHTML * $('yellow_used').innerHTML).toFixed(2)
     $('summary_yellow_calculation').innerHTML = ($('summary_total_yellow_used').innerHTML / $('summary_yellow_length').innerHTML).toFixed(3)
     $('summary_white_calculation').innerHTML = ($('summary_total_white_used').innerHTML / $('summary_white_length').innerHTML).toFixed(3)
 
-    $('summary_bead_used').innerHTML = (($('tank_white_calc').innerHTML * 1) + ($('tank_yellow_calc').innerHTML * 1) * 0.6).toFixed(2)
+    $('summary_bead_used').innerHTML = ((($('tank_white_calc').innerHTML * 1) + ($('tank_yellow_calc').innerHTML * 1)) * 0.6).toFixed(2)
     $('summary_bead_length').innerHTML = (($('summary_yellow_length').innerHTML * 1) + ($('summary_white_length').innerHTML * 1)).toFixed(2)
     $('summary_bead_calculation').innerHTML = ($('summary_bead_used').innerHTML / $('summary_bead_length').innerHTML).toFixed(2)
 
