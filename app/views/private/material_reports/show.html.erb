@@ -65,7 +65,13 @@
 
   <tr>
     <th>Location</th>
-    <td colspan="2"><%= @material_report.gun_sheet_id ? @material_report.gun_sheet.location_name : "Unknown" %></td>
+    <td colspan="2">
+      <% if @material_report.gun_sheet %>
+        <%= @material_report.gun_sheet.location_name %>
+      <% else %>
+        <%= "Unknown" %>
+      <% end %>
+    </td>
   </tr>
 
   <tr>
