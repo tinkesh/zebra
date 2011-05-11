@@ -13,7 +13,7 @@
   <td><%= form.select (:job_id, @crew.jobs.map {|u| [u.label,u.id]}, :include_blank => true, :selected => params[:job_id]) %></td>
 <% else %>
   <td colspan="2">
-    <span class='error'>You cannot assign this load sheet to a job. This is either because you have no crew, or your crew has no jobs.</span>
+    You cannot assign this load sheet to a job. This is either because you have no crew, or your crew has no jobs.
   </td>
 <% end %>
 </tr>
