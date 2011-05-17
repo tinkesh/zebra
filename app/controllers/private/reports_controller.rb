@@ -42,11 +42,13 @@ class Private::ReportsController < ApplicationController
   end
 
   def increase_offset
-     session[:offset] += 1.months
-     redirect_to :action => session[:report], :id => params[:id]
+    if session[:offset].blank? : session[:offset] = Time.now end
+    session[:offset] += 1.months
+    redirect_to :action => session[:report], :id => params[:id]
   end
 
   def decrease_offset
+    if session[:offset].blank? : session[:offset] = Time.now end
     session[:offset] -= 1.months
     redirect_to :action => session[:report], :id => params[:id]
   end
