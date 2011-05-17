@@ -44,8 +44,13 @@ class Private::LoadSheetsController < ApplicationController
     @page_title = "New Load Sheet"
     if @load_sheet.save
       @load_sheet.versioned_at = Time.now
-      flash[:notice] = "Load Sheet created!"
-      redirect_to private_load_sheets_url
+      if @load_sheet.job
+        flash[:notice] = "Load Sheet created!"
+        redirect_to private_job_url(:id => @load_sheet.job_id)
+      else
+        flash[:notice] = "Load Sheet created! Redirected to home since there was no job assigned to the load sheet."
+        redirect_to "/admin"
+      end
     else
       render :action => :new
     end

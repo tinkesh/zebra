@@ -6,4 +6,4 @@ Expected Amount: <%= @marking.amount %>
 
 Production Amount: <%= @marking.actual_production %>
 
-<%= private_reconciliation_summary_path(@marking.job.id) %>
+<%= private_job_reconciliation_summary_path(@marking.job.id) %>
