@@ -121,7 +121,7 @@ private
     @time_task_categories = TimeTaskCategory.find(:all, :order => :position)
     @time_note_categories = TimeNoteCategory.find(:all, :order => :position)
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
-      @lunch_selections = [0, 30, 45, 60, 75, 90, 105, 120]
+      @lunch_selections = [0, 30, 45, 60, 75, 90, 105, 120, 150, 180, 210, 240, 270, 300]
     else
       @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
     end
