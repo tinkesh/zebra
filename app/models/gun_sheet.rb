@@ -36,7 +36,7 @@ class GunSheet < ActiveRecord::Base
   end
 
   def label
-    "GS ##{self.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.started_on.to_date.strftime('%b-%d-%y')}"
+    "GS ##{self.id}, " + "JOB ##{self.job.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.started_on.to_date.strftime('%b-%d-%y')}"
   end
 
   def is_archived?

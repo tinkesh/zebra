@@ -7,7 +7,13 @@ class JobSheet < ActiveRecord::Base
   validates_presence_of :material_rate, :message => "can't be blank"
 
   def label
-    "Job Sheet ##{self.id}"
+    ret_val = "Job Sheet ##{self.id}, "
+
+    if self.gun_sheets.first && self.gun_sheets.first.started_on
+      ret_val << self.gun_sheets.first.started_on.to_date.strftime('%b-%d-%y')
+    else
+      ret_val << self.date.strftime('%b-%d-%y')
+    end
   end
 
   def date_range
