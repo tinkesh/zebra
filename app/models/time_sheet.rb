@@ -49,7 +49,13 @@ class TimeSheet < ActiveRecord::Base
   end
 
   def label
-    "Time Sheet ##{self.id} #{self.created_at.strftime('%b-%d-%y')}"
+    ret_val = "Time Sheet ##{self.id}, "
+
+    if self.time_entries && self.time_entries.first
+      ret_val << self.time_entries.first.clock_in.strftime('%b-%d-%y')
+    else
+      ret_val << self.created_at.strftime('%b-%d-%y')
+    end
   end
 
   def total_per_diem

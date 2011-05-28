@@ -10,6 +10,9 @@
         <label>
         <%= check_box_tag "job_sheet[time_sheet_ids][]", time_sheet.id, @job_sheet.time_sheets.include?(time_sheet) %>
         <%= time_sheet.label %>
+        <div id="location_label" style="margin-left: 20px">
+          <%= "(" + @job.location_label + ")" %>
+        </div>
         </label>
       </li>
     <% end %>
@@ -28,6 +31,13 @@
         <label>
         <%= check_box_tag "job_sheet[gun_sheet_ids][]", gun_sheet.id, @job_sheet.gun_sheets.include?(gun_sheet) %>
         <%= gun_sheet.label %>
+        <div id="location_label" style="margin-left: 20px">
+          <% if gun_sheet.location_name.present? %>
+            <%= "(" + gun_sheet.location_name + ")" %>
+          <% else %>
+            <%= "(" + @job.location_label + ")" %>
+          <% end %>
+        </div>
         </label>
       </li>
     <% end %>

@@ -113,4 +113,10 @@ class Job < ActiveRecord::Base
   def total_job_value
     job_markings.collect{|m| m.total_value}.sum rescue 0
   end
+
+  def location_label
+    sub_locations = self.job_locations.map(&:name).join(", ")
+
+    sub_locations.empty? ? self.location_name : self.location_name + ", " + sub_locations
+  end
 end
