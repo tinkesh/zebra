@@ -95,11 +95,22 @@
 
   <h3>Marking Quantities</h3>
   <% if @job.job_markings.length != 0 %>
+    <% @marking_sum = 0 %>
     <ol>
     <% @job.job_markings.each do |m| %>
-      <li><%= m.amount %> <%= m.gun_marking_category.name if m.gun_marking_category %></li>
+      <li>
+        <%= m.amount %> <%= m.gun_marking_category.name if m.gun_marking_category %>
+        <br>
+        <% if permitted_to? :manage, :private_job_sheets -%>
+          (<%= number_to_currency(m.rate) %>/unit = <%= number_to_currency(m.amount * m.rate) %>)
+          <% @marking_sum += (m.amount * m.rate) %>
+        <% end %>
+      </li>
     <% end %>
     </ol>
+    <% if permitted_to? :manage, :private_job_sheets -%>
+      <p>Total: <%= number_to_currency(@marking_sum) %></p>
+    <% end %>
   <% else %>
     <p>No markings assigned.</p>
   <% end %>
