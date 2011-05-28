@@ -58,6 +58,16 @@ class TimeSheet < ActiveRecord::Base
     end
   end
 
+  def is_archived?
+    if self.time_entries && self.time_entries.first
+      archive_date = self.time_entries.first.clock_in
+    else
+      archive_date = self.created_at
+    end
+
+    archive_date < Job::archive_date
+  end
+
   def total_per_diem
     self.per_diem_percent != 0 ? (self.per_diem_percent * self.time_entries.length) : 0
   end

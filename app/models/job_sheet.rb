@@ -14,6 +14,15 @@ class JobSheet < ActiveRecord::Base
     self.gun_sheets.first.started_on.to_date.strftime('%b-%d-%y') if self.gun_sheets.first && self.gun_sheets.first.started_on
   end
 
+  def is_archived?
+    if self.gun_sheets && self.gun_sheets.first
+      archive_date = Time.parse(self.gun_sheets.first.started_on.to_s)
+    else
+      archive_date = self.created_at
+    end
+
+    archive_date < Job::archive_date
+  end
 
   def net
     self.total_marking_earnings - self.total_expenses

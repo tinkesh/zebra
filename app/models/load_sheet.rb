@@ -20,6 +20,10 @@ class LoadSheet < ActiveRecord::Base
     "LS ##{self.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.date.to_date.strftime('%b-%d-%y')}"
   end
 
+  def is_archived?
+    Time.parse(self.date.to_s) < Job::archive_date
+  end
+
   def yellow_dip_used
     !(self.yellow_dip_end.blank? || self.yellow_dip_start.blank?) ? self.yellow_dip_end - self.yellow_dip_start : 0
   end
