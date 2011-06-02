@@ -4,6 +4,8 @@
 class ApplicationController < ActionController::Base
 
   include ExceptionNotification::Notifiable
+
+  # use has_mobile_fu(true) to force mobile view rendering
   has_mobile_fu
 
   helper :all # include all helpers, all the time
