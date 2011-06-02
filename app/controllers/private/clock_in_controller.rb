@@ -62,7 +62,7 @@ private
       @users = @crew.users
       @crew.users.each {|user| user_ids << user.id}
     else
-      @users = User.all
+      @users = User.find(:all, :conditions => { :employment_state => "Employed"} )
       @users.each {|user| user_ids << user.id}
     end
     @clocked_in = TimeEntry.find(:all, :conditions => { :time_sheet_id => nil, :active => true, :user_id => user_ids})

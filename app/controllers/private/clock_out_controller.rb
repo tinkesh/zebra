@@ -55,8 +55,8 @@ private
       @users = @crew.users
       @crew.users.each {|user| user_ids << user.id}
     else
-      @users = User.all
-      User.all.each { |user| user_ids << user.id }
+      @users = User.find(:all, :conditions => { :employment_state => "Employed"} )
+      @users.each { |user| user_ids << user.id }
     end
   end
 
