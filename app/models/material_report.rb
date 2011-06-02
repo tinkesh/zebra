@@ -14,6 +14,10 @@ class MaterialReport < ActiveRecord::Base
     "MR ##{self.id} with GS ##{self.gun_sheet_id}, LS ##{self.load_sheet_id}"
   end
 
+  def is_archived?
+    self.load_sheet.is_archived? or self.gun_sheet.is_archived?
+  end
+
   def yellow_rate
     self.gun_sheet ? (self.gun_sheet.equipment ? self.gun_sheet.equipment.yellow_rate : 0) : 0
   end

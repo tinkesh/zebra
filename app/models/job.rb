@@ -22,6 +22,12 @@ class Job < ActiveRecord::Base
   # Is active or not
   named_scope :active, :conditions => {:is_archived => false}
 
+  # This is a static method that all the sheets refer to
+  # created to make the Job#show report have an archived date
+  def self.archive_date
+    Time.parse("January 31 23:59:59 #{Time.now.year}")
+  end
+
   def label
     label = '#' + self.id.to_s
     if self.name : label += ", " + self.name end
@@ -112,5 +118,11 @@ class Job < ActiveRecord::Base
 
   def total_job_value
     job_markings.collect{|m| m.total_value}.sum rescue 0
+  end
+
+  def location_label
+    sub_locations = self.job_locations.map(&:name).join(", ")
+
+    sub_locations.empty? ? self.location_name : self.location_name + ", " + sub_locations
   end
 end

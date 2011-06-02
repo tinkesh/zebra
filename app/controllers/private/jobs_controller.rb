@@ -27,6 +27,20 @@ class Private::JobsController < ApplicationController
       end
     end
     @page_title = @job.label
+  end
+
+  # This is a bit of a hack to get a quickie show archived type thing working
+  def show_all
+    @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
+
+    if params[:version]
+      if params[:version].to_i >= @job.last_version
+        params[:version] = nil
+      else
+        @job.revert_to(params[:version].to_i)
+      end
+    end
+    @page_title = @job.label
 
   end
 

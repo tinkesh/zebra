@@ -7,13 +7,28 @@ class JobSheet < ActiveRecord::Base
   validates_presence_of :material_rate, :message => "can't be blank"
 
   def label
-    "Job Sheet ##{self.id}"
+    ret_val = "Job Sheet ##{self.id}, "
+
+    if self.gun_sheets.first && self.gun_sheets.first.started_on
+      ret_val << self.gun_sheets.first.started_on.to_date.strftime('%b-%d-%y')
+    else
+      ret_val << self.date.strftime('%b-%d-%y')
+    end
   end
 
   def date_range
     self.gun_sheets.first.started_on.to_date.strftime('%b-%d-%y') if self.gun_sheets.first && self.gun_sheets.first.started_on
   end
 
+  def is_archived?
+    if self.gun_sheets && self.gun_sheets.first
+      archive_date = Time.parse(self.gun_sheets.first.started_on.to_s)
+    else
+      archive_date = self.created_at
+    end
+
+    archive_date < Job::archive_date
+  end
 
   def net
     self.total_marking_earnings - self.total_expenses

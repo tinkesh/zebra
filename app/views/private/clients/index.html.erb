@@ -14,6 +14,9 @@
   <tr>
     <th>Name</th>
     <th>Contact</th>
+    <th>Work Phone</th>
+    <th>Cell Phone</th>
+    <th>Address</th>
     <th class="actions nosort"></th>
   </tr>
 
@@ -21,6 +24,9 @@
   <tr>
     <td><%= client.name %></td>
     <td><%= client.contact %></td>
+    <td><%= client.work_phone %></td>
+    <td><%= client.cell_phone %></td>
+    <td><%= client.address %> <%= client.city %> <%= client.province %> <%= client.postal_code %></td>
     <td class="actions">
     <%= link_to 'Delete', private_client_path(client), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_client_path(client), :class => "edit" %>

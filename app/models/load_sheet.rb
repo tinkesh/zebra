@@ -17,7 +17,11 @@ class LoadSheet < ActiveRecord::Base
   end
 
   def label
-    "LS ##{self.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.date.to_date.strftime('%b-%d-%y')}"
+    "LS ##{self.id}, " + "JOB ##{self.job.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.date.to_date.strftime('%b-%d-%y')}"
+  end
+
+  def is_archived?
+    Time.parse(self.date.to_s) < Job::archive_date
   end
 
   def yellow_dip_used

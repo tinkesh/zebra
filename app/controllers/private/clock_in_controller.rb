@@ -13,7 +13,12 @@ class Private::ClockInController < ApplicationController
   end
 
   def create
-    @clock_in_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)'] + ":00"
+    begin
+      @clock_in_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)'] + ":00"
+    rescue Exception => e
+      @clock_in_time = Time.now.to_s
+    end
+
     build_clocked_in_ids
 
     if params[:users]
