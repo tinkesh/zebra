@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110602162520) do
+ActiveRecord::Schema.define(:version => 20110602163042) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -325,6 +325,7 @@ ActiveRecord::Schema.define(:version => 20110602162520) do
     t.integer   "litre_per_tote"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.boolean   "is_archived",     :default => false
   end
 
   create_table "roles", :force => true do |t|

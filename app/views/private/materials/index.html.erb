@@ -12,6 +12,7 @@
 
 <table class="sortable">
   <tr>
+    <th>Archived</th>
     <th>Manufacturer</th>
     <th>Batch Number</th>
     <th>Category</th>
@@ -20,6 +21,7 @@
 
 <% @materials.each do |material| %>
   <tr>
+    <td><%= material.is_archived ? "Yes" : "No" %></td>
     <td><%= if material.manufacturer : material.manufacturer.name end %></td>
     <td><%= material.batch %></td>
     <td><%= material.category %></td>

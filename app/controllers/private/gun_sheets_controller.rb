@@ -8,7 +8,7 @@ class Private::GunSheetsController < ApplicationController
     @page_title = "Gun Sheets"
 
     @search = GunSheet.search(params[:search])
-    
+
     if params[:commit] == "Search"
       @gun_sheets = @search.paginate :page => params[:page], :per_page => 50, :order => 'id DESC', :include => [:job, :equipment]
     end
@@ -44,7 +44,7 @@ class Private::GunSheetsController < ApplicationController
     2.times do @gun_sheet.gun_markings.build end
 
     @page_title = "New Gun Sheet for " + @job.label
-      end
+  end
 
   def create
     @job = Job.find(params[:job_id])
