@@ -12,7 +12,11 @@ class JobSheet < ActiveRecord::Base
     if self.gun_sheets.first && self.gun_sheets.first.started_on
       ret_val << self.gun_sheets.first.started_on.to_date.strftime('%b-%d-%y')
     else
-      ret_val << self.date.strftime('%b-%d-%y')
+      if self.date.present?
+        ret_val << self.date.strftime('%b-%d-%y')
+      else
+        ret_val << "No Date"
+      end
     end
   end
 
