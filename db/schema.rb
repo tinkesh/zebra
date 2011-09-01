@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110901203135) do
+ActiveRecord::Schema.define(:version => 20110901210448) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(:version => 20110901203135) do
     t.string    "versioned_equipment_ids"
     t.timestamp "versioned_at"
     t.boolean   "is_archived",             :default => false
+    t.string    "completion_color"
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|

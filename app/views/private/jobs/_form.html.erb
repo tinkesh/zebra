@@ -22,6 +22,11 @@
   </div>
 
   <div class="append-bottom">
+    <%= form.label :completion_id, "Completion Color" %><br>
+    <%= select ("job", "completion_color", ["", "Red (deficiencies)", "Green (ready)", "Orange (scheduled)", "Blue (in progress)", "White (complete)"]) %>
+  </div>
+
+  <div class="append-bottom">
     <%= form.label :completed_on, "Completed On" %><br>
     <%= form.date_select :completed_on, :include_blank => true %>
   </div>

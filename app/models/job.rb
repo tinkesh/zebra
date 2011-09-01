@@ -125,4 +125,18 @@ class Job < ActiveRecord::Base
 
     sub_locations.empty? ? self.location_name : self.location_name + ", " + sub_locations
   end
+
+  # This function is used to translate the Color (State) variables, as set in
+  #  views/private/_form.html.erb
+  #  ["", "Red (deficiencies)", "Green (ready)", "Orange (scheduled)", "Blue (in progress)", "White (complete)"]
+  # to CSS friendly ones, as displayed in
+  #  views/private/jobs/_display.html.erb
+  # <tr class="<% job.get_completion_color_class_name %>">
+
+  def get_completion_color_class_name
+    return self.completion_color if self.completion_color.blank?
+
+    self.completion_color.split[0].downcase
+  end
+
 end

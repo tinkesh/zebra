@@ -1,4 +1,4 @@
-<table class="sortable">
+<table class="sortable" id="jobslist">
   <tr>
     <th class="center number">#</th>
     <th>Name</th>
@@ -25,7 +25,7 @@
     <% i += 1 %>
   <% end %>
 
-  <tr>
+  <tr class="<%= job.get_completion_color_class_name %>">
     <td><%= job.id %></td>
     <td><%= job.name %></td>
     <td class="right"><%= job.completion ? job.completion.name : "-" %></td>
