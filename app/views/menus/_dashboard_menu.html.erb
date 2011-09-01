@@ -1,5 +1,6 @@
 <ol class="noprint">
   <li><%= active_link_to "My Hours", report_user_time_path(:id => current_user.id) %></li>
+  <li><%= active_link_to "My Crews Hours", report_crew_time_path(current_user.crew_id) if permitted_to? :crew_time, :private_reports  %></li>
   <li><%= active_link_to "Recent Time Entries", report_time_entries_path if permitted_to? :time_entries, :private_reports %></li>
   <li><%= active_link_to "Export Accountant CSV", export_accountant_csv_path if permitted_to? :accountant_csv, :private_reports %></li>
   <li><%= active_link_to "My Account", edit_user_path(current_user.id) if permitted_to? :update, :users %></li>
