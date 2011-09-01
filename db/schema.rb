@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110717232836) do
+ActiveRecord::Schema.define(:version => 20110901203135) do
 
   create_table "careers", :force => true do |t|
     t.string    "name"
@@ -82,10 +82,10 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
   end
 
   create_table "crews_equipment", :id => false, :force => true do |t|
-    t.integer   "equipment_id"
-    t.integer   "crew_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "equipment_id"
+    t.integer  "crew_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "crews_jobs", :id => false, :force => true do |t|
@@ -94,13 +94,13 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
   end
 
   create_table "equipment", :force => true do |t|
-    t.string    "unit"
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "rate"
-    t.decimal   "yellow_rate"
-    t.decimal   "white_rate"
+    t.string   "unit"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "rate"
+    t.decimal  "yellow_rate", :precision => 5, :scale => 2
+    t.decimal  "white_rate",  :precision => 5, :scale => 2
   end
 
   create_table "estimates", :force => true do |t|
@@ -119,9 +119,9 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
   end
 
   create_table "gun_marking_groups", :force => true do |t|
-    t.string    "title"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "gun_markings", :force => true do |t|
@@ -135,39 +135,39 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
   add_index "gun_markings", ["gun_sheet_id"], :name => "index_gun_markings_on_gun_sheet_id"
 
   create_table "gun_sheets", :force => true do |t|
-    t.integer   "client_id"
-    t.integer   "job_id"
-    t.boolean   "is_new_construction"
-    t.string    "control_section"
-    t.date      "started_on"
-    t.time      "started_at"
-    t.time      "completed_at"
-    t.integer   "sides"
-    t.integer   "interchanges"
-    t.text      "note"
-    t.decimal   "solid_y1"
-    t.decimal   "solid_y2"
-    t.decimal   "solid_y3"
-    t.decimal   "solid_w4"
-    t.decimal   "solid_w5"
-    t.decimal   "solid_w6"
-    t.decimal   "solid_w7"
-    t.decimal   "skip_y1"
-    t.decimal   "skip_y2"
-    t.decimal   "skip_y3"
-    t.decimal   "skip_w4"
-    t.decimal   "skip_w5"
-    t.decimal   "skip_w6"
-    t.decimal   "skip_w7"
-    t.integer   "created_by"
-    t.integer   "updated_by"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "location_name"
-    t.integer   "job_location_id"
-    t.timestamp "versioned_at"
-    t.date      "completed_on"
-    t.integer   "equipment_id"
+    t.integer  "client_id"
+    t.integer  "job_id"
+    t.boolean  "is_new_construction"
+    t.string   "control_section"
+    t.date     "started_on"
+    t.time     "started_at"
+    t.time     "completed_at"
+    t.integer  "sides"
+    t.integer  "interchanges"
+    t.text     "note"
+    t.decimal  "solid_y1"
+    t.decimal  "solid_y2"
+    t.decimal  "solid_y3"
+    t.decimal  "solid_w4"
+    t.decimal  "solid_w5"
+    t.decimal  "solid_w6"
+    t.decimal  "solid_w7"
+    t.decimal  "skip_y1"
+    t.decimal  "skip_y2"
+    t.decimal  "skip_y3"
+    t.decimal  "skip_w4"
+    t.decimal  "skip_w5"
+    t.decimal  "skip_w6"
+    t.decimal  "skip_w7"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "location_name"
+    t.integer  "job_location_id"
+    t.datetime "versioned_at"
+    t.date     "completed_on"
+    t.integer  "equipment_id"
   end
 
   add_index "gun_sheets", ["job_id"], :name => "index_gun_sheets_on_job_id"
@@ -175,11 +175,6 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
   create_table "gun_sheets_job_sheets", :id => false, :force => true do |t|
     t.integer "gun_sheet_id"
     t.integer "job_sheet_id"
-  end
-
-  create_table "gun_sheets_material_report_summaries", :id => false, :force => true do |t|
-    t.integer "gun_sheet_id"
-    t.integer "material_report_summary_id"
   end
 
   create_table "job_locations", :force => true do |t|
@@ -254,35 +249,35 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
   end
 
   create_table "load_entries", :force => true do |t|
-    t.integer   "load_sheet_id"
-    t.integer   "material_id"
-    t.decimal   "tote_number"
-    t.decimal   "tote_quantity"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "load_sheet_id"
+    t.integer  "material_id"
+    t.decimal  "tote_number"
+    t.decimal  "tote_quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "load_entries", ["load_sheet_id"], :name => "index_load_entries_on_load_sheet_id"
 
   create_table "load_sheets", :force => true do |t|
-    t.integer   "equipment_id"
-    t.integer   "location_id"
-    t.integer   "job_id"
-    t.decimal   "yellow_dip_start",          :default => 0.0
-    t.decimal   "yellow_dip_end",            :default => 0.0
-    t.decimal   "white_dip_start",           :default => 0.0
-    t.decimal   "white_dip_end",             :default => 0.0
-    t.date      "date"
-    t.string    "note"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "location_name"
-    t.timestamp "versioned_at"
-    t.integer   "created_by"
-    t.decimal   "adjusted_yellow_dip_start", :default => 0.0
-    t.decimal   "adjusted_yellow_dip_end",   :default => 0.0
-    t.decimal   "adjusted_white_dip_start",  :default => 0.0
-    t.decimal   "adjusted_white_dip_end",    :default => 0.0
+    t.integer  "equipment_id"
+    t.integer  "location_id"
+    t.integer  "job_id"
+    t.decimal  "yellow_dip_start"
+    t.decimal  "yellow_dip_end"
+    t.decimal  "white_dip_start"
+    t.decimal  "white_dip_end"
+    t.date     "date"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "location_name"
+    t.datetime "versioned_at"
+    t.integer  "created_by"
+    t.decimal  "adjusted_yellow_dip_start"
+    t.decimal  "adjusted_yellow_dip_end"
+    t.decimal  "adjusted_white_dip_start"
+    t.decimal  "adjusted_white_dip_end"
   end
 
   add_index "load_sheets", ["job_id"], :name => "index_load_sheets_on_job_id"
@@ -299,13 +294,6 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.integer   "amount"
-  end
-
-  create_table "material_report_summaries", :force => true do |t|
-    t.integer  "job_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "material_reports", :force => true do |t|
@@ -376,23 +364,23 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
   end
 
   create_table "time_sheets", :force => true do |t|
-    t.integer   "location_id"
-    t.integer   "time_note_category_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "created_by"
-    t.string    "note"
-    t.timestamp "started_at"
-    t.timestamp "completed_at"
-    t.integer   "updated_by"
-    t.integer   "lunch"
-    t.integer   "per_diem_rate"
-    t.decimal   "fuel"
-    t.decimal   "hotel"
-    t.decimal   "fuel_rate"
-    t.timestamp "versioned_at"
-    t.string    "versioned_time_entry_ids"
-    t.decimal   "per_diem_percent",         :default => 0.0
+    t.integer  "location_id"
+    t.integer  "time_note_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "created_by"
+    t.string   "note"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.integer  "updated_by"
+    t.integer  "lunch"
+    t.integer  "per_diem_rate"
+    t.decimal  "fuel"
+    t.decimal  "hotel"
+    t.decimal  "fuel_rate"
+    t.datetime "versioned_at"
+    t.string   "versioned_time_entry_ids"
+    t.decimal  "per_diem_percent",         :default => 0.0
   end
 
   create_table "time_task_categories", :force => true do |t|
@@ -413,38 +401,38 @@ ActiveRecord::Schema.define(:version => 20110717232836) do
   end
 
   create_table "users", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "login",                                         :null => false
-    t.string    "crypted_password",                              :null => false
-    t.string    "password_salt",                                 :null => false
-    t.string    "persistence_token",                             :null => false
-    t.integer   "login_count",           :default => 0,          :null => false
-    t.timestamp "last_request_at"
-    t.timestamp "last_login_at"
-    t.timestamp "current_login_at"
-    t.string    "last_login_ip"
-    t.string    "current_login_ip"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.string    "perishable_token",      :default => "",         :null => false
-    t.string    "email",                 :default => "",         :null => false
-    t.string    "time_zone"
-    t.string    "home_phone"
-    t.string    "cell_phone"
-    t.string    "address"
-    t.string    "city"
-    t.string    "province"
-    t.string    "postal_code"
-    t.integer   "rate"
-    t.boolean   "bank_overtime_hours"
-    t.string    "versioned_role_ids"
-    t.timestamp "versioned_at"
-    t.integer   "crew_id"
-    t.string    "employment_state",      :default => "Employed"
-    t.string    "employment_notes"
-    t.date      "employment_end_date"
-    t.date      "employment_start_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "login",                                         :null => false
+    t.string   "crypted_password",                              :null => false
+    t.string   "password_salt",                                 :null => false
+    t.string   "persistence_token",                             :null => false
+    t.integer  "login_count",           :default => 0,          :null => false
+    t.datetime "last_request_at"
+    t.datetime "last_login_at"
+    t.datetime "current_login_at"
+    t.string   "last_login_ip"
+    t.string   "current_login_ip"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "perishable_token",      :default => "",         :null => false
+    t.string   "email",                 :default => "",         :null => false
+    t.string   "time_zone"
+    t.string   "home_phone"
+    t.string   "cell_phone"
+    t.string   "address"
+    t.string   "city"
+    t.string   "province"
+    t.string   "postal_code"
+    t.integer  "rate"
+    t.boolean  "bank_overtime_hours"
+    t.string   "versioned_role_ids"
+    t.datetime "versioned_at"
+    t.integer  "crew_id"
+    t.string   "employment_state",      :default => "Employed"
+    t.string   "employment_notes"
+    t.date     "employment_end_date"
+    t.date     "employment_start_date"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

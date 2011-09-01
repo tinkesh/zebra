@@ -41,6 +41,8 @@ class Private::GunSheetsController < ApplicationController
       @gun_sheet.gun_markings.build(:gun_marking_category_id => marking.gun_marking_category_id)
     end
 
+    @gun_sheet.set_guns_to_zero
+
     2.times do @gun_sheet.gun_markings.build end
 
     @page_title = "New Gun Sheet for " + @job.label

@@ -51,6 +51,23 @@ class GunSheet < ActiveRecord::Base
     (0 + self.solid_w4 + self.solid_w5 + self.solid_w6 + self.solid_w7 + self.skip_w4 + self.skip_w5 + self.skip_w6 + self.skip_w7) / 1000
   end
 
+  def set_guns_to_zero
+    self.solid_y1 = 0
+    self.solid_y2 = 0
+    self.solid_y3 = 0
+    self.solid_w4 = 0
+    self.solid_w5 = 0
+    self.solid_w6 = 0
+    self.solid_w7 = 0
+    self.skip_y1 = 0
+    self.skip_y2 = 0
+    self.skip_y3 = 0
+    self.skip_w4 = 0
+    self.skip_w5 = 0
+    self.skip_w6 = 0
+    self.skip_w7 = 0
+  end
+
   named_scope :created_by_name, lambda {|name| 
     {
       :joins => :user,

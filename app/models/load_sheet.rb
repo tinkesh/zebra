@@ -17,7 +17,10 @@ class LoadSheet < ActiveRecord::Base
   end
 
   def label
-    "LS ##{self.id}, " + "JOB ##{self.job.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.date.to_date.strftime('%b-%d-%y')}"
+    retval = "LS ##{self.id}, " 
+    retval << "JOB ##{self.job.id}, " if self.job 
+    retval << (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") 
+    retval << "#{self.date.to_date.strftime('%b-%d-%y')}"
   end
 
   def is_archived?
