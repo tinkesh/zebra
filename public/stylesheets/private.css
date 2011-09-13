@@ -43,10 +43,10 @@ a.plain { background: none; padding: 0; margin: 0; font-weight: normal; }
 .onlyprint { display: none; }
 
 /* jobs completion colors */
-#jobslist tr.red { background: red; }
-#jobslist tr.green { background: green; }
-#jobslist tr.orange { background: orange; }
-#jobslist tr.blue { background: blue; }
+#jobslist .red { background-color: #FFBABA; color: #D8000C }
+#jobslist .green { background-color: #DFF2BF; color: #4F8A10 }
+#jobslist .orange { background-color: #FEEFB3; color: #9F6000 }
+#jobslist .blue { background-color: #BDE5F8; color: #00529B }
 
 /* header */
 #header { position: relative; }
