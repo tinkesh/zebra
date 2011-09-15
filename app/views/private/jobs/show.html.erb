@@ -155,7 +155,7 @@
 
   <% if permitted_to? :show, :private_material_reports -%>
     <h3>Material Reports</h3>
-    <% if @job.material_reports.length != 0 %>
+    <% if @job.material_reports.length > 0 %>
       <ol>
       <% @job.material_reports.each do |m| %>
         <% if !m.is_archived? %>

@@ -15,7 +15,7 @@ class MaterialReport < ActiveRecord::Base
   end
 
   def is_archived?
-    self.load_sheet.is_archived? or self.gun_sheet.is_archived?
+    (self.load_sheet and self.load_sheet.is_archived?) or (self.gun_sheet and self.gun_sheet.is_archived?)
   end
 
   def yellow_rate

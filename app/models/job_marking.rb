@@ -6,9 +6,9 @@ class JobMarking < ActiveRecord::Base
 
   def actual_production
     actual = 0
-    gun_markings = job.gun_markings.find_all_by_gun_marking_category_id(self.gun_marking_category.id)
+    gun_markings = job.gun_markings.find_all_by_gun_marking_category_id(self.gun_marking_category_id)
     gun_markings.each do |marking|
-      actual += marking.amount
+      actual += marking.amount if marking.amount
     end
     actual
   end
