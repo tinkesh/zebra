@@ -146,14 +146,20 @@ private
   def load_crew
     @crew = Crew.find(params[:id])
 
-    roles = Role.find(:all, :conditions => { :id => current_user.versioned_role_ids.split(", ") }) if current_user.versioned_role_ids?
+    allowed = false
 
-    if current_user.versioned_role_ids? and (roles.include?(Role.find(:first, :conditions =>{ :name => "office"})) or roles.include?(Role.find(:first, :conditions =>{ :name => "admin"})))
-    else
-      if ! @crew.id.eql?(current_user.crew_id)
-        flash[:notice] = "You do not have permission to view the hours for this crew"
-        redirect_to private_home_path
-      end
+    begin
+      roles = Role.find(:all, :conditions => { :id => current_user.versioned_role_ids.split(", ") })
+
+      allowed = true if roles.include?(Role.find(:first, :conditions =>{ :name => "office"})) or roles.include?(Role.find(:first, :conditions =>{ :name => "admin"}))
+
+      allowed = true if @crew.id.eql?(current_user.crew_id)
+    rescue
+    end
+
+    if !allowed
+      flash[:notice] = "You do not have permission to view the hours for this crew"
+      redirect_to private_home_path
     end
   end
 
