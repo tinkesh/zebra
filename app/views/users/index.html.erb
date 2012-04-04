@@ -43,7 +43,7 @@
     <td><%= link_to user.name, user_path(user), :class => "show" %></td>
     <td><%= user.login %></td>
     <td><%= user.role_list %></td>
-    <td><%= if user.rate : "$#{user.rate}" end %></td>
+    <td><%= if user.rate : number_to_currency(user.rate) end %></td>
     <td><%= if user.bank_overtime_hours : "Bank" else "Pay Out" end %></td>
     <td><%=h time_ago_in_words(user.last_request_at) + " ago" if user.last_request_at? %></td>
     <td><%= user.try(:employment_state) %></td>
