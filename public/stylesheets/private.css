@@ -120,7 +120,8 @@ a.negative:active { background-color:#d12f19; border:1px solid #d12f19; color:#f
 /* rails */
 .errorExplanation { padding:.8em;margin-bottom:1em;border:2px solid #ddd; background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
 .errorExplanation ul { margin-bottom: 0; }
-.fieldWithErrors { color: #8a1f11; display: table;}
+.fieldWithErrors { color: #8a1f11; }
+
 .error, .notice, .success {padding:5px;margin:1em 0;font-size: 14px;}
 .error p {margin:0;color:#8a1f11;}
 .notice p {margin:0;color:#514721;}

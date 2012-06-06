@@ -87,6 +87,8 @@ class Private::JobsController < ApplicationController
      end
       redirect_to private_job_url(@job)
     else
+      @crews = Crew.find(:all)
+      load_job_supporting_data
       render :action => :edit
     end
   end

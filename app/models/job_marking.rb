@@ -3,6 +3,8 @@ class JobMarking < ActiveRecord::Base
   belongs_to :job
   belongs_to :gun_marking_category
 
+  validates_presence_of [:rate, :amount]
+  validates_numericality_of [:rate, :amount]
 
   def actual_production
     actual = 0
