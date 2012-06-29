@@ -47,7 +47,7 @@
         <td>
           <% if gun_sheet.job %>
             <%= job_label(gun_sheet.job) %>
-            <%= link_to image_tag("open-link.png"), private_job_path(gun_sheet.job) %>
+            <%= link_to image_tag("open-link.png"), private_job_path(gun_sheet.job_id) %>
           <% end %>
         </td>
         <td><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> <%= gun_sheet.location_name %></td>
@@ -71,10 +71,10 @@
 
 <script type="text/javascript" language="javascript">
 	function toggleCheckboxes(checked_status) {
-		
+
 		var checkboxes = [];
 		checkboxes = $$('input').each(function(e){ if(e.type == 'checkbox') checkboxes.push(e) });
-		
+
 		if(checked_status == true)
 			checkboxes.each(function(e){ e.checked = 1 });
 		else

@@ -33,9 +33,9 @@
   	<td class="<%= job.get_completion_color_class_name %>"><%= job.location_name ? job.location_name : '-' %></td>
     <td class="right <%= job.get_completion_color_class_name %>"><%= number_to_currency(job.total_job_value) %></td>
     <td class="actions <%= job.get_completion_color_class_name %>">
-      <%= link_to "Delete", private_job_path(job), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
-      <%= link_to "Edit", edit_private_job_path(job), :class => "edit" %>
-      <%= link_to "Show", private_job_path(job), :class => "show" %>
+      <%= link_to "Delete", private_job_path(job.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+      <%= link_to "Edit", edit_private_job_path(job.id), :class => "edit" %>
+      <%= link_to "Show", private_job_path(job.id), :class => "show" %>
     </td>
   </tr>
 <% end %>

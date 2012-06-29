@@ -51,7 +51,7 @@
     <td>
       <% time_sheet.jobs.each do |job| %>
         <%= job_label(job) %>
-        <%= link_to image_tag("open-link.png"), private_job_path(job) %><br>
+        <%= link_to image_tag("open-link.png"), private_job_path(job.id) %><br>
       <% end %>
     </td>
 	<td><%= time_sheet.created_by ? User.find_by_id(time_sheet.created_by).name : "-" %>

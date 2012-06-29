@@ -44,7 +44,7 @@
     <td>
       <% if load_sheet.job %>
         <%= job_label(load_sheet.job) %>
-        <%= link_to image_tag("open-link.png"), private_job_path(load_sheet.job) %>
+        <%= link_to image_tag("open-link.png"), private_job_path(load_sheet.job_id) %>
       <% end %>
     </td>
     <td><%= if load_sheet.equipment : load_sheet.equipment.name end %></td>

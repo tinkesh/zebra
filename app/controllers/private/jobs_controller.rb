@@ -85,7 +85,7 @@ class Private::JobsController < ApplicationController
        end
        @job.update_attributes({:crews => []})
      end
-      redirect_to private_job_url(@job)
+      redirect_to private_job_url(@job.id)
     else
       @crews = Crew.find(:all)
       load_job_supporting_data
@@ -107,12 +107,13 @@ class Private::JobsController < ApplicationController
     @job.versioned_at = Time.now
     @job.save!
     flash[:notice] = "Job reverted!"
-    redirect_to private_job_url(@job)
+    redirect_to private_job_url(@job.id)
   end
 
 private
 
   def load_job_supporting_data
+    @crews = Crew.find(:all)
     @clients = Client.find(:all, :order => :name)
     @completions = Completion.find(:all, :order => :id)
     @users = User.find(:all, :order => :first_name, :conditions => {:employment_state => "Employed"})

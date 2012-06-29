@@ -38,7 +38,7 @@
     <td><%= m.id %></td>
     <td>
       <%= job_label(m.job) %>
-      <%= link_to image_tag("open-link.png"), private_job_path(m.job) %>
+      <%= link_to image_tag("open-link.png"), private_job_path(m.job_id) %>
     </td>
     <td><%= m.load_sheet ? m.load_sheet.label : "-" %></td>
     <td><%= m.gun_sheet ? m.gun_sheet.label : "-" %></td>

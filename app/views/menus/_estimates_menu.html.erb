@@ -6,11 +6,11 @@
 
   <% if @estimate.job %>
     <% if permitted_to? :read, :private_jobs -%>
-      <li><%= active_link_to "Show Job", private_job_path(@estimate.job) %></li>
+      <li><%= active_link_to "Show Job", private_job_path(@estimate.job_id) %></li>
     <% end %>
 
     <% if permitted_to? :manage, :private_jobs -%>
-      <li><%= active_link_to "Edit Job", edit_private_job_path(@estimate.job) %></li>
+      <li><%= active_link_to "Edit Job", edit_private_job_path(@estimate.job_id) %></li>
     <% end %>
   <% end %>
 

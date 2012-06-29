@@ -1,9 +1,9 @@
 <ol class="noprint">
   <% if permitted_to? :show, :private_jobs -%>
-    <li><%= active_link_to "Show", private_job_path(@job), :active => { :when => :self_only } %></li>
+    <li><%= active_link_to "Show", private_job_path(@job.id), :active => { :when => :self_only } %></li>
   <% end %>
   <% if permitted_to? :update, :private_jobs -%>
-    <li><%= active_link_to "Edit", edit_private_job_path(@job) %></li>
+    <li><%= active_link_to "Edit", edit_private_job_path(@job.id) %></li>
   <% end %>
   <% if permitted_to? :create, :private_time_sheets -%>
     <li><%= active_link_to "New Time Sheet", new_private_time_sheet_path(:job_id => @job.id) %></li>

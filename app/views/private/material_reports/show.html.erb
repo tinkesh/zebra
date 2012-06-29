@@ -17,7 +17,7 @@
     <th class="span-3">Job</th>
     <td colspan="2" style="border-top: solid 1px #ccc">
       <%= @material_report.job.label %>
-      <%= link_to image_tag("open-link.png"), private_job_path(@material_report.job), :class => "noprint" %>
+      <%= link_to image_tag("open-link.png"), private_job_path(@material_report.job_id), :class => "noprint" %>
     </td>
   </tr>
   <tr>

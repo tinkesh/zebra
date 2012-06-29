@@ -33,7 +33,7 @@
     <td><%= if (job_sheet.gun_sheets && job_sheet.gun_sheets.first && job_sheet.gun_sheets.first.started_on) then job_sheet.gun_sheets.first.started_on.strftime('%b-%d-%y') end %></td>
     <td>
       <%= job_label(job_sheet.job) %>
-      <%= link_to image_tag("open-link.png"), private_job_path(job_sheet.job) %>
+      <%= link_to image_tag("open-link.png"), private_job_path(job_sheet.job_id) %>
     </td>
     <td class="actions">
     <%= link_to 'Delete', private_job_sheet_path(job_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>

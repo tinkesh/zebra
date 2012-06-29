@@ -29,7 +29,7 @@
 <% @jobs.each do |job| %>
   <tr>
     <td><%= job.id %></td>
-    <td><%= job.name %> <%= link_to image_tag("open-link.png"), private_job_path(job) %></td>
+    <td><%= job.name %> <%= link_to image_tag("open-link.png"), private_job_path(job.id) %></td>
     <td class="right"><%= number_to_currency(job.total_job_value) %></td>
   </tr>
 <% end %>

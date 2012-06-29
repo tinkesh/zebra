@@ -41,9 +41,9 @@
   <% if job.gun_sheets.size != 0 %>
   <tr>
     <td><%= job.id %></td>
-    <td><%= job.name %> <%= link_to image_tag("open-link.png"), private_job_path(job) %></td>
-    <td><%= link_to("Reconciliation Summary",  private_job_reconciliation_summary_path(job)) %></td>
-    <td><%= link_to("Material Report Summary",  private_job_material_report_summary_path(job)) %></td>
+    <td><%= job.name %> <%= link_to image_tag("open-link.png"), private_job_path(job.id) %></td>
+    <td><%= link_to("Reconciliation Summary",  private_job_reconciliation_summary_path(job.id)) %></td>
+    <td><%= link_to("Material Report Summary",  private_job_material_report_summary_path(job.id)) %></td>
   </tr>
   <% end %>
 <% end %>
