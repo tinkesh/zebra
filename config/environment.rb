@@ -58,3 +58,5 @@ end
 ExceptionNotification::Notifier.exception_recipients = %w(dana@agilestyle.com)
 ExceptionNotification::Notifier.sender_address = %("Error" <error@aaastriping.com>)
 ExceptionNotification::Notifier.email_prefix = "[AAAS] "
+
+ActionController::Base.param_parsers.delete(Mime::XML)
