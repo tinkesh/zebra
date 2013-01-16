@@ -22,6 +22,12 @@ Rails::Initializer.run do |config|
   config.gem "searchlogic"
   config.gem 'RedCloth'
 
+  # If you're running into RedCloth name issues:
+  # gem install rubygems-update -v 1.4.2
+  # update_rubygems
+  # ./script/server
+
+
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

@@ -139,12 +139,15 @@ private
 
   def generate_front_to_back
     @date = Time.now
+    next_month = @date + 1.month
+    last_month = @date - 1.month
+
     if @date.day <= 23
-      @back  = @date.year.to_s + "-" + (@date.month - 1).to_s + "-" + "24"
+      @back = last_month.year.to_s + "-" + last_month.month.to_s + "-" + "24"
       @front = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
     else
       @back = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
-      @front  = @date.year.to_s + "-" + (@date.month + 1).to_s + "-" + "24"
+      @front = next_month.year.to_s + "-" + next_month.month.to_s + "-" + "24"
     end
   end
 
