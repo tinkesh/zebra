@@ -29,7 +29,7 @@
     <% @job.job_markings.each_with_index do |marking,index| %>
       <tr>
         <td>
-          <%= "##{marking.id} (#{marking.gun_marking_category.name if marking.gun_marking_category})" %>
+          <%= "##{marking.id} (#{marking.gun_marking_category.try(:name)})" %>
         </td>
         <td>
           <%= marking.amount %>
@@ -60,7 +60,7 @@
         <% gun_sheet.gun_markings.each do |marking| %>
           <tr>
             <td><%= link_to gun_sheet.label, private_gun_sheet_path(gun_sheet), :class => "show plain" %></td>
-            <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %></td>
+            <td><%= marking.gun_marking_category.try(:name) %></td>
             <td><%= marking.amount %></td>
           </tr>
         <% end %>

@@ -273,7 +273,7 @@
     </tr>
     <% @material_report.gun_sheet.gun_markings.each do |marking| %>
       <tr>
-        <td><%= marking.gun_marking_category ? marking.gun_marking_category.name : "Unknown Category" %></td>
+        <td><%= marking.gun_marking_category.try(:name) || "Unknown Category" %></td>
         <td class="right"><%= marking.amount %></td>
       </tr>
     <% end %>

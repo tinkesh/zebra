@@ -39,7 +39,7 @@
 <table>
 <% @load_sheet.load_entries.each do |entry| %>
   <tr>
-    <td><%= entry.material.manufacturer.abbreviation %> Batch #<%= entry.material.batch %></td>
+    <td><%= entry.material.manufacturer.try(:abbreviation) %> Batch #<%= entry.material.try(:batch) %></td>
   </tr>
   <tr>
     <td>Tote #: <%= entry.tote_number %></td>

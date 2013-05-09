@@ -97,7 +97,7 @@
   <% if @job.job_markings.length != 0 %>
     <ol>
     <% @job.job_markings.each do |m| %>
-      <li><%= m.amount %> <%= m.gun_marking_category.name if m.gun_marking_category %></li>
+      <li><%= m.amount %> <%= m.gun_marking_category.try(:name) %></li>
     <% end %>
     </ol>
   <% else %>

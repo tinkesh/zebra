@@ -199,7 +199,7 @@
     <% @job_sheet.job.job_markings.each do |marking| %>
       <% @job_marking_cats << marking.gun_marking_category_id %>
       <tr class="<%= cycle('odd', 'even') %>">
-        <td><%= marking.gun_marking_category.name %></td>
+        <td><%= marking.gun_marking_category.try(:name) %></td>
         <td class="right"><%= marking.amount %></td>
         <td class="right"><%= sprintf("%.0f", @job_sheet.total_markings(marking.gun_marking_category)) %></td>
         <% if permitted_to? :manage, :private_job_sheets -%>
@@ -213,7 +213,7 @@
       <% gun.gun_markings.each do |marking| %>
         <% unless @job_marking_cats.include?(marking.gun_marking_category_id.to_i) %>
           <tr>
-            <td><%= marking.gun_marking_category.name %></td>
+            <td><%= marking.gun_marking_category.try(:name) %></td>
             <td class="right">-</td>
             <td class="right"><%= @job_sheet.total_markings(marking.gun_marking_category) %></td>
             <td class="right">-</td>

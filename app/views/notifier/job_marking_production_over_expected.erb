@@ -1,9 +1,9 @@
 Job: <%= @marking.job.name %>
 
-Job Marking: <%= @marking.id %> (<%= @marking.gun_marking_category.name %>)
+Job Marking: <%= @marking.id %> (<%= @marking.gun_marking_category.try(:name) %>)
 
 Expected Amount: <%= @marking.amount %>
 
 Production Amount: <%= @marking.actual_production %>
 
-<%= private_job_reconciliation_summary_path(@marking.job.id) %>
+<%= private_job_reconciliation_summary_path(@marking.job.try(:id)) %>

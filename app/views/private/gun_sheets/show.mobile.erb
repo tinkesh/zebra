@@ -70,7 +70,7 @@
 <table>
   <% @gun_sheet.gun_markings.each do |marking| %>
     <tr>
-      <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %>: <%= marking.amount %></td>
+      <td><%= marking.gun_marking_category.try(:name) %>: <%= marking.amount %></td>
     </tr>
   <% end %>
 </table>

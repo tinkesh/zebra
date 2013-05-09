@@ -29,7 +29,7 @@ class Private::MaterialsController < ApplicationController
   def edit
     @material = Material.find(params[:id])
     @manufacturers = Manufacturer.find(:all, :order => 'name ASC')
-    @page_title = "Edit #{@material.manufacturer.abbreviation} Batch ##{@material.batch}"
+    @page_title = "Edit #{@material.manufacturer.try(:abbreviation)} Batch ##{@material.batch}"
   end
 
   def update

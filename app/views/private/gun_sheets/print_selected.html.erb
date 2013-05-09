@@ -98,7 +98,7 @@ Event.observe(window, 'load', function() {
       </tr>
       <% gun_sheet.gun_markings.each do |marking| %>
         <tr>
-          <td><%= if marking.gun_marking_category : marking.gun_marking_category.name end %></td>
+          <td><%= marking.gun_marking_category.try(:name) %></td>
           <td><%= marking.amount %></td>
         </tr>
       <% end %>

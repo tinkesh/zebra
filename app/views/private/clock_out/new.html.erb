@@ -23,12 +23,12 @@
       <% if entry.active -%>
         <% if entry.clock_out -%>
           <td><%= check_box_tag "user", "active", false, :disabled => true %></td>
-          <td class="quiet"><%= entry.user.name %></td>
+          <td class="quiet"><%= entry.user.try(:name) %></td>
           <td class="quiet"><%= entry.clock_in.strftime('%b-%d-%y at %I:%M %p') %></td>
           <td class="quiet"><%= entry.clock_out.strftime('%b-%d-%y at %I:%M %p') %></td>
         <% else -%>
           <td><%= check_box_tag "users[]", entry.user.id, :checked => true %></td>
-          <td><%= entry.user.name %></td>
+          <td><%= entry.user.try(:name) %></td>
           <td><%= entry.clock_in.strftime('%b-%d-%y at %I:%M %p')%></td>
           <td>-</td>
         <% end -%>
@@ -71,10 +71,10 @@
 
 <script type="text/javascript" language="javascript">
 	function toggleCheckboxes(checked_status) {
-		
+
 		var checkboxes = [];
 		checkboxes = $$('input').each(function(e){ if(e.type == 'checkbox') checkboxes.push(e) });
-		
+
 		if(checked_status == true)
 			checkboxes.each(function(e){ e.checked = 1 });
 		else
