@@ -1,17 +1,36 @@
-# Settings specified here will take precedence over those in config/environment.rb
+AaaStriping::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
 
-# In the development environment your application's code is reloaded on
-# every request.  This slows down response time but is perfect for development
-# since you don't have to restart the webserver when you make code changes.
-config.cache_classes = false
+  # When false, gives us just an application.js/.css  When true it expands them all out
+  config.assets.debug = true
 
-# Log error messages when you accidentally call methods on nil.
-config.whiny_nils = true
+  # Enables the use of MD5 fingerprints in asset names.  Makes versioned .css/.js work
+  # Must be FALSE in Development mode
+  config.assets.digest = false
 
-# Show full error reports and disable caching
-config.action_controller.consider_all_requests_local = true
-config.action_view.debug_rjs                         = true
-config.action_controller.perform_caching             = false
+  # This gives us the Called id for nil, which would mistakenly be 4 message.  This will be deprecated soon.
+  config.whiny_nils = true
 
-# Don't care if the mailer can't send
-config.action_mailer.raise_delivery_errors = false
+  # Provides additional information in stack traces
+  config.consider_all_requests_local = true
+
+  # Raise exceptions instead of rendering exception templates
+  config.action_dispatch.show_exceptions = true
+
+  # Reload application code on every request
+  config.cache_classes = false
+
+  # Send deprecation notices to registered listeners
+  config.active_support.deprecation = :notify
+
+  # E-mail
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = true
+
+  # Print deprecation notices to the Rails logger
+  config.active_support.deprecation = :log
+
+  config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'DEBUG')
+end
