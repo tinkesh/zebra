@@ -3,7 +3,7 @@
 <h2>Email Us</h2>
 <p>Thank you for your interest. We respond to all emails within 1 business day.</p>
 
-<% form_for(@contact, :url => create_contact_path) do |f| %>
+<%= form_for(@contact, :url => create_contact_path) do |f| %>
   <%= f.error_messages %>
 
   <div class="span-6 append-bottom ">

@@ -1,4 +1,4 @@
-<% content_for :versions do %>
+<%= content_for :versions do %>
 <ol id="versions" class="noprint">
     <li><%= link_to '&lt;&lt; Previous Pay Period', report_decrease_offset_path(@user.id) %></li>
     <li><%= link_to 'Today', report_reset_offset_path(:id => @user.id) %></li>
@@ -6,7 +6,7 @@
 </ol>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <%= render :partial => 'menus/users_menu', :layout => false %>
 <% end %>
 

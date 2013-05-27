@@ -1,4 +1,4 @@
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <% if permitted_to? :create, :private_jobs -%>
     <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
   <% end %>
@@ -21,7 +21,7 @@
 <hr>
 
 <table>
-<% form_for @search do |f| %>
+<%= form_for @search do |f| %>
   <tr class="no-border"><td class="no-border right">
 		<%= f.text_field :name_like_or_location_name_like_or_client_name_like %>
 		<%= f.submit "Search" %><br>

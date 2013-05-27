@@ -6,9 +6,7 @@
 
 <hr class="space">
 
-<% form_for(@career, :url => create_career_path) do |f| %>
-  <%= f.error_messages %>
-
+<%= form_for(@career, :url => create_career_path) do |f| %>
 <div class="span-12 append-1">
   <div class="span-6 append-bottom">
     <%= f.label :name, "Name *" %>
@@ -41,7 +39,7 @@
   </div>
 
   <div class="span-12 append-bottom">
-    <%= f.label :references, "Previous Employment &amp; References *" %><br />
+    <%= f.label :references, "Previous Employment & References *" %><br />
     Include Relationship Type and Contact Information
     <%= f.text_area :references, :class => "span-12" %>
   </div>

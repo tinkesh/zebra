@@ -1,5 +1,5 @@
 <div class="container">
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -11,7 +11,7 @@
   </ul>
 <% end %>
 
-<% form_for @material, :url => private_materials_path(@material) do |f| %>
+<%= form_for @material, :url => private_materials_path(@material) do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Create Material" %> or <%= link_to 'Cancel', private_materials_path %>

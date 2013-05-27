@@ -1,5 +1,5 @@
 <div class="container">
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <% if permitted_to? :manage, :users -%>
@@ -11,11 +11,11 @@
   </ul>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <%= render :partial => 'menus/users_menu', :layout => false %>
 <% end %>
 
-<% form_for @user do |f| %>
+<%= form_for @user do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Save Changes" %> or <%= link_to 'Cancel', users_path %>

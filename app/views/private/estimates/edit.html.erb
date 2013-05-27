@@ -1,4 +1,4 @@
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -10,11 +10,11 @@
   </ul>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <%= render :partial => 'menus/estimates_menu', :layout => false %>
 <% end %>
 
-<% form_for [:private, @estimate] do |f| %>
+<%= form_for [:private, @estimate] do |f| %>
   <%= f.error_messages %>
 
   <p>

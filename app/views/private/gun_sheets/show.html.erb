@@ -1,4 +1,4 @@
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -8,11 +8,11 @@
   </ul>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <%= render :partial => 'menus/gun_sheets_menu', :layout => false %>
 <% end %>
 
-<% content_for :versions do %>
+<%= content_for :versions do %>
 <ol id="versions">
     <li>Version <%= @gun_sheet.version %> of <%= @gun_sheet.last_version %></li>
     <li><%= if @gun_sheet.versioned_at : @gun_sheet.versioned_at.strftime("%Y-%m-%d %H:%M") end %></li>

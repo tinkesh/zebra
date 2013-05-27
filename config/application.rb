@@ -42,7 +42,7 @@ module AaaStriping
     config.filter_parameters += [:password, :password_confirmation, :credit_card, :card_number, :cvc]
 
     # Prevent mass assignment of paramenters
-    config.active_record.whitelist_attributes = true
+    #config.active_record.whitelist_attributes = true
 
 
     #################

@@ -1,5 +1,5 @@
 <div class="container">
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -9,7 +9,7 @@
   </ul>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <%= render :partial => 'menus/job_sheets_menu', :layout => false %>
 <% end %>
 
@@ -233,7 +233,7 @@
 </div>
 </div>
 
-<% content_for :versions do %>
+<%= content_for :versions do %>
 <ul id="versions">
   <li>Total Expenses: $<%= sprintf("%.2f", @job_sheet.total_expenses + @estimated_time_cost) %></li>
   <% if permitted_to? :manage, :private_job_sheets -%>

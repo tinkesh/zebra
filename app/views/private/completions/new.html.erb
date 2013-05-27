@@ -1,5 +1,5 @@
 <div class="container">
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -11,7 +11,7 @@
   </ul>
 <% end %>
 
-<% form_for @completion, :url => private_completions_path(@completion) do |f| %>
+<%= form_for @completion, :url => private_completions_path(@completion) do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Create Completion Level" %> or <%= link_to 'Cancel', private_completions_path %>

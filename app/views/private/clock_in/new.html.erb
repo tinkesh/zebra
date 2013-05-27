@@ -1,4 +1,4 @@
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -63,10 +63,10 @@
 
 <script type="text/javascript" language="javascript">
 	function toggleCheckboxes(checked_status) {
-		
+
 		var checkboxes = [];
 		checkboxes = $$('input').each(function(e){ if(e.type == 'checkbox') checkboxes.push(e) });
-		
+
 		if(checked_status == true)
 			checkboxes.each(function(e){ e.checked = 1 });
 		else

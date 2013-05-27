@@ -1,8 +1,8 @@
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <%= render :partial => 'menus/dashboard_menu', :layout => false %>
 <% end %>
 
-<% content_for :versions do %>
+<%= content_for :versions do %>
 <ol id="versions" class="noprint">
     <li><%= link_to '<< Previous Pay Period', report_decrease_offset_path %></li>
     <li><%= link_to 'Today', report_reset_offset_path %></li>

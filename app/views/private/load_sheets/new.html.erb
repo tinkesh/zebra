@@ -1,5 +1,5 @@
 <div class="container">
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -9,7 +9,7 @@
   </ul>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <% if permitted_to? :create, :private_load_sheets -%>
   <ol>
     <li><%= active_link_to 'New Load Sheet', new_private_load_sheet_path %></li>
@@ -17,7 +17,7 @@
   <% end %>
 <% end %>
 
-<% form_for [:private, @load_sheet] do |f| %>
+<%= form_for [:private, @load_sheet] do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <br class="clear">

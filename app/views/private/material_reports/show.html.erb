@@ -1,4 +1,4 @@
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -8,7 +8,7 @@
   </ul>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <%= render :partial => 'menus/material_reports_menu', :layout => false %>
 <% end %>
 
@@ -90,7 +90,7 @@
 <br>
 
 <% if @material_report.load_sheet %>
-  <% form_for [:private, @material_report.load_sheet], :url => private_update_dips_path do |f| %>
+  <%= form_for [:private, @material_report.load_sheet], :url => private_update_dips_path do |f| %>
     <%= f.error_messages %>
     <table>
       <tr>
@@ -321,7 +321,7 @@
 </script>
 
 <% if @material_report.load_sheet && @material_report.load_sheet.equipment %>
-<% content_for :versions do %>
+<%= content_for :versions do %>
 <ul id="versions">
   <% if @material_report.prev_report %>
     <li><%= link_to "<< Prev", private_material_report_path(@material_report.prev_report) %></li>

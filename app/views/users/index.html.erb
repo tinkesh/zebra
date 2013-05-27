@@ -1,4 +1,4 @@
-<% content_for :breadcrumb do %>
+<%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<% content_for :submenu do %>
+<%= content_for :submenu do %>
   <% if permitted_to? :manage, :users -%>
   <ol>
     <li><%= active_link_to 'New User', new_user_path %></li>
@@ -17,7 +17,7 @@
 
 <hr>
 <table>
-<% form_for @search do |f| %>
+<%= form_for @search do |f| %>
   <tr class="no-border"><td class="no-border right">
 		<%= f.text_field :first_name_like_or_last_name_like_or_login_like %>
 		<%= f.submit "Search" %><br>
