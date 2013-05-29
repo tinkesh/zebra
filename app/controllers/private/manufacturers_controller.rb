@@ -4,7 +4,7 @@ class Private::ManufacturersController < ApplicationController
   filter_access_to :all
 
   def index
-    @manufacturers = Manufacturer.find(:all, :order => "name ASC")
+    @manufacturers = Manufacturer.all.order("name ASC")
     @page_title = "Manufacturers"
   end
 

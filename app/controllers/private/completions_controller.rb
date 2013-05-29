@@ -4,7 +4,7 @@ class Private::CompletionsController < ApplicationController
   filter_access_to :all
 
   def index
-    @completions = Completion.find(:all, :order => "name ASC")
+    @completions = Completion.order("name ASC").all
     @page_title = "Job Completion Levels"
   end
 

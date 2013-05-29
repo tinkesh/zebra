@@ -93,10 +93,10 @@ class Private::LoadSheetsController < ApplicationController
 private
 
   def load_load_sheet_supporting_data
-    @materials = Material.find(:all, :include => :manufacturer, :order => "category, manufacturers.name", :conditions => {:is_archived => false})
-    @allequipment = Equipment.find(:all, :order => :unit)
+    @materials = Material.includes(:manufacturer).order("category, manufacturers.name").where(:is_archived => false)
+    @allequipment = Equipment.all.order(:unit)
     @equipment = @allequipment.find_all{|item| item.unit.starts_with? 'LPT'}
-    @jobs = Job.find(:all)
+    @jobs = Job.all
   end
 
 end

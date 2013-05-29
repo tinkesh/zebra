@@ -12,7 +12,7 @@ class PrivateController < ApplicationController
 
     @crew = current_user.crew
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
-      @jobs = Job.find(:all, :order => :id)
+      @jobs = Job.order(:id).all
     else
       if @crew
         @jobs = current_user.crew.jobs

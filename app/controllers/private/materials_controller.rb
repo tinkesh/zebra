@@ -4,20 +4,20 @@ class Private::MaterialsController < ApplicationController
   filter_access_to :all
 
   def index
-    @materials = Material.find(:all, :include => :manufacturer)
+    @materials = Material.all.includes(:manufacturer)
     @page_title = "Materials"
   end
 
   def new
     @material = Material.new
     @page_title = "New Material"
-    @manufacturers = Manufacturer.find(:all, :order => 'name ASC')
+    @manufacturers = Manufacturer.all.order('name ASC')
   end
 
   def create
     @material = Material.new(params[:material])
     @page_title = "New Material"
-    @manufacturers = Manufacturer.find(:all)
+    @manufacturers = Manufacturer.all
     if @material.save
       flash[:notice] = "Material created!"
       redirect_to private_materials_url
@@ -28,7 +28,7 @@ class Private::MaterialsController < ApplicationController
 
   def edit
     @material = Material.find(params[:id])
-    @manufacturers = Manufacturer.find(:all, :order => 'name ASC')
+    @manufacturers = Manufacturer.all.order('name ASC')
     @page_title = "Edit #{@material.manufacturer.try(:abbreviation)} Batch ##{@material.batch}"
   end
 

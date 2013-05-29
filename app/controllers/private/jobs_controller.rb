@@ -46,7 +46,7 @@ class Private::JobsController < ApplicationController
 
   def new
     @job = Job.new
-    @crews = Crew.find(:all)
+    @crews = Crew.all
     1.times { @job.job_markings.build }
     @page_title = "New Job on Hand"
     load_job_supporting_data
@@ -69,7 +69,7 @@ class Private::JobsController < ApplicationController
 
   def edit
     @job = Job.find(params[:id])
-    @crews = Crew.find(:all)
+    @crews = Crew.all
     @page_title = "Edit #{@job.label}"
     load_job_supporting_data
   end
@@ -87,7 +87,7 @@ class Private::JobsController < ApplicationController
      end
       redirect_to private_job_url(@job.id)
     else
-      @crews = Crew.find(:all)
+      @crews = Crew.all
       load_job_supporting_data
       render :action => :edit
     end
@@ -113,11 +113,11 @@ class Private::JobsController < ApplicationController
 private
 
   def load_job_supporting_data
-    @crews = Crew.find(:all)
-    @clients = Client.find(:all, :order => :name)
-    @completions = Completion.find(:all, :order => :id)
-    @users = User.find(:all, :order => :first_name, :conditions => {:employment_state => "Employed"})
-    @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
+    @crews = Crew.all
+    @clients = Client.all.order(:name)
+    @completions = Completion.all.order(:id)
+    @users = User.where(:employment_state => "Employed").order(:first_name).all
+    @gun_marking_categories = GunMarkingCategory.all.order(:name)
   end
 
 end

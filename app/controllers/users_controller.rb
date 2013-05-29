@@ -6,15 +6,15 @@ class UsersController < ApplicationController
 
   def index
     if(params[:showonly] == 'inactive')
-      @users = User.find(:all, :conditions => ["employment_state NOT LIKE 'Employed'"], :include => :roles, :order => :first_name)
+      @users = User.where("eployment_state NOT LIKE ?", 'Employed').includes(:roles).order(:first_name)
     else
-      @users = User.find(:all, :conditions => {:employment_state => "Employed"}, :include => :roles, :order => :first_name)
+      @users = User.where(:employment_state => "Employed").includes(:roles).order(:first_name)
     end
 
     @page_title = "Users"
-    
+
     @search = User.search(params[:search])
-    
+
     if params[:commit] == "Search"
       @users = @search.all
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       end
     end
     if @user.versioned_role_ids
-      @roles = Role.find(:all, :conditions => { :id => @user.versioned_role_ids.split(", ") })
+      @roles = Role.where(:id => @user.versioned_role_ids.split(", ")).all
     end
   end
 

@@ -4,7 +4,7 @@ class Private::GunMarkingCategoriesController < ApplicationController
   filter_access_to :all
 
   def index
-    @gun_marking_categories = GunMarkingCategory.find(:all, :order => "position ASC")
+    @gun_marking_categories = GunMarkingCategory.all.order("position ASC")
     @page_title = "Gun Marking Categories"
   end
 

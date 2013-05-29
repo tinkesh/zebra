@@ -27,8 +27,8 @@ class Private::GunSheetsController < ApplicationController
     end
 
     if @gun_sheet.created_by
-    name = User.find(:all, :conditions => {:id => @gun_sheet.created_by})
-    @name = name[0].first_name + " " + name[0].last_name
+      name = User.find(@gun_sheet.created_by)
+      @name = name[0].first_name + " " + name[0].last_name
     end
   end
 
@@ -99,17 +99,17 @@ class Private::GunSheetsController < ApplicationController
   end
 
   def print_selected
-    @gun_sheets = GunSheet.find_all_by_id(params[:gun_sheet_ids])
+    @gun_sheets = GunSheet.where(:id => params[:gun_sheet_ids])
   end
 
 private
 
   def load_gun_sheet_supporting_data
     @job_locations = @job.job_locations
-    @clients = Client.find(:all, :order => :name)
-    @allequipment = Equipment.find(:all, :order => :unit)
+    @clients = Client.all.order(:name)
+    @allequipment = Equipment.all.order(:unit)
     @equipment = @allequipment.find_all{|item| item.unit.starts_with? 'LPT'}
-    @gun_marking_categories = GunMarkingCategory.find(:all, :order => :name)
+    @gun_marking_categories = GunMarkingCategory.all.order(:name)
   end
 
 end

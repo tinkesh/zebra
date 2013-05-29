@@ -4,15 +4,15 @@ class Private::CrewsController < ApplicationController
   filter_access_to :all
 
   def index
-    @crews = Crew.find(:all, :order => "name ASC")
+    @crews = Crew.all.order('name ASC')
     @unassigned_equipment = Equipment.unassigned
     @page_title = "Crews"
   end
 
   def new
     @crew = Crew.new
-    @users = User.find(:all, :order => "first_name ASC", :conditions => {:employment_state => "Employed"})
-    @equipment = Equipment.find(:all, :order => :unit)
+    @users = User.where(:employment_state => 'Employed').order("first_name ASC")
+    @equipment = Equipment.order(:unit).all
     @page_title = "New Crew"
   end
 
@@ -31,8 +31,8 @@ class Private::CrewsController < ApplicationController
 
   def edit
     @crew = Crew.find(params[:id])
-    @users = User.find(:all, :order => "first_name ASC", :conditions => {:employment_state => "Employed"})
-    @equipment = Equipment.find(:all, :order => :unit)
+    @users = User.where(:employment_state => 'Employed').order("first_name ASC")
+    @equipment = Equipment.order(:unit).all
     @page_title = "Edit #{@crew.name}"
   end
 

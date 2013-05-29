@@ -7,8 +7,6 @@ class TimeEntry < ActiveRecord::Base
   has_and_belongs_to_many :jobs
 
   def hours
-    #if self.clock_out && self.clock_in && self.time_sheet : ((self.clock_out - self.clock_in - (self.time_sheet.lunch * 60))/3600) else 0 end
-
     if self.clock_out && self.clock_in && self.time_sheet
       ((self.clock_out - self.clock_in - (self.time_sheet.lunch * 60))/3600)
     elsif self.clock_out && self.clock_in
@@ -27,11 +25,11 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def straight_time
-    if self.hours >= 10 : 10 else self.hours end
+    self.hours >= 10 ? 10 : self.hours
   end
 
   def over_time
-    if self.hours >= 10 : (self.hours - 10) else 0 end
+    self.hours >= 10 ? (self.hours - 10) : 0
   end
 
   def cost

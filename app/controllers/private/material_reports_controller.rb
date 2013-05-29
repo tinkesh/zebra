@@ -50,8 +50,8 @@ class Private::MaterialReportsController < ApplicationController
 
   def edit
     @material_report = MaterialReport.find(params[:id], :include => [:job])
-    @load_sheets = LoadSheet.find(:all, :conditions => { :job_id => @material_report.job_id}, :order => 'created_at DESC' )
-    @gun_sheets = GunSheet.find(:all, :conditions => { :job_id => @material_report.job_id}, :order => 'created_at DESC' )
+    @load_sheets = LoadSheet.where(:job_id => @material_report.job_id).order('created_at DESC')
+    @gun_sheets = GunSheet.where(:job_id => @material_report.job_id).order('created_at DESC')
     @page_title = "Edit Material Report #{@material_report.id}"
   end
 

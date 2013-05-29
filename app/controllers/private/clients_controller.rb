@@ -4,7 +4,7 @@ class Private::ClientsController < ApplicationController
   filter_access_to :all
 
   def index
-    @clients = Client.find(:all, :order => "name ASC")
+    @clients = Client.all.order('name ASC')
     @page_title = "Clients"
   end
 

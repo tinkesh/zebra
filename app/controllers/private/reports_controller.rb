@@ -14,10 +14,7 @@ class Private::ReportsController < ApplicationController
     if session[:offset].blank? : session[:offset] = Time.now end
     @date = session[:offset]
     generate_front_to_back
-    @entries = TimeEntry.find(:all,
-      :conditions => { :clock_in => @back.to_date...@front.to_date, :user_id => params[:id] },
-      :include => { :time_sheet => :estimates},
-      :order => "clock_in ASC")
+    @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date, :user_id => params[:id]).includes(:time_sheet => :estimates).order('clock_in ASC')
   end
 
   def crew_time
@@ -35,10 +32,7 @@ class Private::ReportsController < ApplicationController
     @date = session[:offset]
     generate_front_to_back
 
-    @entries = TimeEntry.find(:all,
-      :conditions => { :clock_in => @back.to_date...@front.to_date },
-      :order => "clock_in ASC",
-      :include => [:user, {:time_sheet => :estimates}])
+    @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date).includes(:user, {:time_sheet => :estimates}).order('clock_in ASC')
   end
 
   def increase_offset
@@ -68,10 +62,7 @@ class Private::ReportsController < ApplicationController
               "Less Advance", "Less 50% Benefits", "Direct Deposit", "SIN", "Start Date", "Notes"]
       @users = User.find(:all, :conditions => { :employment_state => "Employed"} )
       @users.each do |u|
-        @entries = TimeEntry.find(:all,
-                                  :conditions => { :clock_in => @back.to_date...@front.to_date, :user_id => u.id },
-                                  :order => "clock_in ASC",
-                                  :include => [:time_sheet])
+        @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date, :user_id => u.id).includes(:time_sheet).order('clock_in ASC')
         if @entries
           straight_time = sprintf("%.2f", @entries.sum(&:straight_time))
           over_time     = sprintf("%.2f", @entries.sum(&:over_time))
@@ -102,9 +93,7 @@ class Private::ReportsController < ApplicationController
                 "Clock In", "Clock Out"]
       end
       @user = User.find(params[:id])
-      @entries = TimeEntry.find(:all, :conditions => { :clock_in => @back.to_date...@front.to_date, :user_id => @user.id },
-                                :order => "clock_in ASC",
-                                :include => [:time_sheet, :user])
+      @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date, :user_id => @user.id).includes([:time_sheet, :user]).order('clock_in ASC')
       if @entries
         @entries.each do |e|
           clock_in = e.clock_in.strftime('%Y-%m-%d %I:%M %p') if e.clock_in
@@ -154,9 +143,9 @@ private
     allowed = false
 
     begin
-      roles = Role.find(:all, :conditions => { :id => current_user.versioned_role_ids.split(", ") })
+      roles = Role.where(:id => current_user.versioned_role_ids.split(", ")).all
 
-      allowed = true if roles.include?(Role.find(:first, :conditions =>{ :name => "office"})) or roles.include?(Role.find(:first, :conditions =>{ :name => "admin"}))
+      allowed = true if roles.include?(Role.where(:name => "office").first) or roles.include?(Role.where(:name => "admin").first)
 
       allowed = true if @crew.id.eql?(current_user.crew_id)
     rescue

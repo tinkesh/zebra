@@ -8,7 +8,7 @@ class Private::ClockInController < ApplicationController
     @job.started_on = Time.zone.now
     @clock_in = TimeEntry.new
     build_clocked_in_ids # also sets @crew and clocked_in_ids
-    @not_clocked_in = TimeEntry.find(:all, :conditions => {:clock_out => nil, :active => nil, :user_id => @users})
+    @not_clocked_in = TimeEntry.where(:clock_out => nil, :active => nil, :user_id => @users)
     @page_title = "Clock In"
   end
 
@@ -23,7 +23,7 @@ class Private::ClockInController < ApplicationController
 
     if params[:users]
       params[:users].each do |user|
-        @entry = TimeEntry.find(:first, :conditions => {:user_id => user[1][:user_id], :active => nil})
+        @entry = TimeEntry.where(:user_id => user[1][:user_id], :active => nil).first
         unless @entry.blank?
           @entry.update_attributes(user[1])
         else
@@ -62,10 +62,10 @@ private
       @users = @crew.users
       @crew.users.each {|user| user_ids << user.id}
     else
-      @users = User.find(:all, :conditions => { :employment_state => "Employed"} )
+      @users = User.where(:employment_state => 'Employed').all
       @users.each {|user| user_ids << user.id}
     end
-    @clocked_in = TimeEntry.find(:all, :conditions => { :time_sheet_id => nil, :active => true, :user_id => user_ids})
+    @clocked_in = TimeEntry.where(:time_sheet_id => nil, :active => true, :user_id => user_ids).all
     @clocked_in.each { |entry| @clocked_in_ids << entry.user_id } if @clocked_in
   end
 
