@@ -10,7 +10,7 @@ class Career < ActiveRecord::Base
   after_create :deliver_new_career
 
   def deliver_new_career
-    Notifier.deliver_new_career(self)
+    SiteMailer.new_career(self).deliver
   end
 
 end

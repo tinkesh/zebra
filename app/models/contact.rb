@@ -9,7 +9,7 @@ class Contact < ActiveRecord::Base
   after_create :deliver_new_contact
 
   def deliver_new_contact
-    Notifier.deliver_new_contact(self)
+    SiteMailer.new_contact(self).deliver
   end
 
 end

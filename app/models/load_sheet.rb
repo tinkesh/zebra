@@ -13,13 +13,13 @@ class LoadSheet < ActiveRecord::Base
   after_create :update_adjusted_dips
 
   def deliver_new_load_sheet
-    Notifier.deliver_new_load_sheet(self)
+    SiteMailer.new_load_sheet(self).deliver
   end
 
   def label
-    retval = "LS ##{self.id}, " 
-    retval << "JOB ##{self.job.id}, " if self.job 
-    retval << (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") 
+    retval = "LS ##{self.id}, "
+    retval << "JOB ##{self.job.id}, " if self.job
+    retval << (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ")
     retval << "#{self.date.to_date.strftime('%b-%d-%y')}"
   end
 

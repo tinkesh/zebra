@@ -19,7 +19,7 @@ class GunSheet < ActiveRecord::Base
   after_create :deliver_new_gun_sheet, :verify_actual_vs_expected_production
 
   def deliver_new_gun_sheet
-    Notifier.deliver_new_gun_sheet(self)
+    SiteMailer.new_gun_sheet(self).deliver
   end
 
   #--------------------------------------------------------------------
@@ -30,7 +30,7 @@ class GunSheet < ActiveRecord::Base
       puts marking.actual_production
       puts marking.amount
       if marking.actual_production > marking.amount
-        Notifier.deliver_job_marking_production_over_expected(marking)
+        SiteMailer.job_marking_production_over_expected(marking).deliver
       end
     end
   end
@@ -68,7 +68,7 @@ class GunSheet < ActiveRecord::Base
     self.skip_w7 = 0
   end
 
-  named_scope :created_by_name, lambda {|name| 
+  named_scope :created_by_name, lambda {|name|
     {
       :joins => :user,
       :conditions =>["users.first_name LIKE ?", name]
