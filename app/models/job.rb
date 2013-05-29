@@ -20,7 +20,7 @@ class Job < ActiveRecord::Base
   accepts_nested_attributes_for :job_locations, :reject_if => lambda { |a| a[:name].blank? },  :allow_destroy => true
 
   # Is active or not
-  named_scope :active, :conditions => {:is_archived => false}
+  scope :active, -> { where(:is_archived => false) }
 
   # This is a static method that all the sheets refer to
   # created to make the Job#show report have an archived date

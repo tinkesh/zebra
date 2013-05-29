@@ -18,6 +18,9 @@ class GunSheet < ActiveRecord::Base
 
   after_create :deliver_new_gun_sheet, :verify_actual_vs_expected_production
 
+
+  scope :created_by_name, lambda { |name| joins(:user).where("users.first_name LIKE ?", name) }
+
   def deliver_new_gun_sheet
     SiteMailer.new_gun_sheet(self).deliver
   end
@@ -67,12 +70,5 @@ class GunSheet < ActiveRecord::Base
     self.skip_w6 = 0
     self.skip_w7 = 0
   end
-
-  named_scope :created_by_name, lambda {|name|
-    {
-      :joins => :user,
-      :conditions =>["users.first_name LIKE ?", name]
-    }
-  }
 
 end

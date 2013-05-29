@@ -7,7 +7,7 @@ class Equipment < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :rate
 
-  named_scope :unassigned, :include => :crews, :conditions => ['crews_equipment.crew_id IS NULL'], :order => "unit ASC"
+  scope :unassigned, -> { where('crews_equipment.crew_id IS NULL').includes(:crews).order('unit ASC') }
 
   def cost(job_sheet)
     if self.rate

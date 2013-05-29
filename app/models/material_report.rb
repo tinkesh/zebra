@@ -8,7 +8,8 @@ class MaterialReport < ActiveRecord::Base
   validates_presence_of :gun_sheet, :on => :create, :message => "can't be blank"
   validates_presence_of :load_sheet, :on => :create, :message => "can't be blank"
 
-  named_scope :by_equipment, lambda { |equipment_id| { :include => :load_sheet, :conditions => ['load_sheets.equipment_id = ?', equipment_id], :order => "load_sheets.date ASC, material_reports.id ASC"}}
+  # named_scope :by_equipment, lambda { |equipment_id| { :include => :load_sheet, :conditions => ['load_sheets.equipment_id = ?', equipment_id], :order => "load_sheets.date ASC, material_reports.id ASC"}}
+  scope :by_equipment, lambda { |equipment_id| where('load_sheets.equipment_id = ?', equipment_id).includes(:load_sheet).order("load_sheets.date ASC, material_reports.id ASC")}
 
   def label
     "MR ##{self.id} with GS ##{self.gun_sheet_id}, LS ##{self.load_sheet_id}"
