@@ -32,7 +32,7 @@
   <% @estimated_time = 0 %>
   <% @estimated_time_cost = 0 %>
   <% @job_sheet.time_sheets.each do |time_sheet| %>
-    <% @estimate = Estimate.find(:first, :conditions => { :time_sheet_id => time_sheet.id, :job_id => @job_sheet.job_id }) %>
+    <% @estimate = Estimate.where(::time_sheet_id => time_sheet.id, :job_id => @job_sheet.job_id).first %>
     <% if @estimate %>
       <% time_sheet.time_entries.each do |entry| %>
       <% @estimated_time += @estimate.hours %>

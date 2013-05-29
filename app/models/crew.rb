@@ -19,7 +19,7 @@ class Crew < ActiveRecord::Base
   end
 
   def clear_used_equipment_from_other_crews(equipment_ids)
-    @equipments = Equipment.find(:all, :conditions => {:id => equipment_ids})
+    @equipments = Equipment.where(:id => equipment_ids).all
 
       @equipments.each do |x|
         x.update_attributes(:crew_ids => nil)

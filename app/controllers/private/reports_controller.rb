@@ -60,7 +60,7 @@ class Private::ReportsController < ApplicationController
     csv_string = FasterCSV.generate do |csv|
       csv << ["Name", "Rate", "Straight Time", "Over Time", "Per Diem", "Bank or Pay",
               "Less Advance", "Less 50% Benefits", "Direct Deposit", "SIN", "Start Date", "Notes"]
-      @users = User.find(:all, :conditions => { :employment_state => "Employed"} )
+      @users = User.where(:employment_state => "Employed")
       @users.each do |u|
         @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date, :user_id => u.id).includes(:time_sheet).order('clock_in ASC')
         if @entries

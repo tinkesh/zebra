@@ -25,11 +25,11 @@ class Private::TimeSheetsController < ApplicationController
       @users = current_user.crew.users
       @users.each { |u| user_ids << u.id }
       @jobs = current_user.crew.jobs
-      @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil, :user_id => user_ids}, :include => :user)
+      @entries = TimeEntry.where(:time_sheet_id => nil, :user_id => user_ids).includes(:user).all
     else
-      @users = User.find(:all, :conditions => {:employment_state => "Employed"})
-      @jobs = Job.find(:all)
-      @entries = TimeEntry.find(:all, :conditions => {:time_sheet_id => nil}, :include => :user)
+      @users = User.where(:employment_state => "Employed").all
+      @jobs = Job.all
+      @entries = TimeEntry.where(:time_sheet_id => nil).includes(:user).all
     end
 
     load_time_sheet_supporting_data
@@ -54,10 +54,7 @@ class Private::TimeSheetsController < ApplicationController
           @entry.save
 
           generate_front_to_back
-          @entries = TimeEntry.find(:all,
-            :conditions => { :clock_in => @back.to_date...@front.to_date, :user_id => @entry.user_id },
-            :include => { :time_sheet => :estimates },
-            :order => "clock_in ASC")
+          @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date, :user_id => @entry.user_id).order('clock_in ASC').includes(:time_sheet => :estimates)
           @time_sheet.check_hours_of_user_time(@entries)
         end
 
@@ -82,7 +79,7 @@ class Private::TimeSheetsController < ApplicationController
   def edit
     @time_sheet = TimeSheet.find(params[:id])
     @crew = current_user.crew
-    @estimates = Estimate.find(:all, :conditions => { :time_sheet_id => @time_sheet.id})
+    @estimates = Estimate.where(:time_sheet_id => @time_sheet.id).all
     @entries = @time_sheet.time_entries
     load_time_sheet_supporting_data
     2.times { @time_sheet.time_tasks.build }
@@ -118,8 +115,8 @@ class Private::TimeSheetsController < ApplicationController
 private
 
   def load_time_sheet_supporting_data
-    @time_task_categories = TimeTaskCategory.find(:all, :order => :position)
-    @time_note_categories = TimeNoteCategory.find(:all, :order => :position)
+    @time_task_categories = TimeTaskCategory.all.order(:position)
+    @time_note_categories = TimeNoteCategory.all.order(:position)
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @lunch_selections = [0, 30, 45, 60, 75, 90, 105, 120, 150, 180, 210, 240, 270, 300]
     else

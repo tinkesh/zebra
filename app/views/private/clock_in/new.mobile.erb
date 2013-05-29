@@ -27,7 +27,7 @@
         <%= hidden_field_tag "users[#{user.id}][bank_overtime_hours]", user.bank_overtime_hours %>
       </td>
     <% else %>
-      <% @entry = TimeEntry.find(:first, :conditions => {:user_id => user.id, :time_sheet_id => nil, :active => true}) %>
+      <% @entry = TimeEntry.where(:user_id => user.id, :time_sheet_id => nil, :active => true).first %>
       <td><%= check_box_tag "user", "active", false, :disabled => true %></td>
       <td class="quiet"><%= user.name %></td>
       <td class="quiet"><%= if @entry && @entry.clock_in : @entry.clock_in.strftime('%b-%d-%y at %I:%M %p') else "-" end %></td>

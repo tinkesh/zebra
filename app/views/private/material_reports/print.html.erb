@@ -17,7 +17,7 @@ tr{
 
   <% @material_report.gun_sheets.each do |gun| %>
       <% if gun.try(:equipment_id) %>
-          <% hold = Equipment.find(:first, :conditions => {:id => gun.equipment_id}) %>
+          <% hold = Equipment.find(gun.equipment_id) %>
           <Tr>
             <td> <%= hold.name %></td>
           </Tr>
@@ -27,7 +27,7 @@ tr{
 
   <% @material_report.load_sheets.each do |load| %>
       <% if load.try(:equipment_id) %>
-          <% hold = Equipment.find(:first, :conditions => {:id => load.equipment_id}) %>
+          <% hold = Equipment.find(load.equipment_id) %>
           <tr>
             <td><%= hold.name %></td>
           </tr>
@@ -52,7 +52,7 @@ tr{
 
   <% @material_report.load_sheets.each do |load| %>
       <% if not load.location_id.nil? %>
-          <% hold = JobLocation.Find(:first, :conditions => {:id => load.location_id}) %>
+          <% hold = JobLocation.find(load.location_id) %>
           <tr>
             <td> <%= hold.name %></td>
           </tr>
@@ -69,7 +69,7 @@ tr{
   <tr>
     <Td>
       <% if @material_report.try(:created_by) %>
-          <% hold = User.find(:first, :conditions => {:id => @material_report.created_by}) %>
+          <% hold = User.find(@material_report.created_by) %>
           <%= hold.first_name + ' ' + hold.last_name %>
       <% end %>
 

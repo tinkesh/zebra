@@ -18,7 +18,7 @@ class TimeSheet < ActiveRecord::Base
   after_create :deliver_new_time_sheet
 
   def deliver_new_time_sheet
-    Notifier.deliver_new_time_sheet(self)
+    SiteMailer.new_time_sheet(self).deliver
   end
 
   def check_hours_of_user_time(entries)
@@ -27,7 +27,7 @@ class TimeSheet < ActiveRecord::Base
 
     # dana - was written 'if entries' but that was causing a nil error on nil.user_id
     if entries.length != 0
-      id = User.find(:all, :conditions => {:id => entries[0].user_id})
+      id = User.find(entries[0].user_id)
       name = id[0].first_name + ' ' + id[0].last_name
 
       entries.each do |ent|
@@ -36,7 +36,7 @@ class TimeSheet < ActiveRecord::Base
         if ent.time_sheet_id.eql?(self.id)
           today_time = (ent.straight_time + ent.over_time)
           if today_time >= 15
-            Notifier.deliver_time_sheet_over_hours(self,today_time,name)
+            SiteMailer.time_sheet_over_hours(self,today_time,name).deliver
           end
         end
       end
@@ -44,7 +44,7 @@ class TimeSheet < ActiveRecord::Base
     end
 
     if total_time  >= 160 || total_time  >= 215 || total_time  >= 230 || total_time  >= 250
-      Notifier.deliver_time_sheet_many_hours(self,total_time,name)
+      SiteMailer.time_sheet_many_hours(self,total_time,name).deliver
     end
   end
 
@@ -105,12 +105,12 @@ class TimeSheet < ActiveRecord::Base
   end
 
   def record_per_diem_rate
-    @rate = Cost.find(:first, :conditions => {:name => "per diem"})
+    @rate = Cost.where(:name => "per diem").first
     if @rate : self.per_diem_rate = @rate.value else self.fuel_rate = "30" end
   end
 
   def record_fuel_rate
-    @rate = Cost.find(:first, :conditions => {:name => "fuel"})
+    @rate = Cost.where(:name => "fuel").first
     if @rate : self.fuel_rate = @rate.value else self.fuel_rate = "0.90" end
   end
 
