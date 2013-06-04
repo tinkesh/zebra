@@ -30,7 +30,7 @@ class Job < ActiveRecord::Base
 
   def label
     label = '#' + self.id.to_s
-    if self.name : label += ", " + self.name end
+    label += ", " + self.name if self.name
     label
   end
 

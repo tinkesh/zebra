@@ -25,13 +25,13 @@ class PrivateController < ApplicationController
       @job = Job.find(params[:job][:id])
       session[:navigate] = @job.id
       case params[:navigate]
-        when "show_job" : @redirect = private_job_path(@job.id)
-        when "clock_in" : @redirect = url_for :controller => "private/clock_in",  :action => "new"
-        when "clock_out" : @redirect = url_for :controller => "private/clock_out", :action => "new"
-        when "new_time_sheet" : @redirect = url_for new_private_time_sheet_path
-        when "new_load_sheet" : @redirect = url_for new_private_load_sheet_path
-        when "new_gun_sheet" : @redirect = url_for new_private_job_gun_sheet_path(:job_id => @job.id)
-        when "new_job_sheet" : @redirect = url_for new_private_job_sheet_path(:job_id => @job.id)
+        when "show_job" then @redirect = private_job_path(@job.id)
+        when "clock_in" then @redirect = url_for :controller => "private/clock_in",  :action => "new"
+        when "clock_out" then @redirect = url_for :controller => "private/clock_out", :action => "new"
+        when "new_time_sheet" then @redirect = url_for new_private_time_sheet_path
+        when "new_load_sheet" then @redirect = url_for new_private_load_sheet_path
+        when "new_gun_sheet" then @redirect = url_for new_private_job_gun_sheet_path(:job_id => @job.id)
+        when "new_job_sheet" then @redirect = url_for new_private_job_sheet_path(:job_id => @job.id)
       end
       redirect_to @redirect
     else

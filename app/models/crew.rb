@@ -6,7 +6,7 @@ class Crew < ActiveRecord::Base
 
   def label
     label = 'Crew #' + self.id.to_s
-    if self.name : label += ", " + self.name end
+    label += ", " + self.name if self.name
     label
   end
 

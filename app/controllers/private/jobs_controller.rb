@@ -61,7 +61,7 @@ class Private::JobsController < ApplicationController
     load_job_supporting_data
     if @job.save
       @job.versioned_at = Time.now
-      if params[:job][:user_ids] : @job.versioned_user_ids = params[:job][:user_ids].join(', ').to_s else '' end
+      @job.versioned_user_ids = params[:job][:user_ids].try(:join, ', ').to_s
       @job.save
       flash[:notice] = "Job on Hand created!"
       redirect_to(private_home_path)
