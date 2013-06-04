@@ -1,7 +1,4 @@
 class TimeSheet < ActiveRecord::Base
-
-  versioned
-
   belongs_to :time_note_category
   has_many :time_tasks, :dependent => :destroy
   has_many :time_entries, :dependent => :destroy

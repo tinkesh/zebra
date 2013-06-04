@@ -29,7 +29,6 @@ gem 'declarative_authorization'
 gem 'authlogic'
 gem 'wirble'
 gem 'active_link_to'
-gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
 gem "fastercsv"
 #gem "searchlogic"  Doesn't work with rails3
 gem 'RedCloth'

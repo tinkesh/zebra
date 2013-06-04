@@ -40,16 +40,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id], :include => :roles)
     @page_title = "#{@user.first_name} #{@user.last_name} details"
-    if params[:version]
-      if params[:version].to_i >= @user.last_version
-        params[:version] = nil
-      else
-        @user.revert_to(params[:version].to_i)
-      end
-    end
-    if @user.versioned_role_ids
-      @roles = Role.where(:id => @user.versioned_role_ids.split(", ")).all
-    end
+    @roles = Role.where(:id => @user.role_ids).all
   end
 
   def edit
@@ -60,11 +51,6 @@ class UsersController < ApplicationController
   def update
     @user = User.new(params[:user])
     @user = User.find(params[:id])
-    if params[:user][:role_ids] then
-      @user.versioned_at = Time.now
-      @user.versioned_role_ids = params[:user][:role_ids].join(', ').to_s
-      params[:user][:role_ids] ||= []
-    end
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to private_home_url
@@ -78,16 +64,6 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:notice] = 'User was deleted.'
     redirect_to(users_url)
-  end
-
-  def revert
-    @user = User.find(params[:id])
-    @user.revert_to(params[:version].to_i)
-    @user.role_ids = @user.versioned_role_ids.split(", ")
-    @user.versioned_at = Time.now
-    @user.save!
-    flash[:notice] = "User reverted!"
-    redirect_to user_url(@user)
   end
 
 end

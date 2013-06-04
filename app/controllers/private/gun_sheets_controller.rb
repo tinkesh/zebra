@@ -18,14 +18,6 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet = GunSheet.find(params[:id], :include => [ :gun_markings ] )
     @page_title = @gun_sheet.label
 
-    if params[:version]
-      if params[:version].to_i >= @gun_sheet.last_version
-        params[:version] = nil
-      else
-        @gun_sheet.revert_to(params[:version].to_i)
-      end
-    end
-
     if @gun_sheet.created_by
       name = User.find(@gun_sheet.created_by)
       @name = name[0].first_name + " " + name[0].last_name
@@ -87,15 +79,6 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet.destroy
     flash[:notice] = 'Gun Sheet deleted!'
     redirect_to private_gun_sheets_url
-  end
-
-  def revert
-    @gun_sheet = GunSheet.find(params[:id])
-    @gun_sheet.revert_to(params[:version].to_i)
-    @gun_sheet.versioned_at = Time.now
-    @gun_sheet.save!
-    flash[:notice] = "Load Sheet reverted!"
-    redirect_to private_gun_sheet_url(@gun_sheet)
   end
 
   def print_selected

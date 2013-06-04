@@ -68,7 +68,6 @@ class Private::MaterialReportsController < ApplicationController
   def update_dips
     @material_report = MaterialReport.find(params[:id])
     @load_sheet = @material_report.load_sheet
-    @load_sheet.versioned_at = Time.now
     if @load_sheet.update_attributes(params[:load_sheet])
       flash[:notice] = "Load Sheet Dips saved!"
       redirect_to private_material_report_url(@material_report)

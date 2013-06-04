@@ -1,7 +1,4 @@
 class TimeEntry < ActiveRecord::Base
-
-  versioned
-
   belongs_to :time_sheet
   belongs_to :user
   has_and_belongs_to_many :jobs

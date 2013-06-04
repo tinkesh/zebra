@@ -12,25 +12,6 @@
   <%= render :partial => 'menus/load_sheets_menu', :layout => false %>
 <% end %>
 
-<%= content_for :versions do %>
-<ol id="versions">
-    <li>Version <%= @load_sheet.version %> of <%= @load_sheet.last_version %></li>
-    <li><%= if @load_sheet.versioned_at : @load_sheet.versioned_at.strftime("%Y-%m-%d %H:%M") end %></li>
-  <% if @load_sheet.version > 1 %>
-    <li><%= link_to "Older", :version => @load_sheet.version-1 %></li>
-  <% else %>
-    <li>Older</li>
-  <% end %>
-  <% if params[:version] %>
-    <li><%= link_to "Newer", :version => @load_sheet.version+1 %></li>
-    <li><%= link_to "Revert", revert_load_sheet_path(:version => @load_sheet.version) %></li>
-  <% else %>
-    <li>Newer</li>
-    <li>Revert</li>
-  <% end %>
-</ol>
-<% end %>
-
 <table>
   <tr>
     <th colspan="2"><%= job_label(@load_sheet.job) %></th>

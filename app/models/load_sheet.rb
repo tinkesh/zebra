@@ -1,6 +1,4 @@
 class LoadSheet < ActiveRecord::Base
-
-  versioned
   default_scope :order => 'created_at DESC'
 
   belongs_to :job

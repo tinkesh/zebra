@@ -13,7 +13,6 @@ class Private::TimeSheetsController < ApplicationController
   def show
     @time_sheet = TimeSheet.find(params[:id], :include => [ {:time_tasks => :time_task_category}, :time_entries, :time_note_category])
     @page_title = @time_sheet.label
-    get_version
   end
 
   def new
@@ -103,15 +102,6 @@ class Private::TimeSheetsController < ApplicationController
     redirect_to private_time_sheets_url
   end
 
-  def revert
-    @time_sheet = TimeSheet.find(params[:id])
-    @time_sheet.revert_to(params[:version].to_i)
-    @time_sheet.versioned_at = Time.now
-    @time_sheet.save!
-    flash[:notice] = "User reverted!"
-    redirect_to private_time_sheet_url(@time_sheet)
-  end
-
 private
 
   def load_time_sheet_supporting_data
@@ -121,16 +111,6 @@ private
       @lunch_selections = [0, 30, 45, 60, 75, 90, 105, 120, 150, 180, 210, 240, 270, 300]
     else
       @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
-    end
-  end
-
-  def get_version
-    if params[:version]
-      if params[:version].to_i >= @time_sheet.last_version
-        params[:version] = nil
-      else
-        @time_sheet.revert_to(params[:version].to_i)
-      end
     end
   end
 

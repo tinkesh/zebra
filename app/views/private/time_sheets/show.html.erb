@@ -12,26 +12,6 @@
   <%= render :partial => 'menus/time_sheets_menu', :layout => false %>
 <% end %>
 
-<%= content_for :versions do %>
-<ol id="versions" class="noprint">
-    <li>Version <%= @time_sheet.version %> of <%= @time_sheet.last_version %></li>
-    <li><%= if @time_sheet.versioned_at : @time_sheet.versioned_at.strftime("%Y-%m-%d %H:%M") else @time_sheet.created_at.strftime("%Y-%m-%d %H:%M") end %></li>
-  <% if @time_sheet.version > 1 %>
-    <li><%= link_to "Older", :version => @time_sheet.version-1 %></li>
-  <% else %>
-    <li>Older</li>
-  <% end %>
-  <% if params[:version] %>
-    <li><%= link_to "Newer", :version => @time_sheet.version+1 %></li>
-    <li><%= link_to "Revert", revert_time_sheet_path(:version => @time_sheet.version) %></li>
-  <% else %>
-    <li>Newer</li>
-    <li>Revert</li>
-  <% end %>
-</ol>
-<% end %>
-
-
 <table class="no-right-border">
   <tr>
     <th colspan="2"><% @time_sheet.jobs.each do |job| %><%= job.label %><br><% end %></td>

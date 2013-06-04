@@ -51,13 +51,6 @@ AaaStriping::Application.routes.draw do
   match 'report_summaries/all_job_value' => 'private/report_summaries#all_job_value', :as => :all_job_value, :path_prefix => 'admin'
   match 'report_summaries/all_marking_value' => 'private/report_summaries#all_marking_value', :as => :all_marking_value, :path_prefix => 'admin'
 
-  # versions
-  match 'users/:id/revert/:version' => 'users#revert', :as => :revert_user, :path_prefix => 'admin'
-  match 'jobs/:id/revert/:version' => 'private/jobs#revert', :as => :revert_job, :path_prefix => 'admin'
-  match 'time_sheets/:id/revert/:version' => 'private/time_sheets#revert', :as => :revert_time_sheet, :path_prefix => 'admin'
-  match 'load_sheets/:id/revert/:version' => 'private/load_sheets#revert', :as => :revert_load_sheet, :path_prefix => 'admin'
-  match 'gun_sheets/:id/revert/:version' => 'private/gun_sheets#revert', :as => :revert_gun_sheet, :path_prefix => 'admin'
-
   # user authentication and accounts
   resource :user_session
   resources :password_resets

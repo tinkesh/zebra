@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   acts_as_authentic
-  versioned :only => [:first_name, :last_name, :rate, :login, :email, :time_zone, :home_phone, :cell_phone, :address, :city, :province, :postal_code, :bank_overtime_hours, :versioned_role_ids, :versioned_at]
 
   belongs_to :crew
   has_many :time_entries

@@ -21,30 +21,13 @@ class Private::JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
-
-    if params[:version]
-      if params[:version].to_i >= @job.last_version
-        params[:version] = nil
-      else
-        @job.revert_to(params[:version].to_i)
-      end
-    end
     @page_title = @job.label
   end
 
   # This is a bit of a hack to get a quickie show archived type thing working
   def show_all
     @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
-
-    if params[:version]
-      if params[:version].to_i >= @job.last_version
-        params[:version] = nil
-      else
-        @job.revert_to(params[:version].to_i)
-      end
-    end
     @page_title = @job.label
-
   end
 
   def new
@@ -60,9 +43,6 @@ class Private::JobsController < ApplicationController
     @page_title = "New Job on Hand"
     load_job_supporting_data
     if @job.save
-      @job.versioned_at = Time.now
-      @job.versioned_user_ids = params[:job][:user_ids].try(:join, ', ').to_s
-      @job.save
       flash[:notice] = "Job on Hand created!"
       redirect_to(private_home_path)
     else
@@ -79,7 +59,6 @@ class Private::JobsController < ApplicationController
 
   def update
     @job = Job.find(params[:id])
-    @job.versioned_at = Time.now
 
     if @job.update_attributes(params[:job])
      if @job.is_archived == true
@@ -101,16 +80,6 @@ class Private::JobsController < ApplicationController
     @job.destroy
     flash[:notice] = 'Job on Hand deleted!'
     redirect_to(private_jobs_url)
-  end
-
-  def revert
-    @job = Job.find(params[:id])
-    @job.revert_to(params[:version].to_i)
-    @job.user_ids = @job.versioned_user_ids.split(", ")
-    @job.versioned_at = Time.now
-    @job.save!
-    flash[:notice] = "Job reverted!"
-    redirect_to private_job_url(@job.id)
   end
 
 private

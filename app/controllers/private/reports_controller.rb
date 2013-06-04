@@ -143,7 +143,7 @@ private
     allowed = false
 
     begin
-      roles = Role.where(:id => current_user.versioned_role_ids.split(", ")).all
+      roles = Role.where(:id => current_user.role_ids).all
 
       allowed = true if roles.include?(Role.where(:name => "office").first) or roles.include?(Role.where(:name => "admin").first)
 

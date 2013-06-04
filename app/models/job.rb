@@ -1,7 +1,4 @@
 class Job < ActiveRecord::Base
-
-  versioned
-
   has_and_belongs_to_many :crews
   belongs_to :client
   belongs_to :completion
