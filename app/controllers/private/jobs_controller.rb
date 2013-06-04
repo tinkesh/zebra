@@ -117,10 +117,10 @@ private
 
   def load_job_supporting_data
     @crews = Crew.all
-    @clients = Client.all.order(:name)
-    @completions = Completion.all.order(:id)
+    @clients = Client.scoped.order(:name)
+    @completions = Completion.scoped.order(:id)
     @users = User.where(:employment_state => "Employed").order(:first_name).all
-    @gun_marking_categories = GunMarkingCategory.all.order(:name)
+    @gun_marking_categories = GunMarkingCategory.scoped.order(:name)
   end
 
 end
