@@ -3,7 +3,7 @@
   <div class="span-14">
     <%= form.label :gun_marking_category_id, "Category" %>
     <br>
-    <%= form.select ("gun_marking_category_id", @gun_marking_categories.map {|u| [u.name,u.id]}, :class => "span-4", :include_blank => true) %>
+    <%= form.select :gun_marking_category_id, @gun_marking_categories.map {|u| [u.name,u.id]}, :class => "span-4", :include_blank => true %>
   </div>
   <div class="span-2">
     <%= form.label :amount, "Quantity" %>

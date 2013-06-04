@@ -3,7 +3,7 @@
 
   <div class="append-bottom">
     <%= form.label :client_id %><br>
-    <%= select ("job", "client_id", @clients.map {|u| [u.name,u.id]}, {}, :class => "span-7") %>
+    <%= form.select :client_id, @clients.map {|u| [u.name,u.id]}, {}, :class => "span-7" %>
   </div>
 
   <div class="append-bottom">
@@ -18,12 +18,12 @@
 
   <div class="append-bottom">
     <%= form.label :completion_id, "Completion Level" %><br>
-    <%= select ("job", "completion_id", @completions.map {|u| [u.name,u.id]}) %>
+    <%= form.select :completion_id, @completions.map {|u| [u.name,u.id]} %>
   </div>
 
   <div class="append-bottom">
     <%= form.label :completion_id, "Completion Color" %><br>
-    <%= select ("job", "completion_color", ["", "Red (deficiencies)", "Green (ready)", "Orange (scheduled)", "Blue (in progress)", "White (complete)"]) %>
+    <%= form.select :completion_color, ["", "Red (deficiencies)", "Green (ready)", "Orange (scheduled)", "Blue (in progress)", "White (complete)"] %>
   </div>
 
   <div class="append-bottom">
