@@ -21,15 +21,13 @@
 <hr>
 
 <table>
-<%= form_for @search do |f| %>
+<%= form_tag '', :method => 'get' do %>
   <tr class="no-border"><td class="no-border right">
-		<%= f.text_field :name_like_or_location_name_like_or_client_name_like %>
-		<%= f.submit "Search" %><br>
+		<%= text_field_tag :query, params[:query] %>
+		<%= submit_tag "Search" %><br>
 		<em>Searches within name, client and location</em>
   </td></tr>
 <% end %>
 </table>
 
-<% if @jobs != @search.all %>
 <%= render :partial => "private/jobs/display", :locals => {:jobs => @searched_jobs} %>
-<% end %>
