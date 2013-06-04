@@ -15,7 +15,7 @@ class Crew < ActiveRecord::Base
     self.users.each do |user|
       list << "<span class='#{user.role_symbols}'>#{user.first_name} #{user.last_name}</span>"
     end
-    list.join(", ")
+    list.join(", ").html_safe
   end
 
   def clear_used_equipment_from_other_crews(equipment_ids)
