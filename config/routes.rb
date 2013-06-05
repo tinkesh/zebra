@@ -17,7 +17,6 @@ AaaStriping::Application.routes.draw do
       match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected, :path_prefix => 'admin'
       resources :gun_marking_categories
       resources :jobs
-      match 'jobs/show_all/:id' => 'jobs#show_all', :as => :job_show_all, :path_prefix => 'admin'
       resources :job_sheets
       resources :load_sheets
       resources :manufacturers

@@ -22,12 +22,7 @@ class Private::JobsController < ApplicationController
   def show
     @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
     @page_title = @job.label
-  end
-
-  # This is a bit of a hack to get a quickie show archived type thing working
-  def show_all
-    @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
-    @page_title = @job.label
+    @show_archived = params[:show_archived] == 'true'
   end
 
   def new

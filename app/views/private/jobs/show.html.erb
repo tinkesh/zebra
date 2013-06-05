@@ -122,14 +122,14 @@
     <h3>Time Sheets</h3>
     <ol>
     <% @job.time_sheets.each do |time_sheet| %>
-      <% if !time_sheet.is_archived? %>
+      <% if !time_sheet.is_archived? or @show_archived %>
         <li><%= link_to time_sheet.label, private_time_sheet_path(time_sheet), :class => "show plain" %></li>
       <% else %>
         <% @time_sheet_archived = true %>
       <% end %>
     <% end %>
     </ol>
-    <%= link_to "view archived time sheets", private_job_show_all_path(@job) if @time_sheet_archived %>
+    <%= link_to "view archived time sheets", "?show_archived=true" if @time_sheet_archived and !@show_archived %>
   <hr>
   <% end -%>
 
@@ -138,14 +138,14 @@
     <% if @job.job_sheets.length != 0 %>
       <ol>
       <% @job.job_sheets.each do |job_sheet| %>
-        <% if !job_sheet.is_archived? %>
+        <% if !job_sheet.is_archived? or @show_archived %>
           <li><%= link_to job_sheet.label, private_job_sheet_path(job_sheet), :class => "show plain" %></li>
         <% else %>
           <% @job_sheet_archived = true %>
         <% end %>
       <% end %>
       </ol>
-      <%= link_to "view archived job sheets", private_job_show_all_path(@job) if @job_sheet_archived %>
+      <%= link_to "view archived job sheets", "?show_archived=true" if @job_sheet_archived and !@show_archived %>
     <% else %>
       <p>No Job Sheets.</p>
     <% end %>
@@ -158,14 +158,14 @@
     <% if @job.material_reports.length > 0 %>
       <ol>
       <% @job.material_reports.each do |m| %>
-        <% if !m.is_archived? %>
+        <% if !m.is_archived? or @show_archived %>
           <li><%= link_to m.label, private_material_report_path(m.id), :class => "show plain" %></li>
         <% else %>
           <% @material_reports_archived = true %>
         <% end %>
       <% end %>
       </ol>
-      <%= link_to "view archived material reports", private_job_show_all_path(@job) if @material_reports_archived %>
+      <%= link_to "view archived material reports", "?show_archived=true" if @material_reports_archived and !@show_archived %>
     <% else %>
       <p>No Material Reports.</p>
     <% end %>
@@ -179,14 +179,14 @@
     <h3>Load Sheets</h3>
     <ol>
     <% @job.load_sheets.each do |load_sheet| %>
-      <% if !load_sheet.is_archived? %>
+      <% if !load_sheet.is_archived? or @show_archived %>
         <li><%= link_to load_sheet.label, private_load_sheet_path(load_sheet), :class => "show plain" %></li>
       <% else %>
         <% @load_sheets_archived = true %>
       <% end %>
     <% end %>
     </ol>
-    <%= link_to "view archived load sheets", private_job_show_all_path(@job) if @load_sheets_archived %>
+    <%= link_to "view archived load sheets", "?show_archived=true" if @load_sheets_archived and !@show_archived %>
   <% end %>
 </div>
 
@@ -195,14 +195,14 @@
     <h3>Gun Sheets</h3>
     <ol>
     <% @job.gun_sheets.each do |gun_sheet| %>
-      <% if !gun_sheet.is_archived? %>
+      <% if !gun_sheet.is_archived? or @show_archived %>
         <li><%= link_to gun_sheet.label, private_gun_sheet_path(gun_sheet), :class => "show plain" %></li>
       <% else %>
         <% @gun_sheets_archived = true %>
       <% end %>
     <% end %>
     </ol>
-    <%= link_to "view archived gun sheets", private_job_show_all_path(@job) if @gun_sheets_archived %>
+    <%= link_to "view archived gun sheets", "?show_archived=true" if @gun_sheets_archived and !@show_archived %>
   <% end %>
 </div>
 
