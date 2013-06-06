@@ -24,9 +24,7 @@ module ApplicationHelper
   def job_label(job)
     if job
       export = '#' + job.id.to_s
-      if job.name
-        export += ", " + job.name
-      end
+      export += ", " + job.name if job.name
     else
       export = "No Job"
     end
@@ -43,5 +41,9 @@ module ApplicationHelper
       render(association.to_s.singularize + "_fields", :form => builder)
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")".html_safe, :class => "new-inline")
+  end
+
+  def aaa_highlight(str)
+    highlight(str.to_s, params[:query])
   end
 end
