@@ -40,9 +40,9 @@ class Private::ClockInController < ApplicationController
 
     if params[:navigate]
       case params[:navigate]
-        when "clock_in" : @redirect = url_for :controller => "private/clock_in",  :action => "new"
-        when "clock_out" : @redirect = url_for :controller => "private/clock_out", :action => "new"
-        when "home" : @redirect = private_home_path
+        when "clock_in" then @redirect = url_for :controller => "private/clock_in",  :action => "new"
+        when "clock_out" then @redirect = url_for :controller => "private/clock_out", :action => "new"
+        when "home" then @redirect = private_home_path
       end
       flash[:notice] = "Users clocked in!"
       redirect_to @redirect

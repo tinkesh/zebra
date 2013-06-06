@@ -6,8 +6,10 @@ class Private::TimeSheetsController < ApplicationController
   def index
     @time_sheets = TimeSheet.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 50, :include => [:jobs, :time_entries]
     @page_title = "Time Sheets"
-    @search = TimeSheet.search(params[:search])
-    @searched_time_sheets = @search.all
+    if params[:query]
+      @search = TimeSheet.search(params[:search])
+      @searched_time_sheets = @search.all
+    end
   end
 
   def show
@@ -42,8 +44,8 @@ class Private::TimeSheetsController < ApplicationController
     @page_title = "Submit Clock In/Clock Out Times"
     @time_sheet = TimeSheet.new(params[:time_sheet])
     @time_sheet.created_by = current_user.id
-    if params[:time_sheet][:fuel].blank? : @time_sheet.fuel = 0 end
-    if params[:time_sheet][:hotel].blank? : @time_sheet.hotel = 0 end
+    @time_sheet.fuel ||= 0
+    @time_sheet.hotel ||= 0
     if @time_sheet.save
 
       if params[:time_entry_ids]
@@ -105,8 +107,8 @@ class Private::TimeSheetsController < ApplicationController
 private
 
   def load_time_sheet_supporting_data
-    @time_task_categories = TimeTaskCategory.all.order(:position)
-    @time_note_categories = TimeNoteCategory.all.order(:position)
+    @time_task_categories = TimeTaskCategory.order(:position)
+    @time_note_categories = TimeNoteCategory.order(:position)
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @lunch_selections = [0, 30, 45, 60, 75, 90, 105, 120, 150, 180, 210, 240, 270, 300]
     else

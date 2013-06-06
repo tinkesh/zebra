@@ -20,11 +20,11 @@ class MaterialReport < ActiveRecord::Base
   end
 
   def yellow_rate
-    self.gun_sheet ? (self.gun_sheet.equipment ? self.gun_sheet.equipment.yellow_rate : 0) : 0
+    self.gun_sheet.equipment.yellow_rate rescue 0
   end
 
   def white_rate
-    self.gun_sheet ? (self.gun_sheet.equipment ? self.gun_sheet.equipment.white_rate : 0) : 0
+    self.gun_sheet.equipment.white_rate rescue 0
   end
 
   def bead_used

@@ -14,11 +14,11 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def per_diem
-    self.time_sheet ? self.time_sheet.per_diem_percent : 0
+    self.time_sheet.per_diem_percent rescue 0
   end
 
   def per_diem_cost
-    self.time_sheet ? self.per_diem * self.time_sheet.per_diem_rate : 0
+    (self.per_diem * self.time_sheet.per_diem_rate) rescue 0
   end
 
   def straight_time

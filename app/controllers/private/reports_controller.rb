@@ -11,7 +11,7 @@ class Private::ReportsController < ApplicationController
   def user_time
     @page_title = "User Time"
     session[:report] = "user_time"
-    if session[:offset].blank? : session[:offset] = Time.now end
+    session[:offset] ||= Time.now
     @date = session[:offset]
     generate_front_to_back
     @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date, :user_id => params[:id]).includes(:time_sheet => :estimates).order('clock_in ASC')
@@ -19,7 +19,7 @@ class Private::ReportsController < ApplicationController
 
   def crew_time
     session[:report] = "crew_time"
-    if session[:offset].blank? : session[:offset] = Time.now end
+    session[:offset] ||= Time.now
     @date = session[:offset]
     generate_front_to_back
     @users = @crew.users
@@ -28,7 +28,7 @@ class Private::ReportsController < ApplicationController
   def time_entries
     @page_title = "Recent Time Entries"
     session[:report] = "time_entries"
-    if session[:offset].blank? : session[:offset] = Time.now end
+    session[:offset] ||= Time.now
     @date = session[:offset]
     generate_front_to_back
 
@@ -36,13 +36,13 @@ class Private::ReportsController < ApplicationController
   end
 
   def increase_offset
-    if session[:offset].blank? : session[:offset] = Time.now end
+    session[:offset] ||= Time.now
     session[:offset] += 1.months
     redirect_to :action => session[:report], :id => params[:id]
   end
 
   def decrease_offset
-    if session[:offset].blank? : session[:offset] = Time.now end
+    session[:offset] ||= Time.now
     session[:offset] -= 1.months
     redirect_to :action => session[:report], :id => params[:id]
   end
@@ -53,7 +53,7 @@ class Private::ReportsController < ApplicationController
   end
 
   def accountant_csv
-    if session[:offset].blank? : session[:offset] = Time.now end
+    session[:offset] ||= Time.now
     @date = session[:offset]
     generate_front_to_back
 
@@ -80,7 +80,7 @@ class Private::ReportsController < ApplicationController
   end
 
   def user_time_csv
-    if session[:offset].blank? : session[:offset] = Time.now end
+    session[:offset] ||= Time.now
     @date = session[:offset]
     generate_front_to_back
 

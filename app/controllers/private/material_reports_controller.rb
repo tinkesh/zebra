@@ -4,13 +4,13 @@ class Private::MaterialReportsController < ApplicationController
   filter_access_to :all
 
   def index
-    @material_reports = MaterialReport.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:job, :gun_sheet, :load_sheet]
     @page_title = "Material Reports"
 
-    @search = MaterialReport.search(params[:search])
-    if params[:commit] == "Search"
-      @material_reports = @search.paginate :page => params[:page], :per_page => 50, :order => 'id DESC', :include => [:job, :gun_sheet, :load_sheet]
+    @material_reports = MaterialReport
+    if params[:query].present?
+      @material_reports = @material_reports.where('jobs.name ilike :query', :query => "%#{params[:query]}%")
     end
+    @material_reports = @material_reports.paginate :page => params[:page], :order => 'material_reports.id DESC', :per_page => 50, :include => [:job, :gun_sheet, :load_sheet]
   end
 
   def show

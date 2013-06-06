@@ -6,54 +6,66 @@ AaaStriping::Application.routes.draw do
   match 'contact/create' => 'public/contacts#create', :as => :create_contact
 
   # private forms
-  namespace :private do
-      resources :clients
-      resources :completions
-      resources :costs
-      resources :crews
-      resources :estimates
-      resources :equipments
+  namespace :private, :path => 'admin' do
+    resources :clients
+    resources :completions
+    resources :costs
+    resources :crews
+    resources :estimates
+    resources :equipments
+    resources :gun_sheets
+    match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected
+    resources :gun_marking_categories
+    resources :jobs do
       resources :gun_sheets
-      match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected, :path_prefix => 'admin'
-      resources :gun_marking_categories
-      resources :jobs
       resources :job_sheets
-      resources :load_sheets
-      resources :manufacturers
       resources :material_reports
-      resources :report_summaries, :only => [:index]
-      resources :materials
-      resources :time_sheets
-      resources :time_note_categories
-      resources :time_task_categories
-      match 'archived_jobs' => 'jobs#archived_jobs', :as => :archived_jobs, :path_prefix => 'admin'
-      match 'private/material_reports/:id/update_dips' => 'material_reports#update_dips', :as => :update_dips, :path_prefix => 'admin'
-      match 'private/material_reports/:id/print' => 'material_reports#print', :as => :mat_print, :path_prefix => 'admin'
+      resource :reconciliation_summary
+      resource :material_report_summary
+    end
+    resources :job_sheets
+    resources :load_sheets
+    resources :manufacturers
+    resources :material_reports
+    resources :report_summaries, :only => [:index]
+    resources :materials
+    resources :time_sheets
+    resources :time_note_categories
+    resources :time_task_categories
+    match 'archived_jobs' => 'jobs#archived_jobs', :as => :archived_jobs
+    match 'private/material_reports/:id/update_dips' => 'material_reports#update_dips', :as => :update_dips
+    match 'private/material_reports/:id/print' => 'material_reports#print', :as => :mat_print
 
-      # clocking in and out
-      match 'clock_in/:action/:id' => 'clock_in#index', :path_prefix => 'admin'
-      match 'clock_out/:action/:id' => 'clock_out#index', :path_prefix => 'admin'
-      resources :time_entries
+    # clocking in and out
+    match 'clock_in/:action/(:id)', :controller => 'clock_in'
+    match 'clock_out/:action/(:id)', :controller => 'clock_out'
+    resources :time_entries
   end
 
+  match '/admin' => 'private#index', :as => :private_home
+  match '/admin/settings' => 'private#settings', :as => :private_settings
+  match '/admin/navigate' => 'private#navigate', :as => :private_navigate
+
   # reports
-  match 'reports/increase_offset/:id' => 'private/reports#increase_offset', :as => :report_increase_offset, :path_prefix => 'admin'
-  match 'reports/decrease_offset/:id' => 'private/reports#decrease_offset', :as => :report_decrease_offset, :path_prefix => 'admin'
-  match 'reports/reset_offset/:id' => 'private/reports#reset_offset', :as => :report_reset_offset, :path_prefix => 'admin'
-  match 'reports/user_time/:id' => 'private/reports#user_time', :as => :report_user_time, :path_prefix => 'admin'
-  match 'reports/crew_time/:id' => 'private/reports#crew_time', :as => :report_crew_time, :path_prefix => 'admin'
-  match 'reports/time_entries' => 'private/reports#time_entries', :as => :report_time_entries, :path_prefix => 'admin'
-  match 'reports/accountant_csv' => 'private/reports#accountant_csv', :as => :export_accountant_csv, :path_prefix => 'admin'
-  match 'reports/user_time_csv/:id' => 'private/reports#user_time_csv', :as => :export_user_time_csv, :path_prefix => 'admin'
+  match 'admin/reports/increase_offset/(:id)' => 'private/reports#increase_offset', :as => :report_increase_offset
+  match 'admin/reports/decrease_offset/(:id)' => 'private/reports#decrease_offset', :as => :report_decrease_offset
+  match 'admin/reports/reset_offset/(:id)' => 'private/reports#reset_offset', :as => :report_reset_offset
+  match 'admin/reports/user_time/:id' => 'private/reports#user_time', :as => :report_user_time
+  match 'admin/reports/crew_time/(:id)' => 'private/reports#crew_time', :as => :report_crew_time
+  match 'admin/reports/time_entries' => 'private/reports#time_entries', :as => :report_time_entries
+  match 'admin/reports/accountant_csv' => 'private/reports#accountant_csv', :as => :export_accountant_csv
+  match 'admin/reports/user_time_csv/:id' => 'private/reports#user_time_csv', :as => :export_user_time_csv
 
   # summary reports
-  match 'report_summaries/all_job_value' => 'private/report_summaries#all_job_value', :as => :all_job_value, :path_prefix => 'admin'
-  match 'report_summaries/all_marking_value' => 'private/report_summaries#all_marking_value', :as => :all_marking_value, :path_prefix => 'admin'
+  match 'admin/report_summaries/all_job_value' => 'private/report_summaries#all_job_value', :as => :all_job_value
+  match 'admin/report_summaries/all_marking_value' => 'private/report_summaries#all_marking_value', :as => :all_marking_value
 
   # user authentication and accounts
   resource :user_session
   resources :password_resets
-  resources :users
+  scope 'admin' do
+    resources :users
+  end
 
   match 'directory' => 'private/directory#index', :as => :directory, :path_prefix => 'admin'
   match 'register' => 'users#new', :as => :register
@@ -86,11 +98,6 @@ AaaStriping::Application.routes.draw do
   match '/services/wet-night-visibility/agglomerate-structured-marking' => 'public#wet_night_aggolmerate', :as => :wet_night_aggolmerate
   match '/services/wet-night-visibility/dotflex-mma-cold-plastic' => 'public#wet_night_dotflex', :as => :wet_night_dotflex
   match '/services/wet-night-visibility/droponlinetm-hot-thermoplastic' => 'public#wet_night_droponlinetm', :as => :wet_night_droponlinetm
-
-  # private content pages
-  match '/admin' => 'private#index', :as => :private_home
-  match '/admin/settings' => 'private#settings', :as => :private_settings
-  match '/admin/navigate' => 'private#navigate', :as => :private_navigate
 
   root :to => "public#home"
 end

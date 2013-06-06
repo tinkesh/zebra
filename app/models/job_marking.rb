@@ -16,7 +16,7 @@ class JobMarking < ActiveRecord::Base
   end
 
   def is_archived
-    self.job ? self.job.is_archived : true
+    self.job.is_archived rescue true
   end
 
   def total_value

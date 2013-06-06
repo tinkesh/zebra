@@ -4,12 +4,13 @@ class Private::LoadSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @load_sheets = LoadSheet.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:equipment, :job]
     @page_title = "Load Sheets"
-    @search = LoadSheet.search(params[:search])
-    if params[:commit] == "Search"
-      @load_sheets = @search.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:equipment, :job]
+
+    @load_sheets = LoadSheet
+    if params[:query].present?
+      @load_sheets = @load_sheets.where('jobs.name ilike :query OR load_sheets.location_name ilike :query OR equipment.name ilike :query', :query => "%#{params[:query]}%")
     end
+    @load_sheets = @load_sheets.paginate :page => params[:page], :order => 'load_sheets.id DESC', :per_page => 50, :include => [:equipment, :job]
   end
 
   def show

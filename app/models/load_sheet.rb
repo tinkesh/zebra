@@ -1,5 +1,5 @@
 class LoadSheet < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'load_sheets.created_at DESC'
 
   belongs_to :job
   belongs_to :equipment
@@ -17,8 +17,8 @@ class LoadSheet < ActiveRecord::Base
   def label
     retval = "LS ##{self.id}, "
     retval << "JOB ##{self.job.id}, " if self.job
-    retval << (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ")
-    retval << "#{self.date.to_date.strftime('%b-%d-%y')}"
+    retval << (self.equipment.unit rescue 'Unknown') + ', '
+    retval << "#{self.date.to_date.strftime('%b-%d-%y') rescue ''}"
   end
 
   def is_archived?
@@ -26,11 +26,11 @@ class LoadSheet < ActiveRecord::Base
   end
 
   def yellow_dip_used
-    !(self.yellow_dip_end.blank? || self.yellow_dip_start.blank?) ? self.yellow_dip_end - self.yellow_dip_start : 0
+    (self.yellow_dip_end - self.yellow_dip_start) rescue 0
   end
 
   def white_dip_used
-    !(self.white_dip_end.blank? || self.white_dip_start.blank?) ? self.white_dip_end - self.white_dip_start : 0
+    (self.white_dip_end - self.white_dip_start) rescue 0
   end
 
   def adjusted_yellow_dip_used
@@ -43,19 +43,19 @@ class LoadSheet < ActiveRecord::Base
 
   # These next 4 printable methods are used by Material Reports#show
   def printable_white_dip_start
-    self.adjusted_white_dip_start ? self.adjusted_white_dip_start : self.white_dip_start
+    self.adjusted_white_dip_start || self.white_dip_start
   end
 
   def printable_white_dip_end
-    self.adjusted_white_dip_end ? self.adjusted_white_dip_end : self.white_dip_end
+    self.adjusted_white_dip_end || self.white_dip_end
   end
 
   def printable_yellow_dip_start
-    self.adjusted_yellow_dip_start ? self.adjusted_yellow_dip_start : self.yellow_dip_start
+    self.adjusted_yellow_dip_start || self.yellow_dip_start
   end
 
   def printable_yellow_dip_end
-    self.adjusted_yellow_dip_end ? self.adjusted_yellow_dip_end : self.yellow_dip_end
+    self.adjusted_yellow_dip_end || self.yellow_dip_end
   end
 
 private

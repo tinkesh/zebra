@@ -12,7 +12,7 @@ class LoadEntry < ActiveRecord::Base
   end
 
   def category
-    self.material ? self.material.category : "Unknown"
+    self.material.category rescue "Unknown"
   end
 
 end

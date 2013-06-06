@@ -5,9 +5,9 @@ class Private::ReportSummariesController < ApplicationController
   def index
     @page_title = "Summary Reports"
     @jobs = Job.active
-    @search = Job.active.search(params[:search])
-    if params[:commit] == "Search"
-      @jobs = @search.all
+
+    if params[:query].present?
+      @jobs = @jobs.where('jobs.name ilike :query', :query => "%#{params[:query]}%")
     end
   end
 

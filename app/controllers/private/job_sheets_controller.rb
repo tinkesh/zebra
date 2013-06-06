@@ -6,12 +6,13 @@ class Private::JobSheetsController < ApplicationController
   filter_access_to [:index, :destroy], :attribute_check => false
 
   def index
-    @job_sheets = JobSheet.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 50
     @page_title = "Job Sheets"
-    @search = JobSheet.search(params[:search])
-    if params[:commit] == "Search"
-      @job_sheets = @search.paginate :page => params[:page], :per_page => 50, :order => 'created_at DESC'
+
+    @job_sheets = JobSheet
+    if params[:query].present?
+      @job_sheets = @job_sheets.includes(:job).where('jobs.name ilike :query', :query => "%#{params[:query]}%")
     end
+    @job_sheets = @job_sheets.paginate :page => params[:page], :order => 'job_sheets.created_at DESC', :per_page => 50
   end
 
   def show

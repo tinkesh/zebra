@@ -1,5 +1,5 @@
 class GunSheet < ActiveRecord::Base
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'gun_sheets.created_at DESC'
 
   belongs_to :job
   belongs_to :equipment
@@ -37,7 +37,7 @@ class GunSheet < ActiveRecord::Base
   end
 
   def label
-    "GS ##{self.id}, " + "JOB ##{self.job.id}, " + (self.equipment ? "#{self.equipment.unit}, " : "Unknown, ") + "#{self.started_on.to_date.strftime('%b-%d-%y')}"
+    "GS ##{self.id}, " + "JOB ##{self.job.try(:id)}, " + (self.equipment ? "#{self.equipment.try(:unit)}, " : "Unknown, ") + "#{self.started_on.try(:to_date).try(:strftime, '%b-%d-%y')}"
   end
 
   def is_archived?

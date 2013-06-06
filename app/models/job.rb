@@ -27,7 +27,7 @@ class Job < ActiveRecord::Base
 
   def label
     label = '#' + self.id.to_s
-    label += ", " + self.name if self.name
+    label += ", " + self.name if self.name.present?
     label
   end
 

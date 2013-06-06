@@ -3,10 +3,10 @@ class Private::JobsController < ApplicationController
   layout "private"
   filter_access_to :only => [:index, :new, :update, :edit, :destroy, :create, :revert, :load_job_supporting_data]
 
-  def index
-    @page_title = "Jobs on Hand"
-    @searched_jobs = Job.where(:is_archived => false).includes(:client, :completion, :job_markings).order('jobs.id DESC')
+  def index(archived = false)
+    @page_title ||= "Jobs on Hand"
 
+    @searched_jobs = Job.where(:is_archived => archived).includes(:client, :completion, :job_markings).order('jobs.id DESC')
     if params[:query].present?
       @searched_jobs = @searched_jobs.where('jobs.name ilike :query OR location_name ilike :query OR clients.name ilike :query', :query => "%#{params[:query]}%")
     end
@@ -15,8 +15,8 @@ class Private::JobsController < ApplicationController
 
   def archived_jobs
     @page_title = "Archived Jobs on Hand"
-    @search = Job.search(params[:search])
-    @searched_jobs = @search.all(:conditions => {:is_archived => true}, :include => [:client, :completion])
+    index(archived = true)
+    render :index
   end
 
   def show

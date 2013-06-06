@@ -4,7 +4,7 @@ class Private::TimeTaskCategoriesController < ApplicationController
   filter_access_to :all
 
   def index
-    @time_task_categories = TimeTaskCategory.all.order("position ASC")
+    @time_task_categories = TimeTaskCategory.order("position ASC")
     @page_title = "Time Sheet Task Categories"
   end
 

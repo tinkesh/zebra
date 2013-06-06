@@ -210,7 +210,7 @@ class JobSheet < ActiveRecord::Base
     total = [0]
     self.gun_sheets.each do |gun|
       gun.gun_markings.each do |marking|
-        if marking.gun_marking_category_id == category.id : total << marking.amount end
+        total << marking.amount if marking.gun_marking_category_id == category.try(:id)
       end
     end
     total.inject {|sum, n| sum + n.to_f}

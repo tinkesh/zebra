@@ -4,14 +4,13 @@ class Private::GunSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @gun_sheets = GunSheet.paginate :page => params[:page], :order => 'id DESC', :per_page => 50, :include => [:job, :equipment]
     @page_title = "Gun Sheets"
 
-    @search = GunSheet.search(params[:search])
-
-    if params[:commit] == "Search"
-      @gun_sheets = @search.paginate :page => params[:page], :per_page => 50, :order => 'id DESC', :include => [:job, :equipment]
+    @gun_sheets = GunSheet
+    if params[:query].present?
+      @gun_sheets = @gun_sheets.where('jobs.name ilike :query OR gun_sheets.location_name ilike :query OR job_locations.name ilike :query', :query => "%#{params[:query]}%")
     end
+    @gun_sheets = @gun_sheets.paginate :page => params[:page], :order => 'gun_sheets.id DESC', :per_page => 50, :include => [:job, :equipment, :job_location]
   end
 
   def show
@@ -19,8 +18,8 @@ class Private::GunSheetsController < ApplicationController
     @page_title = @gun_sheet.label
 
     if @gun_sheet.created_by
-      name = User.find(@gun_sheet.created_by)
-      @name = name[0].first_name + " " + name[0].last_name
+      user = User.find(@gun_sheet.created_by)
+      @name = user.first_name + " " + user.last_name
     end
   end
 
@@ -89,10 +88,10 @@ private
 
   def load_gun_sheet_supporting_data
     @job_locations = @job.job_locations
-    @clients = Client.all.order(:name)
-    @allequipment = Equipment.all.order(:unit)
-    @equipment = @allequipment.find_all{|item| item.unit.starts_with? 'LPT'}
-    @gun_marking_categories = GunMarkingCategory.all.order(:name)
+    @clients = Client.order(:name)
+    @allequipment = Equipment.order(:unit)
+    @equipment = @allequipment.select{|item| item.unit.starts_with? 'LPT'}
+    @gun_marking_categories = GunMarkingCategory.order(:name)
   end
 
 end

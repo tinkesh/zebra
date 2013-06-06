@@ -5,19 +5,19 @@ class UsersController < ApplicationController
   filter_access_to :index, :attribute_check => false
 
   def index
-    if(params[:showonly] == 'inactive')
-      @users = User.where("eployment_state NOT LIKE ?", 'Employed').includes(:roles).order(:first_name)
-    else
-      @users = User.where(:employment_state => "Employed").includes(:roles).order(:first_name)
-    end
-
     @page_title = "Users"
 
-    @search = User.search(params[:search])
-
-    if params[:commit] == "Search"
-      @users = @search.all
+    if(params[:showonly] == 'inactive')
+      @users = User.where("eployment_state NOT LIKE ?", 'Employed')
+    else
+      @users = User.where(:employment_state => "Employed")
     end
+
+    if params[:query].present?
+      @users = @users.where('first_name ilike :query OR last_name ilike :query OR login ilike :query', :query => "%#{params[:query]}%")
+    end
+
+    @users = @users.includes(:roles).order(:first_name)
   end
 
   def new

@@ -31,10 +31,10 @@ class Private::ClockOutController < ApplicationController
 
     if params[:navigate]
       case params[:navigate]
-        when "clock_in" : @redirect = url_for :controller => "private/clock_in",  :action => "new"
-        when "clock_out" : @redirect = url_for :controller => "private/clock_out", :action => "new"
-        when "home" : @redirect = url_for private_home_path
-        when "new_time_sheet" : @redirect = url_for new_private_time_sheet_path
+        when "clock_in" then @redirect = url_for :controller => "private/clock_in",  :action => "new"
+        when "clock_out" then @redirect = url_for :controller => "private/clock_out", :action => "new"
+        when "home" then @redirect = url_for private_home_path
+        when "new_time_sheet" then @redirect = url_for new_private_time_sheet_path
       end
       flash[:notice] = "Users clocked out!"
       redirect_to @redirect

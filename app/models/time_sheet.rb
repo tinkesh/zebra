@@ -24,8 +24,8 @@ class TimeSheet < ActiveRecord::Base
 
     # dana - was written 'if entries' but that was causing a nil error on nil.user_id
     if entries.length != 0
-      id = User.find(entries[0].user_id)
-      name = id[0].first_name + ' ' + id[0].last_name
+      user = User.find(entries[0].user_id)
+      name = user.first_name + ' ' + user.last_name
 
       entries.each do |ent|
         total_time += ent.straight_time
@@ -103,12 +103,20 @@ class TimeSheet < ActiveRecord::Base
 
   def record_per_diem_rate
     @rate = Cost.where(:name => "per diem").first
-    if @rate : self.per_diem_rate = @rate.value else self.fuel_rate = "30" end
+    if @rate
+      self.per_diem_rate = @rate.value
+    else
+      self.fuel_rate = "30"
+    end
   end
 
   def record_fuel_rate
     @rate = Cost.where(:name => "fuel").first
-    if @rate : self.fuel_rate = @rate.value else self.fuel_rate = "0.90" end
+    if @rate
+      self.fuel_rate = @rate.value
+    else
+      self.fuel_rate = "0.90"
+    end
   end
 
   def fuel_cost
