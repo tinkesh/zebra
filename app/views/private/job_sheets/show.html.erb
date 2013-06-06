@@ -32,7 +32,7 @@
   <% @estimated_time = 0 %>
   <% @estimated_time_cost = 0 %>
   <% @job_sheet.time_sheets.each do |time_sheet| %>
-    <% @estimate = Estimate.where(::time_sheet_id => time_sheet.id, :job_id => @job_sheet.job_id).first %>
+    <% @estimate = Estimate.where(:time_sheet_id => time_sheet.id, :job_id => @job_sheet.job_id).first %>
     <% if @estimate %>
       <% time_sheet.time_entries.each do |entry| %>
       <% @estimated_time += @estimate.hours %>
@@ -57,9 +57,9 @@
   <% end %>
   <tr>
     <th colspan="3">&nbsp;</th>
-    <th class="right"><%= if @job_sheet.total_per_diem == 0 : "-" else sprintf("%.2f", @job_sheet.total_per_diem) end %></th>
-    <th class="right"><%= if @job_sheet.total_straight_time == 0 : "-" else sprintf("%.2f", @job_sheet.total_straight_time) end %></th>
-    <th class="right"><%= if @job_sheet.total_over_time == 0 : "-" else sprintf("%.2f", @job_sheet.total_over_time) end %></th>
+    <th class="right"><%= if @job_sheet.total_per_diem == 0 then "-" else sprintf("%.2f", @job_sheet.total_per_diem) end %></th>
+    <th class="right"><%= if @job_sheet.total_straight_time == 0 then "-" else sprintf("%.2f", @job_sheet.total_straight_time) end %></th>
+    <th class="right"><%= if @job_sheet.total_over_time == 0 then "-" else sprintf("%.2f", @job_sheet.total_over_time) end %></th>
     <th class="right">&nbsp;</th>
     <th class="right"><%= sprintf("%.2f", @estimated_time) if @estimated_time != 0 %></th>
     <th class="right">$<%= sprintf("%.2f", @estimated_time_cost) if @estimated_time_cost != 0 %></th>
@@ -75,11 +75,11 @@
     </tr>
     <tr>
       <td>Fuel</td>
-      <td class="right"><%= if @job_sheet.total_fuel != 0 : "$#{sprintf("%.2f", @job_sheet.total_fuel)}" else "-" end %></td>
+      <td class="right"><%= if @job_sheet.total_fuel != 0 then "$#{sprintf("%.2f", @job_sheet.total_fuel)}" else "-" end %></td>
     </tr>
     <tr class="even">
       <td>Hotels</td>
-      <td class="right"><%= if @job_sheet.total_hotel != 0 : "$#{sprintf("%.2f", @job_sheet.total_hotel)}" else "-" end %></td>
+      <td class="right"><%= if @job_sheet.total_hotel != 0 then "$#{sprintf("%.2f", @job_sheet.total_hotel)}" else "-" end %></td>
     </tr>
     <tr class="even">
       <td>Per Diem</td>
@@ -108,7 +108,7 @@
     <tr class="<%= cycle('odd', 'even') %>">
       <td><%= sheet.equipment.unit %></td>
       <td><%= sheet.equipment.name %></td>
-      <td class="right"><%= if sheet.equipment.rate : number_to_currency(sheet.equipment.rate) else "-" end %></td>
+      <td class="right"><%= if sheet.equipment.rate then number_to_currency(sheet.equipment.rate) else "-" end %></td>
       <td class="right"><%= number_to_currency(sheet.equipment.cost(@job_sheet)) if sheet.equipment.cost(@job_sheet) != 0 %></td>
     </tr>
     <% end %>

@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<% form_tag :controller => 'private/clock_out', :action => "create", :method => :post do -%>
+<%= form_tag :controller => 'private/clock_out', :action => "create", :method => :post do -%>
 
 <input type="button" onclick="toggleCheckboxes(true)" value="Select All"/>
 <input type="button" onclick="toggleCheckboxes(false)" value="Select None"/>

@@ -21,7 +21,7 @@
 <% @costs.each do |cost| %>
   <tr>
     <td><%= cost.name %></td>
-    <td><%= if cost.value : "$#{cost.value}" else "-" end %></td>
+    <td><%= if cost.value then "$#{cost.value}" else "-" end %></td>
     <td><%= cost.description %></td>
     <td class="actions">
     <%= link_to 'Delete', private_cost_path(cost), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>

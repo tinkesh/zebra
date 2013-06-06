@@ -8,11 +8,11 @@
 
 <hr>
 <table>
-<%= form_for @search do |f| %>
+<%= form_tag '', :method => 'get' do %>
   <tr class="no-border"><td class="no-border right">
-		<%= f.text_field :job_name_like %>
-		<%= f.submit "Search" %><br>
-		<em>Searches within job</em>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search" %><br>
+    <em>Searches within job</em>
   </td></tr>
 <% end %>
 </table>
@@ -30,9 +30,9 @@
 <% @job_sheets.each do |job_sheet| %>
   <tr>
     <td><%= job_sheet.id %></td>
-    <td><%= if (job_sheet.gun_sheets && job_sheet.gun_sheets.first && job_sheet.gun_sheets.first.started_on) then job_sheet.gun_sheets.first.started_on.strftime('%b-%d-%y') end %></td>
+    <td><%= (job_sheet.gun_sheets.first.started_on.strftime('%b-%d-%y') rescue '') %></td>
     <td>
-      <%= job_label(job_sheet.job) %>
+      <%= aaa_highlight(job_label(job_sheet.job)) %>
       <%= link_to image_tag("open-link.png"), private_job_path(job_sheet.job_id) %>
     </td>
     <td class="actions">

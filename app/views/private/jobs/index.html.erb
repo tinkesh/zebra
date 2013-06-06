@@ -11,15 +11,14 @@
     <li><%= active_link_to 'New Job on Hand', new_private_job_path %></li>
   <% end %>
   <% if permitted_to? :create, :private_load_sheets -%>
-    <li><%= link_to "New Load Sheet", new_private_load_sheet_path %></li>
+    <li><%= active_link_to "New Load Sheet", new_private_load_sheet_path %></li>
   <% end %>
   <% if permitted_to? :create, :private_jobs -%>
-    <li><%= link_to "Archived Jobs", '/admin/archived_jobs' %></li>
+    <li><%= active_link_to "Archived Jobs", private_archived_jobs_path %></li>
   <% end %>
 <% end %>
 
 <hr>
-
 <table>
 <%= form_tag '', :method => 'get' do %>
   <tr class="no-border"><td class="no-border right">
@@ -30,4 +29,4 @@
 <% end %>
 </table>
 
-<%= render :partial => "private/jobs/display", :locals => {:jobs => @searched_jobs} %>
+<%= render :partial => "display", :locals => {:jobs => @searched_jobs} %>

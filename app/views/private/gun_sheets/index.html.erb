@@ -8,20 +8,20 @@
 
 <hr>
 <table>
-<%= form_for @search do |f| %>
+<%= form_tag '', :method => 'get' do %>
   <tr class="no-border"><td class="no-border right">
-		<%= f.text_field :job_name_or_location_name_like %>
-		<%= f.submit "Search" %><br>
-		<em>Searched within job and location</em>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search" %><br>
+    <em>Searches within job and location</em>
   </td></tr>
 <% end %>
 </table>
 
-<%= will_paginate @time_sheets %>
+<%= will_paginate @gun_sheets %>
 
 <p class="hint">To create a new gun sheet, view the related Job and choose 'New Gun Sheet' from the sub-menu.</p>
 
-<% form_tag private_gun_sheets_print_selected_path, :method => :post, :target => '_blank' do -%>
+<%= form_tag private_gun_sheets_print_selected_path, :method => :post, :target => '_blank' do -%>
 <input type="button" onclick="toggleCheckboxes(true)" value="Select All"/>
 <input type="button" onclick="toggleCheckboxes(false)" value="Select None"/>
   <%= submit_tag "Print Selected", :style => "margin-bottom:10px;" %>
@@ -46,11 +46,11 @@
         <td><%= gun_sheet.started_on.strftime('%b-%d-%y') %></td>
         <td>
           <% if gun_sheet.job %>
-            <%= job_label(gun_sheet.job) %>
+            <%= aaa_highlight(job_label(gun_sheet.job)) %>
             <%= link_to image_tag("open-link.png"), private_job_path(gun_sheet.job_id) %>
           <% end %>
         </td>
-        <td><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> <%= gun_sheet.location_name %></td>
+        <td><%= aaa_highlight("#{gun_sheet.job_location.try(:name)} #{gun_sheet.location_name}") %></td>
         <td>
           <%= User.find(gun_sheet.created_by).name unless gun_sheet.created_by.blank? %>
         </td>
@@ -67,7 +67,7 @@
   <%= submit_tag "Print Selected" %>
 <% end %>
 
-<%= will_paginate @time_sheets %>
+<%= will_paginate @gun_sheets %>
 
 <script type="text/javascript" language="javascript">
 	function toggleCheckboxes(checked_status) {

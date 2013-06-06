@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<% form_tag :controller => 'private/clock_in', :action => "create", :method => :post do -%>
+<%= form_tag :controller => 'private/clock_in', :action => "create", :method => :post do -%>
 
 <table>
   <tr>
@@ -30,7 +30,7 @@
       <% @entry = TimeEntry.where(:user_id => user.id, :time_sheet_id => nil, :active => true).first %>
       <td><%= check_box_tag "user", "active", false, :disabled => true %></td>
       <td class="quiet"><%= user.name %></td>
-      <td class="quiet"><%= if @entry && @entry.clock_in : @entry.clock_in.strftime('%b-%d-%y at %I:%M %p') else "-" end %></td>
+      <td class="quiet"><%= @entry.clock_in.strftime('%b-%d-%y at %I:%M %p') rescue "-" %></td>
       <td class="quiet"><%= if @entry && @entry.clock_out : @entry.clock_out.strftime('%b-%d-%y at %I:%M %p') else "-" end %></td>
     <% end %>
     </tr>

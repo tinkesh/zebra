@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<% form_tag :controller => 'private/clock_in', :action => "create", :method => :post do -%>
+<%= form_tag :controller => 'private/clock_in', :action => "create", :method => :post do -%>
 <input type="button" onclick="toggleCheckboxes(true)" value="Select All"/>
 <input type="button" onclick="toggleCheckboxes(false)" value="Select None"/>
   <table class="no-border">
@@ -31,8 +31,8 @@
       <% @entry = TimeEntry.where(:user_id => user.id, :time_sheet_id => nil, :active => true).first %>
       <td class="span-1"><%= check_box_tag "user", "active", true, :disabled => true %></td>
       <td class="span-4"><span class="quiet"><%= user.name %></span></td>
-      <td><span class="quiet"><%= if @entry && @entry.clock_in : @entry.clock_in.strftime('%b-%d-%y at %I:%M %p') else "-" end %></span></td>
-      <td><span class="quiet"><%= if @entry && @entry.clock_out : @entry.clock_out.strftime('%b-%d-%y at %I:%M %p') else "-" end %></span></td>
+      <td><span class="quiet"><%= @entry.clock_in.strftime( '%b-%d-%y at %I:%M %p') rescue "-" %></span></td>
+      <td><span class="quiet"><%= @entry.clock_out.strftime('%b-%d-%y at %I:%M %p') rescue "-" %></span></td>
     <% end %>
     </tr>
   <% end %>

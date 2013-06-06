@@ -16,9 +16,7 @@
 <% end %>
 
 <%= form_for @job, :url => private_jobs_path do |f| %>
-  <% @job.errors.full_messages.each do |msg| %>
-    <div class="error"><%= msg %></div>
-  <% end %>
+  <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Create Job" %> or <%= link_to 'Cancel', private_jobs_path %>
 <% end %>

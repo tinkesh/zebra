@@ -27,10 +27,10 @@
 
   <tr class="">
     <td class="<%= job.get_completion_color_class_name %>"><%= job.id %></td>
-    <td class="<%= job.get_completion_color_class_name %>"><%= job.name %></td>
+    <td class="<%= job.get_completion_color_class_name %>"><%= aaa_highlight(job.name) %></td>
     <td class="right <%= job.get_completion_color_class_name %>"><%= job.completion ? job.completion.name : "-" %></td>
-    <td class="<%= job.get_completion_color_class_name %>"><%= job.client.name %></td>
-  	<td class="<%= job.get_completion_color_class_name %>"><%= job.location_name ? job.location_name : '-' %></td>
+    <td class="<%= job.get_completion_color_class_name %>"><%= aaa_highlight(job.client.try(:name)) %></td>
+  	<td class="<%= job.get_completion_color_class_name %>"><%= aaa_highlight(job.location_name || '-') %></td>
     <td class="right <%= job.get_completion_color_class_name %>"><%= number_to_currency(job.total_job_value) %></td>
     <td class="actions <%= job.get_completion_color_class_name %>">
       <%= link_to "Delete", private_job_path(job.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>

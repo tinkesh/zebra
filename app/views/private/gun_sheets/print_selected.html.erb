@@ -16,7 +16,7 @@ Event.observe(window, 'load', function() {
       </tr>
       <tr class="odd">
         <td>Location</td>
-        <td class="right"><%= if gun_sheet.job_location : gun_sheet.job_location.name end %> / <%= gun_sheet.location_name %></td>
+        <td class="right"><%= gun_sheet.job_location.try(:name) %> / <%= gun_sheet.location_name %></td>
       </tr>
       <tr class="odd">
         <td>Started</td>
@@ -24,7 +24,7 @@ Event.observe(window, 'load', function() {
       </tr>
       <tr class="even">
         <td>Completed</td>
-        <td class="right"><%= if gun_sheet.completed_on : gun_sheet.completed_on.strftime("%B %d, %Y") end %>, <%= gun_sheet.completed_at.strftime("%H:%M") %></td>
+        <td class="right"><%= gun_sheet.completed_on.strftime("%B %d, %Y") rescue ''%>, <%= gun_sheet.completed_at.strftime("%H:%M") rescue ''%></td>
       </tr>
       <tr class="odd">
         <td>Created On</td>

@@ -1,8 +1,8 @@
 <%= content_for :versions do %>
 <ol id="versions" class="noprint">
-    <li><%= link_to '&lt;&lt; Previous Pay Period', report_decrease_offset_path(@user.id) %></li>
+    <li><%= link_to '<< Previous Pay Period', report_decrease_offset_path(@user.id) %></li>
     <li><%= link_to 'Today', report_reset_offset_path(:id => @user.id) %></li>
-    <li><%= link_to 'Next Pay Period &gt;&gt;', report_increase_offset_path(@user.id) %></li>
+    <li><%= link_to 'Next Pay Period >>', report_increase_offset_path(@user.id) %></li>
 </ol>
 <% end %>
 

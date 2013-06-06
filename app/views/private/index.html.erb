@@ -10,7 +10,7 @@
 
 <% if @jobs || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office) %>
 <div class="span-10">
-<% form_tag :controller => 'private', :action => "navigate" do -%>
+<%= form_tag :controller => 'private', :action => "navigate" do %>
 
   <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', session[:navigate]) %></p>
 

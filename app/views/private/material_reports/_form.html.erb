@@ -1,7 +1,7 @@
 <p>
   <%= form.label :load_sheet_id %><br>
   <% if @load_sheets && @load_sheets.size != 0 %>
-    <%= select ("material_report", "load_sheet_id", @load_sheets.map {|m| [m.label,m.id]}) %>
+    <%= select "material_report", "load_sheet_id", @load_sheets.map {|m| [m.label,m.id]} %>
   <% else %>
     There are no Load Sheets recorded for this job.
   <% end %>
@@ -11,7 +11,7 @@
 <p>
   <%= form.label :gun_sheet_id %><br>
   <% if @gun_sheets && @gun_sheets.size != 0 %>
-    <%= select ("material_report", "gun_sheet_id", @gun_sheets.map {|g| [g.label,g.id]}) %>
+    <%= select "material_report", "gun_sheet_id", @gun_sheets.map {|g| [g.label,g.id]} %>
   <% else %>
     There are no Gun Sheets recorded for this job.
   <% end %>

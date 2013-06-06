@@ -6,8 +6,8 @@
 <% ot += entry.over_time %>
 <% pt += entry.per_diem %>
   <tr class="<%= cycle('odd', 'even') %>">
-    <td><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
-    <td><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
+    <td><%= if entry.straight_time != 0 then "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
+    <td><%= if entry.over_time != 0 then "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
     <td><%= entry.per_diem != 0 ? entry.per_diem : "-" %></td>
   </tr>
 <% end%>

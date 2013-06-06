@@ -18,7 +18,7 @@
   </tr>
   <tr class="odd">
     <td>Truck</td>
-    <td class="right"><%= if @load_sheet.equipment : @load_sheet.equipment.unit else "Not Selected" end %></td>
+    <td class="right"><%= @load_sheet.equipment.try(:unit) || "Not Selected" %></td>
   </tr>
   <tr class="even">
     <td>Location</td>
@@ -61,11 +61,11 @@
   <% if entry %>
     <tr>
       <td><%= entry.category %></td>
-      <td><%= if entry.material && entry.material.manufacturer : entry.material.manufacturer.name end %></td>
-      <td><%= if entry.material : entry.material.batch end %></td>
+      <td><%= entry.material.manufacturer.name rescue '' %></td>
+      <td><%= entry.material.try(:batch) %></td>
       <td><%= entry.tote_number %></td>
       <td class="right"><%= entry.tote_quantity %></td>
-      <td class="right"><%= entry.amount %> <%= if entry.category == "Bead" : "KG" else "L" end %></td>
+      <td class="right"><%= entry.amount %> <%= if entry.category == "Bead" then "KG" else "L" end %></td>
     </tr>
     <% end %>
   <% end %>

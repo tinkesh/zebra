@@ -1,8 +1,6 @@
 <%= form_for @user_session, :url => user_session_path do |f| %>
 
-  <% @user_session.errors.full_messages.each do |msg| %>
-    <div class="error"><%= msg %></div>
-  <% end %>
+  <%= f.error_messages %>
 
   <%= f.label :login %><br />
   <%= f.text_field :login %><br />

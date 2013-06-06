@@ -24,7 +24,7 @@
   <h3>Schedule</h3>
   <p>
     Start: <%= @job.started_on %><br>
-    Status: <%= if @job.completion : @job.completion.name end %><br>
+    Status: <%= @job.completion.try(:name) %><br>
     Complete: <%= @job.completed_on %>
   </p>
 
@@ -33,16 +33,16 @@
   <h3>Client</h3>
   <p>
     <% if @job.client %>
-      <%= unless @job.client.contact.blank?    : "#{@job.client.contact}" end %>
-      <%= unless @job.client.name.blank?       : "<br>#{@job.client.name}" end %>
-      <%= unless @job.client.address.blank?    : "<br>#{@job.client.address}" end %>
-      <%= unless @job.client.city.blank?       : "<br>#{@job.client.city}" end %>
-      <%= unless @job.client.province.blank?   : ", #{@job.client.province}" end %>
-      <%= unless @job.client.work_phone.blank? : "<br>Work: #{@job.client.work_phone}" end %>
-      <%= unless @job.client.cell_phone.blank? : "<br>Cell: #{@job.client.cell_phone}" end %>
-      <%= unless @job.client.fax.blank?        : "<br>Fax: #{@job.client.fax}" end %>
-      <%= unless @job.client.email.blank?      : "<br>Email: #{@job.client.email}" end %>
-      <%= unless @job.client.notes.blank?      : "<br>#{@job.client.notes}" end %>
+      <%= if @job.client.contact.present?    then "#{@job.client.contact}" end %>
+      <%= if @job.client.name.present?       then "<br>#{@job.client.name}".html_safe end %>
+      <%= if @job.client.address.present?    then "<br>#{@job.client.address}".html_safe end %>
+      <%= if @job.client.city.present?       then "<br>#{@job.client.city}".html_safe end %>
+      <%= if @job.client.province.present?   then ", #{@job.client.province}" end %>
+      <%= if @job.client.work_phone.present? then "<br>Work: #{@job.client.work_phone}".html_safe end %>
+      <%= if @job.client.cell_phone.present? then "<br>Cell: #{@job.client.cell_phone}".html_safe end %>
+      <%= if @job.client.fax.present?        then "<br>Fax: #{@job.client.fax}".html_safe end %>
+      <%= if @job.client.email.present?      then "<br>Email: #{@job.client.email}".html_safe end %>
+      <%= if @job.client.notes.present?      then "<br>#{@job.client.notes}".html_safe end %>
     <% end %>
   </p>
 
@@ -65,7 +65,7 @@
     <ol>
     <% @job.crews.each do |crew| %>
       <li>
-        <b><%= crew.name %></b>
+        <b><%= crew.name.html_safe %></b>
         <br>
         <%= crew.user_list %>
       </li>

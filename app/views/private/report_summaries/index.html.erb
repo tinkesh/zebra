@@ -15,14 +15,12 @@
 
 <hr>
 <table>
-<%= form_for @search do |f| %>
-  <tr class="no-border">
-    <td class="no-border right">
-  		<%= f.text_field :name_like %>
-  		<%= f.submit "Search" %><br>
-  		<em>Searches within Job Name</em>
-    </td>
-  </tr>
+<%= form_tag '', :method => 'get' do %>
+  <tr class="no-border"><td class="no-border right">
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search" %><br>
+    <em>Searches within Job Name</em>
+  </td></tr>
 <% end %>
 </table>
 
@@ -41,7 +39,7 @@
   <% if job.gun_sheets.size != 0 %>
   <tr>
     <td><%= job.id %></td>
-    <td><%= job.name %> <%= link_to image_tag("open-link.png"), private_job_path(job.id) %></td>
+    <td><%= aaa_highlight(job.name) %> <%= link_to image_tag("open-link.png"), private_job_path(job.id) %></td>
     <td><%= link_to("Reconciliation Summary",  private_job_reconciliation_summary_path(job.id)) %></td>
     <td><%= link_to("Material Report Summary",  private_job_material_report_summary_path(job.id)) %></td>
   </tr>

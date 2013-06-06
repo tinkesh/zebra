@@ -16,11 +16,11 @@
 
 <hr>
 <table>
-<%= form_for @search do |f| %>
+<%= form_tag '', :method => 'get' do %>
   <tr class="no-border"><td class="no-border right">
-		<%= f.text_field :equipment_name_or_job_name_or_location_name_like %>
-		<%= f.submit "Search" %><br>
-		<em>Searches within job, equipment and location</em>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search" %><br>
+    <em>Searches within job, equipment and location</em>
   </td></tr>
 <% end %>
 </table>
@@ -43,12 +43,12 @@
     <td><%= load_sheet.date.strftime('%b-%d-%y') %></td>
     <td>
       <% if load_sheet.job %>
-        <%= job_label(load_sheet.job) %>
+        <%= aaa_highlight(job_label(load_sheet.job)) %>
         <%= link_to image_tag("open-link.png"), private_job_path(load_sheet.job_id) %>
       <% end %>
     </td>
-    <td><%= if load_sheet.equipment : load_sheet.equipment.name end %></td>
-    <td><%= load_sheet.location_name %></td>
+    <td><%= aaa_highlight(load_sheet.equipment.try(:name)) %></td>
+    <td><%= aaa_highlight(load_sheet.location_name) %></td>
     <td class="actions">
     <%= link_to "Delete", private_load_sheet_path(load_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_load_sheet_path(load_sheet), :class => "edit" %>

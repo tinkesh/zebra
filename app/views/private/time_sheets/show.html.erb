@@ -44,13 +44,13 @@
   <tr>
     <td>Fuel</td>
     <td class="right">
-      <%= if @time_sheet.fuel : "#{@time_sheet.fuel} L" else "-" end -%>
+      <%= if @time_sheet.fuel then "#{@time_sheet.fuel} L" else "-" end %>
     </td>
   </tr>
   <tr>
     <td>Hotel</td>
     <td class="right">
-      <%= if @time_sheet.hotel : "$#{@time_sheet.hotel}" else "-" end -%>
+      <%= if @time_sheet.hotel then "$#{@time_sheet.hotel}" else "-" end %>
     </td>
   </tr>
 </table>
@@ -123,11 +123,11 @@
 <% @time_sheet.time_entries.each do |entry| %>
   <tr>
     <td><%= entry.user.name %></td>
-    <td class="right"><%= if entry.clock_in : entry.clock_in.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.clock_out : entry.clock_out.strftime('%I:%M %p') else '-' end %></td>
-    <td class="right"><%= if entry.straight_time != 0 : "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
-    <td class="right"><%= if entry.over_time != 0 : "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
-    <td class="right"><%= if entry.hours != 0 : "#{sprintf("%.2f", entry.hours)}" else '-' end %></td>
+    <td class="right"><%= entry.clock_in.strftime( '%I:%M %p') rescue '-' %></td>
+    <td class="right"><%= entry.clock_out.strftime('%I:%M %p') rescue '-' %></td>
+    <td class="right"><%= if entry.straight_time != 0 then sprintf("%.2f", entry.straight_time) else '-' end %></td>
+    <td class="right"><%= if entry.over_time     != 0 then sprintf("%.2f", entry.over_time)     else '-' end %></td>
+    <td class="right"><%= if entry.hours         != 0 then sprintf("%.2f", entry.hours)         else '-' end %></td>
   </tr>
 <% end %>
 </table>
