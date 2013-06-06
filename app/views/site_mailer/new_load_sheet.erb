@@ -1,8 +1,4 @@
-<%- if @load_sheet.job -%>
-Job: <%= @load_sheet.job.label %>
-<%- else -%>
-Job: -
-<%- end -%>
+Job: <%= @load_sheet.job.try(:label) || '-' %>
 ID: <%= @load_sheet.id %>
 
 <%= private_load_sheet_url(@load_sheet) %>

@@ -1,4 +1,4 @@
-Job: <%= @gun_sheet.job.label %>
+Job: <%= @gun_sheet.job.try(:label) || '-' %>
 ID: <%= @gun_sheet.id %>
 
 <%= private_gun_sheet_url(@gun_sheet) %>

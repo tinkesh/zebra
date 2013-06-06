@@ -6,15 +6,15 @@ Province: <%= @career.province %>
 Phone: <%= @career.phone %>
 Email: <%= @career.email %>
 
-Has Experience: <%= if @career.have_experience : "Yes" else "no" end %>
-Has Class 5: <%= if @career.have_class5 : "Yes" else "no" end %>
-Has Class 3: <%= if @career.have_class3 : "Yes" else "no" end %>
-Has Class 1: <%= if @career.have_class1 : "Yes" else "no" end %>
-Has Overtime: <%= if @career.have_overtime : "Yes" else "no" end %>
-Will Travel: <%= if @career.have_travel : "Yes" else "no" end %>
-Has First Aid: <%= if @career.have_firstaid : "Yes" else "no" end %>
-Has TDG: <%= if @career.have_tdg : "Yes" else "no" end %>
-Will Work Seasonal: <%= if @career.have_seasonal : "Yes" else "no" end %>
+Has Experience: <%=     if @career.have_experience then "Yes" else "no" end %>
+Has Class 5: <%=        if @career.have_class5     then "Yes" else "no" end %>
+Has Class 3: <%=        if @career.have_class3     then "Yes" else "no" end %>
+Has Class 1: <%=        if @career.have_class1     then "Yes" else "no" end %>
+Has Overtime: <%=       if @career.have_overtime   then "Yes" else "no" end %>
+Will Travel: <%=        if @career.have_travel     then "Yes" else "no" end %>
+Has First Aid: <%=      if @career.have_firstaid   then "Yes" else "no" end %>
+Has TDG: <%=            if @career.have_tdg        then "Yes" else "no" end %>
+Will Work Seasonal: <%= if @career.have_seasonal   then "Yes" else "no" end %>
 
 References:
 <%= @career.references %>
