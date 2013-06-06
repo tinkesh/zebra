@@ -4,7 +4,7 @@ class Private::CrewsController < ApplicationController
   filter_access_to :all
 
   def index
-    @crews = Crew.all.order('name ASC')
+    @crews = Crew.order('name ASC')
     @unassigned_equipment = Equipment.unassigned
     @page_title = "Crews"
   end

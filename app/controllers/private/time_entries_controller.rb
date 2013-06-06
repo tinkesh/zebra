@@ -5,7 +5,7 @@ class Private::TimeEntriesController < ApplicationController
 
   def edit
     @time_entry = TimeEntry.find(params[:id])
-    @time_sheet = TimeSheet.find@time_entry.})
+    @time_sheet = @time_entry.time_sheet
     @page_title = "Edit Time Entry ##{@time_entry.id}"
   end
 

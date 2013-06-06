@@ -4,14 +4,14 @@ class Private::MaterialsController < ApplicationController
   filter_access_to :all
 
   def index
-    @materials = Material.all.includes(:manufacturer)
+    @materials = Material.includes(:manufacturer)
     @page_title = "Materials"
   end
 
   def new
     @material = Material.new
     @page_title = "New Material"
-    @manufacturers = Manufacturer.all.order('name ASC')
+    @manufacturers = Manufacturer.order('name ASC')
   end
 
   def create
@@ -28,7 +28,7 @@ class Private::MaterialsController < ApplicationController
 
   def edit
     @material = Material.find(params[:id])
-    @manufacturers = Manufacturer.all.order('name ASC')
+    @manufacturers = Manufacturer.order('name ASC')
     @page_title = "Edit #{@material.manufacturer.try(:abbreviation)} Batch ##{@material.batch}"
   end
 

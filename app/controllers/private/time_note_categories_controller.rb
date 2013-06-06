@@ -4,7 +4,7 @@ class Private::TimeNoteCategoriesController < ApplicationController
   filter_access_to :all
 
   def index
-    @time_note_categories = TimeNoteCategory.all.order("position ASC")
+    @time_note_categories = TimeNoteCategory.order("position ASC")
     @page_title = "Time Sheet Note Categories"
   end
 

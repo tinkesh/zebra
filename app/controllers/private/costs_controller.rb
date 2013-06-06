@@ -4,7 +4,7 @@ class Private::CostsController < ApplicationController
   filter_access_to :all
 
   def index
-    @costs = Cost.all.order("name ASC")
+    @costs = Cost.order("name ASC")
     @page_title = "Costs"
   end
 
