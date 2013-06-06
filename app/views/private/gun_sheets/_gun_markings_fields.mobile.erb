@@ -1,4 +1,4 @@
 <tr>
-  <td><%= form.select (:gun_marking_category_id, @gun_marking_categories.map {|u| [u.name,u.id]}, :include_blank => false) %></td>
+  <td><%= form.select :gun_marking_category_id, @gun_marking_categories.map {|u| [u.name,u.id]}, :include_blank => false %></td>
   <td><%= form.text_field :amount, :size => "2" %></td>
 </tr>

@@ -1,7 +1,7 @@
 <div class="container">
 <div class="span-10 append-bottom">
   <%= form.label :time_note_category_id, "Comment" %><br>
-  <%= form.select (:time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]}) %>
+  <%= form.select :time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]} %>
 </div>
 
 <div class="span-14 last append-bottom">
@@ -30,7 +30,7 @@
 
 <div class="span-4 append-bottom">
   <%= form.label :lunch, "Lunch Break" %><br>
-  <%= form.select ("lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false) %>
+  <%= form.select "lunch", @lunch_selections.map {|u| ["#{u} Minutes", u]}, :include_blank => false %>
 </div>
 
 <hr>

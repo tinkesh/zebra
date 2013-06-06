@@ -9,7 +9,7 @@
   </tr>
   <tr>
   <td><%= form.label :job_location_id, "Specific Location" %></td>
-  <td><%= form.select (:job_location_id, @job_locations.map {|u| [u.name,u.id]}, :include_blank => false) %></td>
+  <td><%= form.select :job_location_id, @job_locations.map {|u| [u.name,u.id]}, :include_blank => false %></td>
   </tr>
   <tr>
   <td><%= form.label :location_name, "Custom Location" %></td>

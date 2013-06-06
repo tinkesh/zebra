@@ -1,11 +1,11 @@
 <table>
   <tr>
     <td><%= form.label :happened_at, "User:" %></td>
-    <td><%= form.select ("user_id", @job.users.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
+    <td><%= form.select "user_id", @job.users.map {|u| [u.name,u.id]}, :include_blank => true %></td>
   </tr>
   <tr>
     <td><%= form.label :time_task_category_id, "+/-" %></td>
-    <td><%= form.select ("time", @time_selections.map {|u| [u]}, :include_blank => false, :selected => 0.0) %></td>
+    <td><%= form.select "time", @time_selections.map {|u| [u]}, :include_blank => false, :selected => 0.0 %></td>
   </tr>
   <tr>
     <td><%= form.label :note, "Notes:" %></td>

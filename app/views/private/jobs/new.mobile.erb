@@ -2,7 +2,7 @@
   <%= f.error_messages %>
 
   <p><%= f.label :client_id %><br>
-  <%= select ("job", "client_id", @clients.map {|u| [u.name,u.id]}) %></p>
+  <%= select "job", "client_id", @clients.map {|u| [u.name,u.id]} %></p>
 
   <p><%= f.label :name, "Project Name" %><br>
   <%= f.text_field "name" %></p>

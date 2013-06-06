@@ -1,12 +1,12 @@
 <div class="span-6 append-bottom">
   <%= form.label :user_id, "Name" %><br>
-  <%= form.select ("user_id", @job.users.map {|u| [u.name,u.id]}, :class => "span-6", :include_blank => true) %>
+  <%= form.select "user_id", @job.users.map {|u| [u.name,u.id]}, :class => "span-6", :include_blank => true %>
 </div>
 
 <div class="span-4 append-bottom">
   <%= form.label :time, "Hours adjustment" %><br>
-  
-  <%= form.select ("time", @time_selections.map {|u| [u]}, :class => "span-6", :include_blank => false, :selected => 0.0) %>
+
+  <%= form.select "time", @time_selections.map {|u| [u]}, :class => "span-6", :include_blank => false, :selected => 0.0 %>
 
 </div>
 

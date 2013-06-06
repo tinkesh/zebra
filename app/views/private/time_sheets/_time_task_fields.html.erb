@@ -1,5 +1,5 @@
 <tr  class="<%= cycle 'odd', 'even' %>">
   <td><%= form.time_select :happened_at, { :minute_step => 15} %></td>
-  <td><%= form.select (:time_task_category_id, @time_task_categories.map {|u| [u.name,u.id]}, :include_blank => true) %></td>
+  <td><%= form.select :time_task_category_id, @time_task_categories.map {|u| [u.name,u.id]}, :include_blank => true %></td>
   <td><%= form.text_field :note, :class => "span-10" %></td>
 </tr>
