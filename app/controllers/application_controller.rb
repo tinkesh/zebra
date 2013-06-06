@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # use has_mobile_fu(true) to force mobile view rendering
-  #has_mobile_fu
+  has_mobile_fu
 
   helper :all # include all helpers, all the time
 
@@ -59,7 +59,7 @@ private
   end
 
   def store_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.url
   end
 
   def redirect_back_or_default(default)

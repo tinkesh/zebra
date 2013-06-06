@@ -1,7 +1,7 @@
 class PublicController < ApplicationController
 
   layout "public"
-  #before_filter :check_for_mobile, :except => :home
+  before_filter :check_for_mobile, :except => :home
 
   def home
     @user_session = UserSession.new
@@ -91,7 +91,7 @@ class PublicController < ApplicationController
 
 private
 
-  # def check_for_mobile
-  #   if is_mobile_device? then redirect_to :action => "home" end
-  # end
+  def check_for_mobile
+    if is_mobile_device? then redirect_to :action => "home" end
+  end
 end

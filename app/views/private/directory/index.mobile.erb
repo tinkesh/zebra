@@ -5,8 +5,8 @@
 <% for user in @users -%>
 <p>
   <bold><%= user.last_name %>, <%= user.first_name %></bold>
-  <%= if user.last_request_at != nil : "<br>Idle: #{time_ago_in_words(user.last_request_at)}" end %>
-  <%= if user.cell_phone != '' : "<br>Cell: #{user.cell_phone}" end -%>
-  <%= if user.home_phone != '' : "<br>Home: #{user.home_phone}" end -%>
+  <%= if user.last_request_at != nil then "<br>Idle: #{time_ago_in_words(user.last_request_at)}".html_safe end %>
+  <%= if user.cell_phone != '' then "<br>Cell: #{user.cell_phone}".html_safe end -%>
+  <%= if user.home_phone != '' then "<br>Home: #{user.home_phone}".html_safe end -%>
 </p>
 <% end -%>

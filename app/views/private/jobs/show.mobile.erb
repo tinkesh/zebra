@@ -36,7 +36,7 @@
 <h3>Schedule</h3>
 <p>
 Start: <%= @job.started_on %><br />
-Status: <%= if @job.completion : @job.completion.name end %><br />
+Status: <%= @job.completion.try(:name) %><br />
 Complete: <%= @job.completed_on %>
 </p>
 
@@ -45,16 +45,16 @@ Complete: <%= @job.completed_on %>
 <h3>Client</h3>
 <p>
   <% if @job.client %>
-    <%= unless @job.client.contact.blank?    : "#{@job.client.contact}" end %>
-    <%= unless @job.client.name.blank?       : "<br>#{@job.client.name}" end %>
-    <%= unless @job.client.address.blank?    : "<br>#{@job.client.address}" end %>
-    <%= unless @job.client.city.blank?       : "<br>#{@job.client.city}" end %>
-    <%= unless @job.client.province.blank? : ", #{@job.client.province}" end %>
-    <%= unless @job.client.work_phone.blank? : "<br>Work: #{@job.client.work_phone}" end %>
-    <%= unless @job.client.cell_phone.blank? : "<br>Cell: #{@job.client.cell_phone}" end %>
-    <%= unless @job.client.fax.blank?         : "<br>Fax: #{@job.client.fax}" end %>
-    <%= unless @job.client.email.blank?      : "<br>Email: #{@job.client.email}" end %>
-    <%= unless @job.client.notes.blank?       : "<br>#{@job.client.notes}" end %>
+    <%= unless @job.client.contact.blank?    then "#{@job.client.contact}" end %>
+    <%= unless @job.client.name.blank?       then "<br>#{@job.client.name}" end %>
+    <%= unless @job.client.address.blank?    then "<br>#{@job.client.address}" end %>
+    <%= unless @job.client.city.blank?       then "<br>#{@job.client.city}" end %>
+    <%= unless @job.client.province.blank?   then ", #{@job.client.province}" end %>
+    <%= unless @job.client.work_phone.blank? then "<br>Work: #{@job.client.work_phone}" end %>
+    <%= unless @job.client.cell_phone.blank? then "<br>Cell: #{@job.client.cell_phone}" end %>
+    <%= unless @job.client.fax.blank?        then "<br>Fax: #{@job.client.fax}" end %>
+    <%= unless @job.client.email.blank?      then "<br>Email: #{@job.client.email}" end %>
+    <%= unless @job.client.notes.blank?      then "<br>#{@job.client.notes}" end %>
   <% end %>
 </p>
 
