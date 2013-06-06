@@ -21,7 +21,7 @@
 
     <p>
        <% if permitted_to? :create, :private_clock_in -%>
-         <label><%= radio_button_tag "navigate", "clock_in" %> Clock In</label><br />
+         <label><%= radio_button_tag "navigate", "clock_in", true %> Clock In</label><br />
        <% end %>
        <% if permitted_to? :create, :private_clock_out -%>
          <label><%= radio_button_tag "navigate", "clock_out" %> Clock Out</label><br />
@@ -38,6 +38,6 @@
   <% end %>
 <% end %>
 
-<p>
+<!-- <p>
   <%= link_to "Clients list and directory", private_clients_path %>
-</p>
+</p> -->
