@@ -4,7 +4,7 @@ class Private::ReportsController < ApplicationController
   before_filter :load_user, :only => [:user_time]
   before_filter :load_crew, :only => [:crew_time]
   before_filter :kickout, :only => :user_time
-  require 'fastercsv'
+  require 'csv'
 
   filter_access_to :all
 
@@ -57,7 +57,7 @@ class Private::ReportsController < ApplicationController
     @date = session[:offset]
     generate_front_to_back
 
-    csv_string = FasterCSV.generate do |csv|
+    csv_string = CSV.generate do |csv|
       csv << ["Name", "Rate", "Straight Time", "Over Time", "Per Diem", "Bank or Pay",
               "Less Advance", "Less 50% Benefits", "Direct Deposit", "SIN", "Start Date", "Notes"]
       @users = User.where(:employment_state => "Employed")
@@ -84,7 +84,7 @@ class Private::ReportsController < ApplicationController
     @date = session[:offset]
     generate_front_to_back
 
-    csv_string = FasterCSV.generate do |csv|
+    csv_string = CSV.generate do |csv|
       if permitted_to? :manage, :private_time_entries
       csv << ["Name", "Rate", "Straight Time", "Over Time", "Per Diem",
               "Reported Clock In", "Reported Clock Out", "Actual Clock In", "Actual Clock Out"]
