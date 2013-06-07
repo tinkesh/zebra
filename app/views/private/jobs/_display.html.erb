@@ -33,6 +33,7 @@
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
     <td><%= job.pay_status %></td>
+    <td><%= job.zoho_details %></td>
     <td class="right"><%= number_to_currency(job.total_job_value) %></td>
   </tr>
 <% end %>
