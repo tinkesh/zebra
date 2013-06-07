@@ -6,9 +6,17 @@ class Private::ClockOutController < ApplicationController
   def new
     build_crew_and_users
 
-    @job = Job.new
-    @job.started_on = Time.at(Time.zone.now.to_i/(15*60)*(15*60)) # Rounded down to the nearest 15 minutes
     @clocked_in = TimeEntry.where(:active => true, :time_sheet_id => nil, :clock_out => nil, :user_id => @users)
+
+    started_on = begin
+      @clocked_in.first.clock_in.change(:hour => Time.zone.now.hour, :min => Time.zone.now.min) # Set started_on to clocked_in date but with the current time
+    rescue
+      Time.zone.now
+    end
+
+    @job = Job.new
+    @job.started_on = Time.at(started_on.to_i/(15*60)*(15*60)) # Rounded down to the nearest 15 minutes
+
     @entries = TimeEntry.where(:time_sheet_id => nil, :user_id => @users)
     @page_title = "Clock Out"
   end
