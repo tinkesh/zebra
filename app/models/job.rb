@@ -131,9 +131,7 @@ class Job < ActiveRecord::Base
   # <tr class="<% job.get_completion_color_class_name %>">
 
   def get_completion_color_class_name
-    return self.completion_color if self.completion_color.blank?
-
-    self.completion_color.split[0].downcase
+    self.completion_color.split[0].downcase rescue nil
   end
 
 end
