@@ -19,6 +19,14 @@ class Job < ActiveRecord::Base
   # Is active or not
   scope :active, -> { where(:is_archived => false) }
 
+  PAY_STATUSES = [
+    'N/A',
+    'Invoiced',
+    'Paid in Part',
+    'Paid in Full',
+    'HB Owing'
+  ]
+
   # This is a static method that all the sheets refer to
   # created to make the Job#show report have an archived date
   def self.archive_date

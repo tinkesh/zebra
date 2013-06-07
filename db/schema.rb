@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403210448) do
+ActiveRecord::Schema.define(:version => 20130607182645) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20120403210448) do
     t.datetime "updated_at"
     t.string   "location_name"
     t.integer  "job_location_id"
+    t.datetime "versioned_at"
     t.date     "completed_on"
     t.integer  "equipment_id"
   end
@@ -223,8 +224,13 @@ ActiveRecord::Schema.define(:version => 20120403210448) do
     t.string   "name"
     t.text     "notes"
     t.string   "location_name"
+    t.string   "versioned_user_ids"
+    t.string   "versioned_equipment_ids"
+    t.datetime "versioned_at"
     t.boolean  "is_archived",             :default => false
     t.string   "completion_color"
+    t.string   "pay_status"
+    t.text     "zoho_details"
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|
@@ -271,6 +277,7 @@ ActiveRecord::Schema.define(:version => 20120403210448) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "location_name"
+    t.datetime "versioned_at"
     t.integer  "created_by"
     t.decimal  "adjusted_yellow_dip_start"
     t.decimal  "adjusted_yellow_dip_end"
@@ -376,6 +383,8 @@ ActiveRecord::Schema.define(:version => 20120403210448) do
     t.decimal  "fuel"
     t.decimal  "hotel"
     t.decimal  "fuel_rate"
+    t.datetime "versioned_at"
+    t.string   "versioned_time_entry_ids"
     t.decimal  "per_diem_percent",         :default => 0.0
   end
 
@@ -422,6 +431,8 @@ ActiveRecord::Schema.define(:version => 20120403210448) do
     t.string   "postal_code"
     t.decimal  "rate",                  :precision => 6, :scale => 2, :default => 0.0
     t.boolean  "bank_overtime_hours"
+    t.string   "versioned_role_ids"
+    t.datetime "versioned_at"
     t.integer  "crew_id"
     t.string   "employment_state",                                    :default => "Employed"
     t.string   "employment_notes"
@@ -434,5 +445,17 @@ ActiveRecord::Schema.define(:version => 20120403210448) do
   add_index "users", ["login"], :name => "index_users_on_login"
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
+
+  create_table "versions", :force => true do |t|
+    t.integer  "versioned_id"
+    t.string   "versioned_type"
+    t.text     "changes"
+    t.integer  "number"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
+  add_index "versions", ["number"], :name => "index_versions_on_number"
+  add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_type_and_versioned_id"
 
 end

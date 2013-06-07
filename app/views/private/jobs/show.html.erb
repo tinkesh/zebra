@@ -30,7 +30,8 @@
   <p>
     Start: <%= @job.started_on %><br>
     Status: <%= @job.completion.try(:name) %><br>
-    Complete: <%= @job.completed_on %>
+    Complete: <%= @job.completed_on %><br>
+    Pay Status: <%= @job.pay_status %>
   </p>
 
   <hr>

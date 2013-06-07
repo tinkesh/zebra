@@ -7,6 +7,7 @@
 	<th>Location</th>
 	<th class="center">Value</th>
     <th class="actions nosort"></th>
+    <th>Pay Status</th>
   </tr>
 <% i = 0 %>
 <% jobs.each do |job| %>
@@ -31,6 +32,7 @@
     <td class="right"><%= job.completion ? job.completion.name : "-" %></td>
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
+    <td><%= job.pay_status %></td>
     <td class="right"><%= number_to_currency(job.total_job_value) %></td>
   </tr>
 <% end %>
