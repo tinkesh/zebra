@@ -55,3 +55,12 @@
   }
 }
 
+#jobs_search_form.affix {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: #FFF;
+  border: 3px solid #fcd40d;
+  table { margin-bottom: 0; }
+}
