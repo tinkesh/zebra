@@ -14,3 +14,4 @@
 //= require jquery_ujs
 
 //= require_tree ./base
+//= require_tree ./elements
