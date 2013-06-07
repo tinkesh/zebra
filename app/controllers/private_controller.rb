@@ -39,10 +39,6 @@ class PrivateController < ApplicationController
     end
   end
 
-  def settings
-    @page_title = "Settings"
-  end
-
 #  def permission_denied
 #   flash[:error] = 'Sorry, you are not allowed to view the requested page.'
 #   redirect_to private_home_path

@@ -29,7 +29,15 @@
       <li><%= active_link_to 'Users', users_path %></li>
     <% end -%>
     <% if permitted_to? :manage, :private -%>
-      <li><%= active_link_to 'Settings', private_settings_path %></li>
+      <li>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Settings
+            <b class="caret"></b>
+          </a>
+          <%= render :partial => 'menus/settings_menu', :layout => false %>
+        </div>
+      </li>
     <% end -%>
     <li id="logout"><%= link_to "Logout", user_session_path, :method => :delete %></li>
   <% end -%>

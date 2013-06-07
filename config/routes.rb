@@ -43,7 +43,6 @@ AaaStriping::Application.routes.draw do
   end
 
   match '/admin' => 'private#index', :as => :private_home
-  match '/admin/settings' => 'private#settings', :as => :private_settings
   match '/admin/navigate' => 'private#navigate', :as => :private_navigate
 
   # reports

@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require ui-lightness/jquery-ui-1.10.3.custom
+ *= require bootstrap-dropdown
  *= require_self
  */
 
@@ -25,3 +26,32 @@
 .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
 
 .ui-datepicker-current { display: none; }
+
+#header .dropdown {
+  &:hover ul.dropdown-menu {
+    display: block;
+    margin: 0;
+  }
+  .dropdown-menu > li {
+    display: block !important;
+    & > a {
+      color: #333333;
+      display: block !important;
+      padding: 3px 20px !important;
+      &:hover {
+        color: #fcd40d;
+        background: none;
+      }
+      &.active{
+        background: none;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .caret {
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+  }
+}
+
