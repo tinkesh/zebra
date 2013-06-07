@@ -1,3 +1,8 @@
+<div class="jobs_actions">
+  <%= link_to "Edit", edit_private_job_path(@job.id), :class => "edit" %>
+  <%= link_to "Delete", private_job_path(@job.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+</div>
+
 <div class="container">
 <%= content_for :breadcrumb do %>
   <ul id="breadcrumb">
