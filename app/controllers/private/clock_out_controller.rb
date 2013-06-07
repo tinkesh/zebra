@@ -7,14 +7,19 @@ class Private::ClockOutController < ApplicationController
     build_crew_and_users
 
     @job = Job.new
-    @job.started_on = Time.zone.now
+    @job.started_on = Time.at(Time.zone.now.to_i/(15*60)*(15*60)) # Rounded down to the nearest 15 minutes
     @clocked_in = TimeEntry.where(:active => true, :time_sheet_id => nil, :clock_out => nil, :user_id => @users)
     @entries = TimeEntry.where(:time_sheet_id => nil, :user_id => @users)
     @page_title = "Clock Out"
   end
 
   def create
-    @clock_out_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)'] + ":00"
+    if in_mobile_view?
+      @clock_in_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)'] + ":00"
+    else
+      @clock_in_time = params[:job][:started_on]
+    end
+
     if params[:users]
       params[:users].each do |user|
         @entry = TimeEntry.where(:user_id => user, :clock_out => nil, :time_sheet_id => nil).first

@@ -41,7 +41,8 @@
   <% unless @clocked_in_ids.length == @users.length %>
     <p>
       <label>Clock in at...</label>
-      <br><%= datetime_select 'job', :started_on, { :minute_step => 15, :discard_year => true } %>
+      <br>
+      <%= text_field_tag 'job[started_on]', @job.started_on.strftime("%Y-%m-%d %H:%M"), 'data-role' => 'datetimepicker', :readonly => true %>
     </p>
 
     <p>

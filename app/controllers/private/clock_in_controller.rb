@@ -5,7 +5,7 @@ class Private::ClockInController < ApplicationController
 
   def new
     @job = Job.new
-    @job.started_on = Time.zone.now
+    @job.started_on = Time.at(Time.zone.now.to_i/(15*60)*(15*60)) # Rounded down to the nearest 15 minutes
     @clock_in = TimeEntry.new
     build_clocked_in_ids # also sets @crew and clocked_in_ids
     @not_clocked_in = TimeEntry.where(:clock_out => nil, :active => nil, :user_id => @users)
@@ -13,10 +13,10 @@ class Private::ClockInController < ApplicationController
   end
 
   def create
-    begin
+    if in_mobile_view?
       @clock_in_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)'] + ":00"
-    rescue Exception => e
-      @clock_in_time = Time.now.to_s
+    else
+      @clock_in_time = params[:job][:started_on]
     end
 
     build_clocked_in_ids
