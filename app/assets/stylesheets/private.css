@@ -48,6 +48,10 @@ a.plain { background: none; padding: 0; margin: 0; font-weight: normal; }
 #jobslist .orange { background-color: #FEEFB3; color: #9F6000 }
 #jobslist .blue { background-color: #BDE5F8; color: #00529B }
 
+#jobslist tr, #jobslist td {
+  cursor: pointer;
+}
+
 /* header */
 #header { position: relative; }
 #header { background: #333; border-top: solid 5px #333; }

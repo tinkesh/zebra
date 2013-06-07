@@ -25,18 +25,13 @@
     <% i += 1 %>
   <% end %>
 
-  <tr class="<%= job.get_completion_color_class_name %>">
+  <tr class="<%= job.get_completion_color_class_name %>" onclick="window.location='<%= private_job_path(job.id) %>'">
     <td><%= job.id %></td>
     <td><%= aaa_highlight(job.name) %></td>
     <td class="right"><%= job.completion ? job.completion.name : "-" %></td>
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
     <td class="right"><%= number_to_currency(job.total_job_value) %></td>
-    <td class="actions">
-      <%= link_to "Delete", private_job_path(job.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
-      <%= link_to "Edit", edit_private_job_path(job.id), :class => "edit" %>
-      <%= link_to "Show", private_job_path(job.id), :class => "show" %>
-    </td>
   </tr>
 <% end %>
 </table>
