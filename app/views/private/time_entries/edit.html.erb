@@ -22,13 +22,13 @@
   <p>
     <label>Clock In Time</label>
     <br>
-    <%= datetime_select 'time_entry', :clock_in, { :minute_step => 15, :discard_year => true } %>
+    <%= text_field_tag 'time_entry[clock_in]', @time_entry.clock_in.strftime("%Y-%m-%d %H:%M"), 'data-role' => 'datetimepicker', :readonly => true %>
   </p>
 
   <p>
     <label>Clock Out Time</label>
     <br>
-    <%= datetime_select 'time_entry', :clock_out, { :minute_step => 15, :discard_year => true } %>
+    <%= text_field_tag 'time_entry[clock_out]', @time_entry.clock_out.strftime("%Y-%m-%d %H:%M"), 'data-role' => 'datetimepicker', :readonly => true %>
   </p>
 
   <p>
