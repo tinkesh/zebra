@@ -15,9 +15,9 @@ class Private::ClockOutController < ApplicationController
 
   def create
     if in_mobile_view?
-      @clock_in_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)'] + ":00"
+      @clock_out_time = params[:job][:'started_on(1i)'] + '-' + params[:job][:'started_on(2i)'] + '-'+ params[:job][:'started_on(3i)'] + ' ' + params[:job][:'started_on(4i)'] + ':' + params[:job][:'started_on(5i)'] + ":00"
     else
-      @clock_in_time = params[:job][:started_on]
+      @clock_out_time = params[:job][:started_on]
     end
 
     if params[:users]
