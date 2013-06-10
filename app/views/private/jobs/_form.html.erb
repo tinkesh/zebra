@@ -12,6 +12,11 @@
   </div>
 
   <div class="append-bottom">
+    <%= form.label :reference_code, "Reference/Contract #" %><br>
+    <%= form.text_field "reference_code", :class => "span-10" %>
+  </div>
+
+  <div class="append-bottom">
     <%= form.label :started_on, "Started On" %><br>
     <%= form.date_select :started_on %>
   </div>

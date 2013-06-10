@@ -36,6 +36,7 @@ class Job < ActiveRecord::Base
   def label
     label = '#' + self.id.to_s
     label += ", " + self.name if self.name.present?
+    label += ", " + self.reference_code if self.reference_code.present?
     label
   end
 
