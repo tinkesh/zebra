@@ -2,12 +2,14 @@
   <tr>
     <th class="center number">#</th>
     <th>Name</th>
-    <th class="center">%</th>
+    <th class="center">Completion Status</th>
     <th>Client</th>
-	<th>Location</th>
-	<th class="center">Value</th>
-    <th class="actions nosort"></th>
+    <th>Location</th>
+    <th class="center">Value</th>
+    <th>Reference/Contract #</th>
     <th>Pay Status</th>
+    <th>Zoho Details</th>
+    <th>AR Error</th>
   </tr>
 <% i = 0 %>
 <% jobs.each do |job| %>
@@ -29,12 +31,18 @@
   <tr class="<%= job.get_completion_color_class_name %>" onclick="window.location='<%= private_job_path(job.id) %>'">
     <td><%= job.id %></td>
     <td><%= aaa_highlight(job.name) %></td>
-    <td class="right"><%= job.completion ? job.completion.name : "-" %></td>
+    <td class="right"><%= job.completion.name rescue "-" %></td>
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
+    <td class="right"><%= number_to_currency(job.total_job_value) %></td>
+    <td>TODO</td>
     <td><%= job.pay_status %></td>
     <td><%= job.zoho_details %></td>
-    <td class="right"><%= number_to_currency(job.total_job_value) %></td>
+    <td>
+      <% if job.ar_error == true %>
+        <span class="ar_error jobs_index">AR Error</span>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
