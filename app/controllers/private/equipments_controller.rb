@@ -8,6 +8,11 @@ class Private::EquipmentsController < ApplicationController
     @page_title = "Equipment"
   end
 
+  def show
+    @equipment = Equipment.find(params[:id])
+    @page_title = @equipment.name
+  end
+
   def new
     @equipment = Equipment.new
     @page_title = "New Equipment"
