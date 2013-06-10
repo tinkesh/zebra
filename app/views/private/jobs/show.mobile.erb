@@ -8,7 +8,7 @@
       <label><%= radio_button_tag "navigate", "clock_out" %> Clock out</label><br />
     <% end %>
     <% if permitted_to? :create, :private_time_sheets -%>
-      <label><%= radio_button_tag "navigate", "new_time_sheet" %> Submit time sheet</label><br />
+      <label><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Daily Progress Report</label><br />
     <% end %>
     <% if permitted_to? :create, :private_gun_sheets -%>
       <label><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label><br />
