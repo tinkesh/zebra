@@ -4,4 +4,8 @@ class Client < ActiveRecord::Base
 
   validates_presence_of :name
 
+  def full_address
+    return [self.address, self.city, self.province, self.postal_code].reject(&:blank?).join(', ')
+  end
+
 end

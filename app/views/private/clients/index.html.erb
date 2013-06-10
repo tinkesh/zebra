@@ -10,27 +10,22 @@
 
 <p id="new"><%= link_to 'New client', new_private_client_path %></p>
 
-<table class="sortable">
+<table class="sortable" id="clients_index">
   <tr>
     <th>Name</th>
     <th>Contact</th>
     <th>Work Phone</th>
     <th>Cell Phone</th>
     <th>Address</th>
-    <th class="actions nosort"></th>
   </tr>
 
 <% @clients.each do |client| %>
-  <tr>
+  <tr onclick="window.location='<%= private_client_path(client.id) %>'">
     <td><%= client.name %></td>
     <td><%= client.contact %></td>
     <td><%= client.work_phone %></td>
     <td><%= client.cell_phone %></td>
     <td><%= client.address %> <%= client.city %> <%= client.province %> <%= client.postal_code %></td>
-    <td class="actions">
-    <%= link_to 'Delete', private_client_path(client), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
-    <%= link_to "Edit", edit_private_client_path(client), :class => "edit" %>
-    </td>
   </tr>
 <% end %>
 </table>

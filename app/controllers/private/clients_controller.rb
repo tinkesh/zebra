@@ -8,6 +8,11 @@ class Private::ClientsController < ApplicationController
     @page_title = "Clients"
   end
 
+  def show
+    @client = Client.find(params[:id])
+    @page_title = @client.name
+  end
+
   def new
     @client = Client.new
     @page_title = "New Client"
