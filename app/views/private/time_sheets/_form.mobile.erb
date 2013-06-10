@@ -37,7 +37,7 @@
 <td colspan="2"><hr /></td>
 </tr>
 
-<% form.fields_for :time_tasks do |builder| %>
+<%= form.fields_for :time_tasks do |builder| %>
   <%= render 'time_task_fields', :form => builder %>
 <% end %>
 

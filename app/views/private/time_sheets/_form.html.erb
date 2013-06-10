@@ -48,7 +48,7 @@ If you require additional rows of tasks, save and re-edit. 2 new rows are added 
     <th>We</th>
     <th>Note</th>
   </tr>
-<% form.fields_for :time_tasks do |builder| %>
+<%= form.fields_for :time_tasks do |builder| %>
   <%= render 'time_task_fields', :form => builder %>
 <% end %>
 </table>

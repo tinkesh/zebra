@@ -81,7 +81,7 @@
 </div>
 <hr>
 
-<% form.fields_for :job_markings do |builder| %>
+<%= form.fields_for :job_markings do |builder| %>
   <%= render 'job_marking_fields', :form => builder %>
 <% end %>
 
@@ -94,7 +94,7 @@
   <%= form.text_field "location_name", :class => "span-14" %>
 </p>
 
-<% form.fields_for :job_locations do |builder| %>
+<%= form.fields_for :job_locations do |builder| %>
   <%= render 'job_location_fields', :form => builder %>
 <% end %>
 

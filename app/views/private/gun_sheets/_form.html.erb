@@ -116,7 +116,7 @@
 <hr>
 
 <h3>Markings</h3>
-<% form.fields_for :gun_markings do |builder| %>
+<%= form.fields_for :gun_markings do |builder| %>
   <%= render 'gun_markings_fields', :form => builder %>
 <% end %>
     </div>
