@@ -2,13 +2,7 @@
   <%= render :partial => 'menus/dashboard_menu', :layout => false %>
 <% end %>
 
-<%= content_for :versions do %>
-<ol id="versions" class="noprint">
-    <li><%= link_to '<< Previous Pay Period', report_decrease_offset_path %></li>
-    <li><%= link_to 'Today', report_reset_offset_path %></li>
-    <li><%= link_to 'Next Pay Period >>', report_increase_offset_path %></li>
-</ol>
-<% end %>
+<%= render :partial => 'pay_period_selects', :locals => {:id => nil} %>
 
 <h3><%= @back.to_date.strftime('%b-%d-%y') %> to <%= (@front.to_date - 1.day).strftime('%b-%d-%y') %></h3>
 <table class="sortable">

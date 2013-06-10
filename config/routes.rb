@@ -51,9 +51,12 @@ AaaStriping::Application.routes.draw do
   match 'admin/reports/reset_offset/(:id)' => 'private/reports#reset_offset', :as => :report_reset_offset
   match 'admin/reports/user_time/:id' => 'private/reports#user_time', :as => :report_user_time
   match 'admin/reports/crew_time/(:id)' => 'private/reports#crew_time', :as => :report_crew_time
-  match 'admin/reports/time_entries' => 'private/reports#time_entries', :as => :report_time_entries
+  match 'admin/reports/time_entries/' => 'private/reports#time_entries', :as => :report_time_entries
   match 'admin/reports/accountant_csv' => 'private/reports#accountant_csv', :as => :export_accountant_csv
   match 'admin/reports/user_time_csv/:id' => 'private/reports#user_time_csv', :as => :export_user_time_csv
+  match 'admin/reports/crew_time/:id/:date' => 'private/reports#set_date'
+  match 'admin/reports/user_time/:id/:date' => 'private/reports#set_date'
+  match 'admin/reports/time_entries/:date'  => 'private/reports#set_date'
 
   # summary reports
   match 'admin/report_summaries/all_job_value' => 'private/report_summaries#all_job_value', :as => :all_job_value

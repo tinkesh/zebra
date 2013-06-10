@@ -61,7 +61,7 @@ authorization do
   role :crewman do
     has_permission_on :private, :to => [:index, :navigate]
     has_permission_on :private_jobs, :to => :show
-    has_permission_on :private_reports, :to => [:increase_offset, :decrease_offset, :reset_offset]
+    has_permission_on :private_reports, :to => [:increase_offset, :decrease_offset, :reset_offset, :set_date]
     has_permission_on :private_reports, :to => :user_time
     has_permission_on :users, :to => :update do
       if_attribute :id => is { user.id }

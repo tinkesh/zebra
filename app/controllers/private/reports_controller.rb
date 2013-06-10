@@ -35,6 +35,18 @@ class Private::ReportsController < ApplicationController
     @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date).includes(:user, {:time_sheet => :estimates}).order('clock_in ASC')
   end
 
+  def set_date
+    begin
+      session[:offset] = Time.zone.parse(params[:date])
+    rescue
+    end
+    url_params = {
+      :action => session[:report]
+    }
+    url_params[:id] = params[:id] if params[:id].present? and params[:date].present?
+    redirect_to url_params
+  end
+
   def increase_offset
     session[:offset] ||= Time.now
     session[:offset] += 1.months
@@ -49,7 +61,11 @@ class Private::ReportsController < ApplicationController
 
   def reset_offset
     session[:offset] = Time.now
-    redirect_to :action => session[:report], :id => params[:id]
+    url_params = {
+      :action => session[:report]
+    }
+    url_params[:id] = params[:id] if params[:id].present?
+    redirect_to url_params
   end
 
   def accountant_csv

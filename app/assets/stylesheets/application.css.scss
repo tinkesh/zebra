@@ -26,6 +26,29 @@
 .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
 
 .ui-datepicker-current { display: none; }
+.monthpicker {
+  .ui-datepicker-calendar, .ui-datepicker-current, .ui-datepicker-buttonpane {
+    display: none !important;
+  }
+  .ui-datepicker{
+    margin: 0 auto;
+    padding-bottom: 0.2em;
+  }
+}
+[data-role='show-monthpicker'] {
+  border-bottom: 1px dotted #3344FF;
+  text-decoration: none !important;
+}
+
+.ui-datepicker{
+  th {
+    background: none;
+    color: #333333;
+  }
+  a {
+    text-align: center !important;
+  }
+}
 
 #header .dropdown {
   &:hover ul.dropdown-menu {

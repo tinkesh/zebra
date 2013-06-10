@@ -1,0 +1,11 @@
+<%= content_for :versions do %>
+  <ol id="versions" class="noprint">
+      <li><%= link_to '<< Previous Pay Period', report_decrease_offset_path(id) %></li>
+      <li><%= link_to 'Today', report_reset_offset_path(:id => id) %></li>
+      <li><%= link_to 'Next Pay Period >>', report_increase_offset_path(id) %></li>
+      <li style="display: block; text-align: center;">
+        <span data-role="monthpicker" data-preselected-date="<%= session[:offset].to_date %>"></span>
+        <a href="#" data-role='show-monthpicker'>Select Month</a>
+      </li>
+  </ol>
+<% end %>
