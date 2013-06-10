@@ -37,10 +37,15 @@
   </div>
 
 <div class="append-bottom">
-	<% grouped_options = [true,false] %>
 	<%= form.label :is_archived, "Archived" %><br />
 	<%= form.check_box :is_archived, :style => "float: left;" %>
   <p style="font-size:10px;float: left;">Will remove from Jobs on Hand and remove all crew assignments if checked.</p>
+</div>
+
+<div class="append-bottom" style="clear:both;">
+  <%= form.label :ar_error, "AR Error" %><br />
+  <%= form.check_box :ar_error, :style => "float: left;" %>
+  <p style="font-size:10px;float: left;">Accounts Receivable Error</p>
 </div>
 
 </div>

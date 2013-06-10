@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130607182645) do
+ActiveRecord::Schema.define(:version => 20130610163420) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(:version => 20130607182645) do
     t.string   "completion_color"
     t.string   "pay_status"
     t.text     "zoho_details"
+    t.boolean  "ar_error",                :default => false
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|

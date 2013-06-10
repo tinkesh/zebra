@@ -87,3 +87,16 @@
   border: 3px solid #fcd40d;
   table { margin-bottom: 0; }
 }
+
+.ar_error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  &.jobs_index {
+    font-size: 110%;
+  }
+  &.jobs_show {
+    margin: 0 20px;
+  }
+}
