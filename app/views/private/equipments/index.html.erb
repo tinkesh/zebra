@@ -14,6 +14,13 @@
   <tr>
     <th>Name</th>
     <th>Unit Number</th>
+    <th>Plate Number</th>
+    <th>VIN</th>
+    <th>
+      <abbr title="Gross Vehicle Weight">GVW</abbr>
+    </th>
+    <th>Registration Date</th>
+    <th>CVIP Date</th>
     <th>Yellow Rate</th>
     <th>White Rate</th>
     <th>Daily Rate</th>
@@ -23,6 +30,11 @@
   <tr onclick="window.location='<%= private_equipment_path(equipment.id) %>'">
     <td><%= equipment.name %></td>
     <td><%= equipment.unit %></td>
+    <td>TODO</td>
+    <td>TODO</td>
+    <td>TODO</td>
+    <td>TODO</td>
+    <td>TODO</td>
     <td><%= equipment.try(:yellow_rate)%> <%= "L/cm" if equipment.try(:yellow_rate) %></td>
     <td><%= equipment.try(:white_rate) %> <%= "L/cm" if equipment.try(:white_rate) %></td>
     <td><%= if equipment.rate then "$#{equipment.rate}" end %></td>

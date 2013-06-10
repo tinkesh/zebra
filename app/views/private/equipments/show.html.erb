@@ -1,0 +1,71 @@
+<div class="show_actions">
+  <%= link_to "Edit", edit_private_equipment_path(@equipment.id), :class => "edit" %>
+  <%= link_to "Delete", private_equipment_path(@equipment.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+</div>
+
+<div class="container">
+  <%= content_for :breadcrumb do %>
+    <ul id="breadcrumb">
+      <li><%= link_to 'Dashboard', private_home_path %></li>
+      <li>»</li>
+      <li>Settings</li>
+      <li>»</li>
+      <li><%= link_to 'Equipment', private_equipment_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
+  <% end %>
+
+<%= @equipment.plate_number %>
+<%= @equipment.vin %>
+<%= @equipment.gvw %>
+<%= @equipment.registration_date %>
+<%= @equipment.cvip_date %>
+<%= @equipment.color %>
+
+  <div class="span24">
+    <table>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
+</div>

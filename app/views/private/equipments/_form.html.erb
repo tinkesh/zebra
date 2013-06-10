@@ -9,6 +9,40 @@
 </div>
 
 <div class="span-6 append-bottom">
+  <%= form.label :plate_number, "Plate Number" %><br />
+  <%= form.text_field :plate_number, :class => "span-6" %>
+</div>
+
+<div class="span-6 append-bottom last">
+  <%= form.label :vin, "VIN" %><br />
+  <%= form.text_field :vin, :class => "span-6" %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :color, "Color" %><br />
+  <%= form.select :color, Equipment::COLORS, :class => "span-6" %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :gvw, "GVW (Gross Vehicle Weight)" %><br />
+  <%= form.text_field :gvw, :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :registration_date, "Registration Date" %><br />
+  <%= form.text_field :registration_date, :class => "span-6" %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :cvip_date, "CVIP Date" %><br />
+  <%= form.text_field :cvip_date, :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
   <%= form.label :rate, "Daily Rate" %><br />
   <%= form.text_field :rate, :class => "span-6" %>
 </div>
