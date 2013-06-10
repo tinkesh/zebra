@@ -37,7 +37,7 @@
     <td class="right"><%= number_to_currency(job.total_job_value) %></td>
     <td><%= job.reference_code %></td>
     <td><%= job.pay_status %></td>
-    <td><%= job.zoho_details %></td>
+    <td><%= truncate(job.zoho_details) %></td>
     <td>
       <% if job.ar_error == true %>
         <span class="ar_error jobs_index">AR Error</span>
