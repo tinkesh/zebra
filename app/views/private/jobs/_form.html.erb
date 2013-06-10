@@ -22,7 +22,7 @@
   </div>
 
   <div class="append-bottom">
-    <%= form.label :completion_id, "Completion Level" %><br>
+    <%= form.label :completion_id, "Completion Status" %><br>
     <%= form.select :completion_id, @completions.map {|u| [u.name,u.id]}, :include_blank => true %>
   </div>
 
