@@ -139,7 +139,7 @@ class Job < ActiveRecord::Base
   # <tr class="<% job.get_completion_color_class_name %>">
 
   def get_completion_color_class_name
-    self.completion_color.split[0].downcase rescue nil
+    self.completion.try(:name).to_s.parameterize('_')
   end
 
 end

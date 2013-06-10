@@ -43,10 +43,11 @@ a.plain { background: none; padding: 0; margin: 0; font-weight: normal; }
 .onlyprint { display: none; }
 
 /* jobs completion colors */
-#jobslist .red { background-color: #FFBABA; color: #D8000C }
-#jobslist .green { background-color: #DFF2BF; color: #4F8A10 }
-#jobslist .orange { background-color: #FEEFB3; color: #9F6000 }
-#jobslist .blue { background-color: #BDE5F8; color: #00529B }
+#jobslist .scheduled { background-color: #DFF2BF; color: #4F8A10 }
+#jobslist .awarded { background-color: #FEEFB3; color: #9F6000 }
+#jobslist .work_in_progress { background-color: #BDE5F8; color: #00529B }
+#jobslist .completed { background-color: #f06ddc; color: #750e76 }
+
 
 #jobslist tr, #jobslist td {
   cursor: pointer;

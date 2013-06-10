@@ -18,12 +18,7 @@
 
   <div class="append-bottom">
     <%= form.label :completion_id, "Completion Level" %><br>
-    <%= form.select :completion_id, @completions.map {|u| [u.name,u.id]} %>
-  </div>
-
-  <div class="append-bottom">
-    <%= form.label :completion_id, "Completion Color" %><br>
-    <%= form.select :completion_color, ["", "Red (deficiencies)", "Green (ready)", "Orange (scheduled)", "Blue (in progress)", "White (complete)"] %>
+    <%= form.select :completion_id, @completions.map {|u| [u.name,u.id]}, :include_blank => true %>
   </div>
 
   <div class="append-bottom">
