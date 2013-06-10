@@ -22,7 +22,7 @@
     <td class="right"><%= entry.clock_in.strftime('%a, %b-%d-%y') rescue '-' %></td>
     <td class="right"><%= entry.clock_in.strftime('%I:%M %p') rescue '-' %></td>
     <td class="right"><%= entry.clock_out.strftime('%I:%M %p') rescue '-' %></td>
-    <td class="right"><%= sprintf("%.2f", (entry.straight_time + entry.over_time)) %></td>
+    <td class="right"><%= sprintf("%.2f", entry.straight_time + entry.over_time) %></td>
     <td class="right"><%= entry.per_diem != 0 ? entry.per_diem : "-" %></td>
     <% if permitted_to? :manage, :private_time_entries -%>
     <td class="noprint right">
@@ -33,13 +33,8 @@
   </tr>
 <% end%>
   <tr>
-		<% if permitted_to? :manage, :private_time_entries %>
-    	<th colspan="7" class="right"><%= st %></th>
-		<% else %>
-			<th colspan="4" class="right"><%= st %></th>
-		<% end %>
-    <th class="right"><%= ot %></th>
-    <th class="right"><%= pt %></th>
+  	<th colspan="4" class="right"><%= sprintf("%.2f", st+ot) %></th>
+		<th class="right"><%= pt %></th>
     <% if permitted_to? :manage, :private_time_entries -%>
     <th class="noprint ">&nbsp;</th>
     <% end %>
