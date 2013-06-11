@@ -27,7 +27,7 @@
   </tr>
 
 <% @equipment.each do |equipment| %>
-  <tr onclick="window.location='<%= private_equipment_path(equipment.id) %>'">
+  <tr onclick="window.location='<%= private_equipment_path(equipment.id) %>'" class="equipment-<%= equipment.color %>">
     <td><%= equipment.name %></td>
     <td><%= equipment.unit %></td>
     <td><%= equipment.plate_number %></td>

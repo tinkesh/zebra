@@ -9,7 +9,7 @@ class Equipment < ActiveRecord::Base
 
   scope :unassigned, -> { where('crews_equipment.crew_id IS NULL').includes(:crews).order('unit ASC') }
 
-  COLORS = ['red', 'green', 'blue', 'yellow']
+  COLORS = ['green', 'blue', 'yellow', 'purple']
 
   def cost(job_sheet)
     if self.rate
