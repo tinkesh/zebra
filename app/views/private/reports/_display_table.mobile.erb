@@ -1,18 +1,34 @@
-<% st = 0 -%>
-<% ot = 0 -%>
+<% hours = 0 -%>
 <% pt = 0 -%>
-<% entries.each do |entry| %>
-<% st += entry.straight_time %>
-<% ot += entry.over_time %>
-<% pt += entry.per_diem %>
-  <tr class="<%= cycle('odd', 'even') %>">
-    <td><%= if entry.straight_time != 0 then "#{sprintf("%.2f", entry.straight_time)}" else '-' end %></td>
-    <td><%= if entry.over_time != 0 then "#{sprintf("%.2f", entry.over_time)}" else '-' end %></td>
-    <td><%= entry.per_diem != 0 ? entry.per_diem : "-" %></td>
-  </tr>
+
+<br>
+<h3 style="margin-bottom: 5px;">
+  <%= user.name.to_s.strip %>'s Hours
+</h3>
+
+<% if entries.any? %>
+  <table>
+    <tr>
+      <th style="width: 33%;">Date</th>
+      <th style="width: 33%;">S/T + O/T</th>
+      <th style="width: 33%;">Diem</th>
+    </tr>
+    <% entries.each do |entry| %>
+      <% hours += entry.hours %>
+      <% pt += entry.per_diem %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= entry.clock_in.strftime('%b %d, %Y') rescue '-' %></td>
+        <td><%= sprintf("%.2f", entry.hours) %></td>
+        <td><%= entry.per_diem != 0 ? entry.per_diem : "-" %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th></th>
+      <th><%= hours %></th>
+      <th><%= pt %></th>
+    </tr>
+  </table>
+<% else %>
+  No entries.
+  <br>
 <% end %>
-  <tr>
-    <th><%= st %></th>
-    <th><%= ot %></th>
-    <th><%= pt %></th>
-  </tr>
