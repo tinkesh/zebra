@@ -22,6 +22,8 @@ class Private::LoadSheetsController < ApplicationController
     @load_sheet = LoadSheet.new
     @crew = current_user.crew
     load_load_sheet_supporting_data
+    users_paint_tracks = (current_user.crew.equipments.select{|item| item.unit.starts_with? 'LPT'} rescue [])
+    @equipment = users_paint_tracks #if users_paint_tracks.any?
     6.times { @load_sheet.load_entries.build }
     @page_title = "New Load Sheet"
   end
