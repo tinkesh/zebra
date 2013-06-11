@@ -9,7 +9,6 @@ class Private::ReportsController < ApplicationController
   filter_access_to :all
 
   def user_time
-    @page_title = "User Time"
     session[:report] = "user_time"
     session[:offset] ||= Time.now
     @date = session[:offset]
