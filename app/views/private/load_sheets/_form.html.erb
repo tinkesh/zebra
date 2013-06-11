@@ -33,8 +33,10 @@
 <h3>Material Usage</h3>
 <div class="span-18">
   <%= form.fields_for :load_entries do |builder| %>
-    <%= render 'load_entries_fields', :form => builder %>
+    <%= render 'load_entry_fields', :form => builder %>
   <% end %>
+
+  <p><%= link_to_add_fields "Add Another Material", form, :load_entries %></p>
 </div>
 
 <div class="span-6 last">
