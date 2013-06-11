@@ -56,6 +56,7 @@ class Private::LoadSheetsController < ApplicationController
 
   def update
     @load_sheet = LoadSheet.find(params[:id])
+    load_load_sheet_supporting_data
     if @load_sheet.update_attributes(params[:load_sheet])
       flash[:notice] = "Load Sheet updated!"
       redirect_to private_load_sheets_url

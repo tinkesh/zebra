@@ -7,6 +7,8 @@ class LoadSheet < ActiveRecord::Base
   has_many :material_reports
   accepts_nested_attributes_for :load_entries, :reject_if => lambda { |a| a[:material_id].blank? }, :allow_destroy => true
 
+  validates_presence_of :yellow_dip_end, :yellow_dip_start, :white_dip_end, :white_dip_start
+
   after_create :deliver_new_load_sheet
   after_create :update_adjusted_dips
 
