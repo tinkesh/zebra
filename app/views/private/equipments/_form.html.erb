@@ -20,7 +20,7 @@
 
 <div class="span-6 append-bottom">
   <%= form.label :color, "Color" %><br />
-  <%= form.select :color, Equipment::COLORS, :class => "span-6" %>
+  <%= form.select :color, Equipment::COLORS, :class => "span-6", :include_blank => true %>
 </div>
 
 <div class="span-6 append-bottom">
@@ -32,12 +32,12 @@
 
 <div class="span-6 append-bottom">
   <%= form.label :registration_date, "Registration Date" %><br />
-  <%= form.text_field :registration_date, :class => "span-6" %>
+  <%= form.text_field :registration_date, :class => "span-6", :data => {:role => 'datepicker'}, :readonly => true %>
 </div>
 
 <div class="span-6 append-bottom">
   <%= form.label :cvip_date, "CVIP Date" %><br />
-  <%= form.text_field :cvip_date, :class => "span-6" %>
+  <%= form.text_field :cvip_date, :class => "span-6", :data => {:role => 'datepicker'}, :readonly => true %>
 </div>
 
 <br class="clear">

@@ -10,60 +10,52 @@
       <li>»</li>
       <li>Settings</li>
       <li>»</li>
-      <li><%= link_to 'Equipment', private_equipment_path %></li>
+      <li><%= link_to 'Equipment', private_equipments_path %></li>
       <li>»</li>
       <li><%= @page_title %></li>
     </ul>
   <% end %>
-
-<%= @equipment.plate_number %>
-<%= @equipment.vin %>
-<%= @equipment.gvw %>
-<%= @equipment.registration_date %>
-<%= @equipment.cvip_date %>
-<%= @equipment.color %>
-
   <div class="span24">
     <table>
       <tr>
-        <td></td>
-        <td></td>
+        <td>Color</td>
+        <td class="equipment-<%= @equipment.color %>"><%= @equipment.color %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>Unit Number</td>
+        <td><%= @equipment.unit %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>Plate Number</td>
+        <td><%= @equipment.plate_number %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>VIN</td>
+        <td><%= @equipment.vin %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td><abbr title="Gross Vehicle Weight">GVW</abbr></td>
+        <td><%= @equipment.gvw %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>Registration Date</td>
+        <td><%= @equipment.registration_date %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>CVIP Date</td>
+        <td><%= @equipment.cvip_date %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>Yellow Rate</td>
+        <td><%= @equipment.try(:yellow_rate)%> <%= "L/cm" if @equipment.try(:yellow_rate) %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>White Rate</td>
+        <td><%= @equipment.try(:white_rate) %> <%= "L/cm" if @equipment.try(:white_rate) %></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>Daily Rate</td>
+        <td><%= if @equipment.rate then "$#{@equipment.rate}" end %></td>
       </tr>
     </table>
   </div>

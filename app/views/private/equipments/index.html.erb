@@ -30,11 +30,11 @@
   <tr onclick="window.location='<%= private_equipment_path(equipment.id) %>'">
     <td><%= equipment.name %></td>
     <td><%= equipment.unit %></td>
-    <td>TODO</td>
-    <td>TODO</td>
-    <td>TODO</td>
-    <td>TODO</td>
-    <td>TODO</td>
+    <td><%= equipment.plate_number %></td>
+    <td><%= equipment.vin %></td>
+    <td><%= equipment.gvw %></td>
+    <td><%= equipment.registration_date %></td>
+    <td><%= equipment.cvip_date %></td>
     <td><%= equipment.try(:yellow_rate)%> <%= "L/cm" if equipment.try(:yellow_rate) %></td>
     <td><%= equipment.try(:white_rate) %> <%= "L/cm" if equipment.try(:white_rate) %></td>
     <td><%= if equipment.rate then "$#{equipment.rate}" end %></td>

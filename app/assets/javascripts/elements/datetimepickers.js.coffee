@@ -5,7 +5,10 @@ jQuery ->
     hourGrid: 6
     minuteGrid: 15
 
-  jQuery("[data-role='datepicker']").datepicker()
+  jQuery("[data-role='datepicker']").datepicker
+    dateFormat: "yy-mm-dd"
+    changeMonth: true
+    changeYear: true
 
   jQuery("[data-role='monthpicker']").each ->
     $this = jQuery(this)
