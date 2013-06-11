@@ -22,6 +22,9 @@
   <%= render :partial => "form", :object => f %>
   <br class="clear">
   <hr>
-  <%= f.submit "Create Load Sheet" %> or <%= link_to 'Cancel', private_home_path %>
+  <%= f.submit "Create Load Sheet" %>,
+  <%= f.submit "Create and Add Another Load Sheet", :name => 'submit_and_create_another_load_sheet' %>
+  or
+  <%= link_to 'Cancel', private_home_path %>
 <% end %>
 </div>

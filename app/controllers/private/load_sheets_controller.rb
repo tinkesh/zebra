@@ -31,12 +31,17 @@ class Private::LoadSheetsController < ApplicationController
     load_load_sheet_supporting_data
     @page_title = "New Load Sheet"
     if @load_sheet.save
-      if @load_sheet.job
+      if params[:submit_and_create_another_load_sheet].present?
         flash[:notice] = "Load Sheet created!"
-        redirect_to private_job_url(:id => @load_sheet.job_id)
+        redirect_to new_private_load_sheet_path
       else
-        flash[:notice] = "Load Sheet created! Redirected to home since there was no job assigned to the load sheet."
-        redirect_to "/admin"
+        if @load_sheet.job
+          flash[:notice] = "Load Sheet created!"
+          redirect_to private_job_url(:id => @load_sheet.job_id)
+        else
+          flash[:notice] = "Load Sheet created! Redirected to home since there was no job assigned to the load sheet."
+          redirect_to "/admin"
+        end
       end
     else
       render :action => :new
