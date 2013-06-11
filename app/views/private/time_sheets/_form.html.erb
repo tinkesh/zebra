@@ -102,8 +102,7 @@ If you require additional rows of tasks, save and re-edit. 2 new rows are added 
     <th>Name</th>
     <th class="right">Clock In</th>
     <th class="right">Clock Out</th>
-    <th class="right">S/T</th>
-    <th class="right">O/T</th>
+    <th class="right">Hours</th>
   <% unless @time_sheet.new_record?%>
     <% if permitted_to? :manage, :private_time_entries -%>
   <% end %>
@@ -122,8 +121,7 @@ If you require additional rows of tasks, save and re-edit. 2 new rows are added 
     <td><%= entry.user.try(:name) || entry.user_id %></td>
     <td class="span-5 right"><%= entry.clock_in.strftime( '%Y-%m-%d %I:%M %p') rescue '-' %></td>
     <td class="span-5 right"><%= entry.clock_out.strftime('%Y-%m-%d %I:%M %p') rescue '-' %></td>
-    <td class="right"><%= if entry.straight_time != 0 then "#{sprintf("%.2f", entry.straight_time)} Hours" else '-' end %></td>
-    <td class="right"><%= if entry.over_time != 0 then "#{sprintf("%.2f", entry.over_time)} Hours" else '-' end %></td>
+    <td class="right"><%= sprintf("%.2f", entry.hours) %></td>
   <% unless @time_sheet.new_record? %>
   <% if permitted_to? :manage, :private_time_entries -%>
     <td class="right">
