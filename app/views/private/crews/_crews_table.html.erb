@@ -1,0 +1,27 @@
+<table class="sortable">
+  <tr>
+    <th>Name</th>
+    <th class="nosort">Users</th>
+    <th class="nosort">Crew Hours</th>
+    <th class="nosort">Assigned Equipment</th>
+    <th class="actions nosort"></th>
+
+  </tr>
+
+<% crews.each do |crew| %>
+  <tr>
+    <td><%= crew.label %></td>
+    <td><%= crew.user_list %></td>
+    <td><%=link_to 'Crew Hours', report_crew_time_path(crew.id) %></td>
+    <td>
+      <% crew.equipments.each do |e| %>
+        <a href="<%= private_equipment_path(e) %>" class="equipment-<%= e.color %>" style="white-space: nowrap;"><%= e.unit %></a><%= "," if e != crew.equipments.last %>
+      <% end %>
+    </td>
+    <td class="actions">
+    <%= link_to 'Delete', private_crew_path(crew), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_crew_path(crew), :class => "edit" %>
+    </td>
+  </tr>
+<% end %>
+</table>

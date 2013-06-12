@@ -3,73 +3,75 @@
   <%= link_to "Delete", private_equipment_path(@equipment.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
 </div>
 
-<div class="container">
-  <%= content_for :breadcrumb do %>
-    <ul id="breadcrumb">
-      <li><%= link_to 'Dashboard', private_home_path %></li>
-      <li>»</li>
-      <li>Settings</li>
-      <li>»</li>
-      <li><%= link_to 'Equipment', private_equipments_path %></li>
-      <li>»</li>
-      <li><%= @page_title %></li>
-    </ul>
-  <% end %>
-  <div class="span24">
-    <table>
-      <tr>
-        <td>Color</td>
-        <td class="equipment-<%= @equipment.color %>"><%= @equipment.color %></td>
-      </tr>
-      <tr>
-        <td>Unit Number</td>
-        <td><%= @equipment.unit %></td>
-      </tr>
-      <tr>
-        <td>Plate Number</td>
-        <td><%= @equipment.plate_number %></td>
-      </tr>
-      <tr>
-        <td>VIN</td>
-        <td><%= @equipment.vin %></td>
-      </tr>
-      <tr>
-        <td><abbr title="Gross Vehicle Weight">GVW</abbr></td>
-        <td><%= @equipment.gvw %></td>
-      </tr>
-      <tr>
-        <td>Registration Date</td>
-        <td>
-          <%= @equipment.registration_date %>
-          <% if @equipment.red_flag? %>
-            <%= image_tag 'red_flag.png', :size => '30x30', :title => 'Registration Date is almost a year ago' if @equipment.red_flag? %>
-            <%= "Alert sent at <strong>#{I18n.l(@equipment.red_flag_alert_sent_at, :format => :long)}</strong>".html_safe if @equipment.red_flag_alert_sent_at.present? %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td>CVIP Date</td>
-        <td>
-          <%= @equipment.cvip_date %>
-          <% if @equipment.black_flag? %>
-            <%= image_tag 'black_flag.png', :size => '30x30', :title => 'CVIP Date is almost a year ago' %>
-            <%= "Alert sent at <strong>#{I18n.l(@equipment.black_flag_alert_sent_at, :format => :long)}</strong>".html_safe if @equipment.black_flag_alert_sent_at.present? %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td>Yellow Rate</td>
-        <td><%= @equipment.try(:yellow_rate)%> <%= "L/cm" if @equipment.try(:yellow_rate) %></td>
-      </tr>
-      <tr>
-        <td>White Rate</td>
-        <td><%= @equipment.try(:white_rate) %> <%= "L/cm" if @equipment.try(:white_rate) %></td>
-      </tr>
-      <tr>
-        <td>Daily Rate</td>
-        <td><%= if @equipment.rate then "$#{@equipment.rate}" end %></td>
-      </tr>
-    </table>
-  </div>
+<%= content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li>Settings</li>
+    <li>»</li>
+    <li><%= link_to 'Equipment', private_equipments_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
 
-</div>
+<table>
+  <tr>
+    <td>Color</td>
+    <td class="equipment-<%= @equipment.color %>"><%= @equipment.color %></td>
+  </tr>
+  <tr>
+    <td>Unit Number</td>
+    <td><%= @equipment.unit %></td>
+  </tr>
+  <tr>
+    <td>Plate Number</td>
+    <td><%= @equipment.plate_number %></td>
+  </tr>
+  <tr>
+    <td>VIN</td>
+    <td><%= @equipment.vin %></td>
+  </tr>
+  <tr>
+    <td><abbr title="Gross Vehicle Weight">GVW</abbr></td>
+    <td><%= @equipment.gvw %></td>
+  </tr>
+  <tr>
+    <td>Registration Date</td>
+    <td>
+      <%= @equipment.registration_date %>
+      <% if @equipment.red_flag? %>
+        <%= image_tag 'red_flag.png', :size => '30x30', :title => 'Registration Date is almost a year ago' if @equipment.red_flag? %>
+        <%= "Alert sent at <strong>#{I18n.l(@equipment.red_flag_alert_sent_at, :format => :long)}</strong>".html_safe if @equipment.red_flag_alert_sent_at.present? %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>CVIP Date</td>
+    <td>
+      <%= @equipment.cvip_date %>
+      <% if @equipment.black_flag? %>
+        <%= image_tag 'black_flag.png', :size => '30x30', :title => 'CVIP Date is almost a year ago' %>
+        <%= "Alert sent at <strong>#{I18n.l(@equipment.black_flag_alert_sent_at, :format => :long)}</strong>".html_safe if @equipment.black_flag_alert_sent_at.present? %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Yellow Rate</td>
+    <td><%= @equipment.try(:yellow_rate)%> <%= "L/cm" if @equipment.try(:yellow_rate) %></td>
+  </tr>
+  <tr>
+    <td>White Rate</td>
+    <td><%= @equipment.try(:white_rate) %> <%= "L/cm" if @equipment.try(:white_rate) %></td>
+  </tr>
+  <tr>
+    <td>Daily Rate</td>
+    <td><%= if @equipment.rate then "$#{@equipment.rate}" end %></td>
+  </tr>
+</table>
+
+<% if @equipment.crews.count > 0 %>
+  <h3>Assigned to:</h3>
+  <%= render :partial => 'private/crews/crews_table', :locals => {:crews => @equipment.crews} %>
+<% end %>
+
