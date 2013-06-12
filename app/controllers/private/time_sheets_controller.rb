@@ -4,12 +4,14 @@ class Private::TimeSheetsController < ApplicationController
   filter_access_to :all
 
   def index
-    @time_sheets = TimeSheet.paginate :page => params[:page], :order => 'created_at DESC', :per_page => 50, :include => [:jobs, :time_entries]
+    @time_sheets = TimeSheet.includes(:user, :jobs, :time_entries).order('time_sheets.created_at DESC')
     @page_title = "Time Sheets"
-    if params[:query]
-      @search = TimeSheet.search(params[:search])
-      @searched_time_sheets = @search.all
+
+    if params[:crew_id].present?
+      @time_sheets = @time_sheets.where('users.crew_id = ?', params[:crew_id])
     end
+
+    @time_sheets = @time_sheets.paginate :page => params[:page], :per_page => 50
   end
 
   def show

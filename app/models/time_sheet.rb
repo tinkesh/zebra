@@ -1,5 +1,6 @@
 class TimeSheet < ActiveRecord::Base
   belongs_to :time_note_category
+  belongs_to :user, :foreign_key => 'created_by'
   has_many :time_tasks, :dependent => :destroy
   has_many :time_entries, :dependent => :destroy
   has_many :estimates, :dependent => :destroy

@@ -6,6 +6,17 @@
   </ul>
 <% end %>
 
+<hr>
+<table>
+<%= form_tag '', :method => 'get' do %>
+  <tr class="no-border"><td class="no-border right">
+    <em>Filter by crew</em>
+    <%= select_tag :crew_id, options_from_collection_for_select(Crew.all, 'id', 'label', params[:crew_id]), :include_blank => true %>
+    <%= submit_tag "Search" %><br>
+  </td></tr>
+<% end %>
+</table>
+
 <%= will_paginate @time_sheets %>
 
 <table class="sortable">
@@ -14,7 +25,8 @@
     <th class="center span-2">Submitted</th>
     <th class="center">Date</th>
     <th class="nosort">Jobs</th>
-	<th class="center">Created By</th>
+    <th class="center">Crew</th>
+  	<th class="center">Created By</th>
     <th class="center">S/T</th>
     <th class="center">O/T</th>
     <th class="center">T/T</th>
@@ -31,6 +43,7 @@
     <th class="center span-2">Submitted</th>
     <th class="center span-2">Date</th>
     <th class="nosort">Jobs</th>
+    <th class="center">Crew</th>
   	<th class="center">Created By</th>
     <th class="center">S/T</th>
     <th class="center">O/T</th>
@@ -54,7 +67,8 @@
         <%= link_to image_tag("open-link.png"), private_job_path(job.id) %><br>
       <% end %>
     </td>
-	<td><%= time_sheet.created_by ? User.find_by_id(time_sheet.created_by).name : "-" %>
+  <td><%= time_sheet.user.crew.label rescue '-' %>
+	<td><%= time_sheet.user.name rescue '-' %>
 	</td>
     <td class="right">
       <%= time_sheet.total_straight_time != 0 ? "#{sprintf('%.2f', time_sheet.total_straight_time)}" : '-' %>
