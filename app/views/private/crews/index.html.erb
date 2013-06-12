@@ -25,6 +25,8 @@
 
 <ul>
 <% @unassigned_equipment.each do |e| %>
-<li><%= e.unit + " - " + e.name %></li>
+<li>
+  <span class="equipment-<%= e.color %>"><%= "#{e.unit} — #{e.name}" %></span>
+</li>
 <% end %>
 </ul>
