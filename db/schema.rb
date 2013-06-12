@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610224641) do
+ActiveRecord::Schema.define(:version => 20130611225406) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -101,14 +101,16 @@ ActiveRecord::Schema.define(:version => 20130610224641) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "rate"
-    t.decimal  "yellow_rate",       :precision => 5, :scale => 2
-    t.decimal  "white_rate",        :precision => 5, :scale => 2
+    t.decimal  "yellow_rate",              :precision => 5, :scale => 2
+    t.decimal  "white_rate",               :precision => 5, :scale => 2
     t.string   "plate_number"
     t.string   "vin"
     t.string   "gvw"
     t.date     "registration_date"
     t.date     "cvip_date"
     t.string   "color"
+    t.datetime "red_flag_alert_sent_at"
+    t.datetime "black_flag_alert_sent_at"
   end
 
   create_table "estimates", :force => true do |t|

@@ -39,11 +39,23 @@
       </tr>
       <tr>
         <td>Registration Date</td>
-        <td><%= @equipment.registration_date %></td>
+        <td>
+          <%= @equipment.registration_date %>
+          <% if @equipment.red_flag? %>
+            <%= image_tag 'red_flag.png', :size => '30x30', :title => 'Registration Date is almost a year ago' if @equipment.red_flag? %>
+            <%= "Alert sent at <strong>#{I18n.l(@equipment.red_flag_alert_sent_at, :format => :long)}</strong>".html_safe if @equipment.red_flag_alert_sent_at.present? %>
+          <% end %>
+        </td>
       </tr>
       <tr>
         <td>CVIP Date</td>
-        <td><%= @equipment.cvip_date %></td>
+        <td>
+          <%= @equipment.cvip_date %>
+          <% if @equipment.black_flag? %>
+            <%= image_tag 'black_flag.png', :size => '30x30', :title => 'CVIP Date is almost a year ago' %>
+            <%= "Alert sent at <strong>#{I18n.l(@equipment.black_flag_alert_sent_at, :format => :long)}</strong>".html_safe if @equipment.black_flag_alert_sent_at.present? %>
+          <% end %>
+        </td>
       </tr>
       <tr>
         <td>Yellow Rate</td>

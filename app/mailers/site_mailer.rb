@@ -53,4 +53,11 @@ class SiteMailer < ActionMailer::Base
 
     mail(:to => "kwame@aaastriping.ca", :subject =>  "[AAAS] #{marking.gun_marking_category.try(:name)} Production higher than Expected")
   end
+
+  def equipment_alert(equipment, flag)
+    @equipment = equipment
+    @flag = flag
+
+    mail(:to => "info@aaastriping.ca", :subject =>  "[AAAS] Equipment alert")
+  end
 end

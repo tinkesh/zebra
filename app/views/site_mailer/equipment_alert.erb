@@ -1,0 +1,11 @@
+Equipment:
+<%= @equipment.name %>
+
+<% if @flag == 'red_flag' %>
+Alert:
+Red Flag - <%= @equipment.name %>'s Registration Date is <%= I18n.l @equipment.registration_date, :format => :long rescue '-' %>
+<% end %>
+<% if @flag == 'black_flag' %>
+Alert:
+Black Flag - <%= @equipment.name %>'s CVIP Date is <%= I18n.l @equipment.cvip_date, :format => :long rescue '-' %>
+<% end %>
