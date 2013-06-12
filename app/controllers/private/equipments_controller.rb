@@ -37,7 +37,7 @@ class Private::EquipmentsController < ApplicationController
     @equipment = Equipment.find(params[:id])
     if @equipment.update_attributes(params[:equipment])
       flash[:notice] = "Equipment updated!"
-      redirect_to private_equipments_url
+      redirect_to private_equipment_path(@equipment)
     else
       render :action => :edit
     end
