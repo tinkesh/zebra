@@ -7,7 +7,7 @@ class Crew < ActiveRecord::Base
   def label
     label = 'Crew #' + self.id.to_s
     label += ", " + self.name if self.name
-    label
+    label.html_safe
   end
 
   def user_list
