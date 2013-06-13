@@ -15,11 +15,11 @@
   </tr>
   <tr>
     <td><%= form.label :fuel, "Purchased Fuel Liters" %></td>
-    <td><%= form.text_field :fuel, :size => "10", :value => "0" %></td>
+    <td><%= form.text_field :fuel, :size => "10", :required => true, :type => :number %></td>
   </tr>
   <tr>
     <td><%= form.label :hotel, "Hotel Cost" %></td>
-    <td><%= form.text_field :hotel, :size => "10", :value => "0" %></td>
+    <td><%= form.text_field :hotel, :size => "10", :required => true, :type => :number %></td>
   </tr>
   <tr>
   <td><%= form.label :lunch, "Lunch Break" %></td>

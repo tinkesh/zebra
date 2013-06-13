@@ -46,8 +46,6 @@ class Private::TimeSheetsController < ApplicationController
     @page_title = "Submit Clock In/Clock Out Times"
     @time_sheet = TimeSheet.new(params[:time_sheet])
     @time_sheet.created_by = current_user.id
-    @time_sheet.fuel ||= 0
-    @time_sheet.hotel ||= 0
     if @time_sheet.save
 
       if params[:time_entry_ids]

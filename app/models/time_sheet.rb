@@ -10,6 +10,8 @@ class TimeSheet < ActiveRecord::Base
   accepts_nested_attributes_for :time_entries, :allow_destroy => true
 
   validates_presence_of :lunch, :on => :create, :message => "can't be blank"
+  validates :hotel, :fuel, :presence => true
+  validates :hotel, :fuel, :numericality => true
 
   before_create :record_per_diem_rate
   before_create :record_fuel_rate
