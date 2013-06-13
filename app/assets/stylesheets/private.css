@@ -108,7 +108,7 @@ input[type="text"], input[type="password"], input.text, input.title, textarea, s
 input[type="checkbox"], input[type="radio"], input.checkbox, input.radio { top:0; }
 
 /* buttons*/
-a.button, button, input.button { display:block; float:left; margin: 0.7em 0.5em 0.7em 0; padding:5px 10px 5px 7px; border:1px solid #333; border-top:1px solid #666; border-left:1px solid #666; background-color:#f5f5f5; font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif; font-size:100%; line-height:130%; text-decoration:none; font-weight:bold; color:#565656; cursor:pointer; }
+a.button, button, input.button { display:block; float:left; margin: 0; padding:5px 10px 5px 7px; border:1px solid #333; border-top:1px solid #666; border-left:1px solid #666; background-color:#f5f5f5; font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif; font-size:100%; line-height:130%; text-decoration:none; font-weight:bold; color:#565656; cursor:pointer; }
 button { width:auto; overflow:visible; padding:4px 10px 3px 7px; }
 button[type] { padding:4px 10px 4px 7px; line-height:17px; }
 *:first-child+html button[type] { padding:4px 10px 3px 7px; }

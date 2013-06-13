@@ -52,18 +52,6 @@
   <%= render :partial => 'menus/jobs_menu.html.erb', :layout => false %>
 <% end %>
 
-<div class="span-12">
-  <h3>Notes</h3>
-  <%= @job.notes.blank? ? "None." : RedCloth.new(@job.notes).to_html.html_safe %>
-</div>
-
-<div class="span-12 last">
-  <h3>Zoho Details</h3>
-  <%= @job.zoho_details.blank? ? "None." : RedCloth.new(@job.zoho_details).to_html.html_safe %>
-</div>
-
-<hr>
-
 <div class="span-6 append-1">
 
   <h3>Schedule</h3>
@@ -251,5 +239,51 @@
     <%= link_to "view archived gun sheets", "?show_archived=true" if @gun_sheets_archived and !@show_archived %>
   <% end %>
 </div>
+</div>
 
+<br>
+<hr>
+<br>
+
+<div class="span-12">
+  <h3>Comments</h3>
+
+  <% if @job.comments.size == 0 %>
+    <p>No comments for this job.</p>
+  <% else %>
+    <table>
+      <% @job.comments.sorted.each do |comment| %>
+        <tr>
+          <td class="span-5">
+            <p>
+              <strong><%= comment.user.name rescue '-' %></strong>
+              <br>
+              <%= I18n.l comment.created_at, :format => :long %>
+            </p>
+          </td>
+          <td style="vertical-align: top;">
+            <%= RedCloth.new(comment.text.to_s).to_html.html_safe %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+
+  <h3>Add New Comment</h3>
+  <%= form_for [:private, @job, @job.comments.new(:user_id => current_user.id)] do |f| %>
+    <%= f.error_messages %>
+    <%= f.hidden_field :job_id %>
+    <%= f.hidden_field :user_id %>
+    <div class="append-bottom span-12">
+      <%= f.text_area :text, :rows => 4, :style => 'width: 98%;', :required => true %>
+    </div>
+    <%= f.submit 'Comment', :class => 'button' %>
+  <% end %>
+</div>
+
+
+<div class="span-12 last">
+  <h3>Zoho Details</h3>
+  <%= @job.zoho_details.blank? ? "None." : RedCloth.new(@job.zoho_details).to_html.html_safe %>
 </div>

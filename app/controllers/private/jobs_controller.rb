@@ -20,7 +20,7 @@ class Private::JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets ])
+    @job = Job.find(params[:id], :include => [:job_locations, :completion, :client, :load_sheets, {:job_markings => :gun_marking_category}, :job_sheets, {:comments => :user} ])
     @page_title = @job.label
     @show_archived = params[:show_archived] == 'true'
   end

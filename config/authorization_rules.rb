@@ -68,6 +68,7 @@ authorization do
     end
     has_permission_on :private_gun_sheets, :to => :print_selected
     has_permission_on :private_client_contacts, :to => :manage
+    has_permission_on :private_comments, :to => :manage
   end
 end
 
