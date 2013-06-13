@@ -13,19 +13,17 @@
 <table class="sortable" id="clients_index">
   <tr>
     <th>Name</th>
-    <th>Contact</th>
-    <th>Work Phone</th>
-    <th>Cell Phone</th>
     <th>Address</th>
+    <th>Phone</th>
+    <th>Fax</th>
   </tr>
 
 <% @clients.each do |client| %>
   <tr onclick="window.location='<%= private_client_path(client.id) %>'">
     <td><%= client.name %></td>
-    <td><%= client.contact %></td>
-    <td><%= client.work_phone %></td>
-    <td><%= client.cell_phone %></td>
     <td><%= client.address %> <%= client.city %> <%= client.province %> <%= client.postal_code %></td>
+    <td><%= [client.work_phone, client.cell_phone].join('<br>').html_safe %></td>
+    <td><%= client.fax %></td></td>
   </tr>
 <% end %>
 </table>
