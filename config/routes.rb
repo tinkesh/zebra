@@ -7,7 +7,9 @@ AaaStriping::Application.routes.draw do
 
   # private forms
   namespace :private, :path => 'admin' do
-    resources :clients
+    resources :clients do
+      resources :client_contacts
+    end
     resources :completions
     resources :costs
     resources :crews

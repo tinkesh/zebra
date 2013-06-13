@@ -23,7 +23,7 @@ class Private::ClientsController < ApplicationController
     @page_title = "New Client"
     if @client.save
       flash[:notice] = "Client created!"
-      redirect_to private_clients_url
+      redirect_to private_client_path(@client)
     else
       render :action => :new
     end
@@ -38,7 +38,7 @@ class Private::ClientsController < ApplicationController
     @client = Client.find(params[:id])
     if @client.update_attributes(params[:client])
       flash[:notice] = "Client updated!"
-      redirect_to private_clients_url
+      redirect_to private_client_path(@client)
     else
       render :action => :edit
     end

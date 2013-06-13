@@ -1,0 +1,34 @@
+= form_for [:private, client_contact.client, client_contact] do |f|
+  = f.error_messages
+  = f.hidden_field :client_id
+  .append-bottom
+    = f.label :name
+    %br
+    = f.text_field :name, :required => true
+  .append-bottom
+    = f.label :title
+    %br
+    = f.text_field :title
+  .append-bottom
+    = f.label :phone
+    %br
+    = f.text_field :phone
+  .append-bottom
+    = f.label :cell
+    %br
+    = f.text_field :cell
+  .append-bottom
+    = f.label :fax
+    %br
+    = f.text_field :fax
+  .append-bottom
+    = f.label :email
+    %br
+    = f.text_field :email
+  .append-bottom
+    = f.label :notes
+    %br
+    = f.text_area :notes, :rows => '5'
+  = f.submit 'Save'
+  or
+  = link_to 'Cancel', private_client_path(client_contact.client)

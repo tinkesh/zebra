@@ -1,0 +1,14 @@
+.container
+  = content_for :breadcrumb do
+    %ul#breadcrumb
+      %li= link_to 'Dashboard', private_home_path
+      %li »
+      %li Settings
+      %li »
+      %li= link_to 'Clients', private_clients_path
+      %li »
+      %li= link_to @client_contact.client.name, private_client_path(@client_contact.client)
+      %li »
+      %li= @page_title
+
+  = render :partial => 'form', :locals => {:client_contact => @client_contact}
