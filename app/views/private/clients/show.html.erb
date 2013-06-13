@@ -37,6 +37,10 @@
         <td><%= number_to_phone @client.cell_phone, :area_code => true %></td>
       </tr>
       <tr>
+        <td>Fax:</td>
+        <td><%= number_to_phone @client.fax, :area_code => true %></td>
+      </tr>
+      <tr>
         <td>Address:</td>
         <td><%= @client.full_address %></td>
       </tr>
