@@ -17,6 +17,7 @@ end
 gem 'jquery-rails'
 gem 'psych'
 gem 'safe_attributes'
+gem 'haml'
 
 group :development do
   gem 'better_errors'
