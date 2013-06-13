@@ -108,7 +108,6 @@ private
 
   def load_time_sheet_supporting_data
     @time_task_categories = TimeTaskCategory.order(:position)
-    @time_note_categories = TimeNoteCategory.order(:position)
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @lunch_selections = [0, 30, 45, 60, 75, 90, 105, 120, 150, 180, 210, 240, 270, 300]
     else

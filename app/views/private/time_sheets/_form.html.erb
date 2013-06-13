@@ -1,11 +1,6 @@
 <div class="container">
-<div class="span-10 append-bottom">
-  <%= form.label :time_note_category_id, "Comment" %><br>
-  <%= form.select :time_note_category_id, @time_note_categories.map {|u| [u.name,u.id]} %>
-</div>
-
 <div class="span-14 last append-bottom">
-  <%= form.label :note, "Additional Comments" %><br>
+  <%= form.label :note, "Comments" %><br>
   <%= form.text_field :note, :class => "span-14" %>
 </div>
 
