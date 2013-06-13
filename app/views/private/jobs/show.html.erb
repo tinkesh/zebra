@@ -1,11 +1,41 @@
+<% if in_mobile_view? %>
+  <%= form_tag private_navigate_path do -%>
+    <p>
+      <% if permitted_to? :create, :private_clock_in -%>
+        <label><%= radio_button_tag "navigate", "clock_in" %> Clock in</label><br />
+      <% end %>
+      <% if permitted_to? :create, :private_clock_out -%>
+        <label><%= radio_button_tag "navigate", "clock_out" %> Clock out</label><br />
+      <% end %>
+      <% if permitted_to? :create, :private_time_sheets -%>
+        <label><%= radio_button_tag "navigate", "new_time_sheet" %> Submit Daily Progress Report</label><br />
+      <% end %>
+      <% if permitted_to? :create, :private_gun_sheets -%>
+        <label><%= radio_button_tag "navigate", "new_gun_sheet" %> New Gun Sheet</label><br />
+      <% end %>
+      <% if permitted_to? :create, :private_load_sheets -%>
+        <label><%= radio_button_tag "navigate", "new_load_sheet" %> New Load Sheet</label><br />
+      <% end %>
+    </p>
+    <%= hidden_field "job", "id" %>
+    <% if permitted_to? :navigate, :private_jobs %>
+      <p><%= submit_tag "Go to Page" %></p>
+    <% end %>
+  <% end %>
+  <hr>
+<% end %>
+
 <% if @job.ar_error == true %>
   <h1 class="ar_error jobs_show">AR Error</h1>
 <% end %>
 
-<div class="show_actions">
-  <%= link_to "Edit", edit_private_job_path(@job.id), :class => "edit" %>
-  <%= link_to "Delete", private_job_path(@job.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
-</div>
+<% if not in_mobile_view? %>
+  <div class="show_actions">
+    <%= link_to "Edit", edit_private_job_path(@job.id), :class => "edit" %>
+    <%= link_to "Delete", private_job_path(@job.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+  </div>
+<% end %>
+
 
 <div class="container">
 <%= content_for :breadcrumb do %>
@@ -19,7 +49,7 @@
 <% end %>
 
 <%= content_for :submenu do %>
-  <%= render :partial => 'menus/jobs_menu', :layout => false %>
+  <%= render :partial => 'menus/jobs_menu.html.erb', :layout => false %>
 <% end %>
 
 <div class="span-12">
