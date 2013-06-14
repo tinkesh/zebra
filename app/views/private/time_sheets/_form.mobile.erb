@@ -25,40 +25,29 @@
 
 <hr />
 
-<h3>Tasks</h3>
-<p>Describe what you did, from the beginning of the day to the end.</p>
-
-<table>
-<tr>
-<td colspan="2"><hr /></td>
-</tr>
-
-<%= form.fields_for :time_tasks do |builder| %>
-  <%= render 'time_task_fields.html.erb', :form => builder %>
-<% end %>
-
-</table>
+<%= render :partial => 'time_task_fields.html.haml', :locals => {:form => form} %>
 
 <hr>
 
-<h3>Time Spent per Job</h3>
-<p>Estimate the amount of time spent on each job. Do not include travel time.</p>
-<table>
-  <tr>
-    <th class="span-2">Time</th>
-    <th>Job</th>
-  </tr>
-<% i = 0 %>
-<% @jobs.each do |job| %>
-<% i += 1 %>
-<tr class="<%= cycle 'odd', 'even' %>">
-  <td><%= text_field_tag "estimates[#{i}][hours]", nil, :class => "span-1" %> hrs</td>
-  <td><%= job.label %> <%= hidden_field_tag "estimates[#{i}][job_id]", job.id %></td>
-</tr>
+<% if @jobs %>
+  <h3>Time Spent per Job</h3>
+  <p>Estimate the amount of time spent on each job. Do not include travel time.</p>
+  <table>
+    <tr>
+      <th class="span-2">Time</th>
+      <th>Job</th>
+    </tr>
+    <% i = 0 %>
+    <% @jobs.each do |job| %>
+      <% i += 1 %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= text_field_tag "estimates[#{i}][hours]", nil, :class => "span-1" %> hrs</td>
+        <td><%= job.label %> <%= hidden_field_tag "estimates[#{i}][job_id]", job.id %></td>
+      </tr>
+    <% end %>
+  </table>
+  <hr />
 <% end %>
-</table>
-
-<hr />
 
 <h3>Users</h3>
 <p>Select the users who should be included as part of this time sheet.</p>

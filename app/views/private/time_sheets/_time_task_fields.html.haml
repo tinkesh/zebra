@@ -1,0 +1,17 @@
+= form.fields_for :questions do |form2|
+  - TimeSheet::QUESTIONS.each_pair do |question_id, question|
+    - form.object.questions[question_id] ||= {}
+    - question_attribute = "time_sheet[questions][#{question_id}]"
+    %h3= question
+    %p
+      - if question_id != :other
+        %label
+          = radio_button_tag "#{question_attribute}[answer]", 'yes', checked = form.object.questions[question_id][:answer] == 'yes'#, :required => true
+          Yes
+        %label
+          = radio_button_tag "#{question_attribute}[answer]", 'no', checked = form.object.questions[question_id][:answer] == 'no'#, :required => true
+          No
+        %br
+      - else
+        = hidden_field_tag "#{question_attribute}[answer]", 'yes'
+      = text_area_tag "#{question_attribute}[comments]", form.object.questions[question_id][:comments].to_s, :cols => 40, :placeholder => 'Additional Comments'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613201322) do
+ActiveRecord::Schema.define(:version => 20130614162350) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -417,6 +417,7 @@ ActiveRecord::Schema.define(:version => 20130613201322) do
     t.datetime "versioned_at"
     t.string   "versioned_time_entry_ids"
     t.decimal  "per_diem_percent",         :default => 0.0
+    t.text     "questions"
   end
 
   create_table "time_task_categories", :force => true do |t|

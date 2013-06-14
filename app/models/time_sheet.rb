@@ -1,4 +1,6 @@
 class TimeSheet < ActiveRecord::Base
+  serialize :questions, Hash
+
   belongs_to :time_note_category
   belongs_to :user, :foreign_key => 'created_by'
   has_many :time_tasks, :dependent => :destroy
@@ -16,6 +18,24 @@ class TimeSheet < ActiveRecord::Base
   before_create :record_per_diem_rate
   before_create :record_fuel_rate
   after_create :deliver_new_time_sheet
+
+  QUESTIONS = {
+    # make sure hash keys are unique, and don't change them! They're saved in each instance
+    :travel => 'Did you travel?',
+    :load => 'Did you Load?',
+    :paint => 'Did you Paint?',
+    :line_removal => 'Was there Line Removal?',
+    :message_markings => 'Were there Message Markings?',
+    :other => 'Other'
+  }
+
+  validate do
+    QUESTIONS.each_pair do |key, value|
+      if self.questions[key]['answer'].blank?
+        self.errors.add :base, "Please answer <strong>#{value}</strong>"
+      end
+    end
+  end
 
   def deliver_new_time_sheet
     SiteMailer.new_time_sheet(self).deliver

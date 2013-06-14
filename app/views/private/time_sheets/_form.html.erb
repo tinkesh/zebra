@@ -30,23 +30,7 @@
 
 <hr>
 
-<h3>Task Summary</h3>
-<p>Describe what you did, from the beginning of the day to the end.
-<% unless @time_sheet.new_record? %>
-If you require additional rows of tasks, save and re-edit. 2 new rows are added each time.
-<% end %>
-</p>
-
-<table class="no-border">
-  <tr>
-    <th>At</th>
-    <th>We</th>
-    <th>Note</th>
-  </tr>
-<%= form.fields_for :time_tasks do |builder| %>
-  <%= render 'time_task_fields.html.erb', :form => builder %>
-<% end %>
-</table>
+<%= render :partial => 'time_task_fields.html.haml', :locals => {:form => form} %>
 
 <br>
 

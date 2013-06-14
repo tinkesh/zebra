@@ -89,6 +89,7 @@ class Private::TimeSheetsController < ApplicationController
 
   def update
     @time_sheet = TimeSheet.find(params[:id])
+    load_time_sheet_supporting_data
     if @time_sheet.update_attributes(params[:time_sheet])
       flash[:notice] = "Time Sheet updated!"
       redirect_to private_time_sheet_url(@time_sheet)
