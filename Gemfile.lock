@@ -35,6 +35,7 @@ GEM
     authlogic (3.3.0)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
+    awesome_print (1.1.0)
     better_errors (0.8.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -128,6 +129,7 @@ DEPENDENCIES
   RedCloth
   active_link_to
   authlogic
+  awesome_print
   better_errors
   binding_of_caller
   coffee-rails (~> 3.2.1)
