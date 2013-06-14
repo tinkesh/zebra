@@ -49,6 +49,7 @@ class Private::GunSheetsController < ApplicationController
       flash[:notice] = "Gun Sheet created!"
       redirect_to private_job_url(:id => @job.id)
     else
+      4.times do @gun_sheet.gun_markings.build end
       render :action => :new
     end
   end
@@ -65,10 +66,12 @@ class Private::GunSheetsController < ApplicationController
 
   def update
     @gun_sheet = GunSheet.find(params[:id])
+    load_gun_sheet_supporting_data
     if @gun_sheet.update_attributes(params[:gun_sheet])
       flash[:notice] = "Gun Sheet updated!"
       redirect_to private_gun_sheet_url(@gun_sheet)
     else
+      4.times do @gun_sheet.gun_markings.build end
       render :action => :edit
     end
   end
@@ -87,6 +90,7 @@ class Private::GunSheetsController < ApplicationController
 private
 
   def load_gun_sheet_supporting_data
+    @job = Job.find(params[:job_id]) if params[:job_id]
     @job_locations = @job.job_locations
     @clients = Client.order(:name)
     @allequipment = Equipment.order(:unit)

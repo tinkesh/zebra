@@ -1,7 +1,7 @@
 <div class="container">
 <div class="span-6 append-bottom">
   <%= form.label :date, "Date" %><br>
-  <%= form.date_select :date %>
+  <%= form.text_field :date, 'data-role' => 'datepicker', :required => true %>
 </div>
 
 <div class="span-10 append-bottom">
@@ -42,24 +42,24 @@
 <div class="span-6 last">
   <div class="span-3 append-bottom">
     <%= form.label :yellow_dip_start, "Start Dip Yellow" %><br>
-    <%= form.text_field :yellow_dip_start, :class => "span-3", :required => true %>
+    <%= form.text_field :yellow_dip_start, :class => "span-3", :required => true, :type => 'number', :step => 'any' %>
   </div>
 
   <div class="span-3 last append-bottom">
     <%= form.label :yellow_dip_end, "End Dip Yellow" %><br>
-    <%= form.text_field :yellow_dip_end, :class => "span-3", :required => true %>
+    <%= form.text_field :yellow_dip_end, :class => "span-3", :required => true, :type => 'number', :step => 'any' %>
   </div>
 
   <hr>
 
   <div class="span-3 append-bottom">
     <%= form.label :white_dip_start, "Start Dip White" %><br>
-    <%= form.text_field :white_dip_start, :class => "span-3", :required => true %>
+    <%= form.text_field :white_dip_start, :class => "span-3", :required => true, :type => 'number', :step => 'any' %>
   </div>
 
   <div class="span-3 last append-bottom">
     <%= form.label :white_dip_end, "End Dip White" %><br>
-    <%= form.text_field :white_dip_end, :class => "span-3", :required => true %>
+    <%= form.text_field :white_dip_end, :class => "span-3", :required => true, :type => 'number', :step => 'any' %>
   </div>
 
 </div>

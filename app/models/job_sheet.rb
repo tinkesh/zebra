@@ -4,7 +4,7 @@ class JobSheet < ActiveRecord::Base
   has_and_belongs_to_many :time_sheets
   has_and_belongs_to_many :gun_sheets
 
-  validates_presence_of :material_rate, :message => "can't be blank"
+  validates_presence_of :material_rate, :job_id, :message => "can't be blank"
 
   def label
     ret_val = "Job Sheet ##{self.id}, "

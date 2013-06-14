@@ -7,9 +7,11 @@ class User < ActiveRecord::Base
 
   has_many :gun_sheets, :foreign_key => "created_by"
 
-  validates_presence_of :first_name
-  validates_presence_of :last_name
-  validates_presence_of :rate
+  validates_presence_of :first_name, :last_name, :rate, :employment_start_date
+  validates :bank_overtime_hours, :inclusion => {:in => [true, false]}
+
+  validates :roles, :length => { :minimum => 1, :message => 'Please select at least 1 role'}
+
   # attr_accessible :login, :password, :password_confirmation, :email, :first_name, :last_name,:role_ids, :time_zone
 
   #for declarative authorization

@@ -22,7 +22,7 @@
   </tr>
   <tr class="odd">
     <td>Started</td>
-    <td class="right"><%= @gun_sheet.started_on.strftime("%B %d, %Y") %>, <%= @gun_sheet.started_at.strftime("%H:%M") %></td>
+    <td class="right"><%= @gun_sheet.started_on.strftime("%B %d, %Y") rescue '' %>, <%= @gun_sheet.started_at.strftime("%H:%M") %></td>
   </tr>
   <tr class="even">
     <td>Completed</td>

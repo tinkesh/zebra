@@ -47,8 +47,8 @@
 <br class="clear">
 
 <div class="span-6 append-bottom">
-  <%= form.label :started_on, "Started on.." %><br>
-  <%= form.date_select :started_on, { :start_year => (Time.now.year-1), :end_year => (Time.now.year+1) } %>
+  <%= form.label :started_on, "Started on.." %>
+  <%= form.text_field :started_on, 'data-role' => 'datepicker', :required => true %>
 </div>
 
 <div class="span-6 append-bottom">
@@ -57,8 +57,8 @@
 </div>
 
 <div class="span-6 append-bottom">
-  <%= form.label :completed_on, "Completed on.." %><br>
-  <%= form.date_select :completed_on, { :start_year => (Time.now.year-1), :end_year => (Time.now.year+1) } %>
+  <%= form.label :completed_on, "Completed on.." %>
+  <%= form.text_field :completed_on, 'data-role' => 'datepicker', :required => true %>
 </div>
 
 <div class="span-6 last append-bottom">

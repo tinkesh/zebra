@@ -18,7 +18,7 @@
 
   <div class="append-bottom">
     <%= form.label :started_on, "Started On" %><br>
-    <%= form.date_select :started_on %>
+    <%= form.text_field :started_on, 'data-role' => 'datepicker' %>
   </div>
 
   <div class="append-bottom">
@@ -28,7 +28,7 @@
 
   <div class="append-bottom">
     <%= form.label :completed_on, "Completed On" %><br>
-    <%= form.date_select :completed_on, :include_blank => true %>
+    <%= form.text_field :completed_on, 'data-role' => 'datepicker' %>
   </div>
 
   <div class="append-bottom">

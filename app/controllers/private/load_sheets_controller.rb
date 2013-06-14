@@ -19,7 +19,7 @@ class Private::LoadSheetsController < ApplicationController
   end
 
   def new
-    @load_sheet = LoadSheet.new
+    @load_sheet = LoadSheet.new #(:date => Date.today)
     @crew = current_user.crew
     load_load_sheet_supporting_data
     users_paint_tracks = (current_user.crew.equipments.select{|item| item.unit.starts_with? 'LPT'} rescue [])
@@ -34,14 +34,14 @@ class Private::LoadSheetsController < ApplicationController
     @page_title = "New Load Sheet"
     if @load_sheet.save
       if params[:submit_and_create_another_load_sheet].present?
-        flash[:notice] = "Load Sheet created!"
+        flash[:success] = "Load Sheet created!"
         redirect_to new_private_load_sheet_path
       else
         if @load_sheet.job
-          flash[:notice] = "Load Sheet created!"
+          flash[:success] = "Load Sheet created!"
           redirect_to private_job_url(:id => @load_sheet.job_id)
         else
-          flash[:notice] = "Load Sheet created! Redirected to home since there was no job assigned to the load sheet."
+          flash[:success] = "Load Sheet created! Redirected to home since there was no job assigned to the load sheet."
           redirect_to "/admin"
         end
       end
@@ -61,8 +61,8 @@ class Private::LoadSheetsController < ApplicationController
     @load_sheet = LoadSheet.find(params[:id])
     load_load_sheet_supporting_data
     if @load_sheet.update_attributes(params[:load_sheet])
-      flash[:notice] = "Load Sheet updated!"
-      redirect_to private_load_sheets_url
+      flash[:success] = "Load Sheet updated!"
+      redirect_to private_load_sheet_path(@load_sheet)
     else
       render :action => :edit
     end
@@ -71,7 +71,7 @@ class Private::LoadSheetsController < ApplicationController
   def destroy
     @load_sheet = LoadSheet.find(params[:id])
     @load_sheet.destroy
-    flash[:notice] = 'Load Sheet deleted!'
+    flash[:success] = 'Load Sheet deleted!'
     redirect_to private_load_sheets_url
   end
 

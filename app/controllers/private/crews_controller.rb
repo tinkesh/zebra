@@ -17,6 +17,8 @@ class Private::CrewsController < ApplicationController
   end
 
   def create
+    @users = User.where(:employment_state => 'Employed').order("first_name ASC")
+    @equipment = Equipment.order(:unit).all
     @crew = Crew.new
     @crew.clear_used_equipment_from_other_crews(params[:crew][:equipment_ids])
     @crew = Crew.new(params[:crew])
@@ -37,10 +39,11 @@ class Private::CrewsController < ApplicationController
   end
 
   def update
+    @users = User.where(:employment_state => 'Employed').order("first_name ASC")
+    @equipment = Equipment.order(:unit).all
     params[:crew][:user_ids] ||= []
     params[:crew][:equipment_ids] ||= []
     @crew = Crew.find(params[:id])
-
     @crew.clear_used_equipment_from_other_crews(params[:crew][:equipment_ids])
 
     if @crew.update_attributes(params[:crew])

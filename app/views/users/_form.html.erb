@@ -4,23 +4,23 @@
 <% if permitted_to? :manage, :users -%>
   <div class="span-6 append-bottom">
     <%= form.label :first_name, "First Name" %><br>
-    <%= form.text_field :first_name, :class => "span-6" %>
+    <%= form.text_field :first_name, :class => "span-6", :required => true %>
   </div>
 
   <div class="span-6 append-bottom last">
     <%= form.label :last_name, "Last Name" %><br />
-    <%= form.text_field :last_name, :class => "span-6" %>
+    <%= form.text_field :last_name, :class => "span-6", :required => true %>
   </div>
 
   <div class="span-6 append-bottom">
     <%= form.label :login %><br />
-    <%= form.text_field :login, :class => "span-6" %>
+    <%= form.text_field :login, :class => "span-6", :required => true %>
   </div>
 <% end %>
 
   <div class="span-6 append-bottom last">
     <%= form.label :email %><br />
-    <%= form.text_field :email, :class => "span-6" %>
+    <%= form.text_field :email, :class => "span-6", :required => true, :type => 'email' %>
   </div>
 
   <br class="clear">
@@ -76,15 +76,15 @@
   </div>
   <div class="span-6 append-bottom">
   	<%= form.label :employment_start_date %><br />
-  	<%= form.date_select :employment_start_date, :include_blank => true %>
+  	<%= form.text_field :employment_start_date, 'data-role' => 'datepicker', :readonly => true %>
   </div>
   <div class="span-6 append-bottom last">
   	<%= form.label :employment_end_date %><br />
-  	<%= form.date_select :employment_end_date, :include_blank => true %>
+  	<%= form.text_field :employment_end_date, 'data-role' => 'datepicker' %>
   </div>
   <div class="span-6 append-bottom">
   	<%= form.label :employment_notes %><br />
-  	<%= form.text_area :employment_notes %>
+  	<%= form.text_area :employment_notes, :rows => 5, :cols => 73 %>
   </div>
 <% end %>
   <br class="clear">
@@ -98,8 +98,8 @@
 
   <div class="span-6 last append-bottom">
     <%= form.label :bank_overtime_hours, "Overtime Structure" %><br>
-    <%= form.radio_button "bank_overtime_hours", true %> Bank Overtime<br>
-    <%= form.radio_button "bank_overtime_hours", false %> Pay Overtime
+    <%= form.radio_button "bank_overtime_hours", true, :required => true %> Bank Overtime<br>
+    <%= form.radio_button "bank_overtime_hours", false, :required => true %> Pay Overtime
   </div>
 
   <label>Roles</label>

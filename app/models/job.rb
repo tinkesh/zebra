@@ -17,6 +17,8 @@ class Job < ActiveRecord::Base
   accepts_nested_attributes_for :job_markings, :reject_if => lambda { |a| a[:gun_marking_category_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :job_locations, :reject_if => lambda { |a| a[:name].blank? },  :allow_destroy => true
 
+  validates_presence_of :name
+
   # Is active or not
   scope :active, -> { where(:is_archived => false) }
 

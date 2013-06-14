@@ -12,8 +12,8 @@ class TimeSheet < ActiveRecord::Base
   accepts_nested_attributes_for :time_entries, :allow_destroy => true
 
   validates_presence_of :lunch, :on => :create, :message => "can't be blank"
-  validates :hotel, :fuel, :presence => true
-  validates :hotel, :fuel, :numericality => true
+  validates_presence_of :hotel, :fuel
+  validates_numericality_of :hotel, :fuel
 
   before_create :record_per_diem_rate
   before_create :record_fuel_rate
@@ -31,6 +31,7 @@ class TimeSheet < ActiveRecord::Base
 
   validate do
     QUESTIONS.each_pair do |key, value|
+      self.questions[key] ||= {}
       if self.questions[key]['answer'].blank?
         self.errors.add :base, "Please answer <strong>#{value}</strong>"
       end

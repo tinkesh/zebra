@@ -14,6 +14,8 @@ class GunSheet < ActiveRecord::Base
                          :skip_y1, :skip_y2, :skip_y3, :skip_w4,
                          :skip_w5, :skip_w6, :skip_w7], :on => :create, :message => "can't be blank"
 
+  validates_presence_of :started_on, :completed_on
+
   after_create :deliver_new_gun_sheet, :verify_actual_vs_expected_production
 
 

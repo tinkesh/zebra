@@ -43,7 +43,7 @@
           <%= check_box_tag 'gun_sheet_ids[]', gun_sheet.id %>
         </td>
         <td><%= gun_sheet.id %></td>
-        <td><%= gun_sheet.started_on.strftime('%b-%d-%y') %></td>
+        <td><%= gun_sheet.started_on.strftime('%b-%d-%y') rescue '-' %></td>
         <td>
           <% if gun_sheet.job %>
             <%= aaa_highlight(job_label(gun_sheet.job)) %>

@@ -94,7 +94,7 @@
     </tr>
     <tr>
       <td>OT</td>
-      <td><%= if @user.bank_overtime_hours : "Bank" else "Pay Out" end %></td>
+      <td><%= if @user.bank_overtime_hours then "Bank" else "Pay Out" end %></td>
     </tr>
     <tr>
       <td>Roles</td>

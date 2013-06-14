@@ -26,7 +26,7 @@
 <ul>
 <% @unassigned_equipment.each do |e| %>
 <li>
-  <span class="equipment-<%= e.color %>"><%= "#{e.unit} — #{e.name}" %></span>
+  <a class="equipment-<%= e.color %>" href="<%= private_equipment_path(e) %>"><%= "#{e.unit} — #{e.name}" %></a>
 </li>
 <% end %>
 </ul>

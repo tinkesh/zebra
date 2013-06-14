@@ -4,6 +4,8 @@ class Crew < ActiveRecord::Base
   has_and_belongs_to_many :equipments
   has_many :users
 
+  validates_presence_of :name
+
   def label
     label = 'Crew #' + self.id.to_s
     label += ", " + self.name if self.name
