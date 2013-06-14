@@ -34,7 +34,7 @@
 </tr>
 
 <%= form.fields_for :time_tasks do |builder| %>
-  <%= render 'time_task_fields', :form => builder %>
+  <%= render 'time_task_fields.html.erb', :form => builder %>
 <% end %>
 
 </table>
