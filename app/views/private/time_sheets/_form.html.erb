@@ -8,12 +8,12 @@
 
 <div class="span-4 append-bottom">
   <%= form.label :fuel, "Purchased Fuel Litres" %><br>
-  <%= form.text_field :fuel, :class => "span-4", :required => true, :type => :number %>
+  <%= form.text_field :fuel, :class => "span-4", :required => true, :type => :number, :step => 'any' %>
 </div>
 
 <div class="span-6 append-bottom">
   <%= form.label :hotel, "Hotel Cost" %><br>
-  <%= form.text_field :hotel, :class => "span-4", :required => true, :type => :number %>
+  <%= form.text_field :hotel, :class => "span-4", :required => true, :type => :number, :step => 'any' %>
 </div>
 
 <div class="span-4 append-bottom">
