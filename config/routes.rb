@@ -1,9 +1,9 @@
 AaaStriping::Application.routes.draw do
   # public forms
-  match 'careers' => 'public/careers#new', :as => :new_career
-  match 'careers/create' => 'public/careers#create', :as => :create_career
-  match 'contact' => 'public/contacts#new', :as => :new_contact
-  match 'contact/create' => 'public/contacts#create', :as => :create_contact
+  # match 'careers' => 'public/careers#new', :as => :new_career
+  # match 'careers/create' => 'public/careers#create', :as => :create_career
+  # match 'contact' => 'public/contacts#new', :as => :new_contact
+  # match 'contact/create' => 'public/contacts#create', :as => :create_contact
 
   # private forms
   namespace :private, :path => 'admin' do
@@ -78,31 +78,31 @@ AaaStriping::Application.routes.draw do
   match 'logout' => 'user_sessions#destroy', :as => :logout
 
   # public content pages
-  match '/about' => 'public#about', :as => :about
-  match '/contacts' => 'public#contacts_redirect', :as => :contacts_redirect
-  match '/equipment-for-sale' => 'public#equipment_for_sale', :as => :equipment_for_sale
-  match '/products/plastiroute-mma-cold-plastic' => 'public#products_mma_cold_plastic', :as => :products_mma_cold_plastic
-  match '/products/plastiroute-aquaplast' => 'public#products_aquaplast', :as => :products_aquaplast
-  match '/products/cleanosol-thermoplastic' => 'public#products_cleanosol', :as => :products_cleanosol
-  match '/products/glass-bead' => 'public#products_glass_bead', :as => :products_glass_bead
-  match '/products' => 'public#products', :as => :products
-  match '/remove-paint-on-a-car' => 'public#remove_paint_on_a_car', :as => :remove_paint_on_a_car
-  match '/services' => 'public#services', :as => :services
-  match '/services/agglomerate' => 'public#services_aggolmerate', :as => :services_aggolmerate
-  match '/services/aquaflex-intermix' => 'public#services_aquaflex_intermix', :as => :services_aquaflex_intermix
-  match '/services/highway-beacon' => 'public#services_highway_beacon', :as => :services_highway_beacon
-  match '/services/hot-thermoplastic' => 'public#services_hot_thermoplastic', :as => :services_hot_thermoplastic
-  match '/services/line-painting' => 'public#services_line_painting', :as => :services_line_painting
-  match '/services/line-removal' => 'public#services_line_removal', :as => :services_line_removal
-  match '/services/mma-durables' => 'public#services_mma_durables', :as => :services_mma_durables
-  match '/services/seal-coating' => 'public#services_seal_coating', :as => :services_seal_coating
-  match '/services/parking-lot-maintenance' => 'public#services_parking_lot_maintenance', :as => :services_parking_lot
-  match '/suppliers' => 'public#suppliers', :as => :suppliers
-  match '/services/fast-dry-paint-with-the-twin-dry-system' => 'public#services_fast_dry_paint', :as => :services_fast_dry_paint
-  match '/thankyou' => 'public#thankyou', :as => :thankyou
-  match '/services/wet-night-visibility/agglomerate-structured-marking' => 'public#wet_night_aggolmerate', :as => :wet_night_aggolmerate
-  match '/services/wet-night-visibility/dotflex-mma-cold-plastic' => 'public#wet_night_dotflex', :as => :wet_night_dotflex
-  match '/services/wet-night-visibility/droponlinetm-hot-thermoplastic' => 'public#wet_night_droponlinetm', :as => :wet_night_droponlinetm
+  # match '/about' => 'public#about', :as => :about
+  # match '/contacts' => 'public#contacts_redirect', :as => :contacts_redirect
+  # match '/equipment-for-sale' => 'public#equipment_for_sale', :as => :equipment_for_sale
+  # match '/products/plastiroute-mma-cold-plastic' => 'public#products_mma_cold_plastic', :as => :products_mma_cold_plastic
+  # match '/products/plastiroute-aquaplast' => 'public#products_aquaplast', :as => :products_aquaplast
+  # match '/products/cleanosol-thermoplastic' => 'public#products_cleanosol', :as => :products_cleanosol
+  # match '/products/glass-bead' => 'public#products_glass_bead', :as => :products_glass_bead
+  # match '/products' => 'public#products', :as => :products
+  # match '/remove-paint-on-a-car' => 'public#remove_paint_on_a_car', :as => :remove_paint_on_a_car
+  # match '/services' => 'public#services', :as => :services
+  # match '/services/agglomerate' => 'public#services_aggolmerate', :as => :services_aggolmerate
+  # match '/services/aquaflex-intermix' => 'public#services_aquaflex_intermix', :as => :services_aquaflex_intermix
+  # match '/services/highway-beacon' => 'public#services_highway_beacon', :as => :services_highway_beacon
+  # match '/services/hot-thermoplastic' => 'public#services_hot_thermoplastic', :as => :services_hot_thermoplastic
+  # match '/services/line-painting' => 'public#services_line_painting', :as => :services_line_painting
+  # match '/services/line-removal' => 'public#services_line_removal', :as => :services_line_removal
+  # match '/services/mma-durables' => 'public#services_mma_durables', :as => :services_mma_durables
+  # match '/services/seal-coating' => 'public#services_seal_coating', :as => :services_seal_coating
+  # match '/services/parking-lot-maintenance' => 'public#services_parking_lot_maintenance', :as => :services_parking_lot
+  # match '/suppliers' => 'public#suppliers', :as => :suppliers
+  # match '/services/fast-dry-paint-with-the-twin-dry-system' => 'public#services_fast_dry_paint', :as => :services_fast_dry_paint
+  # match '/thankyou' => 'public#thankyou', :as => :thankyou
+  # match '/services/wet-night-visibility/agglomerate-structured-marking' => 'public#wet_night_aggolmerate', :as => :wet_night_aggolmerate
+  # match '/services/wet-night-visibility/dotflex-mma-cold-plastic' => 'public#wet_night_dotflex', :as => :wet_night_dotflex
+  # match '/services/wet-night-visibility/droponlinetm-hot-thermoplastic' => 'public#wet_night_droponlinetm', :as => :wet_night_droponlinetm
 
-  root :to => "public#home"
+  root :to => redirect('/login')
 end
