@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require_self
 //= require_tree ./base
 //= require_tree ./elements
+
+jQuery.noConflict()
