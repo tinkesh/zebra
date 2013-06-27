@@ -12,5 +12,5 @@ AaaStriping::Application.configure do
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[AAAS] ",
     :sender_address => %{"AAAS" <error@aaastriping.com>},
-    :exception_recipients => %w{dana@agilestyle.com}
+    :exception_recipients => %w{errors@agilestyle.com}
 end
