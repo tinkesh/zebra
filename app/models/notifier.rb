@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default_url_options[:host] = "aaastriping.ca"
+  default_url_options[:host] = "www.zebraonline.ca"
 
   def password_reset_instructions(user)
     subject       "[AAAS] Password Reset"

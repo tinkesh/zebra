@@ -7,7 +7,7 @@ AaaStriping::Application.configure do
 
   config.log_level = :debug
 
-  config.action_mailer.default_url_options = { :host => "www.appname.com" }
+  config.action_mailer.default_url_options = { :host => "www.zebraonline.ca" }
 
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[AAAS] ",

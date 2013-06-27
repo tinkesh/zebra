@@ -98,7 +98,7 @@ module AaaStriping
     ## Email
     #################
 
-    config.action_mailer.default_url_options = { :host => "appname.com" }
+    config.action_mailer.default_url_options = { :host => "www.zebraonline.ca" }
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.default :charset => "utf-8"
