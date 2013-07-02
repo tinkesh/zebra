@@ -117,6 +117,9 @@
 
 <h3>Markings</h3>
 <%= form.fields_for :gun_markings do |builder| %>
-  <%= render 'gun_markings_fields', :form => builder %>
+  <%= render 'gun_marking_fields', :form => builder %>
 <% end %>
+
+<p><%= link_to_add_fields "Add Another Marking Quantity", form, :gun_markings %></p>
+
     </div>

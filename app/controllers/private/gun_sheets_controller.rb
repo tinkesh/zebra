@@ -49,7 +49,9 @@ class Private::GunSheetsController < ApplicationController
       flash[:notice] = "Gun Sheet created!"
       redirect_to private_job_url(:id => @job.id)
     else
-      4.times do @gun_sheet.gun_markings.build end
+      if @gun_sheet.gun_markings.count < 5 and in_mobile_view?
+        4.times do @gun_sheet.gun_markings.build end
+      end
       render :action => :new
     end
   end
@@ -59,7 +61,9 @@ class Private::GunSheetsController < ApplicationController
     @job = Job.find(@gun_sheet.job_id)
     load_gun_sheet_supporting_data
 
-    4.times do @gun_sheet.gun_markings.build end
+    if @gun_sheet.gun_markings.count < 5 and in_mobile_view?
+      4.times do @gun_sheet.gun_markings.build end
+    end
 
     @page_title = "Edit Gun Sheet ##{@gun_sheet.id}"
   end
@@ -71,7 +75,9 @@ class Private::GunSheetsController < ApplicationController
       flash[:notice] = "Gun Sheet updated!"
       redirect_to private_gun_sheet_url(@gun_sheet)
     else
-      4.times do @gun_sheet.gun_markings.build end
+      if @gun_sheet.gun_markings.count < 5 and in_mobile_view?
+        4.times do @gun_sheet.gun_markings.build end
+      end
       render :action => :edit
     end
   end
