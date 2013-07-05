@@ -24,7 +24,9 @@ class Private::GunSheetsController < ApplicationController
   end
 
   def new
-    @job = Job.find(params[:job_id])
+    @jobs = current_user.crew.jobs
+    @job = (params[:job_id] ? Job.find(params[:job_id]) : @jobs.first)
+
     @gun_sheet = GunSheet.new
     @gun_sheet.created_by = current_user.id
     load_gun_sheet_supporting_data
@@ -36,11 +38,13 @@ class Private::GunSheetsController < ApplicationController
 
     2.times do @gun_sheet.gun_markings.build end
 
-    @page_title = "New Gun Sheet for " + @job.label
+    @page_title = "New Gun Sheet"
   end
 
   def create
-    @job = Job.find(params[:job_id])
+    @jobs = current_user.crew.jobs
+    @job = (params[:job_id] ? Job.find(params[:job_id]) : @jobs.first)
+
     @gun_sheet = @job.gun_sheets.build(params[:gun_sheet])
     @gun_sheet.created_by= current_user.id
     load_gun_sheet_supporting_data
@@ -96,7 +100,7 @@ class Private::GunSheetsController < ApplicationController
 private
 
   def load_gun_sheet_supporting_data
-    @job = Job.find(params[:job_id]) if params[:job_id]
+    #@job = Job.find(params[:job_id]) if params[:job_id]
     @job_locations = @job.job_locations
     @clients = Client.order(:name)
     @allequipment = Equipment.order(:unit)

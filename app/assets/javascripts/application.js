@@ -15,5 +15,6 @@
 //= require_self
 //= require_tree ./base
 //= require_tree ./elements
+//= require_tree ./pages
 
 jQuery.noConflict()

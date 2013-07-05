@@ -1,4 +1,17 @@
 <div class="container">
+
+<div class="span-12 last">
+  <% if @jobs %>
+    <%= form.label :job_id, "Job" %><br>
+    <%= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id] %>
+  <% else %>
+    <p class='error'>You cannot assign this gun sheet to a job. This is either because you have no crew, or your crew has no jobs.</p>
+  <% end %>
+</div>
+
+<br class="clear">
+<br class="clear">
+
 <div class="span-12 append-bottom">
   <%= form.label :note, "Comments" %><br>
   <%= form.text_field "note", :class => "span-12" %>
@@ -116,9 +129,11 @@
 <hr>
 
 <h3>Markings</h3>
-<%= form.fields_for :gun_markings do |builder| %>
-  <%= render 'gun_marking_fields', :form => builder %>
-<% end %>
+<div id="gun_marking_fields">
+  <%= form.fields_for :gun_markings do |builder| %>
+    <%= render 'gun_marking_fields', :form => builder %>
+  <% end %>
+</div>
 
 <p><%= link_to_add_fields "Add Another Marking Quantity", form, :gun_markings %></p>
 
