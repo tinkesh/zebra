@@ -25,7 +25,14 @@ class Private::GunSheetsController < ApplicationController
 
   def new
     @jobs = current_user.crew.jobs
-    @job = (params[:job_id] ? Job.find(params[:job_id]) : @jobs.first)
+
+    if (params[:gun_sheet][:job_id].present? rescue false)
+      @job = Job.find(params[:gun_sheet][:job_id])
+    elsif params[:job_id].present?
+      @job = Job.find(params[:job_id])
+    else
+      @job = @jobs.first
+    end
 
     @gun_sheet = GunSheet.new
     @gun_sheet.created_by = current_user.id
@@ -43,15 +50,30 @@ class Private::GunSheetsController < ApplicationController
 
   def create
     @jobs = current_user.crew.jobs
-    @job = (params[:job_id] ? Job.find(params[:job_id]) : @jobs.first)
+
+    if (params[:gun_sheet][:job_id].present? rescue false)
+      @job = Job.find(params[:gun_sheet][:job_id])
+    elsif params[:job_id].present?
+      @job = Job.find(params[:job_id])
+    else
+      @job = @jobs.first
+    end
 
     @gun_sheet = @job.gun_sheets.build(params[:gun_sheet])
     @gun_sheet.created_by= current_user.id
     load_gun_sheet_supporting_data
+    @gun_sheet.daily_report = current_user.daily_report
 
     if @gun_sheet.save
-      flash[:notice] = "Gun Sheet created!"
-      redirect_to private_job_url(:id => @job.id)
+      flash[:success] = "Gun Sheet created!"
+
+      if params[:submit_and_create_another_gun_sheet].present?
+        redirect_to new_private_job_gun_sheet_path(:job_id => @job.id)
+      elsif current_user.daily_report.present?   # We are in a Clock Out wizard process. Go to the next step
+        redirect_to private_daily_report_path(:finished)
+      else
+        redirect_to private_job_url(:id => @job.id)
+      end
     else
       if @gun_sheet.gun_markings.count < 5 and in_mobile_view?
         4.times do @gun_sheet.gun_markings.build end

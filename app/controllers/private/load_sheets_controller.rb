@@ -32,16 +32,16 @@ class Private::LoadSheetsController < ApplicationController
     @load_sheet = LoadSheet.new(params[:load_sheet])
     load_load_sheet_supporting_data
     @page_title = "New Load Sheet"
+    @load_sheet.daily_report = current_user.daily_report
+
     if @load_sheet.save
+      flash[:success] = "Load Sheet created!"
       if params[:submit_and_create_another_load_sheet].present?
-        flash[:success] = "Load Sheet created!"
         redirect_to new_private_load_sheet_path
       elsif current_user.daily_report.present?   # We are in a Clock Out wizard process. Go to the next step
-        flash[:success] = "Load Sheet created!"
-        redirect_to private_daily_report_path(:painted)
+        redirect_to private_daily_report_path(:paint)
       else
         if @load_sheet.job
-          flash[:success] = "Load Sheet created!"
           redirect_to private_job_url(:id => @load_sheet.job_id)
         else
           flash[:success] = "Load Sheet created! Redirected to home since there was no job assigned to the load sheet."
