@@ -59,6 +59,8 @@ GEM
     excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
     haml (4.0.3)
       tilt
     heroku (2.34.0)
@@ -139,6 +141,9 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    wicked (0.5.0)
+      activesupport (>= 3.0.7)
+      rails (>= 3.0.7)
     will_paginate (3.0.4)
     wirble (0.1.3)
 
@@ -155,6 +160,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   declarative_authorization
   exception_notification (= 2.6.1)
+  formtastic
   haml
   heroku
   jquery-rails
@@ -166,5 +172,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   stringex
   uglifier (>= 1.0.3)
+  wicked
   will_paginate
   wirble

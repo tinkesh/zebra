@@ -37,3 +37,7 @@ gem 'active_link_to'
 #gem "searchlogic"  Doesn't work with rails3
 gem 'RedCloth'
 gem 'exception_notification', "= 2.6.1", :require => 'exception_notifier'
+
+gem 'formtastic'
+gem 'haml'
+gem 'wicked'
