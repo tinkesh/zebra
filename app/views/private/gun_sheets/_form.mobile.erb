@@ -1,4 +1,14 @@
 <table>
+  <% if @jobs %>
+    <tr>
+      <td>
+        <%= form.label :job_id, "Job" %>
+      </td>
+      <td>
+        <%= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id] %>
+      </td>
+    </tr>
+  <% end %>
   <tr>
   <td><%= form.label :note, "Note:" %></td>
   <td><%= form.text_field "note", :size => "20" %></td>
