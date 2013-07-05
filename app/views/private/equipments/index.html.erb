@@ -27,11 +27,11 @@
   </tr>
 
 <% @equipment.each do |equipment| %>
-  <tr onclick="window.location='<%= private_equipment_path(equipment.id) %>'" class="equipment-<%= equipment.color %>">
+  <tr class="equipment-<%= equipment.color %>">
     <td>
       <%= image_tag 'black_flag.png', :size => '15x15', :title => 'CVIP Date is almost a year ago'         if equipment.black_flag? %>
       <%= image_tag 'red_flag.png',   :size => '15x15', :title => 'Registration Date is almost a year ago' if equipment.red_flag? %>
-      <%= equipment.name %>
+      <%= link_to equipment.name, private_equipment_path(equipment) %>
     </td>
     <td><%= equipment.unit %></td>
     <td><%= equipment.plate_number %></td>

@@ -28,8 +28,8 @@
     <% i += 1 %>
   <% end %>
 
-  <tr class="<%= job.get_completion_color_class_name %>" onclick="window.location='<%= private_job_path(job.id) %>'">
-    <td><%= job.id %></td>
+  <tr class="<%= job.get_completion_color_class_name %>">
+    <td><%= link_to "##{job.id}", private_job_path(job) %></td>
     <td><%= aaa_highlight(job.name) %></td>
     <td class="right"><%= job.completion.name rescue "-" %></td>
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
