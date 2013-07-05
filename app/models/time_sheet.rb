@@ -42,6 +42,10 @@ class TimeSheet < ActiveRecord::Base
     SiteMailer.new_time_sheet(self).deliver
   end
 
+  def questions
+    self[:questions] || {}
+  end
+
   def check_hours_of_user_time(entries)
     total_time = 0
     today_time = 0

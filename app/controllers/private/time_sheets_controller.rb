@@ -25,6 +25,7 @@ class Private::TimeSheetsController < ApplicationController
 
     load_time_sheet_job_and_crew_info
     load_time_sheet_supporting_data
+    assign_daily_report_info
 
     5.times { @time_sheet.time_tasks.build }
 
@@ -37,6 +38,8 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.new(params[:time_sheet])
     @time_sheet.created_by = current_user.id
     if @time_sheet.save
+      current_user.daily_report.try(:destroy)  # This means the user has finished and is no longer in the 'submit a daily report' mode
+
       if params[:time_entry_ids]
         params[:time_entry_ids].each do |entry|
           @entry = TimeEntry.find(entry)
@@ -56,7 +59,6 @@ class Private::TimeSheetsController < ApplicationController
             end
           end
         end
-
       end
 
       flash[:notice] = "Time Sheet created!"
@@ -118,6 +120,9 @@ private
       @jobs = Job.all
       @entries = TimeEntry.where(:time_sheet_id => nil).includes(:user).all
     end
+
+    @load_sheets = current_user.try(:daily_report).try(:load_sheets)
+    @gun_sheets = current_user.try(:daily_report).try(:load_sheets)
   end
 
   def generate_front_to_back
@@ -131,6 +136,17 @@ private
     else
       @back = @date.year.to_s + "-" + @date.month.to_s + "-" + "24"
       @front = next_month.year.to_s + "-" + next_month.month.to_s + "-" + "24"
+    end
+  end
+
+  def assign_daily_report_info
+    if current_user.daily_report.present?
+      # Theres a little bit of vomit in my mouth as I write this
+      @time_sheet.questions[:load] = Hash.new()
+      @time_sheet.questions[:load][:answer] = (current_user.daily_report.loaded? ? 'yes' : 'no')
+
+      @time_sheet.questions[:paint] = Hash.new()
+      @time_sheet.questions[:paint][:answer] = (current_user.daily_report.painted? ? 'yes' : 'no')
     end
   end
 
