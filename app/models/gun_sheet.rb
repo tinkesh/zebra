@@ -3,6 +3,7 @@ class GunSheet < ActiveRecord::Base
 
   belongs_to :job
   belongs_to :equipment
+  belongs_to :daily_report
   belongs_to :job_location
   belongs_to :user, :foreign_key => "created_by"
   has_many :gun_markings, :dependent => :destroy

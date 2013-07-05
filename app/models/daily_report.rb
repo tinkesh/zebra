@@ -1,5 +1,7 @@
 class DailyReport < ActiveRecord::Base
   belongs_to :user
+  has_many :load_sheets
+  has_many :gun_sheets
 
   # loaded
   # painted

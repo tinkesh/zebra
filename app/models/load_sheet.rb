@@ -3,6 +3,7 @@ class LoadSheet < ActiveRecord::Base
 
   belongs_to :job
   belongs_to :equipment
+  belongs_to :daily_report
   has_many :load_entries, :dependent => :destroy
   has_many :material_reports
   accepts_nested_attributes_for :load_entries, :reject_if => lambda { |a| a[:material_id].blank? }, :allow_destroy => true

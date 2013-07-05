@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705181150) do
+ActiveRecord::Schema.define(:version => 20130705220013) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -207,6 +207,7 @@ ActiveRecord::Schema.define(:version => 20130705181150) do
     t.datetime "versioned_at"
     t.date     "completed_on"
     t.integer  "equipment_id"
+    t.integer  "daily_report_id"
   end
 
   add_index "gun_sheets", ["job_id"], :name => "index_gun_sheets_on_job_id"
@@ -322,6 +323,7 @@ ActiveRecord::Schema.define(:version => 20130705181150) do
     t.decimal  "adjusted_yellow_dip_end"
     t.decimal  "adjusted_white_dip_start"
     t.decimal  "adjusted_white_dip_end"
+    t.integer  "daily_report_id"
   end
 
   add_index "load_sheets", ["job_id"], :name => "index_load_sheets_on_job_id"
