@@ -7,8 +7,8 @@ class RecreateTimeEntries < ActiveRecord::Migration
       t.integer :user_id
       t.integer :time_sheet_id
       t.date :date
-      t.time :clock_in
-      t.time :clock_out
+      t.datetime :clock_in
+      t.datetime :clock_out
       t.string :note
       t.decimal :rate
       t.datetime :clocked_in_at
