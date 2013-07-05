@@ -33,6 +33,7 @@ AaaStriping::Application.routes.draw do
     resources :report_summaries, :only => [:index]
     resources :materials
     resources :time_sheets
+    resources :daily_reports
     resources :time_note_categories
     resources :time_task_categories
     match 'archived_jobs' => 'jobs#archived_jobs', :as => :archived_jobs

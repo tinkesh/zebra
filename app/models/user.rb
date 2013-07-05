@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :time_entries
   has_and_belongs_to_many :roles
 
+  has_one :daily_report # This object, if exists, means the User is going through the Clock Out process.
+
   has_many :gun_sheets, :foreign_key => "created_by"
 
   validates_presence_of :first_name, :last_name, :rate, :employment_start_date
