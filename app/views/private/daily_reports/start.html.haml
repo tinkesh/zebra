@@ -1,0 +1,8 @@
+= render :partial => 'breadcrumb'
+
+%p Load sheet(s) are required if you have loaded today.
+
+= semantic_form_for [:private, @daily_report], :url => wizard_path, :method => :put do |f|
+  = f.input :loaded, :label => 'Did you load today?', :as => :radio
+
+  = f.action :submit, :label => 'Submit'

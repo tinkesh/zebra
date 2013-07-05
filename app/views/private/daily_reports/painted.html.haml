@@ -1,0 +1,8 @@
+= render :partial => 'breadcrumb'
+
+%p Gun sheet(s) are required if you have painted today.
+
+= semantic_form_for [:private, @daily_report], :url => wizard_path, :method => :put do |f|
+  = f.input :painted, :label => 'Did you paint today?', :as => :radio
+
+  = f.action :submit, :label => 'Submit'
