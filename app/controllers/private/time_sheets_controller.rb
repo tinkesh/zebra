@@ -23,19 +23,9 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.new
     @time_sheet.created_by = current_user.id
 
-    if current_user.crew
-      user_ids = []
-      @users = current_user.crew.users
-      @users.each { |u| user_ids << u.id }
-      @jobs = current_user.crew.jobs
-      @entries = TimeEntry.where(:time_sheet_id => nil, :user_id => user_ids).includes(:user).all
-    else
-      @users = User.where(:employment_state => "Employed").all
-      @jobs = Job.all
-      @entries = TimeEntry.where(:time_sheet_id => nil).includes(:user).all
-    end
-
+    load_time_sheet_job_and_crew_info
     load_time_sheet_supporting_data
+
     5.times { @time_sheet.time_tasks.build }
 
     @page_title = "Submit Time Sheet"
@@ -47,7 +37,6 @@ class Private::TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.new(params[:time_sheet])
     @time_sheet.created_by = current_user.id
     if @time_sheet.save
-
       if params[:time_entry_ids]
         params[:time_entry_ids].each do |entry|
           @entry = TimeEntry.find(entry)
@@ -73,6 +62,7 @@ class Private::TimeSheetsController < ApplicationController
       flash[:notice] = "Time Sheet created!"
       redirect_to private_home_url
     else
+      load_time_sheet_job_and_crew_info
       render :action => :new
     end
   end
@@ -113,6 +103,20 @@ private
       @lunch_selections = [0, 30, 45, 60, 75, 90, 105, 120, 150, 180, 210, 240, 270, 300]
     else
       @lunch_selections = [30, 45, 60, 75, 90, 105, 120]
+    end
+  end
+
+  def load_time_sheet_job_and_crew_info
+    if current_user.crew
+      user_ids = []
+      @users = current_user.crew.users
+      @users.each { |u| user_ids << u.id }
+      @jobs = current_user.crew.jobs
+      @entries = TimeEntry.where(:time_sheet_id => nil, :user_id => user_ids).includes(:user).all
+    else
+      @users = User.where(:employment_state => "Employed").all
+      @jobs = Job.all
+      @entries = TimeEntry.where(:time_sheet_id => nil).includes(:user).all
     end
   end
 
