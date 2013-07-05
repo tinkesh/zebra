@@ -36,6 +36,9 @@ class Private::LoadSheetsController < ApplicationController
       if params[:submit_and_create_another_load_sheet].present?
         flash[:success] = "Load Sheet created!"
         redirect_to new_private_load_sheet_path
+      elsif current_user.daily_report.present?   # We are in a Clock Out wizard process. Go to the next step
+        flash[:success] = "Load Sheet created!"
+        redirect_to private_daily_report_path(:painted)
       else
         if @load_sheet.job
           flash[:success] = "Load Sheet created!"
