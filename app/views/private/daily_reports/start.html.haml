@@ -2,7 +2,13 @@
 
 %p Load sheet(s) are required if you have loaded today.
 
+- if @load_sheets.present?
+  %p You have created the following load sheets:
+  = render :partial => 'private/load_sheets/load_sheets'
+
 = semantic_form_for [:private, @daily_report], :url => wizard_path, :method => :put do |f|
   = f.input :loaded, :label => 'Did you load today?', :as => :radio
 
-  = f.action :submit, :label => 'Submit'
+  = f.action :submit, :label => 'Proceed'
+  - if @load_sheets.present?
+    = link_to "I'm done entering load sheets", next_wizard_path

@@ -5,15 +5,9 @@ class Private::DailyReportsController < ApplicationController
   before_filter :load_supporting_data
   before_filter :set_page_title
 
-  steps :start, :painted
+  steps :start, :paint, :finished
 
   def show
-    case step
-    when :start  # Show user the 'Did I Load?' form
-    when :painted
-    else
-    end
-
     render_wizard
   end
 
@@ -27,12 +21,14 @@ class Private::DailyReportsController < ApplicationController
       else
         redirect_to next_wizard_path
       end
-    when :painted
+    when :paint
       if @daily_report.painted?
-        redirect_to new_private_gun_sheet_path(:job_id => current_user.crew.jobs.first)
+        redirect_to new_private_gun_sheet_path(:job_id => (current_user.crew.jobs.first rescue nil))
       else
         redirect_to next_wizard_path
       end
+    when :finished
+      redirect_to next_wizard_path
     else
     end
   end
@@ -46,6 +42,8 @@ class Private::DailyReportsController < ApplicationController
 
   def load_supporting_data
     @daily_report = current_user.daily_report || DailyReport.create(:user_id => current_user.id)
+    @load_sheets = @daily_report.load_sheets
+    @gun_sheets = @daily_report.gun_sheets
   end
 
   def set_page_title
