@@ -23,7 +23,7 @@
           <%= link_to image_tag("open-link.png"), private_job_path(gun_sheet.job_id) %>
         <% end %>
       </td>
-      <td><%= aaa_highlight("#{gun_sheet.job_location.try(:name)} #{gun_sheet.location_name}") %></td>
+      <td><%= aaa_highlight("#{(gun_sheet.job_location.try(:name) rescue 'No Location')} #{gun_sheet.location_name}") %></td>
       <td>
         <%= User.find(gun_sheet.created_by).name unless gun_sheet.created_by.blank? %>
       </td>
