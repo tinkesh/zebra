@@ -2,5 +2,8 @@
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <hr />
-  <%= f.submit "Create Gun Sheet" %>
+  <%= f.submit "Create Gun Sheet" %>,
+  <%= f.submit "Create and Add Another Gun Sheet", :name => 'submit_and_create_another_gun_sheet' %>
+  or
+  <%= link_to 'Cancel', private_home_path %>
 <% end %>

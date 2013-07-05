@@ -18,6 +18,9 @@
   <%= render :partial => "form", :object => f %>
   <br class="clear">
   <hr>
-  <%= f.submit "Create Gun Sheet" %> or <%= link_to 'Cancel', private_home_path %>
+  <%= f.submit "Create Gun Sheet" %>,
+  <%= f.submit "Create and Add Another Gun Sheet", :name => 'submit_and_create_another_gun_sheet' %>
+  or
+  <%= link_to 'Cancel', private_home_path %>
 <% end %>
     </div>
