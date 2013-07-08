@@ -1,0 +1,35 @@
+= render :partial => 'breadcrumb'
+
+- if @daily_report.loaded?
+  %p
+    You
+    %strong HAVE
+    loaded today
+
+  - if @load_sheets.present?
+    = render :partial => 'private/load_sheets/load_sheets'
+  - else
+    %ul
+      %li No load sheets
+
+- if @daily_report.painted?
+  %p
+    You
+    %strong HAVE
+    painted today
+
+  - if @gun_sheets.present?
+    = render :partial => 'private/gun_sheets/gun_sheets'
+  - else
+    %ul
+      %li No gun sheets
+
+= semantic_form_for [:private, @daily_report], :url => wizard_path, :method => :put do |f|
+  = f.action :submit, :label => 'Proceed to Time Sheet'
+
+%br
+
+%hr
+%ul
+  %li= link_to 'Back to have loaded?', private_daily_report_path(:start)
+  %li= link_to 'Back to have painted?', private_daily_report_path(:paint)

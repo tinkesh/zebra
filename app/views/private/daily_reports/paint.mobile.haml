@@ -1,0 +1,14 @@
+= render :partial => 'breadcrumb'
+
+%p Gun sheet(s) are required if you have painted today.
+
+- if @gun_sheets.present?
+  %p You have created the following gun sheets:
+  = render :partial => 'private/gun_sheets/gun_sheets'
+
+= semantic_form_for [:private, @daily_report], :url => wizard_path, :method => :put do |f|
+  = f.input :painted, :label => 'Did you paint today?', :as => :radio
+
+  = f.action :submit, :label => 'Proceed'
+  - if @gun_sheets.present?
+    = link_to "I'm done entering gun sheets", next_wizard_path
