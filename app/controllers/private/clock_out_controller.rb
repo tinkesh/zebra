@@ -29,6 +29,8 @@ class Private::ClockOutController < ApplicationController
     end
 
     if params[:users]
+      all_saved = true
+      clock_in_time = nil
       params[:users].each do |user|
         @entry = TimeEntry.where(:user_id => user, :clock_out => nil, :time_sheet_id => nil).first
         if @entry
@@ -37,9 +39,19 @@ class Private::ClockOutController < ApplicationController
             @entry.clock_out = Time.zone.parse(@clock_out_time)
             @entry.clocked_out_at = Time.zone.now
           end
-          @entry.save
+          if not @entry.save # if entry not saved (validations), then mark the flag
+            all_saved = false
+            clock_in_time = @entry.clock_in
+          end
         end
       end
+    end
+
+    if all_saved == false
+      # if not all entries saved
+      flash[:error] = "Clock Out Time should be later than Clock In Time (<strong>#{clock_in_time.strftime('%Y-%m-%d %H:%M')}</strong>)".html_safe
+      redirect_to :back
+      return
     end
 
     if params[:navigate]

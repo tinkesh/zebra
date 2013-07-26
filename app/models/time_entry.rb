@@ -3,6 +3,12 @@ class TimeEntry < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :jobs
 
+  validate do |time_entry|
+    if self.clock_out.present? and self.clock_in.present? and self.clock_out <= self.clock_in
+      self.errors.add :base, "Clock Out Time should be later than Clock In Time (<strong>#{self.clock_in.strftime('%Y-%m-%d %H:%M')}</strong>)".html_safe
+    end
+  end
+
   def hours
     if self.clock_out && self.clock_in && self.time_sheet
       ((self.clock_out - self.clock_in - (self.time_sheet.lunch * 60))/3600)
