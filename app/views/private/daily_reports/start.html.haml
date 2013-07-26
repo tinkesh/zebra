@@ -7,7 +7,7 @@
   = render :partial => 'private/load_sheets/load_sheets'
 
 = semantic_form_for [:private, @daily_report], :url => wizard_path, :method => :put do |f|
-  = f.input :loaded, :label => 'Did you load today?', :as => :radio
+  = f.input :loaded, :label => 'Did you load today? <strong>Select Yes if you painted today.</strong> Then you will be able to enter start/end dip levels'.html_safe, :as => :radio
 
   = f.action :submit, :label => 'Proceed'
   - if @load_sheets.present?

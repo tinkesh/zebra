@@ -24,3 +24,7 @@ input[type="checkbox"], input[type="radio"], input.checkbox, input.radio { top:0
   width: 100%;
   float: none;
 }
+
+#daily_report_loaded_input label {
+  font-weight: normal;
+}
