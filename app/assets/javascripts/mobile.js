@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require ./pages/gun_sheets
+//= require ./elements/utils
 
 jQuery.noConflict()
