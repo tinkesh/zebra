@@ -125,8 +125,7 @@ private
     #@job = Job.find(params[:job_id]) if params[:job_id]
     @job_locations = @job.job_locations
     @clients = Client.order(:name)
-    @allequipment = Equipment.order(:unit)
-    @equipment = @allequipment.select{|item| item.unit.starts_with? 'LPT'}
+    @equipment = (current_user.crew.equipments.select{|item| item.unit.starts_with? 'LPT'} rescue [])
     @gun_marking_categories = GunMarkingCategory.order(:name)
   end
 
