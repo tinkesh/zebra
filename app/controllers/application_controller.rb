@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   before_filter { |c| Authorization.current_user = c.current_user}
   before_filter :set_time_zone
+  before_filter :require_user
 
   # rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
