@@ -17,7 +17,7 @@ class Private::DailyReportsController < ApplicationController
     case step
     when :start
       if @daily_report.loaded?
-        redirect_to new_private_load_sheet_path
+        redirect_to new_private_load_sheet_path(:job_id => (current_user.crew.jobs.first rescue nil))
       else
         redirect_to next_wizard_path
       end

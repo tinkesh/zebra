@@ -19,7 +19,7 @@ class Private::LoadSheetsController < ApplicationController
   end
 
   def new
-    @load_sheet = LoadSheet.new #(:date => Date.today)
+    @load_sheet = LoadSheet.new :job_id => params[:job_id]
     @crew = current_user.crew
     load_load_sheet_supporting_data
     6.times { @load_sheet.load_entries.build }
