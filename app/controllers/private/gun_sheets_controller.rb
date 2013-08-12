@@ -24,7 +24,7 @@ class Private::GunSheetsController < ApplicationController
   end
 
   def new
-    @jobs = current_user.crew.jobs
+    @jobs = (current_user.crew.jobs rescue [])
 
     if (params[:gun_sheet][:job_id].present? rescue false)
       @job = Job.find(params[:gun_sheet][:job_id])
