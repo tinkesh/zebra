@@ -23,7 +23,7 @@ authorization do
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets], :to => [:create, :show]
 
     has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage]
-    has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destory]
+    has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destroy]
 
   end
 
