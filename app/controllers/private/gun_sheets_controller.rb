@@ -37,9 +37,19 @@ class Private::GunSheetsController < ApplicationController
     @gun_sheet = GunSheet.new
     @gun_sheet.created_by = current_user.id
     load_gun_sheet_supporting_data
-    @job.job_markings.each do |marking|
-      @gun_sheet.gun_markings.build(:gun_marking_category_id => marking.gun_marking_category_id)
+    job_markings = @job.job_markings.includes(:gun_marking_category)
+
+    @job_gun_marking_categories = []
+
+    job_markings.each do |marking|
+      gun_marking_category = marking.gun_marking_category
+      next if gun_marking_category.blank? # in case they've deleted associated GunMarkingCategory
+
+      @job_gun_marking_categories << gun_marking_category
+
+      @gun_sheet.gun_markings.build(:gun_marking_category_id => gun_marking_category.id)
     end
+
 
     @gun_sheet.set_guns_to_zero
 

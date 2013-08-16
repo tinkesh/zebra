@@ -1,6 +1,14 @@
+<%
+  if form.object.gun_marking_category_id.present?
+    gun_marking_categories = @job_gun_marking_categories
+  else
+    gun_marking_categories = @gun_marking_categories
+  end
+%>
+
 <div class="span-14 append-bottom">
   <%= form.label :gun_marking_category_id, "Markings Type" %><br>
-  <%= form.select :gun_marking_category_id, @gun_marking_categories.map {|u| [u.name,u.id]}, :include_blank => true %>
+  <%= form.select :gun_marking_category_id, gun_marking_categories.map {|u| [u.name,u.id]}, :include_blank => true %>
 </div>
 
 <div class="span-2 append-bottom">
