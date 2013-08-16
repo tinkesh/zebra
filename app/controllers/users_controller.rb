@@ -9,8 +9,10 @@ class UsersController < ApplicationController
 
     if(params[:showonly] == 'inactive')
       @users = User.where("employment_state NOT LIKE ?", 'Employed')
+      @showing_active = false
     else
       @users = User.where(:employment_state => "Employed")
+      @showing_active = true
     end
 
     if params[:query].present?
