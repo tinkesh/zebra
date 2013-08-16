@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @page_title = "Users"
 
     if(params[:showonly] == 'inactive')
-      @users = User.where("eployment_state NOT LIKE ?", 'Employed')
+      @users = User.where("employment_state NOT LIKE ?", 'Employed')
     else
       @users = User.where(:employment_state => "Employed")
     end
