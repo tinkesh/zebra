@@ -97,6 +97,16 @@ class Private::GunSheetsController < ApplicationController
     @job = Job.find(@gun_sheet.job_id)
     load_gun_sheet_supporting_data
 
+    job_markings = @job.job_markings.includes(:gun_marking_category)
+
+    @job_gun_marking_categories = []
+
+    job_markings.each do |marking|
+      gun_marking_category = marking.gun_marking_category
+      next if gun_marking_category.blank? # in case they've deleted associated GunMarkingCategory
+      @job_gun_marking_categories << gun_marking_category
+    end
+
     if @gun_sheet.gun_markings.count < 5 and in_mobile_view?
       4.times do @gun_sheet.gun_markings.build end
     end
