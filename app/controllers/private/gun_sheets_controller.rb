@@ -143,7 +143,7 @@ private
 
   def load_gun_sheet_supporting_data
     #@job = Job.find(params[:job_id]) if params[:job_id]
-    @job_locations = @job.job_locations
+    @job_locations = @job.job_locations rescue []
     @clients = Client.order(:name)
     @equipment = (current_user.crew.equipments.select{|item| item.unit.starts_with? 'LPT'} rescue [])
     @gun_marking_categories = GunMarkingCategory.order(:name)
