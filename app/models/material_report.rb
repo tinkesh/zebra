@@ -34,7 +34,7 @@ class MaterialReport < ActiveRecord::Base
   def next_report
     material_reports = MaterialReport.by_equipment(self.load_sheet.equipment_id)
 
-    pos_in_reports = material_reports.index(self)
+    pos_in_reports = material_reports.index(self) || 0
 
     pos_in_reports < material_reports.length ? material_reports[pos_in_reports+1] : nil
   end
@@ -42,7 +42,7 @@ class MaterialReport < ActiveRecord::Base
   def prev_report
     material_reports = MaterialReport.by_equipment(self.load_sheet.equipment_id)
 
-    pos_in_reports = material_reports.index(self)
+    pos_in_reports = material_reports.index(self) || 0
 
     pos_in_reports > 0 ? material_reports[pos_in_reports-1] : nil
   end
