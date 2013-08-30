@@ -5,7 +5,7 @@
         <%= form.label :job_id, "Job" %>
       </td>
       <td>
-        <%= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id] %>
+        <%= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true %>
       </td>
     </tr>
   <% end %>

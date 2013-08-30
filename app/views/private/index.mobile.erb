@@ -17,7 +17,7 @@
 <% if @jobs || current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office) %>
   <%= form_tag private_navigate_path do -%>
 
-    <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', session[:navigate]) %></p>
+    <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', cookies[:selected_job_id]) %></p>
 
     <p>
        <% if permitted_to? :create, :private_clock_in -%>

@@ -17,13 +17,13 @@ class Private::DailyReportsController < ApplicationController
     case step
     when :start
       if @daily_report.loaded?
-        redirect_to new_private_load_sheet_path(:job_id => (current_user.crew.jobs.first rescue nil))
+        redirect_to new_private_load_sheet_path
       else
         redirect_to next_wizard_path
       end
     when :paint
       if @daily_report.painted?
-        redirect_to new_private_gun_sheet_path(:job_id => (current_user.crew.jobs.first rescue nil))
+        redirect_to new_private_gun_sheet_path
       else
         redirect_to next_wizard_path
       end

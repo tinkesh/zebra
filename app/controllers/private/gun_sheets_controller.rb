@@ -34,7 +34,7 @@ class Private::GunSheetsController < ApplicationController
       @job = @jobs.first
     end
 
-    @gun_sheet = GunSheet.new
+    @gun_sheet = GunSheet.new :job_id => cookies[:selected_job_id]
     @gun_sheet.created_by = current_user.id
     load_gun_sheet_supporting_data
     job_markings = @job.job_markings.includes(:gun_marking_category)
@@ -60,6 +60,7 @@ class Private::GunSheetsController < ApplicationController
 
   def create
     @jobs = (current_user.crew.jobs rescue [])
+    cookies.permanent[:selected_job_id] = params[:gun_sheet][:job_id]
 
     if (params[:gun_sheet][:job_id].present? rescue false)
       @job = Job.find(params[:gun_sheet][:job_id])
@@ -142,7 +143,6 @@ class Private::GunSheetsController < ApplicationController
 private
 
   def load_gun_sheet_supporting_data
-    #@job = Job.find(params[:job_id]) if params[:job_id]
     @job_locations = @job.job_locations rescue []
     @clients = Client.order(:name)
     @equipment = (current_user.crew.equipments.select{|item| item.unit.starts_with? 'LPT'} rescue [])

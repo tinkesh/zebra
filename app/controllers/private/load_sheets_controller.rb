@@ -19,7 +19,7 @@ class Private::LoadSheetsController < ApplicationController
   end
 
   def new
-    @load_sheet = LoadSheet.new :job_id => params[:job_id]
+    @load_sheet = LoadSheet.new :job_id => cookies[:selected_job_id]
     @crew = current_user.crew
     load_load_sheet_supporting_data
     6.times { @load_sheet.load_entries.build }
@@ -28,6 +28,7 @@ class Private::LoadSheetsController < ApplicationController
 
   def create
     @load_sheet = LoadSheet.new(params[:load_sheet])
+    cookies.permanent[:selected_job_id] = params[:load_sheet][:job_id]
     load_load_sheet_supporting_data
     @page_title = "New Load Sheet"
     @load_sheet.daily_report = current_user.daily_report

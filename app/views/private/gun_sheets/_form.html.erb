@@ -3,7 +3,7 @@
 <div class="span-12 last">
   <% if @jobs %>
     <%= form.label :job_id, "Job" %><br>
-    <%= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true, :selected => params[:job_id] %>
+    <%= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true %>
   <% end %>
 </div>
 

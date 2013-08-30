@@ -12,7 +12,7 @@
 <div class="span-10">
 <%= form_tag :controller => 'private', :action => "navigate" do %>
 
-  <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', session[:navigate]) %></p>
+  <p><%= select_tag 'job[id]', options_from_collection_for_select(@jobs, 'id', 'label', cookies[:selected_job_id]) %></p>
 
   <ul class="jobs">
     <% if permitted_to? :create, :private_clock_in -%>
