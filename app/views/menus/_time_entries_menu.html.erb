@@ -1,7 +1,7 @@
 <ol class="noprint">
 
   <% if permitted_to? :manage, :private_time_entries -%>
-    <li><%= active_link_to "Edit", private_time_entry_path(@time_entry) %></li>
+    <li><%= active_link_to "Edit", edit_private_time_entry_path(@time_entry) %></li>
   <% end %>
 
   <% if permitted_to? :time_entries, :private_reports -%>
