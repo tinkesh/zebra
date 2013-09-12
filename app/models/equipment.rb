@@ -56,14 +56,14 @@ class Equipment < ActiveRecord::Base
     if should_send_red_flag_alert?
       puts "---- sending Red Flag Alert"
       SiteMailer.equipment_alert(self, 'red_flag').deliver
-      self.red_flag_alert_sent_at = Time.now
+      self.red_flag_alert_sent_at = Time.zone.now
       self.save
     end
 
     if should_send_black_flag_alert?
       puts "---- sending Black Flag Alert"
       SiteMailer.equipment_alert(self, 'black_flag').deliver
-      self.black_flag_alert_sent_at = Time.now
+      self.black_flag_alert_sent_at = Time.zone.now
       self.save
     end
   end

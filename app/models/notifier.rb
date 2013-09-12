@@ -5,7 +5,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] Password Reset"
     from          "notify@aaastriping.ca"
     recipients    user.email
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)
   end
 
@@ -13,7 +13,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] New Time Sheet (##{time_sheet.id})"
     from          "notify@aaastriping.ca"
     recipients    "dorian@aaastriping.ca"
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :time_sheet => time_sheet
   end
 
@@ -21,7 +21,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] New Load Sheet (##{load_sheet.id})"
     from          "notify@aaastriping.ca"
     recipients    "dorian@aaastriping.ca"
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :load_sheet => load_sheet
   end
 
@@ -29,7 +29,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] New Gun Sheet (##{gun_sheet.id}) for #{gun_sheet.job.label}"
     from          "notify@aaastriping.ca"
     recipients    "dorian@aaastriping.ca"
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :gun_sheet => gun_sheet
   end
 
@@ -37,7 +37,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] New Contact - #{contact.name}"
     from          "notify@aaastriping.ca"
     recipients    "info@aaastriping.ca"
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :contact => contact
   end
 
@@ -45,7 +45,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] New Employment - #{career.name}"
     from          "notify@aaastriping.ca"
     recipients    "info@aaastriping.ca"
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :career => career
   end
 
@@ -53,7 +53,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] #{hours} Hours Worked In One Shift"
     from          "notify@aaastriping.ca"
     recipients    "info@aaastriping.ca"
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :time_sheet => time_sheet, :hours => hours, :user => user
  end
 
@@ -61,7 +61,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] #{hours} Total Worked In One Pay Period"
     from          "notify@aaastriping.ca"
     recipients    "info@aaastriping.ca"
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :time_sheet => time_sheet, :hours => hours, :user => user
   end
 
@@ -69,7 +69,7 @@ class Notifier < ActionMailer::Base
     subject       "[AAAS] #{marking.gun_marking_category.try(:name)} Production higher than Expected"
     from          "notify@aaastriping.ca"
     recipients    "kwame@aaastriping.ca"
-    sent_on       Time.now
+    sent_on       Time.zone.now
     body          :marking => marking
   end
 

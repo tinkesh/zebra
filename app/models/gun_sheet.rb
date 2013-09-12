@@ -44,7 +44,7 @@ class GunSheet < ActiveRecord::Base
   end
 
   def is_archived?
-    Time.parse(self.started_on.to_s) < Job::archive_date
+    Time.zone.parse(self.started_on.to_s) < Job::archive_date
   end
 
   def yellow_length

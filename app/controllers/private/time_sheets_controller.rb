@@ -126,7 +126,7 @@ private
   end
 
   def generate_front_to_back
-    @date = Time.now
+    @date = Time.zone.now
     next_month = @date + 1.month
     last_month = @date - 1.month
 

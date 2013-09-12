@@ -5,7 +5,7 @@ class Private::ClockInController < ApplicationController
 
   def new
     @job = Job.new
-    @job.started_on = Time.at(Time.zone.now.to_i/(15*60)*(15*60)) # Rounded down to the nearest 15 minutes
+    @job.started_on = Time.zone.at(Time.zone.now.to_i/(15*60)*(15*60)) # Rounded down to the nearest 15 minutes
     @clock_in = TimeEntry.new
     build_clocked_in_ids # also sets @crew and clocked_in_ids
     @not_clocked_in = TimeEntry.where(:clock_out => nil, :active => nil, :user_id => @users)

@@ -33,7 +33,7 @@ class Job < ActiveRecord::Base
   # This is a static method that all the sheets refer to
   # created to make the Job#show report have an archived date
   def self.archive_date
-    Time.parse("January 31 23:59:59 #{Time.now.year}")
+    Time.zone.parse("January 31 23:59:59 #{Time.zone.now.year}")
   end
 
   def label

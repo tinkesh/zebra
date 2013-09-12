@@ -26,7 +26,7 @@ class JobSheet < ActiveRecord::Base
 
   def is_archived?
     if self.gun_sheets && self.gun_sheets.first
-      archive_date = Time.parse(self.gun_sheets.first.started_on.to_s)
+      archive_date = Time.zone.parse(self.gun_sheets.first.started_on.to_s)
     else
       archive_date = self.created_at
     end

@@ -10,7 +10,7 @@ class Private::ReportsController < ApplicationController
 
   def user_time
     session[:report] = "user_time"
-    session[:offset] ||= Time.now
+    session[:offset] ||= Time.zone.now
     @date = session[:offset]
     generate_front_to_back
     @entries = TimeEntry.where(:clock_in => @back.to_date...@front.to_date, :user_id => params[:id]).includes(:time_sheet => :estimates).order('clock_in ASC')
@@ -18,7 +18,7 @@ class Private::ReportsController < ApplicationController
 
   def crew_time
     session[:report] = "crew_time"
-    session[:offset] ||= Time.now
+    session[:offset] ||= Time.zone.now
     @date = session[:offset]
     generate_front_to_back
     @users = @crew.users
@@ -27,7 +27,7 @@ class Private::ReportsController < ApplicationController
   def time_entries
     @page_title = "Recent Time Entries"
     session[:report] = "time_entries"
-    session[:offset] ||= Time.now
+    session[:offset] ||= Time.zone.now
     @date = session[:offset]
     generate_front_to_back
 
@@ -47,19 +47,19 @@ class Private::ReportsController < ApplicationController
   end
 
   def increase_offset
-    session[:offset] ||= Time.now
+    session[:offset] ||= Time.zone.now
     session[:offset] += 1.months
     redirect_to :action => session[:report], :id => params[:id]
   end
 
   def decrease_offset
-    session[:offset] ||= Time.now
+    session[:offset] ||= Time.zone.now
     session[:offset] -= 1.months
     redirect_to :action => session[:report], :id => params[:id]
   end
 
   def reset_offset
-    session[:offset] = Time.now
+    session[:offset] = Time.zone.now
     url_params = {
       :action => session[:report]
     }
@@ -68,7 +68,7 @@ class Private::ReportsController < ApplicationController
   end
 
   def accountant_csv
-    session[:offset] ||= Time.now
+    session[:offset] ||= Time.zone.now
     @date = session[:offset]
     generate_front_to_back
 
@@ -95,7 +95,7 @@ class Private::ReportsController < ApplicationController
   end
 
   def user_time_csv
-    session[:offset] ||= Time.now
+    session[:offset] ||= Time.zone.now
     @date = session[:offset]
     generate_front_to_back
 
@@ -122,7 +122,7 @@ class Private::ReportsController < ApplicationController
 private
 
   def generate_front_to_back
-    @date ||= Time.now
+    @date ||= Time.zone.now
 
     next_month = @date + 1.month
     last_month = @date - 1.month

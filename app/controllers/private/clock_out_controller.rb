@@ -15,7 +15,7 @@ class Private::ClockOutController < ApplicationController
     end
 
     @job = Job.new
-    @job.started_on = Time.at(started_on.to_i/(15*60)*(15*60)) # Rounded down to the nearest 15 minutes
+    @job.started_on = Time.zone.at(started_on.to_i/(15*60)*(15*60)) # Rounded down to the nearest 15 minutes
 
     @entries = TimeEntry.where(:time_sheet_id => nil, :user_id => @users)
     @page_title = "Clock Out"
