@@ -55,6 +55,7 @@ class Private::JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
 
+    params[:job][:crew_ids] ||= []
     if @job.update_attributes(params[:job])
      if @job.is_archived == true
        @job.crews.each do |g|
