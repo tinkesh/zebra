@@ -106,8 +106,11 @@
     <% end %>
   </ol>
   <% else %>
-  <p><b>Job is Archived</b><br />
-  No Crews Assigned</p>
+  <p><b>Job is Archived</b><p>
+  <% end %>
+
+  <% if @job.crew_ids.size == 0 %>
+    <p>No Crews Assigned</p>
   <% end %>
 
   <hr>
