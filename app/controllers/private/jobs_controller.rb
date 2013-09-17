@@ -6,7 +6,7 @@ class Private::JobsController < ApplicationController
   def index(archived = false)
     @page_title ||= "Jobs on Hand"
 
-    @searched_jobs = Job.where(:is_archived => archived).includes(:client, :completion, :job_markings).order('jobs.id DESC')
+    @searched_jobs = Job.where(:is_archived => archived).includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
     if params[:query].present?
       @searched_jobs = @searched_jobs.where('jobs.name ilike :query OR location_name ilike :query OR clients.name ilike :query', :query => "%#{params[:query]}%")
     end

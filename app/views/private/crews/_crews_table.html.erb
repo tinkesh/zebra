@@ -3,6 +3,7 @@
     <th>Name</th>
     <th class="nosort">Users</th>
     <th class="nosort">Crew Hours</th>
+    <th class="nosort">Jobs</th>
     <th class="nosort">Assigned Equipment</th>
     <th class="actions nosort"></th>
 
@@ -13,6 +14,12 @@
     <td><%= crew.label %></td>
     <td><%= crew.user_list %></td>
     <td><%=link_to 'Crew Hours', report_crew_time_path(crew.id) %></td>
+    <td>
+      <% crew.jobs.each do |job| %>
+        <%= link_to job.name, private_job_path(job) %>
+        <br>
+      <% end %>
+    </td>
     <td>
       <% crew.equipments.each do |e| %>
         <a href="<%= private_equipment_path(e) %>" class="equipment-<%= e.color %>" style="white-space: nowrap;"><%= e.unit %></a><%= "," if e != crew.equipments.last %>

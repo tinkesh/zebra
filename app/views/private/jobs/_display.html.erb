@@ -3,6 +3,7 @@
     <th class="center number">#</th>
     <th>Name</th>
     <th class="center">Completion Status</th>
+    <th class="center">Crews</th>
     <th>Client</th>
     <th>Location</th>
     <th class="center">Value</th>
@@ -32,6 +33,12 @@
     <td><%= link_to "##{job.id}", private_job_path(job) %></td>
     <td><%= aaa_highlight(job.name) %></td>
     <td class="right"><%= job.completion.name rescue "-" %></td>
+    <td>
+      <%- job.crews.each do |crew| %>
+        <span style="white-space:nowrap"><%= link_to crew.name.html_safe, edit_private_crew_path(crew) %></span style="white-space:nowrap">
+        <br>
+      <% end %>
+    </td>
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
     <td class="right"><%= number_to_currency(job.total_job_value) %></td>
