@@ -19,15 +19,6 @@
 <% end %>
 
 <hr>
-<div data-spy="affix" data-offset-top="200" id="jobs_search_form">
-  <table>
-  <%= form_tag '', :method => 'get' do %>
-    <tr class="no-border"><td class="no-border right">
-  		<%= text_field_tag :query, params[:query] %>
-  		<%= submit_tag "Search" %><br>
-    </td></tr>
-  <% end %>
-  </table>
-</div>
+<%= render 'jobs_search_form' %>
 
 <%= render :partial => "display", :locals => {:jobs => @searched_jobs} %>

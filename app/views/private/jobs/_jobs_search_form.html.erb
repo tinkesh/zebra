@@ -1,0 +1,10 @@
+<div data-spy="affix" data-offset-top="200" id="jobs_search_form">
+  <table>
+  <%= form_tag private_jobs_path, :method => 'get' do %>
+    <tr class="no-border"><td class="no-border right">
+      <%= text_field_tag :query, params[:query], :placeholder => 'Search jobs' %>
+      <%= submit_tag "Search" %><br>
+    </td></tr>
+  <% end %>
+  </table>
+</div>
