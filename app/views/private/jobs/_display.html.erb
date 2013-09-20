@@ -32,7 +32,7 @@
   <tr class="<%= job.get_completion_color_class_name %>">
     <td><%= link_to "##{job.id}", private_job_path(job) %></td>
     <td><%= aaa_highlight job.name %></td>
-    <td class="right"><%= aaa_highlight(job.completion.name) rescue "-" %></td>
+    <td class="right"><%= aaa_highlight(job.completion.name) rescue '' %></td>
     <td>
       <%- job.crews.each do |crew| %>
         <span style="white-space:nowrap"><%= link_to aaa_highlight(crew.name.html_safe), edit_private_crew_path(crew) %></span style="white-space:nowrap">
