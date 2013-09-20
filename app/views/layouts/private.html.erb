@@ -23,14 +23,17 @@
 </head>
 <body>
 
-<div id="header">
-  <%= render :partial => 'menus/private_menu', :layout => false %>
+<div id="header_container">
+  <div id="header">
+    <%= render :partial => 'menus/private_menu', :layout => false %>
+  </div>
+
+  <div id="submenu">
+    <%= yield :submenu %>
+  </div>
 </div>
 
-<div id="submenu">
-  <%= yield :submenu %>
-  <%= yield :breadcrumb %>
-</div>
+<%= yield :breadcrumb %>
 
 <div id="content">
   <%= yield :versions %>
