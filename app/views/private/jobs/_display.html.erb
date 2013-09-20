@@ -31,20 +31,20 @@
 
   <tr class="<%= job.get_completion_color_class_name %>">
     <td><%= link_to "##{job.id}", private_job_path(job) %></td>
-    <td><%= aaa_highlight(job.name) %></td>
-    <td class="right"><%= job.completion.name rescue "-" %></td>
+    <td><%= aaa_highlight job.name %></td>
+    <td class="right"><%= aaa_highlight(job.completion.name) rescue "-" %></td>
     <td>
       <%- job.crews.each do |crew| %>
-        <span style="white-space:nowrap"><%= link_to crew.name.html_safe, edit_private_crew_path(crew) %></span style="white-space:nowrap">
+        <span style="white-space:nowrap"><%= link_to aaa_highlight(crew.name.html_safe), edit_private_crew_path(crew) %></span style="white-space:nowrap">
         <br>
       <% end %>
     </td>
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
     <td class="right"><%= number_to_currency(job.total_job_value) %></td>
-    <td><%= job.reference_code %></td>
-    <td><%= job.pay_status %></td>
-    <td><%= truncate(job.zoho_details) %></td>
+    <td><%= aaa_highlight job.reference_code %></td>
+    <td><%= aaa_highlight job.pay_status %></td>
+    <td><%= aaa_highlight truncate(job.zoho_details) %></td>
     <td>
       <% if job.ar_error == true %>
         <span class="ar_error jobs_index">AR Error</span>

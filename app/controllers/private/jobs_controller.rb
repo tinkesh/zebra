@@ -8,7 +8,15 @@ class Private::JobsController < ApplicationController
 
     @searched_jobs = Job.where(:is_archived => archived).includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
     if params[:query].present?
-      @searched_jobs = @searched_jobs.where('jobs.name ilike :query OR location_name ilike :query OR clients.name ilike :query', :query => "%#{params[:query]}%")
+      sql  = 'jobs.name           ilike :query OR
+              completions.name    ilike :query OR
+              crews.name          ilike :query OR
+              location_name       ilike :query OR
+              location_name       ilike :query OR
+              jobs.reference_code ilike :query OR
+              jobs.pay_status     ilike :query OR
+              jobs.zoho_details   ilike :query'
+      @searched_jobs = @searched_jobs.where(sql, :query => "%#{params[:query]}%")
     end
   end
 
