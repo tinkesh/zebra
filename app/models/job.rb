@@ -20,7 +20,8 @@ class Job < ActiveRecord::Base
   validates_presence_of :name
 
   # Is active or not
-  scope :active, -> { where(:is_archived => false) }
+  scope :active,   -> { where(:is_archived => false) }
+  scope :archived, -> { where(:is_archived => true)  }
 
   PAY_STATUSES = [
     'N/A',

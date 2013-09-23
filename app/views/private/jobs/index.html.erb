@@ -21,4 +21,21 @@
 <hr>
 <%= render 'jobs_search_form' %>
 
-<%= render :partial => "display", :locals => {:jobs => @searched_jobs} %>
+<% if @jobs.present? %>
+  <%= render :partial => "display", :locals => {:jobs => @jobs} %>
+<% end %>
+
+
+<% if @active_jobs.present? %>
+  <h2>Active Jobs</h2>
+  <%= render :partial => "display", :locals => {:jobs => @active_jobs} %>
+<% end %>
+
+<br>
+<br>
+<hr>
+
+<% if @archived_jobs.present? %>
+  <h2>Archived Jobs</h2>
+  <%= render :partial => "display", :locals => {:jobs => @archived_jobs} %>
+<% end %>

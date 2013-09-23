@@ -6,8 +6,9 @@ class Private::JobsController < ApplicationController
   def index(archived = false)
     @page_title ||= "Jobs on Hand"
 
-    @searched_jobs = Job.where(:is_archived => archived).includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
+    jobs = Job.includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
     if params[:query].present?
+      @page_title = "Search Results"
       sql  = 'jobs.name           ilike :query OR
               completions.name    ilike :query OR
               crews.name          ilike :query OR
@@ -17,7 +18,10 @@ class Private::JobsController < ApplicationController
               jobs.reference_code ilike :query OR
               jobs.pay_status     ilike :query OR
               jobs.zoho_details   ilike :query'
-      @searched_jobs = @searched_jobs.where(sql, :query => "%#{params[:query]}%")
+      @active_jobs   = jobs.active.where(sql, :query => "%#{params[:query]}%")
+      @archived_jobs = jobs.archived.where(sql, :query => "%#{params[:query]}%")
+    else
+      @jobs = jobs.where(:is_archived => archived)
     end
   end
 
