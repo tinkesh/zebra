@@ -11,6 +11,7 @@ class Private::JobsController < ApplicationController
       sql  = 'jobs.name           ilike :query OR
               completions.name    ilike :query OR
               crews.name          ilike :query OR
+              clients.name        ilike :query OR
               location_name       ilike :query OR
               location_name       ilike :query OR
               jobs.reference_code ilike :query OR
