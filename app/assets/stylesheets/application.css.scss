@@ -126,3 +126,7 @@ body {
 #daily_report_loaded_input label {
   font-weight: normal;
 }
+
+#ui-datepicker-div {
+  z-index: 3000 !important;
+}
