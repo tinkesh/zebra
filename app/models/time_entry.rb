@@ -20,7 +20,11 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def per_diem
-    self.time_sheet.per_diem_percent rescue 0
+    if self.time_sheet.per_diem_percent.present?
+      self.time_sheet.per_diem_percent
+    else
+      0
+    end
   end
 
   def per_diem_cost
