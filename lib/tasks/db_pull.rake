@@ -1,4 +1,4 @@
-namespace :db do
+namespace :pg do
   task :pull => :environment do
     @start = Time.now
 
