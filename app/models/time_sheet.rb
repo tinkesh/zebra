@@ -94,7 +94,11 @@ class TimeSheet < ActiveRecord::Base
   end
 
   def total_per_diem
-    self.per_diem_percent != 0 ? (self.per_diem_percent * self.time_entries.length) : 0
+    begin
+      self.per_diem_percent != 0 ? (self.per_diem_percent * self.time_entries.length) : 0
+    rescue
+      0
+    end
   end
 
   def total_straight_time
