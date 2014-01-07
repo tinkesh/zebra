@@ -24,7 +24,7 @@ class Private::EquipmentsController < ApplicationController
       flash[:notice] = "Equipment created!"
       redirect_to private_equipments_url
     else
-      redirect_to new_private_equipment_path
+      render :action => :new
     end
   end
 
