@@ -6,6 +6,7 @@ authorization do
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
 
     has_permission_on [:private_report_summaries], :to => [:all_job_value, :all_marking_value]
+    has_permission_on [:jobs_value], :to => [:read]
   end
 
   role :office do
@@ -24,7 +25,7 @@ authorization do
 
     has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage]
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destroy]
-
+    has_permission_on [:jobs_value], :to => [:read]
   end
 
   role :supervisor do
@@ -44,7 +45,6 @@ authorization do
                        ], :to => [:read]
 
     has_permission_on [:private_crews, :private_jobs], :to => [:manage]
-
   end
 
   role :foreman do

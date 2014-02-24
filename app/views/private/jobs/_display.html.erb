@@ -6,7 +6,9 @@
     <th class="center">Crews</th>
     <th>Client</th>
     <th>Location</th>
-    <th class="center">Value</th>
+    <% if permitted_to? :read, :jobs_value %>
+      <th class="center">Value</th>
+    <% end %>
     <th>Reference/Contract #</th>
     <th>Pay Status</th>
     <th>Zoho Details</th>
@@ -41,7 +43,9 @@
     </td>
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
-    <td class="right"><%= number_to_currency(job.total_job_value) %></td>
+    <% if permitted_to? :read, :jobs_value %>
+      <td class="right"><%= number_to_currency(job.total_job_value) %></td>
+    <% end %>
     <td><%= aaa_highlight job.reference_code %></td>
     <td><%= aaa_highlight job.pay_status %></td>
     <td><%= aaa_highlight truncate(job.zoho_details) %></td>
