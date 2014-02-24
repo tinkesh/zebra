@@ -104,11 +104,13 @@
 
   <label>Roles</label>
   <ul class="habtm">
-  <% for role in Role.all %>
+  <% for role in Role.all.sort {|r| r.is_high_access_role? ? -1 : 1 } %>
     <li>
       <label>
-      <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-      <%= role.name %>
+        <% disabled = role.is_high_access_role? ? (!permitted_to?(:assign, :high_access_user_roles)) : false %>
+        <% disabled = false if @user.roles.include?(role) %>
+        <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role), :disabled => disabled %>
+        <%= role.name %>
       </label>
     </li>
   <% end %>

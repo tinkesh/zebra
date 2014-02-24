@@ -1,5 +1,10 @@
 authorization do
 
+  role :superadmin do
+    includes :admin
+    has_permission_on [:high_access_user_roles], :to => [:assign]
+  end
+
   role :admin do
     includes :office
     includes :foreman
