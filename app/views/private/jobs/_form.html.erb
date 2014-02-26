@@ -75,13 +75,13 @@
 </div>
 <hr>
 
-<%= form.fields_for :job_markings do |builder| %>
-  <%= render 'job_marking_fields', :form => builder %>
+<% if permitted_to? :manage, :private_job_sheets -%>
+  <%= form.fields_for :job_markings do |builder| %>
+    <%= render 'job_marking_fields', :form => builder %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Another Marking Quantity", form, :job_markings %></p>
+  <hr>
 <% end %>
-
-<p><%= link_to_add_fields "Add Another Marking Quantity", form, :job_markings %></p>
-
-<hr>
 
 <p>
   <%= form.label :location_name, "General Location Name" %><br>
