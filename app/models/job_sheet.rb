@@ -57,7 +57,7 @@ class JobSheet < ActiveRecord::Base
   def total_per_diem
     total = [0]
     self.time_sheets.each do |time_sheet|
-      if time_sheet.per_diem_percent != 0
+      if time_sheet.per_diem_percent.present? and time_sheet.per_diem_percent != 0
         total << (time_sheet.per_diem_percent * time_sheet.time_entries.length)
       end
     end
