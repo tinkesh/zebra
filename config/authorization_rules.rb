@@ -1,11 +1,13 @@
 authorization do
 
   role :superadmin do
+    description "+ Can assign other superadmin, admin, office, supervisor users"
     includes :admin
     has_permission_on [:high_access_user_roles], :to => [:assign]
   end
 
   role :admin do
+    description "+ Can view markings value, can manage time sheets"
     includes :office
     includes :foreman
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
@@ -15,6 +17,7 @@ authorization do
   end
 
   role :office do
+    description "+ Can view jobs value"
     includes :crewman
     has_permission_on :private_reports, :to => :crew_time
     has_permission_on :private_reports, :to => :time_entries
@@ -34,6 +37,7 @@ authorization do
   end
 
   role :supervisor do
+    description "+ Can view all reports, manage crews, manage jobs, view all hours, export reports to CSV"
     includes :crewman
     has_permission_on :private_reports, :to => :crew_time
     has_permission_on :private_reports, :to => :time_entries
@@ -53,6 +57,7 @@ authorization do
   end
 
   role :foreman do
+    description "+ Can view his crew's hours. Can clock in/clock out, create daily reports."
     includes :crewman
     has_permission_on :private_reports, :to => :crew_time
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets,
@@ -65,6 +70,7 @@ authorization do
   end
 
   role :crewman do
+    description 'Can view jobs and add comments to them. Can view his own hours'
     has_permission_on :private, :to => [:index, :navigate]
     has_permission_on :private_jobs, :to => :show
     has_permission_on :private_reports, :to => [:increase_offset, :decrease_offset, :reset_offset, :set_date]
