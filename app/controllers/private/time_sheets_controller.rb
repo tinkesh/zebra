@@ -113,7 +113,7 @@ private
       user_ids = []
       @users = current_user.crew.users
       @users.each { |u| user_ids << u.id }
-      @jobs = (current_user.crew.jobs rescue [])
+      @jobs = (current_user.crew.jobs rescue Job.all)
       @entries = TimeEntry.where(:time_sheet_id => nil, :user_id => user_ids).includes(:user).all
     else
       @users = User.where(:employment_state => "Employed").all
