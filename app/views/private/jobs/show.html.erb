@@ -31,7 +31,7 @@
   <h1 class="ar_error jobs_show">AR Error</h1>
 <% end %>
 
-<% if not in_mobile_view? %>
+<% if permitted_to?(:edit, :private_jobs) and !in_mobile_view? %>
   <div class="show_actions">
     <%= link_to "Edit", edit_private_job_path(@job.id), :class => "edit" %>
     <%= link_to "Delete", private_job_path(@job.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>

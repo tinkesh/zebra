@@ -30,9 +30,8 @@
 
 <% end %>
 
-<p>
-  <%= link_to "Clients list and directory", private_clients_path %>
-</p>
-
+  <% if permitted_to?(:index, :private_directory) %>
+    <p><%= link_to "Clients list and directory", private_clients_path %></p>
+  <% end %>
 </div>
 <% end %>
