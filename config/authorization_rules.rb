@@ -17,7 +17,7 @@ authorization do
   end
 
   role :office do
-    description "+ Can view jobs value"
+    description "+ Can view jobs value, can delete users"
     includes :crewman
     has_permission_on :private_reports, :to => :crew_time
     has_permission_on :private_reports, :to => :time_entries
