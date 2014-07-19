@@ -68,7 +68,7 @@ class Notifier < ActionMailer::Base
   def job_marking_production_over_expected(marking)
     subject       "[AAAS] #{marking.gun_marking_category.try(:name)} Production higher than Expected"
     from          "notify@aaastriping.ca"
-    recipients    "kwame@aaastriping.ca"
+    recipients    "dorian@aaastriping.ca"
     sent_on       Time.zone.now
     body          :marking => marking
   end

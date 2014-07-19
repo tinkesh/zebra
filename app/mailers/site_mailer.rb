@@ -51,7 +51,7 @@ class SiteMailer < ActionMailer::Base
   def job_marking_production_over_expected(marking)
     @marking = marking
 
-    mail(:to => "kwame@aaastriping.ca", :subject =>  "[AAAS] #{marking.gun_marking_category.try(:name)} Production higher than Expected")
+    mail(:to => "dorian@aaastriping.ca", :subject =>  "[AAAS] #{marking.gun_marking_category.try(:name)} Production higher than Expected")
   end
 
   def equipment_alert(equipment, flag)
