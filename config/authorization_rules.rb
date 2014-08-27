@@ -48,10 +48,11 @@ authorization do
                         :private_job_sheets, :private_time_entries, :private_estimates,
                        :private_clock_in, :private_clock_out, :private_time_sheets,
                        :private_clients, :private_completions, :private_costs, :private_equipments,
-                       :private_gun_marking_categories, :private_manufacturers, :private_materials, :users, :private,
-                       :private_time_task_categories, :private_time_note_categories, :private_material_reports,
-                       :private_material_report_summaries, :private_directory, :private_report_summaries
+                       :private_gun_marking_categories, :private_manufacturers, :users, :private,
+                       :private_time_task_categories, :private_time_note_categories, :private_directory, :private_report_summaries
                        ], :to => [:read]
+
+    has_permission_on [:private_materials, :private_material_reports, :private_material_report_summaries, ], :to => [:manage, :update_dips, :print]
 
     has_permission_on [:private_crews, :private_jobs], :to => [:manage]
   end
