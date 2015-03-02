@@ -50,6 +50,8 @@ tmp/*
 /gems
 /rerun.txt
 /specifications
+y
+y.pub
 
 # scm revert files
 **.orig
