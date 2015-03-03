@@ -52,7 +52,9 @@ tmp/*
 /specifications
 y
 y.pub
-
+.rvmrc
+.ruby-gemset
+.ruby-version
 # scm revert files
 **.orig
 
