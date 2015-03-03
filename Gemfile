@@ -26,6 +26,7 @@ group :development do
   gem 'awesome_print'
   gem 'quiet_assets',     '>= 1.0.1'
   gem 'heroku'
+  gem 'thin'
 end
 
 gem 'stringex'
