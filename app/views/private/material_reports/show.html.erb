@@ -110,14 +110,18 @@
           <%= @material_report.prev_report.load_sheet.printable_yellow_dip_end if @material_report.prev_report && @material_report.prev_report.load_sheet %>
         </td>
         <td class="right">
-          <%= @material_report.load_sheet.yellow_dip_start %>
-          <%= f.text_field "adjusted_yellow_dip_start", :class => "span-2 noprint" %>
-          <!--<span class="onlyprint"><%#= @material_report.load_sheet.adjusted_yellow_dip_start %></span>-->
+          <span class="noprint">
+            <%= @material_report.load_sheet.yellow_dip_start %>
+            <%= f.text_field "adjusted_yellow_dip_start", :class => "span-2" %>
+          </span>
+          <span class="onlyprint"><%= @material_report.load_sheet.adjusted_yellow_dip_start %></span>
         </td>
         <td class="right">
-          <%= @material_report.load_sheet.yellow_dip_end %>
-          <%= f.text_field "adjusted_yellow_dip_end", :class => "span-2 noprint" %>
-          <!--<span class="onlyprint"><%#= @material_report.load_sheet.adjusted_yellow_dip_end %></span>-->
+          <span class="noprint">
+            <%= @material_report.load_sheet.yellow_dip_end %>
+            <%= f.text_field "adjusted_yellow_dip_end", :class => "span-2" %>
+          </span>
+          <span class="onlyprint"><%= @material_report.load_sheet.adjusted_yellow_dip_end %></span>
         </td>
         <td class="right noprint">
           <%= @material_report.next_report.load_sheet.printable_yellow_dip_start if @material_report.next_report && @material_report.next_report.load_sheet %>
@@ -133,14 +137,18 @@
           <%= @material_report.prev_report.load_sheet.printable_white_dip_end if @material_report.prev_report && @material_report.prev_report.load_sheet %>
         </td>
         <td class="right">
-          <%= @material_report.load_sheet.white_dip_start %>
-          <%= f.text_field "adjusted_white_dip_start", :class => "span-2 noprint" %>
-          <!--<span class="onlyprint"><%#= @material_report.load_sheet.adjusted_white_dip_start %></span>-->
+          <span class="noprint">
+            <%= @material_report.load_sheet.white_dip_start %>
+            <%= f.text_field "adjusted_white_dip_start", :class => "span-2" %>
+          </span>
+          <span class="onlyprint"><%= @material_report.load_sheet.adjusted_white_dip_start %></span>
         </td>
         <td class="right">
-          <%= @material_report.load_sheet.white_dip_end %>
-          <%= f.text_field "adjusted_white_dip_end", :class => "span-2 noprint" %>
-          <!--<span class="onlyprint"><%#= @material_report.load_sheet.adjusted_white_dip_end %></span>-->
+          <span class="noprint">
+            <%= @material_report.load_sheet.white_dip_end %>
+            <%= f.text_field "adjusted_white_dip_end", :class => "span-2" %>
+          </span>
+          <span class="onlyprint"><%= @material_report.load_sheet.adjusted_white_dip_end %></span>
         </td>
         <td class="right noprint">
           <%= @material_report.next_report.load_sheet.printable_white_dip_start if @material_report.next_report && @material_report.next_report.load_sheet %>
