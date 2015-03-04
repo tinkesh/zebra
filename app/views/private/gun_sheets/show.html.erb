@@ -47,12 +47,52 @@
 
 </table>
 
-<hr>
+<table>
+  <tr>
+    <th colspan="2">&nbsp;</th>
+  </tr>
 
-<h3>Comments</h3>
-<p>
-  <%= @gun_sheet.note %>
-</p>
+  <tr class="odd">
+    <td>Comments</td>
+    <td class="right"><%= @gun_sheet.note %></td>
+  </tr>
+  <tr class="even">
+    <td>Specific Location</td>
+    <td class="right"><%= @gun_sheet.job_location.name if !@gun_sheet.job_location.nil? %></td>
+  </tr>
+  <tr class="odd">
+    <td>Equipment</td>
+    <td class="right"><%= @gun_sheet.equipment.name if !@gun_sheet.equipment.nil? %></td>
+  </tr>
+  <tr class="even">
+    <td>Custom Location</td>
+    <td class="right"><%= @gun_sheet.location_name %></td>
+  </tr>
+  <tr class="odd">
+    <td>New Construction / Repaint</td>
+    <td class="right"><%= @gun_sheet.is_new_construction ? "New Construction" : "Repaint" %></td>
+  </tr>
+  <tr class="even">
+    <td>Control Section</td>
+    <td class="right"><%= @gun_sheet.control_section %></td>
+  </tr>
+  <tr class="odd">
+    <td>Interchanges</td>
+    <td class="right"><%= @gun_sheet.interchanges %></td>
+  </tr>
+  <tr class="even">
+    <td>Intersections</td>
+    <td class="right"><%= @gun_sheet.sides %></td>
+  </tr>
+  <tr class="odd">
+    <td>Started On</td>
+    <td class="right"><%= @gun_sheet.started_on.strftime("%B %d, %Y") %>, <%= @gun_sheet.started_on.strftime("%H:%M") %></td>
+  </tr>
+  <tr class="even">
+    <td>Completed On</td>
+    <td class="right"><%= @gun_sheet.completed_on.strftime("%B %d, %Y") %>, <%= @gun_sheet.completed_at.strftime("%H:%M") %></td>
+  </tr>
+</table>
 
 <hr>
 
