@@ -41,7 +41,7 @@ class Private::MaterialReportsController < ApplicationController
     @material_report = @job.material_reports.build(params[:material_report])
     @material_report.created_by = current_user.id
 
-    @load_sheet = LoadSheet.find_by_id(params[:load_sheet_id])
+    @load_sheet = LoadSheet.find_by_id(params[:material_report][:load_sheet_id])
     unless @load_sheet.nil?
       @material_report.yellow_dip_start = @load_sheet.adjusted_yellow_dip_start
       @material_report.yellow_dip_end = @load_sheet.adjusted_yellow_dip_end
