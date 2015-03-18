@@ -247,9 +247,13 @@
  <hr>
 <div class="span-12 noprint">
   <h3>Assets</h3>
+  <% if @job.assets.blank? %>
+    <p>No Assets for this jobs</p>
+  <% else %>
     <% @job.assets.each do |asset| %>
-      <div><%=link_to "Download #{asset.id}", asset.image.url, target: '_blank' %></div>
+      <p><%=link_to upload_assets(asset), asset.image.url, target: '_blank' %></p>
     <% end %>
+  <% end %>
 </div>
 </div>
 

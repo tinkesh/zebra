@@ -46,4 +46,12 @@ module ApplicationHelper
   def aaa_highlight(str)
     highlight(str.to_s, params[:query])
   end
+
+  def upload_assets(asset)
+    if File.extname(asset.image_file_name) == ".pdf"
+      raw("#{image_tag('pdf_icon_32.png')} Download")
+    else
+      "Photo Download"
+    end
+  end
 end
