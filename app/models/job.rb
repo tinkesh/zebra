@@ -12,6 +12,7 @@ class Job < ActiveRecord::Base
   has_many :material_reports
   has_many :time_sheets, :through => :estimates
   has_many :comments
+  has_many :events, as: :eventable
   has_and_belongs_to_many :time_entries
   accepts_nested_attributes_for :time_sheets, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :job_markings, :reject_if => lambda { |a| a[:gun_marking_category_id].blank? }, :allow_destroy => true

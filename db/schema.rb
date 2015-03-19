@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150314235550) do
+ActiveRecord::Schema.define(:version => 20150319073841) do
+
+  create_table "assets", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -150,6 +161,17 @@ ActiveRecord::Schema.define(:version => 20150314235550) do
     t.integer  "crew_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.integer  "crew_id"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.date     "started_on"
+    t.date     "completed_on"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "gun_marking_categories", :force => true do |t|

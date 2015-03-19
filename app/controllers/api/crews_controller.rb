@@ -4,21 +4,31 @@ class Api::CrewsController < ApplicationController
 
   def jobs
     @crew = Crew.find(params[:id])
-    @jobs = @crew.jobs
-      .where('started_on IS NOT NULL')
-      # .where('started_on <= ?', params[:start])
+    @events = @crew.events
+        #.where('started_on IS NOT NULL')
 
     respond_to do |format|
-      format.json { render json: @jobs, root: false }
+      format.json { render json: @events, root: false }
     end
   end
 
   def schedule_job
-    @job = Job.find(params[:id])
-    @job.update_attributes(params[:job])
+    @event = Event.find_by_id(params[:id])
+
+    if @event.nil?
+      @job = Job.find(params[:id])
+      @event = @job.events.new(params[:event])
+      @event.name = @job.name
+      @event.save
+    else
+      @event.update_attributes(params[:event])
+    end
+
+
+    #@job.update_attributes(params[:job])
 
     respond_to do |format|
-      format.json { render json: @job, root: false }
+      format.json { render json: @event, root: false }
     end
   end
 end

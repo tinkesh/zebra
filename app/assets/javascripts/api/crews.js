@@ -1,6 +1,7 @@
 jQuery(function () {
-  var updateEvent, url_page;
+  var updateEvent, url_page, crew_id;
   url_page = jQuery('#calendar').data('url');
+  crew_id = jQuery('#calendar').data('crew');
 
   jQuery('#my-draggable .fc-event').each(function() {
 
@@ -50,7 +51,7 @@ jQuery(function () {
       // render the event on the calendar
       // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
       jQuery('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-      jQuery(this).remove();
+      //jQuery(this).remove();
     },
     eventSources:[{url:url_page}],
     timeFormat:'h:mm t{ - h:mm t} ',
@@ -71,9 +72,10 @@ jQuery(function () {
       url:"/api/crews/schedule_job",
       data:{
         id:event.id,
-        job:{
+        event:{
           started_on: event.start.format(),
-          completed_on: event.end.format()
+          completed_on: event.end.format(),
+          crew_id: crew_id
         }
       },
       type:'PUT',
