@@ -1,0 +1,11 @@
+<div style="float: left;">
+  <ul>
+    <% @crews.each do |crew| %>
+      <li><%= crew.name %></li>
+    <% end %>
+  </ul>
+</div>
+<div style="width: 900px; border: 1px solid grey; float: left;">
+  <div id="select-crews-calendar" data-url="<%= show_selected_api_crews_path %>"></div>
+</div>
+<div  style="clear: both;"></div>

@@ -67,4 +67,7 @@ class Private::CrewsController < ApplicationController
     redirect_to(private_crews_url)
   end
 
+  def calendar
+    @crews = Crew.find(params[:crew_ids])
+  end
 end

@@ -1,6 +1,7 @@
 jQuery(function () {
   var updateEvent, url_page, crew_id;
   url_page = jQuery('#calendar').data('url');
+  selected_crews_url_page = jQuery('#select-crews-calendar').data('url');
   crew_id = jQuery('#calendar').data('crew');
 
   jQuery('#my-draggable .fc-event').each(function() {
@@ -65,6 +66,18 @@ jQuery(function () {
     eventDragStop:function (event, dayDelta, minuteDelta, revertFunc) {
       return updateEvent(event);
     }
+  });
+
+  jQuery("#select-crews-calendar").fullCalendar({
+    header:{
+      left:'prev,next today',
+      center:'title',
+      right:'month,agendaWeek,agendaDay'
+    },
+    defaultView:'month',
+    height:800,
+    eventSources:[{url: selected_crews_url_page}],
+    timeFormat:'h:mm t{ - h:mm t} '
   });
 
   return updateEvent = function (event) {
