@@ -68,6 +68,6 @@ class Private::CrewsController < ApplicationController
   end
 
   def calendar
-    @crews = Crew.find(params[:crew_ids])
+    @crews = Crew.where(id: params[:crew_ids])
   end
 end

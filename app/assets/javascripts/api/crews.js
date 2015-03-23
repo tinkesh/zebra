@@ -1,9 +1,9 @@
 jQuery(function () {
-  var updateEvent, url_page, crew_id;
+  var updateEvent, url_page, selected_crews_url_page, crew_id, param_ids;
   url_page = jQuery('#calendar').data('url');
   selected_crews_url_page = jQuery('#select-crews-calendar').data('url');
   crew_id = jQuery('#calendar').data('crew');
-
+  param_ids = jQuery('#select-crews-calendar').data('crew-ids');
   jQuery('#my-draggable .fc-event').each(function() {
 
     // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
@@ -68,6 +68,7 @@ jQuery(function () {
     }
   });
 
+
   jQuery("#select-crews-calendar").fullCalendar({
     header:{
       left:'prev,next today',
@@ -76,7 +77,11 @@ jQuery(function () {
     },
     defaultView:'month',
     height:800,
-    eventSources:[{url: selected_crews_url_page}],
+    eventSources:[{
+      url: selected_crews_url_page,
+      data: {crew_ids: param_ids}
+
+    }],
     timeFormat:'h:mm t{ - h:mm t} '
   });
 

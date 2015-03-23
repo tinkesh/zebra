@@ -3,7 +3,7 @@ class EventSerializer < ActiveModel::Serializer
              :url, :backgroundColor, :borderColor, :editable
 
   def title
-    object.name
+    "Crew ##{object.crew.id} - #{object.name}"
   end
 
   def start
@@ -19,7 +19,7 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def backgroundColor
-    #object.completion.present? ? object.completion.color : '#3a87ad'
+    "#{object.crew.color}"
   end
 
   def borderColor

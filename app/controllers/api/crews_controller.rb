@@ -33,7 +33,8 @@ class Api::CrewsController < ApplicationController
   end
 
   def show_selected
-    @crews = Crew.all
+    @crews = Crew.where(id: params[:crew_ids])
+
     @events = []
     @crews.each do |crew|
       @events += crew.events

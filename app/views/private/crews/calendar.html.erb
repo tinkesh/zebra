@@ -1,11 +1,15 @@
-<div style="float: left;">
+<% ids = @crews.map(&:id) %>
+<div style="float: left;" class="selected-crews">
   <ul>
     <% @crews.each do |crew| %>
-      <li><%= "##{crew.id} " %><%= crew.name %></li>
+      <li style="background-color: <%= crew.color %>; ">
+        <%= link_to "Crew ##{crew.id} #{crew.name}", private_crew_path(crew) %>
+      </li>
     <% end %>
   </ul>
+
 </div>
-<div style="width: 900px; border: 1px solid grey; float: left;">
-  <div id="select-crews-calendar" data-url="<%= show_selected_api_crews_path %>"></div>
+<div class="calendar">
+  <div id="select-crews-calendar" data-url="<%= show_selected_api_crews_path %>" data-crew-ids="<%= ids %>"></div>
 </div>
 <div  style="clear: both;"></div>
