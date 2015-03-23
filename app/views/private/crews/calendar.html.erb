@@ -1,7 +1,7 @@
 <div style="float: left;">
   <ul>
     <% @crews.each do |crew| %>
-      <li><%= crew.name %></li>
+      <li><%= "##{crew.id} " %><%= crew.name %></li>
     <% end %>
   </ul>
 </div>

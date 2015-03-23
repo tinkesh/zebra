@@ -34,8 +34,13 @@ class Api::CrewsController < ApplicationController
 
   def show_selected
     @crews = Crew.all
+    @events = []
+    @crews.each do |crew|
+      @events += crew.events
+    end
+
     respond_to do |format|
-      format.json { render json: @crews, root: false }
+      format.json { render json: @events, root: false }
     end
   end
 end
