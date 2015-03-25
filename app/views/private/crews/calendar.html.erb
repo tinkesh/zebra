@@ -2,7 +2,7 @@
 <div style="float: left;" class="selected-crews">
   <ul>
     <% @crews.each do |crew| %>
-      <li style="background-color: <%= crew.color %>; ">
+      <li class="one-crew" style="background-color: <%= crew.color %>; "data-ids="/api/crews/<%= crew.id %>/jobs">
         <%= link_to "Crew ##{crew.id} #{crew.name}", private_crew_path(crew) %>
       </li>
     <% end %>
@@ -10,6 +10,6 @@
 
 </div>
 <div class="calendar">
-  <div id="select-crews-calendar" data-url="<%= show_selected_api_crews_path %>" data-crew-ids="<%= ids %>"></div>
+  <div id="select-crews-calendar"></div>
 </div>
 <div  style="clear: both;"></div>

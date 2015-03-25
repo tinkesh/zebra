@@ -1,9 +1,20 @@
+jQuery( document ).ready(function() {
+
+
 jQuery(function () {
-  var updateEvent, url_page, selected_crews_url_page, crew_id, param_ids;
+
+  var multi = jQuery('.one-crew');
+  var links_array = [];
+
+  jQuery.each(multi, function (index, item) {
+    links_array.push(jQuery(item).data('ids'));
+    console.log(item);
+  });
+  console.log(links_array);
+
+  var updateEvent, url_page, crew_id;
   url_page = jQuery('#calendar').data('url');
-  selected_crews_url_page = jQuery('#select-crews-calendar').data('url');
   crew_id = jQuery('#calendar').data('crew');
-  param_ids = jQuery('#select-crews-calendar').data('crew-ids');
   jQuery('#my-draggable .fc-event').each(function() {
 
     // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
@@ -54,7 +65,7 @@ jQuery(function () {
       jQuery('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
       //jQuery(this).remove();
     },
-    eventSources:[{url:url_page}],
+    eventSources:[url_page],
     timeFormat:'h:mm t{ - h:mm t} ',
     dragOpacity:"0.5",
     eventDrop:function (event, dayDelta, minuteDelta, allDay, revertFunc) {
@@ -77,11 +88,7 @@ jQuery(function () {
     },
     defaultView:'month',
     height:800,
-    eventSources:[{
-      url: selected_crews_url_page,
-      data: {crew_ids: param_ids}
-
-    }],
+    eventSources: links_array,
     timeFormat:'h:mm t{ - h:mm t} '
   });
 
@@ -101,4 +108,4 @@ jQuery(function () {
     });
   };
 });
-
+});
