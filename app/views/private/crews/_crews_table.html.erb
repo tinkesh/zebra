@@ -1,22 +1,14 @@
 <table class="sortable">
   <tr>
-    <th>&nbsp;</th>
     <th>Name</th>
     <th class="nosort">Users</th>
     <th class="nosort">Crew Hours</th>
     <th class="nosort">Jobs</th>
     <th class="nosort">Assigned Equipment</th>
     <th class="actions nosort"></th>
-
   </tr>
-
-<%= form_for :crew, url: calendar_private_crews_path, html: {method: :get} do  %>
-    <tr>
-      <td colspan="7"><%= submit_tag "Show calendar" %><br></td>
-    </tr>
   <% crews.each do |crew| %>
     <tr>
-      <td><%= check_box_tag "crew_ids[]", crew.id %></td>
       <td><%= crew.label %></td>
       <td><%= crew.user_list %></td>
       <td><%=link_to 'Crew Hours', report_crew_time_path(crew.id) %></td>
@@ -41,5 +33,4 @@
   <tr>
     <td colspan="7"><%= submit_tag "Show calendar" %></td>
   </tr>
-<% end %>
 </table>

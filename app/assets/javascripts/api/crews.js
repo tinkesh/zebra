@@ -1,20 +1,30 @@
 jQuery( document ).ready(function() {
-
-
 jQuery(function () {
+
+  jQuery('.list-crews .one-crew').click(function(e){
+    var crew_color = jQuery(this).find('.crew-color').data('color');
+
+    if(jQuery(this).hasClass("selected")) {
+      jQuery(this).removeClass('selected');
+      jQuery(this).find('.crew-color').css("background-color", "#fff");
+    }
+    else {
+      jQuery(this).addClass("selected");
+      jQuery(this).find('.crew-color').css("background-color", crew_color);
+    }
+  });
 
   var multi = jQuery('.one-crew');
   var links_array = [];
 
   jQuery.each(multi, function (index, item) {
     links_array.push(jQuery(item).data('ids'));
-    console.log(item);
   });
-  console.log(links_array);
 
   var updateEvent, url_page, crew_id;
-  url_page = jQuery('#calendar').data('url');
-  crew_id = jQuery('#calendar').data('crew');
+      url_page = jQuery('#calendar').data('url');
+      crew_id = jQuery('#calendar').data('crew');
+
   jQuery('#my-draggable .fc-event').each(function() {
 
     // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)

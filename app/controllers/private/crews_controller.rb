@@ -68,6 +68,7 @@ class Private::CrewsController < ApplicationController
   end
 
   def calendar
-    @crews = Crew.where(id: params[:crew_ids])
+    @crews = Crew.order('name ASC')
+    @page_title = "Calendar"
   end
 end
