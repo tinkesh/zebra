@@ -1,24 +1,28 @@
 jQuery( document ).ready(function() {
 jQuery(function () {
-
-  jQuery('.list-crews .one-crew').click(function(e){
-    var crew_color = jQuery(this).find('.crew-color').data('color');
-
-    if(jQuery(this).hasClass("selected")) {
-      jQuery(this).removeClass('selected');
-      jQuery(this).find('.crew-color').css("background-color", "#fff");
-    }
-    else {
-      jQuery(this).addClass("selected");
-      jQuery(this).find('.crew-color').css("background-color", crew_color);
-    }
-  });
-
   var multi = jQuery('.one-crew');
   var links_array = [];
 
   jQuery.each(multi, function (index, item) {
     links_array.push(jQuery(item).data('ids'));
+  });
+
+  jQuery('.list-crews .one-crew').click(function(el){
+    var  my_object = jQuery(this)
+    var crew_color = my_object.find('.crew-color').data('color');
+    var url = my_object.data('ids');
+
+    if(my_object.hasClass("selected")) {
+      my_object.removeClass('selected');
+      my_object.find('.crew-color').css("background-color", "#fff");
+      jQuery('#select-crews-calendar').fullCalendar('removeEventSource', [url]);
+    }
+    else {
+      my_object.addClass("selected");
+      my_object.attr("data-ids", url);
+      my_object.find('.crew-color').css("background-color", crew_color);
+      jQuery('#select-crews-calendar').fullCalendar('addEventSource', url);
+    }
   });
 
   var updateEvent, url_page, crew_id;
