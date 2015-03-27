@@ -3,7 +3,8 @@ class EventSerializer < ActiveModel::Serializer
              :url, :backgroundColor, :borderColor, :editable
 
   def title
-    "Crew ##{object.crew.id} - #{object.name}"
+    status = object.eventable.completion.present? ? object.eventable.completion.name : 'No Status'
+    "Crew ##{object.crew.id} - #{object.name} (#{status})"
   end
 
   def start

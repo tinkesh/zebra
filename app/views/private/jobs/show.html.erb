@@ -102,6 +102,7 @@
     <% @job.crews.each do |crew| %>
       <li>
         <b><%= crew.name.html_safe %></b>
+        <span class="noprint"><%= link_to "Calendar", private_crew_path(crew), class: 'show' %></span>
         <br>
         <%= crew.user_list %>
       </li>
@@ -212,7 +213,6 @@
 </div>
 
 <hr>
-
 <div class="span-12 noprint">
   <% if permitted_to? :show, :private_load_sheets -%>
     <h3>Load Sheets</h3>
