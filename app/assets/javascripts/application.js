@@ -17,6 +17,7 @@
 //= require jquery.minicolors
 //= require jquery_ujs
 //= require fullcalendar
+//= require bootstrap/modal
 //= require_self
 //= require_tree ./base
 //= require_tree ./elements

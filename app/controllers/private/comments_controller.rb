@@ -13,4 +13,12 @@ class Private::CommentsController < ApplicationController
     redirect_to :back
   end
 
+  def add_comment
+    @job = Job.find(params[:job_id])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 end

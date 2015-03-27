@@ -27,6 +27,8 @@
   <%= render 'jobs_search_form' %>
 <% end %>
 
+<div class="modal hide fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+
 <% if @job.ar_error == true %>
   <h1 class="ar_error jobs_show">AR Error</h1>
 <% end %>
@@ -115,7 +117,10 @@
   <% if @job.crew_ids.size == 0 %>
     <p>No Crews Assigned</p>
   <% end %>
-
+  <p class="noprint">
+    <%= link_to "Add comment", add_comment_private_job_comments_path(@job),
+                {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#basicModal'} %>
+  </p>
   <hr>
 
   <h3>Equipment</h3>
@@ -273,20 +278,7 @@
       <% end %>
     </table>
   <% end %>
-
-
-  <h3>Add New Comment</h3>
-  <%= form_for [:private, @job, @job.comments.new(:user_id => current_user.id)] do |f| %>
-    <%= f.error_messages %>
-    <%= f.hidden_field :job_id %>
-    <%= f.hidden_field :user_id %>
-    <div class="append-bottom span-12">
-      <%= f.text_area :text, :rows => 4, :style => 'width: 98%;', :required => true %>
-    </div>
-    <%= f.submit 'Comment', :class => 'button' %>
-  <% end %>
 </div>
-
 
 <div class="span-12 last">
   <h3>Zoho Details</h3>

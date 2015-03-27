@@ -23,7 +23,11 @@ AaaStriping::Application.routes.draw do
     match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected
     resources :gun_marking_categories
     resources :jobs do
-      resources :comments
+      resources :comments do
+        collection do
+          get :add_comment
+        end
+      end
       resources :gun_sheets
       resources :job_sheets
       resources :material_reports
