@@ -12,14 +12,22 @@ AaaStriping::Application.routes.draw do
     end
     resources :completions
     resources :costs
-    resources :crews
+    resources :crews do
+      collection do
+        get :calendar
+      end
+    end
     resources :estimates
     resources :equipments
     resources :gun_sheets
     match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected
     resources :gun_marking_categories
     resources :jobs do
-      resources :comments
+      resources :comments do
+        collection do
+          get :add_comment
+        end
+      end
       resources :gun_sheets
       resources :job_sheets
       resources :material_reports
@@ -49,6 +57,7 @@ AaaStriping::Application.routes.draw do
   namespace :api do
     resources :crews, only: [:jobs] do
       collection do
+        get :show_selected
         put :schedule_job
       end
       member do

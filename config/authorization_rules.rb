@@ -81,8 +81,9 @@ authorization do
     end
     has_permission_on :private_gun_sheets, :to => :print_selected
     has_permission_on :private_client_contacts, :to => :manage
-    has_permission_on :private_comments, :to => :manage
-    has_permission_on :api_crews, to: [:jobs, :schedule_job]
+    has_permission_on :private_comments, to: [:manage, :add_comment]
+    has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
+    has_permission_on :private_crews, to: [:calendar]
   end
 end
 
