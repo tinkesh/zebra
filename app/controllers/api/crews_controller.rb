@@ -4,12 +4,8 @@ class Api::CrewsController < ApplicationController
 
   def jobs
     @crew = Crew.find(params[:id])
-    @events = @crew.events
-        #.where('started_on IS NOT NULL')
-
-    respond_to do |format|
-      format.json { render json: @events, root: false }
-    end
+    @events = @crew.events #.where('started_on IS NOT NULL')
+    render json: @events, root: false
   end
 
   def schedule_job

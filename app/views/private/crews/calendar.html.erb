@@ -16,7 +16,7 @@
 <div style="float: left;" class="list-crews">
   <ul>
     <% @crews.each do |crew| %>
-      <li class="one-crew selected" data-ids="/api/crews/<%= crew.id %>/jobs">
+      <li class="one-crew selected" data-ids="/api/events/<%= crew.id %>/jobs">
         <div class="crew-color" style="background-color: <%= crew.color %>;" data-color="<%= crew.color %>"></div>
         <span><%= "Crew ##{crew.id} #{crew.name}" %></span>
       </li>

@@ -1,4 +1,4 @@
-class EventSerializer < ActiveModel::Serializer
+class EventsSerializer < ActiveModel::Serializer
   attributes :id, :title, :start, :end,
              :url, :backgroundColor, :borderColor, :editable
 
@@ -20,7 +20,7 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def backgroundColor
-    "#{object.eventable.completion.color}"
+    "#{object.crew.color}"
   end
 
   def borderColor
