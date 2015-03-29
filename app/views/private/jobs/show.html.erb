@@ -118,8 +118,7 @@
     <p>No Crews Assigned</p>
   <% end %>
   <p class="noprint">
-    <%= link_to "Add comment", add_comment_private_job_comments_path(@job),
-                {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#basicModal'} %>
+    <%= link_to 'Add Comment', '#',  data: {toggle: "modal", target: "#myModal"} %>
   </p>
   <hr>
 
@@ -284,3 +283,5 @@
   <h3>Zoho Details</h3>
   <%= @job.zoho_details.blank? ? "None." : RedCloth.new(@job.zoho_details).to_html.html_safe %>
 </div>
+
+<%= render 'private/comments/add_comment' %>
