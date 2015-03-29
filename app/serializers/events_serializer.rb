@@ -28,7 +28,6 @@ class EventsSerializer < ActiveModel::Serializer
   end
 
   def editable
-    #return false if object.completed?
-    true
+    false
   end
 end

@@ -1,6 +1,10 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :start, :end,
-             :url, :backgroundColor, :borderColor, :editable
+  attributes :id, :job_id, :title, :start, :end,
+             :backgroundColor, :borderColor, :editable
+
+  def job_id
+    object.eventable.id
+  end
 
   def title
     status = object.eventable.completion.present? ? object.eventable.completion.name : 'No Status'
@@ -15,9 +19,9 @@ class EventSerializer < ActiveModel::Serializer
     object.completed_on.present? ? object.completed_on : Date.today
   end
 
-  def url
-    "/admin/jobs/#{object.eventable_id}"
-  end
+  # def url
+  #   "/admin/jobs/#{object.eventable_id}"
+  # end
 
   def backgroundColor
     "#{object.eventable.completion.color}"

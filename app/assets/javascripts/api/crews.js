@@ -90,6 +90,17 @@ jQuery(function () {
     },
     eventDragStop:function (event, dayDelta, minuteDelta, revertFunc) {
       return updateEvent(event);
+    },
+    eventRender: function(event, element) {
+      element.append( "<div class='pull-right' id='deleteEv'>&nbsp;Delete</span>" );
+      element.append( "<div class='pull-right'><a href='/admin/jobs/"+event.job_id+"'>Open</a> | </div>" );
+      element.find("#deleteEv").click(function() {
+        jQuery('#calendar').fullCalendar('removeEvents',event._id);
+        jQuery.ajax({
+          url: '/api/events/'+event._id,
+          type: 'DELETE'
+        })
+      });
     }
   });
 
