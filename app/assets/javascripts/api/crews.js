@@ -92,9 +92,10 @@ jQuery(function () {
       return updateEvent(event);
     },
     eventRender: function(event, element) {
-      element.append( "<div class='pull-right' id='deleteEv'>&nbsp;Delete</span>" );
-      element.append( "<div class='pull-right'><a href='/admin/jobs/"+event.job_id+"'>Open</a> | </div>" );
-      element.find("#deleteEv").click(function() {
+      var el = element.children('.fc-event-inner');
+      el.append( "<div class='pull-right' id='deleteEv'>&nbsp;Delete</span>" );
+      el.append( "<div class='pull-right'><a href='/admin/jobs/"+event.job_id+"'>Open</a> | </div>" );
+      el.find("#deleteEv").click(function() {
         jQuery('#calendar').fullCalendar('removeEvents',event._id);
         jQuery.ajax({
           url: '/api/events/'+event._id,
