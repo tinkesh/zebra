@@ -91,9 +91,13 @@ jQuery(function () {
     eventDragStop:function (event, dayDelta, minuteDelta, revertFunc) {
       return updateEvent(event);
     },
+    eventOverlap: function(stillEvent, movingEvent) {
+        return stillEvent.allDay && movingEvent.allDay;
+    },
     eventRender: function(event, element) {
       var el = element.children('.fc-event-inner');
-      el.append( "<div class='pull-right' id='deleteEv'>&nbsp;Delete</span>" );
+      el.append( "<div class='pull-right' id='deleteEv'>&nbsp;Delete&nbsp;</span>" );
+      el.append( "<div class='pull-right'><a href='/admin/jobs/"+event.job_id+"/edit'>&nbsp;Edit</a> | </div>" );
       el.append( "<div class='pull-right'><a href='/admin/jobs/"+event.job_id+"'>Open</a> | </div>" );
       el.find("#deleteEv").click(function() {
         jQuery('#calendar').fullCalendar('removeEvents',event._id);

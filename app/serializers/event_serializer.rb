@@ -8,7 +8,7 @@ class EventSerializer < ActiveModel::Serializer
 
   def title
     status = object.eventable.completion.present? ? object.eventable.completion.name : 'No Status'
-    "Crew ##{object.crew.id} - #{object.name} (#{status})"
+    "Job ##{object.eventable.id} - #{object.name} (#{status})"
   end
 
   def start
@@ -19,12 +19,16 @@ class EventSerializer < ActiveModel::Serializer
     object.completed_on.present? ? object.completed_on : Date.today
   end
 
+  def overlap
+    false
+  end
+
   # def url
   #   "/admin/jobs/#{object.eventable_id}"
   # end
 
   def backgroundColor
-    "#{object.eventable.completion.color}"
+    object.eventable.completion.present? ? "#{object.eventable.completion.color}" : 'rgb(105, 105, 105)'
   end
 
   def borderColor
