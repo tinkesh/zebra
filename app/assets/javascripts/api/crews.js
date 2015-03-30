@@ -78,7 +78,7 @@ jQuery(function () {
       updateEvent(copiedEventObject);
       // render the event on the calendar
       // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-      jQuery('#calendar').fullCalendar('renderEvent', originalEventObject, true);
+      //jQuery('#calendar').fullCalendar('renderEvent', originalEventObject, true);
     },
     eventSources:[url_page],
     timeFormat:'h:mm t{ - h:mm t} ',
