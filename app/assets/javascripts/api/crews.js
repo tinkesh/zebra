@@ -61,6 +61,7 @@ jQuery(function () {
     height:800,
     editable:true,
     droppable:true,
+    forceEventDuration:true,
     drop: function(date, allDay) {
       // this function is called when something is dropped
       // retrieve the dropped element's stored Event Object
@@ -73,11 +74,11 @@ jQuery(function () {
       copiedEventObject.start = date;
       copiedEventObject.end = date;
       copiedEventObject.allDay = allDay;
+
       updateEvent(copiedEventObject);
       // render the event on the calendar
       // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-      jQuery('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-      //jQuery(this).remove();
+      jQuery('#calendar').fullCalendar('renderEvent', originalEventObject, true);
     },
     eventSources:[url_page],
     timeFormat:'h:mm t{ - h:mm t} ',
@@ -123,6 +124,7 @@ jQuery(function () {
   });
 
   return updateEvent = function (event) {
+    console.log("EVENT ID  " + event._id);
     return jQuery.ajax({
       url:"/api/crews/schedule_job",
       data:{
@@ -132,6 +134,9 @@ jQuery(function () {
           completed_on: event.end.format(),
           crew_id: crew_id
         }
+      },
+      success: function(text) {
+        jQuery('#calendar').fullCalendar('refetchEvents');
       },
       type:'PUT',
       dataType:'json'
