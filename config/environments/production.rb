@@ -15,11 +15,12 @@ AaaStriping::Application.configure do
     :exception_recipients => %w{errors@agilestyle.com}
 
   config.paperclip_defaults = {
-      :storage => :s3,
-      :s3_credentials => {
-          :bucket => ENV['S3_BUCKET_NAME'],
-          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-      }
+      :storage => :fog,
+      :fog_credentials => {
+          provider: "AWS",
+          aws_access_key_id: "AWS_ACCESS_KEY_ID",
+          aws_secret_access_key: "AWS_SECRET_ACCESS_KEY"
+      },
+      :fog_directory => "AWS_BUCKET"
   }
 end

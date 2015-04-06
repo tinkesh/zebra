@@ -76,7 +76,7 @@
         <p>No Assets</p>
       <% else %>
         <% @equipment.assets.each do |asset| %>
-          <p><%=link_to upload_assets(asset), asset.image.url, target: '_blank' %></p>
+          <p><%=link_to uploaded_asset(asset), asset.image.url, target: '_blank' %></p>
         <% end %>
       <% end %>
     </td>

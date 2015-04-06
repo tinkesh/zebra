@@ -47,7 +47,7 @@ module ApplicationHelper
     highlight(str.to_s, params[:query])
   end
 
-  def upload_assets(asset)
+  def uploaded_asset(asset)
     if File.extname(asset.image_file_name) == ".pdf"
       raw("#{image_tag('pdf_icon_32.png')} Download")
     else
