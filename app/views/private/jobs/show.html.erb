@@ -250,14 +250,26 @@
 </div>
  <hr>
 <div class="span-12 noprint">
-  <h3>Assets</h3>
+  <h3>Documents</h3>
   <% if @job.assets.blank? %>
     <p>No uploaded documents for this job.</p>
   <% else %>
-    <% @job.assets.each do |asset| %>
-      <p><%=link_to uploaded_asset(asset), asset.image.url, target: '_blank' %></p>
-    <% end %>
+    <table>
+      <tr>
+        <th>Preview</th>
+        <th>File name</th>
+        <th></th>
+      </tr>
+      <% @job.assets.each do |asset| %>
+        <tr>
+          <td><%=uploaded_asset(asset) %></td>
+          <td><%= asset.image_file_name %></td>
+          <td><%= link_to "Download", asset.image.url, target: '_blank' %></td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
+
 </div>
 </div>
 

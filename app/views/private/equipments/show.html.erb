@@ -68,21 +68,30 @@
     <td>Daily Rate</td>
     <td><%= if @equipment.rate then "$#{@equipment.rate}" end %></td>
   </tr>
-
-  <tr>
-    <td>Assets</td>
-    <td>
-      <% if @equipment.assets.blank? %>
-        <p>No Assets</p>
-      <% else %>
-        <% @equipment.assets.each do |asset| %>
-          <p><%=link_to uploaded_asset(asset), asset.image.url, target: '_blank' %></p>
-        <% end %>
-      <% end %>
-    </td>
-  </tr>
-
 </table>
+
+<h3>Documents</h3>
+<% if @equipment.assets.blank? %>
+  <p>No uploaded documents for this equipment.</p>
+<% else %>
+  <div class="span-12">
+    <table>
+      <tr>
+        <th class="span-3">Preview</th>
+        <th>File name</th>
+        <th class="span-3"></th>
+      </tr>
+      <% @equipment.assets.each do |asset| %>
+        <tr>
+          <td><%=uploaded_asset(asset) %></td>
+          <td><%= asset.image_file_name %></td>
+          <td><%= link_to "Download", asset.image.url, target: '_blank' %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+
 <% if @equipment.crews.count > 0 %>
   <h3>Assigned to:</h3>
   <%= render :partial => 'private/crews/crews_table', :locals => {:crews => @equipment.crews} %>
