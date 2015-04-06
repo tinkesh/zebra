@@ -12,7 +12,11 @@ AaaStriping::Application.routes.draw do
     end
     resources :completions
     resources :costs
-    resources :crews
+    resources :crews do
+      collection do
+        get :calendar
+      end
+    end
     resources :estimates
     resources :equipments
     resources :gun_sheets
@@ -47,8 +51,14 @@ AaaStriping::Application.routes.draw do
   end
 
   namespace :api do
-    resources :crews, only: [:jobs] do
+    resources :events do
+      member do
+        get :jobs
+      end
+    end
+    resources :crews do
       collection do
+        get :show_selected
         put :schedule_job
       end
       member do

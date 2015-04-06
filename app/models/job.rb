@@ -12,6 +12,7 @@ class Job < ActiveRecord::Base
   has_many :material_reports
   has_many :time_sheets, :through => :estimates
   has_many :comments
+  has_many :events, as: :eventable
   has_and_belongs_to_many :time_entries
   has_many :assets, as: :attachable
 

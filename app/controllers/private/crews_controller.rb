@@ -67,4 +67,8 @@ class Private::CrewsController < ApplicationController
     redirect_to(private_crews_url)
   end
 
+  def calendar
+    @crews = Crew.order('name ASC')
+    @page_title = "Calendar"
+  end
 end

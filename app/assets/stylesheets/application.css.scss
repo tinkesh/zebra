@@ -12,6 +12,8 @@
  *= require bootstrap-dropdown
  *= require fullcalendar
  *= require jquery.minicolors
+ *= require api/crews
+ *= require private/comments
  *= require_self
  */
 
@@ -151,4 +153,8 @@ body {
   cursor: -webkit-grab;
   cursor: -moz-grabbing;
   background-color: rgb(239, 247, 255)
+}
+.pull-right {
+  float: right;
+  a{text-decoration: none;color:#fff;}
 }

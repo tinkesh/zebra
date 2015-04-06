@@ -27,6 +27,8 @@
   <%= render 'jobs_search_form' %>
 <% end %>
 
+<div class="modal hide fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+
 <% if @job.ar_error == true %>
   <h1 class="ar_error jobs_show">AR Error</h1>
 <% end %>
@@ -102,6 +104,7 @@
     <% @job.crews.each do |crew| %>
       <li>
         <b><%= crew.name.html_safe %></b>
+        <span class="noprint"><%= link_to "Calendar", private_crew_path(crew), class: 'show' %></span>
         <br>
         <%= crew.user_list %>
       </li>
@@ -114,7 +117,9 @@
   <% if @job.crew_ids.size == 0 %>
     <p>No Crews Assigned</p>
   <% end %>
-
+  <p class="noprint">
+    <%= link_to 'Add Comment', '#',  data: {toggle: "modal", target: "#myModal"} %>
+  </p>
   <hr>
 
   <h3>Equipment</h3>
@@ -212,7 +217,6 @@
 </div>
 
 <hr>
-
 <div class="span-12 noprint">
   <% if permitted_to? :show, :private_load_sheets -%>
     <h3>Load Sheets</h3>
@@ -284,22 +288,11 @@
       <% end %>
     </table>
   <% end %>
-
-
-  <h3>Add New Comment</h3>
-  <%= form_for [:private, @job, @job.comments.new(:user_id => current_user.id)] do |f| %>
-    <%= f.error_messages %>
-    <%= f.hidden_field :job_id %>
-    <%= f.hidden_field :user_id %>
-    <div class="append-bottom span-12">
-      <%= f.text_area :text, :rows => 4, :style => 'width: 98%;', :required => true %>
-    </div>
-    <%= f.submit 'Comment', :class => 'button' %>
-  <% end %>
 </div>
-
 
 <div class="span-12 last">
   <h3>Zoho Details</h3>
   <%= @job.zoho_details.blank? ? "None." : RedCloth.new(@job.zoho_details).to_html.html_safe %>
 </div>
+
+<%= render 'private/comments/add_comment' %>

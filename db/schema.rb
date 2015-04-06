@@ -12,7 +12,6 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20150317150318) do
-
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -114,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20150317150318) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color",      :default => "#3a87ad"
   end
 
   create_table "crews_equipment", :id => false, :force => true do |t|
@@ -161,6 +161,17 @@ ActiveRecord::Schema.define(:version => 20150317150318) do
     t.integer  "crew_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.integer  "crew_id"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.date     "started_on"
+    t.date     "completed_on"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "gun_marking_categories", :force => true do |t|

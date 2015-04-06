@@ -24,7 +24,7 @@
     <td>
       <div id="my-draggable">
       <% @jobs.each do |job| %>
-        <div class="<%= 'fc-event job_item' unless job.completed? || job.started_on.present? %>"
+        <div class="fc-event job_item"
           data-id='<%= job.id %>'
           data-url='<%= private_job_path(job) %>'>
           <%= link_to job.name, private_job_path(job) %>
@@ -56,4 +56,4 @@
 </div>
 <hr>
 
-<div id="calendar" data-url="<%= jobs_api_crew_path(@crew) %>"></div>
+<div id="calendar" data-url="<%= jobs_api_crew_path(@crew) %>" data-crew="<%= @crew.id %>"></div>
