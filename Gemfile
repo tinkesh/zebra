@@ -41,6 +41,9 @@ gem 'exception_notification', "= 2.6.1", :require => 'exception_notifier'
 
 gem 'formtastic'
 gem 'wicked'
+gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
+gem 'figaro'
 
 gem 'jquery-ui-rails'
 gem 'fullcalendar-rails'

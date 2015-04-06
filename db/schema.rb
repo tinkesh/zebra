@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150323134932) do
-
+ActiveRecord::Schema.define(:version => 20150317150318) do
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"
