@@ -29,9 +29,9 @@ authorization do
                        :private_time_task_categories, :private_time_note_categories, :private_material_reports,
                        :private_material_report_summaries, :private_reconciliation_summaries, :private_report_summaries], :to => :manage
     has_permission_on :private_material_reports, :private_material_report_summaries, :to => [:update_dips, :print]
-    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets], :to => [:create, :show]
+    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets, :private_equipments], :to => [:create, :show, :delete_document]
 
-    has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage]
+    has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage, :delete_document]
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destroy]
     has_permission_on [:jobs_value], :to => [:read]
   end

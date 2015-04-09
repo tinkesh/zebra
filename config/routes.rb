@@ -18,11 +18,16 @@ AaaStriping::Application.routes.draw do
       end
     end
     resources :estimates
-    resources :equipments
+    resources :equipments do
+      get :delete_document, on: :member
+    end
+
     resources :gun_sheets
     match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected
     resources :gun_marking_categories
     resources :jobs do
+      get :delete_document, on: :member
+
       resources :comments
       resources :gun_sheets
       resources :job_sheets
