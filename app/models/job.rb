@@ -22,7 +22,6 @@ class Job < ActiveRecord::Base
   accepts_nested_attributes_for :job_locations, :reject_if => lambda { |a| a[:name].blank? },  :allow_destroy => true
 
   validates_presence_of :name
-  validate :reminder_email
 
   # Is active or not
   scope :active,   -> { where(:is_archived => false) }
@@ -38,6 +37,12 @@ class Job < ActiveRecord::Base
 
   after_create :save_delay_job
   after_update :save_delay_job
+
+  validate do |job|
+    if self.reminder_on.present? and !self.reminder_email.present?
+      self.errors.add :base, "Reminder Email cannot be blank if Reminder date completed"
+    end
+  end
 
   def reminder_email
     self.errors.add :base, "Reminder Email cannot be blank if Reminder date completed" if self.reminder_on.present? and !self.reminder_email.present?
