@@ -57,3 +57,7 @@ gem 'rails_log_stdout'
 gem 'rails_12factor'
 gem 'heroku'
 gem 'thin'
+
+
+gem 'delayed_job'
+gem 'delayed_job_active_record'
