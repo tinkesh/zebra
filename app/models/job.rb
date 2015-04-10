@@ -35,8 +35,8 @@ class Job < ActiveRecord::Base
     'HB Owing'
   ]
 
-  after_create { |job| SiteMailer.delay(delay_at: job.reminder_on).send_reminder_notice(job) }
-  after_update { |job| SiteMailer.delay({run_at: job.reminder_on}).send_reminder_notice(job) }
+  after_create { |job| SiteMailer.delay(delay_at: job.reminder_on.getutc).send_reminder_notice(job) }
+  after_update { |job| SiteMailer.delay({run_at: job.reminder_on.getutc}).send_reminder_notice(job) }
 
 
   validate do |job|
