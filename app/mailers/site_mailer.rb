@@ -60,4 +60,9 @@ class SiteMailer < ActionMailer::Base
 
     mail(:to => "info@aaastriping.ca", :subject =>  "[AAAS] Equipment alert")
   end
+
+  def send_reminder_notice(job)
+    @job = job
+    mail(to: job.reminder_email, subject: "[AAAS] Reminder Notice")
+  end
 end
