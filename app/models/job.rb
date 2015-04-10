@@ -44,10 +44,6 @@ class Job < ActiveRecord::Base
     end
   end
 
-  def reminder_email
-    self.errors.add :base, "Reminder Email cannot be blank if Reminder date completed" if self.reminder_on.present? and !self.reminder_email.present?
-  end
-
   def save_delay_job
     SiteMailer.delay({run_at: self.reminder_on.getutc}).send_reminder_notice(self) if self.reminder_on_changed?
   end
