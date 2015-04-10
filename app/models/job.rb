@@ -22,6 +22,7 @@ class Job < ActiveRecord::Base
   accepts_nested_attributes_for :job_locations, :reject_if => lambda { |a| a[:name].blank? },  :allow_destroy => true
 
   validates_presence_of :name
+  validate :reminder_email
 
   # Is active or not
   scope :active,   -> { where(:is_archived => false) }
@@ -35,14 +36,15 @@ class Job < ActiveRecord::Base
     'HB Owing'
   ]
 
-  after_create { |job| SiteMailer.delay(delay_at: job.reminder_on.getutc).send_reminder_notice(job) }
-  after_update { |job| SiteMailer.delay({run_at: job.reminder_on.getutc}).send_reminder_notice(job) }
+  after_create :save_delay_job
+  after_update :save_delay_job
 
+  def reminder_email
+    self.errors.add :base, "Reminder Email cannot be blank if Reminder date completed" if self.reminder_on.present? and !self.reminder_email.present?
+  end
 
-  validate do |job|
-    if self.reminder_on.present? and !self.reminder_email.present?
-      self.errors.add :base, "Reminder Email cannot be blank if Reminder date completed".html_safe
-    end
+  def save_delay_job
+    SiteMailer.delay({run_at: self.reminder_on.getutc}).send_reminder_notice(self) if self.reminder_on_changed?
   end
 
   # This is a static method that all the sheets refer to
