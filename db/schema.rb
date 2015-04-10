@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150317150318) do
+ActiveRecord::Schema.define(:version => 20150409183220) do
+
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -136,6 +137,22 @@ ActiveRecord::Schema.define(:version => 20150317150318) do
     t.datetime "updated_at",                    :null => false
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0, :null => false
+    t.integer  "attempts",   :default => 0, :null => false
+    t.text     "handler",                   :null => false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "equipment", :force => true do |t|
     t.string   "unit"
     t.string   "name"
@@ -161,6 +178,12 @@ ActiveRecord::Schema.define(:version => 20150317150318) do
     t.integer  "crew_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "client_id"
+    t.string   "reference"
+    t.date     "estimate_date"
+    t.date     "expiry_date"
+    t.text     "client_notes"
+    t.text     "terms_and_conditions"
   end
 
   create_table "events", :force => true do |t|
@@ -294,6 +317,9 @@ ActiveRecord::Schema.define(:version => 20150317150318) do
     t.text     "zoho_details"
     t.boolean  "ar_error",                :default => false
     t.string   "reference_code"
+    t.datetime "reminder_on"
+    t.text     "reminder_notice"
+    t.string   "reminder_email"
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|

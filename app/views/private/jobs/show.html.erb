@@ -63,7 +63,11 @@
     Start: <%= @job.started_on %><br>
     Status: <%= @job.completion.try(:name) %><br>
     Complete: <%= @job.completed_on %><br>
-    Pay Status: <%= @job.pay_status %>
+    Pay Status: <%= @job.pay_status %><br>
+
+    <b>Reminder on:</b> <%= @job.reminder_on %><br>
+    <b>Reminder E-mail:</b> <%= @job.reminder_email %><br>
+    <b>Reminder Notice:</b> <%= @job.reminder_notice %><br>
   </p>
 
   <hr>

@@ -35,6 +35,16 @@ class Job < ActiveRecord::Base
     'HB Owing'
   ]
 
+  after_create { |job| SiteMailer.delay(delay_at: job.reminder_on.getutc).send_reminder_notice(job) }
+  after_update { |job| SiteMailer.delay({run_at: job.reminder_on.getutc}).send_reminder_notice(job) }
+
+
+  validate do |job|
+    if self.reminder_on.present? and !self.reminder_email.present?
+      self.errors.add :base, "Reminder Email cannot be blank if Reminder date completed".html_safe
+    end
+  end
+
   # This is a static method that all the sheets refer to
   # created to make the Job#show report have an archived date
   def self.archive_date

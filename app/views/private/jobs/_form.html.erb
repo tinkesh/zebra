@@ -32,6 +32,21 @@
   </div>
 
   <div class="append-bottom">
+    <%= form.label :reminder_on, "Reminder On" %><br>
+    <%= form.text_field :reminder_on, 'data-role' => 'datetimepicker' %>
+  </div>
+
+  <div class="append-bottom">
+    <%= form.label :reminder_email, "Reminder E-mail" %><br>
+    <%= form.text_field :reminder_email %>
+  </div>
+
+  <div class="append-bottom">
+    <%= form.label :reminder_notice, "Reminder notice" %><br>
+    <%= form.text_area :reminder_notice, class: "span-12", rows: 4  %>
+  </div>
+
+  <div class="append-bottom">
     <%= form.label :pay_status, "Pay Status" %><br>
     <%= form.select :pay_status, Job::PAY_STATUSES, :include_blank => true %>
   </div>

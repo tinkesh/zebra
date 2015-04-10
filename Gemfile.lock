@@ -67,6 +67,11 @@ GEM
     daemons (1.1.9)
     debug_inspector (0.0.2)
     declarative_authorization (0.5.7)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.0.3)
+      activerecord (>= 3.0, < 5.0)
+      delayed_job (>= 3.0, < 4.1)
     erubis (2.7.0)
     eventmachine (1.0.7)
     exception_notification (2.6.1)
@@ -204,6 +209,8 @@ DEPENDENCIES
   bootstrap-sass (= 3.1.1.0)
   coffee-rails (~> 3.2.1)
   declarative_authorization
+  delayed_job
+  delayed_job_active_record
   exception_notification (= 2.6.1)
   figaro
   formtastic
