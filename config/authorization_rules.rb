@@ -65,6 +65,7 @@ authorization do
                        :private_load_sheets], :to => [:create, :show, :index]
     has_permission_on [:private_gun_sheets], :to => [:create, :show, :index, :edit, :update, :destroy]
     has_permission_on [:private_jobs], :to => [:show, :navigate]
+    has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
     has_permission_on :private_job_sheets, :to => [:create, :update, :show] do
       if_attribute :created_by => is { user.id }
     end
@@ -73,7 +74,7 @@ authorization do
   role :crewman do
     description 'Can view jobs and add comments to them. Can view his own hours'
     has_permission_on :private, :to => [:index, :navigate]
-    has_permission_on :private_jobs, :to => :show
+    #has_permission_on :private_jobs, :to => :show
     has_permission_on :private_reports, :to => [:increase_offset, :decrease_offset, :reset_offset, :set_date]
     has_permission_on :private_reports, :to => :user_time
     has_permission_on :users, :to => :update do
@@ -82,7 +83,6 @@ authorization do
     has_permission_on :private_gun_sheets, :to => :print_selected
     has_permission_on :private_client_contacts, :to => :manage
     has_permission_on :private_comments, to: [:manage, :add_comment]
-    has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
     has_permission_on :private_crews, to: [:calendar]
   end
 end

@@ -68,9 +68,8 @@ private
   end
 
 protected
-
-#  def permission_denied
-#    flash[:error] = "You do not have access that page."
-#    redirect_to login_url
-#  end
+  def permission_denied
+    flash[:error] = "Sorry, you are not allowed to access that page.";
+    redirect_to private_home_url
+  end
 end

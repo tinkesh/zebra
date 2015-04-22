@@ -1,7 +1,7 @@
 class Private::JobsController < ApplicationController
 
   layout "private"
-  filter_access_to :only => [:index, :new, :update, :edit, :destroy, :create, :load_job_supporting_data]
+  filter_access_to :all
 
   def index(archived = false)
     @page_title ||= "Jobs on Hand"
