@@ -66,11 +66,7 @@ authorization do
     has_permission_on [:private_gun_sheets], :to => [:create, :show, :index, :edit, :update, :destroy]
     has_permission_on [:private_jobs], :to => [:show, :navigate]
     has_permission_on :private_crews, to: [:show, :calendar]
-
     has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
-    has_permission_on :private_job_sheets, :to => [:create, :update, :show] do
-      if_attribute :created_by => is { user.id }
-    end
   end
 
   role :crewman do
