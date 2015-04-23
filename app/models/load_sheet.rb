@@ -9,7 +9,7 @@ class LoadSheet < ActiveRecord::Base
   accepts_nested_attributes_for :load_entries, :reject_if => lambda { |a| a[:material_id].blank? }, :allow_destroy => true
 
   validates_presence_of :date, :yellow_dip_end, :yellow_dip_start, :white_dip_end, :white_dip_start
-  validates_presence_of :equipment_id
+  #validates_presence_of :equipment_id
   validates_numericality_of :yellow_dip_end, :yellow_dip_start, :white_dip_end, :white_dip_start
 
   after_create :deliver_new_load_sheet
