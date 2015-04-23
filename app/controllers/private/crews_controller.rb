@@ -2,6 +2,7 @@ class Private::CrewsController < ApplicationController
 
   layout "private"
   filter_access_to :all
+  before_filter :foreman_in_crew, only: [:show]
 
   def index
     @crews = Crew.includes(:jobs, :equipments, :users).order('name ASC')
@@ -70,5 +71,16 @@ class Private::CrewsController < ApplicationController
   def calendar
     @crews = Crew.order('name ASC')
     @page_title = "Calendar"
+  end
+
+  private
+
+  def foreman_in_crew
+    @crew = Crew.find(params[:id])
+
+    if !@crew.user_list.include?(current_user.name)
+      flash[:error] = "Sorry, you are not allowed to access that page."
+      redirect_to private_home_url
+    end
   end
 end

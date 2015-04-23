@@ -108,7 +108,9 @@
     <% @job.crews.each do |crew| %>
       <li>
         <b><%= crew.name.html_safe %></b>
-        <span class="noprint"><%= link_to "Calendar", private_crew_path(crew), class: 'show' %></span>
+        <% if crew.user_list.include?(current_user.name) -%>
+          <span class="noprint"><%= link_to "Calendar", private_crew_path(crew), class: 'show' %></span>
+        <% end %>
         <br>
         <%= crew.user_list %>
       </li>
