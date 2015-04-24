@@ -38,6 +38,8 @@ GEM
     authlogic (3.3.0)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
+    awesome_nested_fields (0.6.4)
+      rails (>= 3.0.0)
     awesome_print (1.1.0)
     aws-sdk (1.64.0)
       aws-sdk-v1 (= 1.64.0)
@@ -202,6 +204,7 @@ DEPENDENCIES
   active_link_to
   active_model_serializers
   authlogic
+  awesome_nested_fields
   awesome_print
   aws-sdk (< 2.0)
   better_errors

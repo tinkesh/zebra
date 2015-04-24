@@ -40,6 +40,7 @@ gem 'RedCloth'
 gem 'exception_notification', "= 2.6.1", :require => 'exception_notifier'
 
 gem 'formtastic'
+gem 'awesome_nested_fields'
 gem 'wicked'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'

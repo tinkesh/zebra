@@ -1,0 +1,39 @@
+<%= content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+<%= content_for :submenu do %>
+  <% if permitted_to? :create, :private_job_estimates -%>
+    <li><%= active_link_to 'New Job Estimate', new_private_job_estimate_path %></li>
+  <% end %>
+<% end %>
+
+<hr>
+
+<table class="sortable">
+  <tr>
+    <th class="center number">#</th>
+    <th class="nosort">Client</th>
+    <th class="center">Reference</th>
+    <th class="center">Estimate Date</th>
+    <th class="center">Expiry Date</th>
+    <th class="actions nosort"></th>
+  </tr>
+  <% @job_estimates.each do |estimate| %>
+    <tr>
+      <td><%= estimate.id %></td>
+      <td><%= aaa_highlight(estimate.client.try(:name)) %></td>
+      <td><%= estimate.reference %></td>
+      <td><%= estimate.estimate_date %></td>
+      <td><%= estimate.expiry_date %></td>
+      <td class="actions">
+        <%= link_to "Delete", private_job_estimate_path(estimate), confirm: 'Are you sure? This cannot be undone!', method: :delete, class: "delete" %>
+        <%= link_to "Edit", edit_private_job_estimate_path(estimate), class: "edit" %>
+        <%= link_to "Show", private_job_estimate_path(estimate), class: "show" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
