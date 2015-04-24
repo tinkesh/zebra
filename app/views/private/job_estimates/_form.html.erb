@@ -22,7 +22,7 @@
     <div class="append-bottom">
       <label>Items Details</label>
 
-      <table>
+      <table id="table_item">
         <thead>
         <tr>
           <th>Title&Description</th>
@@ -44,7 +44,10 @@
         <tfoot>
           <tr>
             <th colspan="3">Total Amount</th>
-            <th colspan="2"><div class='total_amount'>0</div></th>
+            <th colspan="2">
+              <div class='total_amount'>0</div>
+              <%= form.hidden_field :total_amount %>
+            </th>
           </tr>
         </tfoot>
       </table>
@@ -60,3 +63,23 @@
     </div>
   </div>
 </div>
+<script type="text/javascript" language="javascript">
+  function updateTable() {
+    var sum = 0;
+    jQuery("#table_item tbody tr").each(function(){
+     el1 = Number(jQuery(this).find("td.quantity").find('input').val()) * Number(jQuery(this).find("td.price").find('input').val())
+      jQuery(this).find("td").eq(3).find('input').val(el1);
+      sum += Number(jQuery(this).find("td").eq(3).find('input').val());
+    });
+    jQuery('.total_amount').html(sum)
+    jQuery('#job_estimate_total_amount').val(sum)
+  };
+
+  $$('tr.item input').each(function(element) {
+    element.observe('keyup', updateTable);
+  })
+</script>
+
+<script language="javascript">
+  updateTable();
+</script>
