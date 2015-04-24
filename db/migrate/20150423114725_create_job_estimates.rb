@@ -18,7 +18,8 @@ class CreateJobEstimates < ActiveRecord::Migration
       t.text :description
       t.integer :quantity, default: 1
       t.integer :rate, :discount, default: 0
-      t.decimal :amount, default: 0
+      t.decimal :price, default: 0
+      t.decimal :total_price, default: 0
       t.timestamps
     end
   end

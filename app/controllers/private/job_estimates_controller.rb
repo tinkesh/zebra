@@ -17,6 +17,7 @@ class Private::JobEstimatesController < ApplicationController
     @job_estimate = JobEstimate.new
     @page_title = "New Job Estimate"
     @clients = Client.scoped.order(:name)
+    @materials = Material.active.includes(:manufacturer)
   end
 
   def create
@@ -29,6 +30,7 @@ class Private::JobEstimatesController < ApplicationController
       redirect_to private_job_estimates_path
     else
       @clients = Client.scoped.order(:name)
+      @materials = Material.active.includes(:manufacturer)
       render action: :new
     end
   end
@@ -37,6 +39,7 @@ class Private::JobEstimatesController < ApplicationController
     @job_estimate = JobEstimate.find(params[:id])
     @page_title = "Edit Job Estimate"
     @clients = Client.scoped.order(:name)
+    @materials = Material.active.includes(:manufacturer)
   end
 
   def update
@@ -48,6 +51,7 @@ class Private::JobEstimatesController < ApplicationController
       redirect_to private_job_estimate_path(@job_estimate)
     else
       @clients = Client.scoped.order(:name)
+      @materials = Material.active.includes(:manufacturer)
       render action: :edit
     end
   end

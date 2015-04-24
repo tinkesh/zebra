@@ -178,7 +178,8 @@ ActiveRecord::Schema.define(:version => 20150423114725) do
     t.integer  "quantity",        :default => 1
     t.integer  "rate",            :default => 0
     t.integer  "discount",        :default => 0
-    t.decimal  "amount",          :default => 0.0
+    t.decimal  "price",           :default => 0.0
+    t.decimal  "total_price",     :default => 0.0
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end

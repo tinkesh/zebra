@@ -52,18 +52,16 @@
   <table>
     <tr>
       <th>Title</th>
-      <th>Description</th>
       <th>Quantity</th>
-      <th>Rate</th>
-      <th>Amount</th>
+      <th>Price</th>
+      <th>Total Price</th>
     </tr>
     <% @job_estimate.estimate_items.each do |item| %>
       <tr>
         <td><%= item.title %></td>
-        <td><%= item.description %></td>
         <td><%= item.quantity %></td>
-        <td><%= item.rate %></td>
-        <td><%= item.amount %></td>
+        <td><%= item.price %></td>
+        <td><%= item.total_price %></td>
       </tr>
     <% end %>
   </table>
