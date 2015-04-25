@@ -1,65 +1,61 @@
-<div class="container">
-  <div class="span-11 append-1">
-    <div class="append-bottom">
-      <%= form.label :client_id %><br>
-      <%= form.select :client_id, @clients.map {|u| [u.name,u.id]}, {}, class: "span-7" %>
-    </div>
+<div class="form-group">
+  <%= form.label :client_id %><br>
+  <%= form.select :client_id, @clients.map {|u| [u.name,u.id]}, {}, class: "chosen-select select" %>
+</div>
 
-    <div class="append-bottom">
-      <%= form.label :reference %><br>
-      <%= form.text_field :reference, class: "span-7" %>
-    </div>
+<div class="form-group">
+  <%= form.label :reference %><br>
+  <%= form.text_field :reference, class: "form-control" %>
+</div>
 
-    <div class="append-bottom">
-      <%= form.label :estimate_date  %><br>
-      <%= form.text_field :estimate_date, 'data-role' => 'datepicker' %>
-    </div>
+<div class="form-group">
+  <%= form.label :estimate_date  %><br>
+  <%= form.text_field :estimate_date, 'data-role' => 'datepicker', class: 'form-control' %>
+</div>
 
-    <div class="append-bottom">
-      <%= form.label :expiry_date  %><br>
-      <%= form.text_field :expiry_date, 'data-role' => 'datepicker' %>
-    </div>
-    <div class="append-bottom">
-      <label>Items Details</label>
+<div class="form-group">
+  <%= form.label :expiry_date  %><br>
+  <%= form.text_field :expiry_date, 'data-role' => 'datepicker', class: 'form-control' %>
+</div>
+<div class="form-group">
+  <label>Items Details</label>
 
-      <table id="table_item">
-        <thead>
-        <tr>
-          <th>Title&Description</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total price</th>
-          <th>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%= form.nested_fields_for :estimate_items, show_empty: true do |f|
-          if f
-            render 'estimate_item', f: f
-          else
-            render 'estimate_item_none'
-          end
-        end -%>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th colspan="3">Total Amount</th>
-            <th colspan="2">
-              <div class='total_amount'>0</div>
-              <%= form.hidden_field :total_amount %>
-            </th>
-          </tr>
-        </tfoot>
-      </table>
-      <a href="#" class="add">add Item</a>
-    </div>
-    <div class="append-bottom">
-      <%= form.label :client_notes %><br>
-      <%= form.text_area :client_notes, class: "span-15", rows: 4 %>
-    </div>
-    <div class="append-bottom">
-      <%= form.label :terms_and_conditions %><br>
-      <%= form.text_area :terms_and_conditions, class: "span-15", rows: 10 %>
-    </div>
-  </div>
+  <table id="table_item" class='table'>
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total price</th>
+      <th>&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= form.nested_fields_for :estimate_items, show_empty: true do |f|
+      if f
+        render 'estimate_item', f: f
+      else
+        render 'estimate_item_none'
+      end
+    end -%>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="3">Total Amount</th>
+        <th colspan="2">
+          <div class='total_amount'>0</div>
+          <%= form.hidden_field :total_amount %>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+  <a href="#" class="btn btn-primary add">Add Item</a>
+</div>
+<div class="form-group">
+  <%= form.label :client_notes %><br>
+  <%= form.text_area :client_notes, class: 'form-control', rows: 4 %>
+</div>
+<div class="form-group">
+  <%= form.label :terms_and_conditions %><br>
+  <%= form.text_area :terms_and_conditions, class: 'form-control', rows: 10 %>
 </div>

@@ -21,6 +21,10 @@
   <%= javascript_include_tag 'application.js' %>
   <%= yield :javascripts -%>
   <%= csrf_meta_tags %>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 </head>
 <body>
 
@@ -39,9 +43,11 @@
 <div id="content">
   <%= yield :versions %>
 
-  <% flash.each do |key, value| -%>
-    <div class="<%= key %>"><p><%=h value %></p></div>
-  <% end -%>
+  <% flash.each do |type, message| %>
+    <div class="alert <%= bootstrap_class_for(type) %>">
+      <%= message %>
+    </div>
+  <% end %>
 
   <% if @page_title -%>
     <h1><%= @page_title.html_safe %></h1>

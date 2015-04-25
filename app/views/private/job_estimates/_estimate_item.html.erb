@@ -6,10 +6,14 @@
                    { include_blank: true },
                    { class: 'chosen-select span-7' } %>
   </td>
-  <td class="quantity"><%= f.number_field :quantity, class: "span-2", min: 0 %></td>
-  <td class="price"><%= f.number_field :price, class: "span-2 estimate_unit_price", min: 0 %></td>
+  <td class="quantity">
+    <%= f.number_field :quantity, class: "form-control", min: 0 %>
+  </td>
+  <td class="price">
+    <%= f.number_field :price, class: "form-control estimate_unit_price", min: 0 %>
+  </td>
   <td class="amount">
-    <div class='total-price'></div>
+    <div class='total-price' style='text-align:center;width:80px;line-height: 30px;'></div>
     <%= f.hidden_field :total_price, min: 0 %>
   </td>
   <td>
