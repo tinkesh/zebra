@@ -53,8 +53,11 @@ authorization do
                        ], :to => [:read]
 
     has_permission_on [:private_materials, :private_material_reports, :private_material_report_summaries, ], :to => [:manage, :update_dips, :print]
-
     has_permission_on [:private_crews, :private_jobs], :to => [:manage]
+
+    # calendar related permissions
+    has_permission_on :private_crews, to: [:show, :calendar]
+    has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
   end
 
   role :foreman do
@@ -65,6 +68,8 @@ authorization do
                        :private_load_sheets], :to => [:create, :show, :index]
     has_permission_on [:private_gun_sheets], :to => [:create, :show, :index, :edit, :update, :destroy]
     has_permission_on [:private_jobs], :to => [:show, :navigate]
+
+    # calendar related permissions
     has_permission_on :private_crews, to: [:show, :calendar]
     has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
   end
