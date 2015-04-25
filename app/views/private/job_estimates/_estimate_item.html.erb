@@ -6,9 +6,12 @@
                    { include_blank: true },
                    { class: 'chosen-select span-7' } %>
   </td>
-  <td class="quantity"><%= f.text_field :quantity, class: "span-2" %></td>
-  <td class="price"><%= f.text_field :price, class: "span-2" %></td>
-  <td class="amount"><%= f.text_field :total_price, class: "span-2", disabled: true %></td>
+  <td class="quantity"><%= f.number_field :quantity, class: "span-2", min: 0 %></td>
+  <td class="price"><%= f.number_field :price, class: "span-2 estimate_unit_price", min: 0 %></td>
+  <td class="amount">
+    <div class='total-price'></div>
+    <%= f.hidden_field :total_price, min: 0 %>
+  </td>
   <td>
     <a href="#" class="remove" data-confirm="Are you sure?">remove</a>
     <%= f.hidden_field :id %>

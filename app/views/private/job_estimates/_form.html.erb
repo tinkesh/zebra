@@ -55,7 +55,7 @@
     </div>
     <div class="append-bottom">
       <%= form.label :client_notes %><br>
-      <%= form.text_area :client_notes, class: "span-10", rows: 4 %>
+      <%= form.text_area :client_notes, class: "span-15", rows: 4 %>
     </div>
     <div class="append-bottom">
       <%= form.label :terms_and_conditions %><br>
@@ -63,23 +63,3 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" language="javascript">
-  function updateTable() {
-    var sum = 0;
-    jQuery("#table_item tbody tr").each(function(){
-     el1 = Number(jQuery(this).find("td.quantity").find('input').val()) * Number(jQuery(this).find("td.price").find('input').val())
-      jQuery(this).find("td").eq(3).find('input').val(el1);
-      sum += Number(jQuery(this).find("td").eq(3).find('input').val());
-    });
-    jQuery('.total_amount').html(sum)
-    jQuery('#job_estimate_total_amount').val(sum)
-  };
-
-  $$('tr.item input').each(function(element) {
-    element.observe('keyup', updateTable);
-  })
-</script>
-
-<script language="javascript">
-  updateTable();
-</script>

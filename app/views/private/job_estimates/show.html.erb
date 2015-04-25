@@ -32,19 +32,19 @@
     </tr>
     <tr>
       <th class="span-4">Client notes</th>
-      <td><%= @job_estimate.client_notes %></td>
+      <td><%= simple_format @job_estimate.client_notes %></td>
     </tr>
     <tr>
       <th class="span-4">Terms and Conditions</th>
-      <td><%= @job_estimate.terms_and_conditions %></td>
+      <td><%= simple_format @job_estimate.terms_and_conditions %></td>
     </tr>
     <tr>
-      <th class="span-4">Estimate</th>
-      <td><%= @job_estimate.estimate_date.strftime("%B %d, %Y") %></td>
+      <th class="span-4">Estimate Date</th>
+      <td><%= @job_estimate.estimate_date ? @job_estimate.estimate_date.strftime("%B %d, %Y") : 'Estimate Date missing' %></td>
     </tr>
     <tr>
       <th class="span-4">Expiry Date</th>
-      <td><%= @job_estimate.expiry_date.strftime("%B %d, %Y") %></td>
+      <td><%= @job_estimate.expiry_date ? @job_estimate.expiry_date.strftime("%B %d, %Y") : 'Expiry Date missing' %></td>
     </tr>
     <tr>
       <th class="span-4">Total amount</th>
