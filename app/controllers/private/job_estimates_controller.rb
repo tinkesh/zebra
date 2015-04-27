@@ -5,18 +5,18 @@ class Private::JobEstimatesController < ApplicationController
 
   def index
     @page_title = "Job Estimates"
-    @job_estimates = JobEstimate.includes(:client).order('id desc')
+    @job_estimates = JobEstimate.order('id desc')
   end
 
   def show
-    @job_estimate = JobEstimate.find(params[:id], include: [:client])
+    @job_estimate = JobEstimate.find(params[:id])
     @page_title = "Show Job Estimate"
   end
 
   def new
     @job_estimate = JobEstimate.new
     @page_title = "New Job Estimate"
-    @clients = Client.scoped.order(:name)
+    @clients = Client.order(:name)
     @materials = Material.active.includes(:manufacturer)
   end
 
@@ -29,7 +29,7 @@ class Private::JobEstimatesController < ApplicationController
       flash[:notice] = "Job Estimate created!"
       redirect_to private_job_estimates_path
     else
-      @clients = Client.scoped.order(:name)
+      @clients = Client.order(:name)
       @materials = Material.active.includes(:manufacturer)
       render action: :new
     end
@@ -38,7 +38,7 @@ class Private::JobEstimatesController < ApplicationController
   def edit
     @job_estimate = JobEstimate.find(params[:id])
     @page_title = "Edit Job Estimate"
-    @clients = Client.scoped.order(:name)
+    @clients = Client.order(:name)
     @materials = Material.active.includes(:manufacturer)
   end
 
@@ -50,7 +50,7 @@ class Private::JobEstimatesController < ApplicationController
       flash[:notice] = "Job Estimate updated!"
       redirect_to private_job_estimate_path(@job_estimate)
     else
-      @clients = Client.scoped.order(:name)
+      @clients = Client.order(:name)
       @materials = Material.active.includes(:manufacturer)
       render action: :edit
     end

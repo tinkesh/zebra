@@ -4,6 +4,23 @@ jQuery(document).ready(function() {
   jQuery('tr.item input').change(function(event) {
     updateTable();
   });
+
+  jQuery("#job_estimate_emails").selectize({
+    delimiter: ', ',
+    persist: false,
+    maxItems: null,
+    create: function(input) {
+      return {
+        value: input,
+        text: input
+      }
+    }
+  });
+
+  jQuery("#job_estimate_name_client").selectize({
+    create: true,
+    sortField: 'text'
+  });
 });
 
 jQuery(function () {

@@ -1,7 +1,6 @@
 class Client < ActiveRecord::Base
 
   has_many :jobs
-  has_many :job_estimates
   has_many :client_contacts, :dependent => :destroy
 
   validates_presence_of :name

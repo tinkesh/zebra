@@ -24,11 +24,15 @@
   <table class='table table-hover'>
     <tr>
       <th class="col-md-2">Client</th>
-      <td style="border-top: solid 1px #ccc"><%= aaa_highlight(@job_estimate.client.try(:name)) %></td>
+      <td style="border-top: solid 1px #ccc"><%= @job_estimate.name_client %></td>
     </tr>
     <tr>
       <th class="col-md-2">Reference</th>
       <td><%= @job_estimate.reference %></td>
+    </tr>
+    <tr>
+      <th class="col-md-2">Emails</th>
+      <td><%= @job_estimate.emails %></td>
     </tr>
     <tr>
       <th class="col-md-2">Client notes</th>

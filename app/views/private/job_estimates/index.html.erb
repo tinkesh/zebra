@@ -25,7 +25,7 @@
   <% @job_estimates.each do |estimate| %>
     <tr>
       <td><%= estimate.id %></td>
-      <td><%= aaa_highlight(estimate.client.try(:name)) %></td>
+      <td><%= estimate.name_client %></td>
       <td><%= estimate.reference %></td>
       <td><%= estimate.estimate_date %></td>
       <td><%= estimate.expiry_date %></td>

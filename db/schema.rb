@@ -175,7 +175,6 @@ ActiveRecord::Schema.define(:version => 20150423114725) do
     t.integer  "job_estimate_id"
     t.string   "title"
     t.text     "description"
-    t.text     "emails"
     t.integer  "quantity",        :default => 1
     t.integer  "discount",        :default => 0
     t.decimal  "price",           :default => 0.0
@@ -277,9 +276,10 @@ ActiveRecord::Schema.define(:version => 20150423114725) do
   end
 
   create_table "job_estimates", :force => true do |t|
-    t.integer  "client_id"
+    t.string   "name_client"
     t.string   "status"
     t.string   "reference"
+    t.text     "emails"
     t.date     "estimate_date"
     t.date     "expiry_date"
     t.text     "client_notes"

@@ -1,9 +1,10 @@
 class CreateJobEstimates < ActiveRecord::Migration
   def change
     create_table :job_estimates do |t|
-      t.integer :client_id
+      t.string :name_client
       t.string :status
       t.string :reference
+      t.text :emails
       t.date :estimate_date
       t.date :expiry_date
       t.text :client_notes
@@ -16,7 +17,6 @@ class CreateJobEstimates < ActiveRecord::Migration
       t.integer :job_estimate_id
       t.string :title
       t.text :description
-      t.text :emails
       t.integer :quantity, default: 1
       t.integer :discount, default: 0
       t.decimal :price, default: 0
