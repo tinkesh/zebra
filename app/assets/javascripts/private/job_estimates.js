@@ -1,5 +1,6 @@
 jQuery(document).ready(function() {
   updateTable();
+  chosenSelect();
   jQuery('tr.item input').change(function(event) {
     updateTable();
   });
@@ -13,9 +14,22 @@ jQuery(function () {
       jQuery('tr.item input').change(function(event) {
         updateTable();
       });
+      chosenSelect();
+    },
+
+    afterRemove: function(item) {
+      jQuery("tr:hidden").remove();
+      updateTable();
     }
-  })
+  });
 });
+
+function chosenSelect() {
+  jQuery('.chosen-select').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'No results matched'
+  });
+}
 
 function updateTable() {
   var sum = 0;
