@@ -20,7 +20,6 @@
 //= require fullcalendar
 //= require jquery.nested-fields
 //= require chosen-jquery
-//= require selectize
 //= require bootstrap/modal
 //= require_self
 //= require_tree ./base
