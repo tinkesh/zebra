@@ -14,6 +14,7 @@
 //= require jquery-ui/draggable
 //= require jquery-ui/droppable
 //= require jquery-ui/resizable
+//= require jquery-ui/autocomplete
 //= require jquery.minicolors
 //= require jquery_ujs
 //= require fullcalendar

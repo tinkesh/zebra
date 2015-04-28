@@ -4,16 +4,15 @@ jQuery(document).ready(function() {
   jQuery('tr.item input').change(function(event) {
     updateTable();
   });
-
-
-  jQuery("#job_estimate_name_client").selectize({
-    create: true,
-    sortField: 'text',
-    maxItems: 1
-  });
 });
 
+
 jQuery(function () {
+  jQuery('#job_estimate_name_client').autocomplete({
+    source: jQuery('#job_estimate_name_client').data("autocomplete"),
+    minLength: 3
+  });
+
   jQuery(".job_estimate").nestedFields({
     itemSelector: ".item",
     containerSelector: "tbody",

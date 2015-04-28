@@ -1,6 +1,6 @@
 <div class="form-group">
   <%= form.label :name_client %><br>
-  <%= form.text_field :name_client, value: Client.pluck(:name).join(',') + JobEstimate.pluck(:name_client).join(','), class: "selectized" %>
+  <%= form.text_field :name_client, data: {autocomplete: @clients.map{|c| c.name }}, class: "form-control" %>
 </div>
 
 <div class="form-group">
