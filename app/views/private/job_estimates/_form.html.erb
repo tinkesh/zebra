@@ -1,6 +1,6 @@
 <div class="form-group">
   <%= form.label :name_client %><br>
-  <%= form.select :name_client, @clients.map {|u| u.name },  { include_blank: true }, class: "selectized" %>
+  <%= form.text_field :name_client, value: Client.pluck(:name).join(',') + JobEstimate.pluck(:name_client).join(','), class: "selectized" %>
 </div>
 
 <div class="form-group">
@@ -10,7 +10,7 @@
 
 <div class="form-group">
   <%= form.label :emails %><br>
-  <%= form.text_field :emails %>
+  <%= form.text_field :emails, class: 'form-control' %>
 </div>
 
 <div class="form-group">
@@ -27,13 +27,13 @@
 
   <table id="table_item" class='table'>
     <thead>
-    <tr>
-      <th>Title</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Total price</th>
-      <th>&nbsp;</th>
-    </tr>
+      <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total price</th>
+        <th>&nbsp;</th>
+      </tr>
     </thead>
     <tbody>
     <%= form.nested_fields_for :estimate_items, show_empty: true do |f|
