@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150409183220) do
+ActiveRecord::Schema.define(:version => 20150423114725) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -171,6 +171,18 @@ ActiveRecord::Schema.define(:version => 20150409183220) do
     t.datetime "black_flag_alert_sent_at"
   end
 
+  create_table "estimate_items", :force => true do |t|
+    t.integer  "job_estimate_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "quantity",        :default => 1
+    t.integer  "discount",        :default => 0
+    t.decimal  "price",           :default => 0.0
+    t.decimal  "total_price",     :default => 0.0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
   create_table "estimates", :force => true do |t|
     t.integer  "job_id"
     t.integer  "time_sheet_id"
@@ -261,6 +273,20 @@ ActiveRecord::Schema.define(:version => 20150409183220) do
   create_table "gun_sheets_job_sheets", :id => false, :force => true do |t|
     t.integer "gun_sheet_id"
     t.integer "job_sheet_id"
+  end
+
+  create_table "job_estimates", :force => true do |t|
+    t.string   "name_client"
+    t.string   "status"
+    t.string   "reference"
+    t.text     "emails"
+    t.date     "estimate_date"
+    t.date     "expiry_date"
+    t.text     "client_notes"
+    t.text     "terms_and_conditions"
+    t.decimal  "total_amount",         :default => 0.0
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "job_locations", :force => true do |t|

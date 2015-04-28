@@ -14,14 +14,19 @@
 //= require jquery-ui/draggable
 //= require jquery-ui/droppable
 //= require jquery-ui/resizable
+//= require jquery-ui/autocomplete
 //= require jquery.minicolors
 //= require jquery_ujs
 //= require fullcalendar
+//= require jquery.nested-fields
+//= require chosen-jquery
+//= require selectize
 //= require bootstrap/modal
 //= require_self
 //= require_tree ./base
 //= require_tree ./elements
 //= require_tree ./pages
+//= require_tree ./private
 //= require_tree ./api
 
 jQuery.noConflict()

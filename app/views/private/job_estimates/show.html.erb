@@ -1,0 +1,76 @@
+<% if permitted_to?(:edit, :private_job_estimates) and !in_mobile_view? %>
+  <div class="show_actions">
+    <%= link_to "Edit", edit_private_job_estimate_path(@job_estimate.id), class: "btn btn-warning" %>
+    <%= link_to "Delete", private_job_estimate_path(@job_estimate.id), confirm: 'Are you sure? This cannot be undone!', method: :delete, class: "btn btn-danger" %>
+  </div>
+<% end %>
+
+<div class="container">
+  <%= content_for :breadcrumb do %>
+    <ul id="breadcrumb">
+      <li><%= link_to 'Dashboard', private_home_path %></li>
+      <li>»</li>
+      <li><%= link_to 'Job Estimates', private_job_estimates_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
+  <% end %>
+  <%= content_for :submenu do %>
+    <% if permitted_to? :create, :private_job_estimates -%>
+      <li><%= active_link_to 'New Job Estimate', new_private_job_estimate_path %></li>
+    <% end %>
+  <% end %>
+  <hr>
+  <table class='table table-hover'>
+    <tr>
+      <th class="col-md-2">Client</th>
+      <td style="border-top: solid 1px #ccc"><%= @job_estimate.name_client %></td>
+    </tr>
+    <tr>
+      <th class="col-md-2">Reference</th>
+      <td><%= @job_estimate.reference %></td>
+    </tr>
+    <tr>
+      <th class="col-md-2">Emails</th>
+      <td><%= @job_estimate.emails %></td>
+    </tr>
+    <tr>
+      <th class="col-md-2">Client notes</th>
+      <td><%= simple_format @job_estimate.client_notes %></td>
+    </tr>
+    <tr>
+      <th class="col-md-2">Terms and Conditions</th>
+      <td><%= simple_format @job_estimate.terms_and_conditions %></td>
+    </tr>
+    <tr>
+      <th class="col-md-2">Estimate Date</th>
+      <td><%= @job_estimate.estimate_date ? @job_estimate.estimate_date.strftime("%B %d, %Y") : 'Estimate Date missing' %></td>
+    </tr>
+    <tr>
+      <th class="col-md-2">Expiry Date</th>
+      <td><%= @job_estimate.expiry_date ? @job_estimate.expiry_date.strftime("%B %d, %Y") : 'Expiry Date missing' %></td>
+    </tr>
+    <tr>
+      <th class="col-md-2">Total amount</th>
+      <td><%= @job_estimate.total_amount %></td>
+    </tr>
+  </table>
+
+  <h2>Item Details</h2>
+  <table class='table table-hover'>
+    <tr>
+      <th class='col-md-2'>Title</th>
+      <th class='col-md-2'>Quantity</th>
+      <th class='col-md-2'>Price</th>
+      <th class='col-md-2'>Total Price</th>
+    </tr>
+    <% @job_estimate.estimate_items.each do |item| %>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.price %></td>
+        <td><%= item.total_price %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
