@@ -49,6 +49,7 @@ AaaStriping::Application.routes.draw do
     resources :time_task_categories
     resources :job_estimates do
       get :collect_emails, on: :collection
+      get :delete_document, on: :member
     end
     match 'archived_jobs' => 'jobs#archived_jobs', :as => :archived_jobs
     match 'private/material_reports/:id/update_dips' => 'material_reports#update_dips', :as => :update_dips

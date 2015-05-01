@@ -91,4 +91,13 @@ class Private::JobEstimatesController < ApplicationController
       }
     end
   end
+
+  def delete_document
+    @job_estimate = JobEstimate.find(params[:id])
+    document = @job_estimate.assets.find(params[:asset_id])
+    document.destroy
+
+    flash[:notice] = 'Document deleted!'
+    redirect_to  private_job_estimate_path(@job_estimate)
+  end
 end

@@ -77,6 +77,11 @@
     </tr>
   </table>
 </div>
+<p>
+  <%= label_tag :job_estimate_assets, "Attachment" %><br>
+  <%= file_field_tag('job_estimate_assets_image', multiple: true, name: "job_estimate[assets_attributes][][image]") %>
+</p>
+
 <div class="form-group">
   <%= form.label :client_notes %><br>
   <%= form.text_area :client_notes, class: 'form-control', rows: 4 %>

@@ -78,9 +78,34 @@
       <td colspan="2" class="right"><%= @job_estimate.total_amount %></td>
     </tr>
   </table>
+    <h3>Documents</h3>
+    <% if @job_estimate.assets.blank? %>
+      <p>No uploaded documents for this equipment.</p>
+    <% else %>
+      <div class="span-12">
+        <table>
+          <tr>
+            <th class="span-3">Preview</th>
+            <th>File name</th>
+            <th class="span-4"></th>
+          </tr>
+          <% @job_estimate.assets.each do |asset| %>
+            <tr>
+              <td><%=uploaded_asset(asset) %></td>
+              <td><%= asset.image_file_name %></td>
+              <td>
+                <%= link_to "Download", asset.image.url, target: '_blank' %>
+                <%= link_to "Delete", delete_document_private_job_estimate_path(@job_estimate, asset_id: asset.id), class: 'delete', confirm: "Are you sure?" %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+  <hr />
   <p>Notes</p>
   <div><%=simple_format @job_estimate.client_notes %></div>
-
+    <hr />
   <p>Terms & Conditions</p>
   <div><%=simple_format @job_estimate.terms_and_conditions %></div>
 
