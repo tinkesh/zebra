@@ -12,7 +12,11 @@ class Job < ActiveRecord::Base
   has_many :material_reports
   has_many :time_sheets, :through => :estimates
   has_many :comments
+  has_many :events, as: :eventable
   has_and_belongs_to_many :time_entries
+  has_many :assets, as: :attachable
+
+  accepts_nested_attributes_for :assets
   accepts_nested_attributes_for :time_sheets, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :job_markings, :reject_if => lambda { |a| a[:gun_marking_category_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :job_locations, :reject_if => lambda { |a| a[:name].blank? },  :allow_destroy => true
@@ -31,10 +35,27 @@ class Job < ActiveRecord::Base
     'HB Owing'
   ]
 
+  after_create :save_delay_job
+  after_update :save_delay_job
+
+  validate do |job|
+    if self.reminder_on.present? and !self.reminder_email.present?
+      self.errors.add :base, "Reminder Email cannot be blank if Reminder date completed"
+    end
+  end
+
+  def save_delay_job
+    SiteMailer.delay({run_at: self.reminder_on.getutc}).send_reminder_notice(self) if self.reminder_on_changed?
+  end
+
   # This is a static method that all the sheets refer to
   # created to make the Job#show report have an archived date
   def self.archive_date
     Time.zone.parse("January 31 23:59:59 #{Time.zone.now.year}")
+  end
+
+  def completed?
+    self.completion_id == 6
   end
 
   def label

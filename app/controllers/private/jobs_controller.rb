@@ -1,7 +1,7 @@
 class Private::JobsController < ApplicationController
 
   layout "private"
-  filter_access_to :only => [:index, :new, :update, :edit, :destroy, :create, :load_job_supporting_data]
+  filter_access_to :all
 
   def index(archived = false)
     @page_title ||= "Jobs on Hand"
@@ -89,6 +89,15 @@ class Private::JobsController < ApplicationController
     @job.destroy
     flash[:notice] = 'Job on Hand deleted!'
     redirect_to(private_jobs_url)
+  end
+
+  def delete_document
+    @job = Job.find(params[:id])
+    document = @job.assets.find(params[:asset_id])
+    document.destroy
+
+    flash[:notice] = 'Job document deleted!'
+    redirect_to  private_job_path(@job)
   end
 
 private

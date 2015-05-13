@@ -13,6 +13,7 @@ authorization do
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
 
     has_permission_on [:private_report_summaries], :to => [:all_job_value, :all_marking_value]
+    has_permission_on [:private_job_estimates], to: [:manage, :collect_emails, :delete_document]
     has_permission_on [:jobs_value], :to => [:read]
   end
 
@@ -29,9 +30,9 @@ authorization do
                        :private_time_task_categories, :private_time_note_categories, :private_material_reports,
                        :private_material_report_summaries, :private_reconciliation_summaries, :private_report_summaries], :to => :manage
     has_permission_on :private_material_reports, :private_material_report_summaries, :to => [:update_dips, :print]
-    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets], :to => [:create, :show]
+    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets, :private_equipments], :to => [:create, :show, :delete_document]
 
-    has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage]
+    has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage, :delete_document]
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destroy]
     has_permission_on [:jobs_value], :to => [:read]
   end
@@ -53,8 +54,11 @@ authorization do
                        ], :to => [:read]
 
     has_permission_on [:private_materials, :private_material_reports, :private_material_report_summaries, ], :to => [:manage, :update_dips, :print]
-
     has_permission_on [:private_crews, :private_jobs], :to => [:manage]
+
+    # calendar related permissions
+    has_permission_on :private_crews, to: [:show, :calendar]
+    has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
   end
 
   role :foreman do
@@ -65,15 +69,16 @@ authorization do
                        :private_load_sheets], :to => [:create, :show, :index]
     has_permission_on [:private_gun_sheets], :to => [:create, :show, :index, :edit, :update, :destroy]
     has_permission_on [:private_jobs], :to => [:show, :navigate]
-    has_permission_on :private_job_sheets, :to => [:create, :update, :show] do
-      if_attribute :created_by => is { user.id }
-    end
+
+    # calendar related permissions
+    has_permission_on :private_crews, to: [:show, :calendar]
+    has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
   end
 
   role :crewman do
     description 'Can view jobs and add comments to them. Can view his own hours'
     has_permission_on :private, :to => [:index, :navigate]
-    has_permission_on :private_jobs, :to => :show
+    #has_permission_on :private_jobs, :to => :show
     has_permission_on :private_reports, :to => [:increase_offset, :decrease_offset, :reset_offset, :set_date]
     has_permission_on :private_reports, :to => :user_time
     has_permission_on :users, :to => :update do
@@ -81,7 +86,7 @@ authorization do
     end
     has_permission_on :private_gun_sheets, :to => :print_selected
     has_permission_on :private_client_contacts, :to => :manage
-    has_permission_on :private_comments, :to => :manage
+    has_permission_on :private_comments, to: [:manage, :add_comment]
   end
 end
 

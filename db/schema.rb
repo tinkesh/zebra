@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140717212927) do
+ActiveRecord::Schema.define(:version => 20150429124243) do
+
+  create_table "assets", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -76,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color",      :default => "#3a87ad"
   end
 
   create_table "contacts", :force => true do |t|
@@ -102,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color",      :default => "#3a87ad"
   end
 
   create_table "crews_equipment", :id => false, :force => true do |t|
@@ -124,6 +137,22 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.datetime "updated_at",                    :null => false
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0, :null => false
+    t.integer  "attempts",   :default => 0, :null => false
+    t.text     "handler",                   :null => false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "equipment", :force => true do |t|
     t.string   "unit"
     t.string   "name"
@@ -142,6 +171,17 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.datetime "black_flag_alert_sent_at"
   end
 
+  create_table "estimate_items", :force => true do |t|
+    t.integer  "job_estimate_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "quantity",        :default => 1
+    t.decimal  "price",           :default => 0.0
+    t.decimal  "total_price",     :default => 0.0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
   create_table "estimates", :force => true do |t|
     t.integer  "job_id"
     t.integer  "time_sheet_id"
@@ -149,6 +189,23 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.integer  "crew_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "client_id"
+    t.string   "reference"
+    t.date     "estimate_date"
+    t.date     "expiry_date"
+    t.text     "client_notes"
+    t.text     "terms_and_conditions"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.integer  "crew_id"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.date     "started_on"
+    t.date     "completed_on"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "gun_marking_categories", :force => true do |t|
@@ -217,6 +274,24 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.integer "job_sheet_id"
   end
 
+  create_table "job_estimates", :force => true do |t|
+    t.string   "name_client"
+    t.string   "status"
+    t.string   "reference"
+    t.text     "emails"
+    t.date     "estimate_date"
+    t.date     "expiry_date"
+    t.text     "client_notes"
+    t.text     "terms_and_conditions"
+    t.decimal  "total_amount",         :default => 0.0
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "estimate"
+    t.decimal  "sub_total_amount",     :default => 0.0
+    t.decimal  "discount",             :default => 0.0
+    t.decimal  "shipping_charges",     :default => 0.0
+  end
+
   create_table "job_locations", :force => true do |t|
     t.integer  "job_id"
     t.text     "name"
@@ -271,6 +346,9 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.text     "zoho_details"
     t.boolean  "ar_error",                :default => false
     t.string   "reference_code"
+    t.datetime "reminder_on"
+    t.text     "reminder_notice"
+    t.string   "reminder_email"
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|
@@ -350,6 +428,10 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.integer  "gun_sheet_id"
     t.integer  "load_sheet_id"
     t.text     "comments"
+    t.decimal  "yellow_dip_start", :default => 0.0
+    t.decimal  "yellow_dip_end",   :default => 0.0
+    t.decimal  "white_dip_start",  :default => 0.0
+    t.decimal  "white_dip_end",    :default => 0.0
   end
 
   create_table "materials", :force => true do |t|

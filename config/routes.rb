@@ -1,4 +1,6 @@
 AaaStriping::Application.routes.draw do
+  get "job_estimates/index"
+
   # public forms
   # match 'careers' => 'public/careers#new', :as => :new_career
   # match 'careers/create' => 'public/careers#create', :as => :create_career
@@ -12,13 +14,22 @@ AaaStriping::Application.routes.draw do
     end
     resources :completions
     resources :costs
-    resources :crews
+    resources :crews do
+      collection do
+        get :calendar
+      end
+    end
     resources :estimates
-    resources :equipments
+    resources :equipments do
+      get :delete_document, on: :member
+    end
+
     resources :gun_sheets
     match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected
     resources :gun_marking_categories
     resources :jobs do
+      get :delete_document, on: :member
+
       resources :comments
       resources :gun_sheets
       resources :job_sheets
@@ -36,6 +47,10 @@ AaaStriping::Application.routes.draw do
     resources :daily_reports
     resources :time_note_categories
     resources :time_task_categories
+    resources :job_estimates do
+      get :collect_emails, on: :collection
+      get :delete_document, on: :member
+    end
     match 'archived_jobs' => 'jobs#archived_jobs', :as => :archived_jobs
     match 'private/material_reports/:id/update_dips' => 'material_reports#update_dips', :as => :update_dips
     match 'private/material_reports/:id/print' => 'material_reports#print', :as => :mat_print
@@ -44,6 +59,23 @@ AaaStriping::Application.routes.draw do
     match 'clock_in/:action/(:id)', :controller => 'clock_in'
     match 'clock_out/:action/(:id)', :controller => 'clock_out'
     resources :time_entries
+  end
+
+  namespace :api do
+    resources :events do
+      member do
+        get :jobs
+      end
+    end
+    resources :crews do
+      collection do
+        get :show_selected
+        put :schedule_job
+      end
+      member do
+        get :jobs
+      end
+    end
   end
 
   match '/admin' => 'private#index', :as => :private_home

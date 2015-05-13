@@ -25,6 +25,9 @@
     <% if permitted_to? :manage, :private_crews -%>
       <li><%= active_link_to 'Crews', private_crews_path %></li>
     <% end -%>
+    <% if permitted_to? :manage, :private_job_estimates -%>
+      <li><%= active_link_to 'Job Estimates', private_job_estimates_path %></li>
+    <% end -%>
     <% if permitted_to? :manage, :users -%>
       <li><%= active_link_to 'Users', users_path %></li>
     <% end -%>
