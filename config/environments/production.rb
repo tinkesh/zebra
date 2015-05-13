@@ -12,7 +12,7 @@ AaaStriping::Application.configure do
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[AAAS] ",
     :sender_address => %{"AAAS" <error@aaastriping.com>},
-    :exception_recipients => %w{errors@agilestyle.com}
+    :exception_recipients => %w{anthony.panepinto101@gmail.com rmagnum2002@gmail.com}
 
   # Paperclip config
   config.paperclip_defaults = {
