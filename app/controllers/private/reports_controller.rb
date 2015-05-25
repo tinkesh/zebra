@@ -146,11 +146,10 @@ private
     allowed = false
 
     begin
-      roles = Role.where(:id => current_user.role_ids).all
-
-      allowed = true if roles.include?(Role.where(:name => "office").first) or roles.include?(Role.where(:name => "admin").first)
-
-      allowed = true if @crew.id.eql?(current_user.crew_id)
+      user_roles = current_user.roles.pluck(:name)
+      allowed_roles = %w(admin superadmin office)
+      return allowed = true if (user_roles & allowed_roles).empty?
+      return allowed = true if @crew.id.eql?(current_user.crew_id)
     rescue
     end
 
