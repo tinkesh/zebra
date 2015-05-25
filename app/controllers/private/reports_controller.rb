@@ -148,7 +148,7 @@ private
     begin
       user_roles = current_user.roles.pluck(:name)
       allowed_roles = %w(admin superadmin office)
-      return allowed = true if (user_roles & allowed_roles).empty?
+      return allowed = true unless (user_roles & allowed_roles).empty?
       return allowed = true if @crew.id.eql?(current_user.crew_id)
     rescue
     end
