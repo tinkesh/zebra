@@ -189,12 +189,6 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.integer  "crew_size"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "client_id"
-    t.string   "reference"
-    t.date     "estimate_date"
-    t.date     "expiry_date"
-    t.text     "client_notes"
-    t.text     "terms_and_conditions"
   end
 
   create_table "events", :force => true do |t|
