@@ -32,7 +32,7 @@ authorization do
     has_permission_on :private_material_reports, :private_material_report_summaries, :to => [:update_dips, :print]
     has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets, :private_equipments], :to => [:create, :show, :delete_document]
 
-    has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage, :delete_document]
+    has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage, :delete_document, :archived_jobs]
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destroy]
     has_permission_on [:jobs_value], :to => [:read]
   end
