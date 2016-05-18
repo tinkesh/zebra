@@ -3,6 +3,7 @@
   <%= form_tag private_jobs_path, :method => 'get' do %>
     <tr class="no-border"><td class="no-border right">
       <%= text_field_tag :query, params[:query], :placeholder => 'Search jobs' %>
+      <%= hidden_field_tag :archived, @archived, :placeholder => 'archived'%>
       <%= submit_tag "Search" %><br>
     </td></tr>
   <% end %>
