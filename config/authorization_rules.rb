@@ -35,6 +35,7 @@ authorization do
     has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage, :delete_document, :archived_jobs]
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destroy]
     has_permission_on [:jobs_value], :to => [:read]
+    has_permission_on :private_crews, to: [:delete_job]
   end
 
   role :supervisor do
@@ -57,7 +58,7 @@ authorization do
     has_permission_on [:private_crews, :private_jobs], :to => [:manage]
 
     # calendar related permissions
-    has_permission_on :private_crews, to: [:show, :calendar]
+    has_permission_on :private_crews, to: [:show, :calendar, :delete_job]
     has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
   end
 

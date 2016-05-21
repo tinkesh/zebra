@@ -14,7 +14,7 @@
       <td><%=link_to 'Crew Hours', report_crew_time_path(crew.id) %></td>
       <td>
         <% crew.jobs.each do |job| %>
-          <%= link_to job.name, private_job_path(job) %>
+          <%= link_to job.name, private_job_path(job) %> - <%= link_to 'Delete Job', delete_job_private_crew_path(:id => crew, :job_id => job),  data: { confirm: "Do you what to delete this Job from Crew?" }, :class => "delete" %>
           <br>
         <% end %>
       </td>

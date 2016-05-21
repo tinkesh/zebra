@@ -2,7 +2,7 @@ class Private::CrewsController < ApplicationController
 
   layout "private"
   filter_access_to :all
-  before_filter :find_crew, only: [:show, :edit, :update, :destroy, :check_forman]
+  before_filter :find_crew, only: [:show, :edit, :update, :destroy, :check_forman, :delete_job]
   before_filter :check_forman, only: [:show]
 
   def index
@@ -69,6 +69,14 @@ class Private::CrewsController < ApplicationController
     @crews = Crew.order('name ASC')
     @page_title = "Calendar"
   end
+
+  def delete_job
+    job = Job.find(params[:job_id])
+    @crew.jobs.delete(job)
+    flash[:notice] = "Job-#{job.name} deleted from #{@crew.label}!"
+    redirect_to private_crews_url
+  end
+
 
   private
 

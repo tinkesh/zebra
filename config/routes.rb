@@ -18,6 +18,9 @@ AaaStriping::Application.routes.draw do
       collection do
         get :calendar
       end
+      member do 
+        get :delete_job
+      end
     end
     resources :estimates
     resources :equipments do
