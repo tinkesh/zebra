@@ -71,10 +71,6 @@ class Private::JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
 
-    if params[:job][:assets_attributes][0]["image"].blank? 
-      params[:job][:assets_attributes] = []
-    end
-
     params[:job][:crew_ids] ||= []
     if @job.update_attributes(params[:job])
      if @job.is_archived == true
@@ -105,12 +101,6 @@ class Private::JobsController < ApplicationController
 
     flash[:notice] = 'Job document deleted!'
     redirect_to  private_job_path(@job)
-  end
-
-  def field_documents_download
-  end
-
-  def office_documents_download
   end
 
 
