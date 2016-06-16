@@ -112,5 +112,12 @@
   <p>
     <%= label_tag :job_assets, "Add document" %><br>
     <%= file_field_tag('job_assets_image', multiple: true, name: "job[assets_attributes][][image]") %>
+  </p>  
+  <p>
+    <%= label_tag :job_assets_attributes_file_type, "Type of Document" %><br>
+    <select id="job_assets_attributes_file_type" name="job[assets_attributes][][file_type]">
+      <option>Field Documents</option>
+      <option>Office Documents</option>
+    </select>
   </p>
 </div>
