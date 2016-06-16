@@ -255,30 +255,52 @@
   <% end %>
 </div>
 
-<% if permitted_to? :manage, :private_jobs -%>
+<% if permitted_to? :show, :private_jobs -%>
   <hr>
   <div class="span-12 noprint">
     <h3>Documents</h3>
     <% if @job.assets.blank? %>
       <p>No uploaded documents for this job.</p>
     <% else %>
-      <table>
-        <tr>
-          <th>Preview</th>
-          <th>File name</th>
-          <th></th>
-        </tr>
-        <% @job.assets.each do |asset| %>
+    <% has_accesable_jobs = false %>
+          <% @job.assets.each do |asset| %>
+            <% if asset.file_type == "Field Documents" %>  
+              <% if permitted_to? :field_documents_download %>
+                <% has_accesable_jobs = true %>
+              <% end %>     
+            <% elsif asset.file_type == "Office Documents" %>
+              <% if permitted_to? :office_documents_download %>
+                <% has_accesable_jobs = true %>
+              <% end %>
+            <% elsif asset.file_type.blank? %>  
+              <% has_accesable_jobs = true %>
+            <% end %>
+          <% end %>
+
+      <% if has_accesable_jobs %>
+        <table>
           <tr>
-            <td><%=uploaded_asset(asset) %></td>
-            <td><%= asset.image_file_name %></td>
-            <td>
-              <%= link_to "Download", asset.image.url, target: '_blank' %>
-              <%= link_to "Delete", delete_document_private_job_path(@job, asset_id: asset.id), class: 'delete', confirm: "Are you sure?" %>
-            </td>
+            <th>Preview</th>
+            <th>File name</th>
+            <th></th>
           </tr>
-        <% end %>
-      </table>
+          <% @job.assets.each do |asset| %>
+            <% if asset.file_type == "Field Documents" %>  
+              <% if permitted_to? :field_documents_download %>
+                <%= render :partial => "job_documents", :locals =>  {:asset => asset} %>
+              <% end %>     
+            <% elsif asset.file_type == "Office Documents" %>
+              <% if permitted_to? :office_documents_download %>
+                <%= render :partial => "job_documents", :locals =>  {:asset => asset} %>
+              <% end %>
+            <% elsif asset.file_type.blank? %>  
+              <%= render :partial => "job_documents", :locals =>  {:asset => asset} %>
+            <% end %>
+          <% end %>
+        </table>
+      <% else %>
+        <p>No uploaded documents for this job.</p>
+      <% end %>
     <% end %>
   </div>
 <% end %>
