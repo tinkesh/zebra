@@ -10,6 +10,9 @@ class Equipment < ActiveRecord::Base
   validates_presence_of :unit
   validates_presence_of :name
   validates_presence_of :rate
+  validates_presence_of :equipment_make
+  validates_presence_of :equipment_model
+  validates_presence_of :equipment_year
 
   scope :unassigned, -> { where('crews_equipment.crew_id IS NULL').includes(:crews).order('unit ASC') }
 
