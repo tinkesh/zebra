@@ -15,6 +15,7 @@
     <th>AR Error</th>
   </tr>
 <% i = 0 %>
+<% total_value_of_jobs = 0 %>
 <% jobs.each do |job| %>
 
   <% if i == 18 %>
@@ -44,6 +45,7 @@
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
     <% if permitted_to? :read, :jobs_value %>
+      <% total_value_of_jobs = total_value_of_jobs + job.total_job_value %>
       <td class="right"><%= number_to_currency(job.total_job_value) %></td>
     <% end %>
     <td><%= aaa_highlight job.reference_code %></td>
@@ -57,3 +59,12 @@
   </tr>
 <% end %>
 </table>
+
+<% if permitted_to? :read, :jobs_value %>
+<table>
+  <tr>
+    <td>Total amount: <b><%= number_to_currency(total_value_of_jobs) %></b></td>
+  </tr>
+</table>
+<% end %>
+
