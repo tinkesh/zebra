@@ -168,4 +168,12 @@ class Job < ActiveRecord::Base
     self.completion.try(:name).to_s.parameterize('_')
   end
 
+  def self.jobs_total_value(status = 'Completed')
+    total_value = 0 
+    Job.joins(:completion).where("completions.name = '#{status}'").includes(:job_markings).each do |job|
+      value = job.job_markings.collect{|m| m.total_value}.sum rescue 0  
+      total_value = total_value + value
+    end
+    total_value
+  end
 end

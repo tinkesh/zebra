@@ -15,7 +15,7 @@
     <th>AR Error</th>
   </tr>
 <% i = 0 %>
-<% total_value_of_jobs = 0 %>
+
 <% jobs.each do |job| %>
 
   <% if i == 18 %>
@@ -45,7 +45,6 @@
     <td><%= aaa_highlight(job.client.try(:name)) %></td>
   	<td><%= aaa_highlight(job.location_name || '-') %></td>
     <% if permitted_to? :read, :jobs_value %>
-      <% total_value_of_jobs = total_value_of_jobs + job.total_job_value %>
       <td class="right"><%= number_to_currency(job.total_job_value) %></td>
     <% end %>
     <td><%= aaa_highlight job.reference_code %></td>
@@ -61,10 +60,55 @@
 </table>
 
 <% if permitted_to? :read, :jobs_value %>
-<table>
-  <tr>
-    <td>Total amount: <b><%= number_to_currency(total_value_of_jobs) %></b></td>
-  </tr>
+
+<table style="margin-top: 57px; width: 400px;">
+<tr> <td colspan="2"> <b>Total Amount for Jobs</b>   </td> </tr>
+<tr>
+  <td>
+    Completed 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.jobs_total_value('Completed')) %></b> 
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Work in Progress 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.jobs_total_value('Work in Progress')) %></b> 
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Scheduled 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.jobs_total_value('Scheduled')) %></b> 
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    Awarded 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.jobs_total_value('Awarded')) %></b> 
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Ongoing 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.jobs_total_value('Ongoing')) %></b> 
+  </td>
+</tr>
+
 </table>
 <% end %>
 
