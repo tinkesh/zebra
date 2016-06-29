@@ -45,7 +45,7 @@ class Job < ActiveRecord::Base
   end
 
   def save_delay_job
-    SiteMailer.delay({run_at: self.reminder_on.getutc}).send_reminder_notice(self) if self.reminder_on_changed?
+    SiteMailer.delay({run_at: self.reminder_on.getutc}).send_reminder_notice(self) if self.reminder_on_changed? && self.reminder_on.present?
   end
 
   # This is a static method that all the sheets refer to
