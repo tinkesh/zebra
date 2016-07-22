@@ -70,9 +70,7 @@ authorization do
     description "+ Can view his crew's hours. Can clock in/clock out, create daily reports."
     includes :crewman
     has_permission_on :private_reports, :to => :crew_time
-    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets,
-                       :private_load_sheets], :to => [:create, :show, :index]
-    has_permission_on [:private_gun_sheets], :to => [:create, :show, :index, :edit, :update, :destroy]
+    has_permission_on [:private_clock_in, :private_clock_out], :to => [:create, :show, :index]
     has_permission_on [:private_jobs], :to => [:show, :navigate]
 
     # calendar related permissions
@@ -80,6 +78,18 @@ authorization do
     has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
 
     has_permission_on [:private_jobs], :to => [:field_documents_download]
+
+    has_permission_on :private_gun_sheets, :to => [:show, :update, :destroy, :edit] do
+      if_attribute :created_by => is {user.id}
+    end
+
+    has_permission_on :private_load_sheets, :to => [:show, :update, :destroy, :edit] do
+      if_attribute :created_by => is {user.id}
+    end
+
+    has_permission_on :private_time_sheets, :to => [:show, :update, :destroy, :edit] do
+      if_attribute :created_by => is {user.id}
+    end
   end
 
   role :crewman do
