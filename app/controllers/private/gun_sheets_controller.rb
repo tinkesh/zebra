@@ -1,7 +1,7 @@
 class Private::GunSheetsController < ApplicationController
 
   layout "private"
-  filter_access_to :all
+  filter_access_to :all, :attribute_check => true
 
   def index
     @page_title = "Gun Sheets"
