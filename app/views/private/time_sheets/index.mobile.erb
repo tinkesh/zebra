@@ -1,0 +1,74 @@
+<%= will_paginate @time_sheets %>
+
+<table class="sortable">
+  <tr>
+    <th class="center number">#</th>
+    <th class="center span-2">Submitted</th>
+    <th class="center">Date</th>
+    <th class="nosort">Jobs</th>
+    <th class="center">Crew</th>
+  	<th class="center">Created By</th>
+    <th class="center">S/T</th>
+    <th class="center">O/T</th>
+    <th class="center">T/T</th>
+    <th class="center">Lunch</th>
+    <th class="center">Per Diem</th>
+    <th class="actions nosort"></th>
+  </tr>
+
+<% i = 0 %>
+<% @time_sheets.each do |time_sheet| %>
+<% if i == 25 %>
+  <tr class="hidden print-break">
+    <th class="center number">#</th>
+    <th class="center span-2">Submitted</th>
+    <th class="center span-2">Date</th>
+    <th class="nosort">Jobs</th>
+    <th class="center">Crew</th>
+  	<th class="center">Created By</th>
+    <th class="center">S/T</th>
+    <th class="center">O/T</th>
+    <th class="center">T/T</th>
+    <th class="center">Lunch</th>
+    <th class="center">Per Diem</th>
+    <th class="actions nosort"></th>
+  </tr>
+  <% i = 0 %>
+<% else %>
+  <% i += 1 %>
+<% end %>
+
+  <tr>
+    <td><%= time_sheet.id %></td>
+    <td><%= time_sheet.created_at.strftime('%b-%d-%y') %></td>
+    <td><%= time_sheet.time_entries.first.clock_in.strftime('%b-%d-%y') rescue '' %></td>
+    <td>
+      <% time_sheet.jobs.each do |job| %>
+        <%= job_label(job) %>
+        <%= link_to image_tag("open-link.png"), private_job_path(job.id) %><br>
+      <% end %>
+    </td>
+  <td><%= time_sheet.user.crew.label rescue '-' %>
+	<td><%= time_sheet.user.name rescue '-' %>
+	</td>
+    <td class="right">
+      <%= time_sheet.total_straight_time != 0 ? "#{sprintf('%.2f', time_sheet.total_straight_time)}" : '-' %>
+    </td>
+    <td class="right">
+      <%= time_sheet.total_over_time != 0 ? "#{sprintf('%.2f', time_sheet.total_over_time)}" : '-' %>
+    </td>
+    <td class="right">
+      <%= time_sheet.total_hours != 0 ? "#{sprintf('%.2f', time_sheet.total_hours)}" : '-' %>
+    </td>
+    <td class="right"><%= sprintf("%.1f", time_sheet.total_lunch_time) -%></td>
+    <td class="right"><%= time_sheet.total_per_diem != 0 ? sprintf("%.1f", "#{time_sheet.total_per_diem}") : '-' -%></td>
+    <td class="actions">
+    <%= link_to "Delete", private_time_sheet_path(time_sheet), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+    <%= link_to "Edit", edit_private_time_sheet_path(time_sheet), :class => "edit" %>
+    <%= link_to "Show", private_time_sheet_path(time_sheet), :class => "show" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @time_sheets %>
