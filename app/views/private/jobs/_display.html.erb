@@ -15,6 +15,7 @@
     <th>AR Error</th>
   </tr>
 <% i = 0 %>
+
 <% jobs.each do |job| %>
 
   <% if i == 18 %>
@@ -57,3 +58,81 @@
   </tr>
 <% end %>
 </table>
+
+<% if permitted_to? :read, :jobs_value %>
+<% total_amount = 0 %>
+<table style="margin-top: 57px; width: 400px;">
+<tr> <td colspan="2"> <b>Total Amount for Jobs</b>   </td> </tr>
+<tr>
+  <td>
+    Completed 
+  </td>
+  <td width="200px" align="right">
+    <b><%= number_to_currency(Job.total_value_by_status('Completed')) %></b> 
+    <% total_amount = total_amount + Job.total_value_by_status('Completed') %>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Completed in 2016 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.total_value_by_date) %></b> 
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Work in Progress 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.total_value_by_status('Work in Progress')) %></b> 
+    <% total_amount = total_amount + Job.total_value_by_status('Work in Progress') %>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Scheduled 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.total_value_by_status('Scheduled')) %></b> 
+    <% total_amount = total_amount + Job.total_value_by_status('Scheduled') %>
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    Awarded 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.total_value_by_status('Awarded')) %></b> 
+    <% total_amount = total_amount + Job.total_value_by_status('Awarded') %>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    Ongoing 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(Job.total_value_by_status('Ongoing')) %></b> 
+    <% total_amount = total_amount + Job.total_value_by_status('Ongoing') %>
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    Total Amount 
+  </td>
+  <td width="200px">
+    <b><%= number_to_currency(total_amount) %></b> 
+  </td>
+</tr>
+
+</table>
+<% end %>
+

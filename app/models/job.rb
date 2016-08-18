@@ -27,6 +27,10 @@ class Job < ActiveRecord::Base
   scope :active,   -> { where(:is_archived => false) }
   scope :archived, -> { where(:is_archived => true)  }
 
+  scope :status, ->(job_status) do 
+    {:joins => :completion, :conditions => ['completions.name = ?', job_status]}
+  end
+
   PAY_STATUSES = [
     'N/A',
     'Invoiced',
@@ -166,6 +170,26 @@ class Job < ActiveRecord::Base
 
   def get_completion_color_class_name
     self.completion.try(:name).to_s.parameterize('_')
+  end
+
+  def self.total_value_by_status(status = 'Completed')
+    jobs = Job.status(status).includes(:job_markings)
+    self.marking_total(jobs)
+  end
+
+  def self.total_value_by_date(status = 'Completed', year=2016, month=1, date=1)
+    duration = Date.new(year, month, date)
+    jobs = Job.status(status).where("completed_on > '#{duration}'").includes(:job_markings)
+    self.marking_total(jobs)
+  end
+
+  def self.marking_total(jobs)
+    total_value = 0
+    jobs.each do |job|
+      value = job.job_markings.collect{|m| m.total_value}.sum rescue 0  
+      total_value = total_value + value
+    end
+    total_value
   end
 
 end
