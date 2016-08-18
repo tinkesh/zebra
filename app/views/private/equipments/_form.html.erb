@@ -1,7 +1,26 @@
 <div class="span-6 append-bottom">
-  <%= form.label :name, "Name" %><br>
+  <%= form.label :equipment_make, "Make" %><br>
+  <%= form.text_field :equipment_make, :class => "span-6", :required => true %>
+</div>
+
+
+<div class="span-6 append-bottom">
+  <%= form.label :equipment_model, "Model" %><br>
+  <%= form.text_field :equipment_model, :class => "span-6", :required => true %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :equipment_year, "Year" %><br />
+  <%= form.text_field :equipment_year, :class => "span-6", :required => true %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :name, "Equiptment Type" %><br>
   <%= form.text_field :name, :class => "span-6", :required => true %>
 </div>
+
+<br class="clear">
+
 
 <div class="span-6 append-bottom">
   <%= form.label :unit, "Unit Number" %><br />

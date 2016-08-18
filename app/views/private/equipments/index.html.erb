@@ -12,7 +12,10 @@
 
 <table class="sortable">
   <tr>
-    <th>Name</th>
+    <th>Equipment Type</th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Year</th>
     <th>Unit Number</th>
     <th>Plate Number</th>
     <th>VIN</th>
@@ -33,6 +36,9 @@
       <%= image_tag 'red_flag.png',   :size => '15x15', :title => 'Registration Date is almost a year ago' if equipment.red_flag? %>
       <%= link_to equipment.name, private_equipment_path(equipment) %>
     </td>
+    <td><%= equipment.equipment_make %></td>
+    <td><%= equipment.equipment_model %></td>
+    <td><%= equipment.equipment_year %></td>
     <td><%= equipment.unit %></td>
     <td><%= equipment.plate_number %></td>
     <td><%= equipment.vin %></td>
