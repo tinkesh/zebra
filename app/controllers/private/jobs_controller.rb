@@ -50,9 +50,15 @@ class Private::JobsController < ApplicationController
   end
 
   def create
+
+    if params[:job][:assets_attributes][0]["image"].blank? 
+      params[:job].except!(:assets_attributes)
+    end
+
     @job = Job.new(params[:job])
     @page_title = "New Job on Hand"
     load_job_supporting_data
+
     if @job.save
       flash[:notice] = "Job on Hand created!"
       redirect_to(private_home_path)
@@ -71,8 +77,11 @@ class Private::JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
 
+    raise params[:job][:assets_attributes].inspect and return
+
     if params[:job][:assets_attributes][0]["image"].blank? 
-      params[:job][:assets_attributes] = []
+      #params[:job][:assets_attributes] = []
+      params[:job].except!(:assets_attributes)
     end
 
     params[:job][:crew_ids] ||= []
