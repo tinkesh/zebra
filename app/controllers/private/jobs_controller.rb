@@ -77,8 +77,6 @@ class Private::JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
 
-    raise params[:job][:assets_attributes].inspect and return
-
     if params[:job][:assets_attributes][0]["image"].blank? 
       #params[:job][:assets_attributes] = []
       params[:job].except!(:assets_attributes)
