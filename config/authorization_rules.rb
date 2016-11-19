@@ -79,14 +79,17 @@ authorization do
 
     has_permission_on [:private_jobs], :to => [:field_documents_download]
 
+    has_permission_on :private_gun_sheets, :to => [:create]
     has_permission_on :private_gun_sheets, :to => [:show, :update, :destroy, :edit] do
       if_attribute :created_by => is {user.id}
     end
 
+    has_permission_on :private_load_sheets, :to => [:create]
     has_permission_on :private_load_sheets, :to => [:show, :update, :destroy, :edit] do
       if_attribute :created_by => is {user.id}
     end
 
+    has_permission_on :private_time_sheets, :to => [:create]
     has_permission_on :private_time_sheets, :to => [:show, :update, :destroy, :edit] do
       if_attribute :created_by => is {user.id}
     end
