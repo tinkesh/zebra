@@ -73,14 +73,17 @@ authorization do
     has_permission_on :private_crews, to: [:show, :calendar]
     has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
 
+    has_permission_on :private_gun_sheets, :to => [:create]
     has_permission_on :private_gun_sheets, :to => [:show, :update, :destroy, :edit] do
       if_attribute :created_by => is {user.id}
     end
 
+    has_permission_on :private_load_sheets, :to => [:create]
     has_permission_on :private_load_sheets, :to => [:show, :update, :destroy, :edit] do
       if_attribute :created_by => is {user.id}
     end
 
+    has_permission_on :private_time_sheets, :to => [:create]
     has_permission_on :private_time_sheets, :to => [:show, :update, :destroy, :edit] do
       if_attribute :created_by => is {user.id}
     end

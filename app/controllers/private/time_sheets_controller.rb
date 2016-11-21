@@ -1,7 +1,9 @@
 class Private::TimeSheetsController < ApplicationController
 
   layout "private"
-  filter_access_to :all, :attribute_check => true
+
+  filter_access_to :all
+  filter_access_to [:show, :edit, :destroy], :attribute_check => true
 
   def index
     @time_sheets = TimeSheet.includes(:user, :jobs, :time_entries).order('time_sheets.created_at DESC')
