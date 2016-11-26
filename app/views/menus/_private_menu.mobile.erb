@@ -12,6 +12,9 @@
   <% if permitted_to? :index, :private_directory -%>
     <%= link_to 'Directory', directory_path %> |
   <% end %>
+  <% if permitted_to? :calendar, :private_crews -%>
+    <%= active_link_to 'Calendar', calendar_private_crews_path %> |
+  <% end %>
   <%= link_to "Logout", logout_path, :method => :delete %>
 <% end %>
 </div>

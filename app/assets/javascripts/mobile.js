@@ -13,5 +13,7 @@
 //= require jquery
 //= require ./pages/gun_sheets
 //= require ./elements/utils
+//= require fullcalendar
+//= require_tree ./api
 
 jQuery.noConflict()

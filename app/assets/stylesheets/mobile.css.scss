@@ -1,4 +1,20 @@
-p, ul, ol, td, th, label { font-size: 12px; }
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require fullcalendar
+ *= require jquery.minicolors
+ *= require api/crews
+ */
+
+
+ p, ul, ol, td, th, label { font-size: 12px; }
 
 body#mobile { background: #fff; margin: 10px; }
 #home { text-align: center; }
