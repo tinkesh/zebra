@@ -42,6 +42,9 @@
         </div>
       </li>
     <% end -%>
+    <% if permitted_to? :calendar, :private_crews -%>
+      <li><%= active_link_to 'Calendar', calendar_private_crews_path %></li>
+    <% end %>
     <li id="logout"><%= link_to "Logout", user_session_path, :method => :delete %></li>
   <% end -%>
   <li>&nbsp;</li>
