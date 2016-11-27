@@ -18,6 +18,11 @@
   <% if job.crew_ids.size == 0 %>
     <p>No Crews Assigned</p>
   <% end %>
-  <p class="noprint">
-    <%= link_to 'Add Comment', '#',  data: {toggle: "modal", target: "#myModal"} %>
-  </p>
+
+
+  <% unless current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:foreman) %>
+    <p class="noprint">
+      <%= link_to 'Add Comment', '#',  data: {toggle: "modal", target: "#myModal"} %>
+    </p>
+  <% end %> 
+

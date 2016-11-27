@@ -84,7 +84,14 @@
       <%= if @job.client.cell_phone.present? then "<br>Cell: #{@job.client.cell_phone}".html_safe end %>
       <%= if @job.client.fax.present?        then "<br>Fax: #{@job.client.fax}".html_safe end %>
       <%= if @job.client.email.present?      then "<br>Email: #{@job.client.email}".html_safe end %>
-      <%= if @job.client.notes.present?      then "<br>#{@job.client.notes}".html_safe end %>
+
+      <% if in_mobile_view? %>
+        <% unless current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:foreman) %>
+          <%= if @job.client.notes.present?      then "<br>#{@job.client.notes}".html_safe end %>
+        <% end %>  
+      <% else %>
+        <%= if @job.client.notes.present?      then "<br>#{@job.client.notes}".html_safe end %>
+      <% end %>
     <% end %>
   </p>
 
@@ -297,4 +304,10 @@
   <%= @job.zoho_details.blank? ? "None." : RedCloth.new(@job.zoho_details).to_html.html_safe %>
 </div>
 
-<%= render 'private/comments/add_comment' %>
+<% if in_mobile_view? %>
+  <% unless current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:foreman) %>
+    <%= render 'private/comments/add_comment' %>
+  <% end %> 
+<% else %> 
+  <%= render 'private/comments/add_comment' %>
+<% end %>
