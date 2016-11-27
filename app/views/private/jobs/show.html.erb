@@ -103,30 +103,9 @@
 <div class="span-8 append-1">
   <h3>Crews</h3>
 
-  <% if @job.is_archived == false %>
-    <ol>
-    <% @job.crews.each do |crew| %>
-      <li>
-        <b><%= crew.name.html_safe %></b>
-        <% if crew.user_list.include?(current_user.name) -%>
-          <span class="noprint"><%= link_to "Calendar", private_crew_path(crew), class: 'show' %></span>
-        <% end %>
-        <br>
-        <%= crew.user_list %>
-      </li>
-    <% end %>
-  </ol>
-  <% else %>
-  <p><b>Job is Archived</b><p>
-  <% end %>
-
-  <% if @job.crew_ids.size == 0 %>
-    <p>No Crews Assigned</p>
-  <% end %>
-  <p class="noprint">
-    <%= link_to 'Add Comment', '#',  data: {toggle: "modal", target: "#myModal"} %>
-  </p>
-  <hr>
+ <%= render :partial => "job_crews", :locals =>  {:job => @job} %>
+  
+<hr>
 
   <h3>Equipment</h3>
     <ol>
@@ -310,28 +289,7 @@
 <br>
 
 <div class="span-12">
-  <h3>Comments</h3>
-
-  <% if @job.comments.size == 0 %>
-    <p>No comments for this job.</p>
-  <% else %>
-    <table>
-      <% @job.comments.sorted.each do |comment| %>
-        <tr>
-          <td class="span-5">
-            <p>
-              <strong><%= comment.user.name rescue '-' %></strong>
-              <br>
-              <%= I18n.l comment.created_at, :format => :long %>
-            </p>
-          </td>
-          <td style="vertical-align: top;">
-            <%= RedCloth.new(comment.text.to_s).to_html.html_safe %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  <% end %>
+  <%= render :partial => "job_comments", :locals =>  {:job => @job} %>
 </div>
 
 <div class="span-12 last">

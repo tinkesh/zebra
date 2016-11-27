@@ -1,0 +1,22 @@
+  
+<h3>Comments</h3>
+  <% if job.comments.size == 0 %>
+    <p>No comments for this job.</p>
+  <% else %>
+    <table>
+      <% job.comments.sorted.each do |comment| %>
+        <tr>
+          <td class="span-5">
+            <p>
+              <strong><%= comment.user.name rescue '-' %></strong>
+              <br>
+              <%= I18n.l comment.created_at, :format => :long %>
+            </p>
+          </td>
+          <td style="vertical-align: top;">
+            <%= RedCloth.new(comment.text.to_s).to_html.html_safe %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>

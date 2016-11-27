@@ -1,0 +1,23 @@
+  <% if job.is_archived == false %>
+    <ol>
+    <% job.crews.each do |crew| %>
+      <li>
+        <b><%= crew.name.html_safe %></b>
+        <% if crew.user_list.include?(current_user.name) -%>
+          <span class="noprint"><%= link_to "Calendar", private_crew_path(crew), class: 'show' %></span>
+        <% end %>
+        <br>
+        <%= crew.user_list %>
+      </li>
+    <% end %>
+  </ol>
+  <% else %>
+  <p><b>Job is Archived</b><p>
+  <% end %>
+
+  <% if job.crew_ids.size == 0 %>
+    <p>No Crews Assigned</p>
+  <% end %>
+  <p class="noprint">
+    <%= link_to 'Add Comment', '#',  data: {toggle: "modal", target: "#myModal"} %>
+  </p>
