@@ -66,7 +66,11 @@ class Private::CrewsController < ApplicationController
   end
 
   def calendar
-    @crews = Crew.order('name ASC')
+    if current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:foreman)
+      @crews = Crew.joins(:users).where('users.id = ?', current_user.id)
+    else
+      @crews = Crew.includes(:jobs, :equipments, :users).order('name ASC')
+    end
     @page_title = "Calendar"
   end
 
