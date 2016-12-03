@@ -57,26 +57,28 @@
 
 <br>
 
+<!--
 <h3>Questions</h3>
-<% if @time_sheet.questions.blank? %>
+<%# if @time_sheet.questions.blank? %>
   <p>No answers. Please update this Time Sheet.</p>
-<% else %>
+<%# else %>
   <table>
-    <% @time_sheet.questions.each_pair do |question_id, values| %>
+    <%# @time_sheet.questions.each_pair do |question_id, values| %>
       <tr>
         <td class="span-7">
-          <%= TimeSheet::QUESTIONS[question_id.to_sym] %>
+          <%#= TimeSheet::QUESTIONS[question_id.to_sym] %>
         </td>
         <td>
-          <strong><%= @time_sheet.questions[question_id]['answer'].try(:capitalize) %></strong>
+          <strong><%#= @time_sheet.questions[question_id]['answer'].try(:capitalize) %></strong>
           <br>
-          <%= @time_sheet.questions[question_id]['comments'] %>
+          <%#= @time_sheet.questions[question_id]['comments'] %>
         </td>
       </tr>
-    <% end %>
+    <%# end %>
   </table>
-<% end %>
+<%# end %>
 <br>
+-->
 
 <h3>Time</h3>
 <p>

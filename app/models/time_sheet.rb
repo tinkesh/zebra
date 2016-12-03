@@ -39,14 +39,15 @@ class TimeSheet < ActiveRecord::Base
     :other => 'no'
   }
 
-  validate do
-    QUESTIONS.each_pair do |key, value|
-      self.questions[key] ||= {}
-      if self.questions[key]['answer'].blank?
-        self.errors.add :base, "Please answer <strong>#{value}</strong>"
-      end
-    end
-  end
+  #This was removed as part of client request
+  # validate do
+  #   QUESTIONS.each_pair do |key, value|
+  #     self.questions[key] ||= {}
+  #     if self.questions[key]['answer'].blank?
+  #       self.errors.add :base, "Please answer <strong>#{value}</strong>"
+  #     end
+  #   end
+  # end
 
   def deliver_new_time_sheet
     SiteMailer.new_time_sheet(self).deliver
