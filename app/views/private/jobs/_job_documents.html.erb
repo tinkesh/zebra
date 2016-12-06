@@ -1,6 +1,7 @@
 <tr>
 	<td><%=uploaded_asset(asset) %></td>
 	<td><%= asset.image_file_name %></td>
+	<td><%= asset.file_type %></td>
 	<td>
 	  <%= link_to "Download", asset.image.url, target: '_blank' %>
 	  <%= link_to "Delete", delete_document_private_job_path(@job, asset_id: asset.id), class: 'delete', confirm: "Are you sure?" %>
