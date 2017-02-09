@@ -29,6 +29,16 @@ class TimeSheet < ActiveRecord::Base
     :other => 'Other'
   }
 
+  QUESTIONS_DEFAULT_VALUE = {
+    # make sure hash keys are unique, and don't change them! They're saved in each instance
+    :travel => 'no',
+    :load => 'yes',
+    :paint => 'yes',
+    :line_removal => 'no',
+    :message_markings => 'no',
+    :other => 'no'
+  }
+
   validate do
     QUESTIONS.each_pair do |key, value|
       self.questions[key] ||= {}

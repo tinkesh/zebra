@@ -1,6 +1,6 @@
 = form.fields_for :questions do |form2|
   - TimeSheet::QUESTIONS.each_pair do |question_id, question|
-    - form.object.questions[question_id] ||= {}
+    - form.object.questions[question_id] ||= {:answer => TimeSheet::QUESTIONS_DEFAULT_VALUE[question_id]}
     - question_attribute = "time_sheet[questions][#{question_id}]"
     %h3= question
     %p
