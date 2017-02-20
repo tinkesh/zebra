@@ -104,7 +104,7 @@
 
   <label>Roles</label>
   <ul class="habtm">
-  <% roles = [ 'parking_lot', 'superadmin', 'admin', 'office', 'supervisor', 'foreman', 'crewman' ].reverse %>
+  <% roles = [ 'parking_lot', 'superadmin', 'admin', 'office', 'supervisor', 'foreman', 'crewman', 'service_advisor' ].reverse %>
   <% for role in roles %>
     <% role = Role.where(:name => role).first %>
 

@@ -25,6 +25,7 @@ AaaStriping::Application.routes.draw do
     resources :estimates
     resources :equipments do
       get :delete_document, on: :member
+      post :add_note
     end
 
     resources :gun_sheets
