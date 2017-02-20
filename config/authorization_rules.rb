@@ -108,6 +108,15 @@ authorization do
     has_permission_on :private_client_contacts, :to => :manage
     has_permission_on :private_comments, to: [:manage, :add_comment]
   end
+
+  role :service_advisor do
+    description 'Can view equipment. Can view his own hours'
+    has_permission_on :private, :to => [:index, :navigate, :manage]
+    has_permission_on :private_equipments, :to => :manage
+    has_permission_on :users, :to => :update do
+      if_attribute :id => is { user.id }
+    end
+  end
 end
 
 privileges do

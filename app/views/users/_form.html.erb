@@ -104,9 +104,10 @@
 
   <label>Roles</label>
   <ul class="habtm">
-  <% roles = [ 'superadmin', 'admin', 'office', 'supervisor', 'foreman', 'crewman' ].reverse %>
+  <% roles = [ 'superadmin', 'admin', 'office', 'supervisor', 'foreman', 'crewman', 'service_advisor' ].reverse %>
   <% for role in roles %>
     <% role = Role.where(:name => role).first %>
+    <% if role %>
     <li>
       <label style="line-height: 100%">
         <% disabled = role.is_high_access_role? ? (!permitted_to?(:assign, :high_access_user_roles)) : false %>
@@ -119,6 +120,7 @@
         <br>
       </label>
     </li>
+    <% end %>
   <% end %>
   </ul>
 </div>
