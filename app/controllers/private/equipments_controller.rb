@@ -10,6 +10,7 @@ class Private::EquipmentsController < ApplicationController
 
   def show
     @equipment = Equipment.find(params[:id])
+    @equipment_note = EquipmentNote.new(:equipment_id => @equipment.id, :user_id => current_user.id)
     @page_title = @equipment.name
   end
 
@@ -58,4 +59,17 @@ class Private::EquipmentsController < ApplicationController
     flash[:notice] = 'Equipment document deleted!'
     redirect_to  private_equipment_path(@equipment)
   end
+
+  def add_note
+    @equipment = Equipment.find(params[:equipment_id])
+    notes = params[:equipment_note][:description]
+    @equipment_note = EquipmentNote.new(:equipment_id => @equipment.id, :user_id => current_user.id, :description => notes)
+    if @equipment_note.save
+      flash[:notice] = "Note created"
+      redirect_to private_equipment_path(@equipment)
+    else
+      redirect_to private_equipment_path(@equipment)
+    end
+  end
+
 end

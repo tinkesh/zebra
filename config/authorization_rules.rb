@@ -15,6 +15,7 @@ authorization do
     has_permission_on [:private_report_summaries], :to => [:all_job_value, :all_marking_value]
     has_permission_on [:private_job_estimates], to: [:manage, :collect_emails, :delete_document]
     has_permission_on [:jobs_value], :to => [:read]
+    has_permission_on :private_equipments, :to => :add_note
   end
 
   role :office do
@@ -40,6 +41,7 @@ authorization do
     has_permission_on [:private_gun_marking_categories], :to => [:hide, :hidden_list]
 
     has_permission_on :private_material_reports, :to => [:download_pdf]
+    has_permission_on :private_equipments, :to => :add_note
   end
 
   role :supervisor do
@@ -69,6 +71,8 @@ authorization do
     has_permission_on [:private_gun_marking_categories], :to => [:hide, :hidden_list]
 
     has_permission_on :private_material_reports, :to => [:download_pdf]
+
+    has_permission_on :private_equipments, :to => :add_note
   end
 
   role :foreman do
@@ -86,6 +90,7 @@ authorization do
 
     has_permission_on [:private_jobs], :to => [:field_documents_download]
     has_permission_on [:private_gun_marking_categories], :to => [:hide, :hidden_list]
+    has_permission_on :private_equipments, :to => :add_note
   end
 
   role :crewman do
@@ -100,6 +105,17 @@ authorization do
     has_permission_on :private_gun_sheets, :to => :print_selected
     has_permission_on :private_client_contacts, :to => :manage
     has_permission_on :private_comments, to: [:manage, :add_comment]
+    has_permission_on :private_equipments, :to => :add_note
+  end
+
+  role :service_advisor do
+    description 'Can view equipment. Can view his own hours'
+    has_permission_on :private, :to => [:index, :navigate, :manage]
+    has_permission_on :private_equipments, :to => :manage
+    has_permission_on :users, :to => :update do
+      if_attribute :id => is { user.id }
+    end
+    has_permission_on :private_equipments, :to => :add_note
   end
 end
 
