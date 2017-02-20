@@ -1,6 +1,9 @@
 <ol id="menu" class="noprint">
   <% authenticated_only do -%>
+
+  <% if current_user.role_symbols.size > 1 || (current_user.role_symbols.size == 1 && !current_user.role_symbols.include?(:service_advisor)) %>
       <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
+  <% end %>    
     <% if permitted_to? :manage, :private_jobs -%>
       <li><%= active_link_to 'Jobs on Hand', private_jobs_path  %></li>
     <% end -%>
@@ -31,7 +34,10 @@
     <% if permitted_to? :manage, :users -%>
       <li><%= active_link_to 'Users', users_path %></li>
     <% end -%>
-    <% if permitted_to? :manage, :private -%>
+    
+    <% if permitted_to? :manage, :private -%> 
+
+    <% if current_user.role_symbols.size > 1 || (current_user.role_symbols.size == 1 && !current_user.role_symbols.include?(:service_advisor)) %>
       <li>
         <div class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -41,6 +47,8 @@
           <%= render :partial => 'menus/settings_menu', :layout => false %>
         </div>
       </li>
+    <% end %>
+    
     <% end -%>
     <% if permitted_to? :calendar, :private_crews -%>
       <li><%= active_link_to 'Calendar', calendar_private_crews_path %></li>

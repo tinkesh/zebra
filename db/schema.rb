@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150429124243) do
+ActiveRecord::Schema.define(:version => 20170226072336) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "image_updated_at"
     t.integer  "attachable_id"
     t.string   "attachable_type"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.string   "file_type",          :default => "Field Documents"
   end
 
   create_table "careers", :force => true do |t|
@@ -169,6 +170,17 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.string   "color"
     t.datetime "red_flag_alert_sent_at"
     t.datetime "black_flag_alert_sent_at"
+    t.string   "equipment_make"
+    t.string   "equipment_model"
+    t.string   "equipment_year"
+  end
+
+  create_table "equipment_notes", :force => true do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "equipment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "estimate_items", :force => true do |t|
@@ -553,7 +565,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "versioned_at"
     t.integer  "crew_id"
     t.string   "employment_state",                                    :default => "Employed"
-    t.string   "employment_notes"
+    t.text     "employment_notes"
     t.date     "employment_end_date"
     t.date     "employment_start_date"
   end
