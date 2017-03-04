@@ -1,9 +1,10 @@
 <ol id="menu" class="noprint">
   <% authenticated_only do -%>
 
-  <% if current_user.role_symbols.size > 1 || (current_user.role_symbols.size == 1 && !current_user.role_symbols.include?(:service_advisor)) %>
+    <% if is_not_single_specific_role?(current_user, :service_advisor) %>
       <li><%= active_link_to 'Dashboard', private_home_path, :active => { :when => :self_only } %></li>
-  <% end %>    
+    <% end %>
+
     <% if permitted_to? :manage, :private_jobs -%>
       <li><%= active_link_to 'Jobs on Hand', private_jobs_path  %></li>
     <% end -%>

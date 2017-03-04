@@ -1,18 +1,29 @@
 <div class="show_actions">
+
   <%= link_to "Edit", edit_private_equipment_path(@equipment.id), :class => "edit" %>
-  <%= link_to "Delete", private_equipment_path(@equipment.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+  <% if permitted_to? :delete, :private_equipments -%>
+   <%= link_to "Delete", private_equipment_path(@equipment.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+  <% end %>
 </div>
 
 <%= content_for :breadcrumb do %>
-  <ul id="breadcrumb">
-    <li><%= link_to 'Dashboard', private_home_path %></li>
-    <li>»</li>
-    <li>Settings</li>
-    <li>»</li>
-    <li><%= link_to 'Equipment', private_equipments_path %></li>
-    <li>»</li>
-    <li><%= @page_title %></li>
-  </ul>
+<% if is_not_single_specific_role?(current_user, :service_advisor) %>
+    <ul id="breadcrumb">
+      <li><%= link_to 'Dashboard', private_home_path %></li>
+      <li>»</li>
+      <li>Settings</li>
+      <li>»</li>
+      <li><%= link_to 'Equipment', private_equipments_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
+  <% else %>
+    <ul id="breadcrumb">
+      <li><%= link_to 'Equipment', private_equipments_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
+  <% end %>
 <% end %>
 
 <table>
