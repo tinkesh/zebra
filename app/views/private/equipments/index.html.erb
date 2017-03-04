@@ -1,4 +1,6 @@
 <%= content_for :breadcrumb do %>
+
+<% if is_not_single_specific_role?(current_user, :service_advisor) %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
@@ -6,6 +8,11 @@
     <li>»</li>
     <li><%= @page_title %></li>
   </ul>
+  <% else %>
+  <ul id="breadcrumb">
+    <li><%= @page_title %></li>
+  </ul>
+  <% end %>
 <% end %>
 
 <p id="new"><%= link_to 'New Equipment', new_private_equipment_path %></p>
