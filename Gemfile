@@ -64,3 +64,5 @@ gem 'delayed_job_active_record'
 #pdf generation
 #gem 'prawn'
 gem 'prawn', '~> 0.12.0'
+gem 'heroku'
+gem 'thin'
