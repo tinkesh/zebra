@@ -61,5 +61,7 @@ gem 'rails_12factor'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 
-#pdf generation
+
 gem 'prawn', '~> 0.12.0'
+gem 'heroku'
+gem 'thin'
