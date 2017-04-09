@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170226072336) do
+ActiveRecord::Schema.define(:version => 20170408025650) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -377,6 +377,15 @@ ActiveRecord::Schema.define(:version => 20170226072336) do
     t.integer "time_sheet_id"
   end
 
+  create_table "labours", :force => true do |t|
+    t.string   "mechanic_name"
+    t.integer  "hours_on_job"
+    t.integer  "hourly_rate"
+    t.integer  "work_order_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "load_entries", :force => true do |t|
     t.integer  "load_sheet_id"
     t.integer  "material_id"
@@ -448,6 +457,16 @@ ActiveRecord::Schema.define(:version => 20170226072336) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_archived",     :default => false
+  end
+
+  create_table "parts", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "quantity"
+    t.integer  "unit_rate"
+    t.integer  "work_order_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -587,5 +606,21 @@ ActiveRecord::Schema.define(:version => 20170226072336) do
   add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
   add_index "versions", ["number"], :name => "index_versions_on_number"
   add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_type_and_versioned_id"
+
+  create_table "work_orders", :force => true do |t|
+    t.string   "client_name"
+    t.string   "contact_name"
+    t.string   "phone"
+    t.string   "hour_meter"
+    t.string   "odometer"
+    t.integer  "equipment_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "shop_supplies",           :default => 0
+    t.text     "service_performed_notes"
+    t.datetime "created_date"
+    t.datetime "completed_date"
+  end
 
 end

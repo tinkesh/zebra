@@ -30,5 +30,9 @@
   <li><%= active_link_to 'Materials', private_materials_path %></li>
   <% end %>
 
+  <% if permitted_to? :manage, :private_work_orders -%>
+  <li><%= active_link_to 'Work Orders', private_work_orders_path %></li>
+  <% end %>
+
 <% end %>
 </ul>

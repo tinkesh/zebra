@@ -1,0 +1,18 @@
+<div class="container">
+<%= content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<%= form_for @work_order, url: private_work_orders_path(@work_order), html: {multipart: true, class: "work_order"} do |f| %>
+
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <br class="clear">
+  <br class="clear">
+  <%= f.submit "Create Work Order", :class => "btn btn-primary"%> 
+
+  <!-- or --> <%#= link_to 'Cancel', private_equipment_path(@equipment) %>
+<% end %>
+    </div>

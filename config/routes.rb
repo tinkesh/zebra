@@ -27,6 +27,9 @@ AaaStriping::Application.routes.draw do
       get :delete_document, on: :member
       post :add_note
     end
+    resources :work_orders do 
+      get :generate_report
+    end
 
     resources :gun_sheets
     match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected

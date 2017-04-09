@@ -16,6 +16,8 @@ authorization do
     has_permission_on [:private_job_estimates], to: [:manage, :collect_emails, :delete_document]
     has_permission_on [:jobs_value], :to => [:read]
     has_permission_on :private_equipments, :to => :add_note
+    has_permission_on :private_work_orders, :to => :manage
+    has_permission_on :private_work_orders, :to => :generate_report
   end
 
   role :office do
@@ -121,6 +123,8 @@ authorization do
       if_attribute :id => is { user.id }
     end
     has_permission_on :private_equipments, :to => :add_note
+    has_permission_on :private_work_orders, :to => :manage
+    has_permission_on :private_work_orders, :to => :generate_report
   end
 
   role :service_advisor do
