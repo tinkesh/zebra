@@ -1,5 +1,5 @@
 <div class="span-6 append-bottom">
-  <span> No: </span> <span> <%= WorkOrder.last.id+1 %></span> 
+  <span> No: </span> <span> <%= !WorkOrder.last.blank? ? WorkOrder.last.id+1 : 1 %></span> 
 </div>
 
 <br class="clear">
