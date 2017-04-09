@@ -1,0 +1,247 @@
+<%= content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<div class="container workorder">
+
+<div class="row">
+
+  <div class="span-12">
+
+  <div class="row">
+    <div class="span-9">
+      <label>Date: </label> 
+      <%= @work_order.created_date.strftime('%b-%d-%y') if !@work_order.created_date.blank? %>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="span-9">
+        <label> Client Name: </label> 
+        <%= @work_order.client_name %>
+      </div>
+      <div class="span-9">
+        <label> Contact Name:</label> 
+        <%= @work_order.contact_name %>
+      </div>
+      <div class="span-9">
+        <label> Phone:</label> 
+        <%= @work_order.phone %>
+      </div>
+
+    </div>
+  </div>
+  <div class="span-9">
+
+    Shop Repair Work Order
+  </div>
+
+  <div class="span-4">
+       <div class="span-3">
+          <label> Wo No: </label> 
+          <%= @work_order.id %>
+       </div>
+  </div>
+  <div class="span-4">
+    <div style="height:110px;width:110px;overflow:hidden;">
+      <img src="/assets/aaa-striping-logo.png">
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="span-9">
+        <label> Unit: </label> 
+        <%= @work_order.equipment.name if !@work_order.equipment.blank? %>
+  </div>
+  <div class="span-9">
+        <label> Hour meter: </label> 
+        <%= @work_order.hour_meter %>
+  </div>
+
+  <div class="span-9">
+        <label> Odometer: </label> 
+        <%= @work_order.odometer %>
+  </div>
+
+</div>
+
+
+<div class="row">
+
+  <div class="span-9">
+        <label> Licence Plate: </label> 
+        <%= @work_order.equipment.plate_number if !@work_order.equipment.blank? %>
+  </div>
+  <div class="span-9">
+        <label> Serial: </label> 
+        <%= @work_order.equipment.id if !@work_order.equipment.blank? %>
+  </div>
+
+</div>
+
+
+<div class="row">
+
+  <div class="span-9">
+        <label> Make: </label> 
+        <%= @work_order.equipment.equipment_make if !@work_order.equipment.blank? %>
+  </div>
+  <div class="span-9">
+        <label> Model: </label> 
+        <%= @work_order.equipment.equipment_model if !@work_order.equipment.blank? %>
+  </div>
+
+  <div class="span-9">
+        <label> Year: </label> 
+        <%= @work_order.equipment.equipment_year if !@work_order.equipment.blank? %>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="span-10">
+        <label> Total Cost: </label> 
+        <b>$ &nbsp <%= @work_order.total_cost %> + 5% GST</b>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span-10">
+        <label> Date Work Completed: </label> 
+        <b><%= @work_order.completed_date.strftime('%b-%d-%y') if !@work_order.completed_date.blank? %> </b>
+  </div>
+</div>
+
+
+
+<div class="row"><div class="span-10"> &nbsp</div></div>
+<div class="row"><div class="span-10"> &nbsp</div></div>
+
+<div class="row">
+<div class="span-10"> 
+<label>Parts Details</label>
+</div>
+
+
+<div class="row">
+  <table id="table_item" class='table'>
+    <thead>
+      <tr>
+        <th>Quantity </th>
+        <th>Part No.</th>
+        <th>Description</th>
+        <th>Unit Rate</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody class="">
+    <% @work_order.parts.each do |part| %>
+      <tr>
+        <td><%= part.quantity %></td>
+        <td><%= part.name %></td>
+        <td><%= part.description%></td>
+        <td>$ &nbsp <%= part.unit_rate%></td>
+        <td>$ &nbsp<%= part.total_price %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td colspan="3" style="text-align:left">
+        <b>Services Perfromed & Notes</b> :<br/> <%= @work_order.service_performed_notes %>
+        </td>
+        <td>Total Parts</td>
+        <td>$ &nbsp <%= @work_order.parts_cost %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="row"><div class="span-10"> &nbsp</div></div>
+<div class="row"><div class="span-10"> &nbsp</div></div>
+
+<div class="row">
+<div class="span-10"> 
+<label>Labour & Shop Supplies</label>
+</div>
+
+<div class="row">
+  <table id="table_item" class='table'>
+    <thead>
+      <tr>
+        <th>Mechanic Name </th>
+        <th>Hours On Job</th>
+        <th>Rate/Hr</th>
+        <th>Sub Total</th>
+      </tr>
+    </thead>
+    <tbody class="">
+    <% @work_order.labours.each do |labour| %>
+      <tr>
+        <td><%= labour.mechanic_name %></td>
+        <td><%= labour.hours_on_job %></td>
+        <td>$ &nbsp <%= labour.hourly_rate%></td>
+        <td>$ &nbsp <%= labour.sub_total%></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td colspan="3" style="text-align:right">Shop Supplies</td>
+        <td>$ &nbsp <%= @work_order.shop_supplies %></td>
+      </tr>
+
+      <tr>
+        <td colspan="3" style="text-align:right">Total Labour & Shop Supplies</td>
+        <td>$ &nbsp <%= @work_order.shop_supplies + @work_order.labour_cost %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!-- <div class="span-6 append-bottom">
+  <label> Client Name: </label> 
+  <%= @work_order.client_name %>
+</div>
+
+
+<div class="span-6 append-bottom">
+  <label> Contact Name: </label> 
+  <%= @work_order.contact_name %>
+</div>
+
+
+<div class="span-6 append-bottom">
+  <label> Phone: </label> 
+  <%= @work_order.phone %>
+</div>
+
+<div class="span-6 append-bottom">
+  <label> Hour Meter: </label> 
+  <%= @work_order.hour_meter %>
+</div>
+
+<div class="span-6 append-bottom">
+  <label> Odometer: </label> 
+  <%= @work_order.odometer %>
+</div> -->
+
+

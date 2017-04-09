@@ -1,0 +1,23 @@
+<tr class="item">
+  <td class="mechanic_name">
+    <%= f.text_field :mechanic_name, class: "span-7" %>
+  </td>
+  <td class="hours_on_job">
+    <%= f.number_field :hours_on_job, class: "form-control", min: 0 %>
+  </td>
+  <td class="hourly_rate">
+    <%= f.number_field :hourly_rate, class: "form-control", min: 0 %>
+  </td>
+  <td class="sub_total">
+    <div class='labour-subtotal-price' style='text-align:center;width:80px;line-height: 30px;'>
+      $0
+    </div>
+    <%#= f.hidden_field_tag :labour_total_amount, min: 0 %>
+  </td>
+
+  <td>
+    <a href="#" class="remove" data-confirm="Are you sure?">remove</a>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :_destroy %>
+  </td>
+</tr>
