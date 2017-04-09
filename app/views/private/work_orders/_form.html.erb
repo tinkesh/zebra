@@ -1,0 +1,279 @@
+<div class="span-6 append-bottom">
+  <span> No: </span> <span> <%= WorkOrder.last.id+1 %></span> 
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :created_date %><br>
+  <%= form.text_field :created_date, :class => "span-6", 'data-role' => 'datetimepicker', :readonly => true %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :client_name %><br>
+  <%= form.text_field :client_name, :class => "span-6", :required => true %>
+</div>
+
+
+<div class="span-6 append-bottom">
+  <%= form.label :contact_name %><br>
+  <%= form.text_field :contact_name, :class => "span-6", :required => true %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :phone %><br />
+  <%= form.text_field :phone, :class => "span-6", :required => true %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :hour_meter %><br>
+  <%= form.text_field :hour_meter, :class => "span-6", :required => true %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :odometer %><br>
+  <%= form.text_field :odometer, :class => "span-6", :required => true %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :equipment_id, "Unit" %> <br>
+  <% if @equipment.blank? %>
+    <%= form.select :equipment_id, options_from_collection_for_select(
+      @equipments, :id, :unit), :style=> "width: 300px" %>
+  <% else %>
+    <%= form.select :equipment_id, options_from_collection_for_select(
+      @equipments, :id, :unit, @equipment.id), :style=> "width: 300px" %>
+  <% end %>
+
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :licence_plate %><br>
+  <%= form.text_field :licence_plate,  {:value => @equipment.blank? ? "" : @equipment.plate_number, :class => "span-6"}%>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :serial %><br>
+  <%= form.text_field :serial,  {:value => @equipment.blank? ? "" : @equipment.id, :class => "span-6"} %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :make %><br>
+  <%= form.text_field :make, {:value => @equipment.blank? ? "" : @equipment.equipment_make, :class => "span-6"} %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :model %><br>
+  <%= form.text_field :model, {:value => @equipment.blank? ? "" : @equipment.equipment_model, :class => "span-6"} %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :year %><br>
+  <%= form.text_field :year, {:value => @equipment.blank? ? "" : @equipment.equipment_year, :class => "span-6"} %>
+</div>
+
+<br class="clear">
+<br class="clear">
+<br class="clear">
+
+<div class="form-group parts">
+  <label>Parts Details</label>
+
+  <table id="table_item_parts" class='table'>
+    <thead>
+      <tr>
+        <th>Part Number</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit Rate</th>
+        <th>Total Cost</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody class="nested_form_for_parts">
+    <%= form.nested_fields_for :parts, show_empty: true do |f|
+      if f
+        render 'part', f: f
+      else
+        render 'part_none'
+      end
+    end -%>
+    </tbody>
+    <tr><td colspan="4" style="text-align:right">Total Parts:</td><td style="text-align:center"><span class="parts_total_price">$0</span></td><td></td></tr>
+  </table>
+  <a href="#" class="btn btn-primary add_parts">Add Parts</a>
+
+</div>
+
+
+<br class="clear">
+
+<div class="span-10 append-bottom">
+  <%= form.label :service_performed_notes, "Service Performed Notes" %> <br>
+  <%= form.text_area :service_performed_notes, class: "form-control", cols: "120", rows: "4" %>
+</div>
+
+<br class="clear">
+<br class="clear">
+<br class="clear">
+
+<div class="form-group labour">
+  <label>Labour Details</label>
+
+  <table id="table_item_labour" class='table'>
+    <thead>
+      <tr>
+        <th>Mechanic Name</th>
+        <th>Hours on job</th>
+        <th>Hourly rate</th>
+        <th>Sub Total</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody class="nested_form">
+    <%= form.nested_fields_for :labours, show_empty: true do |f|
+      if f
+        render 'labour', f: f
+      else
+        render 'labour_none'
+      end
+    end -%>
+    </tbody>
+    <tr>
+    <td colspan="3" style="text-align:right">Total Labour:</td>
+    <td style="text-align:center"><span class="labour_total_price_all">$0</span></td>
+    <td></td>
+    </tr>
+  </table>
+  <a href="#" class="btn btn-primary add">Add Labour</a>
+
+</div>
+
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :shop_supplies %><br>
+  <%= form.text_field :shop_supplies, :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :completed_date %><br>
+  <%= form.text_field :completed_date, :class => "span-6", 'data-role' => 'datetimepicker', :readonly => true %>
+</div>
+
+<script type="text/javascript">
+  
+jQuery(document).ready(function() {
+  jQuery('#work_order_equipment_id').on('change', function (e) {
+    //var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+    //alert(valueSelected);
+    window.location.href = '/admin/work_orders/new?equipment_id='+valueSelected;
+  }); 
+
+  jQuery(".labour").nestedFields({
+    itemSelector: ".item",
+    containerSelector: "tbody.nested_form",
+    afterInsert: function(item) {
+      jQuery('tr.item input').change(function(event) {
+        updateLaberTable();
+      });
+    },
+
+    afterRemove: function(item) {
+      jQuery("tr:hidden").remove();
+      updateLaberTable();
+    }
+  });
+
+  function updateLaberTable() {
+    var sub_total = 0;
+    var discount_sum = 0;
+    var shipping_sum = 0;
+    var total_sum = 0;
+    jQuery("#table_item_labour tbody tr").each(function(){
+     el1 = Number(jQuery(this).find("td.hours_on_job").find('input').val()) * Number(jQuery(this).find("td.hourly_rate").find('input').val())
+     el2 = "$"+el1;
+     td = jQuery(this).find("td").eq(3)
+     //td.find('input').val(el1);
+     td.find('div.labour-subtotal-price').html(el2);
+      //sub_total += Number(td.find('input').val());
+       labour_subtotal = Number(el1);
+       if (!isNaN(labour_subtotal)){
+         total_sum += labour_subtotal;
+       }
+    });
+    labour_total_sum_display = "$"+total_sum;
+    jQuery("span.labour_total_price_all").html(labour_total_sum_display);
+    // discount_sum += sub_total * Number(jQuery('table tr').find("td.discount").find('input').val()) / 100
+    // shipping_sum += Number(jQuery('table tr').find('input#job_estimate_shipping_charges').val())
+    // total_sum += sub_total + shipping_sum - discount_sum
+
+    // jQuery('.sub_total').html(sub_total)
+    // jQuery('#job_estimate_sub_total_amount').val(sub_total)
+    // jQuery('.discount_sum').html(discount_sum)
+    // jQuery('.shipping_sum').html(shipping_sum)
+    // jQuery('.total_sum').html(total_sum)
+    // jQuery('#job_estimate_total_amount').val(total_sum)
+  };
+
+
+  jQuery(".parts").nestedFields({
+    itemSelector: ".part_item",
+    containerSelector: "tbody.nested_form_for_parts",
+    addSelector: "a.add_parts",
+    afterInsert: function(item) {
+      jQuery('tr.part_item input').change(function(event) {
+        updatepartsTable();
+      });
+    },
+
+    afterRemove: function(item) {
+      jQuery("tr:hidden").remove();
+      updatepartsTable();
+    }
+  });
+
+  function updatepartsTable() {
+    var parts_sub_total = 0;
+    var discount_sum = 0;
+    var shipping_sum = 0;
+    var parts_total_sum = 0;
+    jQuery("#table_item_parts tbody tr").each(function(){
+       el1 = Number(jQuery(this).find("td.quantity").find('input').val()) * Number(jQuery(this).find("td.unit_rate").find('input').val())
+       el2 = "$"+el1;
+       td = jQuery(this).find("td").eq(4)
+       td.find('div.parts-total-price').html(el2);
+       subtotal = Number(el1);
+       if (!isNaN(subtotal)){
+         parts_total_sum += subtotal;
+       }
+    });
+    parts_total_sum_display = "$"+parts_total_sum;
+    jQuery("span.parts_total_price").html(parts_total_sum_display);
+
+    // discount_sum += sub_total * Number(jQuery('table tr').find("td.discount").find('input').val()) / 100
+    // shipping_sum += Number(jQuery('table tr').find('input#job_estimate_shipping_charges').val())
+    // total_sum += sub_total + shipping_sum - discount_sum
+
+    // jQuery('.sub_total').html(sub_total)
+    // jQuery('#job_estimate_sub_total_amount').val(sub_total)
+    // jQuery('.discount_sum').html(discount_sum)
+    // jQuery('.shipping_sum').html(shipping_sum)
+    // jQuery('.total_sum').html(total_sum)
+    // jQuery('#job_estimate_total_amount').val(total_sum)
+  };
+
+});
+
+</script>
+
