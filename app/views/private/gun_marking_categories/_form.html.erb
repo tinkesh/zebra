@@ -15,3 +15,12 @@
 
 
 <br class="clear">
+<% if !@gun_marking_category.new_record? && @gun_marking_category.gun_markings.count == 0 && @gun_marking_category.job_markings.count == 0  %>
+<div class="span-16 append-bottom">
+  <%= form.label :hide, "Display Status" %><br>
+  <%= form.radio_button  :hide, true %> Hide
+  <%= form.radio_button  :hide, false %> Display
+</div>
+<% end %>
+
+<br class="clear">

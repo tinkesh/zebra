@@ -33,7 +33,15 @@ AaaStriping::Application.routes.draw do
 
     resources :gun_sheets
     match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected
-    resources :gun_marking_categories
+    resources :gun_marking_categories do 
+      member do
+        get :hide
+      end
+      collection do
+        get :hidden_list
+      end
+    end
+
     resources :jobs do
       get :delete_document, on: :member
 

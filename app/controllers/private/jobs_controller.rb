@@ -17,11 +17,12 @@ class Private::JobsController < ApplicationController
               location_name       ilike :query OR
               jobs.reference_code ilike :query OR
               jobs.pay_status     ilike :query OR
-              jobs.zoho_details   ilike :query'
+              jobs.zoho_details   ilike :query OR
+              jobs.id = :query_id'
       if @archived == 'true'
-        @archived_jobs = jobs.archived.where(sql, :query => "%#{params[:query]}%")
+        @archived_jobs = jobs.archived.where(sql, :query => "%#{params[:query]}%", :query_id => "#{params[:query]}")
       else
-        @active_jobs   = jobs.active.where(sql, :query => "%#{params[:query]}%")
+        @active_jobs   = jobs.active.where(sql, :query => "%#{params[:query]}%", :query_id => "#{params[:query]}")
       end
     else
       @jobs = jobs.where(:is_archived => archived)
