@@ -69,6 +69,7 @@ authorization do
     has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
 
     has_permission_on [:private_jobs], :to => [:field_documents_download]
+
     has_permission_on :private_equipments, :to => :add_note
     has_permission_on [:private_gun_marking_categories], :to => [:hide, :hidden_list]
   end

@@ -57,7 +57,7 @@ class Private::GunMarkingCategoriesController < ApplicationController
     if @gun_marking_category.update_attributes(:hide => params[:state])
       flash[:notice] = "Selected Gun Marking Category has changed!"
     else
-      flash[:notice] = "Unable to change Selected Gun Marking Category"
+     flash[:notice] = "Unable to change Selected Gun Marking Category"
     end
     redirect_to private_gun_marking_categories_url
   end
