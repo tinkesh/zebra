@@ -54,8 +54,11 @@ class Private::GunMarkingCategoriesController < ApplicationController
 
   def hide
     @gun_marking_category = GunMarkingCategory.unscoped.find(params[:id])
-    @gun_marking_category.update_attributes(:hide => params[:state])
-    flash[:notice] = "Selected Gun Marking Category has changed!"
+    if @gun_marking_category.update_attributes(:hide => params[:state])
+      flash[:notice] = "Selected Gun Marking Category has changed!"
+    else
+      flash[:notice] = "Unable to change Selected Gun Marking Category"
+    end
     redirect_to private_gun_marking_categories_url
   end
 
