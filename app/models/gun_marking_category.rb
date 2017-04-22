@@ -16,4 +16,8 @@ class GunMarkingCategory < ActiveRecord::Base
   def num_job_markings
     self.job_markings.count
   end
+
+  def self.default_scope
+    where(hide: false)
+  end
 end
