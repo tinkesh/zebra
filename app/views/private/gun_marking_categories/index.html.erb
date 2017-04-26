@@ -10,6 +10,18 @@
 
 <p id="new"><%= link_to 'New Gun Marking Category', new_private_gun_marking_category_path %></p>
 
+<% if params[:action] == "hidden_list" %>
+<p>
+<%= link_to 'Gun Marking Categories', private_gun_marking_categories_path %>
+</p>
+<% else %>
+<p>
+<%= link_to 'Show Hidden list', hidden_list_private_gun_marking_categories_path %>
+</p>
+<% end %>
+
+
+
 <table class="sortable">
   <tr>
     <th>Name</th>
@@ -19,14 +31,20 @@
   </tr>
 
 <% @gun_marking_categories.each do |gun_marking_category| %>
+
   <tr>
-    <td><%= gun_marking_category.name %></td>
+    <td><%= gun_marking_category.name %> </td>
     <td><%= GunMarkingGroup.find(gun_marking_category.gun_marking_group_id).title %></td>
     <td><%= gun_marking_category.position %></td>
     <td class="actions">
     <%= link_to 'Delete', private_gun_marking_category_path(gun_marking_category), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_gun_marking_category_path(gun_marking_category), :class => "edit" %>
+    <%# if gun_marking_category.gun_markings.count == 0 && gun_marking_category.job_markings.count == 0  %>
+      <% context = gun_marking_category.hide ? "UnHide" : "Hide" %>
+      <%= link_to context, hide_private_gun_marking_category_path(gun_marking_category, :state => !gun_marking_category.hide ), :class => "edit" %>
+    <%# end %>
     </td>
   </tr>
+
 <% end %>
 </table>
