@@ -12,9 +12,12 @@ class MaterialReportPdf < Prawn::Document
 
     data_header = [[" <font size='26'>MR ##{@material_report.id}</font>"]]
     table(data_header, :header => true,  :width => 520, :cell_style => { :borders => [],:inline_format => true })
-    move_down 20
+    move_down 30
 
-    
+    new_position = cursor
+    draw_text "AAA Striping", :at => [440, new_position]
+    move_down 10
+
     job = ["<b>Job:</b>", "#{@material_report.job.label}",  ""]
 
     gun_sheet  = [""]
