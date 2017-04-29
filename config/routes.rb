@@ -69,6 +69,8 @@ AaaStriping::Application.routes.draw do
     match 'archived_jobs' => 'jobs#archived_jobs', :as => :archived_jobs
     match 'private/material_reports/:id/update_dips' => 'material_reports#update_dips', :as => :update_dips
     match 'private/material_reports/:id/print' => 'material_reports#print', :as => :mat_print
+    match 'private/material_reports/:id/download_pdf' => 'material_reports#download_pdf', :as => :mat_download_pdf
+
 
     # clocking in and out
     match 'clock_in/:action/(:id)', :controller => 'clock_in'

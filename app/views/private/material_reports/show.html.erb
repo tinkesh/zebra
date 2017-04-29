@@ -8,6 +8,13 @@
   </ul>
 <% end %>
 
+<%#= link_to 'Download PDF', private_mat_download_pdf_path(@material_report.id) %>
+<% if !@material_report.job_id.blank? && @material_report.load_sheet %>
+<span style="padding-left:20px;">
+  <%= link_to image_tag('pdf_icon_32.png', :title => "Download report"), private_mat_download_pdf_path(@material_report.id) %>
+  </span>
+<% end %>
+
 <%= content_for :submenu do %>
   <%= render :partial => 'menus/material_reports_menu', :layout => false %>
 <% end %>
@@ -291,18 +298,20 @@
   </table>
 <% end %>
 
-<% load_entries = @material_report.load_sheet.load_entries
-   if @material_report.load_sheet.present? && load_entries.present? -%>
-  <table>
-    <tr>
-      <th>Batch #</th>
-    </tr>
-    <% load_entries.each do |entry| %>
-        <tr>
-          <td><%= entry.material.try(:batch) %></td>
-        </tr>
-    <% end %>
-  </table>
+<% if @material_report.load_sheet %>
+  <% load_entries = @material_report.load_sheet.load_entries
+     if @material_report.load_sheet.present? && load_entries.present? -%>
+    <table>
+      <tr>
+        <th>Batch #</th>
+      </tr>
+      <% load_entries.each do |entry| %>
+          <tr>
+            <td><%= entry.material.try(:batch) %></td>
+          </tr>
+      <% end %>
+    </table>
+  <% end -%>
 <% end -%>
 
 <script type="text/javascript" language="javascript">

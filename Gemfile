@@ -66,3 +66,4 @@ gem 'delayed_job_active_record'
 gem 'prawn', '~> 0.12.0'
 gem 'heroku'
 gem 'thin'
+

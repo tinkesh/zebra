@@ -43,6 +43,8 @@ authorization do
 
     has_permission_on :private_equipments, :to => :add_note
     has_permission_on [:private_gun_marking_categories], :to => [:hide, :hidden_list]
+
+    has_permission_on :private_material_reports, :to => [:download_pdf]
   end
 
   role :supervisor do
@@ -72,6 +74,8 @@ authorization do
 
     has_permission_on :private_equipments, :to => :add_note
     has_permission_on [:private_gun_marking_categories], :to => [:hide, :hidden_list]
+
+    has_permission_on :private_material_reports, :to => [:download_pdf]
   end
 
   role :foreman do
