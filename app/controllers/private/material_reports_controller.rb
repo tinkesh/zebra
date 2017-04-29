@@ -27,6 +27,12 @@ class Private::MaterialReportsController < ApplicationController
     @load_sheets = @material_report.load_sheets
   end
 
+  def download_pdf
+    @material_report = MaterialReport.find(params[:id], :include => [:load_sheet, :gun_sheet])
+    output = MaterialReportPdf.new.to_pdf(@material_report)
+    send_data output, filename: "MaterialReport_#{@material_report.label}.pdf", type: "application/pdf"
+  end
+
   def new
     @job = Job.find(params[:job_id], :include => [:load_sheets, :gun_sheets])
     @load_sheets = @job.load_sheets(:order => 'id ASC')
