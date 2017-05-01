@@ -4,9 +4,23 @@ class WorkOrderReport < Prawn::Document
     @work_order = workorder
     logo_path = Rails.root.join('app', 'assets', 'images', 'aaa-striping-logo.png')
 
-    data_header = [["WorkOrder: #{@work_order.id}"]]
-    table(data_header, :header => true,  :width => 520)
+    # data_header = [["WorkOrder: #{@work_order.id}"]]
+    # table(data_header, :header => true,  :width => 520)
+    # move_down 20
+    #logo
+    #table_header = [[{:image => logo_path}]]
+    #table(table_header, :width => 520, :position => :right)
+    y_position = cursor
+    image logo_path, :at => [420, y_position+20]
     move_down 20
+
+    text_box "Shop Repair Work Order", :at => [120, y_position+20], :size => 22
+
+    move_down 50
+    new_position = cursor
+    text_box "ZebraOnline", :at => [440, new_position], :size => 10
+    move_down 10
+    
 
     work_order_id = "Wo No: #{@work_order.id}"
     if !@work_order.created_date.blank?
@@ -71,6 +85,15 @@ class WorkOrderReport < Prawn::Document
     table_header = table_header + [["", "", "Shop Supplies", "$#{@work_order.shop_supplies}"]]
     table_header = table_header + [["", "", "Total Labour & Shop Supplies", "$#{@work_order.labour_cost + @work_order.shop_supplies}"]]
     table(table_header, :width => 520)
+    move_down 40
+
+
+    text "Name:     ________________________________________"
+    move_down 20
+    text "Signature:________________________________________ "
+    move_down 10
+
+
     render
   end
 

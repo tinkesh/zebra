@@ -18,9 +18,11 @@ class WorkOrder < ActiveRecord::Base
 
   def labour_cost
   	total_amount = 0
-  	labours.each do |l|
-      amount = l.hourly_rate * l.hours_on_job
-      total_amount = total_amount + amount
+  	labours.each do |l| 
+      if l.hourly_rate && l.hours_on_job
+        amount = l.hourly_rate * l.hours_on_job
+        total_amount = total_amount + amount
+      end      
   	end
   	total_amount
   end
@@ -28,8 +30,10 @@ class WorkOrder < ActiveRecord::Base
   def parts_cost
   	total_amount = 0
   	parts.each do |p|
-      amount = p.quantity * p.unit_rate
-      total_amount = total_amount + amount
+      if p.quantity && p.unit_rate
+        amount = p.quantity * p.unit_rate
+        total_amount = total_amount + amount
+      end
   	end
   	total_amount
   end
