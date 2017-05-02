@@ -5,6 +5,7 @@ class Equipment < ActiveRecord::Base
   has_many :gun_sheets
   has_many :assets, as: :attachable
   has_many :equipment_notes
+  has_many :work_orders
 
   accepts_nested_attributes_for :assets
 
