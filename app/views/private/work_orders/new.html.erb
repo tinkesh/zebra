@@ -1,8 +1,31 @@
 <div class="container">
+<% if !is_not_single_specific_role?(current_user, :service_advisor) %>
+    <%= content_for :submenu do %>
+      <ol class="noprint">
+        <% if permitted_to? :manage, :private_equipments -%>
+          <li><%= active_link_to 'Equipment', private_equipments_path %></li>
+        <% end %>
+        <% if permitted_to? :manage, :private_work_orders -%>
+          <li><%= active_link_to 'Work Orders', private_work_orders_path %></li>
+        <% end %>
+      </ol>
+    <% end %>
+<% end %>
+
 <%= content_for :breadcrumb do %>
+ <% if is_not_single_specific_role?(current_user, :service_advisor) %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li>Settings</li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+  <% else %>
   <ul id="breadcrumb">
     <li><%= @page_title %></li>
   </ul>
+  <% end %>
 <% end %>
 
 <%= form_for @work_order, url: private_work_orders_path(@work_order), html: {multipart: true, class: "work_order"} do |f| %>

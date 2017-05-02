@@ -21,11 +21,11 @@ class Private::WorkOrdersController < ApplicationController
       @equipment = Equipment.find(params[:equipment_id])
       #@work_order.equipment_id = @equipment.id
     end
-    @page_title = "New WorkOrder"
+    @page_title = "New Work Order"
   end
 
   def create
-    @page_title = "New WorkOrder"
+    @page_title = "New Work Order"
     @equipment = Equipment.find(params[:work_order][:equipment_id])
     @equipments = Equipment.all
     @work_order = WorkOrder.new(params[:work_order])
@@ -39,13 +39,13 @@ class Private::WorkOrdersController < ApplicationController
 
   def show
     @work_order = WorkOrder.find(params[:id])
-    @page_title = "WorkOrder Details"
+    @page_title = "Work Order Details"
 
   end
 
   def generate_report
     @work_order = WorkOrder.find(params[:work_order_id])
-    @page_title = "WorkOrder Details"
+    @page_title = "Work Order Details"
     output = WorkOrderReport.new.to_pdf(@work_order)
     send_data output, filename: "WorkOrder_#{@work_order.id}.pdf", type: "application/pdf"
   end

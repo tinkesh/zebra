@@ -1,13 +1,15 @@
-<div class="show_actions">
-
-
-  <%= link_to "New Work Order", new_private_work_order_path(:equipment_id => @equipment.id), 
-  :class => "new" %>
-  <%= link_to "Edit", edit_private_equipment_path(@equipment.id), :class => "edit" %>
-  <% if permitted_to? :delete, :private_equipments -%>
-   <%= link_to "Delete", private_equipment_path(@equipment.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
-  <% end %>
-</div>
+<% if !is_not_single_specific_role?(current_user, :service_advisor) %>
+    <%= content_for :submenu do %>
+      <ol class="noprint">
+        <% if permitted_to? :manage, :private_equipments -%>
+          <li><%= active_link_to 'Equipment', private_equipments_path %></li>
+        <% end %>
+        <% if permitted_to? :manage, :private_work_orders -%>
+          <li><%= active_link_to 'Work Orders', private_work_orders_path %></li>
+        <% end %>
+      </ol>
+    <% end %>
+<% end %>
 
 <%= content_for :breadcrumb do %>
 <% if is_not_single_specific_role?(current_user, :service_advisor) %>
@@ -28,6 +30,17 @@
     </ul>
   <% end %>
 <% end %>
+
+<div class="show_actions">
+  <%= link_to "New Work Order", new_private_work_order_path(:equipment_id => @equipment.id), 
+  :class => "new" %>
+  <%= link_to "Edit", edit_private_equipment_path(@equipment.id), :class => "edit" %>
+  <% if permitted_to? :delete, :private_equipments -%>
+   <%= link_to "Delete", private_equipment_path(@equipment.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+  <% end %>
+</div>
+
+
 
 <table>
   <tr><td></td><td></td></tr>
@@ -167,3 +180,11 @@
   <%= render :partial => 'private/crews/crews_table', :locals => {:crews => @equipment.crews} %>
 <% end %>
 
+<div class="clear" style="padding-top:10px;"></div>
+
+<h3> Work Orders Associated with this Equipment: Total (<%= @equipment.work_orders.size %>)</h3>
+<% if !@equipment.work_orders.blank? %>
+<%= render :partial => 'private/work_orders/index', :locals => {:work_orders => @equipment.work_orders } %>
+<% else %>
+No Work Order Associated with this Equipment
+<% end %>

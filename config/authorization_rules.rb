@@ -125,15 +125,13 @@ authorization do
   end
 
   role :service_advisor do
-    description 'Can view equipment. Can view his own hours'
+    description 'Can view equipment. Can view his own hours, Can view Workorder'
     has_permission_on :private, :to => [:index, :navigate, :manage]
-    has_permission_on :private_equipments, :to => [:read, :update]
+    has_permission_on :private_equipments, :to => [:manage, :add_note]
     has_permission_on :users, :to => :update do
       if_attribute :id => is { user.id }
     end
-    has_permission_on :private_equipments, :to => :add_note
-    has_permission_on :private_work_orders, :to => :manage
-    has_permission_on :private_work_orders, :to => :generate_report
+    has_permission_on :private_work_orders, :to => [:manage, :generate_report]
   end
 
   role :service_advisor do
