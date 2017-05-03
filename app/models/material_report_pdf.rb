@@ -4,9 +4,13 @@ class MaterialReportPdf < Prawn::Document
 
     @material_report = material_report
 
-    #logo_path = Rails.root.join('app', 'assets', 'images', 'aaa-striping-logo.png')
+    logo_path = Rails.root.join('app', 'assets', 'images', 'aaa-striping-logo.png')
 
-    data_header = [[" <font size='26'>#{@material_report.label}</font>"]]
+    y_position = cursor
+    image logo_path, :at => [420, y_position+20]
+    move_down 20
+
+    data_header = [[" <font size='26'>MR ##{@material_report.id}</font>"]]
     table(data_header, :header => true,  :width => 520, :cell_style => { :borders => [],:inline_format => true })
     move_down 20
 
