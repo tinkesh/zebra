@@ -1,7 +1,8 @@
 class Private::JobsController < ApplicationController
 
   layout "private"
-  filter_access_to :all
+  filter_access_to :all, :attribute_check => false
+  filter_access_to [:show], :attribute_check => true
 
   def index(archived = false)
     @page_title ||= "Jobs on Hand"
@@ -27,6 +28,13 @@ class Private::JobsController < ApplicationController
     else
       @jobs = jobs.where(:is_archived => archived)
     end
+  end
+
+  def parking_lot_division
+    @page_title = "Parking lot Jobs"
+    jobs = Job.includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
+    @jobs = jobs.where(:parking_lot_division => true)
+    render :index
   end
 
 

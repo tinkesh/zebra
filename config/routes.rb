@@ -40,6 +40,7 @@ AaaStriping::Application.routes.draw do
 
     resources :jobs do
       get :delete_document, on: :member
+      get :parking_lot_division, on: :collection
 
       resources :comments
       resources :gun_sheets

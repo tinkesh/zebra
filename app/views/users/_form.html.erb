@@ -104,21 +104,24 @@
 
   <label>Roles</label>
   <ul class="habtm">
-  <% roles = [ 'superadmin', 'admin', 'office', 'supervisor', 'foreman', 'crewman' ].reverse %>
+  <% roles = [ 'parking_lot', 'superadmin', 'admin', 'office', 'supervisor', 'foreman', 'crewman' ].reverse %>
   <% for role in roles %>
     <% role = Role.where(:name => role).first %>
-    <li>
-      <label style="line-height: 100%">
-        <% disabled = role.is_high_access_role? ? (!permitted_to?(:assign, :high_access_user_roles)) : false %>
-        <% disabled = false if @user.roles.include?(role) %>
-        <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role), :disabled => disabled %>
-        <strong><%= role.name.humanize %></strong>
-        <br>
-        <%= Authorization::Engine.instance.role_descriptions[role.name.to_sym].to_s.gsub('+', "<span class='text-emphasize'>+</span>").html_safe %>
-        <br>
-        <br>
-      </label>
-    </li>
+
+    <% if role %>
+      <li>
+        <label style="line-height: 100%">
+          <% disabled = role.is_high_access_role? ? (!permitted_to?(:assign, :high_access_user_roles)) : false %>
+          <% disabled = false if @user.roles.include?(role) %>
+          <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role), :disabled => disabled %>
+          <strong><%= role.name.humanize %></strong>
+          <br>
+          <%= Authorization::Engine.instance.role_descriptions[role.name.to_sym].to_s.gsub('+', "<span class='text-emphasize'>+</span>").html_safe %>
+          <br>
+          <br>
+        </label>
+      </li>
+    <% end %>
   <% end %>
   </ul>
 </div>

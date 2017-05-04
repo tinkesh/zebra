@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150429124243) do
+ActiveRecord::Schema.define(:version => 20170504091213) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "image_updated_at"
     t.integer  "attachable_id"
     t.string   "attachable_type"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.string   "file_type",          :default => "Field Documents"
   end
 
   create_table "careers", :force => true do |t|
@@ -169,6 +170,17 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.string   "color"
     t.datetime "red_flag_alert_sent_at"
     t.datetime "black_flag_alert_sent_at"
+    t.string   "equipment_make"
+    t.string   "equipment_model"
+    t.string   "equipment_year"
+  end
+
+  create_table "equipment_notes", :force => true do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "equipment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "estimate_items", :force => true do |t|
@@ -206,6 +218,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.string  "name"
     t.integer "position"
     t.integer "gun_marking_group_id"
+    t.boolean "hide",                 :default => false
   end
 
   create_table "gun_marking_groups", :force => true do |t|
@@ -343,6 +356,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "reminder_on"
     t.text     "reminder_notice"
     t.string   "reminder_email"
+    t.boolean  "parking_lot_division",    :default => false
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|
@@ -363,6 +377,15 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
   create_table "jobs_time_sheets", :force => true do |t|
     t.integer "job_id"
     t.integer "time_sheet_id"
+  end
+
+  create_table "labours", :force => true do |t|
+    t.string   "mechanic_name"
+    t.integer  "hours_on_job"
+    t.integer  "hourly_rate"
+    t.integer  "work_order_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "load_entries", :force => true do |t|
@@ -436,6 +459,16 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_archived",     :default => false
+  end
+
+  create_table "parts", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "quantity"
+    t.integer  "unit_rate"
+    t.integer  "work_order_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -553,7 +586,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "versioned_at"
     t.integer  "crew_id"
     t.string   "employment_state",                                    :default => "Employed"
-    t.string   "employment_notes"
+    t.text     "employment_notes"
     t.date     "employment_end_date"
     t.date     "employment_start_date"
   end
@@ -575,5 +608,21 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
   add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
   add_index "versions", ["number"], :name => "index_versions_on_number"
   add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_type_and_versioned_id"
+
+  create_table "work_orders", :force => true do |t|
+    t.string   "client_name"
+    t.string   "contact_name"
+    t.string   "phone"
+    t.string   "hour_meter"
+    t.string   "odometer"
+    t.integer  "equipment_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "shop_supplies",           :default => 0
+    t.text     "service_performed_notes"
+    t.datetime "created_date"
+    t.datetime "completed_date"
+  end
 
 end

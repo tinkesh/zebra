@@ -101,6 +101,16 @@ authorization do
     has_permission_on :private_client_contacts, :to => :manage
     has_permission_on :private_comments, to: [:manage, :add_comment]
   end
+
+  role :parking_lot do
+    description 'Can view Parking Lot Jobs'
+    has_permission_on :private, :to => [:index, :navigate]
+    has_permission_on [:private_jobs], :to => [:parking_lot_division]
+    
+    has_permission_on :private_jobs, :to => :show do
+      if_attribute :parking_lot_division => is { true }
+    end
+  end
 end
 
 privileges do
