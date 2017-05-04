@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170408025650) do
+ActiveRecord::Schema.define(:version => 20170504091213) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(:version => 20170408025650) do
     t.string  "name"
     t.integer "position"
     t.integer "gun_marking_group_id"
+    t.boolean "hide",                 :default => false
   end
 
   create_table "gun_marking_groups", :force => true do |t|
@@ -355,6 +356,7 @@ ActiveRecord::Schema.define(:version => 20170408025650) do
     t.datetime "reminder_on"
     t.text     "reminder_notice"
     t.string   "reminder_email"
+    t.boolean  "parking_lot_division",    :default => false
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|
