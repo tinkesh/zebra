@@ -43,6 +43,9 @@
       <%= link_to "Delete", private_material_report_path(m), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
       <%= link_to "Edit", edit_private_material_report_path(m), :class => "edit" %>
       <%= link_to "Show", private_material_report_path(m), :class => "show" %>
+      <% if !m.job_id.blank? && m.load_sheet %>
+        <%= link_to image_tag('pdf-download.png', :class => "show", :title => "Download report"), private_mat_download_pdf_path(m.id) %>
+      <% end %>
     </td>
   </tr>
 <% end %>
