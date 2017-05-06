@@ -10,21 +10,32 @@ class Private::JobsController < ApplicationController
     jobs = Job.includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
     if params[:query].present?
       @page_title = "Search Results"
-      sql  = 'jobs.name           ilike :query OR
-              completions.name    ilike :query OR
-              crews.name          ilike :query OR
-              clients.name        ilike :query OR
-              location_name       ilike :query OR
-              location_name       ilike :query OR
-              jobs.reference_code ilike :query OR
-              jobs.pay_status     ilike :query OR
-              jobs.zoho_details   ilike :query OR
-              jobs.id = :query_id'
-      if @archived == 'true'
-        @archived_jobs = jobs.archived.where(sql, :query => "%#{params[:query]}%", :query_id => "#{params[:query]}")
+      
+      params_to_integer = params[:query].to_i
+
+      if params_to_integer != 0
+        if @archived == 'true'
+          @archived_jobs = jobs.archived.where("jobs.id = #{params_to_integer}")
+        else
+          @active_jobs   = jobs.active.where("jobs.id = #{params_to_integer}")
+        end
       else
-        @active_jobs   = jobs.active.where(sql, :query => "%#{params[:query]}%", :query_id => "#{params[:query]}")
+        sql  = 'jobs.name           ilike :query OR
+                completions.name    ilike :query OR
+                crews.name          ilike :query OR
+                clients.name        ilike :query OR
+                location_name       ilike :query OR
+                location_name       ilike :query OR
+                jobs.reference_code ilike :query OR
+                jobs.pay_status     ilike :query OR
+                jobs.zoho_details   ilike :query'
+        if @archived == 'true'
+          @archived_jobs = jobs.archived.where(sql, :query => "%#{params[:query]}%")
+        else
+          @active_jobs   = jobs.active.where(sql, :query => "%#{params[:query]}%")
+        end      
       end
+
     else
       @jobs = jobs.where(:is_archived => archived)
     end
