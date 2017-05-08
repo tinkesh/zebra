@@ -16,11 +16,13 @@ class WorkOrderReport < Prawn::Document
 
     text_box "Shop Repair Work Order", :at => [120, y_position+20], :size => 22
 
-    move_down 50
-    new_position = cursor
-    text_box "ZebraOnline", :at => [440, new_position], :size => 10
-    move_down 10
+    move_down 70
+    #new_position = cursor
+    #text_box "<b>ZebraOnline</b>", :at => [440, new_position], :size => 10, :inline_format => true
     
+    new_position = cursor
+    draw_text "ZebraOnline", :at => [440, new_position], :inline_format => true
+    move_down 10
 
     work_order_id = "Wo No: #{@work_order.id}"
     if !@work_order.created_date.blank?
