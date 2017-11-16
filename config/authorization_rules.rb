@@ -106,10 +106,16 @@ authorization do
     description 'Can view Parking Lot Jobs'
     has_permission_on :private, :to => [:index, :navigate]
     has_permission_on [:private_jobs], :to => [:parking_lot_division]
-    
+    has_permission_on [:private_clock_in, :private_clock_out] , :to => [:create, :show, :index]
     has_permission_on :private_jobs, :to => :show do
       if_attribute :parking_lot_division => is { true }
     end
+    has_permission_on [:private_jobs], :to => [:manage]
+
+    has_permission_on [:private_gun_sheets], :to => [:create, :show, :index, :edit, :update, :destroy]
+    #has_permission_on :users, :to => [:index]
+
+    has_permission_on :private_reports, :to => :user_time
   end
 end
 
