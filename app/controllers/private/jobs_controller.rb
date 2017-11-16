@@ -7,7 +7,16 @@ class Private::JobsController < ApplicationController
   def index(archived = false)
     @page_title ||= "Jobs on Hand"
     @archived = params[:archived].present? ? params[:archived] : archived
-    jobs = Job.includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
+
+
+    if current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:parking_lot)
+    #  redirect_to parking_lot_division_private_jobs_url and return 
+       jobs = Job.includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
+       jobs = jobs.where(:parking_lot_division => true)
+    else
+       jobs = Job.includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
+    end
+
     if params[:query].present?
       @page_title = "Search Results"
       
