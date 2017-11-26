@@ -147,7 +147,7 @@ authorization do
     description 'Can view Parking Lot Jobs'
     has_permission_on :private, :to => [:index, :navigate]
     has_permission_on [:private_jobs], :to => [:parking_lot_division]
-    has_permission_on [:private_clock_in, :private_clock_out] , :to => [:create, :show, :index]
+    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets] , :to => [:create, :show, :index]
     has_permission_on :private_jobs, :to => :show do
       if_attribute :parking_lot_division => is { true }
     end
@@ -157,6 +157,8 @@ authorization do
     #has_permission_on :users, :to => [:index]
 
     has_permission_on :private_reports, :to => :user_time
+
+    has_permission_on :private_crews, to: [:show, :update]
   end
 end
 

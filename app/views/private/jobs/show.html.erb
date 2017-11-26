@@ -302,7 +302,7 @@
 
 <% if current_user.role_symbols.include?(:superadmin) || current_user.role_symbols.include?(:admin) %>
 <div class="span-12 last">
-  <h3>Zoho Details</h3>
+  <h3>Job Details</h3>
   <%= @job.zoho_details.blank? ? "None." : RedCloth.new(@job.zoho_details).to_html.html_safe %>
 </div>
 <% end %>
