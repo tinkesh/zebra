@@ -58,4 +58,10 @@ module ApplicationHelper
   def bootstrap_class_for flash_type
     {success: 'alert-success', error: 'alert-danger', alert: 'alert-block', notice: 'alert-info'}[flash_type] || flash_type.to_s
   end
+
+  def is_not_single_specific_role?(user,role)
+    return true if user.role_symbols.size > 1 
+    return false if user.role_symbols.size == 1 && user.role_symbols.include?(role)
+    true
+  end
 end

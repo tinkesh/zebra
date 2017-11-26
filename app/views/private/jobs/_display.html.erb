@@ -12,7 +12,7 @@
     <% end %>
     <th>Reference/Contract #</th>
     <th>Pay Status</th>
-    <th>Zoho Details</th>
+    <th>Job Details</th>
     <th>AR Error</th>
   </tr>
 <% i = 0 %>
@@ -40,7 +40,17 @@
     <td><%= aaa_highlight job.started_on %> </td>
     <td>
       <%- job.crews.each do |crew| %>
-        <span style="white-space:nowrap"><%= link_to aaa_highlight(crew.name.html_safe), edit_private_crew_path(crew) %></span style="white-space:nowrap">
+        <span style="white-space:nowrap">
+        <% if current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:parking_lot) %>
+          <% if crew.users.include?(current_user) %>
+            <%= link_to aaa_highlight(crew.name.html_safe), edit_private_crew_path(crew) %>
+          <% else %>
+            <%= crew.name.html_safe %>
+          <% end %>
+          <% else %>
+            <%= link_to aaa_highlight(crew.name.html_safe), edit_private_crew_path(crew) %>
+          <% end %>
+        </span style="white-space:nowrap">
         <br>
       <% end %>
     </td>
