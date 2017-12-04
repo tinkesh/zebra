@@ -64,4 +64,8 @@ module ApplicationHelper
     return false if user.role_symbols.size == 1 && user.role_symbols.include?(role)
     true
   end
+
+  def is_single_specific_role?(user,role)
+    !is_not_single_specific_role?(user,role)
+  end
 end
