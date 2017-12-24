@@ -32,6 +32,7 @@ AaaStriping::Application.routes.draw do
     end
 
     resources :gun_sheets
+    resources :product_reports
     match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected
     resources :gun_marking_categories do 
       member do
@@ -52,6 +53,7 @@ AaaStriping::Application.routes.draw do
       resources :material_reports
       resource :reconciliation_summary
       resource :material_report_summary
+      resources :product_reports
     end
     resources :job_sheets
     resources :load_sheets
