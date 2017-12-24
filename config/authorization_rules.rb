@@ -118,6 +118,8 @@ authorization do
     has_permission_on :private_reports, :to => :user_time
 
     has_permission_on :private_crews, to: [:show, :update]
+
+    has_permission_on :private_product_reports, to: [:manage]
   end
 end
 
