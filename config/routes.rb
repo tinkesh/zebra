@@ -53,7 +53,7 @@ AaaStriping::Application.routes.draw do
       resources :material_reports
       resource :reconciliation_summary
       resource :material_report_summary
-      resources :product_reports
+      resources :production_reports
     end
     resources :job_sheets
     resources :load_sheets

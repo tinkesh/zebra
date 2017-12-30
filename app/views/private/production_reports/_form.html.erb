@@ -1,0 +1,220 @@
+<div class="container">
+
+
+<div class="span-12 append-bottom">
+  <% if @job %>
+    <%= form.label :job_id, "Job" %><br>
+    <%= aaa_highlight("##{@job.id}") %>,&nbsp&nbsp<%= aaa_highlight @job.name %>
+    <%#= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true %>
+  <% end %>
+</div>
+
+<div class="span-12 append-bottom">
+  <%= form.label :user_created_at, "Date:" %><br>
+  <%= form.text_field "created_at", 'data-role' => 'datepicker', :required => true, :class => "span-6" %>
+</div>
+
+<div class="span-4">
+  <div style="height:110px;width:110px;overflow:hidden;">
+    <img src="/assets/aaa-striping-logo.png">
+  </div>
+  <div style="font-size: 20px;">
+  AAA Striping
+  </div>
+  <div style="font-size: 10px; width: 85%; margin: 0 auto;">
+  Parking Lot Division
+  </div>
+</div>
+
+
+<br class="clear">
+
+<div class="span-12 append-bottom">
+  <%= form.label :start_time, "Start Time:" %><br>
+  <%= form.text_field "start_time", 'data-role' => 'datetimepicker', :required => true, :class => "span-6" %>
+</div>
+
+<div class ="span-12 append-bottom">
+ <%= form.label :end_time, "End Time:" %><br>
+ <%= form.text_field "end_time", 'data-role' => 'datetimepicker', :required => true, :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<div class="span-12 append-bottom">
+  <%= form.label :completed_by, "Completed By:" %><br>
+  <%= form.text_field "completed_by",  :class => "span-6" %>
+</div>
+
+<br class="clear">
+
+<div class="span-12 append-bottom">
+  <%= form.label :report_type, "Repaint:" %><br>
+  <%= form.radio_button :report_type, true %> Repair & Maintanance 
+  <%= form.radio_button :report_type, false %> New Construction
+</div>
+
+<br class="clear">
+
+<table class="guns span-26 table-striped table-hover">
+  <tr class="spacer">
+    <th class="span-6">Type</th>
+    <th class="span-3">Each</th>
+    <th class="span-3">L.M</th>
+    <th class="span-1">&nbsp</th>
+    <th class="span-6">Type</th>
+    <th class="span-3">Each</th>
+    <th class="span-3">L.M</th>
+  </tr>
+  <tr class="spacer">
+    <th>&nbsp</th>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+  </tr>
+  <tr class="spacer">
+    <th>10cm Parking Lot Line Standard</th>
+    <td><%= form.text_field "parking_lot_line_standard_each", :class => "span-3" %></td>
+    <td><%= form.text_field "parking_lot_line_standard_lm", :class => "span-3" %></td>
+    <td>&nbsp</td>
+    <th>20-40 cm Stop Bar</th>
+    <td><%= form.text_field "stop_bar_each", :class => "span-3" %></td>
+    <td><%= form.text_field "stop_bar_lm", :class => "span-3" %></td>
+  </tr>
+  <tr class="spacer">
+    <th>10cm Parking Lot Line Angle</th>
+    <td><%= form.text_field "parking_lot_line_angle_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "parking_lot_line_angle_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Arrow- Single</th>
+    <td><%= form.text_field "arrow_single_each", :class => "span-3" %></td>
+    <td><%= form.text_field "arrow_single_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>10cm Parking Lot Line Parallel</th>
+    <td><%= form.text_field "parking_lot_line_parallel_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "parking_lot_line_parallel_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Arrow- Double</th>
+    <td><%= form.text_field "arrow_double_each", :class => "span-3" %></td>
+    <td><%= form.text_field "arrow_double_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>10cm Cross Hatching</th>
+    <td><%= form.text_field "cross_hatching_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "cross_hatching_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Speed Bump- Regular</th>
+    <td><%= form.text_field "speed_bump_regular_each", :class => "span-3" %></td>
+    <td><%= form.text_field "speed_bump_regular_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>20cm Crosswalk Line</th>
+    <td><%= form.text_field "crosswalk_line_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "crosswalk_line_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Speed Bump- Large</th>
+    <td><%= form.text_field "speed_bump_large_each", :class => "span-3" %></td>
+    <td><%= form.text_field "speed_bump_large_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>60cm Zebra Bar Crosswalk- Lump Sum</th>
+    <td><%= form.text_field "zebra_bar_crosswalk_lump_sum_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "zebra_bar_crosswalk_lump_sum_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Parking Stall #'s</th>
+    <td><%= form.text_field "parking_stalls_each", :class => "span-3" %></td>
+    <td><%= form.text_field "parking_stalls_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>60cm Zebra Bar (Each Bar)</th>
+    <td><%= form.text_field "zebra_bar_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "zebra_bar_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Sweeping- Lump Sum</th>
+    <td><%= form.text_field "sweeping_lump_sum_each", :class => "span-3" %></td>
+    <td><%= form.text_field "sweeping_lump_sum_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>Handicap Symbol- /W Blue Back</th>
+    <td><%= form.text_field "handicap_symbol_W_blue_back_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "handicap_symbol_W_blue_back_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Sweeping- Hourly</th>
+    <td><%= form.text_field "sweeping_hourly_each", :class => "span-3" %></td>
+    <td><%= form.text_field "sweeping_hourly_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>Handicap Symbol- W/O Blue Back</th>
+    <td><%= form.text_field "handicap_symbol_W_O_blue_back_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "handicap_symbol_W_O_blue_back_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Scrubbing- Lump Sum</th>
+    <td><%= form.text_field "scrubbing_lump_sum_each", :class => "span-3" %></td>
+    <td><%= form.text_field "scrubbing_lump_sum_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>NO PARKING</th>
+    <td><%= form.text_field "no_parking_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "no_parking_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Black Out Line</th>
+    <td><%= form.text_field "black_out_line_each", :class => "span-3" %></td>
+    <td><%= form.text_field "black_out_line_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>STOP</th>
+    <td><%= form.text_field "stop_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "stop_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Black Out Line</th>
+    <td><%= form.text_field "black_out_line_each", :class => "span-3" %></td>
+    <td><%= form.text_field "black_out_line_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>DRIVE THRU</th>
+    <td><%= form.text_field "drive_thru_each", :class => "span-3"  %></td>
+    <td><%= form.text_field "drive_thru_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th><%= form.text_field "custom_type3_name", :class => "span-6" %></th>
+    <td><%= form.text_field "custom_type3_each", :class => "span-3" %></td>
+    <td><%= form.text_field "custom_type3_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th><%= form.text_field "custom_type1_name", :class => "span-6" %></th>
+    <td><%= form.text_field "custom_type1_each", :class => "span-3" %></td>
+    <td><%= form.text_field "custom_type1_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th><%= form.text_field "custom_type4_name", :class => "span-6" %></th>
+    <td><%= form.text_field "custom_type4_each", :class => "span-3" %></td>
+    <td><%= form.text_field "custom_type4_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th><%= form.text_field "custom_type2_name", :class => "span-6" %></th>
+    <td><%= form.text_field "custom_type2_each", :class => "span-3" %></td>
+    <td><%= form.text_field "custom_type2_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th><%= form.text_field "custom_type5_name", :class => "span-6" %></th>
+    <td><%= form.text_field "custom_type5_each", :class => "span-3" %></td>
+    <td><%= form.text_field "custom_type5_lm", :class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th><%= form.text_field "custom_type6_name", :class => "span-6" %></th>
+    <td><%= form.text_field "custom_type6_each", :class => "span-3" %></td>
+    <td><%= form.text_field "custom_type6_lm", :class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+  </tr>
+</table>
+
+
+<br class="clear">
+
+<div class="span-12 append-bottom">
+  <%= form.label :notes, "Notes:" %><br>
+  <%= form.text_area "notes", :required => true, :class => "span-12" , cols: "30", rows: "6"%>
+</div>
+
+
+</div>
