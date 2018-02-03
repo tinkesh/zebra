@@ -160,7 +160,7 @@ authorization do
 
     has_permission_on :private_crews, to: [:show, :update]
 
-    has_permission_on :private_production_reports, to: [:manage]
+    has_permission_on :private_production_reports, to: [:manage, :read]
   end
 end
 

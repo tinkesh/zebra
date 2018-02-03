@@ -4,14 +4,18 @@
 <div class="span-12 append-bottom">
   <% if @job %>
     <%= form.label :job_id, "Job" %><br>
-    <%= aaa_highlight("##{@job.id}") %>,&nbsp&nbsp<%= aaa_highlight @job.name %>
+    <%= aaa_highlight("##{@job.id}") %>,&nbsp&nbsp<%= aaa_highlight @job.name %><br><br><br>
+    <%= form.label :report_number, "Report Number" %><br>
+    <% last_report_number = ProductionReport.maximum(:report_number).nil? ? 2017 :  ProductionReport.maximum(:report_number) %>
+    <%= last_report_number+1 %>
+    <%= form.hidden_field "report_number", :value => last_report_number+1 %>
     <%#= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true %>
   <% end %>
 </div>
 
 <div class="span-12 append-bottom">
   <%= form.label :user_created_at, "Date:" %><br>
-  <%= form.text_field "created_at", 'data-role' => 'datepicker', :required => true, :class => "span-6" %>
+  <%= text_field_tag "created_at", Date.today, :class => "span-6", :readonly => true %>
 </div>
 
 <div class="span-4">
@@ -43,7 +47,7 @@
 
 <div class="span-12 append-bottom">
   <%= form.label :completed_by, "Completed By:" %><br>
-  <%= form.text_field "completed_by",  :class => "span-6" %>
+  <%= form.select :completed_by, User.all.map {|u| [u.first_name,u.id]}, :include_blank => false,  :class => "span-6" %>
 </div>
 
 <br class="clear">

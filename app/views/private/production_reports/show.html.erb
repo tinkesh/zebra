@@ -5,6 +5,8 @@
     <li>»</li>
     <li><%= link_to 'Production Reports', '#' %></li>
     <li>»</li>
+    <li><%= link_to "Production Report - #{@production_report.report_number}", '#' %></li>
+    <li>»</li>
     <li><%= @page_title %></li>
   </ul>
 <% end %>
@@ -20,11 +22,14 @@
     <%= label_tag :job_id, "Job" %><br>
     <%= aaa_highlight("##{@job.id}") %>,&nbsp&nbsp<%= aaa_highlight @job.name %>
   <% end %>
+  <br><br>
+  <%= label_tag :report_number, "Report Number:" %><br>
+  <%= @production_report.report_number %>
 </div>
 
 <div class="span-12 append-bottom">
-  <%= label_tag :user_created_at, "Date:" %><br>
-  <%= @production_report.user_created_at %>
+  <%= label_tag :created_at, "Date:" %><br>
+  <%= @production_report.created_at %>
 </div>
 
 <div class="span-4">
@@ -52,7 +57,7 @@
 
 <div class="span-12 append-bottom">
   <%= label_tag :completed_by, "Completed By:" %><br>
-  <%= @production_report.completed_by %>
+  <%= @production_report.user_completed %>
 </div>
 
 <div class="span-12 append-bottom">
@@ -222,6 +227,6 @@
 </div>
 </div>
 
-<%#= link_to 'Cancel', private_home_path %>
+<%= link_to 'Back to Jobs on Hand', private_jobs_path %>
 
 </div>
