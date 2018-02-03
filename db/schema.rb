@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20171229220510) do
+ActiveRecord::Schema.define(:version => 20180203204031) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -479,7 +479,7 @@ ActiveRecord::Schema.define(:version => 20171229220510) do
   create_table "production_reports", :force => true do |t|
     t.integer  "job_id"
     t.integer  "created_by"
-    t.date     "user_created_at"
+    t.datetime "user_created_at"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "completed_by"
@@ -549,6 +549,7 @@ ActiveRecord::Schema.define(:version => 20171229220510) do
     t.text     "notes"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.integer  "report_number"
   end
 
   create_table "roles", :force => true do |t|
