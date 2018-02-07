@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180203204031) do
+ActiveRecord::Schema.define(:version => 20180207032148) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -482,7 +482,7 @@ ActiveRecord::Schema.define(:version => 20180203204031) do
     t.datetime "user_created_at"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer  "completed_by"
+    t.string   "completed_by"
     t.string   "report_type"
     t.string   "parking_lot_line_standard_each"
     t.string   "parking_lot_line_standard_lm"
