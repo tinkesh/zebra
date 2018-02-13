@@ -18,7 +18,7 @@
   <%= render :partial => "form", :object => f %>
   <br class="clear">
   <hr>
-  <%= f.submit "Create Production Report" %>,
+  <%= f.submit "Create Production Report", data: { disable_with: "Please wait..." } %>,
   <%#= f.submit "Create and Add Another Gun Sheet", :name => 'submit_and_create_another_gun_sheet' %>
   or
   <%= link_to 'Cancel', private_home_path %>
