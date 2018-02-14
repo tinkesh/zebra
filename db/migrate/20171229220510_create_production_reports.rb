@@ -1,0 +1,77 @@
+class CreateProductionReports < ActiveRecord::Migration
+  def change
+    create_table :production_reports do |t|
+    	    t.integer :job_id
+			t.integer :created_by
+			t.date :user_created_at
+			t.datetime :start_time
+			t.datetime :end_time
+			t.integer :completed_by
+			t.string :report_type
+			t.string :parking_lot_line_standard_each
+			t.string :parking_lot_line_standard_lm    
+			t.string :parking_lot_line_angle_each
+			t.string :parking_lot_line_angle_lm
+			t.string :parking_lot_line_parallel_each
+			t.string :parking_lot_line_parallel_lm
+			t.string :cross_hatching_each
+			t.string :cross_hatching_lm
+			t.string :crosswalk_line_each
+			t.string :crosswalk_line_lm
+			t.string :zebra_bar_crosswalk_lump_sum_each
+			t.string :zebra_bar_crosswalk_lump_sum_lm
+			t.string :zebra_bar_each
+			t.string :zebra_bar_lm
+			t.string :handicap_symbol_W_blue_back_each
+			t.string :handicap_symbol_W_blue_back_lm
+			t.string :handicap_symbol_W_O_blue_back_each
+			t.string :handicap_symbol_W_O_blue_back_lm
+			t.string :no_parking_each
+			t.string :no_parking_lm	 			  			
+			t.string :stop_each
+			t.string :stop_lm	 			  		
+			t.string :drive_thru_each
+			t.string :drive_thru_lm
+			t.string :stop_bar_each
+			t.string :stop_bar_lm
+			t.string :arrow_single_each
+			t.string :arrow_single_lm
+			t.string :arrow_double_each
+			t.string :arrow_double_lm
+			t.string :speed_bump_regular_each
+			t.string :speed_bump_regular_lm
+			t.string :speed_bump_large_each
+			t.string :speed_bump_large_lm
+			t.string :parking_stalls_each
+			t.string :parking_stalls_lm
+			t.string :sweeping_lump_sum_each
+			t.string :sweeping_lump_sum_lm
+			t.string :sweeping_hourly_each
+			t.string :sweeping_hourly_lm
+			t.string :scrubbing_lump_sum_each
+			t.string :scrubbing_lump_sum_lm
+			t.string :black_out_line_each
+			t.string :black_out_line_lm
+			t.string :custom_type1_name
+			t.string :custom_type1_each
+			t.string :custom_type1_lm
+			t.string :custom_type2_name
+			t.string :custom_type2_each
+			t.string :custom_type2_lm
+			t.string :custom_type3_name
+			t.string :custom_type3_each
+			t.string :custom_type3_lm
+			t.string :custom_type4_name
+			t.string :custom_type4_each
+			t.string :custom_type4_lm
+			t.string :custom_type5_name
+			t.string :custom_type5_each
+			t.string :custom_type5_lm		
+			t.string :custom_type6_name
+			t.string :custom_type6_each
+			t.string :custom_type6_lm
+	    t.text :notes
+	    t.timestamps
+    end
+  end
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150429124243) do
+ActiveRecord::Schema.define(:version => 20180207032148) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "image_updated_at"
     t.integer  "attachable_id"
     t.string   "attachable_type"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.string   "file_type",          :default => "Field Documents"
   end
 
   create_table "careers", :force => true do |t|
@@ -169,6 +170,17 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.string   "color"
     t.datetime "red_flag_alert_sent_at"
     t.datetime "black_flag_alert_sent_at"
+    t.string   "equipment_make"
+    t.string   "equipment_model"
+    t.string   "equipment_year"
+  end
+
+  create_table "equipment_notes", :force => true do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "equipment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "estimate_items", :force => true do |t|
@@ -206,6 +218,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.string  "name"
     t.integer "position"
     t.integer "gun_marking_group_id"
+    t.boolean "hide",                 :default => false
   end
 
   create_table "gun_marking_groups", :force => true do |t|
@@ -343,6 +356,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "reminder_on"
     t.text     "reminder_notice"
     t.string   "reminder_email"
+    t.boolean  "parking_lot_division",    :default => false
   end
 
   create_table "jobs_locations", :id => false, :force => true do |t|
@@ -363,6 +377,15 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
   create_table "jobs_time_sheets", :force => true do |t|
     t.integer "job_id"
     t.integer "time_sheet_id"
+  end
+
+  create_table "labours", :force => true do |t|
+    t.string   "mechanic_name"
+    t.integer  "hours_on_job"
+    t.integer  "hourly_rate"
+    t.integer  "work_order_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "load_entries", :force => true do |t|
@@ -436,6 +459,97 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_archived",     :default => false
+  end
+
+  create_table "parts", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "quantity"
+    t.integer  "unit_rate"
+    t.integer  "work_order_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "product_reports", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "production_reports", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "created_by"
+    t.datetime "user_created_at"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "completed_by"
+    t.string   "report_type"
+    t.string   "parking_lot_line_standard_each"
+    t.string   "parking_lot_line_standard_lm"
+    t.string   "parking_lot_line_angle_each"
+    t.string   "parking_lot_line_angle_lm"
+    t.string   "parking_lot_line_parallel_each"
+    t.string   "parking_lot_line_parallel_lm"
+    t.string   "cross_hatching_each"
+    t.string   "cross_hatching_lm"
+    t.string   "crosswalk_line_each"
+    t.string   "crosswalk_line_lm"
+    t.string   "zebra_bar_crosswalk_lump_sum_each"
+    t.string   "zebra_bar_crosswalk_lump_sum_lm"
+    t.string   "zebra_bar_each"
+    t.string   "zebra_bar_lm"
+    t.string   "handicap_symbol_W_blue_back_each"
+    t.string   "handicap_symbol_W_blue_back_lm"
+    t.string   "handicap_symbol_W_O_blue_back_each"
+    t.string   "handicap_symbol_W_O_blue_back_lm"
+    t.string   "no_parking_each"
+    t.string   "no_parking_lm"
+    t.string   "stop_each"
+    t.string   "stop_lm"
+    t.string   "drive_thru_each"
+    t.string   "drive_thru_lm"
+    t.string   "stop_bar_each"
+    t.string   "stop_bar_lm"
+    t.string   "arrow_single_each"
+    t.string   "arrow_single_lm"
+    t.string   "arrow_double_each"
+    t.string   "arrow_double_lm"
+    t.string   "speed_bump_regular_each"
+    t.string   "speed_bump_regular_lm"
+    t.string   "speed_bump_large_each"
+    t.string   "speed_bump_large_lm"
+    t.string   "parking_stalls_each"
+    t.string   "parking_stalls_lm"
+    t.string   "sweeping_lump_sum_each"
+    t.string   "sweeping_lump_sum_lm"
+    t.string   "sweeping_hourly_each"
+    t.string   "sweeping_hourly_lm"
+    t.string   "scrubbing_lump_sum_each"
+    t.string   "scrubbing_lump_sum_lm"
+    t.string   "black_out_line_each"
+    t.string   "black_out_line_lm"
+    t.string   "custom_type1_name"
+    t.string   "custom_type1_each"
+    t.string   "custom_type1_lm"
+    t.string   "custom_type2_name"
+    t.string   "custom_type2_each"
+    t.string   "custom_type2_lm"
+    t.string   "custom_type3_name"
+    t.string   "custom_type3_each"
+    t.string   "custom_type3_lm"
+    t.string   "custom_type4_name"
+    t.string   "custom_type4_each"
+    t.string   "custom_type4_lm"
+    t.string   "custom_type5_name"
+    t.string   "custom_type5_each"
+    t.string   "custom_type5_lm"
+    t.string   "custom_type6_name"
+    t.string   "custom_type6_each"
+    t.string   "custom_type6_lm"
+    t.text     "notes"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.integer  "report_number"
   end
 
   create_table "roles", :force => true do |t|
@@ -553,7 +667,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.datetime "versioned_at"
     t.integer  "crew_id"
     t.string   "employment_state",                                    :default => "Employed"
-    t.string   "employment_notes"
+    t.text     "employment_notes"
     t.date     "employment_end_date"
     t.date     "employment_start_date"
   end
@@ -575,5 +689,21 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
   add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
   add_index "versions", ["number"], :name => "index_versions_on_number"
   add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_type_and_versioned_id"
+
+  create_table "work_orders", :force => true do |t|
+    t.string   "client_name"
+    t.string   "contact_name"
+    t.string   "phone"
+    t.string   "hour_meter"
+    t.string   "odometer"
+    t.integer  "equipment_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "shop_supplies",           :default => 0
+    t.text     "service_performed_notes"
+    t.datetime "created_date"
+    t.datetime "completed_date"
+  end
 
 end

@@ -72,7 +72,18 @@
   <% for crew in @crews %>
     <li style="margin-bottom: 1em">
       <label>
-        <%= check_box_tag "job[crew_ids][]", crew.id, @job.crews.include?(crew) %>
+
+        <% if is_single_specific_role?(current_user, :parking_lot) %>
+          <% if crew.users.include?(current_user) %>
+            <% crew_enable = false %>
+          <% else %>
+            <% crew_enable = true %>
+          <% end %>
+        <% else %>
+          <% crew_enable = false %>
+        <% end %>
+  
+        <%= check_box_tag "job[crew_ids][]", crew.id, @job.crews.include?(crew), disabled: crew_enable %>
         <%= crew.label %>
       </label><br>
       <span style="padding-left: 20px;"><%= crew.user_list %></span>
@@ -85,7 +96,7 @@
 <div class="clearfix"></div>
 
 <div class="append-bottom">
-  <%= form.label :zoho_details, "Zoho Details" %><br>
+  <%= form.label :zoho_details, "Job Details" %><br>
   <%= form.text_area "zoho_details", :class => "span-24", :rows => 10 %>
 </div>
 <hr>
@@ -119,5 +130,19 @@
       <option>Field Documents</option>
       <option>Office Documents</option>
     </select>
+  </p>
+
+  <p>
+<div class="append-bottom">
+  <%= form.label :parking_lot_division, "Parking lot division" %><br>
+  <% if is_single_specific_role?(current_user, :parking_lot) %>
+    <%= form.radio_button :parking_lot_division, false, disabled: true %> AAA Striping
+    <%= form.radio_button :parking_lot_division, true, :checked => true %> AAA Striping Parking Lot Division
+  <% else %>
+    <%= form.radio_button :parking_lot_division, false %> AAA Striping
+    <%= form.radio_button :parking_lot_division, true %> AAA Striping Parking Lot Division
+  <% end %>
+
+</div>
   </p>
 </div>

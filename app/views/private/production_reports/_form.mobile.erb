@@ -1,0 +1,102 @@
+<table>
+  <% if @jobs %>
+    <tr>
+      <td>
+        <%= form.label :job_id, "Job" %>
+      </td>
+      <td>
+        <%= form.select :job_id, @jobs.map {|u| [job_label(u),u.id]}, :include_blank => true %>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+  <td><%= form.label :note, "Note:" %></td>
+  <td><%= form.text_field "note", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :equipment, "Equipment" %></td>
+  <td><%= form.collection_select(:equipment_id, @equipment, :id, :label) %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :job_location_id, "Specific Location" %></td>
+  <td><%= form.select :job_location_id, @job_locations.map {|u| [u.name,u.id]}, :include_blank => false %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :location_name, "Custom Location" %></td>
+  <td><%= form.text_field "location_name", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :control_section, "Control Section:" %></td>
+  <td><%= form.text_field "control_section", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :interchanges, "Interchanges:" %></td>
+  <td><%= form.text_field "interchanges", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :sides, "Intersections:" %></td>
+  <td><%= form.text_field "sides", :size => "20" %></td>
+  </tr>
+  <tr>
+  <td colspan="2">
+  <%= form.radio_button :is_new_construction, "true" %> New Construction
+  <%= form.radio_button :is_new_construction, "false" %> Repaint</td>
+  </tr>
+  <tr>
+    <td colspan="2"><hr /></td>
+  </tr>
+  <tr>
+  <td><%= form.label :started_on, "Started on.." %></td>
+  <td><%= form.date_select :started_on, { :start_year => (Time.now.year-1), :end_year => (Time.now.year+1) } %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :started_at, "Started at:" %></td>
+  <td><%= form.time_select :started_at, { :minute_step => 15 } %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :completed_on, "Completed on.." %></td>
+  <td><%= form.date_select :completed_on, { :start_year => (Time.now.year-1), :end_year => (Time.now.year+1) } %></td>
+  </tr>
+  <tr>
+  <td><%= form.label :completed_at, "Completed at:" %></td>
+  <td><%= form.time_select :completed_at, { :minute_step => 15 } %></td>
+  </tr>
+</table>
+
+<hr />
+
+<h3>Guns</h3>
+
+<table>
+<tr><th class="span-1">Solid</th><th class="span-1">Y1</th><td> <%= form.text_field "solid_y1", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>Y1</th><td><%= form.text_field "skip_y1", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>Y2</th><td><%= form.text_field "solid_y2", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>Y2</th><td><%= form.text_field "skip_y2", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>Y3</th><td><%= form.text_field "solid_y3", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>Y3</th><td><%= form.text_field "skip_y3", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>W4</th><td><%= form.text_field "solid_w4", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>W4</th><td><%= form.text_field "skip_w4", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>W5</th><td><%= form.text_field "solid_w5", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>W5</th><td><%= form.text_field "skip_w5", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>W6</th><td><%= form.text_field "solid_w6", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>W6</th><td><%= form.text_field "skip_w6", :size => "5" %></td></tr>
+
+  <tr><th>Solid</th><th>W7</th><td><%= form.text_field "solid_w7", :size => "5" %></td></tr>
+  <tr class="even"><th>Skip</th><th>W7</th><td><%= form.text_field "skip_w7", :size => "5" %></td></tr>
+</table>
+
+<hr />
+
+<h3>Markings</h3>
+<div id="gun_marking_fields">
+  <table>
+  <%= form.fields_for :gun_markings do |builder| %>
+    <%= render 'gun_marking_fields', :form => builder %>
+  <% end %>
+  </table>
+</div>

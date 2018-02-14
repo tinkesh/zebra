@@ -89,7 +89,7 @@ class Private::CrewsController < ApplicationController
   end
 
   def check_forman
-    ['supervisor', 'office', 'admin', 'superadmin'].each do |role|
+    ['supervisor', 'office', 'admin', 'superadmin', 'parking_lot'].each do |role|
       return if current_user.roles.map(&:name).include? role
     end
 

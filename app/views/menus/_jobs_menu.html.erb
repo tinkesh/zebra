@@ -9,7 +9,14 @@
     <li><%= active_link_to "New Time Sheet", new_private_time_sheet_path(:job_id => @job.id) %></li>
   <% end %>
   <% if permitted_to? :create, :private_gun_sheets -%>
+
+  <% if current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:parking_lot) %>
+    <li>
+      <%= active_link_to 'Add New Production Report',  new_private_job_production_report_path(:job_id => @job.id) %>
+    </li>
+  <% else %>
     <li><%= active_link_to 'New Gun Sheet', new_private_job_gun_sheet_path(:job_id => @job.id) %></li>
+  <% end %>
   <% end %>
   <% if permitted_to? :create, :private_load_sheets -%>
     <li><%= link_to "New Load Sheet", new_private_load_sheet_path %></li>

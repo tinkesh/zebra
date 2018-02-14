@@ -10,6 +10,14 @@ class PrivateController < ApplicationController
       redirect_to root_url
     end
 
+    if current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:parking_lot)
+    #  redirect_to parking_lot_division_private_jobs_url and return 
+       jobs = Job.includes(:client, :completion, :job_markings, :crews).order('jobs.id DESC')
+       @jobs = jobs.where(:parking_lot_division => true)
+    end
+
+
+
     @crew = current_user.crew
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)
       @jobs = Job.order(:id).all

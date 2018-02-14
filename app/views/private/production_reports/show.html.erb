@@ -1,0 +1,232 @@
+<div class="container">
+<%= content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Production Reports', '#' %></li>
+    <li>»</li>
+    <li><%= link_to "Production Report - #{@production_report.report_number}", '#' %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+
+<%= content_for :submenu do %>
+  <%= render :partial => 'menus/jobs_menu', :layout => false %>
+<% end %>
+<div class="container">
+
+
+<div class="span-12 append-bottom">
+  <% if @job %>
+    <%= label_tag :job_id, "Job" %><br>
+    <%= aaa_highlight("##{@job.id}") %>,&nbsp&nbsp<%= aaa_highlight @job.name %>
+  <% end %>
+  <br><br>
+  <%= label_tag :report_number, "Report Number:" %><br>
+  <%= @production_report.report_number %>
+</div>
+
+<div class="span-12 append-bottom">
+  <%= label_tag :created_at, "Date:" %><br>
+  <%= @production_report.created_at %>
+</div>
+
+<div class="span-4">
+  <div style="height:110px;width:110px;overflow:hidden;">
+    <img src="/assets/aaa-striping-logo.png">
+  </div>
+  <div style="font-size: 20px;">
+  AAA Striping
+  </div>
+  <div style="font-size: 10px; width: 85%; margin: 0 auto;">
+  Parking Lot Division
+  </div>
+</div>
+
+
+<div class="span-12 append-bottom">
+  <%= label_tag :start_time, "Start Time:" %><br>
+  <%= @production_report.start_time %>
+</div>
+
+<div class ="span-12 append-bottom">
+ <%= label_tag :end_time, "End Time:" %><br>
+ <%= @production_report.end_time %>
+</div>
+
+<div class="span-12 append-bottom">
+  <%= label_tag :completed_by, "Completed By:" %><br>
+  <%= @production_report.completed_by %>
+</div>
+
+<div class="span-12 append-bottom">
+  <%= label_tag :report_type, "Repaint:" %><br>
+  <%= @production_report.report_type == "true" ? "Repair & Maintanance" : "New Construction"%>  
+</div>
+<br class="clear">
+
+<table class="guns span-26 table-striped table-hover">
+  <tr class="spacer">
+    <th class="span-6">Type</th>
+    <th class="span-3">Each</th>
+    <th class="span-3">L.M</th>
+    <th class="span-1">&nbsp</th>
+    <th class="span-6">Type</th>
+    <th class="span-3">Each</th>
+    <th class="span-3">L.M</th>
+  </tr>
+  <tr class="spacer">
+    <th>&nbsp</th>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+  </tr>
+  <tr class="spacer">
+    <th>10cm Parking Lot Line Standard</th>
+    <td><%= text_field_tag "parking_lot_line_standard_each", @production_report.parking_lot_line_standard_each, :readonly  => true, :class => "span-3" %></td>
+    <td><%= text_field_tag "parking_lot_line_standard_lm", @production_report.parking_lot_line_standard_lm, :readonly  => true, :class => "span-3" %></td>
+    <td>&nbsp</td>
+    <th>20-40 cm Stop Bar</th>
+    <td><%= text_field_tag "stop_bar_each", @production_report.stop_bar_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "stop_bar_lm", @production_report.stop_bar_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr class="spacer">
+    <th>10cm Parking Lot Line Angle</th>
+    <td><%= text_field_tag "parking_lot_line_angle_each", @production_report.parking_lot_line_angle_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "parking_lot_line_angle_lm", @production_report.parking_lot_line_angle_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Arrow- Single</th>
+    <td><%= text_field_tag "arrow_single_each", @production_report.arrow_single_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "arrow_single_lm", @production_report.arrow_single_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>10cm Parking Lot Line Parallel</th>
+    <td><%= text_field_tag "parking_lot_line_parallel_each", @production_report.parking_lot_line_parallel_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "parking_lot_line_parallel_lm", @production_report.parking_lot_line_parallel_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Arrow- Double</th>
+    <td><%= text_field_tag "arrow_double_each", @production_report.arrow_double_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "arrow_double_lm", @production_report.arrow_double_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>10cm Cross Hatching</th>
+    <td><%= text_field_tag "cross_hatching_each", @production_report.cross_hatching_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "cross_hatching_lm", @production_report.cross_hatching_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Speed Bump- Regular</th>
+    <td><%= text_field_tag "speed_bump_regular_each", @production_report.speed_bump_regular_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "speed_bump_regular_lm", @production_report.speed_bump_regular_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>20cm Crosswalk Line</th>
+    <td><%= text_field_tag "crosswalk_line_each", @production_report.crosswalk_line_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "crosswalk_line_lm", @production_report.crosswalk_line_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Speed Bump- Large</th>
+    <td><%= text_field_tag "speed_bump_large_each", @production_report.speed_bump_large_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "speed_bump_large_lm", @production_report.speed_bump_large_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>60cm Zebra Bar Crosswalk- Lump Sum</th>
+    <td><%= text_field_tag "zebra_bar_crosswalk_lump_sum_each", @production_report.zebra_bar_crosswalk_lump_sum_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "zebra_bar_crosswalk_lump_sum_lm", @production_report.zebra_bar_crosswalk_lump_sum_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Parking Stall #'s</th>
+    <td><%= text_field_tag "parking_stalls_each", @production_report.parking_stalls_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "parking_stalls_lm", @production_report.parking_stalls_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>60cm Zebra Bar (Each Bar)</th>
+    <td><%= text_field_tag "zebra_bar_each", @production_report.zebra_bar_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "zebra_bar_lm", @production_report.zebra_bar_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Sweeping- Lump Sum</th>
+    <td><%= text_field_tag "sweeping_lump_sum_each", @production_report.sweeping_lump_sum_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "sweeping_lump_sum_lm", @production_report.sweeping_lump_sum_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>Handicap Symbol- /W Blue Back</th>
+    <td><%= text_field_tag "handicap_symbol_W_blue_back_each", @production_report.handicap_symbol_W_blue_back_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "handicap_symbol_W_blue_back_lm", @production_report.handicap_symbol_W_blue_back_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Sweeping- Hourly</th>
+    <td><%= text_field_tag "sweeping_hourly_each", @production_report.sweeping_hourly_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "sweeping_hourly_lm", @production_report.sweeping_hourly_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>Handicap Symbol- W/O Blue Back</th>
+    <td><%= text_field_tag "handicap_symbol_W_O_blue_back_each", @production_report.handicap_symbol_W_O_blue_back_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "handicap_symbol_W_O_blue_back_lm", @production_report.handicap_symbol_W_O_blue_back_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Scrubbing- Lump Sum</th>
+    <td><%= text_field_tag "scrubbing_lump_sum_each", @production_report.scrubbing_lump_sum_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "scrubbing_lump_sum_lm", @production_report.scrubbing_lump_sum_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>NO PARKING</th>
+    <td><%= text_field_tag "no_parking_each", @production_report.no_parking_each, :readonly  => true, :class => "span-3"  %></td>
+    <td><%= text_field_tag "no_parking_lm", @production_report.no_parking_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Black Out Line</th>
+    <td><%= text_field_tag "black_out_line_each", @production_report.black_out_line_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "black_out_line_lm", @production_report.black_out_line_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>STOP</th>
+    <td><%= text_field_tag "stop_each", @production_report.stop_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "stop_lm", @production_report.stop_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th>Black Out Line</th>
+    <td><%= text_field_tag "black_out_line_each", @production_report.black_out_line_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "black_out_line_lm", @production_report.black_out_line_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th>DRIVE THRU</th>
+    <td><%= text_field_tag "drive_thru_each", @production_report.drive_thru_each, :readonly  => true,:class => "span-3"  %></td>
+    <td><%= text_field_tag "drive_thru_lm", @production_report.drive_thru_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th><%= text_field_tag "custom_type3_name", @production_report.custom_type3_name, :readonly  => true,:class => "span-6" %></th>
+    <td><%= text_field_tag "custom_type3_each", @production_report.custom_type3_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "custom_type3_lm", @production_report.custom_type3_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th><%= text_field_tag "custom_type1_name", @production_report.custom_type1_name, :readonly  => true,:class => "span-6" %></th>
+    <td><%= text_field_tag "custom_type1_each", @production_report.custom_type1_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "custom_type1_lm", @production_report.custom_type1_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th><%= text_field_tag "custom_type4_name", @production_report.custom_type4_name, :readonly  => true,:class => "span-6" %></th>
+    <td><%= text_field_tag "custom_type4_each", @production_report.custom_type4_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "custom_type4_lm", @production_report.custom_type4_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th><%= text_field_tag "custom_type2_name", @production_report.custom_type2_name, :readonly  => true,:class => "span-6" %></th>
+    <td><%= text_field_tag "custom_type2_each", @production_report.custom_type2_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "custom_type2_lm", @production_report.custom_type2_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <th><%= text_field_tag "custom_type5_name", @production_report.custom_type5_name, :readonly  => true,:class => "span-6" %></th>
+    <td><%= text_field_tag "custom_type5_each", @production_report.custom_type5_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "custom_type5_lm", @production_report.custom_type5_lm, :readonly  => true,:class => "span-3" %></td>
+  </tr>
+  <tr>
+    <th><%= text_field_tag "custom_type6_name", @production_report.custom_type6_name, :readonly  => true,:class => "span-6" %></th>
+    <td><%= text_field_tag "custom_type6_each", @production_report.custom_type6_each, :readonly  => true,:class => "span-3" %></td>
+    <td><%= text_field_tag "custom_type6_lm", @production_report.custom_type6_lm, :readonly  => true,:class => "span-3"  %></td>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+    <td>&nbsp</td>
+  </tr>
+</table>
+
+
+<br class="clear">
+
+<div class="span-12 append-bottom">
+  <%= label_tag :notes, "Notes:" %><br>
+  <%= @production_report.notes%>
+</div>
+</div>
+
+<%= link_to 'Back to Jobs on Hand', private_jobs_path %>
+
+</div>

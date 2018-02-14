@@ -4,6 +4,9 @@
 
 <% if @crew %>
 <p>You are part of <%= @crew.label %>: <%= @crew.user_list %></p>
+
+<% elsif current_user.role_symbols.include?(:parking_lot) %>
+<p>You are logged in as Parking lot</p>
 <% else %>
 <p>You are not assigned to a crew.</p>
 <% end %>

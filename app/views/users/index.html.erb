@@ -32,7 +32,9 @@
     <th>Name</th>
     <th>Login</th>
     <th>Roles</th>
-    <th>Rate</th>
+    <% if !current_user.role_symbols.include?(:parking_lot)  %>
+      <th>Rate</th>
+    <% end %>
     <th>O/T</th>
     <th>Last Activity</th>
     <th>Emploment State</th>
@@ -44,7 +46,9 @@
     <td><%= link_to aaa_highlight(user.name), user_path(user), :class => "show" %></td>
     <td><%= aaa_highlight(user.login) %></td>
     <td><%= user.role_list %></td>
-    <td><%= if user.rate then number_to_currency(user.rate) end %></td>
+    <% if !current_user.role_symbols.include?(:parking_lot)  %>
+      <td><%= if user.rate then number_to_currency(user.rate) end %></td>
+    <% end %>
     <td><%= if user.bank_overtime_hours then "Bank" else "Pay Out" end %></td>
     <td><%=h time_ago_in_words(user.last_request_at) + " ago" if user.last_request_at? %></td>
     <td><%= user.try(:employment_state) %></td>
