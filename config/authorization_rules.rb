@@ -131,7 +131,7 @@ authorization do
     has_permission_on :users, :to => :update do
       if_attribute :id => is { user.id }
     end
-    has_permission_on :private_work_orders, :to => [:manage, :generate_report]
+    has_permission_on :private_work_orders, :to => [:manage, :generate_report,:delete_document]
   end
 
   role :service_advisor do

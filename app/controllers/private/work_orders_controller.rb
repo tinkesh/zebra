@@ -81,4 +81,21 @@ class Private::WorkOrdersController < ApplicationController
   end
 
 
+  def destroy
+    @work_order = WorkOrder.find(params[:id])
+    @work_order.destroy
+    flash[:notice] = 'WorkOrder deleted!'
+    redirect_to(private_work_orders_url)
+  end
+
+  def delete_document
+    @work_order = WorkOrder.find(params[:id])
+    document = @work_order.assets.find(params[:asset_id])
+    document.destroy
+
+    flash[:notice] = 'WorkOrder document deleted!'
+    redirect_to  private_work_order_path(@work_order)
+  end
+
+
 end

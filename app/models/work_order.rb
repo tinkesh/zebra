@@ -1,7 +1,8 @@
 class WorkOrder < ActiveRecord::Base
   attr_accessible :client_name, :contact_name, :phone, :equipment_id, :user_id, :hour_meter, :odometer, 
                   :date_of_work_completed, :shop_supplies, :labours_attributes, :parts_attributes,
-                  :service_performed_notes, :created_date, :completed_date
+                  :service_performed_notes, :created_date, :completed_date, :licence_plate, :serial,
+                  :make, :model, :year, :assets_attributes
 
   belongs_to :equipment
   belongs_to :user

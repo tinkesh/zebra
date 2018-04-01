@@ -29,6 +29,7 @@ AaaStriping::Application.routes.draw do
     end
     resources :work_orders do 
       get :generate_report
+      get :delete_document, on: :member
     end
 
     resources :gun_sheets
