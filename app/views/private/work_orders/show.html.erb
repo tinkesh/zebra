@@ -32,7 +32,12 @@
   <% end %>
 <% end %>
 
-
+<% if permitted_to?(:edit, :private_work_orders) and !in_mobile_view? %>
+  <div class="show_actions">
+    <%= link_to "Edit", edit_private_work_order_path(@work_order.id), :class => "edit" %>
+    <%= link_to "Delete", private_work_order_path(@work_order.id), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
+  </div>
+<% end %>
 
 
 <div class="container workorder">
@@ -158,7 +163,21 @@
             <% if @work_order.assets.blank? %>
               <p>No uploaded documents for this WorkOrder.</p>
             <% else %>
-              <p>asdasdas.</p>
+              <p>
+<table>               
+  <% @work_order.assets.each do |asset| %>
+  <tr>
+    <td><%=uploaded_asset(asset) %></td>
+    <td><%= asset.image_file_name %></td>
+    <td>
+      <%= link_to "Download", asset.image.url, target: '_blank' %>
+      <%= link_to "Delete", delete_document_private_work_order_path(@work_order, asset_id: asset.id), class: 'delete', confirm: "Are you sure?" %>
+    </td>
+  </tr>
+  <% end %>
+</table> 
+
+              </p>
             <% end %>
   </div>
 </div>
