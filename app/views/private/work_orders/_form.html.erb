@@ -2,40 +2,8 @@
   <span> No: </span> <span> <%= !WorkOrder.last.blank? ? WorkOrder.last.id+1 : 1 %></span> 
 </div>
 
-<br class="clear">
-
-<div class="span-6 append-bottom">
-  <%= form.label :created_date %><br>
-  <%= form.text_field :created_date, :class => "span-6", 'data-role' => 'datetimepicker', :readonly => true %>
-</div>
-
-<br class="clear">
-
-<div class="span-6 append-bottom">
-  <%= form.label :client_name %><br>
-  <%= form.text_field :client_name, :class => "span-6", :required => true %>
-</div>
-
-
-<div class="span-6 append-bottom">
-  <%= form.label :contact_name %><br>
-  <%= form.text_field :contact_name, :class => "span-6", :required => true %>
-</div>
-
-<div class="span-6 append-bottom">
-  <%= form.label :phone %><br />
-  <%= form.text_field :phone, :class => "span-6", :required => true %>
-</div>
-
-<div class="span-6 append-bottom">
-  <%= form.label :hour_meter %><br>
-  <%= form.text_field :hour_meter, :class => "span-6", :required => true %>
-</div>
-
-<div class="span-6 append-bottom">
-  <%= form.label :odometer %><br>
-  <%= form.text_field :odometer, :class => "span-6", :required => true %>
-</div>
+<%= hidden_field_tag "isWorkOrderNew", @work_order.id ? true : false, :id => "isWorkOrderNewId"%>
+<%= hidden_field_tag "workOrderId", @work_order.id ? @work_order.id : nil, :id => "workOrderId"%>
 
 <br class="clear">
 
@@ -79,6 +47,41 @@
 </div>
 
 <br class="clear">
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :created_date %><br>
+  <%= form.text_field :created_date, :class => "span-6", 'data-role' => 'datetimepicker', :readonly => true %>
+</div>
+
+<br class="clear">
+
+<div class="span-6 append-bottom">
+  <%= form.label :client_name %><br>
+  <%= form.text_field :client_name, :class => "span-6", :required => true %>
+</div>
+
+
+<div class="span-6 append-bottom">
+  <%= form.label :contact_name %><br>
+  <%= form.text_field :contact_name, :class => "span-6", :required => true %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :phone %><br />
+  <%= form.text_field :phone, :class => "span-6", :required => true %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :hour_meter %><br>
+  <%= form.text_field :hour_meter, :class => "span-6", :required => true %>
+</div>
+
+<div class="span-6 append-bottom">
+  <%= form.label :odometer %><br>
+  <%= form.text_field :odometer, :class => "span-6", :required => true %>
+</div>
+
 <br class="clear">
 <br class="clear">
 
@@ -170,14 +173,31 @@
   <%= form.text_field :completed_date, :class => "span-6", 'data-role' => 'datetimepicker', :readonly => true %>
 </div>
 
+<br class="clear">
+<div class="span-6 append-bottom">
+    <%= label_tag :work_order_assets, "Add document" %><br>
+    <%= file_field_tag('work_order_assets_image', multiple: true, name: "work_order[assets_attributes][][image]") %>
+</div>
+
 <script type="text/javascript">
   
 jQuery(document).ready(function() {
+
   jQuery('#work_order_equipment_id').on('change', function (e) {
     //var optionSelected = $("option:selected", this);
     var valueSelected = this.value;
-    //alert(valueSelected);
-    window.location.href = '/admin/work_orders/new?equipment_id='+valueSelected;
+    var is_work_order_new = jQuery('#isWorkOrderNewId').val();
+    var workOrderId = jQuery('#workOrderId').val();
+    //var workoder_edit_value = 
+    //alert(is_work_order_new);
+    if (!is_work_order_new) {
+      window.location.href = '/admin/work_orders/new?equipment_id='+valueSelected;
+    }
+    else
+    {
+      window.location.href = '/admin/work_orders/'+workOrderId+'/edit?equipment_id='+valueSelected;
+    }
+    
   }); 
 
   jQuery(".labour").nestedFields({

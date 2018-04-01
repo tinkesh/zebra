@@ -5,6 +5,7 @@
     <th class="span-4 center">Equipment</th>
     <th class="span-4 center">Contact name</th>
     <th class="span-4 center">Created date</th>
+    <th class="span-4 center">Status</th>
     <th class="span-4 center">Completed date</th>
     <th class="span-2 center">Labour Cost</th>
     <th class="span-2 center">Parts Cost</th>
@@ -20,6 +21,7 @@
     <td><%=  work_order.equipment.name %></td>
     <td><%=  work_order.contact_name %></td>
     <td><%=  work_order.created_date.strftime('%b-%d-%y') if !work_order.created_date.blank? %></td>
+    <td><%=  work_order.status %></td>
     <td><%=  work_order.completed_date.strftime('%b-%d-%y') if !work_order.completed_date.blank?%></td>
     <td>$<%=  work_order.labour_cost %></td>
     <td>$<%=  work_order.parts_cost %></td>
@@ -29,6 +31,7 @@
     <%#= link_to 'Delete', private_work_order_path(work_order), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%#= link_to "Edit", edit_private_work_order_path(work_order), :class => "edit" %>
     <%= link_to "Show", private_work_order_path(work_order), :class => "show" %>
+    <%= link_to "Edit", edit_private_work_order_path(work_order), :class => "show" %>
     <%= link_to "Generate PDF", private_work_order_generate_report_path(work_order), :class => "show" %>
     </td>
   </tr>

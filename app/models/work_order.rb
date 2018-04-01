@@ -14,6 +14,9 @@ class WorkOrder < ActiveRecord::Base
 
   attr_accessor :licence_plate, :serial, :make, :model, :year
 
+  has_many :assets, as: :attachable
+  accepts_nested_attributes_for :assets
+
   #attr_accessor :service_performed_notes, :created_date, :completed_date
 
   def labour_cost
@@ -40,6 +43,13 @@ class WorkOrder < ActiveRecord::Base
 
   def total_cost
     labour_cost + parts_cost + shop_supplies
+  end
+
+  def status
+    if completed_date
+      return "Completed"
+    end
+    "In Progress"
   end
 
 end

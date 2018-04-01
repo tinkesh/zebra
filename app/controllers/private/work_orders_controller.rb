@@ -25,10 +25,15 @@ class Private::WorkOrdersController < ApplicationController
   end
 
   def create
+    if params[:work_order][:assets_attributes][0]["image"].blank? 
+      params[:work_order].except!(:assets_attributes)
+    end
+
     @page_title = "New Work Order"
     @equipment = Equipment.find(params[:work_order][:equipment_id])
     @equipments = Equipment.all
     @work_order = WorkOrder.new(params[:work_order])
+
     if @work_order.save
       flash[:notice] = "WorkOrder created!"
       redirect_to private_work_orders_url
@@ -42,6 +47,31 @@ class Private::WorkOrdersController < ApplicationController
     @page_title = "Work Order Details"
 
   end
+
+  def edit
+    @work_order = WorkOrder.find(params[:id])
+    @page_title = "Edit #{@work_order.id}"
+    @equipment = Equipment.find(@work_order.equipment_id)
+    @equipments = Equipment.all
+  end
+
+  def update
+    @work_order = WorkOrder.find(params[:id])
+
+    if params[:work_order][:assets_attributes] && params[:work_order][:assets_attributes][0]["image"].blank? 
+      params[:work_order].except!(:assets_attributes)
+    end
+
+    if @work_order.update_attributes(params[:work_order])
+      redirect_to private_work_order_path(@work_order) and return 
+    else
+      @page_title = "Edit #{@work_order.id}"
+      @equipment = Equipment.find(@work_order.equipment_id)
+      @equipments = Equipment.all
+      render :action => :edit
+    end
+  end
+
 
   def generate_report
     @work_order = WorkOrder.find(params[:work_order_id])

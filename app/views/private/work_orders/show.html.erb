@@ -141,6 +141,8 @@
   </div>
 </div>
 
+<div class="clear">&nbsp</div>
+
 <div class="row">
   <div class="span-10">
         <label> Date Work Completed: </label> 
@@ -148,6 +150,18 @@
   </div>
 </div>
 
+<div class="clear">&nbsp</div>
+
+<div class="row">
+  <div class="span-10">
+        <label> Documents: </label> 
+            <% if @work_order.assets.blank? %>
+              <p>No uploaded documents for this WorkOrder.</p>
+            <% else %>
+              <p>asdasdas.</p>
+            <% end %>
+  </div>
+</div>
 
 
 <div class="row"><div class="span-10"> &nbsp</div></div>
