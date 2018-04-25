@@ -25,7 +25,7 @@ class Private::WorkOrdersController < ApplicationController
   end
 
   def create
-    if params[:work_order][:assets_attributes][0]["image"].blank? 
+    if params[:work_order][:assets_attributes] && params[:work_order][:assets_attributes][0]["image"].blank? 
       params[:work_order].except!(:assets_attributes)
     end
 
