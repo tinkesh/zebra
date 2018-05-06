@@ -3,7 +3,7 @@ class EventSerializer < ActiveModel::Serializer
              :backgroundColor, :borderColor, :editable
 
   def job_id
-    object.eventable.id
+    object.eventable.present? ? object.eventable.id : ""
   end
 
   def title
