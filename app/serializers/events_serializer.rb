@@ -3,7 +3,7 @@ class EventsSerializer < ActiveModel::Serializer
              :url, :backgroundColor, :borderColor, :editable
 
   def title
-    status = object.eventable.completion.present? ? object.eventable.completion.name : 'No Status'
+    status = (object.eventable.present? && object.eventable.completion.present?) ? object.eventable.completion.name : 'No Status'
     "Crew ##{object.crew.id} - #{object.name} (#{status})"
   end
 
