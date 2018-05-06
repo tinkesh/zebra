@@ -1,5 +1,3 @@
-<div class="container">
-
 <% if !is_not_single_specific_role?(current_user, :service_advisor) %>
     <%= content_for :submenu do %>
       <ol class="noprint">
@@ -14,20 +12,36 @@
 <% end %>
 
 <%= content_for :breadcrumb do %>
+ <% if is_not_single_specific_role?(current_user, :service_advisor) %>
   <ul id="breadcrumb">
     <li><%= link_to 'Dashboard', private_home_path %></li>
     <li>»</li>
     <li>Settings</li>
     <li>»</li>
-    <li><%= link_to 'Equipment', private_equipment_path %></li>
-    <li>»</li>
     <li><%= @page_title %></li>
   </ul>
+  <% else %>
+  <ul id="breadcrumb">
+    <li><%= @page_title %></li>
+  </ul>
+  <% end %>
 <% end %>
 
-<%= form_for @equipment, url: private_equipment_path(@equipment), html: {multipart: true, method: :put} do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Save Equipment" %> or <%= link_to 'Cancel', private_equipments_path %>
+<p id="new"><%= link_to 'New WorkOrder', new_private_work_order_path %></p>
+
+<hr>
+<table>
+<%= form_tag '', :method => 'get' do %>
+  <tr class="no-border"><td class="no-border right">
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search" %><br>
+    <em>Searches within Work Orders</em>
+  </td></tr>
 <% end %>
-    </div>
+</table>
+
+<%= will_paginate @work_orders %>
+
+<%= render :partial => 'index', :locals => {:work_orders => @work_orders} %>
+
+<%= will_paginate @work_orders %>

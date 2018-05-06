@@ -16,7 +16,9 @@ class PrivateController < ApplicationController
        @jobs = jobs.where(:parking_lot_division => true)
     end
 
-
+    if current_user.role_symbols.size == 1 && current_user.role_symbols.include?(:service_advisor)
+      redirect_to private_equipments_url
+    end
 
     @crew = current_user.crew
     if current_user.role_symbols.include?(:admin) || current_user.role_symbols.include?(:office)

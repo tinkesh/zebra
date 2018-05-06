@@ -1,0 +1,29 @@
+<tr class="part_item">
+  <td>
+    <%= f.text_field :name, class: "span-7" %>
+  </td>
+  <td>
+    <%= f.text_area :description, class: "form-control", cols: "20", rows: "4" %>
+  </td>
+  <td class="quantity">
+    <%= f.number_field :quantity, class: "form-control", min: 0 %>
+  </td>
+
+  <td class="unit_rate">
+    <%= f.number_field :unit_rate, class: "form-control", min: 0 %>
+  </td>
+
+  <td class="total_cost">
+    <%#= f.text_field :total_cost, class: "form-control", disabled: true%>
+    <div class='parts-total-price' style='text-align:center;width:80px;line-height: 30px;'>
+      $0
+    </div>
+    <%#= text_field_tag :total_cost %>
+  </td>
+
+  <td>
+    <a href="#" class="remove" data-confirm="Are you sure?">remove</a>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :_destroy %>
+  </td>
+</tr>

@@ -471,6 +471,7 @@ ActiveRecord::Schema.define(:version => 20180207032148) do
     t.datetime "updated_at",    :null => false
   end
 
+<<<<<<< HEAD
   create_table "product_reports", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -552,6 +553,8 @@ ActiveRecord::Schema.define(:version => 20180207032148) do
     t.integer  "report_number"
   end
 
+=======
+>>>>>>> added new role logic
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"

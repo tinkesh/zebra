@@ -1,11 +1,38 @@
 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 <% if permitted_to? :manage, :private -%>
+
+  <% if permitted_to? :manage, :private_clients -%>
   <li><%= active_link_to 'Clients', private_clients_path %></li>
+  <% end %>
+
+  <% if permitted_to? :manage, :private_costs -%>
   <li><%= active_link_to 'Costs', private_costs_path %></li>
+  <% end %>
+
+  <% if permitted_to? :manage, :private_equipments -%>
   <li><%= active_link_to 'Equipment', private_equipments_path %></li>
+  <% end %>
+
+
+  <% if permitted_to? :manage, :private_gun_marking_categories -%>
   <li><%= active_link_to 'Gun Marking Categories', private_gun_marking_categories_path %></li>
+  <% end %>
+
+  <% if permitted_to? :manage, :private_completions -%>
   <li><%= active_link_to 'Job Completion Levels', private_completions_path %></li>
+  <% end %>
+
+  <% if permitted_to? :manage, :private_manufacturers -%>
   <li><%= active_link_to 'Manufacturers', private_manufacturers_path %></li>
+  <% end %>
+
+  <% if permitted_to? :manage, :private_materials -%>
   <li><%= active_link_to 'Materials', private_materials_path %></li>
+  <% end %>
+
+  <% if permitted_to? :manage, :private_work_orders -%>
+  <li><%= active_link_to 'Work Orders', private_work_orders_path %></li>
+  <% end %>
+
 <% end %>
 </ul>

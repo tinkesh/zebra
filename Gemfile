@@ -57,10 +57,11 @@ gem 'bootstrap-sass', '3.1.1.0'
 gem 'rails_log_stdout'
 # gem 'rails3_serve_static_assets'
 gem 'rails_12factor'
-gem 'heroku'
-gem 'thin'
-
 
 gem 'delayed_job'
 gem 'delayed_job_active_record'
+
+
 gem 'prawn', '~> 0.12.0'
+gem 'heroku'
+gem 'thin'
